@@ -1,0 +1,10 @@
+#Area
+area.manager=\u533a\u57df\u7ba1\u7406
+country.manager=\u56fd\u5bb6\u7ba1\u7406
+province.manager=\u7701\u4efd\u7ba1\u7406
+city.manager=\u57ce\u5e02\u7ba1\u7406
+
+area.newCountry=\u65b0\u5efa\u56fd\u5bb6
+area.country.info=\u56fd\u5bb6\u4fe1\u606f
+area.province.info=\u7701\u4efd\u4fe1\u606f
+area.city.info=\u57ce\u5e02\u4fe1\u606f

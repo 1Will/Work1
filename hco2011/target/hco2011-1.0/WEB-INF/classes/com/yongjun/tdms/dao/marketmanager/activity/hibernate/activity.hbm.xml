@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2010 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: activity.hbm.xml 2010-11-23 hmguan $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.marketmanager.activity.Activity" table="t_activity">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_activity_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		
+		<property name="code" type="string">
+            <column name="CODE" not-null="true" sql-type="NVARCHAR(20)" unique-key="UK_Activity"/>
+        </property>
+        
+        <property name="theme" type="string">
+			<column name="THEME" not-null="true" sql-type="NVARCHAR(500)" />
+		</property>
+        
+         <property name="customers" type="string">
+			<column name="CUSTOMERS" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		
+         <property name="target" type="string">
+			<column name="TARGET" not-null="false" sql-type="NVARCHAR(100)" />
+		</property>
+		      
+        <property name="beginTime" type="timestamp">
+			<column name="BEGIN_TIME" not-null="false" />
+		</property>
+        
+        <property name="endTime" type="timestamp">
+			<column name="END_TIME" not-null="false" />
+		</property>
+        
+        <property name="place" type="string">
+			<column name="PLACE" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>      
+        
+        <many-to-one name="activityType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="ACTIVITY_TYPE" not-null="false"/>
+		</many-to-one>
+        
+        <many-to-one name="status" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="STATUS" not-null="false"/>
+		</many-to-one>
+        
+        <many-to-one name="progress" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="PROGRESS" not-null="false"/>
+		</many-to-one>
+		
+        <many-to-one name="priority" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="PRIORITY" not-null="false"/>
+		</many-to-one>
+	
+		<many-to-one name="persons" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles" lazy="false">
+			<column name="PERSONS_ID" not-null="true"/>
+		</many-to-one>
+		
+        <property name="fee" type="double">
+			<column name="FEE" not-null="false"/>
+		</property>
+		
+        <property name="content" type="string">
+			<column name="CONTENT" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+        
+        <property name="summary" type="string">
+			<column name="SUMMARY" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+        
+        <property name="comment" type="string">
+			<column name="COMMENT" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+        
+        <property name="remark" type="string">
+			<column name="REMARK" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+       
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+        
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+		
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+        
+        <many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization">
+			<column name="ORG_ID"/>
+		</many-to-one>
+		
+	</class>
+</hibernate-mapping>

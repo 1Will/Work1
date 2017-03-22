@@ -1,0 +1,36 @@
+# Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+# Rights Reserved.
+# 
+# This software is the confidential and proprietary information of YongJun
+# Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+# shall not disclose such Confidential Information and shall use it only in
+# accordance with the terms of the license agreement you entered into with
+# YongJun.
+# 
+# YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+# SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+# NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+# LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+# DERIVATIVES.
+#
+# $Id: EditGroupAction_zh_CN.properties 6144 2007-07-31 01:39:55Z qsun $
+title=\u901a\u8baf\u7ec4\u7ef4\u62a4
+
+group=\u901a\u8baf\u7ec4
+group.code=\u7f16\u7801
+group.name=\u540d\u79f0
+parent.group=\u4e0a\u7ea7\u7ec4
+select.option.non=\u65e0
+group.code.requiredstring=\u8bf7\u8f93\u5165\u901a\u8baf\u7ec4\u7f16\u7801
+group.code.repeat=\u901a\u8baf\u7ec4\u7f16\u7801\u5df2\u5b58\u5728\uff0c\u8bf7\u91cd\u65b0\u8f93\u5165
+group.code.stringlength=\u901a\u8baf\u7ec4\u7f16\u7801\u6700\u5927\u957f\u5ea6\u4e3a${maxLength}\u4f4d
+group.name.requiredstring=\u8bf7\u8f93\u5165\u901a\u8baf\u7ec4\u540d\u79f0
+parent.group.requiredstring=\u8bf7\u9009\u62e9\u4e0a\u7ea7\u7ec4
+group.code.maxLength=\u7f16\u7801\u6700\u5927\u957f\u5ea6\u4e3a15\u4f4d
+group.name.maxLength=\u540d\u79f0\u6700\u5927\u957f\u5ea6\u4e3a15\u4f4d
+group.add.success=\u6210\u529f\u589e\u52a0\u901a\u8baf\u7ec4<strong>{0}</strong>
+group.edit.success=\u6210\u529f\u4fee\u6539\u901a\u8baf\u7ec4<strong>{0}</strong>
+group.delete.success=\u6210\u529f\u5220\u9664\u901a\u8baf\u7ec4<strong>{0}</strong>
+group.join.success=\u6307\u5b9a\u7528\u6237\u6210\u529f\u52a0\u5165\u901a\u8baf\u7ec4<strong>{0}</strong>
+group.leave.success=\u6307\u5b9a\u7528\u6237\u6210\u529f\u9000\u51fa\u901a\u8baf\u7ec4<strong>{0}</strong>

@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.backvisit.BackVisit" table="t_backvisit">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_advisory_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION" type="long"/>
+		<property name="customerName" type="string">
+			<column name="CUSTOMER_NAME" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="caName" type="string">
+			<column name="CONTACT_NAME" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<many-to-one name="customerInfo" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo" lazy="false">
+        	<column name="CUSTOMER_ID" not-null="false"></column>
+        </many-to-one>
+        <many-to-one name="contactArchive" class="com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives" lazy="false">
+        	<column name="CONTACT_ID" not-null="false"></column>
+        </many-to-one>
+        
+		<property name="backVisitDate" type="timestamp">
+			<column name="VISIT_DATE"/>
+		</property>
+		<property name="costTime" type="double">
+			<column name="EXPEND_TIME"/>
+		</property>
+		<property name="backVisitSum" type="long">
+			<column name="BACK_VISIT_SUM"/>
+		</property>
+		<property name="unconnect" type="long">
+			<column name="UNCONNECT"/>
+		</property>
+		<many-to-one name="backVisitWay" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+        	<column name="VISIT_TYPE" not-null="false"></column>
+        </many-to-one>
+        <many-to-one name="customerSteped" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+        	<column name="CUSTOMER_STEPED" not-null="false"></column>
+        </many-to-one>
+         <many-to-one name="customerSteping" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+        	<column name="CUSTOMER_STEPING" not-null="false"></column>
+        </many-to-one>
+        <many-to-one name="customerStated" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+        	<column name="customer_Stated" not-null="false"></column>
+        </many-to-one>
+         <many-to-one name="customerStating" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+        	<column name="customer_Stating" not-null="false"></column>
+        </many-to-one>
+         
+        <many-to-one name="backVisitType" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+        	<column name="BACK_VISIT_TYPE" not-null="false"></column>
+        </many-to-one>
+        <property name="backVisiter" type="string">
+			<column name="VISITOR" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="gradeChang" type="string">
+			<column name="GRADECHANG" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="projectName" type="string">
+			<column name="projectName" not-null="false" sql-type="NVARCHAR(100)" />
+		</property>
+		
+		
+		<property name="changReason" type="string">
+			<column name="CHANG_REASON" not-null="false" sql-type="NVARCHAR(100)" />
+		</property>
+		
+		<property name="changStateReason" type="string">
+			<column name="changState_REASON" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+		
+		
+        <many-to-one name="employee" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles" lazy="false">
+        	<column name="VISITOR_ID" not-null="false"></column>
+        </many-to-one>
+        
+		<property name="continueBackVisit" type="string">
+			<column name="CONTINUE_BACK_VISIT" sql-type="NVARCHAR(1)"/>
+		</property>
+		<property name="isPublic" type="string">
+			<column name="isPublic" sql-type="NVARCHAR(1)"/>
+		</property>
+		<property name="isSaved" type="string">
+			<column name="isSaved" sql-type="NVARCHAR(1)"/>
+		</property>
+		
+		<property name="nextBackVisitDate" type="timestamp">
+			<column name="NEXT_VISIT_DATE"/>
+		</property>
+		<property name="backVisitContent" type="string">
+			<column name="VISIT_CONTENT" not-null="false" sql-type="NVARCHAR(500)"/>
+		</property>
+		<property name="feedback" type="string">
+			<column name="CUSTOMER_FEED" not-null="false" sql-type="NVARCHAR(500)"/>
+		</property>
+		
+		<property name="attention" type="string">
+			<column name="LATER_ATTEN"  not-null="false" sql-type="NVARCHAR(500)"/>
+		</property>
+		<property name="remarks" type="string">
+			<column name="REMARKS"  not-null="false" sql-type="NVARCHAR(500)"/>
+		</property>
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR"   type="string" length="20"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator"  column="LAST_OPERATOR"   type="string" length="20"/>
+        <!-- 联系人参与者 -->
+        <property name="contactArchives" type="string">
+			<column name="contactArchives"  not-null="false" sql-type="NVARCHAR(500)"/>
+		</property>
+		 <!-- 业务员同行者 -->
+		<property name="employees" type="string">
+			<column name="employees"  not-null="false" sql-type="NVARCHAR(500)"/>
+		</property>
+		<!-- 所属项目 -->
+		<many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
+			<column name="projectInfo_id" not-null="false" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

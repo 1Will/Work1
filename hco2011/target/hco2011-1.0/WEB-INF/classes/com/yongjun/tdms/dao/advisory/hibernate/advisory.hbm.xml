@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2006-2008 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: $ -->
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.advisory.Advisory" table="t_advisory">
+		<id name="id" column="ID" type="long">
+			<generator class="native">
+				<param name="sequence">t_advisory_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		<!--客户姓名-->
+        <property name="name" type="string">
+			<column name="NAME" not-null="true" sql-type="NVARCHAR(50)"/>
+		</property>
+		<!--客户缩写-->
+		<property name="shortName" type="string">
+			<column name="NAME_SHORT" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<!--企业法人-->
+		<property name="legalPerson" type="string">
+            <column name="CORPORATE" not-null="false" length="40"/>
+        </property>
+        <!--联系人-->
+		<property name="connectPeople" type="string">
+			<column name="CONNECT_PEOPLE" not-null="true"  sql-type="NVARCHAR(20)" />
+		</property>
+		<!--部门-->
+		<property name="dept" type="string">
+			<column name="DEPT" not-null="false"  sql-type="NVARCHAR(20)" />
+		</property>
+		<!--职务-->
+	    <property name="duty" type="string">
+			<column name="OFFICE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<!--办公电话-->
+		<property name="officePhone" type="string">
+			<column name="PHONE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<!--移动电话-->
+		<property name="mobile" type="string">
+			<column name="MOBILE" not-null="true" sql-type="NVARCHAR(20)" />
+		</property>
+		<!--传真-->
+		<property name="fax" type="string">
+			<column name="FAX" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<!--Email-->
+		<property name="email" type="string">
+			<column name="EMAIL" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="qq" type="string">
+			<column name="QQ" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<!--客服人员姓名-->
+	   <property name="customerServiceName" type="string">
+			<column name="CUSTOMER_SERVICE_PERSON_NAME" not-null="true" sql-type="NVARCHAR(20)" />
+		</property>
+		<!--咨询时间-->
+		<property name="advisoryTime" type="timestamp">
+			<column name="ADVISORY_TIME" not-null="true"/>
+		</property>
+		<!--是否回访-->
+		<property name="isNoBack" type="boolean">
+			<column name="IS_BACKVISIT"/>
+		</property>
+		<!--地址-->
+		<property name="address" type="string">
+			<column name="ADDRESS" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<!--咨询内容-->
+		<property name="advisoryContent" type="string">
+			<column name="ADVISORY_CONTENT" not-null="true" sql-type="NVARCHAR(500)" />
+		</property>
+		<!--备注-->
+		<property name="comment" type="string">
+			<column name="REMARKS" not-null="false"  sql-type="NVARCHAR(500)" />
+		</property>
+		
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+        <!--性别-->
+        <property name="sex" type="boolean" >
+            <column name="SEX" not-null="false"/>
+        </property>
+        
+        <!--客户类型-->
+        <many-to-one name="customerType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="CUSTOMER_TYPE" not-null="false"/>
+		</many-to-one>
+
+		<!--类型-->
+        <many-to-one name="statue" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="STATUE" not-null="true"/>
+		</many-to-one>
+
+		<!--客户等级
+        <many-to-one name="customerRank" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="CUSTOMER_RANK" not-null="true"/>
+		</many-to-one>
+		-->
+
+		<!--行业-->
+		<many-to-one name="industry" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="INDUSTRY" not-null="true"/>
+		</many-to-one>
+		<!--企业性质-->
+		<many-to-one name="companyNature" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="NATURE" not-null="true"/>
+		</many-to-one>
+		<!--国家-->
+	    <many-to-one name="country" class="com.yongjun.tdms.model.base.area.Area">
+			<column name="COUNTRY_ID" not-null="true"/>
+		</many-to-one>
+		<!--省份-->
+		<many-to-one name="province" class="com.yongjun.tdms.model.base.area.Area">
+			<column name="PROVINCE_ID" not-null="true"/>
+		</many-to-one>
+		<!--城市-->
+		<many-to-one name="city" class="com.yongjun.tdms.model.base.area.Area">
+			<column name="CITY_ID" not-null="false"/>
+		</many-to-one>
+		<!--信息来源-->
+		<many-to-one name="infoSource" class="com.yongjun.pluto.model.codevalue.CodeValue">
+        	<column name="INFO_SOURCE" not-null="false"></column>
+        </many-to-one>
+        <!--客服人员-->
+        <many-to-one name="customerServicePerson" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+        	<column name="CUSTOMER_SERVICE_PERSON_ID" not-null="true"></column>
+        </many-to-one>
+        <!--关联客户档案-->
+        <many-to-one name="customer" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo">
+        	<column name="CUSTOMER_ID" not-null="false"></column>
+        </many-to-one>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR"   type="string" length="20"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="20"/>
+        <!-- 企业简介 -->
+        <property name="effectDescribe" column="EFFECT_DESCRIBE" type="string" length="500"/>
+        <!--印象描述 -->
+		<property name="enterpriseSynopsis" column="ENTERPRISE_SYNOPSIS" type="string" length="500"/>
+		<!-- 员工人数 -->
+		<property name="personCount" column="PERSONCOUNT" type="integer" />
+		<!-- 注册资本 -->
+		<property name="registeredCapital" column="REGISTERED_CAPITAL" type="double" />
+		<!-- 业务员的部门 -->
+		<property name="parlorDept" column="PARLOR_DEPT" type="string" length="20" />
+		<!-- 创立日期 -->
+		 <property name="setupTime" type="date">
+            <column name="CREATE_DATE"/>
+        </property>
+        <!-- 资料完整度 -->
+        <property name="customerInfoIntegrity" column="CUSTOMER_INFO_INTEGRITY" type="float"></property>
+	</class>
+</hibernate-mapping>

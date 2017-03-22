@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2010 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: additionalInfo.hbm.xml 2010-02-03 wliu $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.personnelFiles.AdditionalInfo" table="t_additionalInfo">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_additionalInfo_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		
+		<property name="wageAccount" type="string">
+            <column name="WAGEACCOUNT" not-null="false" sql-type="NVARCHAR(20)" />
+        </property>
+        
+        <property name="securityAccount" type="string">
+			<column name="SECURITYACCOUNT" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <property name="providentAccount" type="string">
+			<column name="PROVIDENTACCOUNT" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <property name="height" type="string">
+			<column name="HEIGHT" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <property name="weight" type="string">
+			<column name="WEIGHT" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <property name="sight" type="string">
+			<column name="SIGHT" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <property name="blood" type="string">
+			<column name="BLOOD" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <property name="residenceAddrese" type="string">
+			<column name="RESIDENCEADDRESE" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+        
+        <property name="homeAddress" type="string">
+			<column name="HOMEADDRESS" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+        
+        <property name="postcode" type="string">
+			<column name="POSTCODE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <property name="commAddress" type="string">
+			<column name="COMMADDRESS" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+        
+        <property name="interests" type="string">
+			<column name="INTERESTS" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+       
+        
+        <many-to-one name="religion" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="RELIGION_ID" not-null="false"/>
+		</many-to-one>
+        
+        <many-to-one name="health" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="HEALTH_ID" not-null="false"/>
+		</many-to-one>
+        
+        <many-to-one name="pf" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+			<column name="PF_ID" not-null="true"/>
+		</many-to-one>
+        
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

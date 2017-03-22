@@ -1,0 +1,3 @@
+menuAction.menuNames=taskManager,BaseInformationManager,Crm,project,SigningManagement,PersonnelFilesManager,CrmService,FinancialManagement,Office,System
+menuAction.baseNames=menu
+exceptionHandler.baseNames=pluto-exception

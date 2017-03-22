@@ -1,0 +1,13 @@
+#TargetManagement
+targetManagement.delete.success=\u90e8\u95e8\u76ee\u6807\u5220\u9664\u6210\u529f
+targetManagement.delete.error=\u90e8\u95e8\u76ee\u6807\u5220\u9664\u5931\u8d25
+targetManagement.disabled.success=\u90e8\u95e8\u76ee\u6807\u5931\u6548\u6210\u529f
+targetManagement.disabled.error=\u90e8\u95e8\u76ee\u6807\u5931\u6548\u5931\u8d25
+targetManagement.enabled.success=\u90e8\u95e8\u76ee\u6807\u6709\u6548\u6210\u529f
+targetManagement.enabled.error=\u90e8\u95e8\u76ee\u6807\u6709\u6548\u5931\u8d25
+targetManagement.add.success=\u90e8\u95e8\u76ee\u6807\u6dfb\u52a0\u6210\u529f
+targetManagement.edit.success=\u90e8\u95e8\u76ee\u6807\u4fee\u6539\u6210\u529f
+targetManagement.add.error=\u90e8\u95e8\u76ee\u6807\u6dfb\u52a0\u5931\u8d25
+targetManagement.edit.error=\u90e8\u95e8\u76ee\u6807\u4fee\u6539\u5931\u8d25
+
+DeptTargetManagement.profile.title=\u90e8\u95e8\u76ee\u6807\u4fe1\u606f\u7ef4\u62a4

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2009 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: customerInfo.hbm.xml 4009-12-7 17:22:35Z wliu $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.CustomerRelationship.stepInfo.StepInfo" table="t_stepInfo">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_stepInfo_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<many-to-one name="customerId" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo" lazy="false">
+        	<column name="CUSTOMER_ID" not-null="false"></column>
+        </many-to-one>
+        <many-to-one name="user" class="com.yongjun.pluto.model.security.User" lazy="false">
+        	<column name="userid" not-null="false"></column>
+        </many-to-one>
+		<many-to-one name="backVisitId" class="com.yongjun.tdms.model.backvisit.BackVisit" lazy="false">
+        	<column name="BACKVISIT_ID" not-null="false"></column>
+        </many-to-one>
+		
+         <many-to-one name="customerSteped" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+        	<column name="CUSTOMER_STEPED" not-null="false"></column>
+        </many-to-one>
+         <many-to-one name="customerSteping" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+        	<column name="CUSTOMER_STEPING" not-null="false"></column>
+        </many-to-one>
+        <property name="changeReason" type="string">
+            <column name="CHANGE_REASON" not-null="true" sql-type="NVARCHAR(100)"/>
+        </property>
+        <property name="changeDate" type="timestamp">
+			<column name="change_date"/>
+		</property>
+	</class>
+</hibernate-mapping>

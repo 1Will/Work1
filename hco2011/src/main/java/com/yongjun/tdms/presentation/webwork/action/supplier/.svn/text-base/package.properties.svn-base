@@ -1,0 +1,133 @@
+#
+# Copyright (c) 2001-2009 YongJun Technology Pte.,Ltd. All Rights Reserved.
+# 
+# This software is the confidential and proprietary information of YongJun
+# Technology Pte.,Ltd. ("Confidential Information"). You shall not disclose
+# such Confidential Information and shall use it only in accordance with the
+# terms of the license agreement you entered into with YongJun.
+# 
+# YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+# SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+# NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+# businessLicenseE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+# DERIVATIVES.
+#
+# $Id: package.properties 11325 2009-12-15 mfzhang $
+supplier.title=\u4f9b\u5e94\u5546\u67e5\u8be2
+supplier.supplierNo=\u4f9b\u5e94\u5546\u7f16\u7801
+supplier.name=\u4f9b\u5e94\u5546\u540d\u79f0(\u4e2d\u6587)
+supplier.supplierType=\u4f9b\u5e94\u5546\u7c7b\u522b
+supplier.tradeType=\u884c\u4e1a
+supplier.companyType=\u516c\u53f8\u6027\u8d28
+supplierList=\u4f9b\u5e94\u5546\u5217\u8868
+supplierProfile.title=\u4f9b\u5e94\u5546\u7ef4\u62a4
+supplier.enName=\u4f9b\u5e94\u5546\u540d\u79f0(\u82f1\u6587)
+supplier.country=\u56fd\u5bb6
+supplier.province=\u7701\u4efd
+supplier.city=\u57ce\u5e02
+supplier.legalPerson=\u6cd5\u4eba\u4ee3\u8868
+supplier.registeredFunds=\u6ce8\u518c\u8d44\u91d1(\u4e07\u5143)
+supplier.employeeNum=\u5458\u5de5\u4eba\u6570
+supplier.ManagingScope=\u7ecf\u8425\u8303\u56f4
+supplier=\u4f9b\u5e94\u5546
+
+#\u63d0\u793a\u4fe1\u606f
+disabled.supplier.error=<font color='red'>\u9009\u5b9a\u7684\u4f9b\u5e94\u5546\u5931\u6548\u5931\u8d25</font>
+disabled.supplier.success=\u9009\u5b9a\u7684\u4f9b\u5e94\u5546\u5df2\u6210\u529f\u5931\u6548
+enabled.supplier.error=<font color='red'>\u9009\u5b9a\u7684\u4f9b\u5e94\u5546\u6709\u6548\u5931\u8d25</font>
+enabled.supplier.success=\u9009\u5b9a\u7684\u4f9b\u5e94\u5546\u5df2\u6210\u529f\u6709\u6548
+supplier.delete.error=<font color='red'>\u9009\u5b9a\u7684\u4f9b\u5e94\u5546\u5220\u9664\u5931\u8d25</font>
+supplier.delete.success=\u9009\u5b9a\u7684\u4f9b\u5e94\u5546\u5df2\u6210\u529f\u5220\u9664
+
+#\u9a8c\u8bc1\u4fe1\u606f
+supplier.supplierNo.notnull=\u8bf7\u8f93\u5165\u4f9b\u5e94\u5546\u7f16\u7801
+supplier.supplierNo.length=\u4f9b\u5e94\u5546\u7f16\u7801\u6700\u5927\u957f\u5ea6\u4e3a20\u4e2a\u5b57\u7b26
+supplier.name.notnull=\u8bf7\u8f93\u5165\u4f9b\u5e94\u5546\u540d\u79f0\uff08\u4e2d\u6587\uff09
+supplier.name.length=\u4f9b\u5e94\u5546\u540d\u79f0\uff08\u4e2d\u6587\uff09\u6700\u5927\u957f\u5ea6\u4e3a50\u4e2a\u5b57\u7b26
+user.name.Invalid=\u8bf7\u8f93\u5165\u4f9b\u5e94\u5546\u540d\u79f0\uff08\u4e2d\u6587\uff09\u4e3a\u4e2d\u6587
+supplier.enName.notnull=\u8bf7\u8f93\u5165\u4f9b\u5e94\u5546\u540d\u79f0\uff08\u82f1\u6587\uff09
+supplier.enName.length=\u4f9b\u5e94\u5546\u540d\u79f0\uff08\u82f1\u6587\uff09\u6700\u5927\u957f\u5ea6\u4e3a50\u4e2a\u5b57\u7b26
+supplier.enName.Invalid=\u8bf7\u8f93\u5165\u4f9b\u5e94\u5546\u540d\u79f0\uff08\u82f1\u6587\uff09\u4e3a\u82f1\u6587
+supplier.supplierType.notnull=\u8bf7\u9009\u62e9\u4f9b\u5e94\u5546\u7c7b\u522b
+supplier.tradeType.notnull=\u8bf7\u9009\u62e9\u884c\u4e1a
+supplier.companyType.notnull=\u8bf7\u9009\u62e9\u516c\u53f8\u6027\u8d28
+supplier.country.notnull=\u8bf7\u9009\u62e9\u56fd\u5bb6
+supplier.province.notnull=\u8bf7\u9009\u62e9\u7701\u4efd
+supplier.city.notnull=\u8bf7\u9009\u62e9\u57ce\u5e02
+supplier.legalPerson.length=\u6cd5\u4eba\u4ee3\u8868\u6700\u5927\u957f\u5ea6\u4e3a20\u4e2a\u5b57\u7b26
+supplier.registeredFunds.format=\u8bf7\u8f93\u5165\u6ce8\u518c\u8d44\u91d1\u57280-1000000000\u5185\u6570\u5b57
+supplier.employeeNum.format=\u8bf7\u8f93\u5165\u5458\u5de5\u4eba\u6570\u57280-1000000000\u5185\u6570\u5b57
+supplier.ManagingScope.length=\u7ecf\u8425\u8303\u56f4\u6700\u5927\u957f\u5ea6\u4e3a250\u4e2a\u5b57\u7b26
+
+#
+additionInfo=\u9644\u52a0\u4fe1\u606f
+contactInfo=\u8054\u7cfb\u4eba\u4fe1\u606f
+Attachments=\u9644\u4ef6\u8d44\u6599
+supplierAptitude=\u4f9b\u5e94\u5546\u8d44\u8d28
+Aptitudes=\u8d44\u8d28\u4fe1\u606f
+productInfo=\u4ea7\u54c1\u4fe1\u606f
+
+#\u9644\u52a0\u4fe1\u606f\u5b57\u6bb5
+supplier.maorContact=\u4e3b\u8981\u8054\u7cfb\u4eba
+supplier.phone=\u529e\u516c\u7535\u8bdd
+supplier.mobile=\u624b\u673a
+supplier.fex=\u4f20\u771f\u53f7\u7801
+supplier.email=Email
+supplier.qq=QQ
+supplier.homeSite=\u7f51\u5740
+supplier.createDate=\u521b\u7acb\u65e5\u671f
+supplier.postCode=\u90ae\u7f16
+supplier.address=\u5730\u5740
+supplier.businessLicense=\u8425\u4e1a\u6267\u7167
+supplier.taxNo=\u7a0e\u53f7
+supplier.turnover=\u8425\u4e1a\u989d(\u4e07\u5143)
+supplier.bank=\u5f00\u6237\u884c
+supplier.bankName=\u5f00\u6237\u884c\u540d\u79f0
+supplier.bankAccount=\u5f00\u6237\u884c\u8d26\u53f7
+supplier.afterSaleService=\u552e\u540e\u670d\u52a1
+supplier.qos=\u670d\u52a1\u8d28\u91cf
+
+#\u9644\u52a0\u4fe1\u606f\u9a8c\u8bc1
+supplier.maorContact.length=\u4e3b\u8981\u8054\u7cfb\u4eba\u6700\u5927\u957f\u5ea6\u4e3a20\u4e2a\u5b57\u7b26
+supplier.phone.error=\u529e\u516c\u7535\u8bdd\u683c\u5f0f\u9519\u8bef
+supplier.phone.length=\u529e\u516c\u7535\u8bdd\u6700\u5927\u957f\u5ea6\u4e3a20\u4e2a\u5b57\u7b26
+supplier.mobile.not.null=\u8bf7\u8f93\u5165\u624b\u673a\u53f7\u7801
+supplier.mobile.error=\u624b\u673a\u683c\u5f0f\u9519\u8bef
+supplier.mobile.length=\u624b\u673a\u6700\u5927\u957f\u5ea6\u4e3a20\u4e2a\u5b57\u7b26
+supplier.fex.error=\u4f20\u771f\u673a\u683c\u5f0f\u9519\u8bef
+supplier.fex.maxLength=\u4f20\u771f\u53f7\u7801\u6700\u5927\u957f\u5ea6\u4e3a20\u4e2a\u5b57\u7b26
+supplier.email.email=Email\u683c\u5f0f\u9519\u8bef
+supplier.email.maxLength=Email\u6700\u5927\u957f\u5ea6\u4e3a50\u4e2a\u5b57\u7b26
+supplier.qq.format=QQ\u683c\u5f0f\u9519\u8bef
+supplier.qq.maxLength=QQ\u6700\u5927\u957f\u5ea6\u4e3a20\u4e2a\u5b57\u7b26
+supplier.homeSite.length=\u7f51\u5740\u6700\u5927\u957f\u5ea6\u4e3a50\u4e2a\u5b57\u7b26
+supplier.homeSite.type=\u7f51\u5740\u683c\u5f0f\u9519\u8bef
+supplier.createDate.dateFormate.error=\u521b\u7acb\u65e5\u671f,\u683c\u5f0f\u9519\u8bef,\u6b63\u786e\u683c\u5f0f\u4e3ayyyy-MM-dd
+supplier.createDate.earlyError=\u521b\u7acb\u65e5\u671f\u5927\u4e8e\u5f53\u524d\u65f6\u95f4
+supplier.postCode.maxLength=\u90ae\u7f16\u6700\u5927\u957f\u5ea6\u4e3a20\u4e2a\u5b57\u7b26
+supplier.postCode.format=\u8bf7\u8f93\u5165\u90ae\u7f16\u4e3a\u6570\u5b57\u7c7b\u578b
+supplier.address.length=\u5730\u5740\u6700\u5927\u957f\u5ea6\u4e3a50\u4e2a\u5b57\u7b26
+supplier.businessLicense.length=\u8425\u4e1a\u6267\u7167\u6700\u5927\u957f\u5ea6\u4e3a50\u4e2a\u5b57\u7b26
+supplier.taxNo.length=\u7a0e\u53f7\u6700\u5927\u957f\u5ea6\u4e3a50\u4e2a\u5b57\u7b26
+supplier.turnover.format=\u8bf7\u8f93\u5165\u8425\u4e1a\u989d\u57280-1000000000\u5185\u6570\u5b57
+supplier.bank.length=\u5f00\u6237\u884c\u6700\u5927\u957f\u5ea6\u4e3a50\u4e2a\u5b57\u7b26
+supplier.bankName.length=\u5f00\u6237\u884c\u540d\u79f0\u6700\u5927\u957f\u5ea6\u4e3a50\u4e2a\u5b57\u7b26
+supplier.bankAccount.length=\u5f00\u6237\u884c\u8d26\u53f7\u6700\u5927\u957f\u5ea6\u4e3a50\u4e2a\u5b57\u7b26
+supplier.afterSaleService.length=\u552e\u540e\u670d\u52a1\u6700\u5927\u957f\u5ea6\u4e3a250\u4e2a\u5b57\u7b26
+supplier.qos.length=\u670d\u52a1\u8d28\u91cf\u6700\u5927\u957f\u5ea6\u4e3a250\u4e2a\u5b57\u7b26
+close=\u5173\u95ed
+
+
+
+
+
+
+
+
+
+
+
+
+
+

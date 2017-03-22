@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: $ -->
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.base.document.ApplicationDoc" table="t_Application_doc">
+		<id name="id" column="ID" type="long">
+			<generator class="native">
+				<param name="sequence">t_Application_doc_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		
+		<property name="fileNo" type="string">
+            <column name="FILE_NO" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="fileName" type="string">
+			<column name="FILE_NAME" not-null="true" sql-type="NVARCHAR(150)" />
+		</property>
+		
+	    <property name="name" type="string">
+            <column name="NAME" not-null="true" sql-type="NVARCHAR(50)" />
+        </property>
+        
+		<property name="position" type="string">
+			<column name="POSITION" not-null="true" sql-type="NVARCHAR(50)" />
+		</property>
+		
+		<property name="uploadDate" type="timestamp">
+			<column name="UPLOAD_DATE"/>
+		</property>
+		
+		<property name="description" type="string">
+			<column name="DESCRIPTION" sql-type="NVARCHAR(500)" />
+		</property>
+		
+	    <property name="manualVersion" type="string">
+			<column name="MANUAL_VERSION" length="10" not-null="false"/>
+		</property>
+		
+		<property name="docFlag" type="com.yongjun.tdms.dao.base.document.hibernate.ApplicationDocTypeEnum">
+			<column name="DOC_FLAG" length="15"/>
+		</property>
+		
+		<many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization" lazy="false">
+			<column name="ORG_ID" not-null="true" />
+		</many-to-one>
+		<many-to-one name="advisory" class="com.yongjun.tdms.model.advisory.Advisory" lazy="false">
+			<column name="ADVISORY_ID" not-null="false" />
+		</many-to-one>
+		<many-to-one name="backVisit" class="com.yongjun.tdms.model.backvisit.BackVisit" lazy="false">
+			<column name="BACKVISIT_ID" not-null="false" />
+		</many-to-one>
+		<many-to-one name="supplier" class="com.yongjun.tdms.model.supplier.Supplier" lazy="false">
+			<column name="SUPPLIER_ID" not-null="false" />
+		</many-to-one>
+		<many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
+			<column name="projectInfo_id" not-null="false" />
+		</many-to-one>
+		<many-to-one name="contractAdministrator" class="com.yongjun.tdms.model.personnelFiles.contractadministrator.ContractAdministrator" lazy="false">
+			<column name="CONTRACTADMINISTRATOR_ID" not-null="false" />
+		</many-to-one>
+		<property name="creatorName" type="string">
+			<column name="CREATED_NAME" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR"   type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator"  column="LAST_OPERATOR"   type="string" length="50"/>
+	</class>
+    <query name="GetNumberOfManualDoc">
+        <![CDATA[
+        	select count(doc.id) from ApplicationDoc as doc
+        	where doc.docFlag = 'HELP_MANUAL_DOC'
+        ]]>
+    </query>
+    <query name="GetAllManualDoc">
+        <![CDATA[
+        	from ApplicationDoc as doc
+        	where doc.docFlag = 'HELP_MANUAL_DOC'
+        ]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+<dwr>
+	<allow>
+		<convert match="com.yongjun.pluto.model.security.Department" converter="bean" />
+		<convert match="com.yongjun.tdms.model.base.area.Area" converter="bean" />
+		<convert match="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo" converter="bean"></convert>
+		<convert match="com.yongjun.pluto.model.codevalue.CodeValue" converter="bean" />
+		<convert match="com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives" converter="bean" />
+		<convert match="com.yongjun.tdms.model.base.duty.Duty" converter="bean" />
+		<convert match="com.yongjun.tdms.model.advisory.Advisory" converter="bean"/>  
+		
+	   	<create javascript="InstitutionSelectDeptJs" creator="spring">
+	   		<param name="beanName" value="departmentManager"></param>
+	   		<include method="InstitutionSelectDept" />
+	   	</create>
+	   	<create javascript="ContractManagementAndBatchJs" creator="spring">
+	   		<param name="beanName" value="returnPlanManager"></param>
+	   		<include method="contractManagementAndBatch" />
+	   	</create>
+	   	<create javascript="AreaSelectJs" creator="spring">
+   			<param name="beanName" value="areaManager"></param>
+   			<include method="loadAreaKeyProperty" />
+   		</create>
+		<!--zsz 2010.03.23 begin-->
+   		<create javascript="CustomerList" creator="spring">
+   		    <param name="beanName" value="customerInfoManager"></param>
+   		    <include method="getCustomerList"/>
+   		</create>
+		<!--zsz 2010.03.23 end-->
+		<create javascript="DeptCascadeDutyJs" creator="spring">
+	   		<param name="beanName" value="dutyManager"></param>
+	   		<include method="loadDutiesByDept" />
+	   	</create>
+	   	
+	   	<!--gliang 2010.03.23-->
+		<create javascript="ContractAndBatchJs" creator="spring">
+	   		<param name="beanName" value="returnPlanManager"></param>
+	   		<include method="contractAndBatch" />
+	   	</create>
+	   	
+	   		<!--gliang 2010.03.28-->
+		<create javascript="CheckSumJs" creator="spring">
+	   		<param name="beanName" value="returnPlanManager"></param>
+	   		<include method="checkSum" />
+	   	</create>
+	   	
+   		<!-- 人事档案开户 登录名称是否重复 hmguan 2011-05-09-->
+   		<create javascript="loginNameRepeatJs" creator="spring">
+   			<param name="beanName" value="personnelFilesManager"></param>
+   			<include method="loginNameByCode" />
+   		</create>
+   		   	
+   </allow>
+</dwr>
+

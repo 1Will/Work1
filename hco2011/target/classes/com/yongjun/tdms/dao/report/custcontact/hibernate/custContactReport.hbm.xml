@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2010 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+<!-- $Id: custContactReport.hbm.xml 2010-04-02 wliu $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.report.custcontact.CustContactReport" table="t_CustContact_View">
+		<id name="id" column="Id" type="java.lang.Long">
+			<generator class="native">
+                <param name="sequence">t_CustContact_View_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+		</id>
+
+        <property name="custCode" type="string">
+			<column name="CUST_CODE" not-null="true" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="custName" type="string">
+			<column name="CUST_NAME" not-null="true" sql-type="NVARCHAR(50)" />
+		</property> 
+		<property name="custType" type="string">
+			<column name="CUST_TYPE" not-null="true" sql-type="VARCHAR(20)" />
+		</property> 
+		<property name="country" type="string">
+			<column name="COUNTRY" not-null="true" sql-type="VARCHAR(40)" />
+		</property> 
+		<property name="province" type="string">
+			<column name="PROVINCE" not-null="true" sql-type="VARCHAR(40)" />
+		</property> 
+		<property name="city" type="string">
+			<column name="CITY" not-null="true" sql-type="VARCHAR(40)" />
+		</property> 
+		<property name="industry" type="string">
+			<column name="INDUSTRY" not-null="true" sql-type="VARCHAR(20)" />
+		</property> 
+		<property name="companyNature" type="string">
+			<column name="COMPANYNATURE" not-null="true" sql-type="VARCHAR(20)" />
+		</property> 
+		<property name="content" type="string">
+			<column name="CONTENT" not-null="true" sql-type="NVARCHAR(500)" />
+		</property> 
+		<property name="attention" type="string">
+			<column name="ATTENTION" not-null="true" sql-type="NVARCHAR(500)" />
+		</property> 
+		<property name="pioneer" type="string">
+			<column name="PIONEER" not-null="true" sql-type="NVARCHAR(20)" />
+		</property> 
+		<property name="servingPeople" type="string">
+			<column name="SERVINGPEOPLE" not-null="true" sql-type="NVARCHAR(20)" />
+		</property> 
+		<property name="visitDate" type="timestamp">
+			<column name="VISIT_DATE"/>
+		</property>
+		<property name="nextVisitDate" type="timestamp">
+			<column name="NEXT_VISIT_DATE"/>
+		</property>
+		<property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+        
+	</class>
+</hibernate-mapping>

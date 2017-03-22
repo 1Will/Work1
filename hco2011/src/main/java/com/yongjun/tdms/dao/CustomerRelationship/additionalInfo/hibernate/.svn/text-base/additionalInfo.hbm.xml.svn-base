@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 4001-4009 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: additionalInfo.hbm.xml 4009-12-7 14:06:35Z wliu $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.CustomerRelationship.additionalInfo.AdditionalInfomation" table="t_additionalInfo">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_additionalInfo_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION" type="long"/>
+		<property name="licenseNumber" type="string">
+            <column name="BUSINESS_LICENES" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="taxNumber" type="string">
+			<column name="TAX_NO" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+	    <property name="turnover" type="double">
+            <column name="TURNOVER" />
+        </property>
+        <property name="bank" type="string">
+			<column name="BANK" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="bankAccount" type="string">
+			<column name="BANK_ACCOUNT" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="website" type="string">
+			<column name="HOME_SITE" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="comment" type="string">
+			<column name="REMARKES" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+		<many-to-one name="ci" unique="true" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo">
+			<column name="CUSTOMER_ID" not-null="true"></column>
+		</many-to-one>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>
