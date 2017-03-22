@@ -274,9 +274,12 @@ function instiChange(){
 	 }
 	 //项目名称查询模态窗体(添加)
 	function projectName_OpenDialog(){
-	   var url = "${req.contextPath}/projectInfo/listProjectInfo.html?backVisitCheckBox=backVisitCheckBox";
+	if(getObjByName('customerInfo.id').value !=''){
+	   var url = "${req.contextPath}/projectInfo/listProjectInfo.html?backVisitCheckBox=backVisitCheckBox&customer.id="+getObjByName('customerInfo.id').value;
 	   popupModalDialog(url, 800, 600, creatorSelector_Handler);
 	   //window.open(url);
+	   }else{
+			alert('请先选择客户');
 	 }
 	 //项目名称-获得模态窗体返回值
 	function creatorSelector_Handler(result) {

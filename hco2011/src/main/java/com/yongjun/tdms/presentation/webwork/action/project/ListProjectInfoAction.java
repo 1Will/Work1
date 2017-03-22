@@ -67,6 +67,9 @@ import java.util.HashMap;
 /*     */   protected Map getRequestParameterMap()
 /*     */   {
 	         Map map=super.getRequestParameterMap();
+	         if (hasId("customer.id")) {
+/* 126 */       map.put("customerId", getId("customer.id"));
+/*     */     }
 /*  89 */     return map;
 /*     */   }
 /*     */ 

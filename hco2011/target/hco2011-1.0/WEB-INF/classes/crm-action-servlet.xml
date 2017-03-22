@@ -1885,6 +1885,9 @@
 		<constructor-arg index="8">
 			<ref bean="productListManager" />
 		</constructor-arg>
+		<constructor-arg index="9">
+			<ref bean="projectInfoManager" />
+		</constructor-arg>
 	</bean>
 	
 	
