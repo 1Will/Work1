@@ -30,5 +30,7 @@ public abstract interface ProjectInfoPersonnelsManager
 
 	  public abstract List<ProjectInfoPersonnels> loadByKeyArray(String[] paramArrayOfString, Object[] paramArrayOfObject)
 	    throws DaoException;
+	  public List<String> loadPersonnelsCodeByProjectInfoId(Long projectInfoId);
+	  public List<String> loadPersonnelsCodeByEnable();
 }
 

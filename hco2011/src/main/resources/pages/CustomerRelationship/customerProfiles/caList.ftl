@@ -94,7 +94,7 @@
 	function contactArchives_OpenDialog(){
 	  var url="";
 	<#if customerId?exists>
-	url= "${req.contextPath}/customerRelationship/editContactArchives.html?customer.id=#{customerId?if_exists}&customerType.id=${customerTypeId?if_exists}";
+	url= "${req.contextPath}/customerRelationship/editContactArchives.html?customer.id=#{customerId?if_exists}&customerType.id=${customerTypeId?if_exists}&newContacts=newContacts";
 	 </#if>
 	 
 	 <#if projectInfoId?exists>

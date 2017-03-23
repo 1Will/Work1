@@ -26,6 +26,7 @@
             private final ProjectInfoContractManager ProjectInfoContractManager;
             private String projectInfoId;
             private String customerInfoId;
+            private String contactArchivesId;
             
 /*     */ 
 /*     */   public ListProjectInfoContractAction(CodeValueManager codeValueManager,ProjectInfoManager projectInfoManager, PersonnelFilesManager personnelFilesManager,UserManager userManager,ProjectInfoContractManager ProjectInfoContractManager)
@@ -73,6 +74,9 @@
 	 			  if (hasId("projectInfo.id")) {
 	 /* 126 */       map.put("projectInfoId", getId("projectInfo.id"));
 	 /*     */     }
+	 			 if (hasId("contactArchives.id")) {
+	 				 /* 126 */       map.put("contactArchivesId", getId("contactArchives.id"));
+	 				 /*     */     }
     			
 	         
 /*  89 */     return map;
@@ -86,6 +90,9 @@
 	        			 /*     */       }
 	        		 if (hasId("customerInfo.id")) {
 	        			 /*  56 */         this.customerInfoId =this.request.getParameter("customerInfo.id");
+	        			 /*     */       }
+	        		 if (hasId("contactArchives.id")) {
+	        			 /*  56 */         this.contactArchivesId =this.request.getParameter("contactArchives.id");
 	        			 /*     */       }
 /*  96 */     if ((this.ProjectInfoContract == null) && (hasIds("projectInfoContractIds"))){
 /*  97 */       this.ProjectInfoContract = this.ProjectInfoContractManager.loadAllProjectInfoContract(getIds("projectInfoContractIds"));

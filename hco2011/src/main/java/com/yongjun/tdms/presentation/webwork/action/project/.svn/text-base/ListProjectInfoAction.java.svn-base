@@ -26,6 +26,10 @@ import java.util.HashMap;
 /*     */   private PersonnelFilesManager personnelFilesManager;
 /*     */   private final UserManager userManager;
             private String contactArchivesFlag;
+            private String backVisitCheckBox;
+            private Long customerId;
+
+
 /*     */ 
 /*     */   public ListProjectInfoAction(CodeValueManager codeValueManager,ProjectInfoManager projectInfoManager, PersonnelFilesManager personnelFilesManager,UserManager userManager)
 /*     */   {
@@ -63,6 +67,9 @@ import java.util.HashMap;
 /*     */   protected Map getRequestParameterMap()
 /*     */   {
 	         Map map=super.getRequestParameterMap();
+	         if (hasId("customer.id")) {
+/* 126 */       map.put("customerId", getId("customer.id"));
+/*     */     }
 /*  89 */     return map;
 /*     */   }
 /*     */ 
@@ -76,6 +83,13 @@ import java.util.HashMap;
             	 this.contactArchivesFlag =this.request.getParameter("contactArchivesFlag");
             	 
              }
+             if (this.request.getParameter("backVisitCheckBox") != null) {
+/*  99 */       this.backVisitCheckBox = this.request.getParameter("backVisitCheckBox");
+/*     */     }
+             if (hasId("customerInfo.id")) {
+/*     */       this.customerId = getId("customerInfo.id");
+/*     */       setFirst(false);
+/*     */     }
 /*     */   }
 
 /*     */ 
@@ -156,6 +170,12 @@ import java.util.HashMap;
 /*     */   }
 /*     */ 
 /*     */ 
+			public String getBackVisitCheckBox() {
+				return backVisitCheckBox;
+			}
+			public void setBackVisitCheckBox(String backVisitCheckBox) {
+				this.backVisitCheckBox = backVisitCheckBox;
+			}
 
 			public ProjectInfoManager getProjectInfoManager() {
 				return projectInfoManager;
@@ -177,7 +197,16 @@ import java.util.HashMap;
 				this.contactArchivesFlag = contactArchivesFlag;
 			}
 /*     */ 
-/* 229 */   public void setCodeValueManager(CodeValueManager codeValueManager) { this.codeValueManager = codeValueManager; }
+/* 229 */   public void setCodeValueManager(CodeValueManager codeValueManager) { 
+				this.codeValueManager = codeValueManager; 
+			}
+			
+			public Long getCustomerId() {
+				return customerId;
+			}
+			public void setCustomerId(Long customerId) {
+				this.customerId = customerId;
+			}
 /*     */ 
 /*     */ }
         

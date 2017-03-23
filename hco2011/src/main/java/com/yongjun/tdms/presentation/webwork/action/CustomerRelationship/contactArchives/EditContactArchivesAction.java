@@ -49,7 +49,9 @@ import org.apache.commons.lang.StringUtils;
 /*     */   private CodeValue type;
 /*     */   private boolean sex;
 /*     */   private Supplier supplier;
-            private ProjectInfo projectInfo; 
+            private ProjectInfo projectInfo;
+            private String newContacts;
+
 /*     */ 
 /*     */   public EditContactArchivesAction(ContactArchivesManager contactArchivesManager, CodeValueManager codeValueManager, CustomerInfoManager customerInfoManager, AreaManager areaManager, SupplierManager supplierManager,ProjectInfoManager projectInfoManager,ContactToHistoryManager contactToHistoryManager,UserManager userManager,ProjectInfoContractManager projectInfoContractManager)
 /*     */   {
@@ -98,6 +100,9 @@ import org.apache.commons.lang.StringUtils;
 /* 139 */       this.contactArchives.setProjectInfo(this.projectInfo);
                 this.contactArchives.setProName(this.projectInfo.getName());
 /*     */     }
+			  if (this.request.getParameter("newContacts")!=null) {
+				  this.newContacts = this.request.getParameter("newContacts");
+			  }
 /*     */   }
 /*     */ 
 /*     */   public String save()
@@ -763,6 +768,12 @@ import org.apache.commons.lang.StringUtils;
 			}
 			public void setProjectInfo(ProjectInfo projectInfo) {
 				this.projectInfo = projectInfo;
+			}
+			public String getNewContacts() {
+				return newContacts;
+			}
+			public void setNewContacts(String newContacts) {
+				this.newContacts = newContacts;
 			}
 
 /*     */ }

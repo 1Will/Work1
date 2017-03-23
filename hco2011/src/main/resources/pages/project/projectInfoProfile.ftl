@@ -155,7 +155,12 @@
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
 		</#if>
-		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/projectInfo/listProjectInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+		<#if openFlag?exists>
+		<input type="button" value="${action.getText('关闭')}" onclick="window.close();"/>
+       <#else>
+       <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/projectInfo/listProjectInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+       </#if>
+		
     </@buttonBar>
 
 </@ww.form>

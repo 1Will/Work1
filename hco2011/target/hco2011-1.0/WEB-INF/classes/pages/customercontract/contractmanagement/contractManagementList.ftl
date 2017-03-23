@@ -53,6 +53,13 @@
             	</#if>
      			<@alignLeft/>
             </@vcolumn>
+            <#-- 项目名称添加项 -->
+			<@vcolumn title="${action.getText('contractManagement.project.name')}" property="project.name" sortable="desc">
+				<#if object.project?exists>
+	            	 ${object.project.name?if_exists}            	
+            	</#if>
+     			<@alignLeft/>
+            </@vcolumn>
 			<@vcolumn title="${action.getText('contractManagement.linkman.name')}" property="linkman.name" sortable="desc">
 				<#if object.linkman?exists>
 	            	 ${object.linkman.name?if_exists}            	

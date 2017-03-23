@@ -70,7 +70,7 @@
 	       		<label class="label">${action.getText('customerInfo.name')}:</label>
 	     	</td>
             <td>
-	             <input type="text" name="customerInfo.name" value="${customerInfo.name?if_exists}" class="underline" onblur="showCustomer()" autocomplete="off">
+	             <input type="text" name="customerInfo.name" value="${customerInfo.name?if_exists}" class="underline" onblur="toEditCustomer()" autocomplete="off">
 	             <div id="show" style="background-color:#FFFFFF;border:1px solid; overflow:auto; display: none;z-index:2;position:absolute;left:43.7%;top:16%;"></div>
          </td>
 	<tr>
@@ -713,9 +713,28 @@
 </script>
 
 <script language="javascript">
+		var lastInfo = "";
+		var selectflag = 0;
+
+
+       function toEditCustomer(){
+       var obj = getObjByName('customerInfo.name').value;
+	 	if(obj != "" && obj != null && obj){
+			CustomerList.getOneCustomerByName(obj,
+				{
+					callback:function(data){
+						if(data.length > 0){
+							 if(confirm("您所输入的客户名称已经存在，是否需要跳转到编辑页面?")){
+							document.location='${req.contextPath}/customerRelationship/editCustomerInfo.html?customerInfo.id='+data[0]["id"]+'&readOnly=${req.getParameter('readOnly')?if_exists}';
+							 }
+						}
+					}			
+				}
+			);
+	 	}
+       
+       } 
 	 
-	 var lastInfo = "";
-	 var selectflag = 0;
 	 function showCustomer(){
 	 	var obj = getObjByName('customerInfo.name').value;
 	 	if(obj != "" && obj != null && obj != lastInfo){
@@ -762,7 +781,8 @@
 							}
 							getObjByName('show').style.display = "block";
 							var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
-							 if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {							 
+							if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {		
+							 //if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {							 
 								var textRange =getObjByName('customerInfo.name').createTextRange();//建立文本域
 								textRange.moveStart('character',getObjByName('customerInfo.name').value.length);//获取文本域右侧文本
 								textRange.collapse(true);//瓦解文本域
@@ -853,7 +873,7 @@
 			}
 		}
 	}
-	document.onkeyup = myMethod;
+	//document.onkeyup = myMethod;
 
 	 /**
   	 * 页面点击事件源

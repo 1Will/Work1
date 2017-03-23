@@ -7,6 +7,8 @@
 /*     */ import com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives;
 /*     */ import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo;
 /*     */ import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
+import com.yongjun.tdms.model.project.ProjectInfo;
+
 /*     */ import java.util.Date;
 /*     */ 
 /*     */ public class ContractManagement extends BaseInfoEntity
@@ -16,6 +18,7 @@
 /*     */   private String contractName;
 /*     */   private CustomerInfo customerInfo;
 /*     */   private ContactArchives linkman;
+/*     */   private ProjectInfo project;
 /*     */   private String address;
 /*     */   private String telephone;
 /*     */   private PersonnelFiles saleman;
@@ -275,6 +278,12 @@
 /*     */   public void setOverReturnPlan(String overReturnPlan)
 /*     */   {
 /* 479 */     this.overReturnPlan = overReturnPlan;
+/*     */   }
+/*     */   public ProjectInfo getProject() {
+/*     */   	return project;
+/*     */   }
+/*     */   public void setProject(ProjectInfo project) {
+/*     */   	this.project = project;
 /*     */   }
 /*     */ }
 

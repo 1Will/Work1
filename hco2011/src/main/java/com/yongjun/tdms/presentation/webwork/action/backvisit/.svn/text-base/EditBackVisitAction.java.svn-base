@@ -21,6 +21,7 @@ import com.yongjun.tdms.service.base.event.EventNewManager;
 import com.yongjun.tdms.service.base.event.EventTypeManager;
 /*     */ import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 import com.yongjun.tdms.service.project.ProjectInfoManager;
+import com.yongjun.tdms.util.personnelFilesToUser.PersonnelFilesToUserManager;
 
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.Arrays;
@@ -30,7 +31,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.sf.json.JSONObject;
+//import net.sf.json.JSONObject;
 /*     */ 
 /*     */ public class EditBackVisitAction extends PrepareAction
 /*     */ {
@@ -44,6 +45,7 @@ import net.sf.json.JSONObject;
             private final EventTypeManager eventTypeManager;
 /*     */   private final UserManager userManager;
             private final ProjectInfoManager projectInfoManager;
+            private final PersonnelFilesToUserManager personnelFilesToUserManager;
 /*     */   private BackVisit backVisit;
 /*     */   private String fromType;
             private String openFlag;//如果存在就是从客户管理、联系人管理=项目管理中的弹出修改页面，控制点击返回是关闭 
@@ -56,7 +58,7 @@ public void setFromType(String fromType) {
 /*     */   private StepInfo stepInfo;
 /*     */   private PersonnelFiles personnelFiles;
 /*     */ 
-/*     */   public EditBackVisitAction(CodeValueManager codeValueManager, BackVisitManager backVisitManager, PersonnelFilesManager personnelFilesManager, CustomerInfoManager customerInfoManager, ContactArchivesManager contactArchivesManager, UserManager userManager,EventNewManager eventNewManager,ProjectInfoManager projectInfoManager,EventTypeManager eventTypeManager)
+/*     */   public EditBackVisitAction(CodeValueManager codeValueManager, BackVisitManager backVisitManager, PersonnelFilesManager personnelFilesManager, CustomerInfoManager customerInfoManager, ContactArchivesManager contactArchivesManager, UserManager userManager,EventNewManager eventNewManager,ProjectInfoManager projectInfoManager,EventTypeManager eventTypeManager,PersonnelFilesToUserManager personnelFilesToUserManager)
 /*     */   {
 /*  40 */     this.codeValueManager = codeValueManager;
 /*  41 */     this.backVisitManager = backVisitManager;
@@ -67,6 +69,7 @@ public void setFromType(String fromType) {
 			  this.eventNewManager =eventNewManager;
 			  this.projectInfoManager =projectInfoManager;
 			  this.eventTypeManager =eventTypeManager;
+			  this.personnelFilesToUserManager=personnelFilesToUserManager;
 /*     */   }
 /*     */   public BackVisit getBackVisit() {
 /*  48 */     return this.backVisit;
@@ -241,17 +244,18 @@ public void setFromType(String fromType) {
 						  eventType = new EventType();
 						    eventType.setId(2l);
 					}
-					 	EventNew event = new EventNew();
-					    event.setEffectflag("E");
-					    event.setEventType(eventType);
-					    event.setName("回访提交");
-					    event.setUserId(this.userManager.getUser().getId()+"");
-					    Map<String, String> map = new HashMap();
-						   map.put("users", "11,2,84,81,100");
-						   map.put("backVisitId", this.backVisit.getId()+"");
-						   String moreinfo = JSONObject.fromObject(map).toString();
-							event.setMoreinfo(moreinfo);
-							eventNewManager.storeEventNew(event);
+//					 	EventNew event = new EventNew();
+//					    event.setEffectflag("E");
+//					    event.setEventType(eventType);
+//					    event.setName("回访提交");
+//					    event.setUserId(this.userManager.getUser().getId()+"");
+//					    Map<String, String> map = new HashMap();
+//						   map.put("users", "11,2,84,81,100");
+//						   map.put("backVisitId", this.backVisit.getId()+"");
+//						   String moreinfo = JSONObject.fromObject(map).toString();
+//							event.setMoreinfo(moreinfo);
+//							eventNewManager.storeEventNew(event);
+
 				} catch (DaoException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

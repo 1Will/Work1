@@ -328,6 +328,9 @@
 		<a id="backvisit" onclick="activeTab(this);" href='${req.contextPath}/backvisit/listBackVisitByContact.html?contactArchive.id=#{contactArchives.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('contactArchives.backvisit')}</a>
 	</li>
 	<li>
+		<a id="project" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProCon.html?contactArchives.id=#{contactArchives.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('contactArchives.projectInfos')}</a>
+	</li>
+	<li>
 		<a id="changeToHistory" onclick="activeTab(this);" href='${req.contextPath}/customerRelationship/listContactToHistory.html?cr.id=#{contactArchives.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('contactArchives.changeToHistory')}</a>
 	</li>
 </ul>

@@ -109,7 +109,7 @@
 	       		<label class="label">${action.getText('contractManagement.project.name')}:</label>
 	     	</td>
 			<td>
-			<#if contractManagement.linkman?exists>
+			<#if contractManagement.project?exists>
 			<input type="text" id="projectName" name="projectName" class="underline"  value="${contractManagement.project.name?if_exists}" maxlength="140" size="20" disabled="true"/>
 			<#else>
 			<input type="text" id="projectName"  name="projectName" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
@@ -317,10 +317,10 @@ function instiChange(){
 		<#-- 提交验证-->
 		function storeValidation(){
 			if(!textfieldCheck_checkcontractName()){
-				jgetObjByName("#contractName").focus();
+				getObjByName("contractName").focus();
 				return false;
 			}
-			if(jgetObjByName("#customerInfoid").val()==""){
+			if(getObjByName("customerInfoid").value==""){
 				alert("${action.getText('validation.customerInfoid')}");
 				return false;
 			}
@@ -330,20 +330,20 @@ function instiChange(){
 		        getObjByName('contractManagement.address').focus();
 				return false;
 			}
-			if(jgetObjByName("#linkmanid").val()==""){
+			if(getObjByName("linkmanid").value==""){
 				alert("${action.getText('validation.linkmanid')}");
 				return false;
 			}
-			if(jgetObjByName("#projectid").val()==""){
+			if(getObjByName("projectid").value==""){
 				alert("${action.getText('validation.projectid')}");
 				return false;
 			}
-			if(jgetObjByName("#telephone").val()==""){
+			if(getObjByName("telephone").value==""){
 	       		alert("${action.getText('validation.telephone')}");
 		        getObjByName('contractManagement.telephone').focus();
 				return false;
 			}
-			if(jgetObjByName("#salemanid").val()==""){
+			if(getObjByName("salemanid").value==""){
 				alert("${action.getText('validation.salemanid')}");
 				return false;
 			}
@@ -360,60 +360,60 @@ function instiChange(){
 				getObjByName('moneyType.id').focus();
 		  	    return false;
 			}
-	        if(jgetObjByName("#sum").val()==""){
+	        if(getObjByName("sum").value==""){
 	       		alert("${action.getText('validation.contractMoney1')}");
 		        getObjByName('contractManagement.contractMoney').focus();
 				return false;
 			}
 			if(!isDoubleNumber("sum")){
 				alert("${action.getText('validation.contractMoney2')}");
-				jgetObjByName("#sum").focus();
+				getObjByName("sum").focus();
 				return false;
 			}
 			if(!isDoubleNumber("paidMoney")){
 				alert("${action.getText('validation.paidMoney')}");
-				jgetObjByName("#paidMoney").focus();
+				getObjByName("paidMoney").focus();
 				return false;
 			}
-			if(jgetObjByName("#contractContent").val()==""){
+			if(getObjByName("contractContent").value==""){
 				alert("${action.getText('validation.contractContent')}");
-				jgetObjByName("#contractContent").focus();
+				getObjByName("contractContent").focus();
 				return false;
 			}
 			if(!textareaCheck_contractContent()){
-				jgetObjByName("#contractContent").focus();
+				getObjByName("contractContent").focus();
 				return false;
 			}
 			
 			return true;
 		}
-	jgetObjByName(function(){
+	getObjByName(function(){
 	
 		<#if contractManagement.contractType?exists>
-			jgetObjByName("#contractType").val("${contractManagement.contractType.id?if_exists}");
+			getObjByName("contractType").value=("${contractManagement.contractType.id?if_exists}");
 		</#if>
 		
 		<#if contractManagement.payType?exists>
-			jgetObjByName("#payType").val("${contractManagement.payType.id?if_exists}");
+			getObjByName("payType").value=("${contractManagement.payType.id?if_exists}");
 		</#if>
 		<#if contractManagement.moneyType?exists>
-			jgetObjByName("#moneyType").val("${contractManagement.moneyType.id?if_exists}");
+			getObjByName("moneyType").value=("${contractManagement.moneyType.id?if_exists}");
 		</#if>
 		<#if contractManagement.state?exists>
-			jgetObjByName("#state").val("${contractManagement.state.id?if_exists}");
-			jgetObjByName("#stateid").val("${contractManagement.state.id?if_exists}");
+			getObjByName("state").value=("${contractManagement.state.id?if_exists}");
+			getObjByName("stateid").value=("${contractManagement.state.id?if_exists}");
 		<#else>
 			<#if stateDefault?exists>
-				jgetObjByName("#state").val("${stateDefault?if_exists}");
-				jgetObjByName("#stateid").val("${stateDefault?if_exists}");
+				getObjByName("state").value=("${stateDefault?if_exists}");
+				getObjByName("stateid").value=("${stateDefault?if_exists}");
 			</#if>
 		</#if>
 		<#if contractManagement.saleman?exists>
-			jgetObjByName("#department").val("${contractManagement.saleman.dept.id?if_exists}");
+			getObjByName("department").value=("${contractManagement.saleman.dept.id?if_exists}");
 		</#if>
 		
-		jgetObjByName("#moneyType").change(function(){
-			jgetObjByName(jgetObjByName("#moneyType option").get(0)).attr("selected",true);
+		getObjByName("moneyType").change(function(){
+			getObjByName(getObjByName("moneyType option").get(0)).attr("selected",true);
 		});
 		
 	});

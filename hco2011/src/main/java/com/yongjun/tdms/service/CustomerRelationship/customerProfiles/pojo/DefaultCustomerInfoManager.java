@@ -151,6 +151,77 @@
 /*     */     }
 /* 222 */     return list;
 /*     */   }
+		public List<CustomerInfo> getOneCustomerByName(String advisoryName)
+/*     */   {
+/* 155 */     List<CustomerInfo> allAdvisory = this.customerInfoDao.getOneCustomerByName(advisoryName);
+/*     */ 
+/* 157 */     List list = new ArrayList();
+/* 158 */     if (allAdvisory.size() > 0) {
+/* 159 */       for (CustomerInfo info : allAdvisory) {
+/* 160 */         CustomerInfo c = new CustomerInfo();
+/* 161 */         c.setId(info.getId());
+/* 162 */         c.setCode(info.getCode());
+/* 163 */         c.setName(info.getName());
+/* 164 */         c.setAbbreviations(info.getAbbreviations());
+/* 165 */         c.setLegalPerson(info.getLegalPerson());
+/* 166 */         c.setKeyContacter(info.getKeyContacter());
+/* 167 */         c.setTelphone(info.getTelphone());
+/* 168 */         c.setMobilePhone(info.getMobilePhone());
+/* 169 */         c.setFax(info.getFax());
+/* 170 */         c.setEmail(info.getEmail());
+/* 171 */         c.setQq(info.getQq());
+/* 172 */         c.setSetupTime(info.getSetupTime());
+/* 173 */         c.setRegisteredCapital(info.getRegisteredCapital());
+/* 174 */         c.setPersonCount(info.getPersonCount());
+/* 175 */         c.setSaleman(info.getSaleman());
+/* 176 */         c.setPostCode(info.getPostCode());
+/* 177 */         c.setAddress(info.getAddress());
+/* 178 */         c.setBusinessScope(info.getBusinessScope());
+/* 179 */         c.setStep(info.getStep());
+/* 180 */         c.setCustomerType(info.getCustomerType());
+/* 181 */         if (info.getLegalPerson() == null) {
+/* 182 */           c.setLegalPerson("");
+/*     */         }
+/* 184 */         if (info.getStep() != null) {
+/* 185 */           CodeValue ct = new CodeValue();
+/* 186 */           ct.setId(info.getStep().getId());
+/* 187 */           c.setStep(ct);
+/*     */         }
+/* 189 */         if (info.getCustomerType() != null) {
+/* 190 */           CodeValue ct = new CodeValue();
+/* 191 */           ct.setId(info.getCustomerType().getId());
+/* 192 */           c.setCustomerType(ct);
+/*     */         }
+/* 194 */         if (info.getIndustry() != null) {
+/* 195 */           CodeValue ind = new CodeValue();
+/* 196 */           ind.setId(info.getIndustry().getId());
+/* 197 */           c.setIndustry(ind);
+/*     */         }
+/* 199 */         if (info.getCompanyNature() != null) {
+/* 200 */           CodeValue cn = new CodeValue();
+/* 201 */           cn.setId(info.getCompanyNature().getId());
+/* 202 */           c.setCompanyNature(cn);
+/*     */         }
+/* 204 */         if (info.getCountry() != null) {
+/* 205 */           Area cou = new Area();
+/* 206 */           cou.setId(info.getCountry().getId());
+/* 207 */           c.setCountry(cou);
+/*     */         }
+/* 209 */         if (info.getProvince() != null) {
+/* 210 */           Area pro = new Area();
+/* 211 */           pro.setId(info.getProvince().getId());
+/* 212 */           c.setProvince(pro);
+/*     */         }
+/* 214 */         if (info.getCity() != null) {
+/* 215 */           Area city = new Area();
+/* 216 */           city.setId(info.getCity().getId());
+/* 217 */           c.setCity(city);
+/*     */         }
+/* 219 */         list.add(c);
+/*     */       }
+/*     */     }
+/* 222 */     return list;
+/*     */   }
 /*     */ 
 /*     */   public void setInfoIntegrity(CustomerInfo customerInfo)
 /*     */   {

@@ -7,8 +7,15 @@ import com.yongjun.tdms.dao.project.projectInfoPersonnels.ProjectInfoPersonnelDa
 import com.yongjun.tdms.model.project.ProjectInfo;
 import com.yongjun.tdms.model.project.projectInfoPersonnels.ProjectInfoPersonnels;
 
+import java.sql.SQLException;
 /*    */ import java.util.Collection;
 /*    */ import java.util.List;
+
+import org.aspectj.apache.bcel.generic.Select;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
 /*    */ 
 /*    */ public class HibernateProjectInfoPersonnels extends BaseHibernateDao
 /*    */   implements ProjectInfoPersonnelDao
@@ -45,6 +52,24 @@ import com.yongjun.tdms.model.project.projectInfoPersonnels.ProjectInfoPersonnel
 	 /*    */   public void storeProjectInfoPersonnels(ProjectInfoPersonnels ProjectInfoPersonnels) {
 	 /* 50 */     store(ProjectInfoPersonnels);
 	 /*    */   }
+	            public List<String> loadPersonnelsCodeByProjectInfoId(final Long projectInfoId){
+	            	return  this.getHibernateTemplate().executeFind(new HibernateCallback() {
+						public Object doInHibernate(Session session) throws HibernateException, SQLException {
+							String hql = "select pp.proPerson.code from com.yongjun.tdms.model.project.projectInfoPersonnels.ProjectInfoPersonnels pp where pp.projectInfo.id="+projectInfoId;
+							Query query = session.createQuery(hql);
+							return query.list();
+						}
+					});
+	            }
+	            public List<String> loadPersonnelsCodeByEnable(){
+	            	return  this.getHibernateTemplate().executeFind(new HibernateCallback() {
+						public Object doInHibernate(Session session) throws HibernateException, SQLException {
+							String hql = "select pp.code from com.yongjun.tdms.model.personnelFiles.PersonnelFiles pp where pp.disabled=0";
+							Query query = session.createQuery(hql);
+							return query.list();
+						}
+					});
+	            }
 /*    */   
 /*    */ }
 

@@ -7,8 +7,10 @@
 		<#include "./projectInfoSearcher.ftl" />
 		<@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'"  />
+			<#if !backVisitCheckBox?exists>
 			<#if !(action.isReadOnly())>
 				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/projectInfo/editProjectInfo.html"/>
+			</#if>
 			</#if>
         </@buttonBar>
         <@list title="${action.getText('projectInfoList')}" 
@@ -16,9 +18,11 @@
         fieldMap="like:code|name|customer.name|contact.name|controller.name" >
           <#if !contactArchivesFlag?exists>
             <#if !(action.isReadOnly())>
+          <#if !backVisitCheckBox?exists>
 	            <@vlh.checkbox property="id" name="projectInfoIds">
 	                <@vlh.attribute name="width" value="30" />
 	            </@vlh.checkbox>
+	      </#if>
             </#if>
              </#if>
              <#if contactArchivesFlag?exists>
@@ -29,8 +33,13 @@
             </@vcolumn>
             <#else>
               <@vcolumn title="${action.getText('code')}" property="code" sortable="desc">
-             <a href="editProjectInfo.html?projectInfo.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}"
+              <#if !backVisitCheckBox?exists>
+             	<a href="editProjectInfo.html?projectInfo.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}"
                  title="${object.code}%">${object.code}</a>
+                <#else> 
+                <a href="javascript: returnDialog(new Array(#{object.id}, '${object.name}',#{object.contact.id},'${object.contact.name}'));"
+                 title="${object.code}%">${object.code}</a>
+                </#if>
             <@alignLeft/>
             </@vcolumn>
              </#if>
@@ -59,9 +68,11 @@
        <#if !contactArchivesFlag?exists>
 	    <#if !first>
 	        <#if !(action.isReadOnly())>
+	        <#if !backVisitCheckBox?exists>
 		        <@buttonBar>
 		        <@crm_disabledOrEnabled_Nodelete_button message="${action.getText('项目管理')}" boxName="projectInfoIds" jsFunctionName="checkInvalidParms()"/>
 		        </@buttonBar>
+	        </#if>
 	        </#if>
 	          </#if>
         </#if>

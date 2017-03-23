@@ -12,6 +12,7 @@
 /*     */ import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo;
 /*     */ import com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement;
 /*     */ import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
+import com.yongjun.tdms.model.project.ProjectInfo;
 /*     */ import com.yongjun.tdms.service.CustomerRelationship.contactArchives.ContactArchivesManager;
 /*     */ import com.yongjun.tdms.service.CustomerRelationship.customerProfiles.CustomerInfoManager;
 /*     */ import com.yongjun.tdms.service.base.institution.InstitutionManager;
@@ -19,6 +20,8 @@
 /*     */ import com.yongjun.tdms.service.customercontract.contractmanagement.ContractManagementManager;
 /*     */ import com.yongjun.tdms.service.customercontract.contractmanagement.productlist.ProductListManager;
 /*     */ import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
+import com.yongjun.tdms.service.project.ProjectInfoManager;
+
 /*     */ import java.text.DecimalFormat;
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.List;
@@ -35,9 +38,14 @@
 /*     */   private final DepartmentManager departmentManager;
 /*     */   private final InstitutionManager institutionManager;
 /*     */   private final ProductListManager productListManager;
+/*     */   private final ProjectInfoManager projectInfoManager;
+
 /* 102 */   private ContractManagement contractManagement = null;
 /*     */ 
 /* 108 */   private CustomerInfo customerInfo = null;
+
+/* 108 */   private ProjectInfo projectInfo = null;
+
 /*     */ 
 /* 112 */   private Institution institution = null;
 /*     */ 
@@ -50,7 +58,7 @@
 /*     */   private CodeValue payType;
 /*     */   private CodeValue state;
 /*     */ 
-/*     */   public EditContractManagementAction(ContractManagementManager contractManagementManager, CustomerInfoManager customerInfoManager, ContactArchivesManager contactArchivesManager, CodeValueManager codeValueManager, PersonnelFilesManager personnelFilesManager, DepartmentManager departmentManager, InstitutionManager institutionManager, UserManager userManager, ProductListManager productListManager)
+/*     */   public EditContractManagementAction(ContractManagementManager contractManagementManager, CustomerInfoManager customerInfoManager, ContactArchivesManager contactArchivesManager, CodeValueManager codeValueManager, PersonnelFilesManager personnelFilesManager, DepartmentManager departmentManager, InstitutionManager institutionManager, UserManager userManager, ProductListManager productListManager,ProjectInfoManager projectInfoManager)
 /*     */   {
 /* 170 */     this.contractManagementManager = contractManagementManager;
 /* 171 */     this.customerInfoManager = customerInfoManager;
@@ -61,6 +69,7 @@
 /* 176 */     this.institutionManager = institutionManager;
 /* 177 */     this.userManager = userManager;
 /* 178 */     this.productListManager = productListManager;
+/* 178 */     this.projectInfoManager = projectInfoManager;
 /*     */   }
 /*     */ 
 /*     */   public void prepare()
@@ -103,6 +112,15 @@
 /*     */       }
 /*     */       else {
 /* 227 */         this.linkman = null;
+/*     */       }
+/*     */     }
+
+/* 222 */     if (null == this.projectInfo) {
+/* 223 */       if (hasId("project.id")) {
+/* 224 */         this.projectInfo = this.projectInfoManager.loadProjectInfo(getId("project.id"));
+/*     */       }
+/*     */       else {
+/* 227 */         this.projectInfo = null;
 /*     */       }
 /*     */     }
 /*     */ 
@@ -176,6 +194,7 @@
 /*     */     {
 /* 304 */       this.contractManagement.setCustomerInfo(this.customerInfo);
 /* 305 */       this.contractManagement.setLinkman(this.linkman);
+/* 305 */       this.contractManagement.setProject(this.projectInfo);
 /* 306 */       this.contractManagement.setContractType(this.contractType);
 /* 307 */       this.contractManagement.setSaleman(this.saleman);
 /* 308 */       this.contractManagement.setDeparment(this.deparment);
@@ -398,6 +417,15 @@
 /*     */   {
 /* 568 */     this.contractManagement = contractManagement;
 /*     */   }
+			public ProjectInfo getProjectInfo() {
+				return projectInfo;
+			}
+			public void setProjectInfo(ProjectInfo projectInfo) {
+				this.projectInfo = projectInfo;
+			}
+			public ProjectInfoManager getProjectInfoManager() {
+				return projectInfoManager;
+			}
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

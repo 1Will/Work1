@@ -22,6 +22,12 @@ public abstract interface CustomerInfoDao
     throws DaoException;
 
   public abstract List<CustomerInfo> getCustomerByName(String paramString);
+  /**
+   * 根据客户名称进行准确查询
+   * @param paramString
+   * @return
+   */
+  public abstract List<CustomerInfo> getOneCustomerByName(String paramString);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

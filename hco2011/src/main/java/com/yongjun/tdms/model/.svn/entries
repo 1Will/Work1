@@ -1,7 +1,7 @@
 10
 
 dir
-6526
+6534
 svn://192.168.1.109/crm2015/source/src/main/java/com/yongjun/tdms/model
 svn://192.168.1.109
 
@@ -26,19 +26,19 @@ byt
 
 811412a3-be6b-a34b-a5d5-1e66fd3541da
 
-backvisit
+employee
 dir
 
 customerservicemanagement
 dir
 
-employee
-dir
-
-financialmanagement
+backvisit
 dir
 
 notice
+dir
+
+financialmanagement
 dir
 
 CustomerRelationship
@@ -56,16 +56,13 @@ dir
 customercontract
 dir
 
-advisory
-dir
-
 financeManagement
 dir
 
-task
+advisory
 dir
 
-supplier
+task
 dir
 
 BaseInfoEntity.java
@@ -101,6 +98,9 @@ wjj
 
 
 2511
+
+supplier
+dir
 
 expensemanagement
 dir

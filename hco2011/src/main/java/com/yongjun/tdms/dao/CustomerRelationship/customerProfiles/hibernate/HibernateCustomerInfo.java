@@ -51,6 +51,10 @@
 /* 105 */     String hql = "from CustomerInfo c where c.disabled = false and c.name like '%" + name + "%'";
 /* 106 */     return getSession().createQuery(hql).list();
 /*     */   }
+			public List<CustomerInfo> getOneCustomerByName(String name) {
+/* 105 */     String hql = "from CustomerInfo c where c.disabled = false and c.name = '" + name + "'";
+/* 106 */     return getSession().createQuery(hql).list();
+/*     */   }
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

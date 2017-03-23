@@ -26,6 +26,12 @@ public abstract interface CustomerInfoManager
   public abstract void enabledAllCustomerInfo(List<CustomerInfo> paramList);
 
   public abstract List<CustomerInfo> getCustomerList(String paramString);
+  /**
+   * 根据客户名称进行准确查询
+   * @param paramString
+   * @return
+   */
+  public abstract List<CustomerInfo> getOneCustomerByName(String paramString);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

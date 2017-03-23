@@ -3296,6 +3296,7 @@
 			</result>
 			<interceptor-ref name="parameterReceiverStack" />
 		</action>
+		
 		<action name="searchContactArchivesWindow" class="listContactArchivesAction">
 			<result name="success" type="redirect">
 				listContactArchivesWindow.html
@@ -4097,6 +4098,7 @@
 			</result>
 			<interceptor-ref name="propertyReceiverStack" />
 		</action>
+		<!-- 保存合同 -->
 		<action name="saveContractManagementAction" class="editContractManagementAction" method="save">
 			<result name="input" type="redirect">
 				editContractManagementAction.html?contractManagement.id=${contractManagement.id}

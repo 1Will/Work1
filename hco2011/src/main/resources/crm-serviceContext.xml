@@ -1292,6 +1292,22 @@
 		</property>
 	</bean>
 	
+	<!--通用方法，用于人事档案与用户之间查询-->
+	<bean id="personnelFilesToUserManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.util.personnelFilesToUser.pojo.DefaultPersonnelFilesToUserManager">
+				<constructor-arg index="0">
+					<ref bean="userManager" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="projectInfoPersonnelsManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
 </beans>
 
 

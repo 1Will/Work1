@@ -1805,6 +1805,7 @@
                 	/~onlyInvalid: AND projectInfo.disabled=true ~/
                 	/~onlyValid: AND projectInfo.disabled=false ~/ 
                 	 /~projectInfoId: AND projectInfo.projectInfo.id ={projectInfoId} ~/
+                	  /~contactArchivesId: AND projectInfo.contactArchives.id ={contactArchivesId} ~/
                 	 
             	 ]]>
             </value>

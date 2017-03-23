@@ -72,6 +72,14 @@ import com.yongjun.tdms.service.project.projectInfoPersonnels.ProjectInfoPersonn
 		   public void setprojectInfoPersonnelDao(ProjectInfoPersonnelDao projectInfoPersonnelDao) {
 			   this.projectInfoPersonnelDao = projectInfoPersonnelDao;
 		   }
+		public List<String> loadPersonnelsCodeByProjectInfoId(Long projectInfoId) {
+			// TODO Auto-generated method stub
+			return this.projectInfoPersonnelDao.loadPersonnelsCodeByProjectInfoId(projectInfoId);
+		}
+		public List<String> loadPersonnelsCodeByEnable() {
+			// TODO Auto-generated method stub
+			return this.projectInfoPersonnelDao.loadPersonnelsCodeByEnable();
+		}
 
 /*    */ 
 /*    */   

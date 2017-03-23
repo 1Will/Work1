@@ -41,6 +41,7 @@ import javax.servlet.http.HttpServletRequest;
 /*     */   private final UserManager userManager;
 /*     */   private ProjectInfo projectInfo;
             private ProjectInfoPersonnels projectInfoPersonnels;
+            private String openFlag;
 /*     */
 /*     */   private PersonnelFiles personnelFiles;
 /*     */ 
@@ -75,6 +76,9 @@ import javax.servlet.http.HttpServletRequest;
 /*     */           }
 /*     */         }
 /*     */       }
+				if(this.request.getParameter("openFlag")!=null){
+					   this.openFlag =this.request.getParameter("openFlag");
+				}
 /*     */   }
 /*     */ 
 /*     */   public String save() throws NumberFormatException, DaoException {
@@ -243,6 +247,13 @@ import javax.servlet.http.HttpServletRequest;
 		public void setProjectInfoPersonnels(ProjectInfoPersonnels projectInfoPersonnels) {
 			this.projectInfoPersonnels = projectInfoPersonnels;
 		}
+		public String getOpenFlag() {
+			return openFlag;
+		}
+		public void setOpenFlag(String openFlag) {
+			this.openFlag = openFlag;
+		}
+		
 		
 /*     */ 
 /*     */ 

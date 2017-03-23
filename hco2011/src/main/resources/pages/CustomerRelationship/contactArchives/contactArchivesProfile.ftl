@@ -174,7 +174,12 @@
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
 		</#if>
+		<#if newContacts?exists >
+		<!-- 关闭按钮 -->
+		<input type="button" value="${action.getText('close')}" class="button" onclick="window.close()">
+  		<#else>
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+  		</#if>
     </@buttonBar>
 
 </@ww.form>
@@ -326,6 +331,9 @@
 	</li>
 	<li>
 		<a id="backvisit" onclick="activeTab(this);" href='${req.contextPath}/backvisit/listBackVisitByContact.html?contactArchive.id=#{contactArchives.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('contactArchives.backvisit')}</a>
+	</li>
+	<li>
+		<a id="project" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProCon.html?contactArchives.id=#{contactArchives.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('contactArchives.projectInfos')}</a>
 	</li>
 	<li>
 		<a id="changeToHistory" onclick="activeTab(this);" href='${req.contextPath}/customerRelationship/listContactToHistory.html?cr.id=#{contactArchives.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('contactArchives.changeToHistory')}</a>
