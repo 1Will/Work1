@@ -29,18 +29,13 @@
 	<tr>
 		<@ww.textfield label="'${action.getText('contractManagement.linkman.name')}'" name="'contractManagement.linkman.name'" value="'${req.getParameter('contractManagement.linkman.name')?if_exists}'" cssClass="'underline'" />
 		<@ww.textfield label="'${action.getText('contractManagement.saleman.name')}'" name="'contractManagement.saleman.name'" value="'${req.getParameter('contractManagement.saleman.name')?if_exists}'" cssClass="'underline'" />
-		<@ww.textfield label="'${action.getText('contractManagement.deparment.name')}'" name="'contractManagement.deparment.name'" value="'${req.getParameter('contractManagement.deparment.name')?if_exists}'" cssClass="'underline'" />
+		<@ww.textfield label="'${action.getText('contractManagement.project.name')}'" name="'contractManagement.project.name'" value="'${req.getParameter('contractManagement.project.name')?if_exists}'" cssClass="'underline'" />
 	</tr>
 	<tr>
 	
-		<@pp.dateRanger label="'${action.getText('contractManagement.ciemdinghTime')}'" 
- 						name="'contractManagement.ciemdinghTime'" 
-			            value="'${req.getParameter('contractManagement.ciemdinghTime_start')?if_exists}|${req.getParameter('contractManagement.ciemdinghTime_end')?if_exists}'"
-			           	readonly="true"
-			            cssClass="'underline'" 
-			            maxlength="10"/>
+		<@ww.textfield label="'${action.getText('contractManagement.deparment.name')}'" name="'contractManagement.deparment.name'" value="'${req.getParameter('contractManagement.deparment.name')?if_exists}'" cssClass="'underline'" />
 			            
-	<@ww.select label="'${action.getText('contractManagement.contractType')}'" 
+		<@ww.select label="'${action.getText('contractManagement.contractType')}'" 
 				id="contractType"
 				name="'contractManagement.contractType.id'" 
 				value="'${req.getParameter('contractManagement.contractType.id')?if_exists}'"
@@ -51,7 +46,7 @@
 				disabled="false">
 			</@ww.select>
 		
-	<@ww.select label="'${action.getText('contractManagement.state')}'" 
+		<@ww.select label="'${action.getText('contractManagement.state')}'" 
 				id="state"
 				name="'contractManagement.state.id'" 
 				value="'${req.getParameter('contractManagement.state.id')?if_exists}'"
@@ -63,6 +58,12 @@
 			</@ww.select>
 	</tr>
 	<tr>	
+		<@pp.dateRanger label="'${action.getText('contractManagement.ciemdinghTime')}'" 
+ 						name="'contractManagement.ciemdinghTime'" 
+			            value="'${req.getParameter('contractManagement.ciemdinghTime_start')?if_exists}|${req.getParameter('contractManagement.ciemdinghTime_end')?if_exists}'"
+			           	readonly="true"
+			            cssClass="'underline'" 
+			            maxlength="10"/>
 		<@crm_onlySearchInvalid_checkBox />
 	</tr>
 </@inputTable>

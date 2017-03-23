@@ -1261,6 +1261,7 @@
                 /~contractManagement.contractName: AND contractManagement.contractName = {contractManagement.contractName} ~/
                 /~contractManagement.customerInfo.name: AND contractManagement.customerInfo.name LIKE {contractManagement.customerInfo.name} ~/
                 /~contractManagement.linkman.name: AND contractManagement.linkman.name LIKE {contractManagement.linkman.name} ~/
+                /~contractManagement.project.name: AND contractManagement.project.name LIKE {contractManagement.project.name} ~/
                 /~contractManagement.address: AND contractManagement.address LIKE {contractManagement.address} ~/
                 /~contractManagement.telephone: AND contractManagement.telephone LIKE {contractManagement.telephone} ~/
                 /~contractManagement.saleman.name: AND contractManagement.saleman.name LIKE {contractManagement.saleman.name} ~/

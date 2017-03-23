@@ -1,134 +1,0 @@
-10
-
-dir
-6534
-svn://192.168.1.109/crm2015/source/src/main/java/com/yongjun/tdms/model
-svn://192.168.1.109
-
-
-
-2017-03-16T08:52:54.781250Z
-6522
-byt
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-811412a3-be6b-a34b-a5d5-1e66fd3541da
-
-employee
-dir
-
-customerservicemanagement
-dir
-
-backvisit
-dir
-
-notice
-dir
-
-financialmanagement
-dir
-
-CustomerRelationship
-dir
-
-historytask
-dir
-
-personnelFiles
-dir
-
-workspace
-dir
-
-customercontract
-dir
-
-financeManagement
-dir
-
-advisory
-dir
-
-task
-dir
-
-BaseInfoEntity.java
-file
-
-
-
-
-2017-03-17T02:33:26.112941Z
-d7a04ebf4af9a1fc313daec8f2cd9e02
-2015-09-14T08:50:10.889541Z
-4164
-wjj
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2511
-
-supplier
-dir
-
-expensemanagement
-dir
-
-project
-dir
-
-codevalue
-dir
-
-base
-dir
-
-workflow
-dir
-
-report
-dir
-
-page
-dir
-
-marketmanager
-dir
-
-COM
-dir
-
-workReport
-dir
-

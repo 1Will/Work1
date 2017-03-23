@@ -1,7 +1,0 @@
-#Institution
-Institution.disabled.success=\u9009\u5b9a\u7684\u5355\u4f4d\u5df2\u6210\u529f\u5931\u6548
-Institution.disabled.failer=<font color='red'>\u9009\u5b9a\u7684\u5355\u4f4d\u5931\u6548\u5931\u8d25</font>
-Institution.enabled.success=\u9009\u5b9a\u7684\u5355\u4f4d\u5df2\u6210\u529f\u6709\u6548
-Institution.enabled.failer=<font color='red'>\u9009\u5b9a\u7684\u5355\u4f4d\u6709\u6548\u5931\u8d25</font>
-Institution.delete.success=\u9009\u5b9a\u7684\u5355\u4f4d\u5df2\u6210\u529f\u5220\u9664
-Institution.delete.failer=<font color='red'>\u9009\u5b9a\u7684\u5355\u4f4d\u5220\u9664\u5931\u8d25</font>

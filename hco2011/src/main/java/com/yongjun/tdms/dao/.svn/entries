@@ -1,97 +1,0 @@
-10
-
-dir
-6534
-svn://192.168.1.109/crm2015/source/src/main/java/com/yongjun/tdms/dao
-svn://192.168.1.109
-
-
-
-2017-03-22T02:08:37.593750Z
-6533
-byt
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-811412a3-be6b-a34b-a5d5-1e66fd3541da
-
-employee
-dir
-
-customerservicemanagement
-dir
-
-backvisit
-dir
-
-notice
-dir
-
-financialmanagement
-dir
-
-CustomerRelationship
-dir
-
-historytask
-dir
-
-personnelFiles
-dir
-
-workspace
-dir
-
-customercontract
-dir
-
-financeManagement
-dir
-
-advisory
-dir
-
-task
-dir
-
-supplier
-dir
-
-expensemanagement
-dir
-
-project
-dir
-
-codevalue
-dir
-
-base
-dir
-
-workflow
-dir
-
-report
-dir
-
-marketmanager
-dir
-
-COM
-dir
-
-workReport
-dir
-
