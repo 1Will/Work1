@@ -1258,7 +1258,7 @@
                 /~onlyValid: AND contractManagement.disabled=false ~/
                 /~contractManagement.id: AND contractManagement.id = {contractManagement.id} ~/
                 /~contractManagement.code: AND contractManagement.code LIKE {contractManagement.code} ~/
-                /~contractManagement.contractName: AND contractManagement.contractName = {contractManagement.contractName} ~/
+                /~contractManagement.contractName: AND contractManagement.contractName LIKE {contractManagement.contractName} ~/
                 /~contractManagement.customerInfo.name: AND contractManagement.customerInfo.name LIKE {contractManagement.customerInfo.name} ~/
                 /~contractManagement.linkman.name: AND contractManagement.linkman.name LIKE {contractManagement.linkman.name} ~/
                 /~contractManagement.project.name: AND contractManagement.project.name LIKE {contractManagement.project.name} ~/

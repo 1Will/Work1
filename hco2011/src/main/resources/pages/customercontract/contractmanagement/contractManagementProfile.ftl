@@ -240,13 +240,22 @@
 		<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
 		</#if>
+		<#-- 继续新建按钮   -->
+		<#if contractManagement.id?exists>
+		<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html"/>
+		<#else>
+		<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html"/>
+		<script language="JavaScript" type="text/JavaScript"> 
+		getObjByName("newNext").disabled="true";
+		</script>
+		</#if> 
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/contractManagement/listContractManagementAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
     </@buttonBar>
 </@ww.form>
 <script language="JavaScript" type="text/JavaScript"> 
 function instiChange(){
 	DWREngine.setAsync(false); 
-	//回调单位的值后触发DWR 级联部门  
+	//回调单位的值后触发DWR 级联部门 
     	InstitutionSelectDeptDWR("institution.id","deparment","${action.getText('')}","false");
     	getObjByName("deparment").options[0].value="";
 	//重新设置为异步方式

@@ -33,7 +33,7 @@
         </@buttonBar>
         <@list title="${action.getText('contractManagementAction.list')}" 
             includeParameters="contractManagement.code|contractManagement.applyProduc|contractManagement.type.id|contractManagement.state.id|contractManagement.severityDegree.id|contractManagement.question|contractManagement.resolveProject|contractManagement.innerPrompt|contractManagement.remark|readOnly|onlyInvalid|onlyValid" 
-        	fieldMap="like:" >
+        	fieldMap="like:contractManagement.code|contractManagement.contractName|contractManagement.customerInfo.name|contractManagement.linkman.name|contractManagement.saleman.name|contractManagement.project.name|contractManagement.deparment.name" >
         	<#if !(action.isReadOnly())>
 	        	<@vlh.checkbox property="id" name="contractManagementIds">
 	            	<@vlh.attribute name="width" value="30" />

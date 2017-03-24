@@ -48,7 +48,7 @@
 		</many-to-one>
 		<!-- 项目名称 -->
 		<many-to-one name="project" class="com.yongjun.tdms.model.project.ProjectInfo">
-			<column name="PROJECT" not-null="true" />
+			<column name="PROJECT_ID" not-null="true" />
 		</many-to-one>
 		 <property name="address" type="string">
 			<column name="ADDRESS" not-null="false" sql-type="NVARCHAR(150)" />

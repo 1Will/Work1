@@ -93,7 +93,7 @@
 	 }
 	 
 	 function contactArchives_OpenDialog(){
-	  var url=url= "${req.contextPath}/customerRelationship/editContactArchives.html?projectInfo.id=${projectInfoId?if_exists}&customer.id=${customerInfoId?if_exists}";
+	  var url=url= "${req.contextPath}/customerRelationship/editContactArchives.html?projectInfo.id=${projectInfoId?if_exists}&customer.id=${customerInfoId?if_exists}&newContacts=newContacts";
 	   popupModalDialog(url, 850, 600);
 	   self.location.reload();
 	 }

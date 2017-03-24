@@ -19,7 +19,7 @@
 <#-- $Id: customerInfoSearcher.ftl 2009-12-10 15:50:35Z wliu $ -->
 
 <#include "../../includes/hco2011.ftl" />
-
+<!-- 合同管理查询页面 -->
 <@inputTable>
 	<tr>
 		<@ww.textfield label="'${action.getText('contractManagement.code')}'" name="'contractManagement.code'" value="'${req.getParameter('contractManagement.code')?if_exists}'" cssClass="'underline'" />
@@ -32,9 +32,7 @@
 		<@ww.textfield label="'${action.getText('contractManagement.project.name')}'" name="'contractManagement.project.name'" value="'${req.getParameter('contractManagement.project.name')?if_exists}'" cssClass="'underline'" />
 	</tr>
 	<tr>
-	
 		<@ww.textfield label="'${action.getText('contractManagement.deparment.name')}'" name="'contractManagement.deparment.name'" value="'${req.getParameter('contractManagement.deparment.name')?if_exists}'" cssClass="'underline'" />
-			            
 		<@ww.select label="'${action.getText('contractManagement.contractType')}'" 
 				id="contractType"
 				name="'contractManagement.contractType.id'" 
@@ -58,13 +56,14 @@
 			</@ww.select>
 	</tr>
 	<tr>	
-		<@pp.dateRanger label="'${action.getText('contractManagement.ciemdinghTime')}'" 
- 						name="'contractManagement.ciemdinghTime'" 
-			            value="'${req.getParameter('contractManagement.ciemdinghTime_start')?if_exists}|${req.getParameter('contractManagement.ciemdinghTime_end')?if_exists}'"
-			           	readonly="true"
-			            cssClass="'underline'" 
-			            maxlength="10"/>
 		<@crm_onlySearchInvalid_checkBox />
+		
+		<@pp.dateRanger label="'${action.getText('contractManagement.ciemdinghTime')}'" 
+ 				name="'contractManagement.ciemdinghTime'" 
+			    value="'${req.getParameter('contractManagement.ciemdinghTime_start')?if_exists}|${req.getParameter('contractManagement.ciemdinghTime_end')?if_exists}'"
+			    readonly="true"
+			    cssClass="'underline'" 
+			    maxlength="10"/>
 	</tr>
 </@inputTable>
 <script language="javascript">
