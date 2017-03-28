@@ -188,6 +188,17 @@
     	<#if !(action.isReadOnly())>
 		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
 		</#if>
+		
+		<#-- 继续新建按钮   -->
+		<#if returnPlan.id?exists>
+		<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editReturnPlan.html"/>
+		<#else>
+		<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editReturnPlan.html"/>
+		<script language="JavaScript" type="text/JavaScript"> 
+		getObjByName("newNext").disabled="true";
+		</script>
+		</#if>
+		
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/contractManagement/listReturnPlan.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
     </@buttonBar>
 

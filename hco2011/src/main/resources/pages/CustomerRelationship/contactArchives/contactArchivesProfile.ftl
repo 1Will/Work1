@@ -174,6 +174,17 @@
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
 		</#if>
+		
+			<#-- 继续新建按钮   -->
+			<#if contactArchives.id?exists>
+			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html"/>
+			<#else>
+			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html"/>
+			<script language="JavaScript" type="text/JavaScript"> 
+			getObjByName("newNext").disabled="true";
+			</script>
+			</#if>
+			
 		<#if newContacts?exists >
 		<!-- 关闭按钮 -->
 		<input type="button" value="${action.getText('close')}" class="button" onclick="window.close()">

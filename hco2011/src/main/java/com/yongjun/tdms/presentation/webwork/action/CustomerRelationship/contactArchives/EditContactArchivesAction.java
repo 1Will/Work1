@@ -49,7 +49,7 @@ import org.apache.commons.lang.StringUtils;
 /*     */   private CodeValue type;
 /*     */   private boolean sex;
 /*     */   private Supplier supplier;
-            private ProjectInfo projectInfo;
+            private ProjectInfo projectInfo; 
             private String newContacts;
 
 /*     */ 
@@ -100,9 +100,6 @@ import org.apache.commons.lang.StringUtils;
 /* 139 */       this.contactArchives.setProjectInfo(this.projectInfo);
                 this.contactArchives.setProName(this.projectInfo.getName());
 /*     */     }
-			  if (this.request.getParameter("newContacts")!=null) {
-				  this.newContacts = this.request.getParameter("newContacts");
-			  }
 /*     */   }
 /*     */ 
 /*     */   public String save()

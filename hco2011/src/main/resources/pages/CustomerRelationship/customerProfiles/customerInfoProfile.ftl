@@ -359,6 +359,17 @@
 		<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
 		</#if>
+		
+			<#-- 继续新建按钮   -->
+			<#if customerInfo.id?exists>
+			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editCustomerInfo.html"/>
+			<#else>
+			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editCustomerInfo.html"/>
+			<script language="JavaScript" type="text/JavaScript"> 
+			getObjByName("newNext").disabled="true";
+			</script>
+			</#if>
+			
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/customerRelationship/listCustomerInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
     </@buttonBar>
 </@ww.form>

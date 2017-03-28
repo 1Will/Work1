@@ -155,6 +155,17 @@
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
 		</#if>
+		
+		<#-- 继续新建按钮   -->
+		<#if projectInfo.id?exists>
+		<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/projectInfo/editProjectInfo.html"/>
+		<#else>
+		<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/projectInfo/editProjectInfo.html"/>
+		<script language="JavaScript" type="text/JavaScript"> 
+		getObjByName("newNext").disabled="true";
+		</script>
+		</#if>
+		 
 		<#if openFlag?exists>
 		<input type="button" value="${action.getText('关闭')}" onclick="window.close();"/>
        <#else>

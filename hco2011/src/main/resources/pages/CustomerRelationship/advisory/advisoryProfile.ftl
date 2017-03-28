@@ -428,6 +428,16 @@
         </div>
           </#if>
         <div style="float:left">
+        	<#-- 继续新建按钮   -->
+			<#if advisory.id?exists>
+			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/advisoryManager/editAdvisory.html"/>
+			<#else>
+			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/advisoryManager/editAdvisory.html"/>
+			<script language="JavaScript" type="text/JavaScript"> 
+			getObjByName("newNext").disabled="true";
+			</script>
+			</#if>
+        
             <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/advisoryManager/listAdvisory.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
         </div>
 	</@buttonBar>

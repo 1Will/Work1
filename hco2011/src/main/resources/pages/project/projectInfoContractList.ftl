@@ -76,30 +76,30 @@
 	function editProCon_OpenDialog(){
 	   var url="";
 	   url= "${req.contextPath}/projectInfo/editProCon.html?projectInfo.id=${projectInfoId?if_exists}&customerInfo.id=${customerInfoId?if_exists}";
-	   popupModalDialog(url, 850, 600);
+	   popupModalDialog(url, 900, 600);
 	   self.location.reload();
 	 }
 	 function editProCon_OpenDialog_update(id){
 	   var url="";
 	   url= "${req.contextPath}/projectInfo/editProCon.html?projectInfo.id=${projectInfoId?if_exists}&customerInfo.id=${customerInfoId?if_exists}&projectInfoContract.id="+id;
-	   popupModalDialog(url, 850, 600);
+	   popupModalDialog(url, 900, 600);
 	   self.location.reload();
 	 }
 	  function editProjectInfo_OpenDialog(id){
 	   var url="";
 	   url= "${req.contextPath}/projectInfo/editProjectInfo.html?projectInfo.id="+id+"&openFlag=openFlag&readOnly=${req.getParameter('readOnly')?if_exists}";
-	   popupModalDialog(url, 850, 600);
+	   popupModalDialog(url, 900, 600);
 	   self.location.reload();
 	 }
 	 
 	 function contactArchives_OpenDialog(){
 	  var url=url= "${req.contextPath}/customerRelationship/editContactArchives.html?projectInfo.id=${projectInfoId?if_exists}&customer.id=${customerInfoId?if_exists}&newContacts=newContacts";
-	   popupModalDialog(url, 850, 600);
+	   popupModalDialog(url, 900, 600);
 	   self.location.reload();
 	 }
 	function caProfile_OpenDialog(caId){
 	   var url = "${req.contextPath}/customerRelationship/editContactArchives.html?contactArchives.id="+caId+"&readOnly=${req.getParameter('readOnly')?if_exists}";
-	   popupModalDialog(url, 850, 600);
+	   popupModalDialog(url, 900, 600);
 	   //window.open(url);
 	   self.location.reload();
 	 }

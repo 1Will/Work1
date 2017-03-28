@@ -98,7 +98,7 @@ function confirmValids(boxName, message) {
     }
 }
 function popupModalDialog(url, width, height, eventHandler) {
-    var wd = (width == null) ? 800 :width;
+    var wd = (width == null) ? 900 :width;
     var hg = (height == null) ? 600 :height;
 
     if (isIE()) {

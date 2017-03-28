@@ -365,6 +365,16 @@
              </#if>
         </#if>
         
+        <#-- 继续新建按钮   -->
+			<#if backVisit.id?exists>
+			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/backvisit/editBackVisit.html"/>
+			<#else>
+			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/backvisit/editBackVisit.html"/>
+			<script language="JavaScript" type="text/JavaScript"> 
+			getObjByName("newNext").disabled="true";
+			</script>
+			</#if>
+        
 	    <#if req.getParameter('fromType')?exists && req.getParameter('fromType') == 'h'>
 	    <a href='${req.contextPath}/backvisit/listBackVisitTab.html?customerInfo.id=#{backVisit.customerInfo.id?if_exists}' name="alink" id="alink" style="display:none">
 			${action.getText('back')}
