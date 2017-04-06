@@ -1295,13 +1295,13 @@
 		<action name="searchContactsJobResume"
 			class="listContactsJobResumeAction">
 			<result name="success" type="redirect">
-				listContactsJobResume.html?readOnly=${readOnly}
+				listContactsJobResume.html?cr.id=${contactId}&amp;readOnly=${readOnly}
 			</result>
 			<result name="error" type="redirect">
-				listContactsJobResume.html?readOnly=${readOnly}
+				listContactsJobResume.html?cr.id=${contactId}&amp;readOnly=${readOnly}
 			</result>
 			<result name="invalid.token" type="redirect">
-				listContactsJobResume.html?readOnly=${readOnly}
+				listContactsJobResume.html?cr.id=${contactId}&amp;readOnly=${readOnly}
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
@@ -2459,10 +2459,10 @@
 		</action>
 		<action name="searchEducation" class="listEducationAction">
 			<result name="success" type="redirect">
-				listEducation.html?personnelFiles.id=${personnelFiles.id}&amp;readOnly=${readOnly}
+				listEducation.html?contactArchives.id=${contactArchives.id}&amp;personnelFiles.id=${personnelFiles.id}&amp;readOnly=${readOnly}
 			</result>
 			<result name="error" type="redirect">
-				listEducation.html?personnelFiles.id=${personnelFiles.id}&amp;readOnly=${readOnly}
+				listEducation.html?contactArchives.id=${contactArchives.id}&amp;personnelFiles.id=${personnelFiles.id}&amp;readOnly=${readOnly}
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
@@ -2562,10 +2562,10 @@
 		<action name="searchSocialRelation"
 			class="listSocialRelationAction">
 			<result name="success" type="redirect">
-				listSocialRelation.html?pf.id=${personnelFileId}&amp;readOnly=${readOnly}
+				listSocialRelation.html?pf.id=${personnelFileId}&amp;cr.id=${contactArchivesId}&amp;readOnly=${readOnly}
 			</result>
 			<result name="error" type="redirect">
-				listSocialRelation.html?pf.id=${personnelFileId}&amp;readOnly=${readOnly}
+				listSocialRelation.html?pf.id=${personnelFileId}&amp;cr.id=${contactArchivesId}&amp;readOnly=${readOnly}
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
@@ -4098,6 +4098,14 @@
 			</result>
 			<interceptor-ref name="propertyReceiverStack" />
 		</action>
+		
+		<action name="ContractManagementByCustomerAction" class="listContractManagementAction">
+			<result name="success" type="freemarker">
+				/pages/customercontract/contractmanagement/contractManagementByCustomerList.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		
 		<!-- 保存合同 -->
 		<action name="saveContractManagementAction" class="editContractManagementAction" method="save">
 			<result name="input" type="redirect">

@@ -369,7 +369,7 @@
 			getObjByName("newNext").disabled="true";
 			</script>
 			</#if>
-			
+		
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/customerRelationship/listCustomerInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
     </@buttonBar>
 </@ww.form>

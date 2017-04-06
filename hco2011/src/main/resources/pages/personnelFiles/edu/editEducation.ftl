@@ -67,7 +67,7 @@
 			           	name="education.graduationDate"
 						cssClass="underline" 
 						maxlength="10" 
-						required="true"
+						required="false"
 						flag="true">
 					</@datePickerRanger>
 			</tr>
@@ -90,7 +90,7 @@
          	 <#if !(action.isReadOnly())>
 	        	<@vsubmit value="'${action.getText('save')}'" onclick ="'return checkField()'"/>
 	         </#if>
-	         <@vsubmit value="'${action.getText('close')}'" onclick="'return closePage()'"/>
+	         <@vbutton value="${action.getText('close')}" onclick="window.close()"/>
          </@buttonBar>	
      </@ww.form>
 </@htmlPage>
@@ -108,16 +108,19 @@
 		if(!dateCheck_admissionDate()){
 			return false;
 		}
-		if(!dateCheck_graduationDate()){
-			return false;
-		}
-		//验证入学时间是否大于毕业时间
-	    var star = getObjByName('education.admissionDate').value;
-	    var end = getObjByName('education.graduationDate').value;
-	    if(isDateLessThenOldDate(star,end)){
-			alert('${action.getText('education.time.error')}');
-			getObjByName('education.admissionDate').focus();
-			return false;
+		if(!getObjByName('education.graduationDate').value==''){
+			if(!dateCheck_graduationDate()){
+				return false;
+			}else{
+			//验证入学时间是否大于毕业时间
+				var star = getObjByName('education.admissionDate').value;
+				var end = getObjByName('education.graduationDate').value;
+				if(isDateLessThenOldDate(star,end)){
+					alert('${action.getText('education.time.error')}');
+					getObjByName('education.admissionDate').focus();
+					return false;
+					}
+				}
 		}
 		if(getObjByName('education.comment').value.length>500){
 			alert('${action.getText('education.comment.alert')}')
@@ -125,7 +128,4 @@
 		}
 		return true;
 	}
-	function closePage(){
-    	window.close();
-    }
 </script>

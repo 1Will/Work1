@@ -50,7 +50,7 @@
 		</property>
         
         <property name="graduationDate" type="timestamp">
-			<column name="GRADUATIONDATE" not-null="true" />
+			<column name="GRADUATIONDATE" not-null="false" />
 		</property>
         
         <property name="school" type="string">

@@ -70,25 +70,18 @@ function upload(){
 			self.location.reload();
 		</#if>
 		</#if>
-		<#if backVisit?exists>
-        <#if backVisit.id?exists>
-			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?backVisit.id='+#{backVisit.id};
-			<#if projectInfo?exists>
-        <#if projectInfo.id?exists>
-        url= '${req.contextPath}/applicationDocManager/editApplicationDoc.html?backVisit.id='+#{backVisit.id}+'&projectInfo.id='+#{projectInfo.id};
-        </#if>
-		</#if>
-			popupModalDialog(url,750,500);
-			self.location.reload();
-		</#if>
-		</#if>
 		
 		<#if projectInfo?exists>
-        <#if projectInfo.id?exists>
-			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?projectInfo.id='+#{projectInfo.id};
-			popupModalDialog(url,750,500);
-			self.location.reload();
-		</#if>
+        	<#if projectInfo.id?exists>
+				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?projectInfo.id='+#{projectInfo.id};
+			<#if backVisit?exists>
+				<#if backVisit.id?exists>
+					url= '${req.contextPath}/applicationDocManager/editApplicationDoc.html?backVisit.id='+#{backVisit.id}+'&projectInfo.id='+#{projectInfo.id};
+       			 </#if>
+       		</#if>
+       			popupModalDialog(url,750,500);
+				self.location.reload();
+       		</#if>
 		</#if>
 		
 		<#if supplier?exists>
@@ -124,6 +117,13 @@ function uploadEdit(id){
 		<#if supplier?exists>
         <#if supplier.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?supplier.id='+#{supplier.id}+'&applicationDoc.id='+id;
+			popupModalDialog(url,750,500);
+			self.location.reload();
+		</#if>
+		</#if>
+		<#if projectInfo?exists>
+        <#if projectInfo.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?projectInfo.id='+#{projectInfo.id}+'&applicationDoc.id='+id;
 			popupModalDialog(url,750,500);
 			self.location.reload();
 		</#if>

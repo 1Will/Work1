@@ -59,6 +59,28 @@
 	    <@ww.textfield label="'${action.getText('contactArchives.professional')}'" name="'contactArchives.professional'" value="'${contactArchives.professional?if_exists}'" cssClass="'underline'" />
     </tr>
     <tr>
+    <!--学历-->
+	     <@ww.select label="'${action.getText('contactArchives.education')}'" 
+				name="'education.id'" 
+				value="'${req.getParameter('education.id')?if_exists}'"
+				listKey="id"
+				listValue="name"
+				list="allEducation"
+				emptyOption="true" 
+				disabled="false">
+			</@ww.select>
+	<!--政治面貌-->
+	     <@ww.select label="'${action.getText('contactArchives.politicalOutlook')}'" 
+				name="'politicalOutlook.id'" 
+				value="'${req.getParameter('politicalOutlook.id')?if_exists}'"
+				listKey="id"
+				listValue="name"
+				list="allPolitice"
+				emptyOption="true" 
+				disabled="false">
+			</@ww.select>
+    </tr>
+    <tr>
 	    <!--生日-->
 	    <@pp.datePicker
 				label="'${action.getText('contactArchives.birthday')}'" 
@@ -175,37 +197,7 @@
 				emptyOption="true" 
 				disabled="false">
 			</@ww.select>
-    </tr>
-    
-    
-    <tr>
-	    <!--学历-->
-	     <@ww.select label="'${action.getText('contactArchives.education')}'" 
-				name="'education.id'" 
-				value="'${req.getParameter('education.id')?if_exists}'"
-				listKey="id"
-				listValue="name"
-				list="allEducation"
-				emptyOption="true" 
-				disabled="false">
-			</@ww.select>
-			<!--政治面貌-->
-	     <@ww.select label="'${action.getText('contactArchives.politicalOutlook')}'" 
-				name="'politicalOutlook.id'" 
-				value="'${req.getParameter('politicalOutlook.id')?if_exists}'"
-				listKey="id"
-				listValue="name"
-				list="allPolitice"
-				emptyOption="true" 
-				disabled="false">
-			</@ww.select>
-    </tr>
-    
-    
-    
-    
-    
-    
+    </tr>    
     <tr>
 	    <!--备注-->
 	    <td align="right" valign="top">

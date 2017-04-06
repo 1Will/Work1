@@ -26,7 +26,9 @@
    		<create javascript="CustomerList" creator="spring">
    		    <param name="beanName" value="customerInfoManager"></param>
    		    <include method="getCustomerList"/>
+   		    <include method="getOneCustomerByName"/>
    		</create>
+   		
 		<!--zsz 2010.03.23 end-->
 		<create javascript="DeptCascadeDutyJs" creator="spring">
 	   		<param name="beanName" value="dutyManager"></param>

@@ -12,7 +12,7 @@
        
       <@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
       <#assign i=1/>
-      <@list title="" includeParameters="pf.id|cr.id">
+      <@list title="" includeParameters="pf.id|cr.id|">
       		<#if !(action.isReadOnly())>
 		        <@vlh.checkbox property="id" name="socialRelationIds">
 		            <@vlh.attribute name="width" value="30" />

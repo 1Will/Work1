@@ -365,6 +365,15 @@ function instiChange(){
 			if(!dateCheckPicker(true,'contractManagement.endTime','${action.getText('validation.endTime')}','%Y-%m-%d')){
 				return false;
 			}	
+			//验证开始日期是否大于终止时间
+			var star = getObjByName('contractManagement.startTime').value;
+			var end = getObjByName('contractManagement.endTime').value;
+			if(isDateLessThenOldDate(star,end)){
+				alert('${action.getText('validation.time.error')}');
+				getObjByName('contractManagement.endTime').focus();
+				return false;
+			}
+			
 			if(!selectCheck_selectMoneyType()){
 				getObjByName('moneyType.id').focus();
 		  	    return false;

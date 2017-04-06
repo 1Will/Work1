@@ -30,7 +30,7 @@
 	<#if contactArchives?exists>
             <@ww.hidden name="'contactArchives.id'" value="#{contactArchives.id}"/>
 	</#if>
-	<@list title="" includeParameters="personnelFiles.id|contactArchives.id" >
+	<@list title="" includeParameters="personnelFiles.id|contactArchives.id|" >
 		<#if !(action.isReadOnly())>
 			<@vlh.checkbox property="id" name="educationIds">
 	            <@vlh.attribute name="width" value="30" />
@@ -41,10 +41,22 @@
             <#assign number=number+1 />
             <@alignCenter/>
         </@vcolumn>
+        <@vcolumn title="${action.getText('education.degree')}" property="degree">
+            <@alignLeft/>
+        </@vcolumn>
         <@vcolumn title="${action.getText('education.edu')}" property="edu.name" >
             <@alignLeft/>
         </@vcolumn>
-        <@vcolumn title="${action.getText('education.degree')}" property="degree">
+        <#-- 增加专业 显示 -->
+        <@vcolumn title="${action.getText('education.profession')}" property="profession" >
+            <@alignLeft/>
+        </@vcolumn>
+        <#-- 增加入学时间 显示 -->
+        <@vcolumn title="${action.getText('education.admissionDate')}" property="admissionDate" format="yyyy-MM-dd">
+            <@alignLeft/>
+        </@vcolumn>
+        <#-- 增加毕业时间 显示 -->
+        <@vcolumn title="${action.getText('education.graduationDate')}" property="graduationDate" format="yyyy-MM-dd" >
             <@alignLeft/>
         </@vcolumn>
         <@vcolumn title="${action.getText('education.school')}" property="school" >
@@ -53,7 +65,7 @@
 	</@list>
     <@buttonBar>
     <#if !(action.isReadOnly())>
-    	<@vsubmit value="'${action.getText('new')}'" onclick="'return newEducation()'"/>
+    	<@vbutton value="${action.getText('new')}" onclick="newEducation()"/>
 	  	<#assign confirmMessage = "${action.getText('confirm.delete')}${action.getText('education.edu')}?" />	 
             <@vsubmit name="'delete'" value="'${action.getText('delete')}'">
                <@ww.param name="'onclick'" value="'return confirmDeletes(\"educationIds\", \"${confirmMessage}\");'"/>

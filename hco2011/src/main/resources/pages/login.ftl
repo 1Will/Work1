@@ -25,7 +25,7 @@ body {
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
-	background-image: url(${req.contextPath}/stylesheets/images/1-1.jpg);
+	background: url(${req.contextPath}/stylesheets/images/1-1.jpg) no-repeat;
 }
 .f1 {
 	font-family: "宋体";
@@ -55,35 +55,24 @@ body {
 <form name="'login'" action="security_check" method="'post'">
 <table width="100%" height="544" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td height="544" align="center" valign="top"><table width="16" height="36" border="0" cellpadding="0" cellspacing="0">
-      <tr>
-        <td width="16"><img src=" ${req.contextPath}/stylesheets/images/1-5.jpg" width="16" height="131" /></td>
-      </tr>
-    </table>
+    <td height="544" align="right" >
       <table width="694" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td width="338" height="381" align="left" valign="top"><table width="51%" border="0" cellspacing="0" cellpadding="0">
+        <td width="70">
+            
+            </td>
+          <td width="356" align="right"  style="background:url(${req.contextPath}/stylesheets/images/1-6.jpg) no-repeat">
+           <table width="100%" height="70" border="0" cellpadding="0" cellspacing="0">
             <tr>
-              <td><img src="${req.contextPath}/stylesheets/images/1-3.jpg" width="282" height="89" /></td>
-            </tr>
-          </table>
-            <table width="61%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td align="left" valign="top"><img src="${req.contextPath}/stylesheets/images/1-4.jpg" width="338" height="123" /></td>
-              </tr>
-            </table></td>
-          <td width="356" align="center" valign="top" background="${req.contextPath}/stylesheets/images/1-6.jpg"><table width="100%" height="70" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-              <td>&nbsp;</td>
+              <td>　</td>
             </tr>
           </table>
             <table width="100%" height="228" border="0" cellpadding="0" cellspacing="0">
               <tr>
-               
                 <td align="center" valign="top">
                 <table width="100%" height="62" border="0" cellpadding="0" cellspacing="0">
                   <tr>
-                    <td height="62">&nbsp;</td>
+                    <td height="62">　</td>
                   </tr>
                 </table>
                 
@@ -93,12 +82,12 @@ body {
                         <td width="59%" align="left" valign="middle"><label>
                          <input id="txtUserName" name="j_username" value="${Session.j_username?if_exists}" type="text" class="f1" size="30" />
                         </label></td>
-                        <td width="15%" align="left" valign="middle">&nbsp;</td>
+                        <td width="15%" align="left" valign="middle">　</td>
                       </tr>
                       <tr>
                         <td height="35" align="right" valign="middle">密码：</td>
                         <td align="left" valign="middle"><input id="txtPassword" type="password" name="j_password" class="f1" size="30" /></td>
-                        <td align="left" valign="middle">&nbsp;</td>
+                        <td align="left" valign="middle">　</td>
                       </tr>
                     </table>
                     <table width="74%" height="20" border="0" cellpadding="0" cellspacing="0">
@@ -112,8 +101,6 @@ body {
                     <table width="64%" height="30" border="0" cellpadding="0" cellspacing="0">
                       <tr>
                         <td height="30" align="center" valign="middle"><label>
-                          <#--<input type="image" name="imageField" src="${req.contextPath}/stylesheets/images/2-1.jpg" />
-                          <input language="javascript" class="button" id="btnLogin" type="submit"  name="btnLogin" src="${req.contextPath}/stylesheets/images/2-1.jpg"/>-->
                           <input name="imgbtn" type="image" src="${req.contextPath}/stylesheets/images/2-1.jpg" border="0" onClick="javascript:this.form.submit()">
                         </label></td>
                         <td align="center" valign="middle" class="f3">忘记密码</td>
@@ -122,15 +109,15 @@ body {
             
               </tr>
             </table></td>
+            <td width="224">
+            
+            </td>
         </tr>
       </table>
-      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td height="33" align="center" valign="middle"><font color="#ffffff"><strong>Copyright 2009-2017 Yongjun Technology All Rights Reserved 永君数码科技有限公司版权所有</strong></font></td>
-        </tr>
-      </table></td>
+      </td>
   </tr>
 </table>
+
 <SCRIPT LANGUAGE="JavaScript">
 	function resetPassword() {
 		var passControl = document.all("j_password");
@@ -248,6 +235,12 @@ function Locate(e){
 
 </script>
 </form>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td height="33" align="center" ><font color="#000000" size="1"><strong>Copyright 2009-2017 Yongjun Technology All Rights Reserved 永君数码科技有限公司版权所有</strong></font></td>
+        </tr>
+      </table>
 </center>
+
 </body>
 </html>

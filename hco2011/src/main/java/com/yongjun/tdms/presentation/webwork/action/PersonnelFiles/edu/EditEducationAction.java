@@ -66,7 +66,7 @@ import com.yongjun.tdms.service.CustomerRelationship.contactArchives.ContactArch
 /* 106 */     if (isNew) {
 /*     */       try {
 /* 108 */         this.educationManager.storeEducation(this.education);
-/* 109 */         addActionMessage(getText("education.add.success", Arrays.asList(new Object[] { this.education.getId() })));
+/* 109 */         addActionMessage(getText("education.add.success", Arrays.asList(new Object[] { this.education.getDegree() })));
 /*     */ 
 /* 111 */         return "new";
 /*     */       }

@@ -17,10 +17,10 @@
  -->
 <#--$Id: logoFrame.ftl 7925 2007-10-22 02:37:55Z qsun $ -->
 
-<table width="107%" height="100%" bgcolor="#FFFFFF">
+<table width="107%" height="100%" bgcolor="#f4ffd5">
     <tr>
         <td>
-        <img src="${req.contextPath}/images/logo2.JPG" style="position:absolute; left: -3px; top:0px;width:100% ">
+        <img src="${req.contextPath}/images/logo2.jpg" style="position:absolute; left: -3px; top:0px;width:100% ">
 		</td>
 		<div>
 		

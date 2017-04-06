@@ -52,7 +52,13 @@
             <@vcolumn title="${action.getText('employee')}" property="employee.name" sortable="desc">
             <@alignLeft/>
             </@vcolumn>
-            <@vcolumn title="${action.getText('backVisitContent')}" property="backVisitContent" >
+           <@vcolumn title="${action.getText('backVisitContent')}" property="backVisitContent" sortable="desc">
+	            <span title="${object.backVisitContent?if_exists}">
+		            <script>
+		            	var s = "${object.backVisitContent?if_exists}";
+		            	document.write(s.slice(0,18)+"...");
+		            </script>
+	            </span>
             <@alignLeft />
             </@vcolumn>
             <#assign continueBackVisit=""/>

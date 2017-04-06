@@ -4,8 +4,8 @@
 <@ww.form name="'listForm'" action="'searchContactsJobResume'" method="'post'">
 <@ww.token name="searchContactsJobResumeToken"/>
 	  <@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
-      <#if personnelFileId?exists>
-      	<@ww.hidden name="'cr.id'" value="#{contactId?if_exists}"/>
+      <#if contactId?exists>
+      	<@ww.hidden name="'cr.id'" value="#{contactId}"/>
       </#if>
       <#assign itemNo=1/>
       <@list title="" includeParameters="cr.id" fieldMap="like:" >

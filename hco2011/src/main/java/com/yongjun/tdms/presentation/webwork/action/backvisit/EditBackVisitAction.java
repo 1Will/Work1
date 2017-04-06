@@ -256,6 +256,8 @@ public void setFromType(String fromType) {
 //							event.setMoreinfo(moreinfo);
 //							eventNewManager.storeEventNew(event);
 
+							addActionMessage(getText("backvisit.submit.success", Arrays.asList(new Object[] { this.backVisit.getBackVisitType().getName() })));
+							return "success";
 				} catch (DaoException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -42,6 +42,17 @@
             	<a href="javascript:contactArchives_OpenDialog(<#if (object.contactArchive?exists)>#{object.contactArchive.id?if_exists}</#if>)"><#if (object.contactArchive?exists)>${object.contactArchive.name}</#if></a>
             <@alignLeft/>
             </@vcolumn>
+            <#if object.projectInfo?exists>
+             <@vcolumn title="${action.getText('projectInfo.name')}" property="projectInfo.name" sortable="desc">
+              <a href="javascript:editProjectInfo_OpenDialog('#{object.projectInfo.id}')"
+                 title="${object.projectInfo.name}%">${object.projectInfo.name}</a>
+            <@alignLeft/>
+            </@vcolumn>
+            <#else>
+            <@vcolumn title="${action.getText('projectInfo.name')}" property="projectInfo.name" sortable="desc">
+            <@alignLeft/>
+            </@vcolumn>
+            </#if>
              <@vcolumn title="${action.getText('customerInfo.step')}" property="customerInfo.step.name" sortable="desc">
             <@alignLeft/>
             </@vcolumn>

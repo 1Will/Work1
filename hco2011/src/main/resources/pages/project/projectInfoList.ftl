@@ -57,6 +57,9 @@
             <@vcolumn title="${action.getText('projectInfo.controller')}" property="controller.name" sortable="desc">
             <@alignLeft/>
             </@vcolumn>
+             <@vcolumn title="${action.getText('projectInfo.createUser')}" property="createUser.name" sortable="desc">
+            <@alignLeft/>
+            </@vcolumn>
             <@vcolumn title="${action.getText('outline')}" property="outline" sortable="desc"  >
             <@alignLeft />
             </@vcolumn>

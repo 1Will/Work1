@@ -50,7 +50,7 @@ import org.apache.commons.lang.StringUtils;
 /*     */   private boolean sex;
 /*     */   private Supplier supplier;
             private ProjectInfo projectInfo; 
-            private String newContacts;
+            private String popWindowFlag;
 
 /*     */ 
 /*     */   public EditContactArchivesAction(ContactArchivesManager contactArchivesManager, CodeValueManager codeValueManager, CustomerInfoManager customerInfoManager, AreaManager areaManager, SupplierManager supplierManager,ProjectInfoManager projectInfoManager,ContactToHistoryManager contactToHistoryManager,UserManager userManager,ProjectInfoContractManager projectInfoContractManager)
@@ -766,11 +766,11 @@ import org.apache.commons.lang.StringUtils;
 			public void setProjectInfo(ProjectInfo projectInfo) {
 				this.projectInfo = projectInfo;
 			}
-			public String getNewContacts() {
-				return newContacts;
+			public String getPopWindowFlag() {
+				return popWindowFlag;
 			}
-			public void setNewContacts(String newContacts) {
-				this.newContacts = newContacts;
+			public void setPopWindowFlag(String popWindowFlag) {
+				this.popWindowFlag = popWindowFlag;
 			}
 
 /*     */ }

@@ -185,7 +185,7 @@
 			</script>
 			</#if>
 			
-		<#if newContacts?exists >
+		<#if popWindowFlag?exists >
 		<!-- 关闭按钮 -->
 		<input type="button" value="${action.getText('close')}" class="button" onclick="window.close()">
   		<#else>

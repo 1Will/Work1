@@ -46,6 +46,14 @@
             includeParameters="contactArchives.name|customerIsNotNull|customer.id|contactArchives.customerName|type.id|readOnly|onlyInvalid|onlyValid|customer.id|backVisitFlag" 
         	fieldMap="like:contactArchives.name|contactArchives.customerName" >
         	
+        	<#--列表名称： 客户参与者信息列表 -->
+        	<#if backVisitCheckBox?exists>
+        	<script language="JavaScript" type="text/JavaScript">
+				document.getElementsByTagName("td")[18].innerHTML="${action.getText('customerParticipants.list.title')}" 
+        	</script>
+        	
+			</#if>
+			
         	<#if backVistiFlag?exists>
         		<#if backVisitCheckBox?exists>
         		<#if !(action.isReadOnly())>
