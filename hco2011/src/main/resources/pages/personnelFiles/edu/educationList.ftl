@@ -80,7 +80,7 @@
         	var url ='${req.contextPath}/personnelFile/editEdication.html?education.id='+id+'&readOnly='+readyOnly;
         	popupModalDialog(url,800,600);
         	//window.open(url);
-        	self.location.reload();
+        	if(isIE()){self.location.reload();};
     }
     function newEducation(id){
     var url ="";
@@ -91,7 +91,7 @@
 	</#if>
      	popupModalDialog(url,800,600);
      	//window.open(url);
-        self.location.reload();
+        if(isIE()){self.location.reload();};
     }
      
 </script>

@@ -57,6 +57,7 @@ import com.yongjun.tdms.service.project.ProjectInfoManager;
 /*     */   private CodeValue moneyType;
 /*     */   private CodeValue payType;
 /*     */   private CodeValue state;
+			private String openWindowFlag;
 /*     */ 
 /*     */   public EditContractManagementAction(ContractManagementManager contractManagementManager, CustomerInfoManager customerInfoManager, ContactArchivesManager contactArchivesManager, CodeValueManager codeValueManager, PersonnelFilesManager personnelFilesManager, DepartmentManager departmentManager, InstitutionManager institutionManager, UserManager userManager, ProductListManager productListManager,ProjectInfoManager projectInfoManager)
 /*     */   {
@@ -171,6 +172,9 @@ import com.yongjun.tdms.service.project.ProjectInfoManager;
 /*     */       }
 /*     */       else
 /* 277 */         this.institution = null;
+			  if(this.request.getParameter("openWindowFlag")!=null){
+				  this.openWindowFlag =this.request.getParameter("openWindowFlag");
+			  	}
 /*     */   }
 /*     */ 
 /*     */   public String save()
@@ -426,6 +430,13 @@ import com.yongjun.tdms.service.project.ProjectInfoManager;
 			public ProjectInfoManager getProjectInfoManager() {
 				return projectInfoManager;
 			}
+			public String getOpenWindowFlag() {
+				return openWindowFlag;
+			}
+			public void setOpenWindowFlag(String openWindowFlag) {
+				this.openWindowFlag = openWindowFlag;
+			}
+			
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

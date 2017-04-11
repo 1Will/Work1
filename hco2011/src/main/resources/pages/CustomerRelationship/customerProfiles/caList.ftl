@@ -24,6 +24,7 @@
 	<@ww.form name="'listForm'" action="'searchCA'" method="'post'">
 		<@ww.token name="searchContactArchivesToken"/>
 		<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
+		<@ww.hidden name="'remove'" value="'remove'"/>
 		<#if customerId?exists>
 			<@ww.hidden name="'customerInfo.id'" value="#{customerId}"/>
 		</#if>
@@ -35,7 +36,7 @@
 		</#if>
 		<#assign itemNo=1/>
         <@list title=""
-            includeParameters="contactArchives.name|customerInfo.id|contactArchives.customerName|type.id|readOnly|onlyInvalid|onlyValid" 
+            includeParameters="contactArchives.name|customerInfo.id|contactArchives.customerName|type.id|readOnly|onlyInvalid|onlyValid|remove|" 
         	fieldMap="like:contactArchives.name|contactArchives.customerName" >
         	<#if !(action.isReadOnly())>
 	        	<@vlh.checkbox property="id" name="contactArchivesIds">
@@ -80,7 +81,7 @@
 			<@buttonBar>
 				<#if !(action.isReadOnly())>
 					<@vbutton class="button" name="${action.getText('new')}" value="${action.getText('new')}" onclick="contactArchives_OpenDialog();"/>
-					<#assign confirmMessage = "${action.getText('delete.msg')}${action.getText('contactArchives.info')}?" />
+					<#assign confirmMessage = "${action.getText('contact.customer.relationship.remove')}?" />
 		            <@vsubmit name="'delete'" value="'${action.getText('delete')}'">
 		                <@ww.param name="'onclick'" value="'return confirmDeletes(\"contactArchivesIds\", \"${confirmMessage}\");'"/>
 		                <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
@@ -100,16 +101,17 @@
 	 <#if projectInfoId?exists>
 	url= "${req.contextPath}/customerRelationship/editContactArchives.html?projectInfo.id=${projectInfoId?if_exists}&customer.id=${customerId?if_exists}&customerType.id=${customerTypeId?if_exists}";
 	 </#if>
-	   popupModalDialog(url, 850, 600);
+	   //popupModalDialog(url, 850, 600);
 	   //window.open(url);
-	   self.location.reload();
+	   openNewWindow(url);
+	   if(isIE()){self.location.reload();};
 	 }
 	 //寮瑰嚭鑱旂郴浜虹淮鎶ゆā鎬佺獥浣�
 	function caProfile_OpenDialog(caId){
 	   var url = "${req.contextPath}/customerRelationship/editContactArchives.html?contactArchives.id="+caId+"&readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 850, 600);
 	   //window.open(url);
-	   self.location.reload();
+	   if(isIE()){self.location.reload();};
 	 }
 </script>
 </@framePage>

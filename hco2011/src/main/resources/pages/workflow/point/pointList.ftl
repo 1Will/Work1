@@ -100,14 +100,14 @@ function onBlur(op){
 function openPage(url)
 {
     popupModalDialog(url, 800, 600);
-    self.location.reload();
+    if(isIE()){self.location.reload();};
 }
 
 function newPoint()
 {
     var url = '${req.contextPath}/point/editPoint.html?flow.id='+${req.getParameter('flow.id')?if_exists};
     popupModalDialog(url, 800, 600);
-    self.location.reload();
+    if(isIE()){self.location.reload();};
 }
 </script>
 </@framePage>

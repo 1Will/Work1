@@ -5,11 +5,11 @@
 		<@ww.token name="searchProjectInfoContractToken"/>
 		<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 			<@ww.hidden name="'projectInfo.id'" value="'${projectInfoId?if_exists}'"/>
-			<@ww.hidden name="'customerInfoId.id'" value="'${customerInfoId?if_exists}'"/>
+			<@ww.hidden name="'customerInfo.id'" value="'${customerInfoId?if_exists}'"/>
 			<@ww.hidden name="'contactArchives.id'" value="'${contactArchivesId?if_exists}'"/>
 			 <#assign itemNo=1/>
  	        <@list title="" 
-        includeParameters="projectInfo.id|contactArchives.id|readOnly|onlyInvalid|onlyValid" 
+        includeParameters="projectInfo.id|contactArchives.id|customerInfo.id|readOnly|onlyInvalid|onlyValid" 
         fieldMap="" >
             <#if !(action.isReadOnly())>
 	            <@vlh.checkbox property="id" name="projectInfoContractIds">
@@ -61,7 +61,7 @@
 				<#if !(action.isReadOnly())>
 					<@vbutton class="button" name="${action.getText('从客户联系人选择')}" value="${action.getText('从客户联系人选择')}" onclick="editProCon_OpenDialog();"/>
 					<@vbutton class="button" name="${action.getText('new')}" value="${action.getText('new')}" onclick="contactArchives_OpenDialog();"/>
-					<#assign confirmMessage = "${action.getText('delete.msg')}${action.getText('projectInfoPersonnelsIds.info')}?" />
+					<#assign confirmMessage = "${action.getText('delete.msg')}${action.getText('projectInfoContractIds.info')}?" />
 		            <@vsubmit name="'delete'" value="'${action.getText('delete')}'">
 		                <@ww.param name="'onclick'" value="'return confirmDeletes(\"projectInfoContractIds\", \"${confirmMessage}\");'"/>
 		                <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
@@ -76,31 +76,34 @@
 	function editProCon_OpenDialog(){
 	   var url="";
 	   url= "${req.contextPath}/projectInfo/editProCon.html?projectInfo.id=${projectInfoId?if_exists}&customerInfo.id=${customerInfoId?if_exists}";
-	   popupModalDialog(url, 900, 600);
-	   self.location.reload();
+	   //popupModalDialog(url, 900, 600);
+	   openNewWindow(url);
+	   if(isIE()){self.location.reload();};
 	 }
 	 function editProCon_OpenDialog_update(id){
 	   var url="";
 	   url= "${req.contextPath}/projectInfo/editProCon.html?projectInfo.id=${projectInfoId?if_exists}&customerInfo.id=${customerInfoId?if_exists}&projectInfoContract.id="+id;
-	   popupModalDialog(url, 900, 600);
-	   self.location.reload();
+	   //popupModalDialog(url, 900, 600);
+	   openNewWindow(url);
+	   if(isIE()){self.location.reload();};
 	 }
 	  function editProjectInfo_OpenDialog(id){
 	   var url="";
 	   url= "${req.contextPath}/projectInfo/editProjectInfo.html?projectInfo.id="+id+"&openFlag=openFlag&readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 900, 600);
-	   self.location.reload();
+	   if(isIE()){self.location.reload();};
 	 }
 	 
 	 function contactArchives_OpenDialog(){
 	  var url=url= "${req.contextPath}/customerRelationship/editContactArchives.html?projectInfo.id=${projectInfoId?if_exists}&customer.id=${customerInfoId?if_exists}&popWindowFlag=popWindowFlag";
-	   popupModalDialog(url, 900, 600);
-	   self.location.reload();
+	   //popupModalDialog(url, 900, 600);
+	   openNewWindow(url);
+	   if(isIE()){self.location.reload();};
 	 }
 	function caProfile_OpenDialog(caId){
 	   var url = "${req.contextPath}/customerRelationship/editContactArchives.html?contactArchives.id="+caId+"&readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 900, 600);
 	   //window.open(url);
-	   self.location.reload();
+	   if(isIE()){self.location.reload();};
 	 }
 </script>

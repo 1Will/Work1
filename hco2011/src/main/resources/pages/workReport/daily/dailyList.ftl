@@ -84,7 +84,7 @@
   function editDaily(d,w){
       var url='${req.contextPath}/workReport/editDaily.html?daily.id='+d+'&weekly.id='+w;
       popupModalDialog(url,800,600);
-      self.location.reload();
+      if(isIE()){self.location.reload();};
   }
 </script>
 </@htmlPage>

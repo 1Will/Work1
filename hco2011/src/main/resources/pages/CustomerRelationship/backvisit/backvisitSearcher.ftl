@@ -179,6 +179,6 @@
 	   var url="";
 	   url= "${req.contextPath}/projectInfo/editProjectInfo.html?projectInfo.id="+id+"&openFlag=openFlag&readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 850, 600);
-	   self.location.reload();
+	   if(isIE()){self.location.reload();};
 	 }
 </script>

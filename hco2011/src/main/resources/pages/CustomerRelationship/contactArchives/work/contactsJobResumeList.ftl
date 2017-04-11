@@ -51,13 +51,13 @@
 	 function editContactsJobResume(objectId,readOnly){
 	 	var url='${req.contextPath}/customerRelationship/editContactsJobResume.html?cr.id=${req.getParameter('cr.id')?if_exists}'+'&contactsJobResume.id='+objectId+'&readOnly='+readOnly;
 	    popupModalDialog(url,800,600);
-	    self.location.reload();
+	    if(isIE()){self.location.reload();};
 	  }
 	 //打开新建工作简历模态窗口
 	 function newContactsJobResume(){
 		var url='${req.contextPath}/customerRelationship/editContactsJobResume.html?cr.id=${req.getParameter('cr.id')?if_exists}';
 		popupModalDialog(url,800,600);
-		self.location.reload();
+		if(isIE()){self.location.reload();};
 	  }
 	</script>
 </@framePage>

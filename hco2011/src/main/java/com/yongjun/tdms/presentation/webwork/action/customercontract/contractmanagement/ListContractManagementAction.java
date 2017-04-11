@@ -4,11 +4,14 @@
 /*     */ import com.yongjun.pluto.model.codevalue.CodeValue;
 /*     */ import com.yongjun.pluto.service.codevalue.CodeValueManager;
 /*     */ import com.yongjun.pluto.webwork.action.valuelist.ValueListAction;
+import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo;
 /*     */ import com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement;
 /*     */ import com.yongjun.tdms.service.customercontract.contractmanagement.ContractManagementManager;
+
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.List;
 /*     */ import java.util.Map;
+
 /*     */ import javax.servlet.http.HttpServletRequest;
 /*     */ 
 /*     */ public class ListContractManagementAction extends ValueListAction
@@ -17,6 +20,7 @@
 /*     */   private final ContractManagementManager contractManagementManager;
 /*     */   private final CodeValueManager codeValueManager;
 /*  56 */   private List<ContractManagement> contractManagements = null;
+			private Long customerInfoId;
 /*     */ 
 /*     */   public ListContractManagementAction(ContractManagementManager contractManagementManager, CodeValueManager codeValueManager)
 /*     */   {
@@ -30,6 +34,9 @@
 /*  76 */     if ((null == this.contractManagements) && 
 /*  77 */       (hasIds("contractManagementIds")))
 /*  78 */       this.contractManagements = this.contractManagementManager.loadAllContractManagement(getIds("contractManagementIds"));
+			  if (hasId("customerInfo.id")) {
+				  this.customerInfoId = getId("customerInfo.id");
+			  }
 /*     */   }
 /*     */ 
 /*     */   protected String getAdapterName()
@@ -195,8 +202,14 @@
 /* 309 */       codes.add(0, cv);
 /* 310 */     }return codes;
 /*     */   }
-/*     */ }
-
+/*     */
+				public Long getCustomerInfoId() {
+					return customerInfoId;
+				}
+				public void setCustomerInfoId(Long customerInfoId) {
+					this.customerInfoId = customerInfoId;
+				}
+			}
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\
  * Qualified Name:     com.yongjun.tdms.presentation.webwork.action.customercontract.contractmanagement.ListContractManagementAction
  * JD-Core Version:    0.6.2

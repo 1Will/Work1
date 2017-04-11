@@ -51,13 +51,13 @@
 	 function editWorkExperience(objectId,readOnly){
 	 	var url='${req.contextPath}/personnelFile/editWorkExperience.html?pf.id=${req.getParameter('pf.id')?if_exists}'+'&workExperience.id='+objectId+'&readOnly='+readOnly;
 	    popupModalDialog(url,800,600);
-	    self.location.reload();
+	    if(isIE()){self.location.reload();};
 	  }
 	 //打开新建工作简历模态窗口
 	 function newWorkExperience(){
 		var url='${req.contextPath}/personnelFile/editWorkExperience.html?pf.id=${req.getParameter('pf.id')?if_exists}';
 		popupModalDialog(url,800,600);
-		self.location.reload();
+		if(isIE()){self.location.reload();};
 	  }
 	</script>
 </@framePage>

@@ -2,6 +2,7 @@
 
 <@htmlPage title="${action.getText('applicationDoc.profile')}">
 <@ww.form namespace="'/applicationDocManager'" name="'applicationDocInfo'" action="'saveApplicationDoc'" enctype="'multipart/form-data'" method="'post'">
+<#assign returnUrl='${req.contextPath}/applicationDocManager/editApplicationDoc.html?yesUrl=yesUrl'/>
  <@ww.token name="saveApplicationDocToken"/>
     <@inputTable>
     	<#if applicationDoc.id?exists>
@@ -10,26 +11,31 @@
         <#if advisory?exists>
         <#if advisory.id?exists>
         	<@ww.hidden name="'advisory.id'" value="#{advisory.id}"/>
+        	<#assign returnUrl=returnUrl + '&advisory.id=#{advisory.id}'/>
         </#if>
         </#if>
         <#if backVisit?exists>
         <#if backVisit.id?exists>
         	<@ww.hidden name="'backVisit.id'" value="#{backVisit.id}"/>
+        	<#assign returnUrl=returnUrl + '&backVisit.id=#{backVisit.id}'/>
         </#if>
         </#if>
          <#if projectInfo?exists>
         <#if projectInfo.id?exists>
         	<@ww.hidden name="'projectInfo.id'" value="#{projectInfo.id}"/>
+        	<#assign returnUrl=returnUrl + '&projectInfo.id=#{projectInfo.id}'/>
         </#if>
         </#if>
         <#if supplier?exists>
         <#if supplier.id?exists>
         	<@ww.hidden name="'supplier.id'" value="#{supplier.id}"/>
+        	<#assign returnUrl=returnUrl + '&supplier.id=#{supplier.id}'/>
         </#if>
         </#if>
          <#if contractAdministrator?exists>
         <#if contractAdministrator.id?exists>
         	<@ww.hidden name="'contractAdministrator.id'" value="#{contractAdministrator.id}"/>
+        	<#assign returnUrl=returnUrl + '&contractAdministrator.id=#{contractAdministrator.id}'/>
         </#if>
         </#if>
 		<tr>
@@ -72,7 +78,20 @@
     </@inputTable>
     <@buttonBar>
           <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
-          <@vbutton class="button" name="${action.getText('close')}" value="${action.getText('close')}" onclick="javascript:window.close();"/>
+          
+          <#-- 继续新建按钮   -->
+			<#if applicationDoc.id?exists>
+			<@redirectButton name="newUpload" value="${action.getText('newUpload')}" 
+				url="${returnUrl}"/>
+			<#else>
+			<@redirectButton name="newUpload" value="${action.getText('newUpload')}" 
+				url="${req.contextPath}/applicationDocManager/editApplicationDoc.html"/>
+			<script language="JavaScript" type="text/JavaScript"> 
+			getObjByName("newUpload").disabled="true";
+			</script>
+			</#if>
+          
+          <@vbutton class="button" name="${action.getText('close')}" value="${action.getText('close')}" onclick="closeThis();"/>
     </@buttonBar>
     <@ww.hidden name="'origFileName'" value=""/>
 <script language="javascript">

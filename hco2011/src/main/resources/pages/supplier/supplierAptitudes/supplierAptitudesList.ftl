@@ -41,7 +41,7 @@
 			var url = '${req.contextPath}/supplierAptitudes/editSupplierAptitudes.html?supplier.id='+id+'&readOnly=${req.getParameter('readOnly')?if_exists}';
 		}
 			popupModalDialog(url,750,500);
-			self.location.reload();
+			if(isIE()){self.location.reload();};
 	}
 	function SupplierAptitudesEdit(id){
 		if(getObjByName('readOnly').value==''){
@@ -51,7 +51,7 @@
 		}
 			
 			popupModalDialog(url,750,500);
-			self.location.reload();
+			if(isIE()){self.location.reload();};
 	}	
 </script>
 </@framePage>

@@ -1063,4 +1063,32 @@ function getObjByName(name){
 	 
  	 return getObjByName(name).value;
 }
+ function closeThis(){
+	 window.opener.location.reload();
+	 window.close();
+	
+}
+ function openNewWindow(url,height,width){
+	 var wd = (width == null) ? 900 :width;
+	 var hg = (height == null) ? 600 :height;
+	 var top= (window.screen.availHeight - hg)/2;
+	 var left= (window.screen.availWidth - wd)/2;
+	 var windowProperty ='height='+ hg +', width='+ wd +', top='+ top +', left='+left+', toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no' ;
+	 window.open (url, '新窗口', windowProperty )
+ }
+ 
+// function openWin(url,height,width){  
+//	 var wd = (width == null) ? 900 :width;
+//	 var hg = (height == null) ? 600 :height;
+//	 var top= (window.screen.availHeight - hg)/2;
+//	 var left= (window.screen.availWidth - wd)/2;
+//	 var windowProperty ='height='+ hg +', width='+ wd +', top='+ top +', left='+left+', toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no' ;
+//	    var winObj = window.open(url,'新窗口',windowProperty);  
+//	    var loop = setInterval(function() {       
+//	        if(winObj.closed) {      
+//	            clearInterval(loop);      
+//	            window.parent.location.reload();   
+//	        }      
+//	    }, 1);     
+//	}  
 

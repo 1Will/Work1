@@ -1089,13 +1089,13 @@
 		</action>
 		<action name="saveContactArchives" class="editContactArchivesAction" method="save">
 			<result name="new" type="redirect">
-				editContactArchives.html?contactArchives.id=${contactArchives.id}&amp;readOnly=${readOnly}
+				editContactArchives.html?contactArchives.id=${contactArchives.id}&amp;readOnly=${readOnly}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="error" type="redirect">
-				editContactArchives.html?contactArchives.id=${contactArchives.id}&amp;readOnly=${readOnly}
+				editContactArchives.html?contactArchives.id=${contactArchives.id}&amp;readOnly=${readOnly}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="success" type="redirect">
-				editContactArchives.html?contactArchives.id=${contactArchives.id}&amp;readOnly=${readOnly}
+				editContactArchives.html?contactArchives.id=${contactArchives.id}&amp;readOnly=${readOnly}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<interceptor-ref name="propertySender">
 				<param name="propertyNames">contactArchives</param>
@@ -1243,13 +1243,13 @@
 		</action>
 		<action name="searchCA" class="listContactArchivesAction">
 			<result name="success" type="redirect">
-				listCA.html?customerInfo.id=#{customerId}&amp;readOnly=${readOnly}
+				listCA.html?customerInfo.id=${customerId}&amp;readOnly=${readOnly}
 			</result>
 			<result name="error" type="redirect">
-				listCA.html?customerInfo.id=#{customerId}&amp;readOnly=${readOnly}
+				listCA.html?customerInfo.id=${customerId}&amp;readOnly=${readOnly}
 			</result>
 			<result name="invalid.token" type="redirect">
-				listCA.html?customerInfo.id=#{customerId}&amp;readOnly=${readOnly}
+				listCA.html?customerInfo.id=${customerId}&amp;readOnly=${readOnly}
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
@@ -1675,19 +1675,19 @@
 		</action>
 		<action name="saveApplicationDoc" class="editApplicationDocAction" method="save">
 			<result name="input" type="redirect">
-				editApplicationDoc.html?applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}
+				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}
 			</result>
 			<result name="new" type="redirect">
-				editApplicationDoc.html?applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}
+				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}
 			</result>
 			<result name="success" type="redirect">
-				editApplicationDoc.html?applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}
+				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}
 			</result>
 			<result name="error" type="dispatcher">
-				editApplicationDoc.html?applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}
+				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}
 			</result>
 			<result name="invalid.token" type="redirect">
-				editApplicationDoc.html?applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}
+				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}
 			</result>
 			<interceptor-ref name="fileUploadStack" />
 			<interceptor-ref name="propertySender">
@@ -1697,13 +1697,13 @@
 		</action>
 		<action name="searchApplicationDoc" class="listApplicationDocAction">
 			<result name="success" type="redirect">
-				listApplicationDoc.html?advisory.id=${advisory.id}
+				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;readOnly=false
 			</result>
 			<result name="error" type="redirect">
-				listApplicationDoc.html?advisory.id=${advisory.id}
+				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;readOnly=false
 			</result>
 			<result name="invalid.token" type="redirect">
-				listApplicationDoc.html?advisory.id=${advisory.id}
+				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;readOnly=false
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
@@ -4098,9 +4098,9 @@
 			</result>
 			<interceptor-ref name="propertyReceiverStack" />
 		</action>
-		
-		<action name="ContractManagementByCustomerAction" class="listContractManagementAction">
-			<result name="success" type="freemarker">
+		<!-- 客户档案中的合同信息 -->
+		<action name="listContractManagementByCustomerAction" class="listContractManagementAction" method="list">
+			<result name="success" type="freemarker" >
 				/pages/customercontract/contractmanagement/contractManagementByCustomerList.ftl
 			</result>
 			<interceptor-ref name="propertyReceiverStack" />
@@ -4333,10 +4333,12 @@
 			<interceptor-ref name="parameterReceiverStack" />
 		</action>
 		<action name="searchProductList" class="listProductListAction">
-			<result name="success" type="dispatcher">
-				listProductList.html
+			<result name="success" type="redirect">
+				listProductList.html?contractManagement.id=${contractManagementId}&amp;readOnly=${readOnly}
 			</result>
-			<result name="error" type="redirect">listProductList.html</result>
+			<result name="error" type="redirect">
+				listProductList.html?contractManagement.id=${contractManagementId}&amp;readOnly=${readOnly}
+			</result>
 			<result name="invalid.token" type="redirect">
 				listProductList.html
 			</result>
@@ -5130,25 +5132,25 @@
 		
 		<action name="searchProPer" class="listProjectInfoPersonnelsAction">
 			<result name="success" type="redirect">
-				listProPer.html?projectInfo.id=#{projectInfoId}&amp;readOnly=${readOnly}
+				listProPer.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
 			</result>
 			<result name="error" type="redirect">
-				listProPer.html?projectInfo.id=#{projectInfoId}&amp;readOnly=${readOnly}
+				listProPer.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
 			</result>
 			<result name="invalid.token" type="redirect">
-				listProPer.html?projectInfo.id=#{projectInfoId}&amp;readOnly=${readOnly}
+				listProPer.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
 		<action name="searchProCon" class="listProjectInfoContractAction">
 			<result name="success" type="redirect">
-				listProCon.html?projectInfo.id=#{projectInfoId}&amp;readOnly=${readOnly}
+				listProCon.html?projectInfo.id=${projectInfoId}&amp;customerInfo.id=${customerInfoId}&amp;readOnly=${readOnly}
 			</result>
 			<result name="error" type="redirect">
-				listProCon.html?projectInfo.id=#{projectInfoId}&amp;readOnly=${readOnly}
+				listProCon.html?projectInfo.id=${projectInfoId}&amp;customerInfo.id=${customerInfoId}&amp;readOnly=${readOnly}
 			</result>
 			<result name="invalid.token" type="redirect">
-				listProCon.html?projectInfo.id=#{projectInfoId}&amp;readOnly=${readOnly}
+				listProCon.html?projectInfo.id=${projectInfoId}&amp;customerInfo.id=${customerInfoId}&amp;readOnly=${readOnly}
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
@@ -5161,10 +5163,10 @@
 		</action>
 		<action name="saveProPer" class="editProjectInfoPersonnelsAction" method="save">
 			<result name="success" type="redirect">
-				editProPer.html?projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;projectInfoPersonnels.id=${projectInfoPersonnels.id}
+				editProPer.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;projectInfoPersonnels.id=${projectInfoPersonnels.id}
 			</result>
 			<result name="error" type="dispatcher">
-				editProPer.html?projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;projectInfoPersonnels.id=${projectInfoPersonnels.id}
+				editProPer.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;projectInfoPersonnels.id=${projectInfoPersonnels.id}
 			</result>
 			<result name="invalid.token" type="redirect">
 				editProPer.html?readOnly=${readOnly}
@@ -5180,10 +5182,10 @@
 		</action>
 		<action name="saveProCon" class="editProjectInfoContractAction" method="save">
 			<result name="success" type="redirect">
-				editProCon.html?projectInfo.id=${projectInfo.id}&amp;customerInfo.id=${customerInfo.id}&amp;readOnly=${readOnly}&amp;projectInfoContract.id=${projectInfoContract.id}
+				editProCon.html?projectInfo.id=${projectInfoId}&amp;customerInfo.id=${customerInfoId}&amp;readOnly=${readOnly}&amp;projectInfoContract.id=${projectInfoContract.id}
 			</result>
 			<result name="error" type="dispatcher">
-				editProCon.html?projectInfo.id=${projectInfo.id}&amp;customerInfo.id=${customerInfo.id}&amp;readOnly=${readOnly}&amp;projectInfoContract.id=${projectInfoContract.id}
+				editProCon.html?projectInfo.id=${projectInfoId}&amp;customerInfo.id=${customerInfoId}&amp;readOnly=${readOnly}&amp;projectInfoContract.id=${projectInfoContract.id}
 			</result>
 			<result name="invalid.token" type="redirect">
 				editProCon.html?readOnly=${readOnly}
@@ -5201,13 +5203,13 @@
 		
 		<action name="searchProPro" class="listProjectInfoProductAction">
 			<result name="success" type="redirect">
-				listProPro.html?projectInfo.id=#{projectInfoId}&amp;readOnly=${readOnly}
+				listProPro.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
 			</result>
 			<result name="error" type="redirect">
-				listProPro.html?projectInfo.id=#{projectInfoId}&amp;readOnly=${readOnly}
+				listProPro.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
 			</result>
 			<result name="invalid.token" type="redirect">
-				listProPro.html?projectInfo.id=#{projectInfoId}&amp;readOnly=${readOnly}
+				listProPro.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
@@ -5220,13 +5222,13 @@
 		</action>
 		<action name="searchProPlan" class="listProjectInfoPlanAction">
 			<result name="success" type="redirect">
-				listProPlan.html?projectInfo.id=#{projectInfoId}&amp;readOnly=${readOnly}
+				listProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
 			</result>
 			<result name="error" type="redirect">
-				listProPlan.html?projectInfo.id=#{projectInfoId}&amp;readOnly=${readOnly}
+				listProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
 			</result>
 			<result name="invalid.token" type="redirect">
-				listProPlan.html?projectInfo.id=#{projectInfoId}&amp;readOnly=${readOnly}
+				listProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
@@ -5239,10 +5241,10 @@
 		</action>
 		<action name="saveProPlan" class="editProjectInfoPlanAction" method="save">
 			<result name="success" type="redirect">
-				editProPlan.html?projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;projectInfoPlan.id=${projectInfoPlan.id}
+				editProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;projectInfoPlan.id=${projectInfoPlan.id}
 			</result>
 			<result name="error" type="dispatcher">
-				editProPlan.html?projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;projectInfoPlan.id=${projectInfoPlan.id}
+				editProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;projectInfoPlan.id=${projectInfoPlan.id}
 			</result>
 			<result name="invalid.token" type="redirect">
 				editProPlan.html?readOnly=${readOnly}

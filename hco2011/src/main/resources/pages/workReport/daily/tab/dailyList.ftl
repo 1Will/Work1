@@ -85,13 +85,13 @@
   function editDaily(v){
       var url='${req.contextPath}/workReport/editDaily.html?daily.id='+v+'&weekly.id='+${req.getParameter('weekly.id')?if_exists};
       popupModalDialog(url,800,600);
-      self.location.reload();
+      if(isIE()){self.location.reload();};
   }
   //打开新建日报模态窗口
   function newDaily(){
   	  var url = '${req.contextPath}/workReport/editDaily.html?weekly.id='+${req.getParameter('weekly.id')?if_exists};
 	  popupModalDialog(url,800,600);
-	  self.location.reload();
+	  if(isIE()){self.location.reload();};
   }
 </script>
 </@framePage>

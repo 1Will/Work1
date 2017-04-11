@@ -66,8 +66,9 @@ function upload(){
 		<#if advisory?exists>
 		<#if advisory.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?advisory.id='+#{advisory.id};
-			popupModalDialog(url,750,500);
-			self.location.reload();
+			//popupModalDialog(url,750,500);
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
 		</#if>
 		</#if>
 		
@@ -79,23 +80,26 @@ function upload(){
 					url= '${req.contextPath}/applicationDocManager/editApplicationDoc.html?backVisit.id='+#{backVisit.id}+'&projectInfo.id='+#{projectInfo.id};
        			 </#if>
        		</#if>
-       			popupModalDialog(url,750,500);
-				self.location.reload();
+       			//popupModalDialog(url,750,500);
+       			openNewWindow(url);
+				if(isIE()){self.location.reload();};
        		</#if>
 		</#if>
 		
 		<#if supplier?exists>
         <#if supplier.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?supplier.id='+#{supplier.id};
-			popupModalDialog(url,750,500);
-			self.location.reload();
+			//popupModalDialog(url,750,500);
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
 		</#if>
 		</#if>
 		<#if contractAdministrator?exists>
 		<#if contractAdministrator.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?contractAdministrator.id='+#{contractAdministrator.id};
-			popupModalDialog(url,750,500);
-			self.location.reload();
+			//popupModalDialog(url,750,500);
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
 		</#if>
 		</#if>
 	}
@@ -103,36 +107,41 @@ function uploadEdit(id){
 		<#if advisory?exists>
 		<#if advisory.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?advisory.id='+#{advisory.id}+'&applicationDoc.id='+id;
-			popupModalDialog(url,750,500);
-			self.location.reload();
+			openNewWindow(url);
+			//popupModalDialog(url,750,500);
+			if(isIE()){self.location.reload();};
 		</#if>
 		</#if>
-		<#if backVisit?exists>
-        <#if backVisit.id?exists>
-			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?backVisit.id='+#{backVisit.id}+'&applicationDoc.id='+id;
-			popupModalDialog(url,750,500);
-			self.location.reload();
-		</#if>
-		</#if>
+		
 		<#if supplier?exists>
         <#if supplier.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?supplier.id='+#{supplier.id}+'&applicationDoc.id='+id;
-			popupModalDialog(url,750,500);
-			self.location.reload();
+			//popupModalDialog(url,750,500);
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
 		</#if>
 		</#if>
+		
 		<#if projectInfo?exists>
+			<#if backVisit?exists>
+	        	<#if backVisit.id?exists>
+				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?backVisit.id='+#{backVisit.id}+'&applicationDoc.id='+id;
+				</#if>
+			</#if>
         <#if projectInfo.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?projectInfo.id='+#{projectInfo.id}+'&applicationDoc.id='+id;
-			popupModalDialog(url,750,500);
-			self.location.reload();
 		</#if>
+			//popupModalDialog(url,750,500);
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
 		</#if>
+		
 		<#if contractAdministrator?exists>
 		<#if contractAdministrator.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?contractAdministrator.id='+#{contractAdministrator.id}+'&applicationDoc.id='+id;
-			popupModalDialog(url,750,500);
-			self.location.reload();
+			//popupModalDialog(url,750,500);
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
 		</#if>
 		</#if>
 	}	

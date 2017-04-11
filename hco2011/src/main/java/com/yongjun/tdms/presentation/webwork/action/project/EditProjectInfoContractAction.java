@@ -100,11 +100,11 @@ import javax.servlet.http.HttpServletRequest;
 /*     */ 
 			
 /* 172 */     if (isNew) {
-/* 173 */       addActionMessage(getText("projectInfoPer.add.success", Arrays.asList(new Object[] { this.projectInfoContract.getContactArchives().getName() })));
+/* 173 */       addActionMessage(getText("projectInfoContacts.add.success", Arrays.asList(new Object[] { this.projectInfoContract.getContactArchives().getName() })));
 /*     */ 
 /* 175 */       return "success";
 /*     */     }
-/* 177 */     addActionMessage(getText("projectInfoPer.edit.success", Arrays.asList(new Object[] { this.projectInfoContract.getContactArchives().getName() })));
+/* 177 */     addActionMessage(getText("projectInfoContacts.edit.success", Arrays.asList(new Object[] { this.projectInfoContract.getContactArchives().getName() })));
 /* 179 */     return "success";
 /*     */   }
 /*     */ 

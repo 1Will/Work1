@@ -73,8 +73,9 @@
  //弹出客户告警状态变更窗体
 	function backvist_OpenDialog(id){
 			 var url = "${req.contextPath}/backvisit/editBackVisit.html?openFlag=openFlag&backVisit.id="+id+"&readOnly=${req.getParameter('readOnly')?if_exists}";
-	  		 popupModalDialog(url, 800, 600);
-	  
+	  		 //popupModalDialog(url, 800, 600);
+	  		 openNewWindow(url);
+	  		 if(isIE()){self.location.reload();}
 	 }
 	
 </script>

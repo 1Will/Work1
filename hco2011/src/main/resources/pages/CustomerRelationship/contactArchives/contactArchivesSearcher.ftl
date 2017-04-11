@@ -89,7 +89,8 @@
 			getObjByName('sex').value=true;
 		}
 		-->
-		getObjByName('customerIsNotNull').value=true;
+		//没客户名称的也显示
+		//getObjByName('customerIsNotNull').value=true;
 		if (getObjByName('type.id').value==-1){
 			getObjByName('type.id').value='';
 		}

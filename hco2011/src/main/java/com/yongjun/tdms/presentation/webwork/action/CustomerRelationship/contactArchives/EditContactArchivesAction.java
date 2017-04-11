@@ -100,6 +100,9 @@ import org.apache.commons.lang.StringUtils;
 /* 139 */       this.contactArchives.setProjectInfo(this.projectInfo);
                 this.contactArchives.setProName(this.projectInfo.getName());
 /*     */     }
+			  if (request.getParameter("popWindowFlag")!=null) {
+				  this.popWindowFlag=request.getParameter("popWindowFlag");
+			  }
 /*     */   }
 /*     */ 
 /*     */   public String save()

@@ -67,12 +67,12 @@
 	function editProductList(v){
       var url='${req.contextPath}/paymentDetails/editPaymentDetailsAction.html?paymentDetails.id='+v+'&paymentorderid='+'${req.getParameter('paymentorder.id')?if_exists}'+'&readOnly=${req.getParameter('readOnly')?if_exists}';
       popupModalDialog(url,800,600);
-      self.location.reload();
+      if(isIE()){self.location.reload();};
 	}
 	function newProductList(){
       var url='${req.contextPath}/paymentDetails/editPaymentDetailsAction.html?paymentorderid='+'${req.getParameter('paymentorder.id')?if_exists}';
       popupModalDialog(url,800,600);
-      self.location.reload();
+      if(isIE()){self.location.reload();};
 	}
 	function checkInvalidParms(){
 		return true;

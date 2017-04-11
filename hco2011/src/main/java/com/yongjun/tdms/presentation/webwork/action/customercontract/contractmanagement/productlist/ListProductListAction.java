@@ -15,7 +15,7 @@
 /*     */   private final ContractManagementManager contractManagementManager;
 /*     */   private final CodeValueManager codeValueManager;
 /*  59 */   private List<ProductList> productLists = null;
-/*     */   private Long contractManagementid;
+/*     */   private Long contractManagementId;
 /*     */ 
 /*     */   public ListProductListAction(ProductListManager productListManager, ContractManagementManager contractManagementManager, CodeValueManager codeValueManager)
 /*     */   {
@@ -33,7 +33,7 @@
 /*     */     }
 /*     */ 
 /*  91 */     if (hasId("contractManagement.id")) {
-/*  92 */       this.contractManagementid = getId("contractManagement.id");
+/*  92 */       this.contractManagementId = getId("contractManagement.id");
 /*     */     }
 /*  94 */     setFirst(false);
 /*     */   }
@@ -46,8 +46,8 @@
 /*     */   protected Map getRequestParameterMap()
 /*     */   {
 /* 112 */     Map map = super.getRequestParameterMap();
-/* 113 */     if (this.contractManagementid != null) {
-/* 114 */       map.put("contractManagementid", this.contractManagementid);
+/* 113 */     if (this.contractManagementId != null) {
+/* 114 */       map.put("contractManagementid", this.contractManagementId);
 /*     */     }
 /* 116 */     return map;
 /*     */   }
@@ -103,6 +103,13 @@
 /* 178 */       addActionMessage(getText("productList.enabled.error"));
 /* 179 */     }return "error";
 /*     */   }
+			public Long getContractManagementId() {
+				return contractManagementId;
+			}
+			public void setContractManagementId(Long contractManagementId) {
+				this.contractManagementId = contractManagementId;
+			}
+
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

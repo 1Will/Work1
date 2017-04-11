@@ -58,13 +58,13 @@
     	var url ='${req.contextPath}/workReport/editNextWeekPlan.html?weekly.id=${weekly.id}&nextWeekPlan.id='+id;
     	popupModalDialog(url,800,600);
 //		window.open(url);  	
-		self.location.reload();
+		if(isIE()){self.location.reload();};
     }
     function newNextWeeklyPlan(id){
      	var url = '${req.contextPath}/workReport/editNextWeekPlan.html?weekly.id='+id;
      //	window.open(url);
      	popupModalDialog(url,800,600);
-        self.location.reload();
+        if(isIE()){self.location.reload();};
     }
      
 </script>

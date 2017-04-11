@@ -115,10 +115,21 @@
 /*     */   {
 /*     */     try
 /*     */     {
-/* 163 */       this.contactArchivesManager.deleteAllContactArchives(this.cas);
+				//客户档案移除联系人使用，不删除联系人
+				if("remove".equals(request.getParameter("remove"))){
+					for(ContactArchives contactArchives : cas){
+						contactArchives.setCustomerName(null);
+						contactArchives.setCustName(null);
+						this.contactArchivesManager.storeContactArchives(contactArchives);
+					}
+					addActionMessage(getText("contactArchives.remove.success"));
+					return "success";
+				}
+				this.contactArchivesManager.deleteAllContactArchives(this.cas);
 /* 164 */       addActionMessage(getText("contactArchives.delete.success"));
 /* 165 */       return "success";
 /*     */     } catch (RuntimeException e) {
+				e.printStackTrace();
 /* 167 */       addActionMessage(getText("contactArchives.delete.error"));
 /* 168 */     }return "error";
 /*     */   }

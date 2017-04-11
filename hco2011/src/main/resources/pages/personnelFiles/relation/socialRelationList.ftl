@@ -56,7 +56,7 @@
         popupModalDialog('editSocialRelation.html?cr.id=#{contactArchivesId}&socialRelation.id='+v+'&readOnly='+readOnly,800,600);
       </#if>
      
-      self.location.reload();
+      if(isIE()){self.location.reload();};
   }
   //打开新建社会关系模态窗口
   function newSocialRelation(){
@@ -67,7 +67,7 @@
       <#if contactArchivesId?exists>
        popupModalDialog('editSocialRelation.html?cr.id=#{contactArchivesId}',800,600);
       </#if>
-	  self.location.reload();
+	  if(isIE()){self.location.reload();};
   }
 </script>
 </@framePage>

@@ -100,7 +100,7 @@ function openContactInfo(){
 			var url = '${req.contextPath}/supplierManager/editContactInfo.html?supplier.id='+#{supplier.id}+'&readOnly=${req.getParameter('readOnly')?if_exists}';
 		}
 			popupModalDialog(url,800,600);
-			self.location.reload();
+			if(isIE()){self.location.reload();};
 		</#if>
 		</#if>
 	} 
@@ -114,7 +114,7 @@ function editOpenContactInfo(id){
 			}
 			popupModalDialog(url,800,600);
 			//window.open(url,800,600);
-			self.location.reload();
+			if(isIE()){self.location.reload();};
 		</#if>
 		</#if>
 	}  

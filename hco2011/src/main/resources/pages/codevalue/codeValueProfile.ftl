@@ -77,7 +77,7 @@
      	function openDetail(codeValueId) {
      		var url = '${req.contextPath}/codevalue/editCodeValueDetail.html?type.id='+codeValueId;
      		popupModalDialog(url,650,300);
-     		self.location.reload();
+     		if(isIE()){self.location.reload();};
      	}
      	function validate(){
 

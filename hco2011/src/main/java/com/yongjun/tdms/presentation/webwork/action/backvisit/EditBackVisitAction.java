@@ -244,19 +244,25 @@ public void setFromType(String fromType) {
 						  eventType = new EventType();
 						    eventType.setId(2l);
 					}
-//					 	EventNew event = new EventNew();
-//					    event.setEffectflag("E");
-//					    event.setEventType(eventType);
-//					    event.setName("回访提交");
-//					    event.setUserId(this.userManager.getUser().getId()+"");
-//					    Map<String, String> map = new HashMap();
-//						   map.put("users", "11,2,84,81,100");
-//						   map.put("backVisitId", this.backVisit.getId()+"");
+					 	EventNew event = new EventNew();
+					    event.setEffectflag("E");
+					    event.setEventType(eventType);
+					    event.setName("回访提交");
+					    event.setUserId(this.userManager.getUser().getId()+"");
+					    Map<String, String> map = new HashMap();
+					    if (this.backVisit.getProjectInfo() != null){
+					    	map.put("users",this.personnelFilesToUserManager.loadUserIdToStrByProjectInfoId(this.backVisit.getProjectInfo().getId(), this.backVisit.getProjectInfo().getCreateUser()));
+					    	
+					    }else{
+					    	
+					    	map.put("users", this.personnelFilesToUserManager.loadUserIdToStrByEnable());
+					    }
+						   map.put("backVisitId", this.backVisit.getId()+"");
 //						   String moreinfo = JSONObject.fromObject(map).toString();
 //							event.setMoreinfo(moreinfo);
 //							eventNewManager.storeEventNew(event);
-
-							addActionMessage(getText("backvisit.submit.success", Arrays.asList(new Object[] { this.backVisit.getBackVisitType().getName() })));
+//
+//							addActionMessage(getText("backvisit.submit.success", Arrays.asList(new Object[] { this.backVisit.getBackVisitType().getName() })));
 							return "success";
 				} catch (DaoException e) {
 					// TODO Auto-generated catch block

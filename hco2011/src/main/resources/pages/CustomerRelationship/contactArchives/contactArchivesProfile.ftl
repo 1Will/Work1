@@ -37,6 +37,9 @@
     	<#else>
     	<@ww.hidden name="'projectInfo.id'" value="''"/>
     	</#if>
+    	<#if popWindowFlag?exists >
+    	<@ww.hidden  name="popWindowFlag"  value="${popWindowFlag}"/>
+    	</#if>
     	<@ww.hidden name="'leader.id'" value="''"/>
     	<@ww.hidden name="'customerType.id'" value="''"/>
     	<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
@@ -89,6 +92,7 @@
     </tr>
      <tr>
      <!--所属项目-->
+     <#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
 	    <td align="right" valign="top">
 	       		<label class="label">${action.getText('contactArchives.projectInfo')}:</label>
 	     	</td>
@@ -115,7 +119,6 @@
    		
    		</tr>
    		<tr>
-		<!--印象描述-->
 		<td align="right" valign="top">
         		<label class="label">
         			${action.getText('联系人角色说明')}:
@@ -124,9 +127,8 @@
 	        <td colspan="5">
 	        	<textarea name="contactArchives.outline" rows="3" cols="120" >${contactArchives.outline?if_exists}</textarea>
 	        </td>
-		<!---->
 	</tr>
-    
+    </#if>
     <tr>
      <!--部门-->
 	    <@ww.textfield label="'${action.getText('contactArchives.dept')}'" name="'contactArchives.dept'" value="'${contactArchives.dept?if_exists}'" cssClass="'underline'" />
@@ -177,7 +179,15 @@
 		
 			<#-- 继续新建按钮   -->
 			<#if contactArchives.id?exists>
+				<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
+					<#if contactArchives.projectInfo?exists>
+						<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html?projectInfo.id=#{contactArchives.projectInfo.id?if_exists}&customer.id=#{contactArchives.customerName.id?if_exists}&popWindowFlag=popWindowFlag"/>
+					<#else>
+						<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html?customer.id=#{contactArchives.customerName.id?if_exists}&popWindowFlag=popWindowFlag"/>
+					</#if>
+				<#else>
 			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html"/>
+				</#if>
 			<#else>
 			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html"/>
 			<script language="JavaScript" type="text/JavaScript"> 
@@ -185,9 +195,9 @@
 			</script>
 			</#if>
 			
-		<#if popWindowFlag?exists >
+		<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
 		<!-- 关闭按钮 -->
-		<input type="button" value="${action.getText('close')}" class="button" onclick="window.close()">
+		<input type="button" value="${action.getText('close')}" class="button" onclick="closeThis();">
   		<#else>
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
   		</#if>

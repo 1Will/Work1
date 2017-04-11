@@ -540,7 +540,7 @@
         <#if user.id?exists>
         	var url = '${req.contextPath}/organizationRegional/orSelector.html?userId='+#{user.id};
         	popupModalDialog(url,700,500);
-        	self.location.reload();
+        	if(isIE()){self.location.reload();};
         </#if>	
         } 	     
 

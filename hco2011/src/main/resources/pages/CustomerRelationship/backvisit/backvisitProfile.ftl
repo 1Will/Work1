@@ -383,7 +383,7 @@
          	
 		<#else>
 		<#if openFlag?exists>
-		<input type="button" value="${action.getText('关闭')}" onclick="window.close();"/>
+		<input type="button" value="${action.getText('关闭')}" onclick="closeThis();"/>
        <#else>
         <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/backvisit/listBackVisit.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
        </#if>
@@ -792,7 +792,7 @@
 	<#if backVisit.id?exists>
 			 var url = "${req.contextPath}/backvisit/editBackVisitStep.html?backVisit.id=#{backVisit.id}&readOnly=${req.getParameter('readOnly')?if_exists}";
 	  		 popupModalDialog(url, 800, 300);
-	  		 self.location.reload();
+	  		 if(isIE()){self.location.reload();};
 			</#if>
 	  
 	 }
@@ -801,7 +801,7 @@
 	<#if backVisit.id?exists>
 			 var url = "${req.contextPath}/backvisit/editBackVisitState.html?backVisit.id=#{backVisit.id}&readOnly=${req.getParameter('readOnly')?if_exists}";
 	  		 popupModalDialog(url, 800, 300);
-	  		 self.location.reload();
+	  		 if(isIE()){self.location.reload();};
 			</#if>
 	  
 	 }

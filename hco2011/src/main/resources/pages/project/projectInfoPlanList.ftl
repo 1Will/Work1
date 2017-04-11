@@ -60,14 +60,16 @@
 	function editProPlan_OpenDialog(){
 	   var url="";
 	   url= "${req.contextPath}/projectInfo/editProPlan.html?projectInfo.id=${projectInfoId?if_exists}";
-	   popupModalDialog(url, 850, 600);
-	   self.location.reload();
+	   //popupModalDialog(url, 850, 600);
+	   openNewWindow(url);
+	   if(isIE()){self.location.reload();};
 	 }
 	 function editProPlan_OpenDialog_update(id){
 	   var url="";
 	   url= "${req.contextPath}/projectInfo/editProPlan.html?projectInfo.id=${projectInfoId?if_exists}&projectInfoPlan.id="+id;
-	   popupModalDialog(url, 850, 600);
-	   self.location.reload();
+	   //popupModalDialog(url, 850, 600);
+	   openNewWindow(url);
+	   if(isIE()){self.location.reload();};
 	 }
 	 
 </script>

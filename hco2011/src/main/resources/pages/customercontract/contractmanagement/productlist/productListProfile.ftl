@@ -155,9 +155,9 @@
 	 //获得模态窗体返回值
 	function creatorPrincipalHandler(result) {
 		if (null != result) {
-			jgetObjByName("#productid").val(result[0]);
-			jgetObjByName("#productName").val(result[2]);
-			jgetObjByName("#unitPrice").val(result[3]);
+			getObjByName("productid").value= result[0];
+			getObjByName("productName").value= result[2];
+			getObjByName("unitPrice").value= result[3];
 		}
 	}
 </script>

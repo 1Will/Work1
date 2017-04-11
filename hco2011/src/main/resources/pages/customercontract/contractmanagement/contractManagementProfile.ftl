@@ -249,7 +249,11 @@
 		getObjByName("newNext").disabled="true";
 		</script>
 		</#if> 
+		<#if openWindowFlag?exists&&openWindowFlag==openWindowFlag>
+		<@vbutton value="${action.getText('close')}" onclick="closeThis()"/>
+		<#else>
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/contractManagement/listContractManagementAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+   		</#if>
     </@buttonBar>
 </@ww.form>
 <script language="JavaScript" type="text/JavaScript"> 
