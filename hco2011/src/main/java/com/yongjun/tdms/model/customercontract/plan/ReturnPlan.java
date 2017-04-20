@@ -27,6 +27,7 @@
 /*     */   private String isOrNot;
 /*     */   private String notOrIs;
 /*     */   private String billingOrNot;
+			private String remark;
 /*     */ 
 /*     */   public String getBillingOrNot()
 /*     */   {
@@ -187,6 +188,13 @@
 /*     */   {
 /* 328 */     this.batch = batch;
 /*     */   }
+			public String getRemark() {
+				return remark;
+			}
+			public void setRemark(String remark) {
+				this.remark = remark;
+			}
+			
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

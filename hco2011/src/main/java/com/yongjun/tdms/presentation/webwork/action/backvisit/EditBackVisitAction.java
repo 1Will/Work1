@@ -31,7 +31,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-//import net.sf.json.JSONObject;
+import net.sf.json.JSONObject;
 /*     */ 
 /*     */ public class EditBackVisitAction extends PrepareAction
 /*     */ {
@@ -258,11 +258,11 @@ public void setFromType(String fromType) {
 					    	map.put("users", this.personnelFilesToUserManager.loadUserIdToStrByEnable());
 					    }
 						   map.put("backVisitId", this.backVisit.getId()+"");
-//						   String moreinfo = JSONObject.fromObject(map).toString();
-//							event.setMoreinfo(moreinfo);
-//							eventNewManager.storeEventNew(event);
-//
-//							addActionMessage(getText("backvisit.submit.success", Arrays.asList(new Object[] { this.backVisit.getBackVisitType().getName() })));
+						   String moreinfo = JSONObject.fromObject(map).toString();
+							event.setMoreinfo(moreinfo);
+							eventNewManager.storeEventNew(event);
+
+							addActionMessage(getText("backvisit.submit.success", Arrays.asList(new Object[] { this.backVisit.getBackVisitType().getName() })));
 							return "success";
 				} catch (DaoException e) {
 					// TODO Auto-generated catch block

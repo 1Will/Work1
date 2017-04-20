@@ -9,6 +9,7 @@
 		<convert match="com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives" converter="bean" />
 		<convert match="com.yongjun.tdms.model.base.duty.Duty" converter="bean" />
 		<convert match="com.yongjun.tdms.model.advisory.Advisory" converter="bean"/>  
+		<convert match="com.yongjun.tdms.model.backvisit.BackVisit" converter="bean"/>  
 		
 	   	<create javascript="InstitutionSelectDeptJs" creator="spring">
 	   		<param name="beanName" value="departmentManager"></param>
@@ -51,6 +52,11 @@
    		<create javascript="loginNameRepeatJs" creator="spring">
    			<param name="beanName" value="personnelFilesManager"></param>
    			<include method="loginNameByCode" />
+   		</create>
+   		<!-- 通过日期查询回访记录  -->
+   		<create javascript="BackVisitByDate" creator="spring">
+   			<param name="beanName" value="backVisitManager"></param>
+   			<include method="getBackVisitByDate" />
    		</create>
    		   	
    </allow>

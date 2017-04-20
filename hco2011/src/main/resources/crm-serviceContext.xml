@@ -266,6 +266,9 @@
 				<property name="stepInfoDao">
 					<ref bean="stepInfoDao"/>
 				</property>
+				<property name="userManager">
+					<ref bean="userManager" />
+				</property>
 			</bean>
 		</property>
 	</bean>

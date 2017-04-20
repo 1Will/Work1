@@ -1258,6 +1258,7 @@
                 /~onlyValid: AND contractManagement.disabled=false ~/
                 /~contractManagement.id: AND contractManagement.id = {contractManagement.id} ~/
                 /~customerInfo.id: AND contractManagement.customerInfo.id = {customerInfo.id} ~/
+                /~contactArchives.id: AND contractManagement.linkman.id = {contactArchives.id} ~/
                 /~contractManagement.code: AND contractManagement.code LIKE {contractManagement.code} ~/
                 /~contractManagement.contractName: AND contractManagement.contractName LIKE {contractManagement.contractName} ~/
                 /~contractManagement.customerInfo.name: AND contractManagement.customerInfo.name LIKE {contractManagement.customerInfo.name} ~/
@@ -1406,6 +1407,7 @@
                 WHERE 1=1 
                 /~onlyInvalid: AND r.disabled=true ~/
                 /~onlyValid: AND r.disabled=false ~/
+                /~customerInfo.id: AND r.customerInfo.id LIKE {customerInfo.id} ~/
                 /~contractManagement.code: AND r.contractManagement.code LIKE {contractManagement.code} ~/
                 /~customerInfo.code: AND r.customerInfo.code LIKE {customerInfo.code} ~/
                 /~billingRecord.customerInfo: AND r.customerInfo.name LIKE {billingRecord.customerInfo} ~/
@@ -1428,6 +1430,8 @@
                 WHERE 1=1
                 /~onlyInvalid: AND r.disabled=true ~/
                 /~onlyValid: AND r.disabled=false ~/
+                /~customerInfo.id: AND r.customerInfo.id = {customerInfo.id} ~/
+                /~contactArchives.id: AND r.contactArchives.id LIKE {contactArchives.id} ~/
                 /~contractManagement.code: AND r.contractManagement.code LIKE {contractManagement.code} ~/
                 /~returnPlan.contractManagement: AND r.contractManagement.contractName LIKE {returnPlan.contractManagement} ~/
                 /~returnPlane.paytime_start: AND r.paytime >= {returnPlane.paytime_start} ~/
@@ -1776,7 +1780,7 @@
                 	 /~contact.name: AND projectInfo.contact.name LIKE {contact.name} ~/
                 	 /~controller.name: AND projectInfo.controller.name LIKE {controller.name} ~/
                 	 /~state.id: AND projectInfo.state.id = {state.id} ~/
-                	  /~sortColumn: ORDER BY projectInfo.id desc~/
+                	  /~sortColumn: ORDER BY projectInfo.[sortColumn] [sortDirection]~/
                 	 
             	 ]]>
             </value>

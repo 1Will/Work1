@@ -29,7 +29,7 @@
 			list="allStates"
 			emptyOption="false" 
 			disabled="false">
-		</@ww.select>
+	</@ww.select>
 		<script language="javascript">
 			<#if req.getParameter('state.id')?exists>
 				getObjByName('state.id').value = '${req.getParameter('state.id')?if_exists}';

@@ -33,7 +33,7 @@
 	     		value="${(workExperience.endTime?string('yyyy-MM-dd'))?if_exists}" 
 				maxlength="10" 
 				flag="true"
-				required="true">
+				required="false">
 	   </@datePickerRanger>
    </tr>
    <tr>
@@ -64,7 +64,9 @@
 	    getObjByName('workExperience.startTime').focus();
 	    return false;
     }
-   //终止时间验证
+   //终止时间是否存在
+   if(getObjByName('workExperience.endTime').value!=''){
+   	//终止时间验证
     if(!dateCheck_endTime()){
 	    getObjByName('workExperience.endTime').focus();
 	    return false;
@@ -76,6 +78,7 @@
 		alert('${action.getText('workExperience.time.error')}');
 		getObjByName('workExperience.startTime').focus();
 		return false;
+	}
 	}
     //部门验证
     if(!textfieldCheck_dept()){

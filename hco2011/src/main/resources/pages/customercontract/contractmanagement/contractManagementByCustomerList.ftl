@@ -5,7 +5,10 @@
 		<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 		<@ww.token name="searchContractManagementActionToken"/>
         <@list title="" 
-            includeParameters="contractManagement.code|contractManagement.contractName|contractManagement.customerInfo.name|contractManagement.linkman.name|contractManagement.saleman.name|contractManagement.project.name|contractManagement.deparment.name|contractManagement.applyProduc|contractManagement.type.id|contractManagement.state.id|contractManagement.severityDegree.id|contractManagement.question|contractManagement.resolveProject|contractManagement.innerPrompt|contractManagement.remark|readOnly|onlyInvalid|onlyValid|customerInfo.id|" 
+            includeParameters="contractManagement.code|contractManagement.contractName|contractManagement.customerInfo.name
+            |contractManagement.linkman.name|contractManagement.saleman.name|contractManagement.project.name|contractManagement.deparment.name
+            |contractManagement.applyProduc|contractManagement.type.id|contractManagement.state.id|contractManagement.severityDegree.id|contractManagement.question
+            |contractManagement.resolveProject|contractManagement.innerPrompt|contractManagement.remark|readOnly|onlyInvalid|onlyValid|customerInfo.id|contactArchives.id|" 
         	fieldMap="like:" >
         	
           	<@vcolumn title="${action.getText('contractManagement.code')}" property="code" sortable="desc" >
@@ -70,7 +73,7 @@
 </@framePage>
 <script language="javascript">
 	function contract_OpenDialog(id){
-			 var url = "${req.contextPath}/contractManagement/editContractManagementAction.html?contractManagement.id="+id+"&readOnly=${req.getParameter('readOnly')?if_exists}&openWindowFlag=openWindowFlag";
+			 var url = "${req.contextPath}/contractManagement/editContractManagementAction.html?contractManagement.id="+id+"&readOnly=${req.getParameter('readOnly')?if_exists}&popWindowFlag=popWindowFlag";
 	  		 //popupModalDialog(url, 800, 600);
 	  		 openNewWindow(url);
 	 }

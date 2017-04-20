@@ -39,6 +39,7 @@
 /*     */   private String address;
 /*     */   private CodeValue workway;
 /*     */   private CodeValue status;
+			private PersonnelFiles superiorLeader;
 /*     */ 
 /*     */   public boolean equals(Object arg0)
 /*     */   {
@@ -291,6 +292,12 @@
 /*     */   {
 /* 453 */     this.workway = workway;
 /*     */   }
+			public PersonnelFiles getSuperiorLeader() {
+				return superiorLeader;
+			}
+			public void setSuperiorLeader(PersonnelFiles superiorLeader) {
+				this.superiorLeader = superiorLeader;
+			}
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

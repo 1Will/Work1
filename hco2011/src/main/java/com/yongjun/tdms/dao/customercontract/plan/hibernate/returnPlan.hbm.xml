@@ -90,6 +90,10 @@
         <property name="billingOrNot" type="string">
 			<column name="BILLING_OR_IS" not-null="false" sql-type="NVARCHAR(50)" />
 		</property>
+		<!-- 备注  --> 
+		<property name="remark" type="string">
+			<column name="REMARK" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
 		
 	    <property name="disabled" type="boolean">
             <column name="DISABLED" not-null="true"/>

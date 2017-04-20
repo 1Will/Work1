@@ -3,6 +3,7 @@
 <@htmlPage title="${action.getText('backVisitList')}">
 	<@ww.form name="'listForm'" namespace="'/backvisit'" action="'searchBackVisitTab'" method="'post'">
 	    <@ww.token name="searchBackVisitTabToken"/>
+	    <#assign returnName='replaceWord'>
         <@list title="${action.getText('backVisitList')}" 
         includeParameters="name|customer|contactArchive|backVisitWay.id|customerInfo.id|continueBackVisit|backVisitDate|backVisitDate_start|backVisitDate_end|nextBackVisitDate|nextBackVisitDate_start|nextBackVisitDate_end|employee|continueBackVisit|onlyInvalid|onlyValid" 
         fieldMap="like:name|customer|contactArchive|employee,date:backVisitDate_start|backVisitDate_end|nextBackVisitDate_start|nextBackVisitDate_end" >
@@ -52,15 +53,20 @@
             <@vcolumn title="${action.getText('employee')}" property="employee.name" sortable="desc">
             <@alignLeft/>
             </@vcolumn>
+            
            <@vcolumn title="${action.getText('backVisitContent')}" property="backVisitContent" sortable="desc">
+           <#assign returnName=returnName +'replaceWord'>
+           <@ww.hidden name="'${returnName}'" value="'${object.backVisitContent?if_exists}'"/>
 	            <span title="${object.backVisitContent?if_exists}">
 		            <script>
-		            	var s = "${object.backVisitContent?if_exists}";
+		            	var s = getObjByName('${returnName}').value;
+		            	s=s.replace(/[\r\n]/g, "");
 		            	document.write(s.slice(0,18)+"...");
 		            </script>
 	            </span>
             <@alignLeft />
             </@vcolumn>
+            
             <#assign continueBackVisit=""/>
             <#if (object.continueBackVisit)=='0'>
             	<#assign continueBackVisit="${action.getText('continueBack.yes')}">

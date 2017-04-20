@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 /*     */   private List<PersonnelFiles> pfList;
 			private String backVisitCheckBox;
 /*     */   private String sysUser;
+			private String popWindowFlag;
 /*     */ 
 /*     */   public ListPersonnelFilesAction(InstitutionManager institutionManager, UserManager userManager, DutyManager dutyManager, PersonnelFilesManager personnelFilesManager, DepartmentManager departmentManager)
 /*     */   {
@@ -61,9 +62,12 @@ import javax.servlet.http.HttpServletRequest;
 /*     */ 
 /* 106 */     if (hasId("sysUser"))
 /* 107 */       this.sysUser = this.request.getParameter("sysUser");
-			if (this.request.getParameter("backVisitCheckBox") != null) {
+			  if (this.request.getParameter("backVisitCheckBox") != null) {
 /*  99 */       this.backVisitCheckBox = this.request.getParameter("backVisitCheckBox");
 /*     */     }
+			  if(null!=request.getParameter("popWindowFlag")){
+				  this.popWindowFlag = request.getParameter("popWindowFlag");
+			  }
 /*     */   }
 /*     */ 
 /*     */   public List<Institution> getAllInsts()
@@ -161,6 +165,12 @@ import javax.servlet.http.HttpServletRequest;
 			}
 			public void setBackVisitCheckBox(String backVisitCheckBox) {
 				this.backVisitCheckBox = backVisitCheckBox;
+			}
+			public String getPopWindowFlag() {
+				return popWindowFlag;
+			}
+			public void setPopWindowFlag(String popWindowFlag) {
+				this.popWindowFlag = popWindowFlag;
 			}
 /*     */ }
 

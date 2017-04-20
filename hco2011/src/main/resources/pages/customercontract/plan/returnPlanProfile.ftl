@@ -69,23 +69,40 @@
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
 				</a>-->
 			</td>
-				<#--相关联系人弹出框-->
+				<#--项目名称-->
+			<td align="right" valign="top">
+	       		<label class="label">${action.getText('returnPlan.contractManagement.project')}:</label>
+	     	</td>
+	     	<td>
+	     		<#if returnPlan.contractManagement?exists>
+		     		<#if returnPlan.contractManagement.project?exists>
+			   			<input type="text" name="returnPlan.contractManagement.project" class="underline"  value="${returnPlan.contractManagement.project.name?if_exists}" maxlength="140" size="20" disabled="true"/>
+					<#else>
+						<input type="text" name="returnPlan.contractManagement.project" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+					</#if>
+				<#else>
+					<input type="text" name="returnPlan.contractManagement.project" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+				</#if>
+			</td>
+		</tr>
+		<tr>
+			<#--相关联系人弹出框-->
 			<td align="right" valign="top">
 				<span class="required">*</span>
 	       		<label class="label">${action.getText('returnPlan.contactArchives')}:</label>
 	     	</td>
-	     	<td>
-	     		<#if returnPlan.contactArchives?exists>
-		   		<input type="text" name="returnPlan.contactArchives" class="underline"  value="${returnPlan.contactArchives.name?if_exists}" maxlength="140" size="20" disabled="true"/>
+			<td>
+	     		<#if returnPlan.customerInfo?exists>
+		   			<input type="text" name="returnPlan.contactArchives" class="underline"  value="${returnPlan.contactArchives.name?if_exists}" maxlength="140" size="20" disabled="true"/>
 				<#else>
-				<input type="text" name="returnPlan.contactArchives" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+					<input type="text" name="returnPlan.contactArchives" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
 				</#if>
-				<a onClick="contactArchives_OpenDialog();">
+				<#--
+				<a onClick="customer_OpenDialog();">
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
-				</a>
+				</a>-->
 			</td>
-		</tr>
-		<tr>
+		
 			<@ww.textfield label="'${action.getText('returnPlan.phone')}'" name="'returnPlan.phone'" value="'${returnPlan.phone?if_exists}'" cssClass="'underline'" required="true"/>
 			<@pp.datePicker 
 				label="'${action.getText('returnPlan.planDate')}'" 
@@ -101,7 +118,11 @@
 						getObjByName("returnPlan.planDate").value = date.format("yyyy-MM-dd");
 					}
 			</script>
-			<@ww.select label="'${action.getText('returnPlan.payment')}'" 
+			
+		</tr>
+		<tr>
+		
+		<@ww.select label="'${action.getText('returnPlan.payment')}'" 
 				name="'payment.id'" 
 				value="${req.getParameter('payment.id')?if_exists}"
 				listKey="id"
@@ -110,8 +131,7 @@
 				required="true"
 				disabled="false">
 			</@ww.select>
-		</tr>
-		<tr>
+		
 		<span id="id_select">
 		<@ww.select label="'${action.getText('returnPlan.batch')}'" 
 				name="'batch.id'" 
@@ -127,8 +147,27 @@
 			<span id="ab_id">
 			<@ww.textfield label="'${action.getText('returnPlan.sum')}'" name="'returnPlan.sum'" value="'#{returnPlan.sum?if_exists}'" cssClass="'underline'" required="true" onblur="'checkSum()'"/>
 			</span>
-			<span id="sum_id" name=""></span>
-			<@ww.textfield label="'${action.getText('returnPlan.currency')}'" name="'returnPlan.currency'" value="'${returnPlan.currency?if_exists}'" cssClass="'underline'"/>
+			
+		</tr>
+		
+		<tr>
+			<@ww.textfield label="'${action.getText('returnPlan.factSum')}'" name="'returnPlan.factSum'" value="'#{returnPlan.factSum?if_exists}'" cssClass="'underline'" readonly="true"/>
+			<@ww.textfield label="'${action.getText('returnPlan.paytime')}'" name="'returnPlan.paytime'" value="'${returnPlan.paytime?if_exists}'" cssClass="'underline'" readonly="true"/>
+			<#--收款人弹出框-->
+	 		<td align="right" valign="top">
+	       		<label class="label">${action.getText('returnPlan.payee')}:</label>
+	     	</td>
+	     	<td>
+	     		<#if returnPlan.payee?exists>
+		   		<input type="text" name="returnPlan.payee" class="underline"  value="${returnPlan.payee.name?if_exists}" maxlength="140" size="20" disabled="true"/>
+				<#else>
+				<input type="text" name="returnPlan.payee" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+				</#if>
+				<#--
+				<a onClick="payee_OpenDialog();">
+					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+				</a>-->
+			</td>
 		</tr>
 		<tr>
 			<td align="right"><label for="" class="label">${action.getText('returnPlan.notOrIs')}:</label></td>
@@ -157,25 +196,10 @@
 				maxlength="10"/>-->
 		</tr>
 		<tr>
-			<@ww.textfield label="'${action.getText('returnPlan.factSum')}'" name="'returnPlan.factSum'" value="'#{returnPlan.factSum?if_exists}'" cssClass="'underline'" readonly="true"/>
-			<@ww.textfield label="'${action.getText('returnPlan.paytime')}'" name="'returnPlan.paytime'" value="'${returnPlan.paytime?if_exists}'" cssClass="'underline'" readonly="true"/>
-			<#--收款人弹出框-->
-	 		<td align="right" valign="top">
-	       		<label class="label">${action.getText('returnPlan.payee')}:</label>
-	     	</td>
-	     	<td>
-	     		<#if returnPlan.payee?exists>
-		   		<input type="text" name="returnPlan.payee" class="underline"  value="${returnPlan.payee.name?if_exists}" maxlength="140" size="20" disabled="true"/>
-				<#else>
-				<input type="text" name="returnPlan.payee" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
-				</#if>
-				<#--
-				<a onClick="payee_OpenDialog();">
-					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
-				</a>-->
-			</td>
+		<span id="sum_id" name=""></span>
+			<@ww.textfield label="'${action.getText('returnPlan.currency')}'" name="'returnPlan.currency'" value="'${returnPlan.currency?if_exists}'" cssClass="'underline'"/>
 		</tr>
-		<tr>
+		<tr>	
 			<td align="right" valign="top">
 	       		<label class="label">${action.getText('returnPlan.remark')}:</label>
 	     	</td>
@@ -199,7 +223,11 @@
 		</script>
 		</#if>
 		
-		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/contractManagement/listReturnPlan.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+		<#if popWindowFlag?exists&&popWindowFlag==popWindowFlag>
+			<@vbutton class="button" value="${action.getText('close')}" onclick="closeThis()"/>
+		<#else>
+			<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/contractManagement/listReturnPlan.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+   		</#if>
     </@buttonBar>
 
 </@ww.form>
@@ -334,6 +362,7 @@
 		if (null != result) {
 			document.forms[0].elements["contractManagement.id"].value = result[0];
 	   		getObjByName('returnPlan.contractManagement').value=result[1];
+	   		getObjByName('returnPlan.contractManagement.project').value = result[10];
 	   		getObjByName('returnPlan.customerInfo').value=result[2];
 	   		getObjByName('returnPlan.contactArchives').value=result[3];
 	   		getObjByName('returnPlan.phone').value=result[6];
@@ -438,6 +467,14 @@
 	      	    getObjByName('returnPlan.paytime').focus();
 				return false;
 			}
+		}
+		if(getObjByName('returnPlan.remark').value !=''){
+			var s = getObjByName('returnPlan.remark').value;
+    		//var length = s.replace(/[^\x00-\xff]/g,"aa").length;
+    		if(s.length>=500){
+    			alert("${action.getText('word.length.long')}")
+    			return false;
+    		}  
 		}
 		return true;
 	}

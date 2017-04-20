@@ -2019,6 +2019,9 @@
 		<constructor-arg index="5">
 			<ref bean="contractManagementManager" />
 		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="projectInfoManager" />
+		</constructor-arg>
 	</bean>
 	<!-- 回款计划（弹出框） -->
 	<bean id="listReturnPlanWindowAction" parent="valueListAction" 

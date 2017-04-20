@@ -28,6 +28,9 @@
 	<#if customerInfo.id?exists>
 		<@ww.hidden name="'customerInfo.id'" value="#{customerInfo.id}"/>
 	</#if>
+	<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag' >
+    	<@ww.hidden  name="popWindowFlag"  value="${popWindowFlag}"/>
+    </#if>
 	<@inputTable>
 		<#--
 		<tr>
@@ -359,7 +362,8 @@
 		<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
 		</#if>
-		
+		<#if notNewFlag?exists&&notNewFlag=='notNewFlag'>
+		<#else>
 			<#-- 继续新建按钮   -->
 			<#if customerInfo.id?exists>
 			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editCustomerInfo.html"/>
@@ -369,8 +373,15 @@
 			getObjByName("newNext").disabled="true";
 			</script>
 			</#if>
+		</#if>
 		
+		<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
+		<!-- 关闭按钮 -->
+		<@vbutton name="close" value="${action.getText('close')}" class="button" onclick="closeThis();"/>
+  		<#else>
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/customerRelationship/listCustomerInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+  		</#if>
+  		
     </@buttonBar>
 </@ww.form>
 <script language="JavaScript" type="text/JavaScript"> 
@@ -920,7 +931,13 @@
 		<a id="backvisit" onclick="activeTab(this);" href='${req.contextPath}/backvisit/listBackVisitByContact.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('customerInfo.backvisit')}</a>
 	</li>
 	<li>
-		<a id="contractInfo" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listContractManagementByCustomerAction.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >合同信息</a>
+		<a id="contractInfo" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listContractManagementByCustomerAction.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('customerInfo.contract')}</a>
+	</li>
+	<li>
+		<a id="returnPlan" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listReturnPlanByCustomerAction.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('customerInfo.returnPlan')}</a>
+	</li>
+	<li>
+		<a id="billingRecord" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listBillingRecordByCustomerAction.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('customerInfo.billingRecord')}</a>
 	</li>
 </ul>
 <iframe name="frame" frameborder="0.5" src="${req.contextPath}/customerRelationship/listCA.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="100%"/>

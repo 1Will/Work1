@@ -33,14 +33,14 @@
         	<#if !object.disabled>
         		<#if object.customerInfo.additional?exists>
 	        	 <@vcolumn title="${action.getText('contractManagement.code')}" property="code" sortable="asc">
-		            <a href="javascript: returnDialog(new Array(#{object.id},'${object.contractName}','${object.customerInfo.name}','${object.linkman.name}','#{object.customerInfo.id}','#{object.linkman.id}','${object.telephone}','${object.payType.code}','#{object.contractMoney}','${object.customerInfo.additional.bankAccount}'));">
+		            <a href="javascript: returnDialog(new Array(#{object.id},'${object.contractName}','${object.customerInfo.name}','${object.linkman.name}','#{object.customerInfo.id}','#{object.linkman.id}','${object.telephone}','${object.payType.code}','#{object.contractMoney}','${object.customerInfo.additional.bankAccount}','${object.project.name}'));">
 		            	${object.code}
 		            </a>
 		            <@alignLeft/>
 		        </@vcolumn>
 		        <#else>
 			        <@vcolumn title="${action.getText('contractManagement.code')}" property="code" sortable="asc">
-			            <a href="javascript: returnDialog(new Array(#{object.id},'${object.contractName}','${object.customerInfo.name}','${object.linkman.name}','#{object.customerInfo.id}','#{object.linkman.id}','${object.telephone}','${object.payType.code}','#{object.contractMoney}'));">
+			            <a href="javascript: returnDialog(new Array(#{object.id},'${object.contractName}','${object.customerInfo.name}','${object.linkman.name}','#{object.customerInfo.id}','#{object.linkman.id}','${object.telephone}','${object.payType.code}','#{object.contractMoney}','','${object.project.name?if_exists}'));">
 			            	${object.code}
 			            </a>
 			            <@alignLeft/>

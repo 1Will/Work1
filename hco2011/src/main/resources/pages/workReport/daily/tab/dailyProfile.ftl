@@ -74,6 +74,8 @@
 	    <@vbutton value="${action.getText('back')}" class="button" onclick="javascript:window.close();"/>
 	</@buttonBar>
 	</@ww.form>
+	
+	<script type='text/javascript' src='${req.contextPath}/dwr/interface/BackVisitByDate.js'></script>
 	<script>
 	    function check(){
 	     if(!dateCheck_currentDate()){
@@ -94,9 +96,19 @@
 		        year1   =   mydate.replace(re,"$1");   
 		        month1  =   mydate.replace(re,"$2");   
 		        day1    =   mydate.replace(re,"$3");
-		        getObjByName('daily.week').value="日一二三四五六".charAt(new   Date(year1+'/'+month1+'/'+day1).getDay()); 
+		        getObjByName('daily.week').value="日一二三四五六".charAt(new   Date(year1+'/'+month1+'/'+day1).getDay());
+		        returnBackVisite(mydate) ;
 		    }  
-		    } 
+		 } 
+		    
+		function returnBackVisite(date){
+			alert(date);
+			BackVisitByDate.getBackVisitByDate(date, setBackVisit);
+		}
+		function setBackVisit(data){
+			alert(data);
+		}
+		
 
 	    window.onload=function (){
 	        

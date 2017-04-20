@@ -3,6 +3,8 @@ package com.yongjun.tdms.service.backvisit;
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.tdms.model.CustomerRelationship.stepInfo.StepInfo;
 import com.yongjun.tdms.model.backvisit.BackVisit;
+
+import java.text.ParseException;
 import java.util.Collection;
 import java.util.List;
 
@@ -31,6 +33,9 @@ public abstract interface BackVisitManager
 
   public abstract List<BackVisit> loadByKeyArray(String[] paramArrayOfString, Object[] paramArrayOfObject)
     throws DaoException;
+  
+  public List<BackVisit> getBackVisitByDate(String da) throws DaoException, ParseException;
+
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

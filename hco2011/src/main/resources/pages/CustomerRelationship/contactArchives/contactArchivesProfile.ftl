@@ -23,26 +23,32 @@
 <@htmlPage title="${action.getText('contactArchives.profile')}">
 <@ww.form namespace="'/customerRelationship'" name="'contactArchivesInfo'" action="'saveContactArchives'" method="'post'">
 	<@ww.token name="saveContactArchivesToken"/>
+	<#assign returnUrl='${req.contextPath}/customerRelationship/editContactArchives.html?yesUrl=yesUrl'/>
     <@inputTable>
     	<@ww.hidden name="'sex'" value="'${req.getParameter('sex')?if_exists}'"/>
     	<#--<@ww.hidden name="'temperament'" value="'${req.getParameter('temperament')?if_exists}'"/>-->
     	<#--<@ww.hidden name="'type'" value="'${req.getParameter('type')?if_exists}'"/>-->
     	<#if contactArchives.customerName?exists>
-    	<@ww.hidden name="'customer.id'" value="#{contactArchives.customerName.id}"/>
-    	<#else>
-    	<@ww.hidden name="'customer.id'" value="''"/>
+	    		<@ww.hidden name="'customer.id'" value="#{contactArchives.customerName.id}"/>
+	    		<#assign returnUrl=returnUrl + '&customer.id=#{contactArchives.customerName.id}'/>
+	    	<#else>
+	    		<@ww.hidden name="'customer.id'" value="''"/>
     	</#if>
     	<#if contactArchives.projectInfo?exists>
-    	<@ww.hidden name="'projectInfo.id'"  value="#{contactArchives.projectInfo.id}"/>
-    	<#else>
-    	<@ww.hidden name="'projectInfo.id'" value="''"/>
-    	</#if>
-    	<#if popWindowFlag?exists >
-    	<@ww.hidden  name="popWindowFlag"  value="${popWindowFlag}"/>
+		    	<@ww.hidden name="'projectInfo.id'"  value="#{contactArchives.projectInfo.id}"/>
+		    	<#assign returnUrl=returnUrl + '&projectInfo.id=#{contactArchives.projectInfo.id}'/>
+		    <#else>
+		    	<@ww.hidden name="'projectInfo.id'" value="''"/>
+	    </#if>
+    	<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag' >
+    		<@ww.hidden  name="popWindowFlag"  value="${popWindowFlag}"/>
+    		<#assign returnUrl=returnUrl + '&popWindowFlag=${popWindowFlag}'/>
     	</#if>
     	<@ww.hidden name="'leader.id'" value="''"/>
     	<@ww.hidden name="'customerType.id'" value="''"/>
+    	
     	<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
+    	
     	<#if contactArchives.id?exists>
     		<@ww.hidden name="'contactArchives.id'" value="#{contactArchives.id}"/>
 	 	</#if>
@@ -93,6 +99,7 @@
      <tr>
      <!--所属项目-->
      <#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
+    <#--
 	    <td align="right" valign="top">
 	       		<label class="label">${action.getText('contactArchives.projectInfo')}:</label>
 	     	</td>
@@ -127,6 +134,7 @@
 	        <td colspan="5">
 	        	<textarea name="contactArchives.outline" rows="3" cols="120" >${contactArchives.outline?if_exists}</textarea>
 	        </td>
+	-->
 	</tr>
     </#if>
     <tr>
@@ -177,27 +185,26 @@
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
 		</#if>
 		
+		<#if notNewFlag?exists&&notNewFlag=='notNewFlag'>
+		<#else>
 			<#-- 继续新建按钮   -->
 			<#if contactArchives.id?exists>
 				<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
-					<#if contactArchives.projectInfo?exists>
-						<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html?projectInfo.id=#{contactArchives.projectInfo.id?if_exists}&customer.id=#{contactArchives.customerName.id?if_exists}&popWindowFlag=popWindowFlag"/>
-					<#else>
-						<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html?customer.id=#{contactArchives.customerName.id?if_exists}&popWindowFlag=popWindowFlag"/>
-					</#if>
+					<@redirectButton value="${action.getText('newNext')}" url="${returnUrl}"/>
 				<#else>
-			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html"/>
+					<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html"/>
 				</#if>
 			<#else>
-			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html"/>
-			<script language="JavaScript" type="text/JavaScript"> 
-			getObjByName("newNext").disabled="true";
-			</script>
+				<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html"/>
+					<script language="JavaScript" type="text/JavaScript"> 
+					getObjByName("newNext").disabled="true";
+					</script>
 			</#if>
+		</#if>
 			
 		<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
 		<!-- 关闭按钮 -->
-		<input type="button" value="${action.getText('close')}" class="button" onclick="closeThis();">
+		<@vbutton name="close" value="${action.getText('close')}" class="button" onclick="closeThis();"/>
   		<#else>
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
   		</#if>
@@ -355,6 +362,12 @@
 	</li>
 	<li>
 		<a id="project" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProCon.html?contactArchives.id=#{contactArchives.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('contactArchives.projectInfos')}</a>
+	</li>
+	<li>
+		<a id="contractInfo" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listContractManagementByCustomerAction.html?contactArchives.id=#{contactArchives.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('contactArchives.contract')}</a>
+	</li>
+	<li>
+		<a id="returnPlan" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listReturnPlanByCustomerAction.html?contactArchives.id=#{contactArchives.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('contactArchives.returnPlan')}</a>
 	</li>
 	<li>
 		<a id="changeToHistory" onclick="activeTab(this);" href='${req.contextPath}/customerRelationship/listContactToHistory.html?cr.id=#{contactArchives.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('contactArchives.changeToHistory')}</a>

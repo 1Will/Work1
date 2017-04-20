@@ -27,6 +27,7 @@
 /*     */   private BillingRecord billingRecord;
 /*     */   private final ContactArchivesManager contactArchivesManager;
 /*     */   private final UserManager userManager;
+			private String popWindowFlag;
 /*     */ 
 /*     */   public EditBillingRecordAction(BillingRecordManager billingRecordManager, ContactArchivesManager contactArchivesManager, PersonnelFilesManager personnelFilesManager, CustomerInfoManager customerInfoManager, ContractManagementManager contractManagementManager, UserManager userManager)
 /*     */   {
@@ -54,6 +55,9 @@
 /* 100 */       PersonnelFiles payee = (PersonnelFiles)list.get(0);
 /* 101 */       this.billingRecord.setPayee(payee);
 /*     */     }
+			  if(null!=request.getParameter("popWindowFlag")){
+				  this.popWindowFlag=request.getParameter("popWindowFlag");
+			  }
 /*     */   }
 /*     */ 
 /*     */   public String save()
@@ -112,6 +116,12 @@
 /*     */   {
 /* 172 */     this.billingRecord = billingRecord;
 /*     */   }
+			public String getPopWindowFlag() {
+				return popWindowFlag;
+			}
+			public void setPopWindowFlag(String popWindowFlag) {
+				this.popWindowFlag = popWindowFlag;
+			}
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

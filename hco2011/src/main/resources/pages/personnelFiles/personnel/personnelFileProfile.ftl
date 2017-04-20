@@ -24,7 +24,12 @@
        <@ww.token name="savePersonnelToken"/>
        <@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
          <#if personnelFile.id?exists>
-                <@ww.hidden name="'personnelFile.id'" value="#{personnelFile.id}"/>
+                <@ww.hidden name="'personnelFile.id'" value="#{personnelFile.id?if_exists}"/>
+         </#if>
+         <#if personnelFile.superiorLeader?exists>
+         	<@ww.hidden name="'personnelFile.superiorLeader'" value="'#{personnelFile.superiorLeader.id}'"/>
+         <#else>
+         	<@ww.hidden name="'personnelFile.superiorLeader'" value=""/>
          </#if>
          <@ww.hidden name="'sex'" value="'${req.getParameter('sex')?if_exists}'"/>
          <@inputTable>
@@ -183,11 +188,24 @@
 					emptyOption="true" 
 					disabled="false">
 				</@select>
-        		<!--办公电话-->
-        		   <@textfield label="${action.getText('personnel.telphone')}" name="personnelFile.telphone" value="${personnelFile.telphone?if_exists}"  anothername="telphone" maxlength="20" />
-                
+        		<!--上级领导 -->
+        	<td align="right" valign="top">
+	       		<label class="label">${action.getText('personnel.superiorLeader')}:</label>
+	     	</td>
+	     	<td>
+		     	<#if personnelFile.superiorLeader?exists>
+		     	<input type="text" name="superiorLeader.name" class="underline"  value="${personnelFile.superiorLeader.name?if_exists}" maxlength="140" size="20" disabled="true"/>
+		     	<#else>
+		     	<input type="text" name="superiorLeader.name" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+		     	</#if>
+				<a onClick="personnelFile_OpenDialog();">
+					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+				</a>
+			</td>
         	</tr>
         	<tr>
+        		<!--办公电话-->
+        		   <@textfield label="${action.getText('personnel.telphone')}" name="personnelFile.telphone" value="${personnelFile.telphone?if_exists}"  anothername="telphone" maxlength="20" />
         		<!--入职日期-->
         		<@datePickerRanger
 					anothername="entryDate"
@@ -199,6 +217,9 @@
 					required="true"
 					flag="true">
 				</@datePickerRanger>
+        		
+        	</tr>
+        	<tr>
         				
         		<!--转正日期-->
         		<@datePickerRanger
@@ -210,8 +231,7 @@
 					maxlength="10" 
 					flag="true">
 				</@datePickerRanger>
-        	</tr>
-        	<tr>
+				
         		<!--离职日期-->
         		<@datePickerRanger
 					anothername="separationDate"
@@ -222,6 +242,8 @@
 					maxlength="10" 
 					flag="true">
 				</@datePickerRanger>
+        	</tr>
+        	<tr>	
         		<!--工作地点-->
         		<@textfield label="${action.getText('personnel.address')}" name="personnelFile.address"  value="${personnelFile.address?if_exists}" anothername="address" maxlength="100"  />
         	</tr>
@@ -412,6 +434,20 @@
 		}
     	return true;
   }
+  
+  //弹出人事档案查询模态窗体
+	function personnelFile_OpenDialog(){
+	   var url = "${req.contextPath}/personnelFile/listPerson.html?popWindowFlag=popWindowFlag&readOnly="+${req.getParameter('readOnly')?if_exists};
+	   popupModalDialog(url, 800, 600, creatorSelectorHandlerPersonnel);
+	 }
+	 //获得模态窗体返回值
+	function creatorSelectorHandlerPersonnel(result) {
+		if (null != result) {
+		 	getObjByName("personnelFile.superiorLeader").value = result[0];	
+		 	getObjByName("superiorLeader.name").value = result[1];
+		}
+	}
+  
 </script>
 
 <script>

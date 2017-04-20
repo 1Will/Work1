@@ -118,6 +118,9 @@
 /* 185 */     if (hasId("personnelFile.workway")) {
 /* 186 */       this.personnelFile.setWorkway(this.codeValueManager.loadCodeValue(getId("personnelFile.workway")));
 /*     */     }
+/* 185 */     if (hasId("personnelFile.superiorLeader")) {
+/* 186 */       this.personnelFile.setSuperiorLeader(this.personnelFilesManager.loadPersonnel(getId("personnelFile.superiorLeader")));
+/*     */     }
 /*     */ 
 /* 190 */     this.personnelFile.setOrganization(this.userManager.getOrganization());
 /*     */     try

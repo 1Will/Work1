@@ -142,10 +142,10 @@ import java.util.HashMap;
 /*     */   {
 /*     */     try {
 /* 148 */       this.projectInfoManager.disabledProjectInfos(this.projectInfos);
-/* 149 */       addActionMessage(getText("backVisits.disabled.success"));
+/* 149 */       addActionMessage(getText("project.disabled.success"));
 /* 150 */       return "success";
 /*     */     } catch (Exception e) {
-/* 152 */       addActionMessage(getText("backVisits.disabled.failer"));
+/* 152 */       addActionMessage(getText("project.disabled.fail"));
 /* 153 */     }return "error";
 /*     */   }
 			public List<CodeValue> getAllStates()
@@ -157,6 +157,10 @@ import java.util.HashMap;
 /* 213 */       if ((null != one) && (one.size() > 0)) {
 /* 214 */         List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue)one.get(0)).getId());
 /* 215 */         if ((null != list) && (list.size() > 0)) {
+					CodeValue cv = new CodeValue();
+					cv.setId(null);
+					cv.setName(getText("所有"));
+					codes.add(0, cv);
 /* 216 */           codes.addAll(list);
 /*     */         }
 /*     */ 

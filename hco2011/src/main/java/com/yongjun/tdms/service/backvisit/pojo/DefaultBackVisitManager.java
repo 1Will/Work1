@@ -1,12 +1,17 @@
 /*    */ package com.yongjun.tdms.service.backvisit.pojo;
 /*    */ 
 /*    */ import com.yongjun.pluto.exception.DaoException;
+import com.yongjun.pluto.model.security.User;
 /*    */ import com.yongjun.pluto.service.impl.BaseManager;
+import com.yongjun.pluto.service.security.UserManager;
 /*    */ import com.yongjun.tdms.dao.CustomerRelationship.stepInfo.StepInfoDao;
 /*    */ import com.yongjun.tdms.dao.backvisit.BackVisitDao;
 /*    */ import com.yongjun.tdms.model.CustomerRelationship.stepInfo.StepInfo;
 /*    */ import com.yongjun.tdms.model.backvisit.BackVisit;
 /*    */ import com.yongjun.tdms.service.backvisit.BackVisitManager;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 /*    */ import java.util.Collection;
 /*    */ import java.util.List;
 /*    */ 
@@ -15,6 +20,7 @@
 /*    */ {
 /*    */   private BackVisitDao backVisitDao;
 /*    */   private StepInfoDao stepInfoDao;
+		   private UserManager userManager;
 /*    */ 
 /*    */   public void deleteAllBackVisit(Collection<BackVisit> backVisits)
 /*    */   {
@@ -80,6 +86,22 @@
 /*    */   {
 /* 92 */     this.stepInfoDao = stepInfoDao;
 /*    */   }
+			public UserManager getUserManager() {
+				return userManager;
+			}
+			public void setUserManager(UserManager userManager) {
+				this.userManager = userManager;
+			}
+/*     */   public List<BackVisit> getBackVisitByDate(String da) throws DaoException, ParseException{
+				java.util.Date newDate = new SimpleDateFormat("yyyy-MM-dd").parse(da);
+				SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss.SSS"); 
+				String date = formatter.format(newDate);
+				User user = userManager.getUser();
+				String keyNames[]={"backVisitDate","employee.name"};
+				Object[] keyValues={date,user.getName()};
+				List<BackVisit> list = this.backVisitDao.loadByKeyArray(keyNames, keyValues);
+				return list;
+			}
 /*    */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

@@ -9,15 +9,20 @@
 /*     */ import com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement;
 /*     */ import com.yongjun.tdms.model.customercontract.plan.ReturnPlan;
 /*     */ import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
+import com.yongjun.tdms.model.project.ProjectInfo;
 /*     */ import com.yongjun.tdms.service.CustomerRelationship.contactArchives.ContactArchivesManager;
 /*     */ import com.yongjun.tdms.service.CustomerRelationship.customerProfiles.CustomerInfoManager;
 /*     */ import com.yongjun.tdms.service.customercontract.contractmanagement.ContractManagementManager;
 /*     */ import com.yongjun.tdms.service.customercontract.plan.ReturnPlanManager;
 /*     */ import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
+import com.yongjun.tdms.service.project.ProjectInfoManager;
+
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.List;
+
 /*     */ import javax.servlet.http.HttpServletRequest;
-/*     */ import org.apache.commons.lang.StringUtils;
+
+import org.apache.commons.lang.StringUtils;
 /*     */ 
 /*     */ public class EditReturnPlanAction extends PrepareAction
 /*     */ {
@@ -28,9 +33,12 @@
 /*     */   private final CustomerInfoManager customerInfoManager;
 /*     */   private final ContactArchivesManager contactArchivesManager;
 /*     */   private final ContractManagementManager contractManagementManager;
+			private final ProjectInfoManager projectInfoManager;
 /*     */   private ReturnPlan returnPlan;
+			private ProjectInfo projectInfo;
+/*     */   private String popWindowFlag;
 /*     */ 
-/*     */   public EditReturnPlanAction(ReturnPlanManager returnPlanManager, CodeValueManager codeValueManager, PersonnelFilesManager personnelFilesManager, CustomerInfoManager customerInfoManager, ContactArchivesManager contactArchivesManager, ContractManagementManager contractManagementManager)
+/*     */   public EditReturnPlanAction(ReturnPlanManager returnPlanManager, CodeValueManager codeValueManager, PersonnelFilesManager personnelFilesManager, CustomerInfoManager customerInfoManager, ContactArchivesManager contactArchivesManager, ContractManagementManager contractManagementManager,ProjectInfoManager projectInfoManager)
 /*     */   {
 /*  80 */     this.returnPlanManager = returnPlanManager;
 /*  81 */     this.codeValueManager = codeValueManager;
@@ -38,6 +46,7 @@
 /*  83 */     this.customerInfoManager = customerInfoManager;
 /*  84 */     this.contactArchivesManager = contactArchivesManager;
 /*  85 */     this.contractManagementManager = contractManagementManager;
+			  this.projectInfoManager = projectInfoManager;
 /*     */   }
 /*     */ 
 /*     */   public void prepare()
@@ -45,9 +54,12 @@
 /*     */   {
 /*  94 */     if (hasId("returnPlan.id")) {
 /*  95 */       this.returnPlan = this.returnPlanManager.loadReturnPlan(getId("returnPlan.id"));
-/*     */     }
-/*     */     else
+/*     */     }else{
 /*  98 */       this.returnPlan = new ReturnPlan();
+			  }
+			  if(this.request.getParameter("popWindowFlag")!=null){
+				this.popWindowFlag =this.request.getParameter("popWindowFlag");
+			  }
 /*     */   }
 /*     */ 
 /*     */   public String save()
@@ -108,7 +120,15 @@
 /* 164 */       String billingOrNot = this.request.getParameter("billingOrNot");
 /* 165 */       this.returnPlan.setBillingOrNot(billingOrNot);
 /*     */     }
+/* 163 */     if (StringUtils.isEmpty(this.request.getParameter("returnPlan.remark"))) {
+/* 164 */       String remark = this.request.getParameter("returnPlan.remark");
+/* 165 */       this.returnPlan.setRemark(remark);
+/*     */     }
 /* 167 */     this.returnPlanManager.storeReturnPlan(this.returnPlan);
+			  //回款计划完成后，项目状态改为付费
+			  this.projectInfo = this.returnPlan.getContractManagement().getProject();
+			  this.projectInfo.setState(this.codeValueManager.loadCodeValue(466L));
+			  this.projectInfoManager.storeProjectInfo(this.projectInfo);
 /* 168 */     List<ReturnPlan> lists = this.returnPlanManager.loadAllReturnPlans();
 /* 169 */     Double sum = Double.valueOf(0.0D);
 /* 170 */     if (null != lists) {
@@ -185,6 +205,19 @@
 /*     */   {
 /* 259 */     return this.returnPlan;
 /*     */   }
+			
+			public ProjectInfo getProjectInfo() {
+				return projectInfo;
+			}
+			public void setProjectInfo(ProjectInfo projectInfo) {
+				this.projectInfo = projectInfo;
+			}
+			public String getPopWindowFlag() {
+				return popWindowFlag;
+			}
+			public void setPopWindowFlag(String popWindowFlag) {
+				this.popWindowFlag = popWindowFlag;
+			}
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

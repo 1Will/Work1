@@ -11,6 +11,7 @@
 				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/backvisit/editBackVisit.html"/>
 			</#if>
         </@buttonBar>
+        <#assign returnName='replaceWord'>
         <@list title="${action.getText('backVisitList')}" 
         includeParameters="backVisitType.id|customer|contactArchive|backVisitWay.id|customerInfo.id|continueBackVisit|backVisitDate|backVisitDate_start|backVisitDate_end|nextBackVisitDate|nextBackVisitDate_start|nextBackVisitDate_end|employee|continueBackVisit|readOnly|onlyInvalid|onlyValid" 
         fieldMap="like:name|customer|contactArchive|employee,date:backVisitDate_start|backVisitDate_end|nextBackVisitDate_start|nextBackVisitDate_end" >
@@ -38,8 +39,9 @@
             <a href="javascript:customer_OpenDialog(#{object.customerInfo.id?if_exists},${req.getParameter('readOnly')?if_exists})" title="完整度：${object.customerInfo.customerInfoIntegrity?if_exists}%; 熟悉程度：${object.customerInfo.customerType.name?if_exists}">${object.customerInfo.name?if_exists}</a>
             <@alignLeft/>
             </@vcolumn>
+            <!-- 联系人 -->
             <@vcolumn title="${action.getText('contactArchive')}" property="contactArchive.name" sortable="desc">
-            	<a href="javascript:contactArchives_OpenDialog(<#if (object.contactArchive?exists)>#{object.contactArchive.id?if_exists}</#if>)"><#if (object.contactArchive?exists)>${object.contactArchive.name}</#if></a>
+            	<a href="javascript:contactArchives_OpenDialog(<#if (object.contactArchive?exists)>#{object.contactArchive.id?if_exists}</#if>,${req.getParameter('readOnly')?if_exists})"><#if (object.contactArchive?exists)>${object.contactArchive.name}</#if></a>
             <@alignLeft/>
             </@vcolumn>
             <#if object.projectInfo?exists>
@@ -72,15 +74,20 @@
             <@vcolumn title="${action.getText('employee')}" property="employee.name" sortable="desc">
             <@alignLeft/>
             </@vcolumn>
+            
             <@vcolumn title="${action.getText('backVisitContent')}" property="backVisitContent" sortable="desc">
+	        <#assign returnName=returnName +'replaceWord'>
+            <@ww.hidden name="'${returnName}'" value="'${object.backVisitContent?if_exists}'"/>
 	            <span title="${object.backVisitContent?if_exists}">
 		            <script>
-		            	var s = "${object.backVisitContent?if_exists}";
+		            	var s = getObjByName('${returnName}').value;
+		            	s=s.replace(/[\r\n]/g, "");
 		            	document.write(s.slice(0,18)+"...");
 		            </script>
 	            </span>
             <@alignLeft />
             </@vcolumn>
+            
             <#assign continueBackVisit=""/>
             <#if (object.continueBackVisit)=='0'>
             	<#assign continueBackVisit="${action.getText('continueBack.yes')}">

@@ -161,5 +161,8 @@
         <many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization">
 			<column name="ORG_ID"/>
 		</many-to-one>
+		<many-to-one name="superiorLeader" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+			<column name="SUPERIORLEADER_ID" not-null="true"/>
+		</many-to-one>
 	</class>
 </hibernate-mapping>

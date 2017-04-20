@@ -4098,7 +4098,7 @@
 			</result>
 			<interceptor-ref name="propertyReceiverStack" />
 		</action>
-		<!-- 客户档案中的合同信息 -->
+		<!-- 客户档案中的合同记录 -->
 		<action name="listContractManagementByCustomerAction" class="listContractManagementAction" method="list">
 			<result name="success" type="freemarker" >
 				/pages/customercontract/contractmanagement/contractManagementByCustomerList.ftl
@@ -4231,6 +4231,13 @@
 			</result>
 			<interceptor-ref name="parameterReceiverStack" />
 		</action>
+		<action name="listReturnPlanByCustomerAction" class="listReturnPlanAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/customercontract/plan/returnPlanListByCustomer.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
 		<action name="editReturnPlan" class="editReturnPlanAction">
 			<result name="success" type="freemarker">
 				/pages/customercontract/plan/returnPlanProfile.ftl
@@ -4292,6 +4299,15 @@
 			</result>
 			<interceptor-ref name="propertyReceiverStack" />
 		</action>
+		<!-- 客户档案中的开票记录 -->
+		<action name="listBillingRecordByCustomerAction" class="listBillingRecordAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/customercontract/billingrecord/billingRecordListByCustomer.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		
 		<action name="saveBillingRecord" class="editBillingRecordAction" method="save">
 			<result name="input" type="redirect">
 				editBillingRecord.html?billingRecord.id=${billingRecord.id}

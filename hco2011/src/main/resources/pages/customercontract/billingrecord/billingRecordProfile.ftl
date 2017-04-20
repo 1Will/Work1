@@ -141,7 +141,12 @@
 		</script>
 		</#if>
 		
-		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/contractManagement/listBillingRecord.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+		<#if popWindowFlag?exists&&popWindowFlag==popWindowFlag>
+		<@vbutton class="button" value="${action.getText('close')}" onclick="closeThis()"/>
+		<#else>
+		<@redirectButton class="button" value="${action.getText('back')}" url="${req.contextPath}/contractManagement/listBillingRecord.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+   		</#if>
+		
     </@buttonBar>
 
 </@ww.form>

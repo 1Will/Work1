@@ -71,15 +71,18 @@ function upload(){
 			if(isIE()){self.location.reload();};
 		</#if>
 		</#if>
-		
+		<#if backVisit?exists>
+			<#if backVisit.id?exists>
+				url= '${req.contextPath}/applicationDocManager/editApplicationDoc.html?backVisit.id='+#{backVisit.id};
+       			//popupModalDialog(url,750,500);
+       			openNewWindow(url);
+				if(isIE()){self.location.reload();};
+       		</#if>
+       	</#if>
+       		
 		<#if projectInfo?exists>
         	<#if projectInfo.id?exists>
 				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?projectInfo.id='+#{projectInfo.id};
-			<#if backVisit?exists>
-				<#if backVisit.id?exists>
-					url= '${req.contextPath}/applicationDocManager/editApplicationDoc.html?backVisit.id='+#{backVisit.id}+'&projectInfo.id='+#{projectInfo.id};
-       			 </#if>
-       		</#if>
        			//popupModalDialog(url,750,500);
        			openNewWindow(url);
 				if(isIE()){self.location.reload();};

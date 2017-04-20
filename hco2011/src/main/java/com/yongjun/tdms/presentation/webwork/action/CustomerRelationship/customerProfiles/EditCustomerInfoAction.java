@@ -31,6 +31,10 @@ import com.yongjun.tdms.service.base.area.AreaManager;
 /*     */
 import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 
+
+
+
+
 /*     */
 import java.text.SimpleDateFormat;
 /*     */
@@ -41,6 +45,10 @@ import java.util.Collections;
 import java.util.Comparator;
 /*     */
 import java.util.List;
+
+
+
+
 
 /*     */
 import javax.servlet.http.HttpServletRequest;
@@ -58,31 +66,33 @@ import com.yongjun.tdms.util.comparator.CodeValueComparator;
 /*     */
 /*     */public class EditCustomerInfoAction extends PrepareAction
 /*     */{
-	/*     */private static final long serialVersionUID = 1L;
-	/*     */private final CustomerInfoManager customerInfoManager;
-	/*     */private final CodeValueManager codeValueManager;
-	/*     */private final AreaManager areaManager;
-	/*     */private final PersonnelFilesManager personnelFilesManager;
-	/*     */private ContactArchivesManager contactArchivesManager;
-	/*     */private final UserManager userManager;
-	/*     */private PersonnelFiles personnelFiles;
-	/*     */private CustomerInfo customerInfo;
-	/*     */private CodeValue customerType;
-	/*     */private CodeValue industry;
-	/*     */private CodeValue companyNature;
-	/*     */private Area country;
-	/*     */private Area province;
-	/*     */private Area city;
-	/*     */private PersonnelFiles salesman;
+/*     */private static final long serialVersionUID = 1L;
+/*     */private final CustomerInfoManager customerInfoManager;
+/*     */private final CodeValueManager codeValueManager;
+/*     */private final AreaManager areaManager;
+/*     */private final PersonnelFilesManager personnelFilesManager;
+/*     */private ContactArchivesManager contactArchivesManager;
+/*     */private final UserManager userManager;
+/*     */private PersonnelFiles personnelFiles;
+/*     */private CustomerInfo customerInfo;
+/*     */private CodeValue customerType;
+/*     */private CodeValue industry;
+/*     */private CodeValue companyNature;
+/*     */private Area country;
+/*     */private Area province;
+/*     */private Area city;
+/*     */private PersonnelFiles salesman;
+		 private String popWindowFlag;
+		 private String notNewFlag;
 
-	/*     */
-	/*     */public EditCustomerInfoAction(CustomerInfoManager customerInfoManager, CodeValueManager codeValueManager,
+/*     */
+/*     */public EditCustomerInfoAction(CustomerInfoManager customerInfoManager, CodeValueManager codeValueManager,
 			AreaManager areaManager, PersonnelFilesManager personnelFilesManager,
 			ContactArchivesManager contactArchivesManager, UserManager userManager)
-	/*     */{
-		/* 104 */this.customerInfoManager = customerInfoManager;
-		/* 105 */this.codeValueManager = codeValueManager;
-		/* 106 */this.areaManager = areaManager;
+/*     */{
+/* 104 */	this.customerInfoManager = customerInfoManager;
+/* 105 */	this.codeValueManager = codeValueManager;
+/* 106 */	this.areaManager = areaManager;
 		/* 107 */this.personnelFilesManager = personnelFilesManager;
 		/* 108 */this.contactArchivesManager = contactArchivesManager;
 		/* 109 */this.userManager = userManager;
@@ -113,6 +123,12 @@ import com.yongjun.tdms.util.comparator.CodeValueComparator;
 					/* 134 */this.customerInfo.setSalesman(this.personnelFiles);
 					/*     */}
 				/*     */}
+						if (request.getParameter("popWindowFlag")!=null) {
+							this.popWindowFlag=request.getParameter("popWindowFlag");
+						}
+						if (request.getParameter("notNewFlag")!=null) {
+							this.notNewFlag=request.getParameter("notNewFlag");
+						}
 		/*     */}
 
 	/*     */
@@ -618,6 +634,18 @@ import com.yongjun.tdms.util.comparator.CodeValueComparator;
 	/*     */{
 		/* 644 */this.province = province;
 		/*     */}
+			public String getPopWindowFlag() {
+				return popWindowFlag;
+			}
+			public void setPopWindowFlag(String popWindowFlag) {
+				this.popWindowFlag = popWindowFlag;
+			}
+			public String getNotNewFlag() {
+				return notNewFlag;
+			}
+			public void setNotNewFlag(String notNewFlag) {
+				this.notNewFlag = notNewFlag;
+			}
 //
 //	class CodeValueComparator implements Comparator {
 //

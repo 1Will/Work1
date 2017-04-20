@@ -57,7 +57,7 @@ import com.yongjun.tdms.service.project.ProjectInfoManager;
 /*     */   private CodeValue moneyType;
 /*     */   private CodeValue payType;
 /*     */   private CodeValue state;
-			private String openWindowFlag;
+			private String popWindowFlag;
 /*     */ 
 /*     */   public EditContractManagementAction(ContractManagementManager contractManagementManager, CustomerInfoManager customerInfoManager, ContactArchivesManager contactArchivesManager, CodeValueManager codeValueManager, PersonnelFilesManager personnelFilesManager, DepartmentManager departmentManager, InstitutionManager institutionManager, UserManager userManager, ProductListManager productListManager,ProjectInfoManager projectInfoManager)
 /*     */   {
@@ -172,8 +172,8 @@ import com.yongjun.tdms.service.project.ProjectInfoManager;
 /*     */       }
 /*     */       else
 /* 277 */         this.institution = null;
-			  if(this.request.getParameter("openWindowFlag")!=null){
-				  this.openWindowFlag =this.request.getParameter("openWindowFlag");
+			  if(this.request.getParameter("popWindowFlag")!=null){
+				  this.popWindowFlag =this.request.getParameter("popWindowFlag");
 			  	}
 /*     */   }
 /*     */ 
@@ -209,7 +209,11 @@ import com.yongjun.tdms.service.project.ProjectInfoManager;
 /* 313 */       this.contractManagement.setDeparment(this.deparment);
 /*     */ 
 /* 315 */       this.contractManagementManager.storeContractManagement(this.contractManagement);
-/*     */ 
+/*     */ 		//仅当项目状态为立项的情况下，合同保存后，项目状态改为合同
+				if("20102".equals(projectInfo.getState().getCode())){
+					this.projectInfo.setState(this.codeValueManager.loadCodeValue(465L));
+					this.projectInfoManager.storeProjectInfo(projectInfo);
+				}
 /* 317 */       if (isNew) {
 /* 318 */         addActionMessage(getText("contractManagement.add.success"));
 /* 319 */         return "new";
@@ -430,11 +434,11 @@ import com.yongjun.tdms.service.project.ProjectInfoManager;
 			public ProjectInfoManager getProjectInfoManager() {
 				return projectInfoManager;
 			}
-			public String getOpenWindowFlag() {
-				return openWindowFlag;
+			public String getPopWindowFlag() {
+				return popWindowFlag;
 			}
-			public void setOpenWindowFlag(String openWindowFlag) {
-				this.openWindowFlag = openWindowFlag;
+			public void setPopWindowFlag(String popWindowFlag) {
+				this.popWindowFlag = popWindowFlag;
 			}
 			
 /*     */ }

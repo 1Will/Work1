@@ -155,19 +155,22 @@
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
 		</#if>
-		
+	
+	<#if notNewFlag?exists&&notNewFlag==notNewFlag>
+	<#else>
 		<#-- 继续新建按钮   -->
 		<#if projectInfo.id?exists>
-		<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/projectInfo/editProjectInfo.html"/>
+			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/projectInfo/editProjectInfo.html"/>
 		<#else>
-		<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/projectInfo/editProjectInfo.html"/>
-		<script language="JavaScript" type="text/JavaScript"> 
-		getObjByName("newNext").disabled="true";
-		</script>
+			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/projectInfo/editProjectInfo.html"/>
+				<script language="JavaScript" type="text/JavaScript"> 
+				getObjByName("newNext").disabled="true";
+				</script>
 		</#if>
+	</#if>
 		 
 		<#if openFlag?exists>
-		<input type="button" value="${action.getText('关闭')}" onclick="window.close();"/>
+		<@vbutton name="close" value="${action.getText('关闭')}" class="button" onclick="closeThis();"/>
        <#else>
        <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/projectInfo/listProjectInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
        </#if>

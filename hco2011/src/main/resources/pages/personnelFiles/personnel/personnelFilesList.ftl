@@ -23,23 +23,36 @@
 		<@ww.token name="searchPersonnelFileToken"/>
 		<#include "./personnelFilesSearcher.ftl" />
 		<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
+		<#if popWindowFlag?exists>
+			<@ww.hidden name="'popWindowFlag'" value="'${req.getParameter('popWindowFlag')?if_exists}'"/>
+        </#if>
         <@buttonBar>
 			<@vsubmit name="'search'" cssClass="'button'" value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
-			<#if !(action.isReadOnly())>
-				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/personnelFile/editPersonnelFile.html"/>
+			<#if popWindowFlag?exists&&popWindowFlag==popWindowFlag>
+			<#else>
+				<#if !(action.isReadOnly())>
+					<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/personnelFile/editPersonnelFile.html"/>
+	       		</#if>
        		</#if>
         </@buttonBar>
-	<@list title="${action.getText('personnelFilesList')}" includeParameters="code|name|fileNo|inst.id|dept.id|duty.id|readOnly|onlyInvalid|onlyValid" fieldMap="like:code|name|fileNo" >
-		<#if !(action.isReadOnly())>
-			<@vlh.checkbox property="id" name="personnelFileIds">
-	            <@vlh.attribute name="width" value="30" />
-	        </@vlh.checkbox>
-        </#if>
+	<@list title="${action.getText('personnelFilesList')}" includeParameters="code|name|fileNo|inst.id|dept.id|duty.id|readOnly|onlyInvalid|onlyValid|popWindowFlag|" fieldMap="like:code|name|fileNo" >
+		<#if popWindowFlag?exists && popWindowFlag==popWindowFlag>
+		<#else>
+			<#if !(action.isReadOnly())>
+				<@vlh.checkbox property="id" name="personnelFileIds">
+		            <@vlh.attribute name="width" value="30" />
+		        </@vlh.checkbox>
+	        </#if>
+	    </#if>
 	    <@vcolumn title="${action.getText('personnel.code')}" property="code" sortable="asc">
-	     <#if !object.disabled>
-            <a href="${req.contextPath}/personnelFile/editPersonnelFile.html?personnelFile.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}">${object.code}</a>
-            <#else>
-            ${object.code}
+		 <#if !object.disabled>
+		     <#if popWindowFlag?exists && popWindowFlag==popWindowFlag>
+	            <a href="javascript: returnDialog(new Array(#{object.id}, '${object.name}'));">${object.code}</a>
+			 <#else>
+		        <a href="${req.contextPath}/personnelFile/editPersonnelFile.html?personnelFile.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}">${object.code}</a>
+		     </#if>
+		 <#else>
+	         ${object.code}
          </#if>
             <@alignLeft/>
         </@vcolumn>
@@ -74,12 +87,15 @@
         </@vcolumn>
       
 	</@list>
-	<#if !first>
-	  <#if !(action.isReadOnly())>
-        <@buttonBar>
-		  <@crm_disabledOrEnabled_Nodelete_button message="${action.getText('personnelFilesList')}" boxName="personnelFileIds" jsFunctionName="checkInvalidParms()"/>
-       </@buttonBar>
-       </#if>
+	<#if popWindowFlag?exists&&popWindowFlag==popWindowFlag>
+	<#else>
+		<#if !first>
+		  <#if !(action.isReadOnly())>
+	        <@buttonBar>
+			  <@crm_disabledOrEnabled_Nodelete_button message="${action.getText('personnelFilesList')}" boxName="personnelFileIds" jsFunctionName="checkInvalidParms()"/>
+	       </@buttonBar>
+	       </#if>
+		</#if>
 	</#if>
 </@ww.form>
 </@htmlPage>

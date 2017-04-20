@@ -51,6 +51,7 @@ import org.apache.commons.lang.StringUtils;
 /*     */   private Supplier supplier;
             private ProjectInfo projectInfo; 
             private String popWindowFlag;
+            private String notNewFlag;
 
 /*     */ 
 /*     */   public EditContactArchivesAction(ContactArchivesManager contactArchivesManager, CodeValueManager codeValueManager, CustomerInfoManager customerInfoManager, AreaManager areaManager, SupplierManager supplierManager,ProjectInfoManager projectInfoManager,ContactToHistoryManager contactToHistoryManager,UserManager userManager,ProjectInfoContractManager projectInfoContractManager)
@@ -102,6 +103,9 @@ import org.apache.commons.lang.StringUtils;
 /*     */     }
 			  if (request.getParameter("popWindowFlag")!=null) {
 				  this.popWindowFlag=request.getParameter("popWindowFlag");
+			  }
+			  if (request.getParameter("notNewFlag")!=null) {
+				  this.notNewFlag=request.getParameter("notNewFlag");
 			  }
 /*     */   }
 /*     */ 
@@ -775,7 +779,12 @@ import org.apache.commons.lang.StringUtils;
 			public void setPopWindowFlag(String popWindowFlag) {
 				this.popWindowFlag = popWindowFlag;
 			}
-
+			public String getNotNewFlag() {
+				return notNewFlag;
+			}
+			public void setNotNewFlag(String notNewFlag) {
+				this.notNewFlag = notNewFlag;
+			}
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\
