@@ -34,7 +34,7 @@ public abstract interface BackVisitManager
   public abstract List<BackVisit> loadByKeyArray(String[] paramArrayOfString, Object[] paramArrayOfObject)
     throws DaoException;
   
-  public List<BackVisit> getBackVisitByDate(String da) throws DaoException, ParseException;
+  public List<BackVisit> loadBackVisitByDate(String da) throws DaoException, ParseException;
 
 }
 

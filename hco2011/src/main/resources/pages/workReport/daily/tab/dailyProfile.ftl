@@ -23,6 +23,8 @@
 		<@ww.token name="'saveDaily'"/>
 		 <@ww.hidden name="'daily.id'" value="${req.getParameter('daily.id')?if_exists}"/>
 		 <@ww.hidden name="'weekly.id'" value="'${weeklyId?if_exists}'"/>
+		 <@ww.hidden name="'copyCurrentDate'" value=""/>
+		 <@ww.hidden name="'backVisitIds'" value=""/>
 		<@inputTable>
 		  <tr>
 		   <@datePickerRanger
@@ -50,6 +52,9 @@
 				/>
 		   <#include "time.ftl"/>
 		  </tr>
+		  <tr>
+		  <@textarea id="daily.backVisitContext" name="daily.backVisitContext" label="${action.getText('回访内容')}" value=""/>
+	     </tr>
 		  <tr>
 		  <@textarea id="daily.workContext" name="daily.workContext" anothername="workContext" label="${action.getText('daily.workContext')}" required="true" value="${daily.workContext?if_exists}"/>
 	     </tr>
@@ -90,6 +95,7 @@
 	    }
 	    document.onclick = function (){
 			var mydate = getObjByName('daily.currentDate').value;
+			var copydate = getObjByName('copyCurrentDate').value;
 		    re   =   /^(\d{2,4})-(\d{1,2})-(\d{1,2})$/g;   
 		    if((mydate!="")&&(re.test(mydate)))   
 		    { 
@@ -97,16 +103,33 @@
 		        month1  =   mydate.replace(re,"$2");   
 		        day1    =   mydate.replace(re,"$3");
 		        getObjByName('daily.week').value="日一二三四五六".charAt(new   Date(year1+'/'+month1+'/'+day1).getDay());
+		        if(mydate!= copydate){
 		        returnBackVisite(mydate) ;
-		    }  
+		        getObjByName("copyCurrentDate").value = mydate;
+		        }
+		    } 
 		 } 
 		    
-		function returnBackVisite(date){
-			alert(date);
-			BackVisitByDate.getBackVisitByDate(date, setBackVisit);
+		function returnBackVisite(mydate){
+			BackVisitByDate.loadBackVisitByDate(mydate, setBackVisit);
 		}
 		function setBackVisit(data){
-			alert(data);
+			var ids='';
+			var bkvtContext='';
+			for(var i=0;i<data.length;i++){
+				if(ids==''){
+					ids +=data[i].id;
+				}else{
+					ids += ("-" + data[i].id);
+				}
+				bkvtContext +=(i+1)+"、"+ data[i].backVisitContent +"; "
+				//alert(data[i].id);
+				//alert(data[i].backVisitContent);
+				//alert(data[i].backVisiter);
+				//alert(data[i].attention);
+			}
+			getObjByName("backVisitIds").value=ids;
+			getObjByName("daily.backVisitContext").value=bkvtContext;
 		}
 		
 

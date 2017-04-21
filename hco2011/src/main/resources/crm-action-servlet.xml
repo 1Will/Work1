@@ -841,6 +841,9 @@
 		<constructor-arg index="4">
 			<ref bean="personnelFilesManager" />
 		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="backVisitManager" />
+		</constructor-arg>
 	</bean>
 	<!-- 日报结束 -->
 	

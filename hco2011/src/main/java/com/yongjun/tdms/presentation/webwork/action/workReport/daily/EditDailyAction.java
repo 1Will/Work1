@@ -6,13 +6,16 @@
 /*     */ import com.yongjun.pluto.service.codevalue.CodeValueManager;
 /*     */ import com.yongjun.pluto.service.security.UserManager;
 /*     */ import com.yongjun.pluto.webwork.action.PrepareAction;
+import com.yongjun.tdms.model.backvisit.BackVisit;
 /*     */ import com.yongjun.tdms.model.base.duty.Duty;
 /*     */ import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
 /*     */ import com.yongjun.tdms.model.workReport.daily.Daily;
 /*     */ import com.yongjun.tdms.model.workReport.weekly.Weekly;
+import com.yongjun.tdms.service.backvisit.BackVisitManager;
 /*     */ import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 /*     */ import com.yongjun.tdms.service.workReport.daily.DailyManager;
 /*     */ import com.yongjun.tdms.service.workReport.weekly.WeeklyManager;
+
 /*     */ import java.text.ParseException;
 /*     */ import java.text.SimpleDateFormat;
 /*     */ import java.util.ArrayList;
@@ -20,8 +23,9 @@
 /*     */ import java.util.Calendar;
 /*     */ import java.util.Date;
 /*     */ import java.util.List;
-/*     */ import javax.servlet.http.HttpServletRequest;
-/*     */ import org.apache.commons.logging.Log;
+
+
+import org.apache.commons.logging.Log;
 /*     */ 
 /*     */ public class EditDailyAction extends PrepareAction
 /*     */ {
@@ -31,21 +35,24 @@
 /*     */   private final UserManager userManager;
 /*     */   private final CodeValueManager codeValueManager;
 /*     */   private final PersonnelFilesManager personnelFilesManager;
+/*     */   private final BackVisitManager backVisitManager;
 /*     */   private String startHour;
 /*     */   private String startMinute;
 /*     */   private String endHour;
 /*     */   private String endMinute;
 /*     */   private Long weeklyId;
 /*     */   private String perType;
+/*     */   private String backVisitIds;
 /*     */   private Daily daily;
 /*     */ 
-/*     */   public EditDailyAction(DailyManager dailyManager, WeeklyManager weeklyManager, UserManager userManager, CodeValueManager codeValueManager, PersonnelFilesManager personnelFilesManager)
+/*     */   public EditDailyAction(DailyManager dailyManager, WeeklyManager weeklyManager, UserManager userManager, CodeValueManager codeValueManager, PersonnelFilesManager personnelFilesManager, BackVisitManager backVisitManager)
 /*     */   {
 /* 110 */     this.dailyManager = dailyManager;
 /* 111 */     this.weeklyManager = weeklyManager;
 /* 112 */     this.userManager = userManager;
 /* 113 */     this.codeValueManager = codeValueManager;
 /* 114 */     this.personnelFilesManager = personnelFilesManager;
+			  this.backVisitManager=backVisitManager;
 /*     */   }
 /*     */ 
 /*     */   public void prepare()
@@ -75,6 +82,17 @@
 /* 150 */     this.startMinute = this.request.getParameter("startMinute");
 /* 151 */     this.endHour = this.request.getParameter("endHour");
 /* 152 */     this.endMinute = this.request.getParameter("endMinute");
+			//获取回访记录的所有id
+			  this.backVisitIds =this.request.getParameter("backVisitIds");
+			  String idsTemp[]=backVisitIds.split("-");
+			  Long bvtIds[]=new Long[idsTemp.length];
+			  for(int i=0;i<idsTemp.length;i++){
+				  bvtIds[i]=Long.parseLong(idsTemp[i]);
+			  }
+			  List<BackVisit> bvtList = backVisitManager.loadAllBackVisit(bvtIds);
+			  this.daily.bvtList.addAll(bvtList);
+			  bvtList.clear();
+			  
 /* 153 */     Calendar c = Calendar.getInstance();
 /* 154 */     String d = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()) + " ";
 /*     */     try {
@@ -257,6 +275,13 @@
 /*     */   {
 /* 384 */     this.perType = perType;
 /*     */   }
+			public String getBackVisitIds() {
+				return backVisitIds;
+			}
+			public void setBackVisitIds(String backVisitIds) {
+				this.backVisitIds = backVisitIds;
+			}
+			
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

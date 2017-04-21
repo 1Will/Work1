@@ -10,7 +10,10 @@
 /*     */ import com.yongjun.tdms.model.base.duty.Duty;
 /*     */ import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
 /*     */ import com.yongjun.tdms.model.workReport.weekly.Weekly;
+
 /*     */ import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 /*     */ 
 /*     */ public class Daily extends BaseInfoEntity
 /*     */   implements CreatedTimeTracking, CreatorTracking, LastOperatorTracking
@@ -32,6 +35,7 @@
 /*     */   private String tomorrowPlan;
 /*     */   private String comment;
 /*     */   private Weekly weekly;
+			public Set bvtList =new HashSet();
 /*     */ 
 /*     */   public boolean equals(Object arg0)
 /*     */   {
@@ -208,6 +212,12 @@
 /*     */   {
 /* 299 */     this.workContext = workContext;
 /*     */   }
+			public Set getBvtList() {
+				return bvtList;
+			}
+			public void setBvtList(Set bvtList) {
+				this.bvtList = bvtList;
+			}
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

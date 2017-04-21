@@ -106,5 +106,9 @@
         <many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization">
 			<column name="ORG_ID"/>
 		</many-to-one>
+		<set name="bvtList" table="t_daily_backVisit">  
+            <key column="DAILY_ID" />  
+            <many-to-many column="BACKVISIT_Id" unique="true"  class="com.yongjun.tdms.model.backvisit.BackVisit" />  
+        </set> 
 	</class>
 </hibernate-mapping>

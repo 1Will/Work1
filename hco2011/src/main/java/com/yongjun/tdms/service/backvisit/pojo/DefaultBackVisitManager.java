@@ -12,6 +12,7 @@ import com.yongjun.pluto.service.security.UserManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 /*    */ import java.util.Collection;
 /*    */ import java.util.List;
 /*    */ 
@@ -92,15 +93,24 @@ import java.text.SimpleDateFormat;
 			public void setUserManager(UserManager userManager) {
 				this.userManager = userManager;
 			}
-/*     */   public List<BackVisit> getBackVisitByDate(String da) throws DaoException, ParseException{
+/*     */   public List<BackVisit> loadBackVisitByDate(String da) throws DaoException, ParseException{
 				java.util.Date newDate = new SimpleDateFormat("yyyy-MM-dd").parse(da);
-				SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss.SSS"); 
-				String date = formatter.format(newDate);
+				String date = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss.SSS").format(newDate);
 				User user = userManager.getUser();
-				String keyNames[]={"backVisitDate","employee.name"};
-				Object[] keyValues={date,user.getName()};
+				String keyNames[]={"backVisitDate","employee.code"};
+				Object[] keyValues={date,user.getCode()};
 				List<BackVisit> list = this.backVisitDao.loadByKeyArray(keyNames, keyValues);
-				return list;
+				List<BackVisit> returnList =new ArrayList<BackVisit>();
+				for(BackVisit visit:list){
+					BackVisit temp  = new BackVisit();
+					temp.setId(visit.getId());
+					temp.setBackVisitContent(visit.getBackVisitContent());
+					temp.setBackVisiter(visit.getBackVisiter());
+					temp.setAttention(visit.getAttention());
+					temp.setEmployee(visit.getEmployee());
+					returnList.add(temp);
+				}
+				return returnList;
 			}
 /*    */ }
 

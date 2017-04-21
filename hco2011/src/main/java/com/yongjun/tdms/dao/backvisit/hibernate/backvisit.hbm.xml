@@ -143,5 +143,10 @@
 		<many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
 			<column name="projectInfo_id" not-null="false" />
 		</many-to-one>
+		
+		<join table="t_daily_backVisit" inverse="true" optional="true">
+	        <key column="BACKVISIT_Id" />
+			<many-to-one name="daily" column="DAILY_ID" not-null="false"/>
+  		</join>
 	</class>
 </hibernate-mapping>

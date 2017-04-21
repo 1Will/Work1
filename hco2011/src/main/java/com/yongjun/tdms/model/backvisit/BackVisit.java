@@ -10,8 +10,9 @@
 /*     */ import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo;
 /*     */ import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
 import com.yongjun.tdms.model.project.ProjectInfo;
+import com.yongjun.tdms.model.workReport.daily.Daily;
 
-/*     */ import java.util.Date;
+import java.util.Date;
 /*     */ 
 /*     */ public class BackVisit extends BaseInfoEntity
 /*     */   implements CreatedTimeTracking, CreatorTracking, LastOperatorTracking, LastModifiedTimeTracking
@@ -48,6 +49,7 @@ import com.yongjun.tdms.model.project.ProjectInfo;
             private String isSaved;//存在并且等于0，，方可提交
             private ProjectInfo projectInfo;
             private String projectName;
+            private Daily daily;
             
             public String getIsPublic() {
 				return isPublic;
@@ -336,6 +338,12 @@ import com.yongjun.tdms.model.project.ProjectInfo;
 			}
 			public void setIsSaved(String isSaved) {
 				this.isSaved = isSaved;
+			}
+			public Daily getDaily() {
+				return daily;
+			}
+			public void setDaily(Daily daily) {
+				this.daily = daily;
 			}
 			
 

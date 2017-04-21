@@ -81,6 +81,7 @@
 			<script type='text/javascript' src='${req.contextPath}/dwr/interface/ContractAndBatchJs.js'></script>
 			<script type='text/javascript' src='${req.contextPath}/dwr/interface/CheckSumJs.js'></script>
 			<script type='text/javascript' src='${req.contextPath}/dwr/interface/loginNameRepeatJs.js'></script>
+       
         </head>
         <body>
             <@messageBar helpButton=helpButton title="${title}"/>
