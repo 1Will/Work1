@@ -93,21 +93,21 @@ import java.util.ArrayList;
 			public void setUserManager(UserManager userManager) {
 				this.userManager = userManager;
 			}
-/*     */   public List<BackVisit> loadBackVisitByDate(String da) throws DaoException, ParseException{
+/*     */   public List<BackVisit> loadBackVisitByDate(String userId, String da) throws DaoException, ParseException{
 				java.util.Date newDate = new SimpleDateFormat("yyyy-MM-dd").parse(da);
 				String date = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss.SSS").format(newDate);
-				User user = userManager.getUser();
+				User user = userManager.loadUser(Long.parseLong(userId));
 				String keyNames[]={"backVisitDate","employee.code"};
 				Object[] keyValues={date,user.getCode()};
 				List<BackVisit> list = this.backVisitDao.loadByKeyArray(keyNames, keyValues);
 				List<BackVisit> returnList =new ArrayList<BackVisit>();
 				for(BackVisit visit:list){
 					BackVisit temp  = new BackVisit();
-					temp.setId(visit.getId());
-					temp.setBackVisitContent(visit.getBackVisitContent());
-					temp.setBackVisiter(visit.getBackVisiter());
-					temp.setAttention(visit.getAttention());
-					temp.setEmployee(visit.getEmployee());
+					temp.setId(visit.getId());//id
+					temp.setBackVisitContent(visit.getBackVisitContent());//回访内容
+					temp.setCaName(visit.getCaName());//拜访人
+					temp.setProjectName(visit.getProjectName());//项目名称
+					temp.setCustomerName(visit.getCustomerName());//客户名称
 					returnList.add(temp);
 				}
 				return returnList;

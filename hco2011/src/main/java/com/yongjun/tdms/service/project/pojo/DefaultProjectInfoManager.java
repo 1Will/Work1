@@ -1,8 +1,10 @@
 /*    */ package com.yongjun.tdms.service.project.pojo;
 /*    */ 
 /*    */ import com.yongjun.pluto.exception.DaoException;
+import com.yongjun.pluto.model.security.User;
 import com.yongjun.pluto.sequence.service.SequenceManager;
 /*    */ import com.yongjun.pluto.service.impl.BaseManager;
+import com.yongjun.pluto.service.security.UserManager;
 import com.yongjun.tdms.dao.codevalue.CodeValueDao;
 import com.yongjun.tdms.dao.project.ProjectInfoDao;
 import com.yongjun.tdms.model.project.ProjectInfo;
@@ -16,9 +18,11 @@ import com.yongjun.tdms.service.project.ProjectInfoManager;
 /*    */ {
 /*    */   private ProjectInfoDao projectInfoDao;
 			private final SequenceManager ciSequenceManager;
-			public DefaultProjectInfoManager(ProjectInfoDao projectInfoDao, SequenceManager ciSequenceManager){
+			private final UserManager userManager;
+			public DefaultProjectInfoManager(ProjectInfoDao projectInfoDao, SequenceManager ciSequenceManager,UserManager userManager){
 			this.projectInfoDao = projectInfoDao;
 			this.ciSequenceManager =ciSequenceManager;
+			this.userManager=userManager;
 			}
 /*    */  public void deleteAllProjectInfo(Collection<ProjectInfo> ProjectInfos)
 /*    */   {
@@ -80,6 +84,14 @@ import com.yongjun.tdms.service.project.ProjectInfoManager;
 		   }
 		   public void setProjectInfoDao(ProjectInfoDao projectInfoDao) {
 			   this.projectInfoDao = projectInfoDao;
+		   }
+		   
+		   //public List<ProjectInfo> loadProjectByDate(String date){
+		   public int loadProjectByDate(String userId,String date){
+			   User user = userManager.loadUser(Long.parseLong(userId));
+			   List<ProjectInfo> plist =this.projectInfoDao.loadByDate(date,user.getName());
+			   int size =plist.size();
+			   return size;
 		   }
 
 /*    */ 

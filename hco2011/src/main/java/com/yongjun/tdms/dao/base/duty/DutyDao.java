@@ -24,7 +24,7 @@ public abstract interface DutyDao
 
   public abstract List<Duty> loadByKeyArray(String[] paramArrayOfString, Object[] paramArrayOfObject)
     throws DaoException;
-  public abstract List loadByDeptId(String deptid)
+  public abstract List<Duty> loadByDeptId(String deptid)
 		    throws DaoException;
 }
 

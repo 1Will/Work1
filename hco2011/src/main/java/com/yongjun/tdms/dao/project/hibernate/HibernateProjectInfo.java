@@ -2,8 +2,8 @@
 /*    */ 
 /*    */ import com.yongjun.pluto.dao.hibernate.BaseHibernateDao;
 /*    */ import com.yongjun.pluto.exception.DaoException;
-		import com.yongjun.tdms.dao.project.ProjectInfoDao;
-		import com.yongjun.tdms.model.project.ProjectInfo;
+import com.yongjun.tdms.dao.project.ProjectInfoDao;
+import com.yongjun.tdms.model.project.ProjectInfo;
 
 /*    */ import java.util.Collection;
 /*    */ import java.util.List;
@@ -43,6 +43,10 @@
 	 /*    */   public void storeProjectInfo(ProjectInfo ProjectInfo) {
 	 /* 50 */     store(ProjectInfo);
 	 /*    */   }
+	 			public List<ProjectInfo> loadByDate(String date,String name){
+	 				 String hql = "from ProjectInfo p where convert(varchar,p.createdTime,120) like '"+date+"%' and p.creator = '" + name + "'";
+	 				 return getSession().createQuery(hql).list();
+	 			}
 /*    */   
 /*    */ }
 

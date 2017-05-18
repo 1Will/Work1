@@ -25,6 +25,7 @@
 	</tr>
 	<tr>
 	  	<@select label="${action.getText('daily.dept')}" 
+       id="dept.id" 
        name="dept.id" 
        value="${req.getParameter('dept.id')?if_exists}"
        listKey="id" 
@@ -36,6 +37,7 @@
        onchange="DutyCascadeDWR(\"dept.id\",\"duty.id\",#{user.organization.id?if_exists},\"${action.getText('select.option.all')}\",\"search\")">
    </@select>
    <@select label="${action.getText('daily.duty')}" 
+       id="duty.id"
        name="duty.id"
        value="${req.getParameter('duty.id')?if_exists}"
        listKey="id" 

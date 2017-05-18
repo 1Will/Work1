@@ -13,6 +13,7 @@ import com.yongjun.tdms.util.comparator.CodeValueComparator;
 /*     */ import java.util.ArrayList;
 import java.util.Collections;
 /*     */ import java.util.List; 
+import java.util.Map;
 /*     */
 /*     */ public class ListCustomerInfoAction extends ValueListAction
 /*     */ {
@@ -41,6 +42,15 @@ import java.util.Collections;
 /*     */   {
 /*  87 */     return "customerInfoHQL";
 /*     */   }
+
+			protected Map getRequestParameterMap()
+/*     */   {
+/* 121 */     Map map = super.getRequestParameterMap();
+ 			 if (this.request.getParameter("customerInfo.createdTime")!=null) {
+/* 126 */       map.put("customerInfo.createdTime", this.request.getParameter("customerInfo.createdTime")+"%");
+/*     */     }
+			  return map;
+			}
 /*     */ 
 /*     */   public String execute()
 /*     */     throws Exception

@@ -25,5 +25,6 @@ public abstract interface ProjectInfoDao
 
 	  public abstract List<ProjectInfo> loadByKeyArray(String[] paramArrayOfString, Object[] paramArrayOfObject)
 	    throws DaoException;
+	  public List<ProjectInfo> loadByDate(String date,String name);
 }
 

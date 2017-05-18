@@ -247,6 +247,7 @@ import com.yongjun.tdms.util.comparator.CodeValueComparator;
 						}
 				/* 253 */contactArchives.setCustName(this.customerInfo.getName());
 				/* 254 */contactArchives.setCustomerName(this.customerInfo);
+				/* 254 */contactArchives.setCreator(salesman.getName());
 				/* 255 */contactArchives.setCustomerInfoCode(this.customerInfo.getCode());
 				/* 256 */contactArchives.setCustType(this.customerInfo.getCustomerType().getName().toString());
 				/* 257 */contactArchives.setCustomerType(this.customerInfo.getCustomerType());

@@ -2,6 +2,8 @@ package com.yongjun.tdms.service.workReport.daily;
 
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.tdms.model.workReport.daily.Daily;
+
+import java.text.ParseException;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,6 +26,10 @@ public abstract interface DailyManager
 
   public abstract List<Daily> loadByKeyArray(String[] paramArrayOfString, Object[] paramArrayOfObject)
     throws DaoException;
+  
+  public int loadDailyByDate(String da) throws ParseException, DaoException;
+
+List<Object> loadDailyNeed(String userId, String da);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

@@ -2,6 +2,7 @@ package com.yongjun.tdms.service.CustomerRelationship.customerProfiles;
 
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo;
+
 import java.util.List;
 
 public abstract interface CustomerInfoManager
@@ -32,6 +33,8 @@ public abstract interface CustomerInfoManager
    * @return
    */
   public abstract List<CustomerInfo> getOneCustomerByName(String paramString);
+  
+  public int loadCustomerInfoByDate(String userId,String da);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

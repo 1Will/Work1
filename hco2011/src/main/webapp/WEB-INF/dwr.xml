@@ -53,12 +53,16 @@
    			<param name="beanName" value="personnelFilesManager"></param>
    			<include method="loginNameByCode" />
    		</create>
-   		<!-- 通过日期查询回访记录  -->
-   		<create javascript="BackVisitByDate" creator="spring">
-   			<param name="beanName" value="backVisitManager"></param>
-   			<include method="loadBackVisitByDate" />
+   		<!-- 通过日期姓名查询 回访记录、客户档案、联系人档案 、项目-->
+   		<create javascript="AllByDateAndName" creator="spring">
+   			<param name="beanName" value="dailyManager"></param>
+   			<include method="loadDailyNeed" />
    		</create>
-   		   	
+   		<!-- 通过日期查询该日报 -->
+   		<create javascript="DailyByDate" creator="spring">
+   			<param name="beanName" value="dailyManager"></param>
+   			<include method="loadDailyByDate" />
+   		</create>
    </allow>
 </dwr>
 

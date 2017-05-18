@@ -8,10 +8,17 @@
 /*     */ import com.yongjun.pluto.webwork.action.PrepareAction;
 import com.yongjun.tdms.model.backvisit.BackVisit;
 /*     */ import com.yongjun.tdms.model.base.duty.Duty;
+import com.yongjun.tdms.model.base.event.EventNew;
+import com.yongjun.tdms.model.base.event.EventType;
 /*     */ import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
 /*     */ import com.yongjun.tdms.model.workReport.daily.Daily;
 /*     */ import com.yongjun.tdms.model.workReport.weekly.Weekly;
 import com.yongjun.tdms.service.backvisit.BackVisitManager;
+import com.yongjun.tdms.service.base.duty.DutyManager;
+import com.yongjun.tdms.service.base.event.EventNewManager;
+import com.yongjun.tdms.service.base.event.EventTypeManager;
+import com.yongjun.tdms.service.base.institution.InstitutionManager;
+import com.yongjun.tdms.service.base.org.DepartmentManager;
 /*     */ import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 /*     */ import com.yongjun.tdms.service.workReport.daily.DailyManager;
 /*     */ import com.yongjun.tdms.service.workReport.weekly.WeeklyManager;
@@ -22,8 +29,17 @@ import com.yongjun.tdms.service.backvisit.BackVisitManager;
 /*     */ import java.util.Arrays;
 /*     */ import java.util.Calendar;
 /*     */ import java.util.Date;
+import java.util.HashMap;
 /*     */ import java.util.List;
 
+
+
+
+
+
+import java.util.Map;
+
+import net.sf.json.JSONObject;
 
 import org.apache.commons.logging.Log;
 /*     */ 
@@ -36,6 +52,11 @@ import org.apache.commons.logging.Log;
 /*     */   private final CodeValueManager codeValueManager;
 /*     */   private final PersonnelFilesManager personnelFilesManager;
 /*     */   private final BackVisitManager backVisitManager;
+			private final InstitutionManager institutionManager;
+			private final DepartmentManager departmentManager;
+			private final DutyManager dutyManager;
+			private final EventNewManager eventNewManager;
+            private final EventTypeManager eventTypeManager;
 /*     */   private String startHour;
 /*     */   private String startMinute;
 /*     */   private String endHour;
@@ -44,8 +65,9 @@ import org.apache.commons.logging.Log;
 /*     */   private String perType;
 /*     */   private String backVisitIds;
 /*     */   private Daily daily;
+			private String popWindowFlag;
 /*     */ 
-/*     */   public EditDailyAction(DailyManager dailyManager, WeeklyManager weeklyManager, UserManager userManager, CodeValueManager codeValueManager, PersonnelFilesManager personnelFilesManager, BackVisitManager backVisitManager)
+/*     */   public EditDailyAction(DailyManager dailyManager, WeeklyManager weeklyManager, UserManager userManager, CodeValueManager codeValueManager, PersonnelFilesManager personnelFilesManager, BackVisitManager backVisitManager,InstitutionManager institutionManager,DepartmentManager departmentManager,DutyManager dutyManager,EventNewManager eventNewManager,EventTypeManager eventTypeManager)
 /*     */   {
 /* 110 */     this.dailyManager = dailyManager;
 /* 111 */     this.weeklyManager = weeklyManager;
@@ -53,12 +75,19 @@ import org.apache.commons.logging.Log;
 /* 113 */     this.codeValueManager = codeValueManager;
 /* 114 */     this.personnelFilesManager = personnelFilesManager;
 			  this.backVisitManager=backVisitManager;
+			  this.institutionManager=institutionManager;
+			  this.departmentManager=departmentManager;
+			  this.dutyManager=dutyManager;
+			  this.eventNewManager=eventNewManager;
+			  this.eventTypeManager=eventTypeManager;
 /*     */   }
 /*     */ 
 /*     */   public void prepare()
 /*     */     throws Exception
 /*     */   {
+			  if(hasId("weekly.id")){
 /* 124 */     this.weeklyId = Long.valueOf(this.request.getParameter("weekly.id"));
+			  }
 /* 125 */     if ((this.daily == null) && (hasId("daily.id"))) {
 /* 126 */       this.daily = this.dailyManager.loadDaily(getId("daily.id"));
 /* 127 */       this.startHour = new SimpleDateFormat("kk").format(this.daily.getStartTime());
@@ -74,6 +103,9 @@ import org.apache.commons.logging.Log;
 /* 137 */       this.daily = new Daily();
 /*     */     }
 /* 139 */     this.perType = permission();
+			  if(null!=this.request.getParameter("popWindowFlag")){
+					this.popWindowFlag=this.request.getParameter("popWindowFlag");
+				}
 /*     */   }
 /*     */ 
 /*     */   public String save()
@@ -82,17 +114,38 @@ import org.apache.commons.logging.Log;
 /* 150 */     this.startMinute = this.request.getParameter("startMinute");
 /* 151 */     this.endHour = this.request.getParameter("endHour");
 /* 152 */     this.endMinute = this.request.getParameter("endMinute");
+			//获取记录人
+			  if (hasId("personId")) {
+				  this.daily.setRapporteur(this.userManager.loadUser(getId("personId")));
+		      }
+			  
+			  if (hasId("inst.id")) {
+				  this.daily.setInst(this.institutionManager.loadInstitution(getId("inst.id")));
+			    }
+			 
+			     if (hasId("dept.id")) {
+			    	 this.daily.setDept(this.departmentManager.loadDepartment(getId("dept.id")));
+			     }
+			
+			     if (hasId("duty.id")) {
+			    	 this.daily.setDuty(this.dutyManager.loadDuty(getId("duty.id")));
+			     }
+			  
+
 			//获取回访记录的所有id
 			  this.backVisitIds =this.request.getParameter("backVisitIds");
+			  if(!"".equals(backVisitIds)){
 			  String idsTemp[]=backVisitIds.split("-");
 			  Long bvtIds[]=new Long[idsTemp.length];
 			  for(int i=0;i<idsTemp.length;i++){
 				  bvtIds[i]=Long.parseLong(idsTemp[i]);
 			  }
 			  List<BackVisit> bvtList = backVisitManager.loadAllBackVisit(bvtIds);
-			  this.daily.bvtList.addAll(bvtList);
+			  this.daily.getBvtList().addAll(bvtList);
 			  bvtList.clear();
+			  }
 			  
+			  this.daily.setBackVisitContext(this.request.getParameter("daily.backVisitContext"));
 /* 153 */     Calendar c = Calendar.getInstance();
 /* 154 */     String d = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()) + " ";
 /*     */     try {
@@ -103,6 +156,7 @@ import org.apache.commons.logging.Log;
 /* 160 */       this.daily.setStartTime(startTime);
 /* 161 */       this.daily.setEndTime(endTime);
 /* 162 */       this.daily.setWeekDate(this.request.getParameter("daily.week"));
+				
 /*     */     } catch (ParseException e2) {
 /* 164 */       e2.printStackTrace();
 /*     */     }
@@ -117,23 +171,64 @@ import org.apache.commons.logging.Log;
 /* 174 */       this.daily.setDuty(weekly.getDuty());
 /* 175 */       this.daily.setRapporteur(weekly.getRapporteur());
 /*     */     }
+			//提交后保存事件
+			  String submit=null;
+/*暂时不用*/
+			  if ("1".equals(this.request.getParameter("isSaved"))) {
+					try {
+						EventType eventType=null;
+						List<EventType> eventTypes =this.eventTypeManager.loadByKey("code", "10002");
+						if(eventTypes!=null&&eventTypes.size()>0){
+							eventType=eventTypes.get(0);
+						}else {
+							  eventType = new EventType();
+							    eventType.setId(3L);
+						}
+					 	EventNew event = new EventNew();
+					    event.setEffectflag("E");
+					    event.setEventType(eventType);
+					    event.setName("日报提交");
+					    event.setUserId(this.userManager.getUser().getId()+"");
+					    Map<String, String> map = new HashMap<String, String>();
+					    String ids =getUser().getId()+"";
+					    //查询领导
+					    PersonnelFiles pFiles =getPeronnelF().getSuperiorLeader();
+					    while (pFiles!=null) {
+					    	List<User> leader = userManager.loadByKey("code", pFiles.getCode());
+							ids +=","+leader.get(0).getId();
+							pFiles = pFiles.getSuperiorLeader();
+						}
+					    map.put("users", ids);
+						map.put("dailyId", this.daily.getId()+"");
+						String moreinfo = JSONObject.fromObject(map).toString();
+						event.setMoreinfo(moreinfo);
+						eventNewManager.storeEventNew(event);
+						submit="submit";
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				}
+/*	   */				
+/* 162 */       this.daily.setIsSaved(this.request.getParameter("isSaved"));
 /*     */     try
 /*     */     {
 /* 179 */       this.dailyManager.storeDaily(this.daily);
 /*     */ 
 /* 181 */       if (isNew.booleanValue()) {
-/* 182 */         addActionMessage(getText("daily.add.success", Arrays.asList(new Object[] { this.daily.getId() })));
+/* 182 */         addActionMessage(getText("daily.add.success", Arrays.asList(new Object[] { new SimpleDateFormat("yyyy-MM-dd").format(this.daily.getCurrentDate()) })));
 /*     */ 
 /* 184 */         return "new";
 /*     */       }
-/*     */ 
-/* 187 */       addActionMessage(getText("daily.edit.success", Arrays.asList(new Object[] { this.daily.getId() })));
-/*     */ 
+/*     */ 		if(submit!=null){
+/* 187 */       	addActionMessage(getText("daily.submit.success", Arrays.asList(new Object[] { new SimpleDateFormat("yyyy-MM-dd").format(this.daily.getCurrentDate()) })));
+				}else{
+/* 187 */       	addActionMessage(getText("daily.edit.success", Arrays.asList(new Object[] { new SimpleDateFormat("yyyy-MM-dd").format(this.daily.getCurrentDate()) })));
+				}
 /* 189 */       return "success";
 /*     */     }
 /*     */     catch (Exception e) {
 /* 192 */       e.printStackTrace();
-/* 193 */       addActionMessage(getText("daily.add.error", Arrays.asList(new Object[] { this.daily.getId() })));
+/* 193 */       addActionMessage(getText("daily.add.error", Arrays.asList(new Object[] { new SimpleDateFormat("yyyy-MM-dd").format(this.daily.getCurrentDate()) })));
 /*     */     }
 /* 195 */     return "error";
 /*     */   }
@@ -202,6 +297,16 @@ import org.apache.commons.logging.Log;
 /*     */     }
 /* 273 */     return new ArrayList();
 /*     */   }
+
+			public PersonnelFiles getPeronnelF()
+			     throws DaoException
+			   {
+					List list = this.personnelFilesManager.loadByKey("code", getUser().getCode().trim());
+					if ((null != list) && (list.size() > 0)) {
+					return (PersonnelFiles)list.get(0);
+					}
+				    return new PersonnelFiles();
+			   }
 /*     */ 
 /*     */   public Daily getDaily()
 /*     */   {
@@ -280,6 +385,12 @@ import org.apache.commons.logging.Log;
 			}
 			public void setBackVisitIds(String backVisitIds) {
 				this.backVisitIds = backVisitIds;
+			}
+			public String getPopWindowFlag() {
+				return popWindowFlag;
+			}
+			public void setPopWindowFlag(String popWindowFlag) {
+				this.popWindowFlag = popWindowFlag;
 			}
 			
 /*     */ }

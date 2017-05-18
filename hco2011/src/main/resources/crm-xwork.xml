@@ -1199,6 +1199,7 @@
 			</result>
 			<interceptor-ref name="parameterReceiverStack" />
 		</action>
+		
 		<action name="searchCustomerInfo" class="listCustomerInfoAction">
 			<result name="success" type="redirect">
 				listCustomerInfo.html?readOnly=${readOnly}
@@ -1916,7 +1917,7 @@
 			<result name="success" type="freemarker">
 				/pages/workReport/daily/tab/dailyList.ftl
 			</result>
-			<result name="error" type="redirect">
+			<result name="error" type="freemarker">
 				/pages/workReport/daily/tab/dailyList.ftl
 			</result>
 			<result name="input" type="freemarker">
@@ -1928,12 +1929,14 @@
 			<interceptor-ref name="parameterReceiverStack" />
 		</action>
 		<action name="searchDaily" class="listDailyAction">
-			<result name="success" type="dispatcher">
-				listDailyTab.html
+			<result name="success" type="redirect">
+				listDailyTab.html?weekly.id=${weeklyId}&amp;org.id=${orgId}&amp;rapporteur.id=${rapporteurId}
 			</result>
-			<result name="error" type="redirect">listDaily.html</result>
+			<result name="error" type="redirect">
+				listDailyTab.html?weekly.id=${weeklyId}&amp;org.id=${orgId}&amp;rapporteur.id=${rapporteurId}
+			</result>
 			<result name="invalid.token" type="redirect">
-				listDailyTab.html
+				listDailyTab.html?weekly.id=${weeklyId}&amp;org.id=${orgId}&amp;rapporteur.id=${rapporteurId}
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
@@ -1948,24 +1951,36 @@
 		</action>
 		<action name="saveDaily" class="editDailyAction"
 			method="save">
-			<result name="new" type="dispatcher">
+			<result name="new" type="redirect">
 				editDaily.html?daily.id=${daily.id}
 			</result>
-			<result name="error" type="dispatcher">
-				editDaily.html
+			<result name="error" type="redirect">
+				editDaily.html?daily.id=${daily.id}
 			</result>
-			<result name="success" type="dispatcher">
-				editDaily.html
+			<result name="success" type="redirect">
+				editDaily.html?daily.id=${daily.id}
 			</result>
-			<result name="invalid.token" type="dispatcher">
-				editDaily.html
+			<result name="invalid.token" type="redirect">
+				editDaily.html?daily.id=${daily.id}
 			</result>
 			<interceptor-ref name="propertySender">
 				<param name="propertyNames">daily</param>
 			</interceptor-ref>
 			<interceptor-ref name="propertySenderStack" />
 		</action>
+		<!-- 日报回复 -->
+		<action name="listReplyDailyTab" class="listReplyDailyAction" method="list">
+				<result name="success" type="freemarker">
+					/pages/workReport/daily/reply/replyDailyList.ftl
+				</result>
+		</action>
+		<action name="saveReplyDaily" class="editReplyDailyAction" method="save">
+				<result name="success" type="redirect">
+					listReplyDailyTab.html?daily.id=${dailyId}
+				</result>
+		</action>
 	</package>
+	
 	<!--职位管理开始-->
 	<package name="duty" namespace="/duty" extends="pluto">
 

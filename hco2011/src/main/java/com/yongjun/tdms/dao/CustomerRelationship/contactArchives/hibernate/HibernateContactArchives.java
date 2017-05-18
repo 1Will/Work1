@@ -4,7 +4,8 @@
 /*     */ import com.yongjun.pluto.exception.DaoException;
 /*     */ import com.yongjun.tdms.dao.CustomerRelationship.contactArchives.ContactArchivesDao;
 /*     */ import com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives;
-/*     */ import java.util.List;
+
+import java.util.List;
 /*     */ 
 /*     */ public class HibernateContactArchives extends BaseHibernateDao
 /*     */   implements ContactArchivesDao
@@ -50,6 +51,10 @@
 /*     */   {
 /* 116 */     return loadByKeyArray(ContactArchives.class, keyNames, keyValues);
 /*     */   }
+			public List<ContactArchives> getContactArchivesByCodeAndDate(String date,String name){
+				String hql = "from ContactArchives c where convert(varchar,c.createdTime,120) like '"+date+"%' and c.creator = '" + name + "'";
+				return getSession().createQuery(hql).list();
+			}
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

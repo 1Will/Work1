@@ -26,11 +26,12 @@
 	 <#include "dailySearch.ftl"/>
      <@buttonBar>
 		<@vsubmit name="'search'" cssClass="'button'" value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
+     	<@redirectButton class="button" value="${action.getText('new')}" url="${req.contextPath}/workReport/editDaily.html"/>
      </@buttonBar>
 	 <@list title="${action.getText('daily.list')}" includeParameters="currentDate|rapporteur.name|inst.id|dept.id|duty.id" fieldMap="" >
 	        
 	        <@vcolumn title="${action.getText('daily.currentDate')}" format="yyyy-MM-dd" property="currentDate" sortable="desc">
-            	<a href="###" onclick="editDaily('#{object.id}','#{object.weekly.id}')">${object.currentDate?string('yyyy-MM-dd')}</a>
+         	<a href="${req.contextPath}/workReport/editDaily.html?daily.id=#{object.id}">${object.currentDate?string('yyyy-MM-dd')}</a>  
             	<@vlh.attribute name="width" value="11%" />
             	<@alignCenter/>
          	</@vcolumn>
@@ -79,12 +80,4 @@
 	         -->
 	         </@list>
 </@ww.form>
-<script>
-  //打开编辑日报模态窗口
-  function editDaily(d,w){
-      var url='${req.contextPath}/workReport/editDaily.html?daily.id='+d+'&weekly.id='+w;
-      popupModalDialog(url,800,600);
-      if(isIE()){self.location.reload();};
-  }
-</script>
 </@htmlPage>

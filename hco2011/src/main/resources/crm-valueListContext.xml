@@ -275,6 +275,8 @@
 				/~onlyInvalid: AND ca.disabled=true ~/ 
 				/~onlyValid: AND ca.disabled=false ~/ 
 				/~contactArchives.name: AND ca.name LIKE {contactArchives.name} ~/ 
+				/~contactArchives.createdTime: AND convert(varchar,ca.createdTime,120) like {contactArchives.createdTime} ~/ 
+				/~contactArchives.creator: AND ca.creator LIKE {contactArchives.creator} ~/ 
 				/~sex: AND ca.sex = {sex}~/ 
 				/~contactArchives.customerName: AND ca.customerName.name LIKE {contactArchives.customerName} ~/ 
 				/~type.id: AND ca.customerType.id = {type.id}~/ 
@@ -302,6 +304,7 @@
 				/~province.id: AND customer.province.id = {province.id}~/ 
 				/~city.id: AND customer.city.id = {city.id}~/ 
 				/~step.id: AND customer.step.id = {step.id}~/ 
+				/~customerInfo.createdTime: AND convert(varchar,customer.createdTime,120) like {customerInfo.createdTime} ~/ 
 				/~industry.id: AND customer.industry.id = {industry.id}~/ 
 				/~companyNature.id: AND customer.companyNature.id = {companyNature.id}~/ 
 				/~customerInfo.keyContacter: AND customer.keyContacter LIKE {customerInfo.keyContacter} ~/ 
@@ -462,6 +465,19 @@
 				/~duty.id: AND d.duty.id={duty.id} ~/
 				/~user.id: AND d.rapporteur.id={user.id} ~/
 				/~sortColumn: ORDER BY d.[sortColumn] [sortDirection] ~/
+			 ]]>
+			</value>
+		</property>
+	</bean>
+	<!-- 日报回复管理 -->
+	<bean id="replyDaily" parent="abstractHibernate20Adapter">
+		<property name="hql">
+			<value>
+				<![CDATA[
+				FROM ReplyDaily AS rd WHERE 1=1  
+				/~daily.id: AND rd.daily.id={daily.id} ~/
+				/~user.id: AND rd.rapporteur.id={user.id} ~/
+				/~sortColumn: ORDER BY rd.[sortColumn] [sortDirection] ~/
 			 ]]>
 			</value>
 		</property>
@@ -1780,6 +1796,8 @@
                 	 /~contact.name: AND projectInfo.contact.name LIKE {contact.name} ~/
                 	 /~controller.name: AND projectInfo.controller.name LIKE {controller.name} ~/
                 	 /~state.id: AND projectInfo.state.id = {state.id} ~/
+                	 /~projectInfo.creator: AND projectInfo.creator LIKE {projectInfo.creator} ~/
+                	 /~projectInfo.createdTime: AND convert(varchar,projectInfo.createdTime,120) like {projectInfo.createdTime} ~/ 
                 	  /~sortColumn: ORDER BY projectInfo.[sortColumn] [sortDirection]~/
                 	 
             	 ]]>

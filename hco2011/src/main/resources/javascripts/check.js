@@ -65,7 +65,7 @@ function checkFormat(name,type,label){
 }
 
 /*************************************date****************************************/
-<!-- date -->
+// date 
 /*
 * 函数名: dateCheckPicker
 * 作  用: 拥有一个输入域的验证

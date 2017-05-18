@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+   
+   <!--  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
+        <property name="url" value="jdbc:jtds:sqlserver://192.168.1.26:1433;DatabaseName=crm2017_development" />
+        <property name="username" value="sa"></property>
+        <property name="password" value="admin@123"></property>
+    </bean>  -->
+    <bean id="propertyFileConfigForDB"   
+    	class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+	    <property name="location">  
+	        <value>classpath:db.properties</value>  
+	                  <!-- 以上为properties文件路径-->  
+	    </property>  
+	</bean>  
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName">
+			<value>${driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${url}</value>
+		</property>
+		<property name="username">
+			<value>${username}</value>
+		</property>
+		<property name="password">
+			<value>${password}</value>
+		</property>
+		<property name="maxActive">
+			<value>${maxActive}</value>
+		</property>
+		<property name="removeAbandonedTimeout">
+			<value>${removeAbandonedTimeout}</value>
+		</property>
+	</bean> 
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <!-- 注入datasource，给sessionfactoryBean内setdatasource提供数据源 -->
+        <property name="dataSource" ref="dataSource" />
+        
+        <property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.SQLServerDialect
+				</prop>
+				<prop key="hibernate.query.factory_class">
+					org.hibernate.hql.classic.ClassicQueryTranslatorFactory
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+				<list>
+				<!-- 配置pojo实体映射类 -->
+				<value>main/pojo/EventNew.hbm.xml</value>
+				<value>main/pojo/EventType.hbm.xml</value>
+				<value>main/pojo/EventLog.hbm.xml</value>
+				
+				<value>main/pojo/Notification.hbm.xml</value>
+				<value>main/pojo/NotificationLog.hbm.xml</value>
+				<value>main/pojo/ReplyBackVisit.hbm.xml</value>
+
+				<value>main/pojo/BackVisit.hbm.xml</value>
+				<value>main/pojo/ProjectInfo.hbm.xml</value>
+				<value>main/pojo/ProjectInfoPersonnels.hbm.xml</value>
+
+				<value>main/pojo/CustomerInfo.hbm.xml</value> 
+				<value>main/pojo/ContactArchives.hbm.xml</value> 
+ 				<value>main/pojo/CodeValue.hbm.xml</value>  
+ 				
+ 				<value>main/pojo/PersonnelFiles.hbm.xml</value>  
+ 				<value>main/pojo/ContractManagement.hbm.xml</value>  
+
+				</list>
+		</property>
+    </bean>  
+    <!--本层需要配置三个位置: CustomerInfo.hbm.xml + CustomerInfoDao + CustomerInfoService -->
+    <!-- 配置Spring声明式事务 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean> 
+    <!-- 配置事务事务属性 -->
+     <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED" /> <!-- 支持当前事务，如果执行到save开头的任何方法时没有事务则开启一个事务 这是最常见的方式-->  
+            <tx:method name="update*" propagation="REQUIRED" /><!-- 支持当前事务，如果执行到save开头的任何方法时没有事务则开启一个事务 这是最常见的方式-->  
+            <tx:method name="add*" propagation="REQUIRED" /><!-- 支持当前事务，如果执行到save开头的任何方法时没有事务则开启一个事务 这是最常见的方式-->  
+            <tx:method name="delete*" propagation="REQUIRED" /><!-- 支持当前事务，如果执行到save开头的任何方法时没有事务则开启一个事务 这是最常见的方式-->  
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/> <!-- 支持当前事务，如果当前没有事务，就以非事务方式执行。只读 -->  
+           <!--  <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>支持当前事务，如果当前没有事务，就以非事务方式执行。只读  
+            <tx:method name="*" />   -->
+        </tx:attributes>
+    </tx:advice>
+    <!-- 配置事务切点，并把切点和事务属性关联起来 -->
+    <aop:config>
+        <aop:pointcut expression="execution(* main.service.impl.*.*(..))" id="txPointcut"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+    </aop:config>
+    
+    <!-- 定时任务  开始
+    <bean id="myTimedTask" class="main.java.MyTask"/>  
+    
+    <bean id="doMyTimedTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+	    <property name="targetObject" ref="myTimedTask"/>  
+	    <property name="targetMethod" value="execute"/>  
+	    <property name="concurrent" value="false"/>  
+	</bean>
+	
+	<bean id="myTimedTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	    <property name="jobDetail" ref="doMyTimedTask"/>  
+	    <property name="cronExpression" value="0/5 * * * * ?"/>  
+	</bean> 
+	
+	<bean id="doScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+	    <property name="triggers">  
+	        <list>  
+	            <ref local="myTimedTaskTrigger"/>  
+	        </list>  
+	    </property>  
+	</bean> 
+	-->
+    <!-- 定时任务  结束-->
+<!--      <bean name="bookDao" class="main.dao.impl.BookDaoImpl" >  
+        <property name="sessionFactory" ref="sessionFactory"></property>  
+    </bean>  
+    <bean name="bookService" class="main.service.impl.BookServiceImpl" >
+   	 <property name="bookDao" ref="bookDao"></property>  
+    </bean> -->
+    
+    <bean name="eventDao" class="main.dao.impl.EventDaoImpl" >  
+        <property name="sessionFactory" ref="sessionFactory"></property>  
+    </bean>  
+    <bean name="eventService" class="main.service.impl.EventServiceImpl" >
+   	 <property name="eventDao" ref="eventDao"></property>  
+    </bean>
+    <bean name="replyBackVisitDao" class="main.dao.impl.ReplyBackVisitDaoImpl" >
+   	 <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean name="replyService" class="main.service.impl.ReplyBackVisitServiceImpl" >
+   	 <property name="replyBackVisitDao" ref="replyBackVisitDao"></property>  
+    </bean>
+
+     <bean name="backVisitDao" class="main.dao.impl.BackVisitDaoImpl" >
+   	 <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean name="backVisitService" class="main.service.impl.BackVisitServiceImpl" >
+   	 <property name="backVisitDao" ref="backVisitDao"></property>  
+    </bean>
+    <!-- 配置项目信息   projectInfoService-->
+    <bean name="projectInfoDao" class="main.dao.impl.ProjectInfoDaoImpl" >
+   	 <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean name="projectInfoService" class="main.service.impl.ProjectInfoServiceImpl" >
+   	 <property name="projectInfoDao" ref="projectInfoDao"></property>  
+    </bean>
+       <bean name="projectInfoPersonnelsDao" class="main.dao.impl.ProjectInfoPersonnelsDaoImpl" >
+   	 <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean name="projectInfoPersonnelsService" class="main.service.impl.ProjectInfoPersonnelsServiceImpl" >
+   	 <property name="projectInfoPersonnelsDao" ref="projectInfoPersonnelsDao"></property>  
+    </bean>
+    <!-- 配置客户信息  customerInfoService-->
+    <bean name="customerInfoDao" class="main.dao.impl.CustomerInfoDaoImpl" >
+   	 <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean name="customerInfoService" class="main.service.impl.CustomerInfoServiceImpl" >
+   	 <property name="customerInfoDao" ref="customerInfoDao"></property>  
+    </bean>
+    <!-- 配置 联系人 contactArchivesService-->
+    <bean name="contactArchivesDao" class="main.dao.impl.ContactArchivesDaoImpl" >
+   	 <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean name="contactArchivesService" class="main.service.impl.ContactArchivesServiceImpl" >
+   	 <property name="contactArchivesDao" ref="contactArchivesDao"></property>  
+    </bean>
+
+    <!-- 配置编码CodeValueService-->
+    <bean name="codeValueDao" class="main.dao.impl.CodeValueDaoImpl" >
+   	 <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean name="codeValueService" class="main.service.impl.CodeValueServiceImpl" >
+   	 <property name="codeValueDao" ref="codeValueDao"></property>  
+    </bean>
+
+    <!-- 配置人事表PersonnelFilesService-->
+    <bean name="personnelFilesDao" class="main.dao.impl.PersonnelFilesDaoImpl" >
+   	 <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean name="personnelFilesService" class="main.service.impl.PersonnelFilesServiceImpl" >
+   	 <property name="personnelFilesDao" ref="personnelFilesDao"></property>  
+    </bean>
+
+     
+</beans>

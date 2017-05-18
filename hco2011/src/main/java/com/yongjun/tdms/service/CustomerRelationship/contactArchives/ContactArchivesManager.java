@@ -2,6 +2,7 @@ package com.yongjun.tdms.service.CustomerRelationship.contactArchives;
 
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives;
+
 import java.util.List;
 
 public abstract interface ContactArchivesManager
@@ -27,6 +28,8 @@ public abstract interface ContactArchivesManager
 
   public abstract List<ContactArchives> loadByKeyArray(String[] paramArrayOfString, Object[] paramArrayOfObject)
     throws DaoException;
+  
+  public int loadContactArchivesByDate(String userId,String da);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

@@ -844,8 +844,49 @@
 		<constructor-arg index="5">
 			<ref bean="backVisitManager" />
 		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="institutionManager" />
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="8">
+			<ref bean="dutyManager" />
+		</constructor-arg>
+		<constructor-arg index="9">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="10">
+			<ref bean="eventTypeManager" />
+		</constructor-arg>
 	</bean>
 	<!-- 日报结束 -->
+	<!-- 日报回复开始  -->
+	<bean id="editReplyDailyAction"
+		class="com.yongjun.tdms.presentation.webwork.action.workReport.daily.reply.EditReplyDailyAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="replyDailyManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="dailyManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>	
+	<bean id="listReplyDailyAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.workReport.daily.reply.ListReplyDailyAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="replyDailyManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="dailyManager" />
+		</constructor-arg>
+	</bean>
+	
+	<!-- 日报回复结束  -->
 	
 		<!-- 职位管理 -->
 	<bean id="listDutyAction" parent="valueListAction"
@@ -2435,6 +2476,15 @@
 		</constructor-arg>
 		<constructor-arg index="7">
 			<ref bean="projectInfoContractManager"/>
+		</constructor-arg>
+		<constructor-arg index="8">
+			<ref bean="eventNewManager"/>
+		</constructor-arg>
+		<constructor-arg index="9">
+			<ref bean="eventTypeManager"/>
+		</constructor-arg>
+		<constructor-arg index="10">
+			<ref bean="personnelFilesToUserManager"/>
 		</constructor-arg>
 	</bean>
 	

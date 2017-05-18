@@ -31,5 +31,6 @@ public abstract interface ProjectInfoManager
 
 	  public abstract List<ProjectInfo> loadByKeyArray(String[] paramArrayOfString, Object[] paramArrayOfObject)
 	    throws DaoException;
+	  public int loadProjectByDate(String userId,String date);
 }
 

@@ -214,6 +214,9 @@
 				<constructor-arg index="0">
 					<ref bean="contactArchivesDao" />
 				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="userManager" />
+				</constructor-arg>
 			</bean>
 		</property>
 	</bean>
@@ -241,6 +244,9 @@
 				</constructor-arg>
 				<constructor-arg index="1">
 					<ref bean="ciSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="userManager" />
 				</constructor-arg>
 			</bean>
 		</property>
@@ -304,6 +310,32 @@
 				class="com.yongjun.tdms.service.workReport.daily.pojo.DefaultDailyManager">
 				<constructor-arg index="0">
 					<ref bean="dailyDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="userManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="backVisitManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="customerInfoManager" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="contactArchivesManager" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="projectInfoManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- 日报回复管理 -->
+	<bean id="replyDailyManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.workReport.daily.pojo.DefaultReplyDailyManager">
+				<constructor-arg index="0">
+					<ref bean="replyDailyDao" />
 				</constructor-arg>
 			</bean>
 		</property>
@@ -1191,6 +1223,9 @@
 				</constructor-arg>
 				<constructor-arg index="1">
 					<ref bean="ciSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="userManager" />
 				</constructor-arg>
 			</bean>
 		</property>

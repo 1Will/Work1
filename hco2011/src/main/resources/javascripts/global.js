@@ -1068,7 +1068,7 @@ function getObjByName(name){
 	 window.close();
 	
 }
- function openNewWindow(url,height,width){
+ function openNewWindow(url,width,height){
 	 var wd = (width == null) ? 900 :width;
 	 var hg = (height == null) ? 600 :height;
 	 var top= (window.screen.availHeight - hg)/2;

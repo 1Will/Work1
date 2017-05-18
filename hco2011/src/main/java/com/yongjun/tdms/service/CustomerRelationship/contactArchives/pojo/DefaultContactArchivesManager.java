@@ -1,21 +1,27 @@
 /*     */ package com.yongjun.tdms.service.CustomerRelationship.contactArchives.pojo;
 /*     */ 
 /*     */ import com.yongjun.pluto.exception.DaoException;
+import com.yongjun.pluto.model.security.User;
 /*     */ import com.yongjun.pluto.service.impl.BaseManager;
+import com.yongjun.pluto.service.security.UserManager;
 /*     */ import com.yongjun.tdms.dao.CustomerRelationship.contactArchives.ContactArchivesDao;
 /*     */ import com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives;
 /*     */ import com.yongjun.tdms.service.CustomerRelationship.contactArchives.ContactArchivesManager;
+
 /*     */ import java.io.PrintStream;
+import java.util.ArrayList;
 /*     */ import java.util.List;
 /*     */ 
 /*     */ public class DefaultContactArchivesManager extends BaseManager
 /*     */   implements ContactArchivesManager
 /*     */ {
 /*     */   public final ContactArchivesDao contactArchivesDao;
+			private final UserManager userManager;
 /*     */ 
-/*     */   public DefaultContactArchivesManager(ContactArchivesDao contactArchivesDao)
+/*     */   public DefaultContactArchivesManager(ContactArchivesDao contactArchivesDao,UserManager userManager)
 /*     */   {
 /*  46 */     this.contactArchivesDao = contactArchivesDao;
+			  this.userManager =userManager;
 /*     */   }
 /*     */ 
 /*     */   public void storeContactArchives(ContactArchives ca)
@@ -149,6 +155,21 @@
 /*     */   {
 /* 229 */     return this.contactArchivesDao.loadByKeyArray(keyNames, keyValues);
 /*     */   }
+
+			/*public List<ContactArchives> loadContactArchivesByDate(String da){*/
+			public int loadContactArchivesByDate(String userId,String da){
+				User user = userManager.loadUser(Long.parseLong(userId));
+				List<ContactArchives> list = this.contactArchivesDao.getContactArchivesByCodeAndDate(da,user.getName());
+				int size = list.size();
+				return size;
+//				List<ContactArchives> clist = new ArrayList<ContactArchives>();
+//				for(ContactArchives contactArchives:list){
+//					ContactArchives cs =new ContactArchives();
+//					cs.setId(contactArchives.getId());
+//					clist.add(cs);
+//				}
+//				return clist;
+			}
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

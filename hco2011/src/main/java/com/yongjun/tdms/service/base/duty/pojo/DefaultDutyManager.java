@@ -66,7 +66,7 @@
 /*     */     throws DaoException
 /*     */   {
 /*  83 */     Long agencyId = Long.valueOf(deptId);
-/*  84 */     List<Duty> dutyList = new ArrayList();
+/*  84 */     List<Duty> dutyList =null;
 /*     */ 
 /*  86 */     if (flag.equals("search")) {
 /*  87 */       String[] keyNames = { "dept.id", "organization.id" };
@@ -77,16 +77,14 @@
 /*  92 */       Object[] keyValues = { agencyId, Boolean.valueOf(false), orgId };
 /*  93 */       dutyList = this.dutyDao.loadByDeptId(deptId);
 /*     */     }
-/*     */ 
-///*  96 */     for (Duty duty : dutyList) {
-///*  97 */       String name = duty.getName().trim();
-///*  98 */       duty.setName(name);
-///*  99 */       duty.setOrganization(null);
-///* 100 */       duty.setJobName(null);
-///* 101 */       duty.setDept(null);
-///* 102 */       duty.setPerType(null);
-///*     */     }
-/* 104 */     return dutyList;
+/*     */ 	  List<Duty> list = new ArrayList();
+/*  96 */     for (Duty duty : dutyList) {
+				Duty du=new Duty();
+/*  97 */       du.setId(duty.getId());
+/*  97 */       du.setName(duty.getName());
+				list.add(du);
+/*     */     }
+/* 104 */     return list;
 /*     */   }
 /*     */ }
 

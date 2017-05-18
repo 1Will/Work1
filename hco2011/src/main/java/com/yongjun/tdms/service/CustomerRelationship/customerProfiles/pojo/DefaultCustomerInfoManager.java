@@ -2,12 +2,15 @@
 /*     */ 
 /*     */ import com.yongjun.pluto.exception.DaoException;
 /*     */ import com.yongjun.pluto.model.codevalue.CodeValue;
+import com.yongjun.pluto.model.security.User;
 /*     */ import com.yongjun.pluto.sequence.service.SequenceManager;
 /*     */ import com.yongjun.pluto.service.impl.BaseManager;
+import com.yongjun.pluto.service.security.UserManager;
 /*     */ import com.yongjun.tdms.dao.CustomerRelationship.customerProfiles.CustomerInfoDao;
 /*     */ import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo;
 /*     */ import com.yongjun.tdms.model.base.area.Area;
 /*     */ import com.yongjun.tdms.service.CustomerRelationship.customerProfiles.CustomerInfoManager;
+
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.List;
 /*     */ 
@@ -16,11 +19,13 @@
 /*     */ {
 /*     */   private final CustomerInfoDao customerInfoDao;
 /*     */   private final SequenceManager ciSequenceManager;
+			private final UserManager userManager;
 /*     */ 
-/*     */   public DefaultCustomerInfoManager(CustomerInfoDao customerInfoDao, SequenceManager ciSequenceManager)
+/*     */   public DefaultCustomerInfoManager(CustomerInfoDao customerInfoDao, SequenceManager ciSequenceManager,UserManager userManager)
 /*     */   {
 /*  50 */     this.customerInfoDao = customerInfoDao;
 /*  51 */     this.ciSequenceManager = ciSequenceManager;
+			  this.userManager=userManager;
 /*     */   }
 /*     */ 
 /*     */   public void storeCustomerInfo(CustomerInfo ci)
@@ -268,6 +273,20 @@
 /*     */     }
 /* 271 */     customerInfo.setCustomerInfoIntegrity(Float.valueOf(base));
 /*     */   }
+			/*public List<CustomerInfo> loadCustomerInfoByDate(String da){*/
+			public int loadCustomerInfoByDate(String userId,String da){
+				User user = userManager.loadUser(Long.parseLong(userId));
+				List<CustomerInfo> list = this.customerInfoDao.getCustomerByCodeAndDate(da, user.getCode());
+				int size =list.size();
+				return size;
+//				List<CustomerInfo> cList =new ArrayList<CustomerInfo>();
+//				for(CustomerInfo cInfo :list){
+//					CustomerInfo customerInfo =new CustomerInfo();
+//					customerInfo.setId(cInfo.getId());
+//					cList.add(customerInfo);
+//				}
+//				return cList;
+			}
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

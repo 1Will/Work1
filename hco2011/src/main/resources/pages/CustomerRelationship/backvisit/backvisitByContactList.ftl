@@ -15,7 +15,7 @@
 			<@ww.hidden name="'projectInfo.id'" value="#{projectInfoId}"/>
 		</#if>
         <@list title="" 
-        includeParameters="contactArchive.id|customerInfo.id|readOnly|onlyInvalid|onlyValid" 
+        includeParameters="contactArchive.id|customerInfo.id|readOnly|onlyInvalid|onlyValid|employee|backVisitDate_start|backVisitDate_end|" 
         fieldMap="" >
             <@vcolumn title="${action.getText('backVisitType')}" property="backVisitType.name" sortable="desc">
             <a href="javascript:backvist_OpenDialog('#{object.id}')">
@@ -23,11 +23,12 @@
             <@alignLeft/>
             </a>
             </@vcolumn>
-            <#if contactArchiveId?exists>
             <@vcolumn title="${action.getText('customer')}" property="customerInfo.name" sortable="desc">
+            <@vlh.attribute name="width" value="8%" />
             ${object.customerInfo.name?if_exists}
             <@alignLeft/>
             </@vcolumn>
+            <#if contactArchiveId?exists>
             </#if>
              <#if customerInfoId?exists>
             <@vcolumn title="${action.getText('contactArchive')}" property="contactArchive.name" sortable="desc">
@@ -52,12 +53,14 @@
             <@alignRight />
             </@vcolumn>
             <@vcolumn title="${action.getText('backVisitDate')}" property="backVisitDate" sortable="desc" format="yyyy-MM-dd" >
-            <@alignCenter attributes="width:110;"/>
+            <@alignCenter/>
+            <@vlh.attribute name="width" value="8%" />
             </@vcolumn>
              <@vcolumn title="${action.getText('employee')}" property="employee.name" sortable="desc">
             <@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('backVisitContent')}" property="backVisitContent" sortable="desc">
+	            <@vlh.attribute name="width" value="60%" />
 	            <span title="${object.backVisitContent?if_exists}">
 		            <script>
 		            	var s = "${object.backVisitContent?if_exists}";

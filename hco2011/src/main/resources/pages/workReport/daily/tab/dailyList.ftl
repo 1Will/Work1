@@ -19,14 +19,14 @@
 <#-- $Id: dailyList.ftl 2010-02-25 zsz $ -->
 <#include "../../../includes/hco2011.ftl" />
 <@framePage>
-<@ww.form action="'searchDaily'" namespace="'/workReport'" method="'post'">
+<@ww.form name="'listForm'" action="'searchDaily'" namespace="'/workReport'" method="'post'">
      <@ww.token name="'dailyManager'"/>
      <#assign number=1/>
      <@ww.hidden name="'weekly.id'" value="${req.getParameter('weekly.id')?if_exists}"/>
      <@ww.hidden name="'org.id'" value="${req.getParameter('org.id')?if_exists}"/>
      <@ww.hidden name="'rapporteur.id'" value="${req.getParameter('rapporteur.id')?if_exists}"/>
 	 <@list title="" includeParameters="weekly.id|org.id|rapporteur.id" fieldMap="" >
-	        <@vlh.checkbox property="id" name="dailyIds">
+	        <@vlh.checkbox property="id" name="dailyIdds">
 	            <@vlh.attribute name="width" value="5%" />
 	        </@vlh.checkbox>
 	        <@vcolumn title="${action.getText('daily.no')}">
@@ -75,7 +75,7 @@
 		  <@vbutton class="button" value="${action.getText('new')}" onclick="newDaily()"/>
 		  	<#assign confirmMessage = "${action.getText('confirm.delete')}${action.getText('daily')}?" />	 
 	            <@vsubmit name="'delete'" value="'${action.getText('delete')}'">
-	               <@ww.param name="'onclick'" value="'return confirmDeletes(\"dailyIds\", \"${confirmMessage}\");'"/>
+	                <@ww.param name="'onclick'" value="'return confirmDeletes(\"dailyIdds\", \"${confirmMessage}\");'"/>
 	                <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
 	            </@vsubmit>
 		</@buttonBar>
@@ -83,14 +83,16 @@
 <script language="javascript">
   //打开编辑日报模态窗口
   function editDaily(v){
-      var url='${req.contextPath}/workReport/editDaily.html?daily.id='+v+'&weekly.id='+${req.getParameter('weekly.id')?if_exists};
-      popupModalDialog(url,900,600);
+      var url='${req.contextPath}/workReport/editDaily.html?daily.id='+v+'&weekly.id='+${req.getParameter('weekly.id')?if_exists}+'&popWindowFlag=popWindowFlag';
+      //popupModalDialog(url,900,600);
+      openNewWindow(url,1000,600);
       if(isIE()){self.location.reload();};
   }
   //打开新建日报模态窗口
   function newDaily(){
-  	  var url = '${req.contextPath}/workReport/editDaily.html?weekly.id='+${req.getParameter('weekly.id')?if_exists};
-	  popupModalDialog(url,900,600);
+  	  var url = '${req.contextPath}/workReport/editDaily.html?weekly.id='+${req.getParameter('weekly.id')?if_exists}+'&popWindowFlag=popWindowFlag';
+	  //popupModalDialog(url,900,600);
+	  openNewWindow(url,1000,600);
 	  if(isIE()){self.location.reload();};
   }
 </script>

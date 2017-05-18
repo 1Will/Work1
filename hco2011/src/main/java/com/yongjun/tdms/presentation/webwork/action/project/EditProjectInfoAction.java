@@ -10,6 +10,8 @@
 /*     */ import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo;
 /*     */ import com.yongjun.tdms.model.CustomerRelationship.stepInfo.StepInfo;
 /*     */ import com.yongjun.tdms.model.backvisit.BackVisit;
+import com.yongjun.tdms.model.base.event.EventNew;
+import com.yongjun.tdms.model.base.event.EventType;
 /*     */ import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
 import com.yongjun.tdms.model.project.ProjectInfo;
 import com.yongjun.tdms.model.project.projectInfoContract.ProjectInfoContract;
@@ -17,16 +19,23 @@ import com.yongjun.tdms.model.project.projectInfoPersonnels.ProjectInfoPersonnel
 /*     */ import com.yongjun.tdms.service.CustomerRelationship.contactArchives.ContactArchivesManager;
 /*     */ import com.yongjun.tdms.service.CustomerRelationship.customerProfiles.CustomerInfoManager;
 /*     */ import com.yongjun.tdms.service.backvisit.BackVisitManager;
+import com.yongjun.tdms.service.base.event.EventNewManager;
+import com.yongjun.tdms.service.base.event.EventTypeManager;
 /*     */ import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 import com.yongjun.tdms.service.project.ProjectInfoManager;
 import com.yongjun.tdms.service.project.projectInfoContract.ProjectInfoContractManager;
 import com.yongjun.tdms.service.project.projectInfoPersonnels.ProjectInfoPersonnelsManager;
+import com.yongjun.tdms.util.personnelFilesToUser.PersonnelFilesToUserManager;
 
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.Arrays;
+import java.util.HashMap;
 /*     */ import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONObject;
 /*     */ 
 /*     */ public class EditProjectInfoAction extends PrepareAction
 /*     */ {
@@ -39,6 +48,9 @@ import javax.servlet.http.HttpServletRequest;
             private final ProjectInfoPersonnelsManager projectInfoPersonnelsManager;
             private final ProjectInfoContractManager projectInfoContractManager;
 /*     */   private final UserManager userManager;
+			private final EventNewManager eventNewManager;
+			private final EventTypeManager eventTypeManager;
+			private final PersonnelFilesToUserManager personnelFilesToUserManager;
 /*     */   private ProjectInfo projectInfo;
             private ProjectInfoPersonnels projectInfoPersonnels;
             private String openFlag;
@@ -46,7 +58,7 @@ import javax.servlet.http.HttpServletRequest;
 /*     */
 /*     */   private PersonnelFiles personnelFiles;
 /*     */ 
-/*     */   public EditProjectInfoAction(CodeValueManager codeValueManager, ProjectInfoManager projectInfoManager, PersonnelFilesManager personnelFilesManager, CustomerInfoManager customerInfoManager, ContactArchivesManager contactArchivesManager, UserManager userManager,ProjectInfoPersonnelsManager projectInfoPersonnelsManager,ProjectInfoContractManager projectInfoContractManager)
+/*     */   public EditProjectInfoAction(CodeValueManager codeValueManager, ProjectInfoManager projectInfoManager, PersonnelFilesManager personnelFilesManager, CustomerInfoManager customerInfoManager, ContactArchivesManager contactArchivesManager, UserManager userManager,ProjectInfoPersonnelsManager projectInfoPersonnelsManager,ProjectInfoContractManager projectInfoContractManager,EventNewManager eventNewManager,EventTypeManager eventTypeManager,PersonnelFilesToUserManager personnelFilesToUserManager)
 /*     */   {
 /*  40 */     this.codeValueManager = codeValueManager;
 /*  41 */     this.projectInfoManager = projectInfoManager;
@@ -56,6 +68,9 @@ import javax.servlet.http.HttpServletRequest;
 /*  45 */     this.userManager = userManager;
               this.projectInfoPersonnelsManager =projectInfoPersonnelsManager;
               this.projectInfoContractManager=projectInfoContractManager;
+              this.eventNewManager=eventNewManager;
+              this.eventTypeManager=eventTypeManager;
+              this.personnelFilesToUserManager=personnelFilesToUserManager;
 /*     */   }
 /*     */   public ProjectInfo getProjectInfo() {
 /*  48 */     return this.projectInfo;
@@ -94,6 +109,10 @@ import javax.servlet.http.HttpServletRequest;
 /*  78 */       this.projectInfo.setCustomer(ci);
 /*     */     }
 /*     */ 
+/*  76 */     if (request.getParameter("projectInfo.isSaved")!=null) {
+/*  78 */       this.projectInfo.setIsSaved(request.getParameter("projectInfo.isSaved"));;
+/*     */     }
+/*     */ 
 /*  82 */     if (hasId("stateId")) {
 /*  83 */       CodeValue cv = this.codeValueManager.loadCodeValue(getId("stateId"));
               this.projectInfo.setState(cv);
@@ -114,16 +133,12 @@ import javax.servlet.http.HttpServletRequest;
 /*     */     }
 				User u=this.userManager.getUser();
               if(isNew){
-            	  
 //            	  CodeValue cv = this.codeValueManager.loadCodeValue(464l);//立项
-            	  
             	  List one = this.codeValueManager.loadByKey("code", Long.valueOf("20101"));
 					 if ((null != one) && (one.size() > 0)) {
 						 CodeValue co =(CodeValue)one.get(0);
-            	  this.projectInfo.setState(co);
+						 this.projectInfo.setState(co);
 					 }
-            	  
-            	  
             	  this.projectInfo.setCreator(u.getName());
             	  this.projectInfo.setLastOperator(u.getName());
             	  this.projectInfo.setCreateUser(u);
@@ -135,6 +150,34 @@ import javax.servlet.http.HttpServletRequest;
             	  }
             	  this.projectInfo.setLastOperator(u.getName());
               }
+              String submit =null;
+              if ("1".equals(this.request.getParameter("projectInfo.isSaved"))) {
+					try {
+						EventType eventType=null;
+						List<EventType> eventTypes =this.eventTypeManager.loadByKey("code", "10003");
+						if(eventTypes!=null&&eventTypes.size()>0){
+							eventType=eventTypes.get(0);
+						}else {
+							eventType = new EventType();
+							eventType.setId(4L);
+						}
+					 	EventNew event = new EventNew();
+					    event.setEffectflag("E");
+					    event.setEventType(eventType);
+					    event.setName("项目事件");
+					    event.setUserId(this.userManager.getUser().getId()+"");
+					    Map<String, String> map = new HashMap();
+					    String pids =this.personnelFilesToUserManager.loadUserIdToStrByProjectInfoId(this.projectInfo.getId(), this.projectInfo.getCreateUser());
+					    map.put("users",pids);
+					    map.put("projectInfoId", this.projectInfo.getId()+"");
+						String moreinfo = JSONObject.fromObject(map).toString();
+						event.setMoreinfo(moreinfo);
+						eventNewManager.storeEventNew(event);
+						submit ="submit";
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				}
 			  
 /*     */ 
 /*     */ 
@@ -193,10 +236,13 @@ import javax.servlet.http.HttpServletRequest;
 			
 /* 172 */     if (isNew) {
 /* 173 */       addActionMessage(getText("projectInfo.add.success", Arrays.asList(new Object[] { this.projectInfo.getName() })));
-/*     */ 
 /* 175 */       return "success";
 /*     */     }
-/* 177 */     addActionMessage(getText("projectInfo.edit.success", Arrays.asList(new Object[] { this.projectInfo.getName() })));
+			  if(submit!=null){
+/* 177 */     	addActionMessage(getText("projectInfo.submit.success", Arrays.asList(new Object[] { this.projectInfo.getName() })));
+			  }else {
+/* 177 */     	addActionMessage(getText("projectInfo.edit.success", Arrays.asList(new Object[] { this.projectInfo.getName() })));
+			}
 /* 179 */     return "success";
 /*     */   }
 /*     */ 

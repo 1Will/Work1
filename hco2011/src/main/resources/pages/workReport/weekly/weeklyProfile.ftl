@@ -367,11 +367,11 @@
 <#if !first>
 <ul id="beautytab">
 	<li>
-		<a id="dailyInfo" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/workReport/listDailyTab.html?weekly.id=${weekly.id}&&org.id=${weekly.organization.id}&&rapporteur.id=${weekly.rapporteur.id}' target="frame" >日报信息</a>
+		<a id="dailyInfo" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/workReport/listDailyTab.html?weekly.id=${weekly.id}&org.id=${weekly.organization.id}&rapporteur.id=${weekly.rapporteur.id}' target="frame" >日报信息</a>
 	</li>
 	<li>
 		<a id="nextWeekPlanInfo" onclick="activeTab(this);"  href='listNextWeekPlan.html?weekly.id=${weekly.id}' target="frame" >${action.getText('下周计划')}</a>
 	</li>
 </ul>
-<iframe name="frame" frameborder="0.5" src="${req.contextPath}/workReport/listDailyTab.html?weekly.id=${weekly.id}&&org.id=${weekly.organization.id}&&rapporteur.id=${weekly.rapporteur.id}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="100%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/workReport/listDailyTab.html?weekly.id=${weekly.id}&org.id=${weekly.organization.id}&rapporteur.id=${weekly.rapporteur.id}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="40%"/>
 </#if>

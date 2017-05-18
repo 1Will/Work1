@@ -109,8 +109,9 @@
 	 //寮瑰嚭鑱旂郴浜虹淮鎶ゆā鎬佺獥浣�
 	function caProfile_OpenDialog(caId){
 	   var url = "${req.contextPath}/customerRelationship/editContactArchives.html?contactArchives.id="+caId+"&readOnly=${req.getParameter('readOnly')?if_exists}";
-	   popupModalDialog(url, 850, 600);
+	   //popupModalDialog(url, 850, 600);
 	   //window.open(url);
+	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }
 </script>

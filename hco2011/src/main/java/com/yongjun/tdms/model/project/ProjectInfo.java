@@ -24,6 +24,7 @@ import java.util.Date;
 			private CodeValue businessType;//项目联系人业务属性
             private User createUser;
             private String conOutline;//联系人角色说明
+            private String isSaved;//提交判断
 /*     */ 
 /*     */   public boolean equals(Object arg0)
 /*     */   {
@@ -111,6 +112,12 @@ import java.util.Date;
 			}
 			public void setConOutline(String conOutline) {
 				this.conOutline = conOutline;
+			}
+			public String getIsSaved() {
+				return isSaved;
+			}
+			public void setIsSaved(String isSaved) {
+				this.isSaved = isSaved;
 			}
 			
 			

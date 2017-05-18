@@ -52,10 +52,10 @@
 /*     */   {
 /* 113 */     return super.loadByKeyArray(Duty.class, keyNames, keyValues);
 /*     */   }
-			public  List loadByDeptId(String deptid)
+			public  List<Duty> loadByDeptId(String deptid)
 /*     */     throws DaoException
 /*     */   {
-/* 113 */      String hql = "select a.id,a.name from Duty as a where a.dept.id = " + deptid;
+/* 113 */      String hql = " from Duty a where a.dept.id = " + deptid;
 /* 87 */     return getSession().createQuery(hql).list();
 /*     */   }
 /*     */ }

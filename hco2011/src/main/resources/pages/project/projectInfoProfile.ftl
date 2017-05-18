@@ -28,6 +28,7 @@
     	<@ww.hidden name="'stateId'" value="''"/>
     	<@ww.hidden name="'contact.id'" value="''"/>
     	<@ww.hidden name="'controller.id'" value="''"/>
+    	<@ww.hidden name="'projectInfo.isSaved'" value="''"/>
     	<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
     	<#if projectInfo.id?exists>
     		<@ww.hidden name="'projectInfo.id'" value="#{projectInfo.id}"/>
@@ -155,6 +156,12 @@
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
 		</#if>
+		
+		<#if projectInfo.isSaved?exists &&projectInfo.isSaved=='0' >
+	    	<@vsubmit name="'submit'" value="'${action.getText('提交')}'" onclick="'return submitt();'"/>
+	    <#else>
+	    	<@vsubmit name="'submit'" value="'${action.getText('提交')}'" onclick="'return submitt();'" disabled="true"/>
+	    </#if>
 	
 	<#if notNewFlag?exists&&notNewFlag==notNewFlag>
 	<#else>
@@ -264,6 +271,40 @@
      			getObjByName('projectInfo.outline').focus();
      			return false;
      		}
+     	getObjByName('saveProjectInfo_projectInfo.isSaved').value= 0 ;
+		return true;
+	}
+	//提交前给隐藏域赋值和验证字段
+	function submitt(){
+	/* 验证项目名称*/
+	if('' == getObjByName('projectInfo.name').value){
+			alert("${action.getText('name.required')}");
+     		return false;
+		}
+		/* 验证客户名称*/
+		if('' == getObjByName('customer.name').value){
+			alert("${action.getText('customer.name.required')}");
+     		return false;
+		}
+		/* 验证项目联系人*/
+		if('' == getObjByName('contact.name').value){
+			alert("${action.getText('contact.name.required')}");
+     		return false;
+		}
+		/* 验证项目负责人*/
+		if('' == getObjByName('controller.name').value){
+			alert("${action.getText('controller.name.required')}");
+     		return false;
+		}
+		/* 验证项目概要 */
+     		if(''!= getObjByName('projectInfo.outline').value&&!isValidLengthValue(getObjByName('projectInfo.outline').value,0,500)){
+     			alert("${action.getText('outline.maxLength')}");
+     			getObjByName('projectInfo.outline').value="";
+     			getObjByName('projectInfo.outline').focus();
+     			return false;
+     		}
+     	
+     	getObjByName('saveProjectInfo_projectInfo.isSaved').value=1;
 		return true;
 	}
 	

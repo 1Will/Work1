@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2010 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: dailyReply.hbm.xml 2017-05-10  $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.workReport.daily.ReplyDaily" table="t_replyDaily">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_replyDaily_sequence</param>
+				<param name="parameters">START WITH 1</param>
+			</generator>
+		</id>
+		
+        <property name="userName" type="string">
+			<column name="USERNAME" not-null="true" sql-type="NVARCHAR(10)" />
+		</property>
+        <property name="content" type="string">
+			<column name="CONTENT" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+        
+        <property name="replyDate" type="timestamp">
+			<column name="REPLYDATE" not-null="true" />
+		</property>
+		
+		<many-to-one name="user" class="com.yongjun.pluto.model.security.User">
+			<column name="USERID" not-null="true"/>
+		</many-to-one>
+		
+		<many-to-one name="daily" class="com.yongjun.tdms.model.workReport.daily.Daily">
+			<column name="DAILYID" not-null="true"/>
+		</many-to-one>
+		
+	</class>
+</hibernate-mapping>

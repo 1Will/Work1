@@ -34,7 +34,9 @@ import java.util.Set;
 /*     */   private String solutions;
 /*     */   private String tomorrowPlan;
 /*     */   private String comment;
+			private String backVisitContext;
 /*     */   private Weekly weekly;
+			private String isSaved;//存在并且等于0，，方可提交
 			public Set bvtList =new HashSet();
 /*     */ 
 /*     */   public boolean equals(Object arg0)
@@ -218,6 +220,19 @@ import java.util.Set;
 			public void setBvtList(Set bvtList) {
 				this.bvtList = bvtList;
 			}
+			public String getBackVisitContext() {
+				return backVisitContext;
+			}
+			public void setBackVisitContext(String backVisitContext) {
+				this.backVisitContext = backVisitContext;
+			}
+			public String getIsSaved() {
+				return isSaved;
+			}
+			public void setIsSaved(String isSaved) {
+				this.isSaved = isSaved;
+			}
+			
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

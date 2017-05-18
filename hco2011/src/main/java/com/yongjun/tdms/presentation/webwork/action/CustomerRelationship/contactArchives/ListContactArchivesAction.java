@@ -83,6 +83,9 @@
 /* 125 */     if (hasId("customerInfo.id")) {
 /* 126 */       map.put("customerId", getId("customerInfo.id"));
 /*     */     }
+/* 125 */     if (this.request.getParameter("contactArchives.createdTime")!=null) {
+	/* 126 */       map.put("contactArchives.createdTime", this.request.getParameter("contactArchives.createdTime")+"%");
+/*     */     }
 			  if (hasId("projectInfo.id")) {
 /* 126 */       map.put("projectInfoId", getId("projectInfo.id"));
 /*     */     }

@@ -70,6 +70,9 @@ import java.util.HashMap;
 	         if (hasId("customer.id")) {
 /* 126 */       map.put("customerId", getId("customer.id"));
 /*     */     }
+	         if (this.request.getParameter("projectInfo.createdTime")!=null) {
+/* 126 */       map.put("projectInfo.createdTime", this.request.getParameter("projectInfo.createdTime")+"%");
+/*     */     }
 /*  89 */     return map;
 /*     */   }
 /*     */ 

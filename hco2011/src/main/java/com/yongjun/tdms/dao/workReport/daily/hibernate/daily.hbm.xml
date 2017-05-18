@@ -54,7 +54,11 @@
 		</property>
         
         <property name="workContext" type="string">
-			<column name="WORKCONTEXT" not-null="true" sql-type="NVARCHAR(500)" />
+			<column name="WORKCONTEXT" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+        
+        <property name="backVisitContext" type="string">
+			<column name="BACKVISITCONTEXT" not-null="false" sql-type="NVARCHAR(1000)" />
 		</property>
         
         <property name="questions" type="string">
@@ -63,6 +67,10 @@
         
         <property name="solutions" type="string">
 			<column name="SOLUTIONS" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+        
+        <property name="isSaved" type="string">
+			<column name="ISSAVED" not-null="false" sql-type="NVARCHAR(1)" />
 		</property>
         
         <property name="tomorrowPlan" type="string">
@@ -93,7 +101,7 @@
 		</many-to-one>
 		
        	<many-to-one name="weekly" class="com.yongjun.tdms.model.workReport.weekly.Weekly">
-			<column name="WEEKLY_ID" not-null="true"/>
+			<column name="WEEKLY_ID" not-null="false"/>
 		</many-to-one>
    
         <property name="disabled" type="boolean">
@@ -106,7 +114,7 @@
         <many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization">
 			<column name="ORG_ID"/>
 		</many-to-one>
-		<set name="bvtList" table="t_daily_backVisit">  
+		<set name="bvtList" table="t_daily_backVisit" cascade="none">  
             <key column="DAILY_ID" />  
             <many-to-many column="BACKVISIT_Id" unique="true"  class="com.yongjun.tdms.model.backvisit.BackVisit" />  
         </set> 

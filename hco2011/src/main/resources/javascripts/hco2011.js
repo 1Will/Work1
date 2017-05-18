@@ -194,6 +194,7 @@ function areaCallBack(data){
  * @param flag 标识查询或者维护
  */
 var duty_Dept_Id = "";
+var duty_Id = "";
 function DutyCascadeDWR(deptId,dutyId,orgId,msg,flag){
 	duty_Dept_Id = deptId;
 	duty_Id = dutyId;
@@ -203,8 +204,8 @@ function DutyCascadeDWR(deptId,dutyId,orgId,msg,flag){
 		DeptCascadeDutyJs.loadDutiesByDept(deparmentId,orgId,flag,dutyCallBack);
 	}else{
 		DWRUtil.removeAllOptions(duty_Id);
-		getObjByName(duty_Id).options.add(new Option(message,0));
-		document.all(duty_Id).options[0].value = -1;
+		getObjByName(duty_Id).options.add(new Option(message,-1));
+		//document.all(duty_Id).options[0].value = -1;
 	}
 }
 function dutyCallBack(data){
@@ -220,7 +221,7 @@ function dutyCallBack(data){
 //				getObjByName(duty_Id).options[i].value = -1;
 //				getObjByName(duty_Id).options.add(new Option(data[i][1],data[i][0]));
 //			}else{
-				getObjByName(duty_Id).options.add(new Option(data[i][1],data[i][0]));
+				getObjByName(duty_Id).options.add(new Option(data[i].name,data[i].id));
 //			}
 		}
 		

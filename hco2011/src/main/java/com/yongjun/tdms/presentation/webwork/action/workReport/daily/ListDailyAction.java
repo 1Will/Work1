@@ -16,12 +16,15 @@
 /*     */ import com.yongjun.tdms.service.base.org.DepartmentManager;
 /*     */ import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 /*     */ import com.yongjun.tdms.service.workReport.daily.DailyManager;
+
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.List;
 /*     */ import java.util.Map;
 /*     */ import java.util.Set;
+
 /*     */ import javax.servlet.http.HttpServletRequest;
-/*     */ import org.apache.commons.logging.Log;
+
+import org.apache.commons.logging.Log;
 /*     */ 
 /*     */ public class ListDailyAction extends ValueListAction
 /*     */ {
@@ -36,6 +39,8 @@
 /*     */   private Long orgId;
 /*     */   private User loginUser;
 /*     */   private String isSuperSys;
+			private Long weeklyId;
+			private Long rapporteurId;
 /*     */ 
 /*     */   public ListDailyAction(DailyManager dailyManager, UserManager userManager, PersonnelFilesManager personnelFilesManager, InstitutionManager institutionManager, DepartmentManager departmentManager, CodeValueManager codeValueManager)
 /*     */   {
@@ -67,16 +72,26 @@
 /*     */     }
 /*     */     else
 /*     */     {
-/* 133 */       List dailyIds = getPerDailyIds(user);
-/* 134 */       if ((null != dailyIds) && (!dailyIds.isEmpty())) {
-/* 135 */         map.put("dailyIds", dailyIds);
+				List deptIds = getDeptsByuserId(user);
+/* 167 */       if ((null != deptIds) && (!deptIds.isEmpty())) {
+/* 168 */         map.put("deptIds", deptIds);
 /*     */       } else {
-/* 137 */         dailyIds = new ArrayList();
-/* 138 */         dailyIds.add(Long.valueOf(1L));
-/* 139 */         map.put("dailyIds", dailyIds);
+/* 170 */         deptIds = new ArrayList();
+/* 171 */         deptIds.add(Long.valueOf(1L));
+/* 172 */         map.put("deptIds", deptIds);
 /*     */       }
-/* 141 */       map.put("deptList", getDeptsByuserId(user));
+/* 174 */       map.put("deptList", getDeptsByuserId(user));
 /*     */     }
+///* 133 */       List dailyIds = getPerDailyIds(user);
+///* 134 */       if ((null != dailyIds) && (!dailyIds.isEmpty())) {
+///* 135 */         map.put("dailyIds", dailyIds);
+///*     */       } else {
+///* 137 */         dailyIds = new ArrayList();
+///* 138 */         dailyIds.add(Long.valueOf(1L));
+///* 139 */         map.put("dailyIds", dailyIds);
+///*     */       }
+///* 141 */       map.put("deptList", getDeptsByuserId(user));
+///*     */     }
 /*     */ 
 /* 144 */     if (null != this.request.getParameter("daily.id")) {
 /* 145 */       Long rdId = Long.valueOf(this.request.getParameter("daily.id"));
@@ -168,13 +183,17 @@
 /*     */   {
 /* 256 */     this.orgId = this.userManager.getUser().getOrganization().getId();
 /*     */ 
-/* 258 */     if (hasIds("dailyIds")) {
-/* 259 */       this.dailys = this.dailyManager.loadAllDaily(getIds("dailyIds"));
+/* 258 */     if (hasIds("dailyIdds")) {
+/* 259 */       this.dailys = this.dailyManager.loadAllDaily(getIds("dailyIdds"));
 /*     */     }
 /*     */ 
 /* 263 */     if (this.request.getParameter("weekly.id") != null) {
 /* 264 */       setFirst(false);
+				this.weeklyId=Long.parseLong(this.request.getParameter("weekly.id"));
 /*     */     }
+/* 263 */     if (this.request.getParameter("rapporteur.id") != null) {
+				this.rapporteurId=Long.parseLong(this.request.getParameter("rapporteur.id"));
+			  }
 /*     */ 
 /* 267 */     boolean b = isSuperManager();
 /* 268 */     if (b)
@@ -310,6 +329,19 @@
 /*     */   {
 /* 469 */     return this.isSuperSys;
 /*     */   }
+			public Long getWeeklyId() {
+				return weeklyId;
+			}
+			public void setWeeklyId(Long weeklyId) {
+				this.weeklyId = weeklyId;
+			}
+			public Long getRapporteurId() {
+				return rapporteurId;
+			}
+			public void setRapporteurId(Long rapporteurId) {
+				this.rapporteurId = rapporteurId;
+			}
+					
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

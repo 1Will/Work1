@@ -338,6 +338,20 @@
 			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.daily.hibernate.HibernateDaily"></bean>
 		</property>		
 	</bean>
+	<!-- 日报回复信息 -->
+	<bean id="dailyReplyHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/daily/hibernate/replyDaily.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="replyDailyDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.daily.ReplyDailyDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.daily.hibernate.HibernateReplyDaily"></bean>
+		</property>		
+	</bean>
 	<!-- 下周计划信息 -->
 	<bean id="nextWeekPlanHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
 		<constructor-arg>

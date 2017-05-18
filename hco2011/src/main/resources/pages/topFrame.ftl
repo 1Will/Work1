@@ -32,7 +32,7 @@
 <body>
 	
 <@ww.form name="'logout'" action="'logout'" method="'post'">
-<table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%" background="images/3-1.jpg">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" height="110" background="images/3-1.jpg">
   <tr height="40">
     <td>
         <table width="100%">
