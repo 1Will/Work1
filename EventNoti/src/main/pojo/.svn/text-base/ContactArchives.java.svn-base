@@ -9,8 +9,8 @@ public class ContactArchives implements java.io.Serializable {
 	private Long version; //版本
 	private Integer disabled; //失效
 	private String contactName;  //联系人
-	private String mobilePhone;        //电话
-	private String phone;         //手机号
+	private String mobilePhone;        //手机号
+	private String phone;         //电话
 	private Integer sex;       //性别
 	private String address;    //地址
 	private Date   birthday;    //生日
@@ -26,16 +26,16 @@ public class ContactArchives implements java.io.Serializable {
 	private String qq;
 	private Long type; //熟悉程度
 	private java.util.Date createdTime;//创建时间
+	private String creatorName;//创建人
+	private String lastOperator;//最后修改人
+	private Date   lastModifiedTime;  //最后修改时间
 	private Long customerId;//客户Id
+	private Long customerTypeId;//客户类型
+	private String customerInfoCode;//客户编号
 	
-	private String customerInfoCode;  //顾客信息代码编号
-	
+
 	/*//后面属性未使用
 	private String  homePhone;  //家庭电话 
-	private String  qq;  //qq
-	private String  email;  //email
-	private Date  createdTime;  //创建时间
-	private Date   lastModifiedTime;  //最后修改时间
 	private String  enterpriseSynopsis;  //印象描述
 	private String  idCard;  //身份证
 	private String  weChat;  //微信 
@@ -109,8 +109,6 @@ public class ContactArchives implements java.io.Serializable {
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
-	
-	
 	public String getContactName() {
 		return contactName;
 	}
@@ -123,6 +121,73 @@ public class ContactArchives implements java.io.Serializable {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+	
+/*	public String getCustomerInfoCode() {
+		return customerInfoCode;
+	}
+	public void setCustomerInfoCode(String customerInfoCode) {
+		this.customerInfoCode = customerInfoCode;
+	}
+	public String getHomePhone() {
+		return homePhone;
+	}
+	public void setHomePhone(String homePhone) {
+		this.homePhone = homePhone;
+	}
+	public String getQq() {
+		return qq;
+	}
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Date getCreatedTime() {
+		return createdTime;
+	}
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
+	}
+	public Date getLastModifiedTime() {
+		return lastModifiedTime;
+	}
+	public void setLastModifiedTime(Date lastModifiedTime) {
+		this.lastModifiedTime = lastModifiedTime;
+	}
+	public String getEnterpriseSynopsis() {
+		return enterpriseSynopsis;
+	}
+	public void setEnterpriseSynopsis(String enterpriseSynopsis) {
+		this.enterpriseSynopsis = enterpriseSynopsis;
+	}
+	public String getIdCard() {
+		return idCard;
+	}
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
+	}
+	public String getWeChat() {
+		return weChat;
+	}
+	public void setWeChat(String weChat) {
+		this.weChat = weChat;
+	}
+	public String getPostalAddress() {
+		return postalAddress;
+	}
+	public void setPostalAddress(String postalAddress) {
+		this.postalAddress = postalAddress;
+	}
+	public String getCustType() {
+		return custType;
+	}
+	public void setCustType(String custType) {
+		this.custType = custType;
+	}*/
 	
 	public String getCustomerInfoCode() {
 		return customerInfoCode;
@@ -197,9 +262,6 @@ public class ContactArchives implements java.io.Serializable {
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
-
-	
-
 	public String getEnterpriseSynopsis() {
 		return enterpriseSynopsis;
 	}
@@ -248,7 +310,34 @@ public class ContactArchives implements java.io.Serializable {
 	public void setDisabled(Integer disabled) {
 		this.disabled = disabled;
 	}
-
+	public Date getLastModifiedTime() {
+		return lastModifiedTime;
+	}
+	public void setLastModifiedTime(Date lastModifiedTime) {
+		this.lastModifiedTime = lastModifiedTime;
+	}
+	
+	public String getLastOperator() {
+		return lastOperator;
+	}
+	public void setLastOperator(String lastOperator) {
+		this.lastOperator = lastOperator;
+	}
+	public String getCreatorName() {
+		return creatorName;
+	}
+	public void setCreatorName(String creatorName) {
+		this.creatorName = creatorName;
+	}
+	
+	
+	public Long getCustomerTypeId() {
+		return customerTypeId;
+	}
+	public void setCustomerTypeId(Long customerTypeId) {
+		this.customerTypeId = customerTypeId;
+	}
+    
     
 	
 }

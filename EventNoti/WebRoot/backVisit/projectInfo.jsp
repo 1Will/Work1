@@ -4,10 +4,10 @@
 	contentType="text/html; charset=UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%
+<%  SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
     ProjectInfo projectInfo=(ProjectInfo)request.getAttribute("projectInfo");
     String projectName=projectInfo.getProjectName();
-    String code=projectInfo.getCode();
+  //  String code=projectInfo.getCode(); 项目编号不展示
     String outline=projectInfo.getOutline();
     String creatorName=projectInfo.getCreatorName();
     Date createdTime=projectInfo.getCreatedTime();
@@ -73,15 +73,7 @@
 							<%=(projectName==null||projectName.equals(""))?"":projectName%></em>
 						</div>
 					</div>
-					<div class="weui-form-preview__hd">
-						<div class="weui-form-preview__item">
-							<label class="weui-form-preview__label">
-								项目编号
-							</label>
-							<em class="weui-form-preview__value">
-							<%=(code==null||code.equals(""))?"":code%></em>
-						</div>
-					</div>
+					
 					<div class="weui-form-preview__hd">
 						<div class="weui-form-preview__item">
 							<label class="weui-form-preview__label">
@@ -115,7 +107,7 @@
 								创建时间
 							</label>
 							<em class="weui-form-preview__value">
-							<%=(createdTime==null||createdTime.equals(""))?"":createdTime%></em>
+							<%=(createdTime==null||createdTime.equals(""))?"":format1.format(createdTime)%></em>
 						</div>
 					</div>
 

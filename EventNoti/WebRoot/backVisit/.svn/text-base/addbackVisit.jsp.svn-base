@@ -1,3 +1,4 @@
+<%@page import="main.pojo.PersonnelFiles"%>
 <%@ page language="java" pageEncoding="UTF-8"
 	contentType="text/html; charset=UTF-8"%>
 
@@ -134,6 +135,54 @@ function searchData(){
         }
     });
 }
+
+   function select2(){
+   //   alert("进入select2()");
+      var selected=$("#employees").val()+",";
+          selected=selected.substring(0,selected.length-1);   
+      document.getElementById("employees2").value=selected;
+  //    alert("selected值为: "+selected);
+      
+   }
+    
+     //获取当前(yyyy-MM-dd)型日期
+     function aa(){
+    // alert("进入aa方法！");
+    var nowDate=formatDate1();
+    document.getElementById("visitDate").value=nowDate; 
+    var nextDate=formatDate2();
+    document.getElementById("nextVisitDate").value=nextDate;
+      }
+ 
+			function formatDate1() {
+				var d = new Date(); 
+				month = '' + (d.getMonth() + 1);				 
+				day = '' + d.getDate();
+				year = d.getFullYear();
+				if (month.length < 2) {
+					month = '0' + month;
+				}
+				if (day.length < 2) {
+					day = '0' + day;
+				}
+				return [ year, month, day ].join('-');
+			}
+		
+			function formatDate2() {
+				var d = new Date(); 
+				month = '' + (d.getMonth() + 1);				 
+				day = '' + (d.getDate()+1);
+				year = d.getFullYear();
+				if (month.length < 2) {
+					month = '0' + month;
+				}
+				if (day.length < 2) {
+					day = '0' + day;
+				}
+				return [ year, month, day ].join('-');
+			}
+
+ 
  function submitInfo(){
   
        if(document.getElementById("customerName").value.replace(/\s*/g, "") == "")
@@ -183,11 +232,12 @@ right: 1%;
 </style>
 	</head>
 
-	<body>
+	<body onload="aa()">
 		<div class="page">
 			<form name="myForm" id="myForm" method="post" action="/EventNoti/addNewBackVisitServlet">
-				<input type="hidden" name="userid" id="userid"
-					value="<%=userInfo.getId()%>">
+				<input type="hidden" name="userid" id="userid" value="<%=userInfo.getId()%>">
+				<input type="hidden" name="code" id="code" value="<%=userInfo.getCode()%>">
+				<input type="hidden" name="employees2" id="employees2" value=" ">
 				<input type="hidden" id="customerNameid" name="customerNameid"
 					value="" />
 				<div class="bd">
@@ -222,28 +272,21 @@ right: 1%;
 							</div>
 						</div>
 					</div>
-
-       
-
+					
 					<div class="weui_cells_title">
 						客户名称
 					</div>
-<div class="weui_cells weui_cells_form">
+                      <div class="weui_cells weui_cells_form">
 						<div class="weui_cell">
 							<div class="weui_cell_bd weui_cell_primary">
 								<textarea id="customerName" name="customerName" class="weui_textarea"
 									placeholder="" rows="1"></textarea>
-<a class="weui_btn weui_btn_mini weui_btn_primary"
+                                     <a class="weui_btn weui_btn_mini weui_btn_primary"
 									href="javascript:void(0)"
 									onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">选择</a>
 							</div>
 						</div>
 					</div>
-			
-						
- 
-							
-							
 						
 					<div class="weui_cells_title">
 						联系人
@@ -289,6 +332,55 @@ right: 1%;
 						</div>
 					</div>
 
+					<div class="weui_cells weui_cells_form">
+						<div class="weui_cell">
+							<div class="weui_cell_hd">
+								<label for="" class="weui_label">
+									下次回访日期
+								</label>
+							</div>
+							<div class="weui_cell_bd weui_cell_primary">
+								<input class="weui_input" type="date" id="nextVisitDate"
+									name="nextVisitDate" />
+							</div>
+						</div>
+					</div>
+                    <div class="weui_cells weui_cells_form">
+					<div class="weui_cell">
+						<div class="weui_cell_hd">
+							<label for="" class="weui_label">
+								回访耗时(分)
+							</label>
+						</div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<input class="weui_input" type="number" value=""  id="expendTime"
+								name="expendTime" />
+						</div>
+					</div>
+				</div>
+                    
+                    <div class="weui_cells_title">
+						回访人同行者
+					</div>
+					<div class="weui_cells">
+						<div class="weui_cell weui_cell_select">
+							<div class="weui_cell_bd weui_cell_primary">
+								<select class="weui_select" name="employees"
+									id="employees"  multiple="multiple" onchange="select2()" >
+									<% 
+									   List<PersonnelFiles> pList=(List<PersonnelFiles>)request.getAttribute("personnelFilesList");
+									   for(int i=0;i<pList.size();i++){
+									   PersonnelFiles personnelFiles=pList.get(i);
+									 %>
+									<option value=<%=personnelFiles.getName()%>>
+								         <%=personnelFiles.getName()%>
+								    </option>
+                                     <% }%>
+								</select>
+							</div>
+						</div>
+					</div>
+                    
 					<div class="weui_cells_title">
 						回访方式
 					</div>
@@ -308,20 +400,10 @@ right: 1%;
 									<option value="449">
 										对方来访
 									</option>
-
-				</div>
-				<div class="weui_cells_title">
-					联系人
-				</div>
-				<div class="weui_cells">
-					<div class="weui_cell weui_cell_select">
-						<div class="weui_cell_bd weui_cell_primary">
-							<select class="weui_select" name="contactName" id="contactName">
-
 								</select>
-							</div>
-						</div>
-					</div>
+                         </div>
+				     </div>
+				
 					<div class="weui_cells_title">
 						回访内容
 					</div>
@@ -381,25 +463,21 @@ right: 1%;
 								<i class="weui_icon_search"></i>
 								<input id="searchName" name="searchName" type="search"
 									 placeholder="" />
-<a onclick="searchData();" href="javascript:" class="weui_btn weui_btn_mini weui_btn_primary">搜索</a>
-<a href="javascript:void(0)" class="weui_btn weui_btn_mini weui_btn_primary" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+                                 <a onclick="searchData();" href="javascript:" class="weui_btn weui_btn_mini weui_btn_primary">搜索</a>
+                                 <a href="javascript:void(0)" class="weui_btn weui_btn_mini weui_btn_primary" 
+                                 onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
 							关闭</a>
 							</div>
 						</form>
-					
-						
-						
 					</div>
 					<div id="searchResult">
-
-
 					</div>
-
 				</div>
 				<div id="fade" class="black_overlay">
 				</div>
-			</form>
-		</div>
+			</div>
+		  </form>
+	     </div>
 
 	</body>
 </html>

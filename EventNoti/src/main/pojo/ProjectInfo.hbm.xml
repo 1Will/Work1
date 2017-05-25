@@ -18,8 +18,25 @@
         <property name="code" type="java.lang.String">
             <column name="CODE" />
         </property>
-        <!-- 项目负责人 -->
-           <property name="creatorName"  column="CREATOR" type="string" length="40"/>
+        <!-- 项目创建人 -->
+           <property name="creatorName"  column="CREATOR" type="string" />
+        <!-- 创建人Id  User表-->
+           <property name="creatorId"  column="createUser_id" type="java.lang.Long" />
+        <!-- 客户id 客户表-->
+	   <property name="customerId" type="java.lang.Long">
+            <column name="customerInfo_id" />
+        </property>
+        <!-- 项目联系人id 联系人表-->
+	   <property name="contactId" type="java.lang.Long">
+            <column name="CONTACT_ID" />
+        </property>
+        <!-- 项目负责人id 人事表-->
+	   <property name="controllerId" type="java.lang.Long">
+            <column name="project_Controller_id" />
+        </property>
+        <!-- 联系人角色说明 -->
+        <property name="conOutline" column="conOutline" type="string" length="1000"/> 
+
         <!-- 最后跟进人 -->
         <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/> 
         <!-- 项目概述-->
@@ -38,13 +55,13 @@
         <property name="version" type="java.lang.Long">
             <column name="VERSION" />
         </property>
+        <!--业务属性:使用者 决策者 财务 521 522 524-->
+        <property name="businessType" type="java.lang.Long">
+            <column name="businessType" />
+        </property>
         <!--失效 -->
         <property name="disabled" type="java.lang.Integer">
             <column name="DISABLED" />
-        </property>
-
-	   <property name="customerinfoid" type="java.lang.Long">
-            <column name="CUSTOMERINFO_ID" />
         </property>
 
         
@@ -52,8 +69,10 @@
         <!-- <property name="conactOutline" type="java.lang.String">
             <column name="CONOUTLINE" />
         </property> -->
-        
-		<!-- 联系人 
+        <!--     项目客户 
+		<many-to-one name="customer" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo" lazy="false">
+			<column name="customerInfo_id" not-null="false" />
+		          联系人 
 		<many-to-one name="contact" class="com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives" lazy="false">
 			<column name="CONTACT_ID" not-null="false" />
 		</many-to-one> -->

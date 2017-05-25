@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import main.java.task.BackVisitIntervalTimerTask;
 import main.java.task.BirthdayTimerTask;
 import main.java.task.ContractTimerTask;
 
@@ -48,6 +49,8 @@ public class TimerManager {
         	  task = new  BirthdayTimerTask();
           }else if(type.equals("0002")){
         	  task = new  ContractTimerTask();
+          }else if(type.equals("0003")){//更新拜访时间间隔
+        	  task = new  BackVisitIntervalTimerTask();
           }
 //         NFDFlightDataTimerTask task = new NFDFlightDataTimerTask();
          //安排指定的任务在指定的时间开始进行重复的固定延迟执行。

@@ -5,8 +5,8 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%
     ContactArchives contactArchives=(ContactArchives)request.getAttribute("contactArchives");
-    String phone=contactArchives.getPhone();
-    String mobilePhone=contactArchives.getMobilePhone();
+    String phone=contactArchives.getPhone();//接收座机号码
+    String mobilePhone=contactArchives.getMobilePhone();//接收手机号码
     String contactName=contactArchives.getContactName();
     Integer sex=contactArchives.getSex();
     String honorific=contactArchives.getHonorific();
@@ -121,7 +121,7 @@
 								联系电话
 							</label>
 							<em class="weui-form-preview__value">
-							<%=(mobilePhone==null||mobilePhone.equals(""))?"":mobilePhone%></em>
+							<%=(phone==null||phone.equals(""))?"":phone%></em>
 						</div>
 					</div>
 					<div class="weui-form-preview__hd">
@@ -130,7 +130,7 @@
 								手机号码
 							</label>
 							<em class="weui-form-preview__value">
-							<%=(phone==null||phone.equals(""))?"":phone%></em>
+							<%=(mobilePhone==null||mobilePhone.equals(""))?"":mobilePhone%></em>
 						</div>
 					</div>
 					<div class="weui-form-preview__hd">
@@ -148,7 +148,7 @@
 								地址
 							</label>
 							<em class="weui-form-preview__value">
-							<%=(duty==null||duty.equals(""))?"":duty%></em>
+							<%=(address==null||address.equals(""))?"":address%></em>
 						</div>
 					</div>
 

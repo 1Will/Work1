@@ -49,12 +49,7 @@ import net.sf.json.JSONObject;
 /*     */   private BackVisit backVisit;
 /*     */   private String fromType;
             private String openFlag;//如果存在就是从客户管理、联系人管理=项目管理中的弹出修改页面，控制点击返回是关闭 
-public String getFromType() {
-	return fromType;
-}
-public void setFromType(String fromType) {
-	this.fromType = fromType;
-}
+            private CustomerInfo customerInfo;
 /*     */   private StepInfo stepInfo;
 /*     */   private PersonnelFiles personnelFiles;
 /*     */ 
@@ -106,12 +101,12 @@ public void setFromType(String fromType) {
 			  }
 /*     */ 
 /*  76 */     if (hasId("customer.id")) {
-/*  77 */       CustomerInfo ci = this.customerInfoManager.loadCustomerInfo(getId("customer.id"));
-/*  78 */       this.backVisit.setCustomerName(ci.getName());
-/*  79 */       this.backVisit.setCustomerInfo(ci);
+/*  77 */       customerInfo = this.customerInfoManager.loadCustomerInfo(getId("customer.id"));
+/*  78 */       this.backVisit.setCustomerName(customerInfo.getName());
+/*  79 */       this.backVisit.setCustomerInfo(customerInfo);
 				if(isNew){
-					this.backVisit.setCustomerStating(ci.getState());  
-					this.backVisit.setCustomerSteping(ci.getStep());
+					this.backVisit.setCustomerStating(customerInfo.getState());  
+					this.backVisit.setCustomerSteping(customerInfo.getStep());
 	  
 				}
 /*     */     }
@@ -188,25 +183,19 @@ public void setFromType(String fromType) {
 			    }
 /*     */ 
 /* 124 */     if (isNew) {
+	
 /*     */       try
 /*     */       {
 /* 127 */         List<BackVisit> backVisits = this.backVisitManager.loadByKey("customerInfo", this.backVisit.getCustomerInfo());
-/*     */         Long sum;
-/* 129 */         if (null != backVisits) {
-/* 130 */           sum = Long.valueOf(backVisits.size() + 1);
-/* 131 */           this.backVisit.setBackVisitSum(sum);
-/* 132 */           for (BackVisit b : backVisits) {
-/* 133 */             b.setBackVisitSum(sum);
-/* 134 */             this.backVisitManager.storeBackVisit(b);
-/*     */           }
-/*     */         } else {
-/* 137 */           this.backVisit.setBackVisitSum(Long.valueOf(1L));
-/*     */         }
+/*     */         Long sum= Long.valueOf(backVisits.size() + 1);
+				  customerInfo.setBackVisitSum(sum);
+				  customerInfoManager.storeCustomerInfo(customerInfo);
 /*     */       } catch (DaoException e) {
 /* 140 */         e.printStackTrace();
 /*     */       }
 /*     */     }
 /* 143 */     if (isNew) {
+				this.backVisit.setReplyTime(0L);
 /* 144 */       this.backVisitManager.storeBackVisit(this.backVisit);
 /*     */ 
 ///* 146 */       if (("0" == this.request.getParameter("gradeChange")) || ("0".equals(this.request.getParameter("gradeChange")))) {
@@ -387,6 +376,18 @@ public void setFromType(String fromType) {
 			}
 			public void setOpenFlag(String openFlag) {
 				this.openFlag = openFlag;
+			}
+			public String getFromType() {
+				return fromType;
+			}
+			public void setFromType(String fromType) {
+				this.fromType = fromType;
+			}
+			public CustomerInfo getCustomerInfo() {
+				return customerInfo;
+			}
+			public void setCustomerInfo(CustomerInfo customerInfo) {
+				this.customerInfo = customerInfo;
 			}
  
 /*     */ 

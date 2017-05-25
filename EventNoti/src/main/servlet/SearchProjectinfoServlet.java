@@ -40,9 +40,9 @@ public class SearchProjectinfoServlet extends HttpServlet{
 		
 			Long customerid=Long.parseLong(request.getParameter("customerid")); 
 		  
-			//获取联系人列表
+			//获取项目列表
 			 List<ProjectInfo> ProjectInfoList = new ArrayList<ProjectInfo>();
-			 ProjectInfoList=projectInfoService.getAllProjectInfo(customerid);
+			 ProjectInfoList=projectInfoService.getAllProjectInfo(customerid);  
 			 
 			//request.setAttribute("ProjectInfoList", ProjectInfoList);
 			 if (ProjectInfoList != null) {  
@@ -51,7 +51,7 @@ public class SearchProjectinfoServlet extends HttpServlet{
 		                JSONObject obj = new JSONObject();  
 		                obj.put("id", Project.getId());  
 		                obj.put("name", Project.getProjectName());  
-		                jsonArray.add(obj);//循环new jsonObject 并把联系人信息 put进去 再add到josnArray里去  
+		                jsonArray.add(obj);//循环new jsonObject 并把项目信息 put进去 再add到josnArray里去  
 		             
 		             }  
 		            response.setCharacterEncoding("UTF-8"); 

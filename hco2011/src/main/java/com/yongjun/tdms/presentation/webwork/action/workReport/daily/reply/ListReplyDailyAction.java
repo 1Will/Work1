@@ -23,7 +23,13 @@ public class ListReplyDailyAction extends ValueListAction{
 	
 	@Override
 	protected String getAdapterName() {
-		return "replyDaily";
+		if(hasId("daily.id")){
+			return "replyDaily";
+		}
+		if(hasId("backVisit.id")){
+		return "replyBackVisit";
+		}
+		return null;
 	}
 	protected Map getRequestParameterMap(){
 		Map map = super.getRequestParameterMap();

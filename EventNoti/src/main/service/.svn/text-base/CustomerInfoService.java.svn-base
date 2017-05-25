@@ -19,7 +19,11 @@ public interface CustomerInfoService {
 	public Session getSuperSession();
 
 	public List<CustomerInfo> getAllCustomer();
+	
 	public CustomerInfo getById(Long id);
+	
 	public  List<CustomerInfo> getCustomerInfoByName(String name) ;
+	
+	public List<CustomerInfo> getCustomerInfoByDate(String date,String name);//根据日期和姓名返回CustomerInfo集合
 
 }

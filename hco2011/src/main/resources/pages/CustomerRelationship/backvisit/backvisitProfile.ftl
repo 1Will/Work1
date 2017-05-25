@@ -85,7 +85,9 @@
 			
 			<!--联系人陪同者-->
 			<td align="right" valign="top">
+			<!--
 	       		<span class="required">*</span>
+	       	-->
 	       		<label class="label">${action.getText('contactArchive')}陪同者:</label>
 	     	</td>
 	     	<td>
@@ -147,7 +149,9 @@
 			</td>
 			<!--回访人同行者-->
 			<td align="right" valign="top">
+			<!--
 	       		<span class="required">*</span>
+	       	-->
 	       		<label class="label">${action.getText('employee')}同行者:</label>
 	     	</td>
 	     	<td>
@@ -207,6 +211,18 @@
         	</td>
 	        <td colspan="10">
 	        	<textarea name="backVisit.backVisitContent" rows="3" cols="120" >${backVisit.backVisitContent?if_exists}</textarea>
+	        	<script>
+	        	getObjByName('backVisit.backVisitContent').onclick=function(){
+	        	if(getObjByName('backVisit.backVisitContent').value=='请输入拜访客户目的及主要沟通内容，建议用3句话描述清楚'){
+	        	getObjByName('backVisit.backVisitContent').value='';
+	        	getObjByName('backVisit.backVisitContent').style.color='000000';}
+	        	}
+	        	getObjByName('backVisit.backVisitContent').onblur=function(){
+	        	if(getObjByName('backVisit.backVisitContent').value==''){
+	        	getObjByName('backVisit.backVisitContent').value='请输入拜访客户目的及主要沟通内容，建议用3句话描述清楚';
+	        	getObjByName('backVisit.backVisitContent').style.color='999999';}
+	        	}
+	        	</script>
 	        </td>
 			<!---->
 		</tr>
@@ -219,6 +235,18 @@
         	</td>
 	        <td colspan="10">
 	        	<textarea name="backVisit.feedback" rows="3" cols="120" >${backVisit.feedback?if_exists}</textarea>
+	        	<script>
+	        	getObjByName('backVisit.feedback').onclick=function(){
+	        	if(getObjByName('backVisit.feedback').value=='请输入沟通过程中客户的反馈，建议用3句话描述'){
+	        	getObjByName('backVisit.feedback').value='';
+	        	getObjByName('backVisit.feedback').style.color='000000';}
+	        	}
+	        	getObjByName('backVisit.feedback').onblur=function(){
+	        	if(getObjByName('backVisit.feedback').value==''){
+	        	getObjByName('backVisit.feedback').value='请输入沟通过程中客户的反馈，建议用3句话描述';
+	        	getObjByName('backVisit.feedback').style.color='999999';}
+	        	}
+	        	</script>
 	        </td>
 			<!---->
 		</tr>
@@ -231,6 +259,18 @@
         	</td>
 	        <td colspan="10">
 	        	<textarea name="backVisit.attention" rows="3" cols="120" >${backVisit.attention?if_exists}</textarea>
+	        	<script>
+	        	getObjByName('backVisit.attention').onclick=function(){
+	        	if(getObjByName('backVisit.attention').value=='请输入项目维护后期要注意的内容'){
+	        	getObjByName('backVisit.attention').value='';
+	        	getObjByName('backVisit.attention').style.color='000000';}
+	        	}
+	        	getObjByName('backVisit.attention').onblur=function(){
+	        	if(getObjByName('backVisit.attention').value==''){
+	        	getObjByName('backVisit.attention').value='请输入项目维护后期要注意的内容';
+	        	getObjByName('backVisit.attention').style.color='999999';}
+	        	}
+	        	</script>
 	        </td>
 			<!---->
 		</tr>
@@ -243,6 +283,18 @@
         	</td>
 	        <td colspan="10">
 	        	<textarea name="backVisit.remarks" rows="3" cols="120" >${backVisit.remarks?if_exists}</textarea>
+	        	<script>
+	        	getObjByName('backVisit.remarks').onclick=function(){
+	        	if(getObjByName('backVisit.remarks').value=='请输入补充信息'){
+	        	getObjByName('backVisit.remarks').value='';
+	        	getObjByName('backVisit.remarks').style.color='000000';}
+	        	}
+	        	getObjByName('backVisit.remarks').onblur=function(){
+	        	if(getObjByName('backVisit.remarks').value==''){
+	        	getObjByName('backVisit.remarks').value='请输入补充信息';
+	        	getObjByName('backVisit.remarks').style.color='999999';}
+	        	}
+	        	</script>
 	        </td>
 			<!---->
 		</tr>
@@ -398,7 +450,22 @@
 </@htmlPage>
 <script language="javascript">
 	window.onload = function () {
-	
+			if(getObjByName('backVisit.backVisitContent').value==''){
+	        	getObjByName('backVisit.backVisitContent').value='请输入拜访客户目的及主要沟通内容，建议用3句话描述清楚';
+	        	getObjByName('backVisit.backVisitContent').style.color='999999';
+	        	}
+			if(getObjByName('backVisit.feedback').value==''){
+	        	getObjByName('backVisit.feedback').value='请输入沟通过程中客户的反馈，建议用3句话描述';
+	        	getObjByName('backVisit.feedback').style.color='999999';
+	        	}
+			if(getObjByName('backVisit.attention').value==''){
+	        	getObjByName('backVisit.attention').value='请输入项目维护后期要注意的内容';
+	        	getObjByName('backVisit.attention').style.color='999999';
+	        	}
+			if(getObjByName('backVisit.remarks').value==''){
+	        	getObjByName('backVisit.remarks').value='请输入补充信息';
+	        	getObjByName('backVisit.remarks').style.color='999999';
+	        	}
 			<#if backVisit.id?exists>
 			
 			<#if backVisit.projectInfo?exists>
@@ -493,12 +560,8 @@
 		
 		contactArchives_Temp+=","+result[0];
 		}
-		
-		
-		
-		
-		 	document.forms[0].elements["contactArchives"].value = contactArchivesTemp;
-		 	document.forms[0].elements["contactArchives_"].value = contactArchives_Temp;
+	 	document.forms[0].elements["contactArchives"].value = contactArchivesTemp;
+	 	document.forms[0].elements["contactArchives_"].value = contactArchives_Temp;
 		}
 	}
 	
@@ -544,22 +607,8 @@
 		}
 	}
 	
-	function storeValidation(){
+	function check(){
 		/* 验证回访主题 */
-		//if('' == getObjByName('backVisit.name').value){
-		//	alert("${action.getText('backVisit.backVisitType.required')}");
-		//	getObjByName('backVisit.backVisitType').focus();
-     	//	return false;
-		//}else{
-     	//	if(!isValidLengthValue(getObjByName('backVisit.backVisitType').value,0,50)){
-     	//		alert("${action.getText('backVisit.backVisitType.maxLength')}");
-     	//		getObjByName('backVisit.backVisitType').value="";
-     	//		getObjByName('backVisit.backVisitType').focus();
-     	//		return false;
-     	//	}
-     //	}
-     	
-     	/* 验证回访主题 */
      	if('-1'==getObjByName('backVisitType.id').value){
 			alert("${action.getText('backVisitType.id.required')}");
 			getObjByName('backVisitType.id').focus();
@@ -668,122 +717,39 @@
 	     		return false;
 	     	}
 	     }
+	}
+	
+	function setValue(){
+		if(getObjByName('backVisit.backVisitContent').value=='请输入拜访客户目的及主要沟通内容，建议用3句话描述清楚'){
+        	getObjByName('backVisit.backVisitContent').value='';
+        	getObjByName('backVisit.backVisitContent').style.color='000000';
+        }
+		if(getObjByName('backVisit.feedback').value=='请输入沟通过程中客户的反馈，建议用3句话描述'){
+        	getObjByName('backVisit.feedback').value='';
+        	getObjByName('backVisit.feedback').style.color='000000';
+        	}
+		if(getObjByName('backVisit.attention').value=='请输入项目维护后期要注意的内容'){
+        	getObjByName('backVisit.attention').value='';
+        	getObjByName('backVisit.attention').style.color='000000';
+        	}
+		if(getObjByName('backVisit.remarks').value=='请输入补充信息'){
+        	getObjByName('backVisit.remarks').value='';
+        	getObjByName('backVisit.remarks').style.color='000000';
+        	}
+	}
+	
+	
+	function storeValidation(){
 	     getObjByName('isSaved').value="0";
+     	 setValue();
+     	 return check();
 	     
 	}
 	
 	function storeValidationTj(){
-	/* 验证回访主题 */
-     	if('-1'==getObjByName('backVisitType.id').value){
-			alert("${action.getText('backVisitType.id.required')}");
-			getObjByName('backVisitType.id').focus();
-     		return false;
-		}
-     	/* 验证客户名称 */
-     	if('' == getObjByName('customer').value){
-			alert("${action.getText('backVisit.customer.required')}");
-     		return false;
-		}
-		/* 验证联系人 */
-		if('' == getObjByName('contactArchive').value){
-			alert("${action.getText('backVisit.contactArchive.required')}");
-     		return false;
-		}
-		/* 验证回访日期 */
-		if('' == getObjByName('backVisit.backVisitDate').value){
-    		alert("${action.getText('backVisit.backVisitDate.not.null')}");
-    		getObjByName('backVisit.backVisitDate').focus();
-          	return false;
-    	}else{
-		 	if(!isDate('backVisit.backVisitDate')){
-				alert("${action.getText('backVisitDate.error')}");
-				getObjByName('backVisit.backVisitDate').value="";
-				getObjByName('backVisit.backVisitDate').focus();
-				return false;
-			}
-		}
-		/* 验证耗时 */
-		if('' == getObjByName('backVisit.costTime').value){
-			alert("${action.getText('backVisit.costTime.required')}");
-			getObjByName('backVisit.costTime').focus();
-     		return false;
-		}else{
-     		if(!isDoubleNumberBetweenBoolean(formatDigital(getObjByName('backVisit.costTime').value), 1000000001, -1)){
-     			alert("${action.getText('backVisit.costTime.maxLength')}");
-     			getObjByName('backVisit.costTime').value="";
-     			getObjByName('backVisit.costTime').focus();
-     			return false;
-     		}
-     	}
-     	/* 验证回访方式 */
-     	if('-1'==getObjByName('backVisitWay.id').value){
-			alert("${action.getText('backVisitWay.id.required')}");
-			getObjByName('backVisitWay.id').focus();
-     		return false;
-		}
-		/* 验证回访人 */
-		if('' == getObjByName('backVisiter').value){
-			alert("${action.getText('backVisit.backVisiter.required')}");
-     		return false;
-		}
-		/* 选择继续回访的话，必须填下次回访日期 */
-		if(getObjByName('continueBackVisit0').checked == true && '' == getObjByName('backVisit.nextBackVisitDate').value){
-				alert("继续回访必须输入下次回访时间");
-				getObjByName('backVisit.nextBackVisitDate').focus();
-				return false;
-		}
-		
-		/* 验证下次回访日期 */
-		if('' != getObjByName('backVisit.nextBackVisitDate').value){
-			if(!isDate('backVisit.nextBackVisitDate')){
-				alert("${action.getText('nextBackVisitDate.error')}");
-				getObjByName('backVisit.nextBackVisitDate').value="";
-				getObjByName('backVisit.nextBackVisitDate').focus();
-				return false;
-			}
-		}
-		/* 验证回访内容 */
-		if('' == getObjByName('backVisit.backVisitContent').value){
-			alert("${action.getText('backVisit.backVisitContent.required')}");
-			getObjByName('backVisit.backVisitContent').focus();
-     		return false;
-		}else{
-     		if(!isValidLengthValue(getObjByName('backVisit.backVisitContent').value,0,500)){
-     			alert("${action.getText('backVisit.backVisitContent.maxLength')}");
-     			getObjByName('backVisit.backVisitContent').value="";
-     			getObjByName('backVisit.backVisitContent').focus();
-     			return false;
-     		}
-     	}
-     	/* 验证客户反馈 */
-     	if('' != getObjByName('backVisit.feedback').value){
-	     	if(!isValidLengthValue(getObjByName('backVisit.feedback').value,0,500)){
-	     		alert("${action.getText('backVisit.feedback.maxLength')}");
-	     		getObjByName('backVisit.feedback').value="";
-     			getObjByName('backVisit.feedback').focus();
-	     		return false;
-	     	}
-	     }
-	     /* 验证后期注意 */
-     	if('' != getObjByName('backVisit.attention').value){
-	     	if(!isValidLengthValue(getObjByName('backVisit.attention').value,0,500)){
-	     		alert("${action.getText('backVisit.attention.maxLength')}");
-	     		getObjByName('backVisit.attention').value="";
-     			getObjByName('backVisit.attention').focus();
-	     		return false;
-	     	}
-	     }
-	     /* 验证备注 */
-     	if('' != getObjByName('backVisit.remarks').value){
-	     	if(!isValidLengthValue(getObjByName('backVisit.remarks').value,0,500)){
-	     		alert("${action.getText('backVisit.remarks.maxLength')}");
-	     		getObjByName('backVisit.remarks').value="";
-     			getObjByName('backVisit.remarks').focus();
-	     		return false;
-	     	}
-	     }
-	
-	getObjByName('isSaved').value="1";
+		getObjByName('isSaved').value="1";
+		setValue();
+		return check();
 	}
 	
 	
@@ -820,6 +786,9 @@
 	<li>
 		<a id="additionalInformation" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/backvisit/listChangeStepToHistory.html?customerId.id=#{backVisit.customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >等级变更历史</a>
 		
+	</li>
+	<li>
+		<a id="replyBackVisit" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyDailyTab.html?backVisit.id=#{backVisit.id?if_exists}' target="frame" >消息回复</a>
 	</li>
 </ul>
 <iframe name="frame" frameborder="0.5" src="" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="100%"/>

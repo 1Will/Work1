@@ -49,11 +49,9 @@
 		<property name="costTime" type="double">
 			<column name="EXPEND_TIME"/>
 		</property>
-		<property name="backVisitSum" type="long">
-			<column name="BACK_VISIT_SUM"/>
-		</property>
-		<property name="unconnect" type="long">
-			<column name="UNCONNECT"/>
+
+		<property name="replyTime" type="long">
+			<column name="REPLY_TIME"/>
 		</property>
 		<many-to-one name="backVisitWay" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
         	<column name="VISIT_TYPE" not-null="false"></column>

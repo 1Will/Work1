@@ -23,7 +23,7 @@
 			<column name="CONTACT_ID" />
 		</property>
 		
-        <property name="visiter" type="java.lang.String">
+        <property name="visitor" type="java.lang.String">
             <column name="VISITOR" />
         </property>
         <property name="visiterid" type="java.lang.Long">
@@ -44,8 +44,16 @@
         <property name="createtime" type="java.util.Date">
             <column name="CREATED_TIME" length="7" />
         </property>
+       <!-- 最后修订时间-->
+        <property name="lastModifiedTime" type="java.util.Date">
+            <column name="LAST_MODIFIED_TIME"  />
+        </property>
         <property name="visitDate" type="java.util.Date">
             <column name="visit_Date"  />
+        </property>
+       <!-- 下次回访日期 -->
+        <property name="nextVisitDate" type="java.util.Date">
+            <column name="NEXT_VISIT_DATE"  />
         </property>
      
         <property name="projectName" type="java.lang.String">
@@ -54,7 +62,7 @@
         <property name="projectinfoid" type="java.lang.Long">
 			<column name="PROJECTINFO_ID" />
 		</property>
- <property name="backvisittype" type="java.lang.Long">
+       <property name="backvisittype" type="java.lang.Long">
 			<column name="BACK_VISIT_TYPE" />
 		</property>
 		<property name="version" type="java.lang.Long">
@@ -78,11 +86,41 @@
         <property name="creator" type="java.lang.String">
             <column name="CREATOR" />
         </property>
-        <property name="unconnect" type="java.lang.Long">
-			<column name="UNCONNECT" />
+       <!-- 最后修订人 -->
+        <property name="lastOperator" type="java.lang.String">
+            <column name="LAST_OPERATOR" />
+        </property>
+        <!-- 客户等级-->
+        <property name="customerSteping" type="java.lang.Long">
+			<column name="CUSTOMER_STEPING" />
+		</property>
+		<!-- 业务员同行者 -->
+		<property name="employees" type="java.lang.String">
+            <column name="employees" />
+        </property>
+		<!-- 是否失效   0-->
+		<property name="isSaved" type="java.lang.String">
+            <column name="isSaved" />
+        </property>
+        <!-- 耗时（分） 0 -->
+        <property name="expendTime" type="java.lang.Long">
+			<column name="EXPEND_TIME" />
+		</property>
+   
+  
+       <!-- 记录回复次数 -->
+        <property name="replyTime" type="java.lang.Long">
+			<column name="REPLY_TIME" />
 		</property>
 		<property name="continuebackvisit" type="java.lang.String">
             <column name="CONTINUE_BACK_VISIT" />
         </property>
+       
+        <join table="t_daily_backVisit" inverse="true" optional="true" >
+	        <key column="BACKVISIT_Id" />
+			<many-to-one name="daily" column="DAILY_ID" not-null="false" lazy="false" />
+  		</join>
+        
+        
     </class>
 </hibernate-mapping>

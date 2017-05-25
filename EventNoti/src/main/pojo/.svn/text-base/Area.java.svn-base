@@ -6,10 +6,11 @@ public class Area implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String code;
+	private Long version;
     private String name;
     private String type;
     private Area parentArea;
-    private Long area_id;
+    private Long areaId;
 	
     public Long getId() {
 		return id;
@@ -41,11 +42,17 @@ public class Area implements java.io.Serializable {
 	public void setParentArea(Area parentArea) {
 		this.parentArea = parentArea;
 	}
-	public Long getArea_id() {
-		return area_id;
+	public Long getAreaId() {
+		return areaId;
 	}
-	public void setArea_id(Long area_id) {
-		this.area_id = area_id;
+	public void setAreaId(Long areaId) {
+		this.areaId = areaId;
+	}
+	public Long getVersion() {
+		return version;
+	}
+	public void setVersion(Long version) {
+		this.version = version;
 	}
     
     

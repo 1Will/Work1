@@ -53,14 +53,14 @@
 			type="string" length="500" >
 		</property>
 		<!--生日 -->
-		<property name="birthday" type="date">
+		<property name="birthday" type="java.util.Date">
 			<column name="BIRTH_DATE" />
 		</property>
-		<!-- 固定电话 -->
+		<!-- 手机号 -->
 		<property name="mobilePhone" type="string">
 			<column name="MOBILE" not-null="false" sql-type="NVARCHAR(20)" />
 		</property>
-		<!-- 手机号 -->
+		<!-- 固定电话 -->
 		<property name="phone" type="string">
 			<column name="PHONE" not-null="false" sql-type="NVARCHAR(20)" />
 		</property>
@@ -68,14 +68,43 @@
 		<property name="address" type="string">
 			<column name="HOME_ADDRESS" not-null="false" sql-type="NVARCHAR(50)" />
 		</property>
+		<property name="qq" type="string">
+			<column name="QQ" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
 		<!-- 创建时间 -->
-		<property name="createdTime" column="CREATED_TIME" type="timestamp" />
+		<property name="createdTime" column="CREATED_TIME" type="java.util.Date" />
+		<!-- 最后修改时间 -->
+		<property name="lastModifiedTime" column="LAST_MODIFIED_TIME"
+			type="java.util.Date" />
 		<!-- 熟悉程度 type -->
 		<property name="type" column="TYPE" type="java.lang.Long"/>
 		<!-- 客户ID -->
         <property name="customerId" type="java.lang.Long">
 			<column name="CUSTOMER_ID"  />
 		</property>
+		<!-- email -->
+		<property name="email" type="string">
+			<column name="EMAIL" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<!-- 创建人 -->
+		<property name="creatorName" type="string">
+			<column name="CREATOR" not-null="false"  />
+		</property>
+		<!-- 最后修改人 -->
+		<property name="lastOperator" type="string">
+			<column name="LAST_OPERATOR" not-null="false"  />
+		</property>
+		
+		<!-- 顾客信息代码编号 -->
+		<property name="customerInfoCode" type="string">
+			<column name="CUSTOMER_INFO_CODE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<!-- CUSTOMERTYPE_ID-->
+		<property name="customerTypeId" type="long">
+			<column name="CUSTOMERTYPE_ID" not-null="false"  />
+		</property>
+		
+		
        
 <!-- 		<many-to-one name="customerId" class="main.pojo.CustomerInfo" lazy="false">
 			<column name="CUSTOMER_ID" not-null="false" />
@@ -86,20 +115,13 @@
 		</many-to-one>
  -->		
     <!--    
-		顾客信息代码编号
-		<property name="customerInfoCode" type="string">
-			<column name="CUSTOMER_INFO_CODE" not-null="false" sql-type="NVARCHAR(20)" />
-		</property>
+		
 		家庭电话
 		<property name="homePhone" type="string">
 			<column name="HOME_PHONE" not-null="false" sql-type="NVARCHAR(20)" />
 		</property>
-		<property name="qq" type="string">
-			<column name="QQ" not-null="false" sql-type="NVARCHAR(20)" />
-		</property>
-		<property name="email" type="string">
-			<column name="EMAIL" not-null="false" sql-type="NVARCHAR(50)" />
-		</property>
+		
+		
 		最后修改时间
 		<property name="lastModifiedTime" column="LAST_MODIFIED_TIME"
 			type="timestamp" />

@@ -80,6 +80,14 @@ public class IndexServlet extends HttpServlet {
 				}else if(type.equals("10001")){
 					handBase.publishNotification(event);
 				}
+				//添加日报扫描
+				if (type.equals("10002")) {
+					handBase.publishDailyNotification(event);
+				}
+				//项目提交扫描
+				if (type.equals("10003")) {
+					handBase.publishProjectNotification(event);
+				}
 				session.getTransaction().commit();
 			} catch (Exception e) {
 				e.printStackTrace();

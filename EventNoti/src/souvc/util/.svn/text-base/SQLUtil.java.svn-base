@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import main.pojo.Duty;
 import souvc.pojo.Code;
 import souvc.pojo.TleaveBill;
 import souvc.pojo.UserInfo;
@@ -275,7 +276,7 @@ public class SQLUtil {
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				user = new UserInfo();
-				//user.setLoginName(rs.getString("LOGIN_NAME"));
+				user.setLoginName(rs.getString("LOGIN_NAME"));
 				user.setName(rs.getString("NAME"));
 				//user.setCompany(rs.getString("COMPANY"));
 				//user.setPosition(rs.getString("POSITION"));
@@ -298,6 +299,33 @@ public class SQLUtil {
 		return user;
 	}
 	
+	/**
+	 * 获取职位信息详情
+	 * 
+	 */
+	public static Duty getDutyById(Long id) {
+		Duty duty = null;
+		String sql = "select * from t_duty where id=?";
+		try {
+			Connection conn = new SQLUtil().getConn();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setLong(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				duty = new Duty();
+				duty.setName(rs.getString("NAME"));
+			}
+			// 释放资源
+			rs.close();
+			ps.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return duty;
+	}
+	
+	
 	
 	/**
 	 * 根据openid获取用户信息
@@ -305,7 +333,7 @@ public class SQLUtil {
 	 */
 	public static UserInfo getUserByOpenid(String openid) {
 		UserInfo user = new UserInfo();
-		String sql = "select ID,NAME,DEPARTMENT_ID,ORGANIZATION_ID,INSTITUSTION_ID from t_users where OPENID = '"+openid+"'";
+		String sql = "select ID,NAME,DEPARTMENT_ID,ORGANIZATION_ID,INSTITUSTION_ID,LOGIN_NAME,CODE from t_users where OPENID = '"+openid+"'";
 		try {
 			Connection conn = new SQLUtil().getConn();
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -314,6 +342,8 @@ public class SQLUtil {
 				user.setId(String.valueOf(rs.getInt("ID")));
 				user.setDeptid(String.valueOf(rs.getInt("DEPARTMENT_ID")));
 				user.setName(rs.getString("NAME"));
+				user.setLoginName(rs.getString("LOGIN_NAME"));
+				user.setCode(rs.getString("CODE"));
 			}
 			// 释放资源
 			rs.close();
@@ -401,6 +431,35 @@ public class SQLUtil {
 		return name;
 	}
 	
+	public static Map<String,String> getProject(int id){
+		Map<String,String> map = new HashMap<String, String>();
+		String sql = "select * from t_projectinfo where Id="+id;
+		try {
+			Connection conn = new SQLUtil().getConn();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				map.put("id", rs.getString("Id"));
+				map.put("name", rs.getString("NAME"));
+				map.put("code", rs.getString("code"));
+				map.put("customerInfoId", rs.getString("customerInfo_id"));
+				map.put("contactId", rs.getString("CONTACT_ID"));
+				map.put("projectControllerId", rs.getString("project_Controller_id"));
+				map.put("creator", rs.getString("CREATOR"));
+				map.put("createdTime", rs.getString("CREATED_TIME"));
+				map.put("introduce", rs.getString("project_outline"));
+			}
+			rs.close();
+			ps.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	
+	
 	public static Map<String,String> getBackVisit(int id){
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 		Map<String,String> map = new HashMap<String, String>();
@@ -427,6 +486,46 @@ public class SQLUtil {
 				map.put("remark", rs.getString("REMARKS"));
 				Date date = rs.getDate("VISIT_DATE");
 				map.put("visitDate", format1.format(date));
+				Date nextVisitDate = rs.getDate("NEXT_VISIT_DATE"); //下次回访时间
+				map.put("nextVisitDate", format1.format(nextVisitDate)); 
+				map.put("employees", rs.getString("employees")); //回访人同行者
+				map.put("expendTime", rs.getString("EXPEND_TIME"));  // 耗时（分）
+			}
+			// 释放资源
+			rs.close();
+			ps.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	/**
+	 * 获取日报信息
+	 * 
+	 */
+	public static Map<String,String> getDaily(int id){
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		Map<String,String> map = new HashMap<String, String>();
+		String sql = "select * from t_daily where Id="+id;
+		try {
+			Connection conn = new SQLUtil().getConn();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				map.put("id", rs.getString("Id"));
+				map.put("weekDate", rs.getString("WEEKDATE"));//记录星期  not null
+				map.put("backvisitContext", rs.getString("BACKVISITCONTEXT"));//拜访工作内容 
+				map.put("workContext", rs.getString("WORKCONTEXT"));//其他工作内容  not null
+				map.put("questions", rs.getString("QUESTIONS"));//问题  收获、感想
+				map.put("rapporteurId", rs.getString("RAPPORTEUR_ID"));//填写人 ID user表  not null
+				map.put("deptId", rs.getString("DEPT_ID"));//部门ID 部门表  not null
+				map.put("dutyId", rs.getString("DUTY_ID"));//职位ID 职位表  not null
+				
+				map.put("creator", rs.getString("CREATOR"));//创建人 user表 lf
+				Date date = rs.getDate("CURRENTDATE"); //当前日期  not null
+				map.put("currentDate", format1.format(date));
 				
 			}
 			// 释放资源
@@ -474,5 +573,7 @@ public class SQLUtil {
 		}
 		return user;
 	}
+	
+	
 	
 }

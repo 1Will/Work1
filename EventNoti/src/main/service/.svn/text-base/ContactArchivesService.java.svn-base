@@ -19,4 +19,6 @@ public interface ContactArchivesService {
 	
 	public  List<ContactArchives> getAllContactArchives(Long id);
 
+	public List<ContactArchives> getContactArchivesByDate(String date,String name);//根据日期和姓名返回ContactArchives集合
+
 }

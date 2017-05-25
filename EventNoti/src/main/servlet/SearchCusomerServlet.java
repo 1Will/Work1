@@ -38,7 +38,7 @@ public class SearchCusomerServlet extends HttpServlet{
 	            throws ServletException, IOException {
 	     	 String name = request.getParameter("name");
 		  
-			//获取联系人列表
+			//获取客户列表
 			 List<CustomerInfo> CustomerInfoList = new ArrayList<CustomerInfo>();
 			 CustomerInfoList=customerInfoService.getCustomerInfoByName(name);
 			 

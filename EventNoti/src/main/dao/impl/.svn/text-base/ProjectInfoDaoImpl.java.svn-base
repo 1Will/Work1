@@ -36,7 +36,7 @@ public class ProjectInfoDaoImpl extends HibernateDaoSupport implements ProjectIn
 
 	@SuppressWarnings("unchecked")
 	public  List<ProjectInfo> getAllProjectInfo(Long id) {
-		String hql="from ProjectInfo temp where temp.customerinfoid="+id;
+		String hql="from ProjectInfo temp where temp.customerId="+id;
 		
 		return this.getHibernateTemplate().find(hql);
 	}

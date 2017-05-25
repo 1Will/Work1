@@ -5,7 +5,7 @@ public class ReplyBackVisit implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Long id;
-	private Long visitid;
+	private Long visitid;                          
 	private Long userid;
 	private String content;
 	private String username;

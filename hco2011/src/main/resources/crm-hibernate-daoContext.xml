@@ -272,6 +272,12 @@
 			<value>com/yongjun/tdms/dao/backvisit/hibernate/backvisit.hbm.xml</value>
 		</constructor-arg>
 	</bean>
+	<!-- 回访回复 -->
+	<bean id="ReplyBackVisitHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/backvisit/hibernate/ReplyBackVisit.hbm.xml</value>
+		</constructor-arg>
+	</bean>
 	<bean id="backVisitDao" parent="abstractTrackingProxy">
 		<property name="proxyInterfaces">
 			<value>com.yongjun.tdms.dao.backvisit.BackVisitDao</value>

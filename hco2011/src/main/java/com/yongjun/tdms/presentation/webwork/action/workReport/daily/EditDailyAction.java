@@ -4,6 +4,7 @@
 /*     */ import com.yongjun.pluto.model.codevalue.CodeValue;
 /*     */ import com.yongjun.pluto.model.security.User;
 /*     */ import com.yongjun.pluto.service.codevalue.CodeValueManager;
+import com.yongjun.pluto.service.security.GroupManager;
 /*     */ import com.yongjun.pluto.service.security.UserManager;
 /*     */ import com.yongjun.pluto.webwork.action.PrepareAction;
 import com.yongjun.tdms.model.backvisit.BackVisit;
@@ -38,6 +39,7 @@ import java.util.HashMap;
 
 
 import java.util.Map;
+import java.util.Set;
 
 import net.sf.json.JSONObject;
 
@@ -57,6 +59,7 @@ import org.apache.commons.logging.Log;
 			private final DutyManager dutyManager;
 			private final EventNewManager eventNewManager;
             private final EventTypeManager eventTypeManager;
+            protected final GroupManager groupManager;
 /*     */   private String startHour;
 /*     */   private String startMinute;
 /*     */   private String endHour;
@@ -67,7 +70,7 @@ import org.apache.commons.logging.Log;
 /*     */   private Daily daily;
 			private String popWindowFlag;
 /*     */ 
-/*     */   public EditDailyAction(DailyManager dailyManager, WeeklyManager weeklyManager, UserManager userManager, CodeValueManager codeValueManager, PersonnelFilesManager personnelFilesManager, BackVisitManager backVisitManager,InstitutionManager institutionManager,DepartmentManager departmentManager,DutyManager dutyManager,EventNewManager eventNewManager,EventTypeManager eventTypeManager)
+/*     */   public EditDailyAction(DailyManager dailyManager, WeeklyManager weeklyManager, UserManager userManager, CodeValueManager codeValueManager, PersonnelFilesManager personnelFilesManager, BackVisitManager backVisitManager,InstitutionManager institutionManager,DepartmentManager departmentManager,DutyManager dutyManager,EventNewManager eventNewManager,EventTypeManager eventTypeManager,GroupManager groupManager)
 /*     */   {
 /* 110 */     this.dailyManager = dailyManager;
 /* 111 */     this.weeklyManager = weeklyManager;
@@ -80,6 +83,7 @@ import org.apache.commons.logging.Log;
 			  this.dutyManager=dutyManager;
 			  this.eventNewManager=eventNewManager;
 			  this.eventTypeManager=eventTypeManager;
+			  this.groupManager=groupManager;
 /*     */   }
 /*     */ 
 /*     */   public void prepare()
@@ -175,6 +179,11 @@ import org.apache.commons.logging.Log;
 			  String submit=null;
 /*暂时不用*/
 			  if ("1".equals(this.request.getParameter("isSaved"))) {
+				  Set<User> noticePers = groupManager.getGroupByGroupName("微信日报通知组").getUsers();
+				  String ids =getUser().getId()+"";
+				  for (User user : noticePers) {
+					  ids+=","+user.getId();
+				  } 
 					try {
 						EventType eventType=null;
 						List<EventType> eventTypes =this.eventTypeManager.loadByKey("code", "10002");
@@ -190,7 +199,6 @@ import org.apache.commons.logging.Log;
 					    event.setName("日报提交");
 					    event.setUserId(this.userManager.getUser().getId()+"");
 					    Map<String, String> map = new HashMap<String, String>();
-					    String ids =getUser().getId()+"";
 					    //查询领导
 					    PersonnelFiles pFiles =getPeronnelF().getSuperiorLeader();
 					    while (pFiles!=null) {

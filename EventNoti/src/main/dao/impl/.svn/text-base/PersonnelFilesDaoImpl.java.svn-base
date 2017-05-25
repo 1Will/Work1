@@ -12,8 +12,9 @@ public class PersonnelFilesDaoImpl extends HibernateDaoSupport implements Person
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<PersonnelFiles> getPersonnelFilesById() {
-		String hql="from PersonnelFiles";
+	public List<PersonnelFiles> getAllPersonnelFiles() {
+		String hql="from PersonnelFiles p where p.disabled=0";
+		System.out.println("===hql==="+hql);
 		return this.getHibernateTemplate().find(hql);
 	}
 
@@ -31,10 +32,28 @@ public class PersonnelFilesDaoImpl extends HibernateDaoSupport implements Person
 		return personnelFiles;
 	}
 	
+	//根据登录用户名 从人事表里获取deptId和dutyId
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PersonnelFiles> getPersonnelFilesByName(String name) {
+		String hql="select p from PersonnelFiles p where p.name= '"+name+"'";
+		return this.getHibernateTemplate().find(hql);
+	}
+
+	//根据员工编号 获取人事信息
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PersonnelFiles> getPersonnelFilesByCode(String code) {
+		String hql="select p from PersonnelFiles p where p.code= '"+code+"'";
+		return this.getHibernateTemplate().find(hql);
+	}
+	
 	@Override
 	public Session getSuperSession() {
 		return this.getSession(true);
 	}
+
+
 	
 
 }

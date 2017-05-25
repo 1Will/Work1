@@ -12,8 +12,10 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 	
 	private CustomerInfoDao customerInfoDao;
 
-
-	
+	public void updateCustomerInfo(CustomerInfo customerInfo) {
+		customerInfoDao.updateCustomerInfo(customerInfo);
+		
+	}
 	public void saveCustomerInfo(CustomerInfo customerInfo) {
 		customerInfoDao.saveCustomerInfo(customerInfo);
 		
@@ -37,14 +39,6 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 		return customerInfoDao.getSuperSession();
 	}
 
-	
-	public CustomerInfoDao getCustomerInfoDao() {
-		return customerInfoDao;
-	}
-
-	public void setCustomerInfoDao(CustomerInfoDao customerInfoDao) {
-		this.customerInfoDao = customerInfoDao;
-	}
 
 	public  List<CustomerInfo> getAllCustomer(){
 		return customerInfoDao.getAllCustomer();
@@ -53,9 +47,30 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 	{
 		return customerInfoDao.getById(id);
 	}
+	
+	public Long getMaxId(){
+		return customerInfoDao.getMaxId();
+	}
+	
 	public  List<CustomerInfo> getCustomerInfoByName(String name) 
 	{
 		return customerInfoDao.getCustomerInfoByName(name);
 	}
-
+	
+	@Override
+	public List<CustomerInfo> getCustomerInfoByDate(String date, String name) {
+		return customerInfoDao.getCustomerInfoByDate(date, name);
+	}
+	
+	
+	
+	public CustomerInfoDao getCustomerInfoDao() {
+		return customerInfoDao;
+	}
+	
+	public void setCustomerInfoDao(CustomerInfoDao customerInfoDao) {
+		this.customerInfoDao = customerInfoDao;
+	}
+	
+	
 }

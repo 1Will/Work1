@@ -18,7 +18,7 @@ public class BirthdayTimerTask extends TimerTask {
 	public static EventService eventService;// 数据库操作接口
 	public static ContactArchivesService contactArchivesService;// 联系人数据库操作接口
 	private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	private static int day = 1;// 提前1天通知
+	private final static int day = 1;// 提前1天通知
 
 	public void run() {
 		try {

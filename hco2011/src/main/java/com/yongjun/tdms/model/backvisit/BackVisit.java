@@ -34,8 +34,7 @@ import java.util.Date;
 /*     */   private String feedback;
 /*     */   private String attention;
 /*     */   private String remarks;
-/*  48 */   private Long backVisitSum = Long.valueOf(0L);
-/*  49 */   private Long unconnect = Long.valueOf(0L);
+/*  48 */   
 /*     */   private String gradeChang;
 /*     */   private CodeValue customerSteping;
 /*     */   private CodeValue customerSteped;
@@ -50,6 +49,7 @@ import java.util.Date;
             private ProjectInfo projectInfo;
             private String projectName;
             private Daily daily;
+            private Long replyTime;
             
             public String getIsPublic() {
 				return isPublic;
@@ -78,25 +78,6 @@ import java.util.Date;
 /*  81 */     this.customerSteping = customerSteping;
 /*     */   }
 /*     */ 
-/*     */   public Long getUnconnect()
-/*     */   {
-/*  89 */     return this.unconnect;
-/*     */   }
-/*     */ 
-/*     */   public void setUnconnect(Long unconnect)
-/*     */   {
-/*  98 */     this.unconnect = unconnect;
-/*     */   }
-/*     */ 
-/*     */   public Long getBackVisitSum()
-/*     */   {
-/* 106 */     return this.backVisitSum;
-/*     */   }
-/*     */ 
-/*     */   public void setBackVisitSum(Long backVisitSum)
-/*     */   {
-/* 115 */     this.backVisitSum = backVisitSum;
-/*     */   }
 /*     */ 
 /*     */   public boolean equals(Object obj)
 /*     */   {
@@ -345,9 +326,13 @@ import java.util.Date;
 			public void setDaily(Daily daily) {
 				this.daily = daily;
 			}
+			public Long getReplyTime() {
+				return replyTime;
+			}
+			public void setReplyTime(Long replyTime) {
+				this.replyTime = replyTime;
+			}
 			
-
-
 
 /*     */ }
 

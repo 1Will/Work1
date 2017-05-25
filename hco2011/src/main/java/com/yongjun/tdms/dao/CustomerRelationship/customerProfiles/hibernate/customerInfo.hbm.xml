@@ -101,6 +101,12 @@
         <property name="businessScope" type="string">
 			<column name="BUSINESS_SCOPE" not-null="false" sql-type="NVARCHAR(500)" />
 		</property>
+		<property name="unconnect" type="long">
+			<column name="UNCONNECT"/>
+		</property>
+		<property name="backVisitSum" type="long">
+			<column name="BACK_VISIT_SUM"/>
+		</property>
 		<many-to-one name="country" class="com.yongjun.tdms.model.base.area.Area">
 			<column name="COUNTRY_ID" not-null="true"/>
 		</many-to-one>

@@ -859,6 +859,9 @@
 		<constructor-arg index="10">
 			<ref bean="eventTypeManager" />
 		</constructor-arg>
+		<constructor-arg index="11">
+			<ref bean="groupManager" />
+		</constructor-arg>
 	</bean>
 	<!-- 日报结束 -->
 	<!-- 日报回复开始  -->

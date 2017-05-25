@@ -24,7 +24,7 @@
             <column name="type" not-null="false" length="40" />
         </property>
         
-	    <property name="area_id" type="java.lang.Long">
+	    <property name="areaId" type="java.lang.Long">
             <column name="area_id" not-null="false" length="40" />
         </property>
         

@@ -57,7 +57,7 @@ public class QingJiaSubmit extends HttpServlet {
 			 bill.setShenhe(shenhe);
 			 bill.setStatus("0");
 			 int id = SQLUtil.saveQingJia(bill);
-			 String url = "http://yjkj.ngrok.cc/EventNoti/qingjiaSuccessServlet?id="+id+"&name="+openid;
+			 String url = "http://www.yj-tech.com/EventNoti/qingjiaSuccessServlet?id="+id+"&name="+openid;
 			 //String template_id = "OaNt-f1tPkZuKyrQqsD_DeF9Mh-ZPaWTAGMlooyMnXU";
 			 //SendUtil.sendTemplateMessage(shenhe, url, template_id);
 			 String title = "亲爱的"+ SQLUtil.getUserByOpenid(shenhe).getName()+"，你有新的请假审批";

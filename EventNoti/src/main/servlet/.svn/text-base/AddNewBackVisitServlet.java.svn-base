@@ -15,14 +15,18 @@ import main.pojo.ContactArchives;
 import main.pojo.CustomerInfo;
 import main.pojo.EventNew;
 import main.pojo.EventType;
+import main.pojo.PersonnelFiles;
 import main.pojo.ProjectInfo;
 import main.pojo.ProjectInfoPersonnels;
+import main.pojo.UsersInfo;
 import main.service.BackVisitService;
 import main.service.ContactArchivesService;
 import main.service.CustomerInfoService;
 import main.service.EventService;
+import main.service.PersonnelFilesService;
 import main.service.ProjectInfoPersonnelsService;
 import main.service.ProjectInfoService;
+import main.service.UsersInfoService;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -45,6 +49,8 @@ public class AddNewBackVisitServlet extends HttpServlet {
 	public  CustomerInfoService customerInfoService;
 	public  ProjectInfoService projectInfoService;
 	public  ContactArchivesService contactArchivesService;
+	public  PersonnelFilesService personnelFilesService;
+	public  UsersInfoService usersInfoService;
 	public static EventService eventService;
 
 	 public void init() throws ServletException {  
@@ -60,13 +66,19 @@ public class AddNewBackVisitServlet extends HttpServlet {
 			projectInfoPersonnelsService=(ProjectInfoPersonnelsService) context.getBean("projectInfoPersonnelsService");
 
 			customerInfoService=(CustomerInfoService) context.getBean("customerInfoService");
+			
+			personnelFilesService=(PersonnelFilesService) context.getBean("personnelFilesService");
+			
+			usersInfoService=(UsersInfoService) context.getBean("usersInfoService");
+			
 			eventService=(EventService) context.getBean("eventService");
 	
 			
 	    }  
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		List<PersonnelFiles> personnelFilesList=personnelFilesService.getAllPersonnelFiles();
+		request.setAttribute("personnelFilesList", personnelFilesList);
 		
 
 	}
@@ -75,31 +87,36 @@ public class AddNewBackVisitServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try  
 		{ 
+			BackVisit visit = new BackVisit();
 			
 		//客户
 		long backvisittype=Long.parseLong(request.getParameter("backvisittype")) ;
 		long visitType=Long.parseLong(request.getParameter("visitType")) ;
 		
+		//测试 回访类型多选
+		String employees=new String(request.getParameter("employees2").getBytes("iso-8859-1"), "UTF-8");
+		//耗时(分)
+		String expendTime=request.getParameter("expendTime").toString();
+		
 		String customerid=request.getParameter("customerNameid").toString();
 
 		CustomerInfo customerInfo=customerInfoService.getById(Long.parseLong(customerid));
 		
-
+        //客户名称
 		String  customer=customerInfo.getCustomerName();
 		
-		//项目
+		//项目id 并判断是否为空
 		String projectinfoid=request.getParameter("projectName");
 		String  project="";
-	
 		if(projectinfoid!= null && projectinfoid.length()>0)
 		{ 
 				
 		  ProjectInfo projectInfo=projectInfoService.getById(Long.parseLong(projectinfoid));
 		  project=projectInfo.getProjectName();
-			System.out.println("111111111111");
+		  visit.setProjectinfoid(Long.parseLong(projectinfoid));
+		  visit.setProjectName(project);
 		}
 	
-		System.out.println("2222222222");
 		//联系人
 		String contactname=request.getParameter("contactname");
 		String contact="";
@@ -115,7 +132,9 @@ public class AddNewBackVisitServlet extends HttpServlet {
 		 SimpleDateFormat VisitDate = new SimpleDateFormat("yyyy-MM-dd");
 		 String visitDate =request.getParameter("visitDate");
 		 Date date = VisitDate.parse(visitDate);
-		
+		 String nextVisitDate =request.getParameter("nextVisitDate");
+		 Date nextVisitDate2 = VisitDate.parse(nextVisitDate);
+		 
 		 System.out.println("444444444");
 		//回访内容
 		String visitContent =new String(request.getParameter("visitContent").getBytes("iso-8859-1"), "UTF-8");
@@ -132,28 +151,54 @@ public class AddNewBackVisitServlet extends HttpServlet {
 		String remarks =new String(request.getParameter("remarks").getBytes("iso-8859-1"), "UTF-8"); 
 		
 		long userid = Long.parseLong(request.getParameter("userid"));
+		String code = request.getParameter("code");
+        //根据code获取人事表对应visiterid
+		Long visiterid=Long.parseLong("0");
+		List<PersonnelFiles> pList=personnelFilesService.getPersonnelFilesByCode(code);
+		for (int i = 0; i < pList.size(); i++) {
+			PersonnelFiles personnelFiles=pList.get(0);
+			visiterid=personnelFiles.getId();
+		}
 		
-		//int sender = Integer.parseInt(request.getParameter("sender"));
+		//获取回访次数
+		List<BackVisit> backVisitList = backVisitService.getBackVisitByCustomerName(customer);
+	            Long sum;
+		        if (null != backVisitList) {
+		        sum = Long.valueOf(backVisitList.size() + 1);
+		        visit.setBackVisitSum(sum);
+		        for (BackVisit b : backVisitList) {
+		           b.setBackVisitSum(sum);
+		             backVisitService.updateBackVisit(b);//修改bc_sum并更新
+		             }
+		         } else {
+		         visit.setBackVisitSum(Long.valueOf(1L));
+		         }
+		
 			
 		String username = SQLUtil.getUserDetail(Integer.parseInt(request.getParameter("userid"))).getName();
 		String LoginName = SQLUtil.getUserDetail(Integer.parseInt(request.getParameter("userid"))).getLoginName();
-		BackVisit visit = new BackVisit();
+		
 		visit.setBackvisittype(backvisittype);
 		visit.setVisittype(visitType);
 		visit.setCustomerName(customer);
 		visit.setCustomerid(Long.parseLong(customerid));
-		visit.setProjectName(project);
-		visit.setProjectinfoid(Long.parseLong(projectinfoid));
 		visit.setContactid(Long.parseLong(contactname));
 		visit.setContactname(contact);
 		visit.setFeedback(fankui);
 		visit.setVisitContent(visitContent);
 		visit.setAttention(attention);
 		visit.setRemarks(remarks);
-		visit.setVisiter(username);
-		visit.setVisiterid(userid);
+		visit.setVisitor(username);
+		visit.setVisiterid(visiterid);
 		visit.setCreatetime(new Date());
+		visit.setLastModifiedTime(new Date()); //最后修订时间
+		visit.setLastOperator(LoginName); //最后修订人
+		visit.setCustomerSteping(Long.parseLong("339"));//客户等级  339 一星  340  342
 	    visit.setVisitDate(date);
+	    visit.setNextVisitDate(nextVisitDate2);//下次回访日期
+	    visit.setIsSaved("0");//是否失效
+	    visit.setExpendTime(Long.parseLong(expendTime)); //耗时(分)
+	    visit.setEmployees(employees);//业务员同行者
 	    visit.setVersion(Long.parseLong("0"));
 	    visit.setDisabled(0);
 	    visit.setCreator(LoginName);
@@ -163,14 +208,16 @@ public class AddNewBackVisitServlet extends HttpServlet {
 	    visit.setUnconnect(Long.parseLong("0"));
 	    visit.setContinuebackvisit("0");
 		backVisitService.saveBackVisit(visit);
+		System.out.println("新增BackVisit: id= "+visit.getId());
 	
         //插入事件表
 		//获取发送的集合
 		String moreinfo="{\"backVisitId\":\""+visit.getId()+"\",\"users\":\"";
+		//判断projectinfoid是否为空
+		if( projectinfoid!=null)
+		 {//发送项目组成员
 		 List<ProjectInfoPersonnels> ProjectInfoPersonnelsList = new ArrayList<ProjectInfoPersonnels>();
 		 ProjectInfoPersonnelsList= projectInfoPersonnelsService.getProjectInfoPersonnelsById(Long.parseLong(projectinfoid));
-		 if( ProjectInfoPersonnelsList!=null)
-		 {//发送项目组成员
 		 for (int i = 0; i < ProjectInfoPersonnelsList.size(); i++) {
 			 ProjectInfoPersonnels Personnels = ProjectInfoPersonnelsList.get(i);
 			 moreinfo+=Personnels.getProPerson_id().toString()+",";
@@ -180,15 +227,17 @@ public class AddNewBackVisitServlet extends HttpServlet {
 		 }
 		 else
 		 {//发送全员
-			 List<UserInfo> UserInfoList = new ArrayList<UserInfo>();
+			 
+			 List<UsersInfo> UserInfoList = usersInfoService.getAllUsersInfoByOpenId();
 			 for (int i = 0; i < UserInfoList.size(); i++) {
-				 UserInfo User = SQLUtil.getAllUserId();
+				 UsersInfo User = UserInfoList.get(i);
 				 moreinfo+=User.getId().toString()+",";
 				
 			 }
 			 moreinfo = moreinfo.substring(0,moreinfo.length()-1);
 		 }
 				
+		 System.out.println();
 	    moreinfo+="\"}";
 	    System.out.println(moreinfo);
 		EventNew event=new EventNew();
@@ -204,6 +253,7 @@ public class AddNewBackVisitServlet extends HttpServlet {
 		}
 		catch (Exception e)  
 		{  
+			e.printStackTrace();
 		    System.out.println(e.getMessage());  
 		}  
 	}

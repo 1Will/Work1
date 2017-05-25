@@ -115,6 +115,11 @@
         <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
 		<!-- 组织    5-->
 		<property name="organization" column="ORG_ID" type="long"/>
+		<!-- 上级领导 -->
+		<many-to-one name="superiorLeader" class="main.pojo.PersonnelFiles" lazy="false" >
+			<column name="SUPERIORLEADER_ID" not-null="true"/>
+		</many-to-one>
+		
 		   
       <!--   <many-to-one name="national" class="com.yongjun.pluto.model.codevalue.CodeValue">
 			<column name="NATIONAL_ID" not-null="false"/>

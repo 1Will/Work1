@@ -14,9 +14,9 @@ public class MenuManager {
   
     public static void main(String[] args) {  
         // 第三方用户唯一凭证  
-        String appId = "wxd869d12157582551";  
+        String appId = "wx948a0fbfe8c5b079";  
         // 第三方用户唯一凭证密钥  
-        String appSecret = "c91907e07d6aab4f1eb37c2009080bb3";  
+        String appSecret = "a381bc2aba5f9cb989b08625dca73747";  
   
         // 调用接口获取access_token  
         AccessToken at = WeixinUtil.getAccessToken(appId, appSecret);  
@@ -44,32 +44,32 @@ public class MenuManager {
     	ViewButton btn12 = new ViewButton();  
     	btn12.setName("客户档案");  
     	btn12.setType("view");  
-    	btn12.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd869d12157582551&redirect_uri=http%3A%2F%2Fyjkj.ngrok.cc%2FEventNoti%2Foauth2Servlet&response_type=code&scope=snsapi_base&state=addCustomerInfo#wechat_redirect");  
+    	btn12.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx948a0fbfe8c5b079&redirect_uri=http%3A%2F%2Fwww.yj-tech.com%2FEventNoti%2Foauth2Servlet&response_type=code&scope=snsapi_base&state=addCustomerInfo#wechat_redirect");  
   
         ViewButton btn11 = new ViewButton();  
         btn11.setName("用户绑定");  
         btn11.setType("view");  
-        btn11.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd869d12157582551&redirect_uri=http%3A%2F%2Fyjkj.ngrok.cc%2FEventNoti%2FregisterServlet&response_type=code&scope=snsapi_base&state=123#wechat_redirect");  
+        btn11.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx948a0fbfe8c5b079&redirect_uri=http%3A%2F%2Fwww.yj-tech.com%2FEventNoti%2FregisterServlet&response_type=code&scope=snsapi_base&state=123#wechat_redirect");  
        
         ViewButton btn13 = new ViewButton();  
         btn13.setName("联系人档案");  
         btn13.setType("view");  
-        btn13.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd869d12157582551&redirect_uri=http%3A%2F%2Fyjkj.ngrok.cc%2FEventNoti%2Foauth2Servlet&response_type=code&scope=snsapi_base&state=addContactArchives#wechat_redirect"); 
+        btn13.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx948a0fbfe8c5b079&redirect_uri=http%3A%2F%2Fwww.yj-tech.com%2FEventNoti%2Foauth2Servlet&response_type=code&scope=snsapi_base&state=addContactArchives#wechat_redirect"); 
         
         ViewButton btn14 = new ViewButton();  
         btn14.setName("项目档案");  
         btn14.setType("view");  
-        btn14.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd869d12157582551&redirect_uri=http%3A%2F%2Fyjkj.ngrok.cc%2FEventNoti%2Foauth2Servlet&response_type=code&scope=snsapi_base&state=addProjectInfo#wechat_redirect");  
+        btn14.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx948a0fbfe8c5b079&redirect_uri=http%3A%2F%2Fwww.yj-tech.com%2FEventNoti%2Foauth2Servlet&response_type=code&scope=snsapi_base&state=addProjectInfo#wechat_redirect");  
  
         
         ViewButton btn15 = new ViewButton();  
         btn15.setName("回访登记");  
         btn15.setType("view");  
-        btn15.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd869d12157582551&redirect_uri=http%3A%2F%2Fyjkj.ngrok.cc%2FEventNoti%2Foauth2Servlet&response_type=code&scope=snsapi_base&state=backvisit#wechat_redirect");  
+        btn15.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx948a0fbfe8c5b079&redirect_uri=http%3A%2F%2Fwww.yj-tech.com%2FEventNoti%2Foauth2Servlet&response_type=code&scope=snsapi_base&state=backvisit#wechat_redirect");  
   
         ViewButton btn21 = new ViewButton();
         btn21.setName("请假");  
-        btn21.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd869d12157582551&redirect_uri=http%3A%2F%2Fyjkj.ngrok.cc%2FEventNoti%2Foauth2Servlet&response_type=code&scope=snsapi_base&state=qingjia#wechat_redirect");  
+        btn21.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx948a0fbfe8c5b079&redirect_uri=http%3A%2F%2Fwww.yj-tech.com%2FEventNoti%2Foauth2Servlet&response_type=code&scope=snsapi_base&state=qingjia#wechat_redirect");  
         btn21.setType("view");  
         
         ViewButton btn22 = new ViewButton();  
@@ -85,12 +85,12 @@ public class MenuManager {
         ViewButton btn24 = new ViewButton();  
         btn24.setName("日报");  
         btn24.setType("view");  
-        btn24.setUrl("http://www.baidu.com/");
+        btn24.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx948a0fbfe8c5b079&redirect_uri=http%3A%2F%2Fwww.yj-tech.com%2FEventNoti%2Foauth2Servlet&response_type=code&scope=snsapi_base&state=addDaily#wechat_redirect");
   
         ViewButton btn25 = new ViewButton();  
         btn25.setName("周计划");  
         btn25.setType("view");  
-        btn25.setUrl("http://www.baidu.com/");
+        btn25.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx948a0fbfe8c5b079&redirect_uri=http%3A%2F%2Fwww.yj-tech.com%2FEventNoti%2Foauth2Servlet&response_type=code&scope=snsapi_base&state=addWeekly#wechat_redirect");
         
         ComplexButton mainBtn1 = new ComplexButton();  
         mainBtn1.setName("客户管理");  

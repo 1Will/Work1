@@ -10,7 +10,7 @@
 <%@page import="java.util.List"%>
 <%@page import="main.pojo.ProjectInfo"%>
 <%
-	String userid = (String) request.getAttribute("userid");
+    UserInfo userInfo=(UserInfo)request.getAttribute("userInfo");
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
@@ -26,17 +26,128 @@
 		<link rel="stylesheet" href="<%=basePath%>/css/page.css" />
 		<link rel="stylesheet" href="<%=basePath%>/css/weui.css" />
 		<script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
+		<script type="text/javascript" src="<%=basePath%>/js/jquery-1.8.3.js"></script>
 		<script type="text/javascript">
-    function submitInfo(){
-           //直接跳转 
-      var obj = document.getElementById("customerName"); //定位id
-      var index = obj.selectedIndex; // 选中索引
-      var customerName = obj.options[index].value; // 选中值
-            document.myForm.action = "/EventNoti/addContactArchivesServlet?customerN="+customerName;
-			document.myForm.submit();
-    }
-   
+    		     function add(){
+		     
+		    window.open("searchCusomerServlet");
+
+		     }
+    
 </script>
+		<script type="text/javascript">
+function binding(id,name) {
+
+          document.getElementById("customerName").value=name; 
+          document.getElementById("customerId").value=id;
+        //  getProject();
+          
+  }
+function searchData(){
+	
+	$.ajax({
+        url: "/EventNoti/searchCusomerServlet",
+        type: "POST",
+        dataType: "json",
+        data: {name:$("#searchName").val()},
+        success: function(result){
+            $("#searchResult").empty();
+            if(result != null && result != ""){
+            var html = "";
+            $.each(result, function(commentIndex, comment){
+                html += "<div class='weui_cells'><div class='weui_cell'><div class='weui_cell_bd weui_cell_primary'>"
+                +"<p><span>"+comment.name+"</span></p>"
+                +"</div><div class='weui_cell_ft'><a onclick=\"binding('"+comment.id+"','"+comment.name+"')\""
+                +"href='javascript:' class='weui_btn weui_btn_mini weui_btn_primary'>选择</a></div></div></div>";
+
+
+          });
+            $("#searchResult").html(html);
+            }else{
+            	var html = "<div class='weui_cells_title' style='margin-top:30%;margin-left:35%'>未搜索到客户</div>";
+            	 $("#searchResult").html(html);
+            }
+		  
+        }
+    });
+}
+ function submitInfo(){
+  
+       if(document.getElementById("customerName").value.replace(/\s*/g, "") == "")
+       {
+        alert("请先选择客户名称");
+		return false;
+		}
+
+      /*   if(!document.getElementById("mobilePhone").value("")){
+             if(document.getElementById("mobilePhone").value.replace(/^1\d{10}$/)=="")
+               {
+                alert("请输入正确的手机号");
+		        return false;
+                } 
+         }
+        
+       //先判断是否为空，不为空的情况下进行正则匹配
+       if(!document.getElementById("phone").value(" ")){
+           if(document.getElementById("phone").value.replace(/^0\d{2,3}-?\d{7,8}$/))
+           {
+             alert("请输入正确的座机号");
+		   return false;
+          }
+       }
+       
+       if(!document.getElementById("qq").value("")){
+            if(document.getElementById("qq").value.replace(/^\d*$/))
+              {
+              alert("请输入正确的QQ号");
+		      return false;
+              }
+       }	
+        
+  
+    	if(!document.getElementById("email").value("")){
+            if(document.getElementById("email").value.replace(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/))
+              {
+              alert("请输入正确的Email");
+		      return false;
+              }
+       } */	
+  
+      $('#myForm').submit();
+  }
+
+ 
+</script>
+		<style>
+.black_overlay {
+	display: none;
+	position: absolute;
+	top: 25%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	z-index: 1001;
+	-moz-opacity: 0.8;
+	opacity: .80;
+	filter: alpha(opacity =   80);
+}
+
+.white_content {
+	display: none;
+	position: absolute;
+	top: 25%;
+	left: 1%;
+right: 1%;
+	width: 98%;
+	height: 60%;
+	padding: 2px;
+	border: 1px solid #04BE02;
+	background-color: white;
+	z-index: 1002;
+	overflow: auto;
+}
+</style>
+   
 	</head>
 
 	<body>
@@ -45,7 +156,9 @@
 
 		</div>
 		<form name="myForm" id="myForm" method="post" action="/EventNoti/addContactArchivesServlet">
-			<input type="hidden" name="userid" id="userid" value="<%=userid%>" />
+			<input type="hidden" name="userid" id="userid" value="<%=userInfo.getId()%>" />
+			<input type="hidden" name="customerId" id="customerId" value=" ">
+			<input type="hidden" name="customername" id="customername" value=" ">
 			<div class="bd">
 
             <div class="weui_cells weui_cells_form">
@@ -66,7 +179,7 @@
 	           <div class="weui_cell weui_cell_select">
 	             <div class="weui_cell_bd weui_cell_primary">
 	                <select class="weui_select" name="sex" id="sex">
-	                    <option value="0">男</option>
+	                     <option value="0">男</option>
 				         <option value="1">女</option>
 	                </select>
 	             </div>
@@ -85,24 +198,18 @@
 						</div>
 					</div>
 				</div>
+				
 				<div class="weui_cells_title">
 					客户名称
 				</div>
 				<div class="weui_cells">
 					<div class="weui_cell weui_cell_select">
 						<div class="weui_cell_bd weui_cell_primary">
-							<select class="weui_select" name="customerName" id="customerName">
-                                 <%
-                                 List<CustomerInfo> customerInfoList=(List<CustomerInfo>)request.getAttribute("customerInfoList");
-                                 for(int i=0;i<customerInfoList.size();i++){
-                                     CustomerInfo customerInfo=customerInfoList.get(i);
-                             	 %>
-                             	<option value="<%=customerInfo.getId()%>"><%=customerInfo.getCustomerName()%></option>
-                                 <% 
-                                    }
-                                  %>
-							
-							</select>
+							<textarea id="customerName" name="customerName" class="weui_textarea"
+									placeholder="" rows="1"></textarea>
+                                     <a class="weui_btn weui_btn_mini weui_btn_primary"
+									href="javascript:void(0)"
+									onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">选择</a>
 						</div>
 					</div>
 				</div>
@@ -139,7 +246,7 @@
 					<div class="weui_cell">
 						<div class="weui_cell_bd weui_cell_primary">
 							<textarea id="enterpriseSynopsis" name="enterpriseSynopsis"
-								class="weui_textarea" placeholder="请输入印象描述" rows="3"></textarea>
+								class="weui_textarea" placeholder="请输入印象描述" onfocus="this.placeholder=' '" rows="3"></textarea>
 						</div>
 					</div>
 				</div>
@@ -151,8 +258,8 @@
 							</label>
 						</div>
 						<div class="weui_cell_bd weui_cell_primary">
-							<input class="weui_input" type="string" value="" id="mobilePhone"
-								name="mobilePhone" />
+							<input class="weui_input" type="string" value=""  id="phone"
+								name="phone" />
 						</div>
 					</div>
 				</div>
@@ -161,11 +268,11 @@
 						<div class="weui_cell_hd">
 							<label for="" class="weui_label">
 								手机号
-							</label>
+							</label><!-- <input name="days" id="days"  class="weui_input" type="number" pattern="[0-9]*" value="weui input error" placeholder="请输入天数"/> -->
 						</div>
 						<div class="weui_cell_bd weui_cell_primary">
-							<input class="weui_input" type="string" value="" id="phone"
-								name="phone" />
+							<input class="weui_input" type="number" value=""  id="mobilePhone"
+								name="mobilePhone" />
 						</div>
 					</div>
 				</div>
@@ -203,7 +310,7 @@
 							</label>
 						</div>
 						<div class="weui_cell_bd weui_cell_primary">
-							<input class="weui_input" type="string" value="" id="email"
+							<input class="weui_input" type="string" onchange="onchange()" value=""  id="email"
 								name="email" />
 						</div>
 					</div>
@@ -241,7 +348,27 @@
 				<a class="weui_btn weui_btn_primary" href="javascript:"
 					id="showTooltips" onclick="submitInfo();">提交</a>
 			</div>
-
+            
+            	<div id="light" class="white_content">
+					<div class="weui_search_bar">
+						<form class="weui_search_outer">
+							<div class="weui_search_inner">
+								<i class="weui_icon_search"></i>
+								<input id="searchName" name="searchName" type="search"
+									 placeholder="" />
+                                 <a onclick="searchData();" href="javascript:" class="weui_btn weui_btn_mini weui_btn_primary">搜索</a>
+                                 <a href="javascript:void(0)" class="weui_btn weui_btn_mini weui_btn_primary" 
+                                 onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+							关闭</a>
+							</div>
+						</form>
+					</div>
+					<div id="searchResult">
+					</div>
+				</div>
+				<div id="fade" class="black_overlay">
+				</div>
+            </div> 
 		</form>
 	</body>
 </html>

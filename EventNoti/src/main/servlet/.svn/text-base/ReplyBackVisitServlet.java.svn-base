@@ -70,7 +70,7 @@ public class ReplyBackVisitServlet extends HttpServlet {
 		String openid = SQLUtil.getUserDetail(sender).getOpenid();
 		
 		String title = "你有新的回访反馈信息";
-		String url = "http://yjkj.ngrok.cc/EventNoti/backVisitServlet?bid="
+		String url = "http://www.yj-tech.com/EventNoti/backVisitServlet?bid="
 				+ id + "&userid=" + sender + "&sender=" + userid;
 		 System.out.println(openid+","+url+","+title+","+customName+","+projectName+","+username+","+fankui);
 		SendUtil.sendTemplatePLHf(openid, url, title, customName, projectName,

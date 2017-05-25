@@ -6,8 +6,8 @@
 <%
 
     CustomerInfo customerInfo=(CustomerInfo)request.getAttribute("customerInfo");
-    String mobile=customerInfo.getMobilePhone();
-    String phone=customerInfo.getPhone();
+    String mobile=customerInfo.getMobilePhone(); //接收手机号
+    String phone=customerInfo.getPhone();//接收 座机号码
     String customerName=customerInfo.getCustomerName();
     String keyContacter=customerInfo.getKeyContacter();
     String address=customerInfo.getAddress();
@@ -74,7 +74,7 @@
 								联系电话
 							</label>
 							<em class="weui-form-preview__value">
-							<%=(mobile==null||mobile.equals(""))?"":mobile%></em>
+							<%=(phone==null||phone.equals(""))?"":phone%></em>
 						</div>
 					</div>
 					<div class="weui-form-preview__hd">
@@ -83,7 +83,7 @@
 								手机号码
 							</label>
 							<em class="weui-form-preview__value">
-							<%=(phone==null||phone.equals(""))?"":phone%></em>
+							<%=(mobile==null||mobile.equals(""))?"":mobile%></em>
 						</div>
 					</div>
 					<div class="weui-form-preview__hd">

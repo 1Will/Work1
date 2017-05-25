@@ -3,6 +3,7 @@ package main.dao.impl;
 import java.util.List;
 
 import main.dao.ContactArchivesDao;
+import main.pojo.BackVisit;
 import main.pojo.ContactArchives;
 
 import org.hibernate.Session;
@@ -53,8 +54,17 @@ public class ContactArchivesDaoImpl extends HibernateDaoSupport implements Conta
 	@SuppressWarnings("unchecked")
 	public  List<ContactArchives> getAllContactArchives(Long id) {
 		String hql="from ContactArchives temp where temp.customerId="+id;
-		
 		return this.getHibernateTemplate().find(hql);
 	}
+
+	//根据日期和姓名返回ContactArchives集合     
+		@SuppressWarnings("unchecked")
+		@Override
+		public List<ContactArchives> getContactArchivesByDate(String date,String name ) {
+			String hql="from ContactArchives c where convert(varchar,c.createdTime,120) like '"+date+"%' and c.creatorName='"+name+"'";
+			return this.getHibernateTemplate().find(hql);
+		}	
+	
+	
 	
 }

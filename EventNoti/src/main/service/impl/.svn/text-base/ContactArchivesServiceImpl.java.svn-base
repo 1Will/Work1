@@ -39,16 +39,25 @@ public class ContactArchivesServiceImpl implements ContactArchivesService {
 		return contactArchivesDao.getSuperSession();
 	}
 
-	
-	public ContactArchivesDao getContactArchivesDao() {
-		return contactArchivesDao;
-	}
-
-	public void setContactArchivesDao(ContactArchivesDao contactArchivesDao) {
-		this.contactArchivesDao = contactArchivesDao;
-	}
 	public  List<ContactArchives> getAllContactArchives(Long id){
 		return contactArchivesDao.getAllContactArchives( id);
 	}
+	
+	
+	@Override
+	public List<ContactArchives> getContactArchivesByDate(String date,
+			String name) {
+		return contactArchivesDao.getContactArchivesByDate(date, name);
+	}
+	
+
+	public ContactArchivesDao getContactArchivesDao() {
+		return contactArchivesDao;
+	}
+	
+	public void setContactArchivesDao(ContactArchivesDao contactArchivesDao) {
+		this.contactArchivesDao = contactArchivesDao;
+	}
+
 
 }

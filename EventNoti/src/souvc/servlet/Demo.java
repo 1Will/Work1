@@ -21,7 +21,7 @@ public class Demo {
         temp.setUrl("www.baidu.com");
         temp.setTouser(openid);
         temp.setTopcolor("#000000");
-        temp.setTemplate_id("ihbm9Ff4jhH9GLT0Jp432TMCTrpvHFZz2wGbDn0a_DI");
+        temp.setTemplate_id("ihbm9Ff4jhH9GLT0Jp432TMCTrpvHFZz2wGbDn0a_DI"); //发布号 回访成功提醒ID
         Map<String,TemplateData> m = new HashMap<String,TemplateData>();
         TemplateData first = new TemplateData();
         first.setColor("#000000");  

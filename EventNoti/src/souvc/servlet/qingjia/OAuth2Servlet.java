@@ -37,7 +37,9 @@ public class OAuth2Servlet extends HttpServlet{
 		  
 		//设置要传递的参数
 		  request.setAttribute("openid", userid);
+		  System.out.println("===即将获取 userinfo"); 
 		  List<WeixinUserInfo> userList = new ArrayList<WeixinUserInfo>();
+		 System.out.println("获取 userinfo"); 
 		  UserInfo  userInfo = SQLUtil.getUserByOpenid(userid);
 		  List<String> openidList = SendUtil.getAllWeiXinUser();
 		  for(String openid : openidList){
@@ -63,7 +65,7 @@ public class OAuth2Servlet extends HttpServlet{
 			 // request.getRequestDispatcher("backVisit/addbackVisit.jsp").forward(request, response);
 			  request.getRequestDispatcher("addBackVisitServlet").forward(request, response);
 		  }
-		  //跳转到新增项目信息jsp页面       
+		  //跳转到新增项目信息Servlet页面       
 		  if(state.equals("addProjectInfo")){       
 			  request.getRequestDispatcher("addProjectInfoServlet").forward(request, response);
 		  }
@@ -74,6 +76,14 @@ public class OAuth2Servlet extends HttpServlet{
 		  //跳转到新增联系人信息servlet页面         
 		  if(state.equals("addContactArchives")){       
 			  request.getRequestDispatcher("addContactArchivesServlet").forward(request, response);
+		  }	
+		  //跳转到新增日报信息servlet页面         
+		  if(state.equals("addDaily")){       
+			  request.getRequestDispatcher("addDailyServlet").forward(request, response);
+		  }	
+		  //跳转到新增周计划信息servlet页面         
+		  if(state.equals("addWeekly")){       
+			  request.getRequestDispatcher("addWeeklyServlet").forward(request, response);
 		  }	
 	 
 	 

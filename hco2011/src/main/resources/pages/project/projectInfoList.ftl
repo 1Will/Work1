@@ -48,9 +48,11 @@
             <@alignLeft/>
             </@vcolumn>
              <@vcolumn title="${action.getText('projectInfo.customerInfoName')}" property="customer.name" sortable="desc">
+             <a href="javascript:customer_OpenDialog(#{object.customer.id?if_exists})" title="完整度：${object.customer.customerInfoIntegrity?if_exists}%; 熟悉程度：${object.customer.customerType.name?if_exists}">${object.customer.name?if_exists}</a>
             <@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('projectInfo.contact')}" property="contact.name" sortable="desc">
+            <a href="javascript:contactArchives_OpenDialog(<#if (object.contact?exists)>#{object.contact.id?if_exists}</#if>)"><#if (object.contact?exists)>${object.contact.name}</#if></a>
             <@alignLeft/>
             </@vcolumn>
            
@@ -66,6 +68,10 @@
             <@vcolumn title="${action.getText('state.name')}" property="state.name" sortable="desc"  >
             <@alignCenter attributes="width:110;"/>
             </@vcolumn>
+            <@vcolumn title="${action.getText('回访次数')}" property="backVisitSum" sortable="desc">
+            	<a href="javascript:visitBack_OpenDialog(#{object.customer.id?if_exists})" >${object.customer.backVisitSum?if_exists}</a>
+            <@alignLeft/>
+             </@vcolumn>
           
         </@list>
        <#if !contactArchivesFlag?exists>

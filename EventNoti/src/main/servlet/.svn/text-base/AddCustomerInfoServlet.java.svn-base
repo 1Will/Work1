@@ -12,15 +12,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import main.pojo.Area;
 import main.pojo.CodeValue;
 import main.pojo.CustomerInfo;
 import main.pojo.PersonnelFiles;
+import main.pojo.UsersInfo;
+import main.service.AreaService;
 import main.service.CodeValueService;
 import main.service.CustomerInfoService;
+import main.service.DepartmentService;
 import main.service.PersonnelFilesService;
+import main.service.UsersInfoService;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.syntax.jedit.InputHandler.overwrite;
+
+import souvc.util.SQLUtil;
 
 
 /**
@@ -35,7 +43,11 @@ public class AddCustomerInfoServlet extends HttpServlet {
 	public CustomerInfoService customerInfoService;
 	public CodeValueService codeValueService;
 	public PersonnelFilesService personnelFilesService;
+	public UsersInfoService usersInfoService;
+	public DepartmentService departmentService;
+	public AreaService areaService;
 	DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //可以精确到时分秒  
 
 	public void init() throws ServletException {
 		ApplicationContext context = new ClassPathXmlApplicationContext(
@@ -45,6 +57,10 @@ public class AddCustomerInfoServlet extends HttpServlet {
 		codeValueService =(CodeValueService) context.getBean("codeValueService");
 		personnelFilesService=(PersonnelFilesService) context
 				.getBean("personnelFilesService");
+		departmentService=(DepartmentService) context.getBean("departmentService");
+		areaService=(AreaService) context.getBean("areaService");
+		usersInfoService=(UsersInfoService) context.getBean("usersInfoService");
+	
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -54,10 +70,15 @@ public class AddCustomerInfoServlet extends HttpServlet {
 		Long id=(long) 2;  //获取cvId=2的集合
 		codeValueList = codeValueService.getCodeValueByCvid(id);
 		request.setAttribute("codeValueList", codeValueList);
-		//获取人事信息列表
-		List<PersonnelFiles> personnelFilesList=new ArrayList<PersonnelFiles>();
-		personnelFilesList=personnelFilesService.getPersonnelFilesById();
-	    request.setAttribute("personnelFilesList", personnelFilesList);	
+	
+		//获取业务员列表 来自t_users表
+		List<UsersInfo> usersInfoList=usersInfoService.getAllUsersInfoByEnabled();
+	    request.setAttribute("usersInfoList", usersInfoList);
+	    //获取Area信息列表
+	    List<Area> areaList=new ArrayList<Area>();
+	    areaList=areaService.getAllCountryByType();
+	    request.setAttribute("areaList", areaList);	
+	    
 		request.getRequestDispatcher("backVisit/addCustomerInfo.jsp").forward(request, response);
 
 	}
@@ -73,8 +94,8 @@ public class AddCustomerInfoServlet extends HttpServlet {
 		String customerType=request.getParameter("customerType") ;
 		//企业性质  Long 
 		String companyNature=request.getParameter("companyNature") ;
-		// 行业 Long 
-	//	String industry=request.getParameter("industry") ;
+		//获取客户Id  客户名称也用id表示 暂未解析
+		 long	industry=Long.parseLong(request.getParameter("industry")); 
 		// 国家Long 
 		String country=request.getParameter("country") ;
 		// 省份Long 
@@ -111,9 +132,11 @@ public class AddCustomerInfoServlet extends HttpServlet {
 		// 公司创建时间
 		String setupTime = request.getParameter("setupTime");
 		// 存档日期
-		String archiveTime = request.getParameter("archiveTime");
+		Date archiveTime=new Date();
 		// 最后跟进时间
 		Date lastModifiedTime = new Date();
+		// 开始跟进时间
+		Date createdTime = new Date();
 	
 		// 获取当前数据表中最大id值
 		Object id1 = customerInfoService.findLastCustomerId();
@@ -128,31 +151,46 @@ public class AddCustomerInfoServlet extends HttpServlet {
 			System.out.println(code);
 		}
          
-		//获取客户Id  客户名称也用id表示 暂未解析
-		long industry=0; //客户ID
-		if(!request.getParameter("customerName").equals("null"))
-		  {
-			industry=Long.parseLong(request.getParameter("industry")); 
-		  }else {
-			industry=666;
-		}
-		 
 		//根据t_PersonnelFiles 中的ID 获得实体 再分别获取salsman 部门id号 和businessmanId
 		// 所属部门
 		//	String parlorDept= ;
 			// 业务员 !!联表获取
-         String personnelId=request.getParameter("saleman");
-         PersonnelFiles personnelFiles=personnelFilesService.getPersonnelFilesById(Long.parseLong(personnelId));
-         String saleman=personnelFiles.getName();		
-		 Long businessmanId=personnelFiles.getId();
+         String saleman= new String(request.getParameter("saleman").getBytes("iso-8859-1"), "UTF-8");
+		 List<PersonnelFiles> list=personnelFilesService.getPersonnelFilesByName(saleman);
+		 PersonnelFiles personnelFiles=null;
+		 for(int i=0;i<list.size();i++){
+			 personnelFiles=list.get(0);
+		 }
+         
+         Long businessmanId=personnelFiles.getId();
 		 Long parlorDeptID =personnelFiles.getDeptId();//获取所属部门的编号
+		 //由部门id获取部门名称
+		 List<String> newList=null;
+		 String deptName=null;
+		 try {
+			 newList= departmentService.getDeptnameById(parlorDeptID);
+		      for(int i = 0; i < newList.size(); i++){
+		    	  deptName=newList.get(0);
+		     }
+		} catch (Exception e) {
+		     e.printStackTrace();
+		}
 		
+		 //获取用户id
+		 Long userid=Long.parseLong(request.getParameter("userid"));
+		//获取用户姓名
+		String creatorName = SQLUtil.getUserDetail(Integer.parseInt(request.getParameter("userid"))).getName();
+		String lastOperator=creatorName;
+		System.out.println("查看获取的  userid ，username  分别为："+userid+creatorName);
+		 
+		 
 		try {
 			CustomerInfo customerInfo = new CustomerInfo();
 			customerInfo.setCustomerName(customerName);
 			customerInfo.setCode(code); //code自增长到KH-999999
 			customerInfo.setSetupTime(format1.parse(setupTime));
-			customerInfo.setArchiveTime(format1.parse(archiveTime));
+			customerInfo.setArchiveTime( archiveTime);
+			customerInfo.setCreatedTime(createdTime);
 			customerInfo.setLastModifiedTime(lastModifiedTime);
 			customerInfo.setCustomerType(Long.parseLong(customerType));
 			customerInfo.setCompanyNature(Long.parseLong(companyNature));
@@ -174,7 +212,11 @@ public class AddCustomerInfoServlet extends HttpServlet {
 			customerInfo.setAdvisoryContent(advisoryContent);
 			customerInfo.setSaleman(saleman);
 			customerInfo.setBusinessmanId(businessmanId); //该属性非空
-			customerInfo.setParlorDept(String.valueOf(parlorDeptID));
+			customerInfo.setParlorDept(deptName.toString()); //获取对应部门名称
+			customerInfo.setCreatorName(creatorName);//添加创建人名字
+			customerInfo.setLastOperator(lastOperator);
+			customerInfo.setRegisteredCapital(Double.valueOf("0"));
+			customerInfo.setPersonCount(0);
 		
 			// 下面字段不能为空
 			customerInfo.setStep(Long.parseLong("339"));// 客户等级 Long 自定义为1星

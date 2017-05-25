@@ -26,7 +26,7 @@ public class CustomerInfo implements java.io.Serializable {
 	private String web; //公司网站
 	private String address;        //地址
 	private String businessScope; //业务范围 
-
+	private Long backVisitSum = 0L; //回访次数
 	private String keyContacter;   //主要联系人
 	private String sex; //性别
 	private String dept; //部门
@@ -41,7 +41,13 @@ public class CustomerInfo implements java.io.Serializable {
 	private Long businessmanId; //业务员Id 非空
 	
 	private Date lastModifiedTime; //最后跟进时间 后台处理
+	private Date createdTime; //开始跟进时间 后台处理
 	private Long state; //固定值
+	private String creatorName;//开始创建人
+	private String lastOperator;//最后修改人
+	private Double registeredCapital; //注册资本 
+	private Integer personCount; //公司人数
+	private Long unconnect;
 	
 	/*	//未使用字段
 	
@@ -49,8 +55,7 @@ public class CustomerInfo implements java.io.Serializable {
 	private String legalPerson ; //法人代表
 	private String email; //
 	private String qq; //
-	private Long registeredCapital; //注册资本 
-	private Long personCount; //公司人数
+	
 	*/
 	public Long getId() {
 		return id;
@@ -118,8 +123,8 @@ public class CustomerInfo implements java.io.Serializable {
 		return setupTime;
 	}
 
-	public void setSetupTime(java.util.Date date) {
-		this.setupTime = date;
+	public void setSetupTime(Date setupTime) {
+		this.setupTime = setupTime;
 	}
 
 	public String getEffectDescribe() {
@@ -306,8 +311,63 @@ public class CustomerInfo implements java.io.Serializable {
 	public void setState(Long state) {
 		this.state = state;
 	}
-    
+
+	public Date getCreatedTime() {
+		return createdTime;
+	}
+
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
+	}
+
 	
+
+	public String getCreatorName() {
+		return creatorName;
+	}
+
+	public void setCreatorName(String creatorName) {
+		this.creatorName = creatorName;
+	}
+
+	public String getLastOperator() {
+		return lastOperator;
+	}
+
+	public void setLastOperator(String lastOperator) {
+		this.lastOperator = lastOperator;
+	}
+
+	public Double getRegisteredCapital() {
+		return registeredCapital;
+	}
+
+	public void setRegisteredCapital(Double registeredCapital) {
+		this.registeredCapital = registeredCapital;
+	}
+
+	public Integer getPersonCount() {
+		return personCount;
+	}
+
+	public void setPersonCount(Integer personCount) {
+		this.personCount = personCount;
+	}
+
+	public Long getUnconnect() {
+		return unconnect;
+	}
+
+	public void setUnconnect(Long unconnect) {
+		this.unconnect = unconnect;
+	}
+    
+	public Long getBackVisitSum() {
+		return backVisitSum;
+	}
+	public void setBackVisitSum(Long backVisitSum) {
+		this.backVisitSum = backVisitSum;
+	}
 
 	
 }

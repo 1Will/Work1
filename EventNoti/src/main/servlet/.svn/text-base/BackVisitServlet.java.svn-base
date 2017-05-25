@@ -54,6 +54,9 @@ public class BackVisitServlet extends HttpServlet{
 		request.setAttribute("visitor", map.get("visitor"));
 		request.setAttribute("visitContent",map.get("visitContent"));
 		request.setAttribute("laterAtten", map.get("laterAtten"));
+		request.setAttribute("expendTime", map.get("expendTime")); //耗时（分
+		request.setAttribute("employees", map.get("employees")); // 回访人同行者
+		request.setAttribute("nextVisitDate", map.get("nextVisitDate").toString()); //下次回访时间 改为string型
 		
 		request.setAttribute("feed", map.get("feed"));
 		request.setAttribute("remark", map.get("remark"));

@@ -16,52 +16,60 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:applicationContext.xml</param-value>
   </context-param>
-  
-	 <context-param>
-	   <param-name>log4jConfigLocation</param-name>
-	 <param-value>classpath:log4j.properties</param-value>
-	</context-param> 
-	<listener>
-		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-	</listener>
-	<listener>
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath:log4j.properties</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+  <listener>
     <listener-class>main.java.NFDFlightDataTaskListener</listener-class>
 </listener>
-    <servlet>
-    	<servlet-name>backVisitServlet</servlet-name>
-    	<servlet-class>
+  
+  <!-- 5鏈�0娣诲姞 涓鸿В鍐�no session or session was closed -->
+  <filter>
+    <filter-name>hibernateFilter</filter-name>
+    <filter-class>
+     org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+    </filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>hibernateFilter</filter-name>
+    <url-pattern>*</url-pattern>
+   </filter-mapping>
+  
+  <servlet>
+    <servlet-name>backVisitServlet</servlet-name>
+    <servlet-class>
 			main.servlet.BackVisitServlet
 		</servlet-class>
-		<load-on-startup>0</load-on-startup>
+    <load-on-startup>0</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>backVisitServlet</servlet-name>
     <url-pattern>/backVisitServlet</url-pattern>
   </servlet-mapping>
-  	<servlet>
-        <servlet-name>IndexServlet</servlet-name>
-        <servlet-class>main.java.IndexServlet</servlet-class>
-        <load-on-startup>2</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-	     <servlet-name>IndexServlet</servlet-name>
-	     <url-pattern>/IndexServlet</url-pattern>
-	</servlet-mapping>
-	 <servlet>
-        <servlet-name>coreServlet</servlet-name>
-        <servlet-class>
+  <servlet>
+    <servlet-name>IndexServlet</servlet-name>
+    <servlet-class>main.java.IndexServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexServlet</servlet-name>
+    <url-pattern>/IndexServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>coreServlet</servlet-name>
+    <servlet-class>
             souvc.servlet.CoreServlet
         </servlet-class>
-    </servlet>
-  
-   <!-- url-pattern中配置的/coreServlet用于指定该Servlet的访问路径 -->
-    <servlet-mapping>
-        <servlet-name>coreServlet</servlet-name>
-        <url-pattern>/coreServlet</url-pattern>
-    </servlet-mapping>
-    
-   <!-- 请假功能servlet开始 -->
-    <servlet>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>coreServlet</servlet-name>
+    <url-pattern>/coreServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>oauth2Servlet</servlet-name>
     <servlet-class>
 			souvc.servlet.qingjia.OAuth2Servlet
@@ -71,8 +79,6 @@
     <servlet-name>oauth2Servlet</servlet-name>
     <url-pattern>/oauth2Servlet</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <servlet-name>qingjiaSubmit</servlet-name>
     <servlet-class>
@@ -83,8 +89,6 @@
     <servlet-name>qingjiaSubmit</servlet-name>
     <url-pattern>/qingjiaSubmit</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <servlet-name>qingjiaSuccessServlet</servlet-name>
     <servlet-class>
@@ -95,9 +99,6 @@
     <servlet-name>qingjiaSuccessServlet</servlet-name>
     <url-pattern>/qingjiaSuccessServlet</url-pattern>
   </servlet-mapping>
-  
-  
-  
   <servlet>
     <servlet-name>shenheServlet</servlet-name>
     <servlet-class>
@@ -108,7 +109,6 @@
     <servlet-name>shenheServlet</servlet-name>
     <url-pattern>/shenheServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>resultServlet</servlet-name>
     <servlet-class>
@@ -119,11 +119,7 @@
     <servlet-name>resultServlet</servlet-name>
     <url-pattern>/resultServlet</url-pattern>
   </servlet-mapping>
-  <!--请假功能servlet结束-->
-  
-  
- <!--  用户注册功能servlet开始-->
-   <servlet>
+  <servlet>
     <servlet-name>registerServlet</servlet-name>
     <servlet-class>
 			souvc.servlet.register.RegisterServlet
@@ -133,8 +129,6 @@
     <servlet-name>registerServlet</servlet-name>
     <url-pattern>/registerServlet</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <servlet-name>searchUser</servlet-name>
     <servlet-class>
@@ -145,8 +139,6 @@
     <servlet-name>searchUser</servlet-name>
     <url-pattern>/searchUser</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <servlet-name>bindingServlet</servlet-name>
     <servlet-class>
@@ -157,7 +149,6 @@
     <servlet-name>bindingServlet</servlet-name>
     <url-pattern>/bindingServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>saveUserInfo</servlet-name>
     <servlet-class>
@@ -168,92 +159,81 @@
     <servlet-name>saveUserInfo</servlet-name>
     <url-pattern>/saveUserInfo</url-pattern>
   </servlet-mapping>
-  <!-- 用户注册功能servlet结束 -->
-  <!-- 回访回复 -->
-    <servlet>
-    	<servlet-name>replyBackVisitServlet</servlet-name>
-    	<servlet-class>
+  <servlet>
+    <servlet-name>replyBackVisitServlet</servlet-name>
+    <servlet-class>
 			main.servlet.ReplyBackVisitServlet
 		</servlet-class>
-		<load-on-startup>0</load-on-startup>
+    <load-on-startup>0</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>replyBackVisitServlet</servlet-name>
     <url-pattern>/replyBackVisitServlet</url-pattern>
   </servlet-mapping>
-
-   <!-- 回访录入 -->
-    <servlet>
-    	<servlet-name>addBackVisitServlet</servlet-name>
-    	<servlet-class>
+  <servlet>
+    <servlet-name>addBackVisitServlet</servlet-name>
+    <servlet-class>
 			main.servlet.AddBackVisitServlet
 		</servlet-class>
-		<load-on-startup>0</load-on-startup>
+    <load-on-startup>0</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>addBackVisitServlet</servlet-name>
     <url-pattern>/addBackVisitServlet</url-pattern>
   </servlet-mapping>
-
-  <!-- 客户信息 servlet -->
   <servlet>
-      <servlet-name>customerInfoServlet</servlet-name>
-      <servlet-class>
+    <servlet-name>customerInfoServlet</servlet-name>
+    <servlet-class>
            main.servlet.CustomerInfoServlet
       </servlet-class>
   </servlet>
   <servlet-mapping>
-      <servlet-name>customerInfoServlet</servlet-name>
-      <url-pattern>/customerInfoServlet</url-pattern>
+    <servlet-name>customerInfoServlet</servlet-name>
+    <url-pattern>/customerInfoServlet</url-pattern>
   </servlet-mapping>
-  
-  <!-- 联系人信息 servlet -->
   <servlet>
-      <servlet-name>contactArchivesServlet</servlet-name>
-      <servlet-class>
+    <servlet-name>contactArchivesServlet</servlet-name>
+    <servlet-class>
            main.servlet.ContactArchivesServlet
       </servlet-class>
   </servlet>
   <servlet-mapping>
-      <servlet-name>contactArchivesServlet</servlet-name>
-      <url-pattern>/contactArchivesServlet</url-pattern>
+    <servlet-name>contactArchivesServlet</servlet-name>
+    <url-pattern>/contactArchivesServlet</url-pattern>
   </servlet-mapping>
-
-
   <servlet>
-      <servlet-name>searchContactArchivesServlet</servlet-name>
-      <servlet-class>
+    <servlet-name>searchContactArchivesServlet</servlet-name>
+    <servlet-class>
            main.servlet.SearchContactArchivesServlet
       </servlet-class>
   </servlet>
   <servlet-mapping>
-      <servlet-name>searchContactArchivesServlet</servlet-name>
-      <url-pattern>/searchContactArchivesServlet</url-pattern>
+    <servlet-name>searchContactArchivesServlet</servlet-name>
+    <url-pattern>/searchContactArchivesServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-      <servlet-name>searchProjectinfoServlet</servlet-name>
-      <servlet-class>
+    <servlet-name>searchProjectinfoServlet</servlet-name>
+    <servlet-class>
            main.servlet.SearchProjectinfoServlet
       </servlet-class>
   </servlet>
   <servlet-mapping>
-      <servlet-name>searchProjectinfoServlet</servlet-name>
-      <url-pattern>/searchProjectinfoServlet</url-pattern>
+    <servlet-name>searchProjectinfoServlet</servlet-name>
+    <url-pattern>/searchProjectinfoServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-      <servlet-name>searchCusomerServlet</servlet-name>
-      <servlet-class>
+    <servlet-name>searchCusomerServlet</servlet-name>
+    <servlet-class>
            main.servlet.SearchCusomerServlet
       </servlet-class>
   </servlet>
   <servlet-mapping>
-      <servlet-name>searchCusomerServlet</servlet-name>
-      <url-pattern>/searchCusomerServlet</url-pattern>
+    <servlet-name>searchCusomerServlet</servlet-name>
+    <url-pattern>/searchCusomerServlet</url-pattern>
   </servlet-mapping>
-   <!-- 回访录入 -->
-    <servlet>
-    	<servlet-name>addNewBackVisitServlet</servlet-name>
-    	<servlet-class>
+  <servlet>
+    <servlet-name>addNewBackVisitServlet</servlet-name>
+    <servlet-class>
 			main.servlet.AddNewBackVisitServlet
 		</servlet-class>
   </servlet>
@@ -261,23 +241,20 @@
     <servlet-name>addNewBackVisitServlet</servlet-name>
     <url-pattern>/addNewBackVisitServlet</url-pattern>
   </servlet-mapping>
-
-
-  <!-- 项目信息 servlet -->
   <servlet>
-      <servlet-name>projectInfoServlet</servlet-name>
-      <servlet-class>
+    <servlet-name>projectInfoServlet</servlet-name>
+    <servlet-class>
            main.servlet.ProjectInfoServlet
       </servlet-class>
   </servlet>
+  
   <servlet-mapping>
-      <servlet-name>projectInfoServlet</servlet-name>
-      <url-pattern>/projectInfoServlet</url-pattern>
+    <servlet-name>projectInfoServlet</servlet-name>
+    <url-pattern>/projectInfoServlet</url-pattern>
   </servlet-mapping>
-  <!-- 添加项目信息servlet -->
   <servlet>
-      <servlet-name>addProjectInfoServlet</servlet-name>
-      <servlet-class>
+    <servlet-name>addProjectInfoServlet</servlet-name>
+    <servlet-class>
            main.servlet.AddProjectInfoServlet
       </servlet-class>
   </servlet>
@@ -287,40 +264,125 @@
     <servlet-name>ces</servlet-name>
     <servlet-class>main.servlet.ces</servlet-class>
   </servlet>
-
   <servlet-mapping>
-      <servlet-name>addProjectInfoServlet</servlet-name>
-      <url-pattern>/addProjectInfoServlet</url-pattern>
+    <servlet-name>addProjectInfoServlet</servlet-name>
+    <url-pattern>/addProjectInfoServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ces</servlet-name>
     <url-pattern>/servlet/ces</url-pattern>
   </servlet-mapping>
-    <!-- 添加联系人信息 servlet -->
+  
   <servlet>
-      <servlet-name>addContactArchivesServlet</servlet-name>
-      <servlet-class>
+    <servlet-name>addContactArchivesServlet</servlet-name>
+    <servlet-class>
            main.servlet.AddContactArchivesServlet
       </servlet-class>
   </servlet>
   <servlet-mapping>
-      <servlet-name>addContactArchivesServlet</servlet-name>
-      <url-pattern>/addContactArchivesServlet</url-pattern>
+    <servlet-name>addContactArchivesServlet</servlet-name>
+    <url-pattern>/addContactArchivesServlet</url-pattern>
   </servlet-mapping>
-    <!-- 添加客户信息 servlet -->
+  
   <servlet>
-      <servlet-name>addCustomerInfoServlet</servlet-name>
-      <servlet-class>
+    <servlet-name>addCustomerInfoServlet</servlet-name>
+    <servlet-class>
            main.servlet.AddCustomerInfoServlet
       </servlet-class>
   </servlet>
   <servlet-mapping>
-      <servlet-name>addCustomerInfoServlet</servlet-name>
-      <url-pattern>/addCustomerInfoServlet</url-pattern>
+    <servlet-name>addCustomerInfoServlet</servlet-name>
+    <url-pattern>/addCustomerInfoServlet</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>searchProviceServlet</servlet-name>
+    <servlet-class>
+           main.servlet.SearchProviceServlet
+      </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>searchProviceServlet</servlet-name>
+    <url-pattern>/searchProviceServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>searchCityServlet</servlet-name>
+    <servlet-class>
+           main.servlet.SearchCityServlet
+      </servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DailyServlet</servlet-name>
+    <servlet-class>main.servlet.DailyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>searchCityServlet</servlet-name>
+    <url-pattern>/searchCityServlet</url-pattern>
+  </servlet-mapping>
+ 
+ <!-- 鏃ユ姤Servlet -->
+  <servlet>
+    <servlet-name>addDailyServlet</servlet-name>
+    <servlet-class>
+           main.servlet.daily.AddDailyServlet
+      </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addDailyServlet</servlet-name>
+    <url-pattern>/addDailyServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>dailyServlet</servlet-name>
+    <servlet-class>
+           main.servlet.daily.DailyServlet
+      </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dailyServlet</servlet-name>
+    <url-pattern>/dailyServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>replyDailyServlet</servlet-name>
+    <servlet-class>
+           main.servlet.daily.ReplyDailyServlet
+      </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>replyDailyServlet</servlet-name>
+    <url-pattern>/replyDailyServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>searchBackvisitContextServlet</servlet-name>
+    <servlet-class>
+           main.servlet.daily.SearchBackvisitContextServlet
+      </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>searchBackvisitContextServlet</servlet-name>
+    <url-pattern>/searchBackvisitContextServlet</url-pattern>
+  </servlet-mapping>
+  
+ <!-- 鏃ユ姤Servlet -->
 
+  <servlet>
+    <servlet-name>addWeeklyServlet</servlet-name>
+    <servlet-class>
+           main.servlet.AddWeeklyServlet
+      </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addWeeklyServlet</servlet-name>
+    <url-pattern>/addWeeklyServlet</url-pattern>
+  </servlet-mapping>
   
-  
-  
+ 
+
+
+
 </web-app>
-

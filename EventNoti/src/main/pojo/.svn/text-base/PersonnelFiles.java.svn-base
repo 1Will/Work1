@@ -35,6 +35,9 @@ public class PersonnelFiles implements java.io.Serializable {
     private Date lastModifiedTime; //最后修改时间 
     private String lastOperator; //最后修改人
     private Long organization; //组织    5
+    private PersonnelFiles superiorLeader; //上级领导 非空
+    
+    
 	public Long getId() {
 		return id;
 	}
@@ -208,6 +211,12 @@ public class PersonnelFiles implements java.io.Serializable {
 	}
 	public void setVersion(Long version) {
 		this.version = version;
+	}
+	public PersonnelFiles getSuperiorLeader() {
+		return superiorLeader;
+	}
+	public void setSuperiorLeader(PersonnelFiles superiorLeader) {
+		this.superiorLeader = superiorLeader;
 	}
 	
     

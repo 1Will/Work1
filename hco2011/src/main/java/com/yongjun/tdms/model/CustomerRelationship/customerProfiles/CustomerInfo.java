@@ -7,6 +7,7 @@
 /*     */ import com.yongjun.tdms.model.advisory.Advisory;
 /*     */ import com.yongjun.tdms.model.base.area.Area;
 /*     */ import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
+
 /*     */ import java.util.Date;
 /*     */ import java.util.HashSet;
 /*     */ import java.util.Set;
@@ -56,6 +57,8 @@
 /*     */   private String parlorDept;
 /*     */   private CodeValue resource;
 /*  88 */   private Float customerInfoIntegrity = Float.valueOf(0.0F);
+			private Long unconnect = Long.valueOf(0L);
+			private Long backVisitSum = Long.valueOf(0L);
 /*     */   public String getChuanzhen() {
 /*     */	   return chuanzhen;
 /*     */  }
@@ -477,6 +480,25 @@
 			public void setState(CodeValue state) {
 				this.state = state;
 			}
+/*     */   public Long getUnconnect()
+/*     */   {
+/*  89 */     return this.unconnect;
+/*     */   }
+/*     */ 
+/*     */   public void setUnconnect(Long unconnect)
+/*     */   {
+/*  98 */     this.unconnect = unconnect;
+/*     */   }
+/*     */   public Long getBackVisitSum()
+/*     */   {
+/* 106 */     return this.backVisitSum;
+/*     */   }
+/*     */ 
+/*     */   public void setBackVisitSum(Long backVisitSum)
+/*     */   {
+/* 115 */     this.backVisitSum = backVisitSum;
+/*     */   }
+/*     */ 
 
 /*     */ }
 

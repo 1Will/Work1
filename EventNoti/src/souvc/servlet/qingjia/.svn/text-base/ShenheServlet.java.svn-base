@@ -39,7 +39,7 @@ public class ShenheServlet extends HttpServlet {
 		bill.setBohui(fankui);
 		SQLUtil.updateQingJia(bill, id);
 		//发送请假模板
-		String url = "http://yjkj.ngrok.cc/EventNoti/resultServlet?id="+id;
+		String url = "http://www.yj-tech.com/EventNoti/resultServlet?id="+id;
 		TleaveBill billbyid = SQLUtil.getQingJia(id);
 		String openid= SQLUtil.getUserDetail(Integer.parseInt(billbyid.getPersonId())).getOpenid();
 		String name = SQLUtil.getUserName(Integer.parseInt(billbyid.getPersonId()));

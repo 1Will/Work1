@@ -353,6 +353,7 @@
                 	/~backVisitType.id: AND backVisit.backVisitType.id = {backVisitType.id}~/
                 	/~backVisitWay.id: AND backVisit.backVisitWay.id = {backVisitWay.id}~/
                 	/~customerInfo.id: AND backVisit.customerInfo.id = {customerInfo.id}~/
+                	/~customerInfo.state: AND backVisit.customerInfo.state.name = {customerInfo.state}~/
                 	/~projectInfo.id: AND backVisit.projectInfo.id = {projectInfo.id}~/
                 	/~contactArchive.id: AND backVisit.contactArchive.id = {contactArchive.id}~/
                 	/~step.id: AND backVisit.customerInfo.step.id = {step.id}~/
@@ -477,6 +478,19 @@
 				FROM ReplyDaily AS rd WHERE 1=1  
 				/~daily.id: AND rd.daily.id={daily.id} ~/
 				/~user.id: AND rd.rapporteur.id={user.id} ~/
+				/~sortColumn: ORDER BY rd.[sortColumn] [sortDirection] ~/
+			 ]]>
+			</value>
+		</property>
+	</bean>
+	<!-- 回访记录回复管理 -->
+	<bean id="replyBackVisit" parent="abstractHibernate20Adapter">
+		<property name="hql">
+			<value>
+				<![CDATA[
+				FROM ReplyBackVisit AS rd WHERE 1=1  
+				/~backVisit.id: AND rd.visitId = {backVisit.id} ~/
+				/~user.id: AND rd.userId = {user.id} ~/
 				/~sortColumn: ORDER BY rd.[sortColumn] [sortDirection] ~/
 			 ]]>
 			</value>

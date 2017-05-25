@@ -10,13 +10,59 @@
             <column name="ID" precision="8" scale="0" />
             <generator class="native" />
         </id>
+        <!-- 项目id -->
         <property name="projectInfo_id" type="java.lang.Long">
             <column name="PROJECTINFO_ID" />
         </property>
+        <!-- 项目成员id 人事表 -->
         <property name="proPerson_id" type="java.lang.Long">
             <column name="PROPERSON_ID" />
         </property>
+		
+		 <!--版本version-->
+        <property name="version" type="java.lang.Long">
+            <column name="VERSION" />
+        </property>
+       
+        <!-- 项目概业务属性说明-->
+		<property name="outline" type="java.lang.String">
+			<column name="outline" not-null="false" sql-type="NVARCHAR(1000)" />
+		</property>
+		<!-- 创建时间 -->
+		<property name="createdTime" column="CREATED_TIME" type="java.util.Date"/>
+		<!-- 创建人 -->
+        <property name="creator"  column="CREATOR" type="java.lang.String" length="40"/>
+        <!-- 最后修改时间 -->
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="java.util.Date"/>
+        <!-- 最后修改人 -->
+        <property name="lastOperator" column="LAST_OPERATOR" type="java.lang.String" length="40"/>
+        <!-- 项目业务-->
+        <property name="businessType" column="business_Type" type="java.lang.Long" />
+        
+        <property name="disabled" type="java.lang.Integer">
+            <column name="DISABLED" not-null="true"/>
+        </property>
 
+		
+		<!-- 
+		项目
+		<many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
+			<column name="projectInfo_id" not-null="false" />
+		</many-to-one>
+                                项目成员人 
+		<many-to-one name="proPerson" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles" lazy="false">
+			<column name="proPerson_id" not-null="false" />
+		</many-to-one>
+		    项目业务 
+		<many-to-one name="businessType" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+			<column name="business_Type" not-null="false" />
+		</many-to-one>
+		
+		<property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+ -->		
+		
 
     </class>
 </hibernate-mapping>

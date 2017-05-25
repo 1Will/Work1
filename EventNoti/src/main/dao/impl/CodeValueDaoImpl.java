@@ -22,6 +22,18 @@ public class CodeValueDaoImpl extends HibernateDaoSupport implements CodeValueDa
          System.out.println("根据cvId获取CodeValue集合");
 		return this.getHibernateTemplate().find(hql);
 	}
+
+	@Override
+	public CodeValue getCodeValueById(Long id) {
+		CodeValue codeValue = null;
+		try {
+			codeValue=(CodeValue) this.getSession().load(CodeValue.class, id);
+		} catch (Exception e) {
+            e.printStackTrace();
+		}
+		return codeValue;
+	}
+	
 	
 	
 }

@@ -21,6 +21,10 @@
 	String qid = (String) request.getAttribute("qid");
 	String userid = (String) request.getAttribute("userid");
 	String sender = (String) request.getAttribute("sender"); 
+
+	String employees = (String) request.getAttribute("employees"); // 回访人同行者  
+	String expendTime = (String) request.getAttribute("expendTime"); // 耗时(分)
+	String nextVisitDate = (String) request.getAttribute("nextVisitDate"); // 下次回访时间
 	
 	
 	String path = request.getContextPath();
@@ -41,6 +45,14 @@
 		<script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
 		<script type="text/javascript">
     function submitInfo(){
+       
+       //判断回复内容是否为空
+       if (document.getElementById("fankui").value.replace(
+						/\s*/g, "") == "") {
+					alert("请输入回复意见");
+					return false;
+				}
+    
     	document.getElementById("myForm").submit();
     }
    
@@ -62,11 +74,41 @@
 					<div class="weui-form-preview__hd">
 						<div class="weui-form-preview__item">
 							<label class="weui-form-preview__label">
+								回访人同行者
+							</label>
+							<em class="weui-form-preview__value">
+							<%=(employees==null||employees.equals(""))?"":employees%></em>
+						</div>
+					</div>
+					<div class="weui-form-preview__hd">
+						<div class="weui-form-preview__item">
+							<label class="weui-form-preview__label">
 								回访时间
 							</label>
 							<em class="weui-form-preview__value"><%=visitDate%></em>
 						</div>
-					</div>       <!-- 客户名称页面拓展 -->
+					</div>       
+					<div class="weui-form-preview__hd">
+						<div class="weui-form-preview__item">
+							<label class="weui-form-preview__label">
+								下次回访时间
+							</label>
+							<em class="weui-form-preview__value">
+							<%=(nextVisitDate==null||nextVisitDate.equals(""))?"":nextVisitDate%></em>
+						</div>
+					</div>       
+					
+					<div class="weui-form-preview__hd">
+						<div class="weui-form-preview__item">
+							<label class="weui-form-preview__label">
+								回访耗时(分)
+							</label>
+							<em class="weui-form-preview__value">
+							<%=(expendTime==null||expendTime.equals(""))?"":expendTime%></em>
+						</div>
+					</div>       
+					
+					<!-- 客户名称页面拓展 -->
 					<div class="weui-form-preview__hd">
 						<div class="weui-form-preview__item">
 							<label class="weui-form-preview__label">
@@ -155,7 +197,7 @@
 						<div class="weui_cell">
 							<div class="weui_cell_bd weui_cell_primary">
 								<textarea id="fankui" name="fankui" class="weui_textarea"
-									placeholder="请输入回复意见" rows="3"></textarea>
+									placeholder="请输入回复意见" onfocus="this.placeholder=' '" rows="3"></textarea>
 							</div>
 						</div>
 					</div>

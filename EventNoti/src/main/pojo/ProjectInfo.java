@@ -10,10 +10,15 @@ public class ProjectInfo implements java.io.Serializable {
 	private String projectName;// 项目名称
 	private String code;// 项目编号
 	private String outline;// 项目概要
+    
+	private String creatorName;//项目创建人
+	private Long creatorId;//创建人Id
+	private Long customerId;//客户id
+	private Long contactId;//项目联系人id 
+	private Long controllerId;//项目负责人id
+	private String conOutline;//联系人角色说明
+	private Long businessType;//业务属性:使用者 决策者 财务 521 522 524
 
-	private Long customerinfoid;
-
-	private String creatorName; //项目负责人
 	private Date createdTime; //创建日期
 	private String lastOperator; //最后跟进人
 	private Date lastModifiedTime; //最后修改时间 
@@ -46,15 +51,32 @@ public class ProjectInfo implements java.io.Serializable {
 	public void setOutline(String outline) {
 		this.outline = outline;
 	}
+    
 
-	public Long getCustomerinfoid() {
-		return customerinfoid;
+	public Long getCreatorId() {
+		return creatorId;
 	}
-	public void setCustomerinfoid(Long customerinfoid) {
-		this.customerinfoid = customerinfoid;
+	public void setCreatorId(Long creatorId) {
+		this.creatorId = creatorId;
 	}
-	
-
+	public Long getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
+	}
+	public Long getContactId() {
+		return contactId;
+	}
+	public void setContactId(Long contactId) {
+		this.contactId = contactId;
+	}
+	public Long getControllerId() {
+		return controllerId;
+	}
+	public void setControllerId(Long controllerId) {
+		this.controllerId = controllerId;
+	}
 	public String getCreatorName() {
 		return creatorName;
 	}
@@ -97,6 +119,18 @@ public class ProjectInfo implements java.io.Serializable {
 	}
 	public void setDisabled(Integer disabled) {
 		this.disabled = disabled;
+	}
+	public String getConOutline() {
+		return conOutline;
+	}
+	public void setConOutline(String conOutline) {
+		this.conOutline = conOutline;
+	}
+	public Long getBusinessType() {
+		return businessType;
+	}
+	public void setBusinessType(Long businessType) {
+		this.businessType = businessType;
 	}
 	
     

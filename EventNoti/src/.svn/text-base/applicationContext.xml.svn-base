@@ -75,6 +75,12 @@
  				<value>main/pojo/CodeValue.hbm.xml</value>  
  				
  				<value>main/pojo/PersonnelFiles.hbm.xml</value>  
+ 				<value>main/pojo/Department.hbm.xml</value>  
+ 				<value>main/pojo/Area.hbm.xml</value>  
+ 				<value>main/pojo/Daily.hbm.xml</value>  
+ 				<value>main/pojo/Weekly.hbm.xml</value>  
+ 				<value>main/pojo/UsersInfo.hbm.xml</value>  
+ 				<value>main/pojo/ReplyDaily.hbm.xml</value>  
  				<value>main/pojo/ContractManagement.hbm.xml</value>  
 
 				</list>
@@ -196,5 +202,52 @@
    	 <property name="personnelFilesDao" ref="personnelFilesDao"></property>  
     </bean>
 
+    <!-- 配置部门信息表departmentService-->
+    <bean name="departmentDao" class="main.dao.impl.DepartmentDaoImpl" >
+   	 <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean name="departmentService" class="main.service.impl.DepartmentServiceImpl" >
+   	 <property name="departmentDao" ref="departmentDao"></property>  
+    </bean>
+
+    <!-- 配置地域表areaService-->
+    <bean name="areaDao" class="main.dao.impl.AreaDaoImpl" >
+   	 <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean name="areaService" class="main.service.impl.AreaServiceImpl" >
+   	 <property name="areaDao" ref="areaDao"></property>  
+    </bean>
+
+    <!-- 配置用户表usersInfoService-->
+    <bean name="usersInfoDao" class="main.dao.impl.UsersInfoDaoImpl" >
+   	 <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean name="usersInfoService" class="main.service.impl.UsersInfoServiceImpl" >
+   	 <property name="usersInfoDao" ref="usersInfoDao"></property>  
+    </bean>
+
+    <!-- 配置日报表dailyService-->
+    <bean name="dailyDao" class="main.dao.impl.DailyDaoImpl" >
+   	 <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean name="dailyService" class="main.service.impl.DailyServiceImpl" >
+   	 <property name="dailyDao" ref="dailyDao"></property>  
+    </bean>
+     
+    <!-- 配置日报消息表replyDailyService-->
+    <bean name="replyDailyDao" class="main.dao.impl.ReplyDailyDaoImpl" >
+   	 <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean name="replyDailyService" class="main.service.impl.ReplyDailyServiceImpl" >
+   	 <property name="replyDailyDao" ref="replyDailyDao"></property>  
+    </bean>
+     
+    <!-- 配置周报表weeklyService-->
+    <bean name="weeklyDao" class="main.dao.impl.WeeklyDaoImpl" >
+   	 <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean name="weeklyService" class="main.service.impl.WeeklyServiceImpl" >
+   	 <property name="weeklyDao" ref="weeklyDao"></property>  
+    </bean>
      
 </beans>

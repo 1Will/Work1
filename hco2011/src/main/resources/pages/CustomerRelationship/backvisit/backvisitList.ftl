@@ -13,7 +13,7 @@
         </@buttonBar>
         <#assign returnName='replaceWord'>
         <@list title="${action.getText('backVisitList')}" 
-        includeParameters="backVisitType.id|customer|contactArchive|backVisitWay.id|customerInfo.id|continueBackVisit|backVisitDate|backVisitDate_start|backVisitDate_end|nextBackVisitDate|nextBackVisitDate_start|nextBackVisitDate_end|employee|continueBackVisit|readOnly|onlyInvalid|onlyValid" 
+        includeParameters="backVisitType.id|customer|contactArchive|backVisitWay.id|customerInfo.id|continueBackVisit|backVisitDate|backVisitDate_start|backVisitDate_end|nextBackVisitDate|nextBackVisitDate_start|nextBackVisitDate_end|employee|continueBackVisit|customerInfo.state|readOnly|onlyInvalid|onlyValid" 
         fieldMap="like:name|customer|contactArchive|employee,date:backVisitDate_start|backVisitDate_end|nextBackVisitDate_start|nextBackVisitDate_end" >
             <#if !(action.isReadOnly())>
 	            <@vlh.checkbox property="id" name="backVisitIds">
@@ -102,10 +102,14 @@
             <@alignCenter/>
             </@vcolumn>
             <@vcolumn title="${action.getText('backVisitSum')}" property="backVisitSum" sortable="desc">
-            	<a href="javascript:visitBack_OpenDialog(#{object.customerInfo.id?if_exists})" >${object.backVisitSum?if_exists}</a>
+            	<a href="javascript:visitBack_OpenDialog(#{object.customerInfo.id?if_exists})" >${object.customerInfo.backVisitSum?if_exists}</a>
             <@alignLeft/>
              </@vcolumn>
-            <@vcolumn title="${action.getText('unconnect')}" property="unconnect" sortable="desc">
+            <@vcolumn title="反馈次数" property="backVisitSum" sortable="desc">
+            	<a href="javascript:reply_OpenDialog(#{object.id?if_exists})" >${object.replyTime?if_exists}</a>
+            <@alignLeft/>
+             </@vcolumn>
+            <@vcolumn title="${action.getText('unconnect')}" property="customerInfo.unconnect" sortable="desc">
             	<@alignRight/>
             </@vcolumn>
         </@list>

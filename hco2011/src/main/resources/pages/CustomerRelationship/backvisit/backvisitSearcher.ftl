@@ -81,6 +81,20 @@
 	        	<input type="radio" id="continueBackVisit1" name="continueBackVisit" value="1" />否
 	        	<input type="radio" id="continueBackVisit2" name="continueBackVisit" value="2" checked />所有
 			</td>
+			<!--告警状态 -->
+			<td align="right">
+			<laber class="label">告警状态:</laber>
+			</td>
+			<td align="left">
+				<select id="customerInfo.state" name="customerInfo.state">
+    				<option value="">所有</option>
+    				<option value="正常状态">正常状态</option>
+    				<option value="初步告警">初步告警</option>
+    				<option value="中度告警">中度告警</option>
+    				<option value="高度告警">高度告警</option>
+    				<option value="严重告警">严重告警</option>
+				</select>
+			</td>
 	</tr>
 	<tr>
 	<!--仅查询失效-->
@@ -185,4 +199,10 @@
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }
+	 
+	 function reply_OpenDialog(id){
+	 	var url = "${req.contextPath}/workReport/listReplyDailyTab.html?backVisit.id="+id;
+	 	openNewWindow(url);
+	 }
+	 
 </script>

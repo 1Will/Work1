@@ -22,6 +22,7 @@ public class UserInfo {
     private String sex;
     private String constellation;
     private String locale;
+    private String code;
     
     private String deptid;
     
@@ -115,5 +116,14 @@ public class UserInfo {
 	public void setDeptid(String deptid) {
 		this.deptid = deptid;
 	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
     
+	
+	
+	
 } 

@@ -13,7 +13,7 @@ public class BackVisit implements java.io.Serializable {
 	private Long customerid;
 	private Long contactid;
 	private Date visitDate;
-	private String visiter;
+	private String visitor; //回访人
 	private Long visiterid;
 	private String visitContent;
 	private String feedback;
@@ -29,7 +29,19 @@ public class BackVisit implements java.io.Serializable {
 	private String contactArchives;
 	private String creator;
 	private String continuebackvisit;
-	private Long unconnect;
+	
+	private Daily daily;
+	
+	private Date nextVisitDate; //下次回访日期
+	private Date lastModifiedTime; //最后修订时间
+	private String lastOperator; //最后修订人
+	
+	private Long customerSteping; //客户等级    339 一星  340  342
+	private String employees; //回访人同行者
+	private String isSaved; //0  是否失效
+	private Long expendTime; //耗时（分）
+	private Long replyTime; //记录回复次数
+	
 	public Long getCustomerStating() {
 		return customerStating;
 	}
@@ -85,11 +97,13 @@ public class BackVisit implements java.io.Serializable {
 	public void setVisitDate(Date visitDate) {
 		this.visitDate = visitDate;
 	}
-	public String getVisiter() {
-		return visiter;
+	
+	
+	public String getVisitor() {
+		return visitor;
 	}
-	public void setVisiter(String visiter) {
-		this.visiter = visiter;
+	public void setVisitor(String visitor) {
+		this.visitor = visitor;
 	}
 	public Long getVisiterid() {
 		return visiterid;
@@ -169,17 +183,72 @@ public class BackVisit implements java.io.Serializable {
 	public void setCreator(String creator) {
 		this.creator = creator;
 	}
-	public Long getUnconnect() {
-		return unconnect;
-	}
-	public void setUnconnect(Long unconnect) {
-		this.unconnect = unconnect;
-	}
+	
 	public String getContinuebackvisit() {
 		return continuebackvisit;
 	}
 	public void setContinuebackvisit(String continuebackvisit) {
 		this.continuebackvisit = continuebackvisit;
 	}
-
+	public Daily getDaily() {
+		return daily;
+	}
+	public void setDaily(Daily daily) {
+		this.daily = daily;
+	}
+	public Date getNextVisitDate() {
+		return nextVisitDate;
+	}
+	public void setNextVisitDate(Date nextVisitDate) {
+		this.nextVisitDate = nextVisitDate;
+	}
+	public Date getLastModifiedTime() {
+		return lastModifiedTime;
+	}
+	public void setLastModifiedTime(Date lastModifiedTime) {
+		this.lastModifiedTime = lastModifiedTime;
+	}
+	public String getLastOperator() {
+		return lastOperator;
+	}
+	public void setLastOperator(String lastOperator) {
+		this.lastOperator = lastOperator;
+	}
+	public Long getCustomerSteping() {
+		return customerSteping;
+	}
+	public void setCustomerSteping(Long customerSteping) {
+		this.customerSteping = customerSteping;
+	}
+	public String getEmployees() {
+		return employees;
+	}
+	public void setEmployees(String employees) {
+		this.employees = employees;
+	}
+	public String getIsSaved() {
+		return isSaved;
+	}
+	public void setIsSaved(String isSaved) {
+		this.isSaved = isSaved;
+	}
+	
+	public Long getExpendTime() {
+		return expendTime;
+	}
+	public void setExpendTime(Long expendTime) {
+		this.expendTime = expendTime;
+	}
+	public Long getReplyTime() {
+		return replyTime;
+	}
+	public void setReplyTime(Long replyTime) {
+		this.replyTime = replyTime;
+	}
+	
+	
+    
+	
+	
+	
 }

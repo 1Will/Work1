@@ -325,7 +325,7 @@
 		<a id="product" onclick="activeTab(this);" href='${req.contextPath}/projectInfo/listProPro.html?projectInfo.id=#{projectInfo.id}&customerInfo.id=#{projectInfo.customer.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.product')}</a>
 	</li>
 	<li>
-		<a id="plan" onclick="activeTab(this);" href='${req.contextPath}/projectInfo/listProPlan.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.plan')}</a>
+		<a id="plan" onclick="activeTab(this);" href='${req.contextPath}/projectInfo/listProPlan.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >项目总计划</a>
 	</li>
 	<li>
 		<a id="backvisit" onclick="activeTab(this);" href='${req.contextPath}/backvisit/listBackVisitByContact.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.backvisit')}</a>

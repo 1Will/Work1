@@ -12,14 +12,25 @@ public class PersonnelFilesServiceImpl implements PersonnelFilesService {
     
 	private PersonnelFilesDao personnelFilesDao;
 	@Override
-	public List<PersonnelFiles> getPersonnelFilesById() {
-		return personnelFilesDao.getPersonnelFilesById();
+	public List<PersonnelFiles> getAllPersonnelFiles() {
+		return personnelFilesDao.getAllPersonnelFiles();
 	}
 
 	@Override
 	public PersonnelFiles getPersonnelFilesById(Long id) {
 		return personnelFilesDao.getPersonnelFilesById(id);
 	}
+
+	@Override
+	public List<PersonnelFiles> getPersonnelFilesByName(String name) {
+		return personnelFilesDao.getPersonnelFilesByName(name);
+	}
+	
+	@Override
+	public List<PersonnelFiles> getPersonnelFilesByCode(String code) {
+		return personnelFilesDao.getPersonnelFilesByCode(code);
+	}
+	
 
 	@Override
 	public Session getSuperSession() {
@@ -33,7 +44,6 @@ public class PersonnelFilesServiceImpl implements PersonnelFilesService {
 	public void setPersonnelFilesDao(PersonnelFilesDao personnelFilesDao) {
 		this.personnelFilesDao = personnelFilesDao;
 	}
-	
 	
 
 }

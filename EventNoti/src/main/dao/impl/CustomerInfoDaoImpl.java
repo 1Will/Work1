@@ -2,6 +2,7 @@ package main.dao.impl;
 import java.util.List;
 
 import main.dao.CustomerInfoDao;
+import main.pojo.BackVisit;
 import main.pojo.CustomerInfo;
 
 import org.hibernate.Session;
@@ -15,6 +16,14 @@ public class CustomerInfoDaoImpl extends HibernateDaoSupport  implements Custome
 	{
 		try{
 		    this.getHibernateTemplate().save(customerInfo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void updateCustomerInfo(CustomerInfo customerInfo)
+	{
+		try{
+			this.getHibernateTemplate().update(customerInfo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -69,12 +78,29 @@ public class CustomerInfoDaoImpl extends HibernateDaoSupport  implements Custome
 
 	public  CustomerInfo getById(Long id) {
 		String hql="from CustomerInfo temp where temp.id="+id;
-		
 		return (CustomerInfo) this.getHibernateTemplate().find(hql).get(0);
 	}
+	
+	public Long getMaxId() {
+		String hql="select max(sa.id) from CustomerInfo sa";
+		return (Long) this.getHibernateTemplate().find(hql).get(0);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public  List<CustomerInfo> getCustomerInfoByName(String name) {
 		return getHibernateTemplate().find(" select new main.pojo.CustomerInfo(info.id,info.customerName)  from main.pojo.CustomerInfo info where info.customerName like '%"+name+"%' order by info.id desc ");
 	}
+
+		//根据日期和姓名返回CustomerInfo集合   convert(varchar,created_time,120) like   '2017-05-05%'   c.createdTime
+		@SuppressWarnings("unchecked")
+		@Override
+		public List<CustomerInfo> getCustomerInfoByDate(String date,String name) {
+			String hql="from CustomerInfo c where convert(varchar,c.createdTime,120) like '"+date+"%' and c.saleman='"+name+"'";
+			return this.getHibernateTemplate().find(hql);
+		}
+		
+	
+	
+	
 
 }

@@ -13,11 +13,11 @@
 			<column name="NAME" />
 		</property>
 		<!-- 公司创建时间 -->
-		<property name="setupTime" type="date">
+		<property name="setupTime" type="java.util.Date">
 			<column name="CREATE_DATE" />
 		</property>
 		<!-- 存档日期 -->
-		<property name="archiveTime" type="date">
+		<property name="archiveTime" type="java.util.Date">
 			<column name="ARCHIVE_TIME" />
 		</property>
 		<!--公司地址 -->
@@ -40,11 +40,11 @@
 		<property name="duty" type="string">
 			<column name="DUTY" not-null="false" sql-type="NVARCHAR(20)" />
 		</property>
-		<!-- 办公电话 -->
+		<!-- 手机号  -->
 		<property name="mobilePhone" type="java.lang.String">
 			<column name="MOBILE" />
 		</property>
-		<!-- 手机号 -->
+		<!-- 办公电话 -->
 		<property name="phone" type="java.lang.String">
 			<column name="PHONE" />
 		</property>
@@ -64,8 +64,14 @@
 			length="20" />
 		<!-- 最后跟进时间 -->   
 		<property name="lastModifiedTime" column="LAST_MODIFIED_TIME"
-			type="date" />
-		 
+			type="java.util.Date" />
+		<!-- 开始跟进时间 -->   
+		<property name="createdTime" column="CREATED_TIME"
+			type="java.util.Date" />
+		<!-- 回访次数 -->
+        <property name="backVisitSum" type="java.lang.Long">
+			<column name="BACK_VISIT_SUM" />
+		</property>
 		 <!--代码-->
 		<property name="code" type="string">
 			<column name="CODE" not-null="true" sql-type="NVARCHAR(20)" />
@@ -122,6 +128,26 @@
 		<property name="state" type="java.lang.Long">
 			<column name="state" />
 		</property>		
+		 <!--开始创建人  -->	
+		<property name="creatorName" type="string">
+			<column name="CREATOR" />
+		</property>		
+		 <!--最后修改人  -->	
+		<property name="lastOperator" type="string">
+			<column name="LAST_OPERATOR" />
+		</property>		
+			<!-- 注册资本 -->
+		<property name="registeredCapital" type="double">
+			<column name="REGISTER_CAPITAL" />
+		</property>
+		<!-- 公司人数 -->
+		<property name="personCount" type="integer">
+			<column name="EMPLOYEE_NUM" not-null="false" />
+		</property>
+		<!--从t_backvisit转移过来  -->
+		<property name="unconnect" type="java.lang.Long">
+			<column name="UNCONNECT" />
+		</property>
 		
 	   <!-- 
 		告警程度
@@ -144,14 +170,7 @@
 		<property name="abbreviations" type="string">
 			<column name="NAME_SHORT" not-null="false" sql-type="NVARCHAR(20)" />
 		</property>
-		注册资本
-		<property name="registeredCapital" type="double">
-			<column name="REGISTER_CAPITAL" />
-		</property>
-		公司人数
-		<property name="personCount" type="integer">
-			<column name="EMPLOYEE_NUM" not-null="false" />
-		</property>
+	
 		法人代表
 		<property name="legalPerson" type="string">
 			<column name="CORPORATE" not-null="false" sql-type="NVARCHAR(20)" />
