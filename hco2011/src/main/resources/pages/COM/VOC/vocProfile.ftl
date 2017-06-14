@@ -189,7 +189,7 @@
 	       		<label class="label">${action.getText('voc.resolvent')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="voc.resolvent" rows="3" cols="120" >${voc.resolvent?if_exists}</textarea>
+				<textarea name="voc.resolvent" rows="4" cols="150" >${voc.resolvent?if_exists}</textarea>
 			</td>
 		</tr>
 		<tr>
@@ -197,7 +197,7 @@
 	       		<label class="label">${action.getText('voc.feedback')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="voc.feedback" rows="3" cols="120" >${voc.feedback?if_exists}</textarea>
+				<textarea name="voc.feedback" rows="4" cols="150" >${voc.feedback?if_exists}</textarea>
 			</td>
 		</tr>
 		<tr>
@@ -206,7 +206,7 @@
 	       		<label class="label">${action.getText('voc.content')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="voc.content" rows="3" cols="120" >${voc.content?if_exists}</textarea>
+				<textarea name="voc.content" rows="4" cols="150" >${voc.content?if_exists}</textarea>
 			</td>
 		</tr>
     </@inputTable>

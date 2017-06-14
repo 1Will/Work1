@@ -74,19 +74,29 @@ public class IndexServlet extends HttpServlet {
 				HandlerBase.setEventService(eventService);
 				session.beginTransaction();
 				String type = event.getEventType().getCode();
+				//请假通知
 				if(type.equals("10000")){//根据eventType的code值判断事件类型
-					
 					handBase.qingJiaEvent();
-				}else if(type.equals("10001")){
+				}
+				//回访通知
+				if(type.equals("10001")){
 					handBase.publishNotification(event);
 				}
-				//添加日报扫描
+				//添加日报扫描处理
 				if (type.equals("10002")) {
 					handBase.publishDailyNotification(event);
 				}
-				//项目提交扫描
+				//项目提交扫描处理
 				if (type.equals("10003")) {
 					handBase.publishProjectNotification(event);
+				}
+				//磁盘检查通知
+				if (type.equals("10004")) {
+					handBase.spaceCheckerNotification(event);
+				}
+				//日报检查通知
+				if (type.equals("10005")) {
+					handBase.dailyCheckNotification(event);
 				}
 				session.getTransaction().commit();
 			} catch (Exception e) {
@@ -95,6 +105,6 @@ public class IndexServlet extends HttpServlet {
 			} 
 			
 		}
-		
+		session.close();
 	}
 }  

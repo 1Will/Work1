@@ -1,5 +1,5 @@
 driverClassName = com.microsoft.sqlserver.jdbc.SQLServerDriver
-url=jdbc:sqlserver://localhost:1433;databasename=crm2016_20170120;SelectMethod=Cursor
+url=jdbc\:sqlserver\://192.168.1.26\:1433;databasename\=crm2016_20170120;SelectMethod\=Cursor
 username=sa
 password=sa
 maxActive=200

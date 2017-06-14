@@ -278,7 +278,7 @@
         		</label>
         	</td>
 	        <td colspan="5">
-	        	<textarea name="advisory.enterpriseSynopsis" rows="3" cols="120" >${advisory.enterpriseSynopsis?if_exists}</textarea>
+	        	<textarea name="advisory.enterpriseSynopsis" rows="4" cols="150" >${advisory.enterpriseSynopsis?if_exists}</textarea>
 	        </td>
 	   	<!---->
 	   </tr>
@@ -323,7 +323,7 @@
         		</label>
         	</td>
 	        <td colspan="5">
-	        	<textarea name="advisory.effectDescribe" rows="3" cols="120" >${advisory.effectDescribe?if_exists}</textarea>
+	        	<textarea name="advisory.effectDescribe" rows="4" cols="150" >${advisory.effectDescribe?if_exists}</textarea>
 	        </td>
 	   
 	   <!---->
@@ -396,7 +396,7 @@
         		</label>
         	</td>
 	        <td colspan="5">
-	        	<textarea name="advisory.advisoryContent" rows="3" cols="120" >${advisory.advisoryContent?if_exists}</textarea>
+	        	<textarea name="advisory.advisoryContent" rows="4" cols="150" >${advisory.advisoryContent?if_exists}</textarea>
 	        </td>
 	   	<!---->
 	   </tr>
@@ -409,7 +409,7 @@
         		</label>
         	</td>
 	        <td colspan="5">
-	        	<textarea name="advisory.comment" rows="3" cols="120" >${advisory.comment?if_exists}</textarea>
+	        	<textarea name="advisory.comment" rows="4" cols="150" >${advisory.comment?if_exists}</textarea>
 	        </td>
 	    </tr>
 	    -->

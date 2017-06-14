@@ -11,12 +11,13 @@ import org.hibernate.Session;
 public interface CustomerInfoDao {
 
 	public void saveCustomerInfo(CustomerInfo customerInfo);
+
+	public void updateCustomerInfo(CustomerInfo customerInfo); //更新
+	
 	public  CustomerInfo getCustomerInfoById(Long id); //获取单条数据集合
 
 /*	public  List<CustomerInfo> getAllCustomerInfoById(Long[] ids);//获取多条集合
 */	
-	public void updateCustomerInfo(CustomerInfo customerInfo);
-	
     public CustomerInfo getById(Long id);
     
     public Long getMaxId();

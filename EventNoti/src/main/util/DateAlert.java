@@ -63,7 +63,7 @@ public class DateAlert {
 	/**
 	 * 
 	 * @param clazz 类的对象
-	 * @param day为负,当前日期减day，为正数，当前日期加day；
+	 * @param day 为负,当前日期减day，为正数，当前日期加day；
 	 * @param dateName 为要模糊查找类型T的属性名
 	 * @return
 	 */

@@ -99,7 +99,80 @@
   
     }  
     
+     //获取当前(yyyy-MM-dd)型日期
+   function aa(){
+     var nowDate=formatDate();
+     document.getElementById("setupTime").value=nowDate; 
+  
+   }
+ 
+			function formatDate() {
+				var d = new Date(); 
+				month = '' + (d.getMonth() + 1);				 
+				day = '' + d.getDate();
+				year = d.getFullYear();
+				if (month.length < 2) {
+					month = '0' + month;
+				}
+				if (day.length < 2) {
+					day = '0' + day;
+				}
+				return [ year, month, day ].join('-');
+			}
+		
+	//先判断是否为空，不为空的情况下进行正则匹配座机号
+   function checkPhone(){
+       var value1=$('#phone').val();
+       if(value1 !== ''){
+           var str=/^0\d{2,3}-\d{7,8}$/;
+           var bool=str.test(value1);
+           if(!bool){
+              alert("请输入正确座机号");
+           }
+        
+        }
+     }
+
+  //先判断是否为空，不为空的情况下进行正则匹配手机号
+function checkMPhone(){
+       var value1=$('#mobilePhone').val();
+       if(value1 !== ''){
+           var str=/^1\d{10}$/;
+           var bool=str.test(value1);
+           if(!bool){
+              alert("请输入正确手机号");
+           }
+        
+        }
+     }
+
+		
       function submitInfo(){
+          
+           if(document.getElementById("customerName").value.replace(/\s*/g, "") == "")
+       {
+        alert("请先填写客户名称");
+		return false;
+		}
+
+           if(document.getElementById("keyContacter").value.replace(/\s*/g, "") == "")
+       {
+        alert("请先填写主要联系人");
+		return false;
+		}
+
+           if(document.getElementById("province").value.replace(/\s*/g, "") == "")
+       {
+        alert("请先选择所在国家");
+		return false;
+		}
+
+           if(document.getElementById("city").value.replace(/\s*/g, "") == "")
+       {
+        alert("请先选择所在省份");
+		return false;
+		}
+
            //直接跳转 
             document.myForm.action = "/EventNoti/addCustomerInfoServlet";
 			document.myForm.submit();
@@ -139,7 +212,7 @@ right: 1%;
 
 	</head>
 
-	<body>
+	<body onload="aa()">
 		<div class="container" id="container">
 
 
@@ -305,7 +378,7 @@ right: 1%;
 						</div>
 						<div class="weui_cell_bd weui_cell_primary">
 							<input class="weui_input" type="string" value="" id="address"
-								name="address" />
+							 maxlength="50"	name="address" />
 						</div>
 					</div>
 				</div>
@@ -316,7 +389,8 @@ right: 1%;
 					<div class="weui_cell">
 						<div class="weui_cell_bd weui_cell_primary">
 							<textarea id="businessScope" name="businessScope"
-								class="weui_textarea" placeholder="请输入企业介绍" onfocus="this.placeholder=' '" rows="3"></textarea>
+								class="weui_textarea" placeholder="请输入企业介绍" onfocus="this.placeholder=' '"
+								maxlength="500" rows="3"></textarea>
 						</div>
 					</div>
 				</div>
@@ -380,7 +454,7 @@ right: 1%;
 						</div>
 						<div class="weui_cell_bd weui_cell_primary">
 							<input class="weui_input" type="string" value="" id="phone"
-								name="phone" />
+								name="phone" onchange="checkPhone()" />
 						</div>
 					</div>
 				</div>
@@ -393,7 +467,7 @@ right: 1%;
 						</div>
 						<div class="weui_cell_bd weui_cell_primary">
 							<input class="weui_input" type="number" value="" id="mobilePhone"
-								name="mobilePhone" />
+								name="mobilePhone" onchange="checkMPhone()" />
 						</div>
 					</div>
 				</div>
@@ -404,7 +478,8 @@ right: 1%;
 					<div class="weui_cell">
 						<div class="weui_cell_bd weui_cell_primary">
 							<textarea id="effectDescribe" name="effectDescribe"
-								class="weui_textarea" placeholder="请输入印象描述" onfocus="this.placeholder=' '" rows="3"></textarea>
+								class="weui_textarea" placeholder="请输入印象描述" onfocus="this.placeholder=' '"
+								maxlength="500" rows="3"></textarea>
 						</div>
 					</div>
 				</div>
@@ -457,7 +532,8 @@ right: 1%;
 					<div class="weui_cell">
 						<div class="weui_cell_bd weui_cell_primary">
 							<textarea id="advisoryContent" name="advisoryContent"
-								class="weui_textarea" placeholder="请输入咨询内容" onfocus="this.placeholder=' '" rows="3"></textarea>
+								class="weui_textarea" placeholder="请输入咨询内容" onfocus="this.placeholder=' '"
+								maxlength="500" rows="3"></textarea>
 						</div>
 					</div>
 				</div>

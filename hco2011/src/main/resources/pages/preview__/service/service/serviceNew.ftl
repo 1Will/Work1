@@ -71,7 +71,7 @@
 	       		<label class="label">${action.getText('服务内容')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
  	<tr>
@@ -80,7 +80,7 @@
 	       		<label class="label">${action.getText('客户反馈')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
  	<tr>
@@ -89,7 +89,7 @@
 	       		<label class="label">${action.getText('对应QA')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
  	<tr>
@@ -98,7 +98,7 @@
 	       		<label class="label">${action.getText('备注')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
                

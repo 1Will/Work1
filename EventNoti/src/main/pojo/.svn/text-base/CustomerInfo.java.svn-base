@@ -48,6 +48,7 @@ public class CustomerInfo implements java.io.Serializable {
 	private Double registeredCapital; //注册资本 
 	private Integer personCount; //公司人数
 	private Long unconnect;
+	private Date nearestBackVisitDate;
 	
 	/*	//未使用字段
 	
@@ -368,6 +369,12 @@ public class CustomerInfo implements java.io.Serializable {
 	public void setBackVisitSum(Long backVisitSum) {
 		this.backVisitSum = backVisitSum;
 	}
+	public Date getNearestBackVisitDate() {
+		return nearestBackVisitDate;
+	}
+	public void setNearestBackVisitDate(Date nearestBackVisitDate) {
+		this.nearestBackVisitDate = nearestBackVisitDate;
+	} 
 
 	
 }

@@ -13,7 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import main.pojo.Department;
 import main.pojo.Duty;
+import main.pojo.UsersInfo;
 import souvc.pojo.Code;
 import souvc.pojo.TleaveBill;
 import souvc.pojo.UserInfo;
@@ -204,6 +206,32 @@ public class SQLUtil {
 		return list;
 	}
 	
+	
+	/**
+	 * 根据 LOGIN_NAME 获取用户信息
+	 * 6.02
+	 */
+	public static UsersInfo getUserByLoginName(String loginName) {
+		UsersInfo usersInfo=null;
+		String sql = "select NAME from t_users where LOGIN_NAME like '%"+loginName+"%' ";
+		try {
+			Connection conn = new SQLUtil().getConn();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				usersInfo=new UsersInfo();
+				usersInfo.setName(rs.getString("NAME"));
+			}
+			// 释放资源
+			rs.close();
+			ps.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return usersInfo;
+	}
+	
 	/**
 	 * 更新用户信息，绑定微信openid
 	 * 
@@ -324,7 +352,32 @@ public class SQLUtil {
 		}
 		return duty;
 	}
-	
+
+	/**
+	 * 获取部门信息详情
+	 * 
+	 */
+	public static Department getDeptById(Long id) {
+		Department dept = null;
+		String sql = "select NAME from t_department where id=?";
+		try {
+			Connection conn = new SQLUtil().getConn();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setLong(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				dept = new Department();
+				dept.setName(rs.getString("NAME"));
+			}
+			// 释放资源
+			rs.close();
+			ps.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return dept;
+	}
 	
 	
 	/**
@@ -430,7 +483,10 @@ public class SQLUtil {
 		}
 		return name;
 	}
-	
+	/**
+	 * 根据projectId获取项目信息
+	 * 
+	 */
 	public static Map<String,String> getProject(int id){
 		Map<String,String> map = new HashMap<String, String>();
 		String sql = "select * from t_projectinfo where Id="+id;
@@ -490,6 +546,7 @@ public class SQLUtil {
 				map.put("nextVisitDate", format1.format(nextVisitDate)); 
 				map.put("employees", rs.getString("employees")); //回访人同行者
 				map.put("expendTime", rs.getString("EXPEND_TIME"));  // 耗时（分）
+				map.put("replyTime", rs.getString("REPLY_TIME"));  // 记录回访次数
 			}
 			// 释放资源
 			rs.close();
@@ -572,6 +629,33 @@ public class SQLUtil {
 			e.printStackTrace();
 		}
 		return user;
+	}
+	
+	/**
+	 * 获取微信日报通知组
+	 * 5.19 
+	 * subiao
+	 */
+	public static List<String> getWXGroupsUserId() {
+		List<String> list1=new ArrayList<String>();
+		String sql = "select user_id from t_group_user where group_id in(select id from t_groups where name='微信日报通知组')";
+		try {
+			Connection conn = new SQLUtil().getConn();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			//ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			for (;rs.next();) {
+				 list1.add(rs.getString("USER_ID"));
+			     continue ;
+			}
+			// 释放资源
+			rs.close();
+			ps.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list1;
 	}
 	
 	

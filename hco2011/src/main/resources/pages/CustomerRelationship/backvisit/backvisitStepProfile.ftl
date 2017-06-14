@@ -48,7 +48,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="changeReason" rows="3" cols="120" >${backVisit.changReason?if_exists}</textarea>
+	        	<textarea name="changeReason" rows="4" cols="150" >${backVisit.changReason?if_exists}</textarea>
 	        </td>
 			<!---->
 		</tr>

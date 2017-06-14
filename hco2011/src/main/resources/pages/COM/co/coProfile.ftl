@@ -143,7 +143,7 @@
 	       		<label class="label">${action.getText('co.remark')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="co.remark" rows="3" cols="120" >${co.remark?if_exists}</textarea>
+				<textarea name="co.remark" rows="4" cols="150" >${co.remark?if_exists}</textarea>
 			</td>
 		</tr>
     </@inputTable>

@@ -230,6 +230,9 @@
 		<constructor-arg index="3">
 			<ref bean="codeValueManager" />
 		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="projectInfoProductManager" />
+		</constructor-arg>
 	</bean>
 	<bean id="editProductsAction"
 		class="com.yongjun.tdms.presentation.webwork.action.base.products.EditProductsAction"
@@ -2652,6 +2655,22 @@
 		</constructor-arg>
 		<constructor-arg index="3">
 			<ref bean="projectInfoProductManager"/>
+		</constructor-arg>
+	</bean>
+	<bean id="listWeekPlanAction" parent="valueListAction" class="com.yongjun.tdms.presentation.webwork.action.workReport.weekPlan.ListWeekPlanAction" scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="weekPlanManager"/>
+		</constructor-arg>
+	</bean>
+	<bean id="editWeekPlanAction" class="com.yongjun.tdms.presentation.webwork.action.workReport.weekPlan.EditWeekPlanAction" scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="weekPlanManager"/>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="weeklyManager"/>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="projectInfoManager"/>
 		</constructor-arg>
 	</bean>
 </beans>

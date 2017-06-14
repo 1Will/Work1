@@ -42,6 +42,15 @@
 		
 		
 		<script type="text/javascript">
+   
+	function checkDate(){
+	  var startDate=$('#startDate').val();
+	  var endDate=$('#endDate').val();
+	  if(startDate>endDate){
+	     alert("开始日期大于结束日期，请重新选择");
+	    }
+	}	
+		
     function submitInfo(){
   
     	document.getElementById("myForm").submit();
@@ -57,7 +66,7 @@
 		}
         
         if(document.getElementById("summary").value().replace(/\s*/g, "") == ""){
-           alert("请输入 当天周总结内容");
+           alert("请输入 本周总结内容");
            return false;
         }
     
@@ -125,7 +134,7 @@
 							</div>
 							<div class="weui_cell_bd weui_cell_primary">
 								<input class="weui_input" type="date" id="endDate"
-									name="endDate" />
+									name="endDate" onchange="checkDate()" />
 							</div>
 						</div>
 					</div>
@@ -158,7 +167,7 @@
 						<div class="weui_cell">
 							<div class="weui_cell_bd weui_cell_primary">
 								<textarea id="summary" name="summary"
-									class="weui_textarea" rows="3"></textarea>
+									class="weui_textarea" maxlength="500" rows="3"></textarea>
 							</div>
 						</div>
 					</div> 
@@ -170,7 +179,7 @@
 						<div class="weui_cell">
 							<div class="weui_cell_bd weui_cell_primary">
 								<textarea id="comment" name="comment" class="weui_textarea"
-									placeholder="" rows="3"></textarea>
+									placeholder="" maxlength="500" rows="3"></textarea>
 							</div>
 						</div>
 					</div>

@@ -144,7 +144,7 @@
 	       		<label class="label">${action.getText('receivedPayments.remark')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="receivedPayments.remark" rows="3" cols="120" >${receivedPayments.remark?if_exists}</textarea>
+				<textarea name="receivedPayments.remark" rows="4" cols="150" >${receivedPayments.remark?if_exists}</textarea>
 			</td>
 		</tr>
     </@inputTable>

@@ -51,6 +51,7 @@ public class SaveUserInfo extends HttpServlet {
 				user.setTel(tel);
 				user.setOpenid(userid);
 		 SQLUtil.saveUserInfo(user);
+		 System.out.println("用户注册成功,userid= "+user.getId());
 		 request.setAttribute("loginName", loginName);
 		 request.setAttribute("name", name);
 		 request.setAttribute("company", company);

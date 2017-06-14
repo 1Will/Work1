@@ -2,7 +2,6 @@ package main.dao.impl;
 import java.util.List;
 
 import main.dao.CustomerInfoDao;
-import main.pojo.BackVisit;
 import main.pojo.CustomerInfo;
 
 import org.hibernate.Session;
@@ -20,6 +19,9 @@ public class CustomerInfoDaoImpl extends HibernateDaoSupport  implements Custome
 			e.printStackTrace();
 		}
 	}
+
+
+	
 	public void updateCustomerInfo(CustomerInfo customerInfo)
 	{
 		try{
@@ -28,6 +30,7 @@ public class CustomerInfoDaoImpl extends HibernateDaoSupport  implements Custome
 			e.printStackTrace();
 		}
 	}
+	
 	@SuppressWarnings("unchecked")
 	public  CustomerInfo getCustomerInfoById(Long id) {
 		

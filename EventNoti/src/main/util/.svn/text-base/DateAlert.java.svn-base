@@ -1,10 +1,13 @@
 package main.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 import main.service.EventService;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -44,8 +47,23 @@ public class DateAlert {
 	
 	/**
 	 * 
+	 * @param beginDate 开始日期
+	 * @param endDate 结束日期
+	 * @return 返回间隔天数,正負代表前後
+	 */
+	public static Long betweenDays(Date beginDate, Date endDate) {
+		Calendar c1 = Calendar.getInstance();
+		Calendar c2 = Calendar.getInstance();
+		c1.setTime(beginDate);
+		c2.setTime(endDate);
+		//可以用正負代表前後
+		return (Long)((c1.getTimeInMillis() - c2.getTimeInMillis())/(1000*60*60*24));
+	}
+	
+	/**
+	 * 
 	 * @param clazz 类的对象
-	 * @param day为负,当前日期减day，为正数，当前日期加day；
+	 * @param day 为负,当前日期减day，为正数，当前日期加day；
 	 * @param dateName 为要模糊查找类型T的属性名
 	 * @return
 	 */
@@ -69,5 +87,4 @@ public class DateAlert {
 		List<T> list =  eventService.getSuperSession().createQuery(sql).list();  
 		return list;
 	}
-	
 }

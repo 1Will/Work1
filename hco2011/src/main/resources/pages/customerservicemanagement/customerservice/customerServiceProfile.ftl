@@ -157,7 +157,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="customerService.serviceContent" rows="3" cols="120" >${customerService.serviceContent?if_exists}</textarea>
+	        	<textarea name="customerService.serviceContent" rows="4" cols="150" >${customerService.serviceContent?if_exists}</textarea>
 	        </td>
 		</tr>
 		<tr>
@@ -167,7 +167,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="customerService.customerFeedback" rows="3" cols="120" >${customerService.customerFeedback?if_exists}</textarea>
+	        	<textarea name="customerService.customerFeedback" rows="4" cols="150" >${customerService.customerFeedback?if_exists}</textarea>
 	        </td>
 		</tr>
 		
@@ -178,7 +178,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="customerService.qa" rows="3" cols="120" >${customerService.qa?if_exists}</textarea>
+	        	<textarea name="customerService.qa" rows="4" cols="150" >${customerService.qa?if_exists}</textarea>
 	        </td>
 		</tr>
 		
@@ -189,7 +189,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="customerService.remark" rows="3" cols="120" >${customerService.remark?if_exists}</textarea>
+	        	<textarea name="customerService.remark" rows="4" cols="150" >${customerService.remark?if_exists}</textarea>
 	        </td>
 		</tr>
 		

@@ -62,5 +62,9 @@
         <property name="creator"  column="CREATOR" type="string" length="40"/>
         <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
         <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+        <!-- 百分比 -->
+        <property name="percentt"  column="PERCENTT"   type="int" length="4"/>
+        <!-- 优先级 -->
+        <property name="priority"  column="PRIORITY"   type="int" length="2"/>
 	</class>
 </hibernate-mapping>

@@ -32,6 +32,8 @@ public class QingJiaSubmit extends HttpServlet {
 
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 request.setCharacterEncoding("UTF-8");
+		 
 		 String userid = request.getParameter("userid");
 		 String deptId = request.getParameter("deptId");
 		 String openid = request.getParameter("openid");

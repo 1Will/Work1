@@ -131,7 +131,7 @@
 	       		<label class="label">${action.getText('activity.summary')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="activity.summary" rows="3" cols="120" >${activity.summary?if_exists}</textarea>
+				<textarea name="activity.summary" rows="4" cols="150" >${activity.summary?if_exists}</textarea>
 			</td>
 		</tr>
 		<tr>
@@ -139,7 +139,7 @@
 	       		<label class="label">${action.getText('activity.comment')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="activity.comment" rows="3" cols="120" >${activity.comment?if_exists}</textarea>
+				<textarea name="activity.comment" rows="4" cols="150" >${activity.comment?if_exists}</textarea>
 			</td>
 		</tr>
 		<tr>
@@ -147,7 +147,7 @@
 	       		<label class="label">${action.getText('activity.remark')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="activity.remark" rows="3" cols="120" >${activity.remark?if_exists}</textarea>
+				<textarea name="activity.remark" rows="4" cols="150" >${activity.remark?if_exists}</textarea>
 			</td>
 		</tr>
     </@inputTable>

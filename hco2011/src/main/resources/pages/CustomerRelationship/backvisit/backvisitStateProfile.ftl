@@ -51,7 +51,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="changStateReason" rows="3" cols="120" >${backVisit.changStateReason?if_exists}</textarea>
+	        	<textarea name="changStateReason" rows="4" cols="150" >${backVisit.changStateReason?if_exists}</textarea>
 	        </td>
 			<!---->
 		</tr>

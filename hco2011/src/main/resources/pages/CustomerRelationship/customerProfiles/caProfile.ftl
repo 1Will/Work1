@@ -136,7 +136,7 @@
 	       		<label class="label">${action.getText('contactArchives.comment')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" >${contactArchives.comment?if_exists}</textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" >${contactArchives.comment?if_exists}</textarea>
 			</td>
 		</tr>
     </@inputTable>

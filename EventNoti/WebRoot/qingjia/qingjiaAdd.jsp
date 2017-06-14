@@ -16,10 +16,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>请假信息填写</title>
 <link rel="stylesheet" href="<%=basePath%>/css/weui.css"/>
-<script src="<%=basePath%>/js/zepto.min.js"></script>
 <script src="<%=basePath%>/js/router.min.js"></script>
 <script src="<%=basePath%>/js/example.js"></script>
 <script type="text/javascript">
+    
+   
+	function checkDate(){
+	  var startDate=document.getElementById("startDate").value;
+	  var endDate=document.getElementById("endDate").value;
+	  if(startDate>endDate){
+	     alert("开始日期早于结束日期，请重新选择");
+	  }
+	
+	}	
+   
     function submitInfo(){
     	document.getElementById("myForm").submit();
     }
@@ -61,15 +71,16 @@
         <div class="weui_cell">
             <div class="weui_cell_hd"><label for="" class="weui_label">结束日期</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="date" value="" id="endDate" name="endDate"/>
+                <input class="weui_input" type="date" value="" id="endDate" name="endDate" onchange="checkDate()"/>
             </div>
         </div>
     </div> 
 	 <div class="weui_cells weui_cells_form">
 		<div class="weui_cell weui_cell_warn">
-				<div class="weui_cell_hd"><label for="" class="weui_label">天数</label></div>
+				
 				<div class="weui_cell_bd weui_cell_primary">
-					<input name="days" id="days"  class="weui_input" type="number" pattern="[0-9]*" value="weui input error" placeholder="请输入天数"/>
+					<input name="days" id="days"  class="weui_input" type="number" pattern="[0-9]*" value="weui input error" 
+					placeholder="请输入天数" onfocus="this.placeholder='' "/><div class="weui_cell_hd"><label for="" class="weui_label">天数</label></div>
 				</div>
 		 </div>
      </div>
@@ -77,7 +88,8 @@
     <div class="weui_cells weui_cells_form">
         <div class="weui_cell">
             <div class="weui_cell_bd weui_cell_primary">
-                <textarea id="yuanyin" name="yuanyin" class="weui_textarea" placeholder="请输入请假事由" rows="3"></textarea>
+                <textarea id="yuanyin" name="yuanyin" class="weui_textarea" 
+                placeholder="请输入请假事由" onfocus="this.placeholder='' " rows="3"></textarea>
             </div>
         </div>
     </div>

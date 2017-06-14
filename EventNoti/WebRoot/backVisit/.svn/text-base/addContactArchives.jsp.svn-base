@@ -43,6 +43,7 @@ function binding(id,name) {
         //  getProject();
           
   }
+
 function searchData(){
 	
 	$.ajax({
@@ -54,23 +55,70 @@ function searchData(){
             $("#searchResult").empty();
             if(result != null && result != ""){
             var html = "";
+            var jsonLength=0; //记录长度
             $.each(result, function(commentIndex, comment){
                 html += "<div class='weui_cells'><div class='weui_cell'><div class='weui_cell_bd weui_cell_primary'>"
                 +"<p><span>"+comment.name+"</span></p>"
-                +"</div><div class='weui_cell_ft'><a onclick=\"binding('"+comment.id+"','"+comment.name+"')\""
+             /*     +"</div><div class='weui_cell_ft'><a onclick=\"binding('"+comment.id+"','"+comment.name+"')\""
                 +"href='javascript:' class='weui_btn weui_btn_mini weui_btn_primary'>选择</a></div></div></div>";
-
-
+              */    
+                +"</div><div class='weui_cell_ft'><a onclick=\"binding('"+comment.id+"','"+comment.name+"');"
+                +"document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'\""
+                +"href='javascript:void(0)' class='weui_btn weui_btn_mini weui_btn_primary'>选择</a></div></div></div>";
+                jsonLength++;
           });
+		 //   alert("jsonLength:"+jsonLength);
             $("#searchResult").html(html);
+            $("#searchResult").prepend("<p>当前检索到<span style='color:green;' >"+jsonLength+"</span>条</p>");
+            
             }else{
             	var html = "<div class='weui_cells_title' style='margin-top:30%;margin-left:35%'>未搜索到客户</div>";
             	 $("#searchResult").html(html);
             }
-		  
         }
     });
 }
+
+  //先判断是否为空，不为空的情况下进行正则匹配座机号
+function checkPhone(){
+       var value1=$('#phone').val();
+       if(value1 !== ''){
+           var str=/^0\d{2,3}-\d{7,8}$/;
+           var bool=str.test(value1);
+           if(!bool){
+              alert("请输入正确座机号");
+           }
+        
+        }
+     }
+
+  //先判断是否为空，不为空的情况下进行正则匹配手机号
+function checkMPhone(){
+       var value1=$('#mobilePhone').val();
+       if(value1 !== ''){
+           var str=/^1\d{10}$/;
+           var bool=str.test(value1);
+           if(!bool){
+              alert("请输入正确手机号");
+           }
+        
+        }
+     }
+
+  //先判断是否为空，不为空的情况下进行正则匹配email
+function checkEmail(){
+       var value1=$('#email').val();
+       if(value1 !== ''){
+           var str=/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+           var bool=str.test(value1);
+           if(!bool){
+              alert("请输入正确Email格式");
+           }
+        
+        }
+     }
+
+
  function submitInfo(){
   
        if(document.getElementById("customerName").value.replace(/\s*/g, "") == "")
@@ -79,40 +127,13 @@ function searchData(){
 		return false;
 		}
 
-      /*   if(!document.getElementById("mobilePhone").value("")){
-             if(document.getElementById("mobilePhone").value.replace(/^1\d{10}$/)=="")
-               {
-                alert("请输入正确的手机号");
-		        return false;
-                } 
-         }
-        
-       //先判断是否为空，不为空的情况下进行正则匹配
-       if(!document.getElementById("phone").value(" ")){
-           if(document.getElementById("phone").value.replace(/^0\d{2,3}-?\d{7,8}$/))
-           {
-             alert("请输入正确的座机号");
-		   return false;
-          }
-       }
-       
-       if(!document.getElementById("qq").value("")){
-            if(document.getElementById("qq").value.replace(/^\d*$/))
-              {
-              alert("请输入正确的QQ号");
-		      return false;
-              }
-       }	
-        
-  
-    	if(!document.getElementById("email").value("")){
-            if(document.getElementById("email").value.replace(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/))
-              {
-              alert("请输入正确的Email");
-		      return false;
-              }
-       } */	
-  
+       if(document.getElementById("contactName").value.replace(/\s*/g, "") == "")
+       {
+        alert("请先填写联系人姓名");
+		return false;
+		}
+
+     
       $('#myForm').submit();
   }
 
@@ -206,7 +227,7 @@ right: 1%;
 					<div class="weui_cell weui_cell_select">
 						<div class="weui_cell_bd weui_cell_primary">
 							<textarea id="customerName" name="customerName" class="weui_textarea"
-									placeholder="" rows="1"></textarea>
+									placeholder="" rows="1" readonly="readonly" ></textarea>
                                      <a class="weui_btn weui_btn_mini weui_btn_primary"
 									href="javascript:void(0)"
 									onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">选择</a>
@@ -246,7 +267,8 @@ right: 1%;
 					<div class="weui_cell">
 						<div class="weui_cell_bd weui_cell_primary">
 							<textarea id="enterpriseSynopsis" name="enterpriseSynopsis"
-								class="weui_textarea" placeholder="请输入印象描述" onfocus="this.placeholder=' '" rows="3"></textarea>
+								class="weui_textarea" placeholder="请输入印象描述" onfocus="this.placeholder=' '"
+								maxlength="500"  rows="3"></textarea>
 						</div>
 					</div>
 				</div>
@@ -259,7 +281,7 @@ right: 1%;
 						</div>
 						<div class="weui_cell_bd weui_cell_primary">
 							<input class="weui_input" type="string" value=""  id="phone"
-								name="phone" />
+								name="phone" onchange="checkPhone()" />
 						</div>
 					</div>
 				</div>
@@ -268,14 +290,15 @@ right: 1%;
 						<div class="weui_cell_hd">
 							<label for="" class="weui_label">
 								手机号
-							</label><!-- <input name="days" id="days"  class="weui_input" type="number" pattern="[0-9]*" value="weui input error" placeholder="请输入天数"/> -->
+							</label>
 						</div>
 						<div class="weui_cell_bd weui_cell_primary">
 							<input class="weui_input" type="number" value=""  id="mobilePhone"
-								name="mobilePhone" />
+								name="mobilePhone" onchange="checkMPhone()" />
 						</div>
 					</div>
 				</div>
+               
                 <div class="weui_cells weui_cells_form">
 					<div class="weui_cell">
 						<div class="weui_cell_hd">
@@ -310,8 +333,8 @@ right: 1%;
 							</label>
 						</div>
 						<div class="weui_cell_bd weui_cell_primary">
-							<input class="weui_input" type="string" onchange="onchange()" value=""  id="email"
-								name="email" />
+							<input class="weui_input" type="string" onchange="checkEmail()" value=""  id="email"
+								name="email"  />
 						</div>
 					</div>
 				</div>
@@ -323,7 +346,7 @@ right: 1%;
 							</label>
 						</div>
 						<div class="weui_cell_bd weui_cell_primary">
-							<input class="weui_input" type="string" value="" id="qq"
+							<input class="weui_input" type="number" value="" id="qq"
 								name="qq" />
 						</div>
 					</div>
@@ -360,6 +383,11 @@ right: 1%;
                                  <a href="javascript:void(0)" class="weui_btn weui_btn_mini weui_btn_primary" 
                                  onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
 							关闭</a>
+                      
+                              <!--    <a class="weui_btn weui_btn_mini weui_btn_primary"
+									href="javascript:void(0)"
+									onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">选择</a> -->
+						
 							</div>
 						</form>
 					</div>

@@ -62,23 +62,23 @@
 		</property>
         
        
-		<many-to-one name="rapporteur" class="com.yongjun.pluto.model.security.User">
+		<many-to-one name="rapporteur" class="com.yongjun.pluto.model.security.User" lazy="false">
 			<column name="RAPPORTEUR_ID" not-null="true"/>
 		</many-to-one>
        
-		<many-to-one name="person" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+		<many-to-one name="person" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles" lazy="false">
 			<column name="PERSON_ID" not-null="false"/>
 		</many-to-one>
        
-        <many-to-one name="inst" class="com.yongjun.pluto.model.base.institution.Institution">
+        <many-to-one name="inst" class="com.yongjun.pluto.model.base.institution.Institution" lazy="false">
 			<column name="INST_ID" not-null="true"/>
 		</many-to-one>
 		
-		<many-to-one name="dept" class="com.yongjun.pluto.model.security.Department">
+		<many-to-one name="dept" class="com.yongjun.pluto.model.security.Department" lazy="false">
 			<column name="DEPT_ID" not-null="true"/>
 		</many-to-one>
         
-        <many-to-one name="duty" class="com.yongjun.tdms.model.base.duty.Duty">
+        <many-to-one name="duty" class="com.yongjun.tdms.model.base.duty.Duty" lazy="false">
 			<column name="DUTY_ID" not-null="true"/>
 		</many-to-one>
         

@@ -9,6 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
@@ -376,9 +377,20 @@
            main.servlet.AddWeeklyServlet
       </servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ab</servlet-name>
+    <servlet-class>main.servlet.ab</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>addWeeklyServlet</servlet-name>
     <url-pattern>/addWeeklyServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ab</servlet-name>
+    <url-pattern>/servlet/ab</url-pattern>
   </servlet-mapping>
   
  

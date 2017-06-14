@@ -76,7 +76,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="projectInfoPersonnels.outline" rows="3" cols="120" >${projectInfoPersonnels.outline?if_exists}</textarea>
+	        	<textarea name="projectInfoPersonnels.outline" rows="4" cols="150" >${projectInfoPersonnels.outline?if_exists}</textarea>
 	        </td>
 			<!---->
 		</tr>

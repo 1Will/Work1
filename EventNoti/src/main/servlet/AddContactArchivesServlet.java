@@ -2,6 +2,7 @@ package main.servlet;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -64,30 +65,38 @@ public class AddContactArchivesServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		ContactArchives contactArchives = new ContactArchives();
+		
 		String contactName=null;
-		if (!request.getParameter("contactName").equals("null")) {
-			contactName = new String(request.getParameter("contactName").getBytes("iso-8859-1"), "UTF-8");// 联系人姓名
+		if (!request.getParameter("contactName").equals("")) {
+			contactName = request.getParameter("contactName");// 联系人姓名
 		}
-		String duty= new String(request.getParameter("duty").getBytes("iso-8859-1"), "UTF-8");
-		String dept= new String(request.getParameter("dept").getBytes("iso-8859-1"), "UTF-8");
-		String enterpriseSynopsis= new String(request.getParameter("enterpriseSynopsis").getBytes("iso-8859-1"), "UTF-8");
+		String duty= request.getParameter("duty");
+		String dept= request.getParameter("dept");
+		String enterpriseSynopsis= request.getParameter("enterpriseSynopsis");
 		String phone= request.getParameter("phone");
 		String mobilePhone= request.getParameter("mobilePhone");
-		String address= new String(request.getParameter("address").getBytes("iso-8859-1"), "UTF-8");
-		String honorific= new String(request.getParameter("honorific").getBytes("iso-8859-1"), "UTF-8");
+		String address= request.getParameter("address");
+		String honorific= request.getParameter("honorific");
 		String email= request.getParameter("email");
 		String qq= request.getParameter("qq");
 		Integer sex = Integer.parseInt(request.getParameter("sex")); //获取sex代码0 1
 		String birthday=null; //判断birthday是否为空
-		if (!request.getParameter("birthday").equals("null")) {
+		if (!request.getParameter("birthday").equals("")) {
 			birthday = request.getParameter("birthday");
+			try {
+				contactArchives.setBirthday(format1.parse(birthday));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		}
 		Integer type=  Integer.parseInt(request.getParameter("type"));//熟悉程度
 		 Date createdTime=new Date(); // 创建时间
 		 Date lastModifiedTime=new Date(); // 最后修改时间
 		//获取客户Id  客户名称也用id表示 暂未解析
 		long customerId=0; //客户ID
-		if(!request.getParameter("customerId").equals("null"))
+		if(!request.getParameter("customerId").equals(""))
 		  {
 			customerId=Long.parseLong(request.getParameter("customerId")); 
 		  }
@@ -103,8 +112,9 @@ public class AddContactArchivesServlet extends HttpServlet {
 		
 		//获取客户名称
 		String customerName=null;
-		if (!request.getParameter("customerName").equals("null")) {
-		     customerName=new String(request.getParameter("customerName").getBytes("iso-8859-1"), "UTF-8"); 
+		if (!request.getParameter("customerName").equals("")) {
+		  //   customerName=new String(request.getParameter("customerName").getBytes("iso-8859-1"), "UTF-8"); 
+		     customerName=request.getParameter("customerName"); 
 		}
 		 //接收userid
 		Long userid=Long.parseLong(request.getParameter("userid"));
@@ -115,7 +125,7 @@ public class AddContactArchivesServlet extends HttpServlet {
 
 		
 		try {
-			ContactArchives contactArchives = new ContactArchives();
+			
 			contactArchives.setContactName(contactName);
 			contactArchives.setCustomerId(customerId);
 			contactArchives.setCustomerName(customerName);  
@@ -132,7 +142,6 @@ public class AddContactArchivesServlet extends HttpServlet {
 			contactArchives.setType(Long.valueOf(type));
 			contactArchives.setCreatedTime(createdTime);
 			contactArchives.setLastModifiedTime(lastModifiedTime);
-			contactArchives.setBirthday(format1.parse(birthday));
 			contactArchives.setCreatorName(creatorName);
 			contactArchives.setLastOperator(lastOperator);
 			contactArchives.setCustomerInfoCode(customerInfoCode);

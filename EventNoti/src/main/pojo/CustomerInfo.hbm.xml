@@ -148,6 +148,9 @@
 		<property name="unconnect" type="java.lang.Long">
 			<column name="UNCONNECT" />
 		</property>
+		<property name="nearestBackVisitDate" type="timestamp">
+            <column name="NEAREST_BACKVISIT_DATE"/>
+        </property>
 		
 	   <!-- 
 		告警程度

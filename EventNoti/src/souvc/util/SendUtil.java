@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -108,8 +109,8 @@ public class SendUtil {
 
     public static String getAccess_token() {
     	
-    	String app_id = "wx948a0fbfe8c5b079";
-    	String app_secret = "a381bc2aba5f9cb989b08625dca73747";
+    	String app_id = "wxd869d12157582551";
+    	String app_secret = "c91907e07d6aab4f1eb37c2009080bb3";
 
         String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="
 
@@ -467,8 +468,8 @@ public class SendUtil {
        temp.setUrl(url);
        temp.setTouser(openid);
        temp.setTopcolor("#000000");
-       temp.setTemplate_id("ihbm9Ff4jhH9GLT0Jp432TMCTrpvHFZz2wGbDn0a_DI");  //原来的template_id
- //    temp.setTemplate_id("Umz8FjUtZ9zngXA9yvFVTjSBRsu4D7RcVZiDaYmwJwY");  //测试号 id
+ //      temp.setTemplate_id("ihbm9Ff4jhH9GLT0Jp432TMCTrpvHFZz2wGbDn0a_DI");  //原来的template_id
+     temp.setTemplate_id("Umz8FjUtZ9zngXA9yvFVTjSBRsu4D7RcVZiDaYmwJwY");  //测试号 id
        Map<String,TemplateData> m = new HashMap<String,TemplateData>();
        TemplateData first = new TemplateData();
        first.setColor("#000000");  
@@ -510,7 +511,11 @@ public class SendUtil {
        JSONObject jsonObject = WeixinUtil.httpRequest(action, "POST", jsonString);
        System.out.println(jsonObject);
    }
-   
+   /**
+    * 发送新建项目模板消息
+    * touser：发送对象的openid
+    * url:跳转地址
+    */
    public static void sendTemplatePj(String openid,String url,String title,String pjName,String pjIntroduce,String pjTeam,String end){
 	   String accessToken = SendUtil.getAccess_token();
 	   String action = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN";
@@ -519,8 +524,8 @@ public class SendUtil {
 	   temp.setUrl(url);
 	   temp.setTouser(openid);
 	   temp.setTopcolor("#000000");
-	   temp.setTemplate_id("USxcr6GC422hLHKA2l35iDu6DvGT7jBTUGhSqmPNGNE");  //原来的template_id
-	   //    temp.setTemplate_id("Umz8FjUtZ9zngXA9yvFVTjSBRsu4D7RcVZiDaYmwJwY");  //测试号 id
+	   temp.setTemplate_id("D3ophJEdvegqO0TUL3PSBZvoStOX0CynEePjzmWUEVI");  //测试号  template_id
+//	   temp.setTemplate_id("USxcr6GC422hLHKA2l35iDu6DvGT7jBTUGhSqmPNGNE");  //发布号  template_id
 	   Map<String,TemplateData> m = new HashMap<String,TemplateData>();
 	   TemplateData first = new TemplateData();
 	   first.setColor("#000000");  
@@ -563,8 +568,8 @@ public class SendUtil {
        temp.setUrl(url);
        temp.setTouser(openid);
        temp.setTopcolor("#000000"); 
-       temp.setTemplate_id("3G35dTfyqc0FglNbX-PvY0jVbAtOLFmDw2RWwSX8EOc"); //发布版的id
-    // temp.setTemplate_id("GPM92GGIcib2217w3tHgKzj9jsSMjc9n8RkdLlwCdiM"); //测试号id
+//       temp.setTemplate_id("3G35dTfyqc0FglNbX-PvY0jVbAtOLFmDw2RWwSX8EOc"); //发布版的id
+     temp.setTemplate_id("GPM92GGIcib2217w3tHgKzj9jsSMjc9n8RkdLlwCdiM"); //测试号id
        Map<String,TemplateData> m = new HashMap<String,TemplateData>();
        TemplateData first = new TemplateData();
        first.setColor("#000000");  
@@ -619,7 +624,8 @@ public class SendUtil {
       temp.setUrl(url);
       temp.setTouser(openid);
       temp.setTopcolor("#000000");
-      temp.setTemplate_id("aa0C4765_Y_lGBntPLx2MF0rfoiS3ZJvdqwpVGKIXeU"); //发布号 模板ID
+//      temp.setTemplate_id("aa0C4765_Y_lGBntPLx2MF0rfoiS3ZJvdqwpVGKIXeU"); //发布号 模板ID
+      temp.setTemplate_id("F90ky5GKLTTbZaDrBm6pS-REpAAWTsZ5__HMDqliwQw"); //测试号    模板ID
       Map<String,TemplateData> m = new HashMap<String,TemplateData>();
       TemplateData first = new TemplateData();
       first.setColor("#000000");  
@@ -668,7 +674,8 @@ public class SendUtil {
      temp.setUrl(url);
      temp.setTouser(openid);
      temp.setTopcolor("#000000"); 
-     temp.setTemplate_id("HVVZW7Co2ni_Nqgeolvcna1DCMbl6coGVpkcwKuyIFk"); //发布号 模板ID
+//     temp.setTemplate_id("HVVZW7Co2ni_Nqgeolvcna1DCMbl6coGVpkcwKuyIFk"); //发布号 模板ID
+     temp.setTemplate_id("QplYOz_JcyBRY9mMRaNUh4WP39KsyzLZ4y-fY1lVWFo"); //测试号  模板ID
      Map<String,TemplateData> m = new HashMap<String,TemplateData>();
      TemplateData first = new TemplateData();
      first.setColor("#000000");  
@@ -730,9 +737,9 @@ public static void sendTemplateRB(String openid,String url,String title,String w
 	   WxTemplate temp = new WxTemplate();
     temp.setUrl(url);
     temp.setTouser(openid);
-    temp.setTopcolor("#000000");
-//    temp.setTemplate_id("XGIHr_VLifj7igXJcJaMz7jx7n1vueSyiHbyTp_Tjbg"); //测试  模板ID
-    temp.setTemplate_id("wxFEeIGIImampS8zdo5rvXeZLXY4Z6NTyKn3iKbNPS4"); //发布 模板ID
+    temp.setTopcolor("#000000");  
+   temp.setTemplate_id("XGIHr_VLifj7igXJcJaMz7jx7n1vueSyiHbyTp_Tjbg"); //测试  模板ID
+//    temp.setTemplate_id("wxFEeIGIImampS8zdo5rvXeZLXY4Z6NTyKn3iKbNPS4"); //发布 模板ID
     Map<String,TemplateData> m = new HashMap<String,TemplateData>();
     TemplateData first = new TemplateData();
     first.setColor("#000000");  
@@ -795,8 +802,8 @@ public static void sendTemplateRBHF(String openid,String url,String title,String
    temp.setUrl(url);
    temp.setTouser(openid);
    temp.setTopcolor("#000000"); 
-   temp.setTemplate_id("3G35dTfyqc0FglNbX-PvY0jVbAtOLFmDw2RWwSX8EOc"); //对应发布号id  
-// temp.setTemplate_id("66dS4DduiWb0x8FFzJnrkJcx0E4F0rtUXHf7cYOu4cU"); //测试号 模板ID
+//   temp.setTemplate_id("3G35dTfyqc0FglNbX-PvY0jVbAtOLFmDw2RWwSX8EOc"); //对应发布号id  
+ temp.setTemplate_id("66dS4DduiWb0x8FFzJnrkJcx0E4F0rtUXHf7cYOu4cU"); //测试号 模板ID
    Map<String,TemplateData> m = new HashMap<String,TemplateData>();
    TemplateData first = new TemplateData();
    first.setColor("#000000");  
@@ -835,7 +842,68 @@ public static void sendTemplateRBHF(String openid,String url,String title,String
    
 }
 
- 
+/**
+ * 发送系统  检查日报 消息
+ * touser：发送对象的openid
+ * url:跳转地址
+ * template_id：模板id
+ */
+   // SendUtil.sendTemplateRB(openid, url, title, workContext2,workload,questions2,currentDate, userName,"点击查看详情");
+   //SendUtil.sendTemplateJCRB(openid, url, title,content, "系统提醒",currentDate,event.getName(),"点击查看详情");  
+   //使用的是测试号的Template_id
+public static void sendTemplateJCRB(String openid,String url,String title,String content,String comment,String currentDate,String Name,String end){
+	   
+	   String accessToken = SendUtil.getAccess_token();
+	   String action = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN";
+	   action = action.replace("ACCESS_TOKEN", accessToken);
+	   WxTemplate temp = new WxTemplate();
+   temp.setUrl(url);
+   temp.setTouser(openid);
+   temp.setTopcolor("#000000");  
+   temp.setTemplate_id("D3ophJEdvegqO0TUL3PSBZvoStOX0CynEePjzmWUEVI"); //测试  模板ID 备注2
+//   temp.setTemplate_id("wxFEeIGIImampS8zdo5rvXeZLXY4Z6NTyKn3iKbNPS4"); //发布 模板ID
+   Map<String,TemplateData> m = new HashMap<String,TemplateData>();
+   TemplateData first = new TemplateData();
+   first.setColor("#000000");  
+   first.setValue(title);  
+   m.put("first", first);
+   
+   TemplateData keyword1 = new TemplateData();  
+   keyword1.setColor("#FF0000");  
+   keyword1.setValue(content);  
+   m.put("keyword1", keyword1);
+
+/*   TemplateData keyword2 = new TemplateData();  
+   keyword2.setColor("#000000");  
+   keyword2.setValue();  
+   m.put("keyword2", keyword2);*/
+   
+   TemplateData keyword3 = new TemplateData();  
+   keyword3.setColor("#000000");  
+   keyword3.setValue(comment);  
+   m.put("keyword3", keyword3);
+   
+   TemplateData keyword4 = new TemplateData();  
+   keyword4.setColor("#000000");  
+   keyword4.setValue(currentDate);  
+   m.put("keyword4", keyword4);
+   
+   TemplateData keyword5 = new TemplateData();  
+   keyword5.setColor("#000000");  
+   keyword5.setValue(Name);  
+   m.put("keyword5", keyword5);
+   
+   TemplateData remark = new TemplateData();  
+   remark.setColor("#000000");  
+   remark.setValue(end);  
+   m.put("remark", remark);
+   temp.setData(m);
+   
+   String jsonString = JSONObject.fromObject(temp).toString();
+   JSONObject jsonObject = WeixinUtil.httpRequest(action, "POST", jsonString);
+   System.out.println(jsonObject);
+   
+}
  
   
 }

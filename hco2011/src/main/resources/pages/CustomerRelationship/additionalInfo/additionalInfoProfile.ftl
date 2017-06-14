@@ -43,7 +43,7 @@
        		<label class="label">${action.getText('cusAdditionalInfo.comment')}:</label>
      	</td>
 		<td colspan="10">
-			<textarea name="cusAdditionalInfo.comment" rows="3" cols="120" >${cusAdditionalInfo.comment?if_exists}</textarea>
+			<textarea name="cusAdditionalInfo.comment" rows="4" cols="150" >${cusAdditionalInfo.comment?if_exists}</textarea>
 		</td>
     </tr>
 	</@inputTable>

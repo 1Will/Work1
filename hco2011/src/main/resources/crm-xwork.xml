@@ -1698,13 +1698,13 @@
 		</action>
 		<action name="searchApplicationDoc" class="listApplicationDocAction">
 			<result name="success" type="redirect">
-				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;readOnly=false
+				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;readOnly=false
 			</result>
 			<result name="error" type="redirect">
-				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;readOnly=false
+				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;readOnly=false
 			</result>
 			<result name="invalid.token" type="redirect">
-				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;readOnly=false
+				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;readOnly=false
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
@@ -1979,6 +1979,38 @@
 					listReplyDailyTab.html?daily.id=${dailyId}
 				</result>
 		</action>
+		<!-- 周计划 -->
+		
+		<action name="listWeekPlanTab" class="listWeekPlanAction" method="list">
+				<result name="success" type="freemarker">
+					/pages/workReport/weekPlan/weekPlanList.ftl
+				</result>
+		</action>
+		
+		<action name="editWeekPlan" class="editWeekPlanAction">
+				<result name="success" type="freemarker">
+					/pages/workReport/weekPlan/weekPlanProfile.ftl
+				</result>
+		</action>
+		
+		<action name="saveWeekPlan" class="editWeekPlanAction" method="save">
+				<result name="success" type="redirect">
+					editWeekPlan.html?weekPlan.id=${weekPlan.id}&amp;readOnly=${readOnly}&amp;mes=${mes}
+				</result>
+			<result name="error" type="dispatcher">
+				editWeekPlan.html?weekPlan.id=${weekPlan.id}&amp;readOnly=${readOnly}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editWeekPlan.html?readOnly=${readOnly}
+			</result>
+				<interceptor-ref name="propertySenderStack" />
+		</action>
+		
+		
+		
+		
+		
+		
 	</package>
 	
 	<!--职位管理开始-->

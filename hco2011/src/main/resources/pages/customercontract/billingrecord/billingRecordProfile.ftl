@@ -122,7 +122,7 @@
 	       		<label class="label">${action.getText('billingRecord.content')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="billingRecord.content" rows="3" cols="120" >${billingRecord.content?if_exists}</textarea>
+				<textarea name="billingRecord.content" rows="4" cols="150" >${billingRecord.content?if_exists}</textarea>
 			</td>
 		</tr>
     </@inputTable>

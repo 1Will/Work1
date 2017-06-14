@@ -10,8 +10,8 @@ public interface CustomerInfoService {
 
 	public void saveCustomerInfo(CustomerInfo customerInfo);
 	
-	public void updateCustomerInfo(CustomerInfo customerInfo);
-
+	public void updateCustomerInfo(CustomerInfo customerInfo); //¸üÐÂ
+	
 	public  CustomerInfo getCustomerInfoById(Long id);
 	
 	public List<CustomerInfo> getAllCustomerInfo();

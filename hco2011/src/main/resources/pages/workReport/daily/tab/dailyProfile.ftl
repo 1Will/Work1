@@ -124,6 +124,7 @@
 	     </script>
 	   --> 
 	   
+	   <#-- 
 	     <tr>
 	    <td colspan="6" valign="top" >
 	     <#if daily.rapporteur?exists>
@@ -136,7 +137,7 @@
 		</#if> 
 	     </td>
 	     </tr>
-	     
+	    --> 
 	     
 	      <tr>
 		  <td align='right'><lable>新增客户数:</lable></td>
@@ -147,9 +148,9 @@
 		  <td id='projectNum'></td>
 		  </tr>
 		  <tr>
-		  <@textarea id="daily.workContext" name="daily.workContext" anothername="workContext" label="${action.getText('daily.workContext')}" value="${daily.workContext?if_exists}" rows="6" cols="160"/>
+		  <@textarea id="daily.workContext" name="daily.workContext" anothername="workContext" label="${action.getText('daily.workContext')}" value="${daily.workContext?if_exists}" rows="4" cols="150"/>
 	      <script language="JavaScript" type="text/JavaScript">
-				getObjByName('daily.workContext').onclick=function(){
+				getObjByName('daily.workContext').onfocus=function(){
 					var con = getObjByName('daily.workContext').value
 					if(con=='请输入非客户拜访类的工作内容'){
 						getObjByName('daily.workContext').value='';
@@ -167,9 +168,9 @@
 		  </script>
 	     </tr>
 		 <tr>
-		    <@textarea id="daily.questions" name="daily.questions" anothername="questions" label="${action.getText('收获/问题/建议')}" value="${daily.questions?if_exists}" rows="6" cols="160"/>
+		    <@textarea id="daily.questions" name="daily.questions" anothername="questions" label="${action.getText('收获/问题/建议')}" value="${daily.questions?if_exists}" rows="4" cols="150"/>
 	     		<script>
-	     				getObjByName('daily.questions').onclick=function(){
+	     				getObjByName('daily.questions').onfocus=function(){
 					var question = getObjByName('daily.questions').value
 					if(question=='请输入今日收获、问题、建议'){
 						getObjByName('daily.questions').value='';
@@ -304,6 +305,7 @@
 		    	<#-- 判断是不是当事人操作 -->
 			        if(mydate!= copydate){
 			        	returnBackVisite(mydate) ;
+			        	if(stop){return;}
 			       		getObjByName("copyCurrentDate").value = mydate;
 			        }
 		    	<#if daily.rapporteur.name==user.name>
@@ -312,11 +314,13 @@
 		    <#else>
 		    	if(mydate!= copydate){
 		        	returnBackVisite(mydate) ;
+		        	if(stop){return;}
 		       		getObjByName("copyCurrentDate").value = mydate;
 		        }
 		    </#if>
 		    }  
 		} 
+		
 		function returnBackVisite(mydate){
 		<#if daily.rapporteur?exists>
 			var per =${daily.rapporteur.id?if_exists};
@@ -327,36 +331,11 @@
 			DWREngine.setAsync(false);
 			<!--判断当日有没有创建日报  -->
 			DailyByDate.loadDailyByDate(mydate,setDaily);
-			if(stop){
-				return;
-			}
+			if(stop){return;}
 			<!-- 返回值顺序为 backVisitList、customerInfoList、contactArchivesList、projectList-->
 			AllByDateAndName.loadDailyNeed(per,mydate,setAll);
 			DWREngine.setAsync(true); 
 			<!--为文本框添加后台查询内容-->
-			<#--
-			var doContent="";
-			for(var i=0;i<content.length;i++){
-				if(isIE()){
-				doContent+=(i+1)+"、"+content[i]+"\r\n";
-				}else{
-				doContent+=(i+1)+"、"+content[i]+"\n";
-				}
-			}
-			var existsContent =getObjByName("daily.backVisitContext").value;
-			if(existsContent!=doContent){
-				<#-- 编辑页面 --
-				<#if daily.rapporteur?exists>
-				if(getObjByName("copyExistsDate").value==getObjByName('daily.currentDate').value){
-					if(alertflag){
-						alert("工作内容已发生变化，请重新保存");
-					}
-				}
-				</#if>
-				getObjByName("daily.backVisitContext").value=doContent;
-			}
-			content.length=0;
-			-->
 		}
 		function setAll(data){
 			if(data[0].length!=0){
@@ -374,7 +353,6 @@
 					alert('该日报已存在，请重新选择日期！');
 					//getObjByName("save").disabled='true';
 					getObjByName('daily.currentDate').value = getObjByName('copyExistsDate').value;
-					//getObjByName('daily.backVisitContext').value = getObjByName('copyBackVisitContext').value;
 					getObjByName('daily.week').value = getObjByName('copyWeek').value;
 					alertflag=false;
 					stop = true;
@@ -385,7 +363,6 @@
 			<#else>
 			alert('该日报已存在，请重新选择日期！');
 			//getObjByName("save").disabled='true';
-			//getObjByName("daily.backVisitContext").value='';
 			getObjByName('daily.currentDate').value='';
 			getObjByName('daily.week').value = '';
 			stop = true;
@@ -493,11 +470,9 @@
 	<li>
 		<a id="replyDaily" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyDailyTab.html?daily.id=#{daily.id?if_exists}' target="msgframe" >${action.getText('消息回复')}</a>
 	</li>
-	<#-- 
 	<li>
 		<a id="backvisit" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/backvisit/listBackVisitByContact.html?employee=${daily.rapporteur.name?if_exists}&backVisitDate_start=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}&backVisitDate_end=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}' target="msgframe" >${action.getText('回访记录')}</a>
 	</li>
-	-->
 </ul>
 <iframe name="msgframe" frameborder="0.5" src="${req.contextPath}/workReport/listReplyDailyTab.html?daily.id=#{daily.id?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="65%"/>
 </#if>

@@ -20,7 +20,7 @@
 	       		<label class="label">${action.getText('策划主题')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" >关于相亲</textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" >关于相亲</textarea>
 			</td>
 	</tr>	
 	<tr>
@@ -29,7 +29,7 @@
 	       		<label class="label">${action.getText('策划描述')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" >crm的功能补充</textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" >crm的功能补充</textarea>
 			</td>
 	</tr>	
 </@inputTable>

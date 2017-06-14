@@ -42,13 +42,13 @@
             </#if>
             <@vcolumn title="${action.getText('contractManagement.code')}" property="contractManagement.code" sortable="desc">
                 <a href="editReturnPlan.html?returnPlan.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}">${object.contractManagement.code}</a>
-				<@alignLeft/>
+				<@alignLeft attributes="width:120;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('returnPlan.contractManagement')}" property="contractManagement.contractName" sortable="desc">
-            	<@alignLeft/>
+            	<@alignLeft attributes="width:100;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('customerInfo.code')}" property="customerInfo.code" sortable="desc">
-     			<@alignLeft/>
+     			<@alignLeft attributes="width:80;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('customerInfo.name')}" property="customerInfo.name" sortable="desc">
      			<@alignLeft/>

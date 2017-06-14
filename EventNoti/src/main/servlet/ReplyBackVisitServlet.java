@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import main.pojo.BackVisit;
 import main.pojo.ReplyBackVisit;
+import main.service.BackVisitService;
 import main.service.ReplyBackVisitService;
 
 import org.springframework.context.ApplicationContext;
@@ -27,11 +29,13 @@ import souvc.util.SendUtil;
 public class ReplyBackVisitServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public  ReplyBackVisitService replyService;
+	public  BackVisitService backVisitService;
 		
 	 public void init() throws ServletException {  
 			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");  
 			replyService=(ReplyBackVisitService) context.getBean("replyService");
-	       
+			backVisitService=(BackVisitService) context.getBean("backVisitService");
+			
 	    }  
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -65,12 +69,19 @@ public class ReplyBackVisitServlet extends HttpServlet {
 		 System.out.println(id+","+userid+","+fankui);
 		 replyService.saveReplyBackVisit(Reply);
 		 System.out.println("保存");
+		 //t_backVisit 获取记录回复次数并自增一
+        BackVisit backVisit=backVisitService.getBackVisitById(id);
+        Long replyTime=backVisit.getReplyTime();
+        replyTime+=1; //自加一
+        backVisit.setReplyTime(replyTime);
+		backVisitService.updateBackVisit(backVisit);
+		System.out.println("replyTime+1 : "+replyTime);
 		// 保存
 		// 发送对象
 		String openid = SQLUtil.getUserDetail(sender).getOpenid();
 		
 		String title = "你有新的回访反馈信息";
-		String url = "http://www.yj-tech.com/EventNoti/backVisitServlet?bid="
+		String url = "http://yjkj.ngrok.cc/EventNoti/backVisitServlet?bid="
 				+ id + "&userid=" + sender + "&sender=" + userid;
 		 System.out.println(openid+","+url+","+title+","+customName+","+projectName+","+username+","+fankui);
 		SendUtil.sendTemplatePLHf(openid, url, title, customName, projectName,

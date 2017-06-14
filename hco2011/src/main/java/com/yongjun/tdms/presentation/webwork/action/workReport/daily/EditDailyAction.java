@@ -31,6 +31,7 @@ import com.yongjun.tdms.service.base.org.DepartmentManager;
 /*     */ import java.util.Calendar;
 /*     */ import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 /*     */ import java.util.List;
 
 
@@ -114,6 +115,7 @@ import org.apache.commons.logging.Log;
 /*     */ 
 /*     */   public String save()
 /*     */   {
+/* 149 */     String currentDate = this.request.getParameter("daily.currentDate");
 /* 149 */     this.startHour = this.request.getParameter("startHour");
 /* 150 */     this.startMinute = this.request.getParameter("startMinute");
 /* 151 */     this.endHour = this.request.getParameter("endHour");
@@ -149,13 +151,14 @@ import org.apache.commons.logging.Log;
 			  bvtList.clear();
 			  }
 			  
-			  this.daily.setBackVisitContext(this.request.getParameter("daily.backVisitContext"));
-/* 153 */     Calendar c = Calendar.getInstance();
-/* 154 */     String d = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()) + " ";
+//			    this.daily.setBackVisitContext(this.request.getParameter("daily.backVisitContext"));
+///* 153 */     Calendar c = Calendar.getInstance();
+///* 154 */     String d = new SimpleDateFormat("yyyy-MM-dd").format(c) + " ";
+
 /*     */     try {
-/* 156 */       Date startTime = new SimpleDateFormat("yyyy-MM-dd kk:mm").parse(d + this.startHour + ":" + this.startMinute);
+/* 156 */       Date startTime = new SimpleDateFormat("yyyy-MM-dd kk:mm").parse(currentDate + " " +this.startHour + ":" + this.startMinute);
 /*     */ 
-/* 158 */       Date endTime = new SimpleDateFormat("yyyy-MM-dd kk:mm").parse(d + this.endHour + ":" + this.endMinute);
+/* 158 */       Date endTime = new SimpleDateFormat("yyyy-MM-dd kk:mm").parse(currentDate + " " + this.endHour + ":" + this.endMinute);
 /*     */ 
 /* 160 */       this.daily.setStartTime(startTime);
 /* 161 */       this.daily.setEndTime(endTime);
@@ -177,12 +180,12 @@ import org.apache.commons.logging.Log;
 /*     */     }
 			//提交后保存事件
 			  String submit=null;
-/*暂时不用*/
 			  if ("1".equals(this.request.getParameter("isSaved"))) {
 				  Set<User> noticePers = groupManager.getGroupByGroupName("微信日报通知组").getUsers();
-				  String ids =getUser().getId()+"";
+				  Set<Long> idSet =new HashSet<Long>();
+				  idSet.add(getUser().getId());
 				  for (User user : noticePers) {
-					  ids+=","+user.getId();
+					  idSet.add(user.getId());
 				  } 
 					try {
 						EventType eventType=null;
@@ -190,8 +193,8 @@ import org.apache.commons.logging.Log;
 						if(eventTypes!=null&&eventTypes.size()>0){
 							eventType=eventTypes.get(0);
 						}else {
-							  eventType = new EventType();
-							    eventType.setId(3L);
+							eventType = new EventType();
+							eventType.setId(3L);
 						}
 					 	EventNew event = new EventNew();
 					    event.setEffectflag("E");
@@ -203,10 +206,14 @@ import org.apache.commons.logging.Log;
 					    PersonnelFiles pFiles =getPeronnelF().getSuperiorLeader();
 					    while (pFiles!=null) {
 					    	List<User> leader = userManager.loadByKey("code", pFiles.getCode());
-							ids +=","+leader.get(0).getId();
+							idSet.add(leader.get(0).getId());
 							pFiles = pFiles.getSuperiorLeader();
 						}
-					    map.put("users", ids);
+					    String ids ="";
+					    for (Long id : idSet) {
+					    	ids += id +",";
+					    }
+					    map.put("users", ids.substring(0,ids.length() - 1));
 						map.put("dailyId", this.daily.getId()+"");
 						String moreinfo = JSONObject.fromObject(map).toString();
 						event.setMoreinfo(moreinfo);

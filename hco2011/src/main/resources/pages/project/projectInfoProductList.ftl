@@ -50,7 +50,7 @@
 			<@buttonBar>
 				<#if !(action.isReadOnly())>
 					<@vbutton class="button" name="${action.getText('选择产品')}" value="${action.getText('选择产品')}" onclick="product_OpenDialog();"/>
-					<#assign confirmMessage = "${action.getText('delete.msg')}${action.getText('projectInfoPersonnelsIds.info')}?" />
+					<#assign confirmMessage = "${action.getText('delete.msg')}${action.getText('projectInfo.product')}?" />
 		            <@vsubmit name="'delete'" value="'${action.getText('delete')}'">
 		                <@ww.param name="'onclick'" value="'return confirmDeletes(\"projectInfoProductIds\", \"${confirmMessage}\");'"/>
 		                <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
@@ -62,7 +62,7 @@
 </@framePage>
 <script>
 function product_OpenDialog(){
-			var  url = "${req.contextPath}/productsManager/listProducts.html?productCheckBox=productCheckBox";
+			var  url = "${req.contextPath}/productsManager/listProducts.html?productCheckBox=productCheckBox&projectInfoId=${req.getParameter('projectInfo.id')?if_exists}";
 			popupModalDialog(url, 1000, 600, creatorSelectorHandlerProduct);
 	}
 	function creatorSelectorHandlerProduct(result) {

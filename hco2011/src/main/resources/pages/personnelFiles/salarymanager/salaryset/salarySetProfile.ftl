@@ -80,7 +80,7 @@
 	       		<label class="label">${action.getText('salarySet.reason')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="salarySet.reason" rows="3" cols="120" >${salarySet.reason?if_exists}</textarea>
+				<textarea name="salarySet.reason" rows="4" cols="150" >${salarySet.reason?if_exists}</textarea>
 			</td>
 		</tr>
 		<tr>
@@ -88,7 +88,7 @@
 	       		<label class="label">${action.getText('salarySet.remark')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="salarySet.remark" rows="3" cols="120" >${salarySet.remark?if_exists}</textarea>
+				<textarea name="salarySet.remark" rows="4" cols="150" >${salarySet.remark?if_exists}</textarea>
 			</td>
 		</tr>
          </@inputTable>

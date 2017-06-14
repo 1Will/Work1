@@ -118,7 +118,7 @@
 	       		<label class="label">${action.getText('onTheRoadBill.betreffzeile')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="onTheRoadBill.betreffzeile" rows="3" cols="120" >${onTheRoadBill.betreffzeile?if_exists}</textarea>
+				<textarea name="onTheRoadBill.betreffzeile" rows="4" cols="150" >${onTheRoadBill.betreffzeile?if_exists}</textarea>
 			</td>
 		</tr>
 		<tr>
@@ -126,7 +126,7 @@
 	       		<label class="label">${action.getText('onTheRoadBill.failReason')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="onTheRoadBill.failReason" rows="3" cols="120" readonly="true">${onTheRoadBill.failReason?if_exists}</textarea>
+				<textarea name="onTheRoadBill.failReason" rows="4" cols="150" readonly="true">${onTheRoadBill.failReason?if_exists}</textarea>
 			</td>
 		</tr>
     </@inputTable>

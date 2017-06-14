@@ -1,7 +1,7 @@
 <%@page import="org.syntax.jedit.InputHandler.document_end"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Date"%>
-<%@ page language="java" pageEncoding="UTF-8"
+<%@page language="java" pageEncoding="UTF-8"
 	contentType="text/html; charset=UTF-8"%>
 
 <%@page import="java.util.List"%>
@@ -35,7 +35,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport"
 			content="width=device-width,initial-scale=1,user-scalable=0">
-		<title>新增日报页面</title>
+		<title>新增工作日报</title>
 		<link rel="stylesheet" href="<%=basePath%>/css/page.css" />
 		<link rel="stylesheet" href="<%=basePath%>/css/weui.css" />
 		<script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
@@ -61,24 +61,37 @@
    success:function(data,status){  
     var obj=eval(data);//解析  
     //判断日报是否存在
-    if(obj[0].list[1]==undefined ){
-       alert("当前日期已存在日报,请重新选择!");
-    }else{
-    
+       var dailyId=obj[0].list[3];
+       var workContext=obj[0].list[4];
+       var questions=obj[0].list[5];
+       var version=obj[0].list[6];
+       if(dailyId != undefined){
+           alert("当前日期已存在日报,请修改或重新选择日期");
+           document.getElementById("dailyId").value=dailyId; 
+           document.getElementById("workContext").value=workContext; 
+           document.getElementById("questions").value=questions; 
+           document.getElementById("version").value=version; 
+        //   alert("dailyId "+dailyId); 
+        }else{
+           document.getElementById("dailyId").value="F"; 
+           document.getElementById("workContext").value=""; 
+           document.getElementById("questions").value=""; 
+           document.getElementById("version").value="0"; 
+
+        }
+          
        var backVisitList=obj[0].list[0];
        var contactArchivesNum=obj[0].list[1];
        var customerInfoNum=obj[0].list[2];
           var string1  =  setBackvisitContent1(backVisitList);//获取部分回访内容
           var string2  =   setBackVisitContent(contactArchivesNum,customerInfoNum);//只获取客户数和联系人数
           var  bcString=string1+string2; 
-          document.getElementById("backvisitContext").value=bcString;             
+          document.getElementById("backvisitContext").value=bcString;
            // alert("bcString: "+bcString);
           setBackVisitIds(backVisitList);//获取backVisitIds
           //根据选择日期 填写相应星期
           var weekDate =getDateWeek($("#currentDate").val()); 
           document.getElementById("weekDate").value=weekDate;  
-          
-       }
    
    },  
     complete:function(xmlHttpRequest,status){  
@@ -90,18 +103,23 @@
     });  
 
  } 	
+ 
+    var h=1; //定义全局变量h,作为bvContent的序号
    //获取部分回访内容加数量  如果需要的话得重新到后台传送相应参数 和接收参数
    function  setBackvisitContent1(backVisitList){
                  //    alert("进入setBackvisitContent方法中.");
-			         var String1=null;
+			         var String1="";
 			         var n=3;//解析list2 其中n+1为一组数据的个数
-			 
+			         var j=1; //j用于计数
 			         if(backVisitList.length!=0){
 		                  for(var i=0;i<backVisitList.length-n;i++){
-						        String1=i+1+".客户名称:"+backVisitList[i+1]
+		                       
+						        String1+=j+".客户名称:"+backVisitList[i+1]
 								+"; 联系人:"+backVisitList[i+2]
 								+"; 项目名称:"+(backVisitList[i+3]==null?"   ":backVisitList[i+3])+"; \n";
 								 i=i+n;
+								 j=j+1; 
+								 h=j;
 							//	+"; 回访内容:"+backVisitList[i].visitContent +"; \n";
 						       
 					      }
@@ -128,8 +146,8 @@
    
    function setBackVisitContent(contactArchivesNum,customerInfoNum){
        var  bcString=null;
-       var  String2=1+".新增客户数:"+customerInfoNum+"个;\n";
-       var  String3=2+".新增联系人数:"+contactArchivesNum+"个;\n";
+       var  String2=h+".新增客户数:"+customerInfoNum+"个;\n";
+       var  String3=(h+1)+".新增联系人数:"+contactArchivesNum+"个;\n";
             bcString=String2+String3;
        return bcString;
  
@@ -172,11 +190,10 @@
  
     //获取当前(yyyy-MM-dd)型日期
    function aa(){
-  // alert("进入aa方法！");
-  var nowDate=formatDate();
-  document.getElementById("currentDate").value=nowDate; 
+     var nowDate=formatDate();
+     document.getElementById("currentDate").value=nowDate; 
+  
    }
- 
  
 			function formatDate() {
 				var d = new Date(); 
@@ -226,6 +243,8 @@
 		<input type="hidden" name="userName" id="userName" value="<%=userName%>" /> 
 		<input type="hidden" name="loginName" id="loginName" value="<%=loginName%>" /> 
 		<input type="hidden" name="code" id="code" value="<%=code%>" /> 
+		<input type="hidden" name="dailyId" id="dailyId" value="" /> <!-- 如果今天存在日报记录  保存这条id--> 
+		<input type="hidden" name="version" id="version" value="" /> <!-- 如果今天存在日报记录  保存这条id--> 
 		<input type="hidden" name="personnelId" id="personnelId" value="<%=personnelId%>" />
 		<input type="hidden" name="backVisitIds" id="backVisitIds" value=" " />
 

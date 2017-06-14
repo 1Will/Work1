@@ -2,11 +2,8 @@ package main.servlet.daily;
 
 import java.io.IOException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -125,21 +122,31 @@ public class AddDailyServlet extends HttpServlet{
     }
 
 	
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "unused" })
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	//	synchronized (this) {
 	            
+    	    request.setCharacterEncoding("UTF-8");
+    	    response.setCharacterEncoding("UTF-8");
+    	    
 			try  
 			{ 
 			Daily daily = new Daily();
-				
+			
+			//获取dailyId 有值或者为null
+			String dailyId=request.getParameter("dailyId") ;
+			//作为传递到url的dailyid
+			Long dailyId2=null;
+			//获取 version
+			long version=Long.parseLong(request.getParameter("version")) ;
+
 			//填表人ID userid
 			long userid=Long.parseLong(request.getParameter("userid")) ;
 			Long rapporteurId=userid;
 			//人事表ID PERSON_ID
 			long personnelId=Long.parseLong(request.getParameter("personnelId")) ;
 			//记录人 没有存储 存简写
-			String userName =new String(request.getParameter("userName").getBytes("iso-8859-1"), "UTF-8");
+			String userName =request.getParameter("userName");
 			//名字简称 lf
 			String loginName=request.getParameter("loginName");
 			//员工code
@@ -147,26 +154,26 @@ public class AddDailyServlet extends HttpServlet{
            //当前时间
 			String currentDate=request.getParameter("currentDate");
 		   //星期
-			String weekDate=new String(request.getParameter("weekDate").getBytes("iso-8859-1"), "UTF-8");		
+			String weekDate=request.getParameter("weekDate");		
 			
 			//拜访工作内容
-			String backvisitContext =new String(request.getParameter("backvisitContext").getBytes("iso-8859-1"), "UTF-8");
+			String backvisitContext =request.getParameter("backvisitContext");
             //其他工作内容
-			String workContext =new String(request.getParameter("workContext").getBytes("iso-8859-1"), "UTF-8");
+			String workContext =request.getParameter("workContext");
 		
 			  //问题
 			String questions=null;
 			if (!request.getParameter("questions").equals("null")) {
-				questions =new String(request.getParameter("questions").getBytes("iso-8859-1"), "UTF-8");
+				questions =request.getParameter("questions");
 			}
 			
 			
 			//部门ID deptId
 			long deptId=Long.parseLong(request.getParameter("deptId")) ;
-			String deptName=new String(request.getParameter("deptName").getBytes("iso-8859-1"), "UTF-8");
+			String deptName=request.getParameter("deptName");
 			//职位ID dutyId
 			long dutyId=Long.parseLong(request.getParameter("dutyId")) ;
-			String dutyName=new String(request.getParameter("dutyName").getBytes("iso-8859-1"), "UTF-8");
+			String dutyName=request.getParameter("dutyName");
             //接收 instId			
 			long instId=Long.parseLong(request.getParameter("instId")) ;
 			//接收 organization
@@ -200,6 +207,7 @@ public class AddDailyServlet extends HttpServlet{
 		   if (!"".equals(backVisitIds)) {
 			String idsTemp[]=backVisitIds.split("-");
 			Long bvtIds[]=new Long[idsTemp.length];
+			//String数组转化为int数组
             for (int i = 0; i < idsTemp.length; i++) {
 				bvtIds[i]=Long.parseLong(idsTemp[i]);
 			}		  
@@ -226,14 +234,33 @@ public class AddDailyServlet extends HttpServlet{
 			
 			daily.setStartTime(startTime);
 			daily.setEndTime(endTime);
-			
 			//不为空字段
 			daily.setInstId(instId);
 			daily.setDisabled(0);
 			daily.setOrganization(organization);
+			daily.setIsSaved("1");
 			
-			dailyService.saveDaily(daily);
-			System.out.println("日报保存成功，记录人为："+userName);
+			//如果dailyId不为null 更新日报 否则保存一条新的日报
+			if (dailyId!=null && !dailyId.equals("F")) {
+				//通过id获取daily 更新修改内容 
+				Daily daily2=dailyService.getDailyById(Long.parseLong(dailyId));
+			//	daily2.setId(Long.parseLong(dailyId));
+				daily2.setVersion(version);
+				daily2.setBackvisitContext(backvisitContext);
+				daily2.setWorkContext(workContext);
+				daily2.setQuestions(questions);
+				daily2.setLastModifiedTime(new Date());
+				daily2.setLastOperator(loginName);
+				
+				dailyService.updateDaily(daily2);
+				dailyId2=Long.parseLong(dailyId);
+				System.out.println("日报更新成功，记录人为："+userName +"id="+daily2.getId() );
+			} else {
+				dailyService.saveDaily(daily);
+				dailyId2=daily.getId();
+				System.out.println("日报保存成功，记录人为："+userName +"id="+daily.getId());
+			}
+			
 			//获取最后一条ID
 			Long id=  dailyService.getLastId();
 			System.out.println("当前数据存储的id为: "+id);
@@ -241,21 +268,20 @@ public class AddDailyServlet extends HttpServlet{
 		
 	        //插入事件表
 			//获取发送的集合   dutyName不容易解析 直接带过去
-			String moreinfo="{\"dailyId\":\""+daily.getId()+"\",\"code\":\""+code+"\",\"dutyName\":\""+dutyName+"\",\"deptName\":\""+deptName+"\",\"userName\":\""+userName+"\",\"users\":\"";
+			String moreinfo="{\"dailyId\":\""+dailyId2+"\",\"users\":\"";
 			
-		   //发送全员  暂时
-	/*		List<UserInfo> UserInfoList = new ArrayList<UserInfo>();
-		    for (int i = 0; i < UserInfoList.size(); i++) {
-			     UserInfo User = SQLUtil.getAllUserId();
-				 moreinfo+=User.getId().toString()+",";
-				 }
-			 moreinfo = moreinfo.substring(0,moreinfo.length()-1); */
 			 
 			String ids =userid+"";
-			//发送给自己和上级领导 获取id  循环判断
+			//发送给微信组成员
+			List<String> list1=SQLUtil.getWXGroupsUserId();
+			for (String str : list1) {
+				ids=ids+","+str;
+			}
+			
 		    String code1=code;
 		   loop:for ( ;code1!=null; ) {
 		  
+    	   //发送给自己和上级领导 获取id  循环判断
 		   List<PersonnelFiles> pList=personnelFilesService.getPersonnelFilesByCode(code1);				
 		   PersonnelFiles pFiles=null;
            for (int j = 0; j < pList.size(); ) {

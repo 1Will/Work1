@@ -42,7 +42,7 @@
             <@vcolumn title="${action.getText('customerInfo.code')}" property="code" sortable="desc" >
                 <a href="editCustomerInfo.html?customerInfo.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}"
                  title="信息完整度${object.customerInfoIntegrity}%">${object.code}</a>
-				<@alignLeft/>
+				<@alignLeft attributes="width:80;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('customerInfo.name')}" property="name" sortable="desc">
      			<@alignLeft/>
@@ -51,7 +51,7 @@
      			<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('customerInfo.step')}" property="step.name" sortable="desc">
-     			<@alignLeft/>
+     			<@alignCenter/>
             </@vcolumn>
             <@vcolumn title="${action.getText('customerInfo.sate')}" property="state.name" sortable="desc">
      			<@alignLeft/>

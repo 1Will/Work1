@@ -175,5 +175,8 @@
 		<property name="archiveTime" type="date">
             <column name="ARCHIVE_TIME"/>
         </property>
+		<property name="nearestBackVisitDate" type="timestamp">
+            <column name="NEAREST_BACKVISIT_DATE"/>
+        </property>
 	</class>
 </hibernate-mapping>

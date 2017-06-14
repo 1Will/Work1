@@ -28,7 +28,8 @@
 		<div class="weui_cell">
 				<div class="weui_cell_hd"><label for="" class="weui_label">登录名</label></div>
 				<div class="weui_cell_bd weui_cell_primary">
-					<input name="loginName" id="loginName"  class="weui_input" type="text"  placeholder="请输入公司名称"/>
+					<input name="loginName" id="loginName"  class="weui_input" type="text"  
+					placeholder="请输入公司名称" onfocus="this.placeholder=' '" />
 				</div>
 		 </div>
      </div>
@@ -36,7 +37,8 @@
 		<div class="weui_cell">
 				<div class="weui_cell_hd"><label for="" class="weui_label">姓名</label></div>
 				<div class="weui_cell_bd weui_cell_primary">
-					<input name="name" id="name"  class="weui_input" type="text"  placeholder="请输入姓名"/>
+					<input name="name" id="name"  class="weui_input" type="text" 
+					 placeholder="请输入姓名" onfocus="this.placeholder=' '" />
 				</div>
 		 </div>
      </div>
@@ -44,7 +46,8 @@
 		<div class="weui_cell">
 				<div class="weui_cell_hd"><label for="" class="weui_label">手机号</label></div>
 				<div class="weui_cell_bd weui_cell_primary">
-					<input name="tel" id="tel"  class="weui_input" type="number" pattern="[0-9]*"  placeholder="请输入手机号码"/>
+					<input name="tel" id="tel"  class="weui_input" type="number" pattern="[0-9]*" 
+					 placeholder="请输入手机号码" onfocus="this.placeholder=' '" />
 				</div>
 		 </div>
      </div>
@@ -63,7 +66,8 @@
 		<div class="weui_cell">
 				<div class="weui_cell_hd"><label for="" class="weui_label">公司名称</label></div>
 				<div class="weui_cell_bd weui_cell_primary">
-					<input name="company" id="company"  class="weui_input" type="text"  placeholder="请输入公司名称"/>
+					<input name="company" id="company"  class="weui_input" type="text" 
+					 placeholder="请输入公司名称" onfocus="this.placeholder=' '" />
 				</div>
 		 </div>
      </div>
@@ -71,7 +75,8 @@
 		<div class="weui_cell">
 				<div class="weui_cell_hd"><label for="" class="weui_label">职位</label></div>
 				<div class="weui_cell_bd weui_cell_primary">
-					<input name="position" id="position"  class="weui_input" type="text"  placeholder="请输入职位信息"/>
+					<input name="position" id="position"  class="weui_input" type="text" 
+					 placeholder="请输入职位信息" onfocus="this.placeholder=' '" />
 				</div>
 		 </div>
      </div>
@@ -95,7 +100,8 @@
 		<div class="weui_cell">
 				<div class="weui_cell_hd"><label for="" class="weui_label">邮箱</label></div>
 				<div class="weui_cell_bd weui_cell_primary">
-					<input name="email" id="email"  class="weui_input" type="text"  placeholder="请输入邮箱地址"/>
+					<input name="email" id="email"  class="weui_input" type="text" 
+					 placeholder="请输入邮箱地址" onfocus="this.placeholder=' '" />
 				</div>
 		 </div>
      </div>
@@ -103,7 +109,8 @@
 		<div class="weui_cell">
 				<div class="weui_cell_hd"><label for="" class="weui_label">地址</label></div>
 				<div class="weui_cell_bd weui_cell_primary">
-					<input name="locale" id="locale"  class="weui_input" type="text"  placeholder="请输入地址"/>
+					<input name="locale" id="locale"  class="weui_input" type="text" 
+					 placeholder="请输入地址" onfocus="this.placeholder=' '" />
 				</div>
 		 </div>
      </div>

@@ -33,6 +33,7 @@ public class Daily implements java.io.Serializable {
     private Date lastModifiedTime;  //最后修改时间
     private String lastOperator;  //最后修改人
     private Long organization;  //组织ID 5
+    private String isSaved;
     public Set bvtList =new HashSet();
     
 	public Long getId() {
@@ -191,6 +192,12 @@ public class Daily implements java.io.Serializable {
 	}
 	public void setBvtList(Set bvtList) {
 		this.bvtList = bvtList;
+	}
+	public String getIsSaved() {
+		return isSaved;
+	}
+	public void setIsSaved(String isSaved) {
+		this.isSaved = isSaved;
 	}
     
 	

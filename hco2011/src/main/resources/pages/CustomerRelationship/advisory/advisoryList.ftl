@@ -27,7 +27,7 @@
             <#else>
             <@vcolumn title="${action.getText('advisory.name')}" property="name" sortable="desc">
                 <a href="editAdvisory.html?advisory.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}">${object.name}</a>
-                <@alignLeft/>
+                <@alignLeft attributes="width:130;"/>
             </@vcolumn>
             </#if>
             <#--
@@ -36,35 +36,35 @@
             </@vcolumn>
             -->
             <@vcolumn title="${action.getText('advisory.industry_ID.id')}" property="industry.name" sortable="desc">
-            <@alignLeft/>
+            <@alignCenter attributes="width:80;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('advisory.enter_nature_ID.id')}" property="companyNature.name" sortable="desc">
-            <@alignLeft/>
+            <@alignCenter attributes="width:80;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('advisory.moveTel')}" property="mobile" sortable="desc">
             <@alignLeft attributes="width:110;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('advisory.connectPeople')}" property="connectPeople" sortable="desc">
-            <@alignLeft/>
+            <@alignLeft attributes="width:60;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('advisory.customerService')}" property="customerServiceName" sortable="desc">
-            <@alignLeft/>
+            <@alignLeft attributes="width:60;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('advisory.consultationTime')}" property="advisoryTime" format="yyyy-MM-dd" sortable="desc">
             <@alignCenter attributes="width:110;"/>
             </@vcolumn>
             <#assign isNoB=""/>
-            <#if object.isNoBack>
-            	<#assign isNoB="${action.getText('advisory.isNoBack.yes')}">
-            <#else>
-           	 	<#assign isNoB="${action.getText('advisory.isNoBack.no')}">
-		    </#if>
+	            <#if object.isNoBack>
+	            	<#assign isNoB="${action.getText('advisory.isNoBack.yes')}">
+	            <#else>
+	           	 	<#assign isNoB="${action.getText('advisory.isNoBack.no')}">
+			    </#if>
 		    <@vcolumn title="${action.getText('advisory.NoBack')}" sortable="desc">
 				${isNoB}
-			<@alignLeft/>
+			<@alignCenter attributes="width:30;"/>
 			</@vcolumn>
 			<@vcolumn title="${action.getText('advisory.advisoryContent')}" property="advisoryContent" sortable="desc">
-            <@alignLeft attributes="width:200;"/>
+            <@alignLeft/>
             </@vcolumn>
         </@list>
 	    <#if !first>

@@ -210,9 +210,9 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="backVisit.backVisitContent" rows="3" cols="120" >${backVisit.backVisitContent?if_exists}</textarea>
+	        	<textarea name="backVisit.backVisitContent" rows="4" cols="150" >${backVisit.backVisitContent?if_exists}</textarea>
 	        	<script>
-	        	getObjByName('backVisit.backVisitContent').onclick=function(){
+	        	getObjByName('backVisit.backVisitContent').onfocus=function(){
 	        	if(getObjByName('backVisit.backVisitContent').value=='请输入拜访客户目的及主要沟通内容，建议用3句话描述清楚'){
 	        	getObjByName('backVisit.backVisitContent').value='';
 	        	getObjByName('backVisit.backVisitContent').style.color='000000';}
@@ -234,9 +234,9 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="backVisit.feedback" rows="3" cols="120" >${backVisit.feedback?if_exists}</textarea>
+	        	<textarea name="backVisit.feedback" rows="4" cols="150" >${backVisit.feedback?if_exists}</textarea>
 	        	<script>
-	        	getObjByName('backVisit.feedback').onclick=function(){
+	        	getObjByName('backVisit.feedback').onfocus=function(){
 	        	if(getObjByName('backVisit.feedback').value=='请输入沟通过程中客户的反馈，建议用3句话描述'){
 	        	getObjByName('backVisit.feedback').value='';
 	        	getObjByName('backVisit.feedback').style.color='000000';}
@@ -258,9 +258,9 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="backVisit.attention" rows="3" cols="120" >${backVisit.attention?if_exists}</textarea>
+	        	<textarea name="backVisit.attention" rows="4" cols="150" >${backVisit.attention?if_exists}</textarea>
 	        	<script>
-	        	getObjByName('backVisit.attention').onclick=function(){
+	        	getObjByName('backVisit.attention').onfocus=function(){
 	        	if(getObjByName('backVisit.attention').value=='请输入项目维护后期要注意的内容'){
 	        	getObjByName('backVisit.attention').value='';
 	        	getObjByName('backVisit.attention').style.color='000000';}
@@ -282,9 +282,9 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="backVisit.remarks" rows="3" cols="120" >${backVisit.remarks?if_exists}</textarea>
+	        	<textarea name="backVisit.remarks" rows="4" cols="150" >${backVisit.remarks?if_exists}</textarea>
 	        	<script>
-	        	getObjByName('backVisit.remarks').onclick=function(){
+	        	getObjByName('backVisit.remarks').onfocus=function(){
 	        	if(getObjByName('backVisit.remarks').value=='请输入补充信息'){
 	        	getObjByName('backVisit.remarks').value='';
 	        	getObjByName('backVisit.remarks').style.color='000000';}
@@ -360,7 +360,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="changeReason" rows="3" cols="120" >${backVisit.changReason?if_exists}</textarea>
+	        	<textarea name="changeReason" rows="4" cols="150" >${backVisit.changReason?if_exists}</textarea>
 	        </td>
 			<!---->
 		</tr>
@@ -398,7 +398,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="changStateReason" rows="3" cols="120" >${backVisit.changStateReason?if_exists}</textarea>
+	        	<textarea name="changStateReason" rows="4" cols="150" >${backVisit.changStateReason?if_exists}</textarea>
 	        </td>
 			<!---->
 		</tr>
@@ -466,15 +466,6 @@
 	        	getObjByName('backVisit.remarks').value='请输入补充信息';
 	        	getObjByName('backVisit.remarks').style.color='999999';
 	        	}
-			<#if backVisit.id?exists>
-			
-			<#if backVisit.projectInfo?exists>
-			document.all.frame.src='${req.contextPath}/applicationDocManager/listApplicationDoc.html?backVisit.id=#{backVisit.id}&projectInfo.id=#{backVisit.projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}';
-            <#else>
-            document.all.frame.src='${req.contextPath}/applicationDocManager/listApplicationDoc.html?backVisit.id=#{backVisit.id}&readOnly=${req.getParameter('readOnly')?if_exists}';
-            </#if>
-			
-			</#if>
 			//客户等级
 	
 		//联系人
@@ -757,7 +748,7 @@
 	function backvistStep_OpenDialog(){
 	<#if backVisit.id?exists>
 			 var url = "${req.contextPath}/backvisit/editBackVisitStep.html?backVisit.id=#{backVisit.id}&readOnly=${req.getParameter('readOnly')?if_exists}";
-	  		 popupModalDialog(url, 800, 300);
+	  		 popupModalDialog(url, 1050, 300);
 	  		 if(isIE()){self.location.reload();};
 			</#if>
 	  
@@ -766,7 +757,7 @@
 	function backvistState_OpenDialog(){
 	<#if backVisit.id?exists>
 			 var url = "${req.contextPath}/backvisit/editBackVisitState.html?backVisit.id=#{backVisit.id}&readOnly=${req.getParameter('readOnly')?if_exists}";
-	  		 popupModalDialog(url, 800, 300);
+	  		 popupModalDialog(url, 1050, 300);
 	  		 if(isIE()){self.location.reload();};
 			</#if>
 	  
@@ -776,20 +767,14 @@
 <#if backVisit.id?exists>
 <ul id="beautytab">
 	<li>
-		<#if backVisit.projectInfo?exists>
-		<a id="additionalInformation" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?backVisit.id=#{backVisit.id}&projectInfo.id=#{backVisit.projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >附件资料</a>
-            <#else>
-            <a id="additionalInformation" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?backVisit.id=#{backVisit.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >附件资料</a>
-            </#if>
-		
+        <a id="additionalInformation" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?backVisit.id=#{backVisit.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >附件资料</a>
 	</li>
 	<li>
 		<a id="additionalInformation" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/backvisit/listChangeStepToHistory.html?customerId.id=#{backVisit.customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >等级变更历史</a>
-		
 	</li>
 	<li>
 		<a id="replyBackVisit" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyDailyTab.html?backVisit.id=#{backVisit.id?if_exists}' target="frame" >消息回复</a>
 	</li>
 </ul>
-<iframe name="frame" frameborder="0.5" src="" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="100%"/>
+	<iframe name="frame" frameborder="0.5" src="${req.contextPath}/applicationDocManager/listApplicationDoc.html?backVisit.id=#{backVisit.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="100%"/>
 </#if>

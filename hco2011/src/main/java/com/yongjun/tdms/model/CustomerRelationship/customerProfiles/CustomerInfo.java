@@ -59,6 +59,7 @@
 /*  88 */   private Float customerInfoIntegrity = Float.valueOf(0.0F);
 			private Long unconnect = Long.valueOf(0L);
 			private Long backVisitSum = Long.valueOf(0L);
+			private Date nearestBackVisitDate;
 /*     */   public String getChuanzhen() {
 /*     */	   return chuanzhen;
 /*     */  }
@@ -498,7 +499,13 @@
 /*     */   {
 /* 115 */     this.backVisitSum = backVisitSum;
 /*     */   }
-/*     */ 
+/*     */
+			public Date getNearestBackVisitDate() {
+				return nearestBackVisitDate;
+			}
+			public void setNearestBackVisitDate(Date nearestBackVisitDate) {
+				this.nearestBackVisitDate = nearestBackVisitDate;
+			} 
 
 /*     */ }
 

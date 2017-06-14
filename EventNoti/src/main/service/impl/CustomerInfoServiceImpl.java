@@ -21,6 +21,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 		
 	}
 
+
 	public  CustomerInfo getCustomerInfoById(Long id){
 		return customerInfoDao.getCustomerInfoById(id);
 	}

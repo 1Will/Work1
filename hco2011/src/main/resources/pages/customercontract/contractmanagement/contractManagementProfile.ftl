@@ -230,10 +230,10 @@
 			</@ww.select>		
 		</tr>
 		<tr>
-		    <@textarea id="contractContent" name="contractManagement.contractContent" label="${action.getText('contractManagement.contractContent')}" anothername="contractContent" maxLength="500" required="true" value="${contractManagement.contractContent?if_exists}"/>	
+		    <@textarea id="contractContent" name="contractManagement.contractContent" rows="4" cols="150" label="${action.getText('contractManagement.contractContent')}" anothername="contractContent" maxLength="500" required="true" value="${contractManagement.contractContent?if_exists}"/>	
 	    </tr>
 		<tr>
-		    <@textarea name="contractManagement.remark" label="${action.getText('contractManagement.remark')}" anothername="remark" maxLength="500" required="false" value="${contractManagement.remark?if_exists}"/>	
+		    <@textarea name="contractManagement.remark" rows="4" cols="150" label="${action.getText('contractManagement.remark')}" anothername="remark" maxLength="500" required="false" value="${contractManagement.remark?if_exists}"/>	
 		</tr>
 		</@inputTable>
 	<@buttonBar>

@@ -156,7 +156,7 @@
 	       		<label class="label">${action.getText('contractCustomer.content')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contractCustomer.content" rows="3" cols="120" >${contractCustomer.content?if_exists}</textarea>
+				<textarea name="contractCustomer.content" rows="4" cols="150" >${contractCustomer.content?if_exists}</textarea>
 			</td>
 		</tr>
 		<tr>
@@ -164,7 +164,7 @@
 	       		<label class="label">${action.getText('contractCustomer.remark')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contractCustomer.remark" rows="3" cols="120" >${contractCustomer.remark?if_exists}</textarea>
+				<textarea name="contractCustomer.remark" rows="4" cols="150" >${contractCustomer.remark?if_exists}</textarea>
 			</td>
 		</tr>
     </@inputTable>

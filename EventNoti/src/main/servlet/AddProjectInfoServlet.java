@@ -12,16 +12,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import main.pojo.EventNew;
+import main.pojo.EventType;
 import main.pojo.PersonnelFiles;
 import main.pojo.ProjectInfo;
+import main.pojo.ProjectInfoPersonnels;
+import main.pojo.UsersInfo;
 import main.service.EventService;
 import main.service.PersonnelFilesService;
+import main.service.ProjectInfoPersonnelsService;
 import main.service.ProjectInfoService;
+import main.service.UsersInfoService;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import souvc.util.SQLUtil;
 
 
 /**
@@ -34,8 +39,10 @@ import souvc.util.SQLUtil;
 public class AddProjectInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public ProjectInfoService projectInfoService;
-	public static EventService eventService;
+	public  EventService eventService;
 	public PersonnelFilesService personnelFilesService;
+	public ProjectInfoPersonnelsService pInfoPersonnelsService;
+	public UsersInfoService usersInfoService;
 	DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 
 	public void init() throws ServletException {
@@ -45,6 +52,12 @@ public class AddProjectInfoServlet extends HttpServlet {
 				.getBean("projectInfoService");
 		personnelFilesService=(PersonnelFilesService) context
 				.getBean("personnelFilesService");
+		pInfoPersonnelsService=(ProjectInfoPersonnelsService) context
+				.getBean("projectInfoPersonnelsService");
+		usersInfoService=(UsersInfoService) context.getBean("usersInfoService");
+		eventService =(EventService) context.getBean("eventService");
+		
+		
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,10 +65,6 @@ public class AddProjectInfoServlet extends HttpServlet {
 		// 获取客户名称列表
 		// 获取项目联系人名称列表
 		
-	/*	// 获取项目负责人名称列表
-		List<PersonnelFiles> personnelFilesList = new ArrayList<PersonnelFiles>();
-		personnelFilesList = personnelFilesService.getPersonnelFilesById();
-		request.setAttribute("personnelFilesList", personnelFilesList);*/
 		
 		request.getRequestDispatcher("backVisit/addProjectInfo.jsp").forward(
 				request, response);
@@ -64,10 +73,13 @@ public class AddProjectInfoServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+	   //在获取请求对象内容前，调用setCharacterEncoding(“字符集”)
+		request.setCharacterEncoding("UTF-8");
+		
 		// 项目名称
 		String projectName=null;
 		if (!request.getParameter("projectName").equals("null")) {
-			 projectName = new String(request.getParameter("projectName").getBytes("iso-8859-1"), "UTF-8");
+			projectName = request.getParameter("projectName");
 		}
 		//获取 客户id
 		String customerId=request.getParameter("customerId");
@@ -76,9 +88,9 @@ public class AddProjectInfoServlet extends HttpServlet {
 		String contactId=request.getParameter("contactname");
 	
 		// 项目概述
-		String outline = new String(request.getParameter("outline").getBytes("iso-8859-1"), "UTF-8");
+		String outline = request.getParameter("outline");
 		// 联系人角色说明
-		String conOutline = new String(request.getParameter("conOutline").getBytes("iso-8859-1"), "UTF-8");
+		String conOutline = request.getParameter("conOutline");
 		// 创建时间
 		String createdTime = request.getParameter("createdTime");
 		//最后修改时间
@@ -101,7 +113,7 @@ public class AddProjectInfoServlet extends HttpServlet {
 		
 
 		// 项目负责人名字
-		String controllerName = new String(request.getParameter("controllerName").getBytes("iso-8859-1"), "UTF-8");
+		String controllerName = request.getParameter("controllerName");
 		//根据name从人事表里获取对应ID
 		 List<PersonnelFiles> list=personnelFilesService.getPersonnelFilesByName(controllerName);
 		 PersonnelFiles personnelFiles=null;
@@ -141,8 +153,60 @@ public class AddProjectInfoServlet extends HttpServlet {
             projectInfo.setState(Long.parseLong("465"));//项目状态 465 立项
 			projectInfoService.saveProjectInfo(projectInfo);
 			System.out.println("addProject存储完成 项目名为:" + projectName);
-			request.getRequestDispatcher("backVisit/result.jsp").forward(
-					request, response);
+			
+			//同时将项目组成员保存到表里
+			ProjectInfoPersonnels personnels=new ProjectInfoPersonnels();
+			
+			personnels.setProjectInfo_id(projectInfo.getId());
+			personnels.setProPerson_id(controllerId);
+			personnels.setOutline("项目负责人");
+			personnels.setVersion(Long.parseLong("0"));
+			personnels.setDisabled(Integer.parseInt("0"));
+			personnels.setBusinessType(Long.parseLong("470")); //项目负责人
+			personnels.setCreator(controllerName);
+			personnels.setLastOperator(controllerName);
+			personnels.setCreatedTime(new Date());
+			personnels.setLastModifiedTime(lastModifiedTime);
+			
+			pInfoPersonnelsService.saveProjectInfoPersonnels(personnels);
+			System.out.println("保存ProjectInfoPersonnels id为 : "+personnels.getId());
+			
+		//	request.getRequestDispatcher("backVisit/result.jsp").forward(request, response);
+		
+	        //插入事件表
+			//获取发送的集合
+			Long projectinfoId=projectInfo.getId();
+			String moreinfo="{\"projectInfoId\":\""+projectinfoId+"\",\"users\":\"";
+			
+			//发送项目组成员  目前项目组成员只有默认创建人
+				List<ProjectInfoPersonnels> ProjectInfoPersonnelsList = new ArrayList<ProjectInfoPersonnels>();
+				ProjectInfoPersonnelsList= pInfoPersonnelsService.getProjectInfoPersonnelsById(projectinfoId);
+				for (int i = 0; i < ProjectInfoPersonnelsList.size(); i++) {
+					ProjectInfoPersonnels Personnels = ProjectInfoPersonnelsList.get(i);
+		            Long personelId=Personnels.getProPerson_id();
+		            PersonnelFiles pFiles=personnelFilesService.getPersonnelFilesById(personelId);
+		            String code1=pFiles.getCode();
+		            List<UsersInfo> userList=usersInfoService.getUsersInfoByCode(code1);
+		            for (int j = 0; j < userList.size(); j++) {
+		            	UsersInfo usersInfo=userList.get(j);
+		            	moreinfo+=usersInfo.getId().toString()+",";
+		            	
+					}
+				}
+				moreinfo = moreinfo.substring(0,moreinfo.length()-1);
+		    moreinfo+="\"}";
+		    System.out.println(moreinfo);
+			EventNew event=new EventNew();
+			EventType eventType = new EventType();
+			eventType = eventService.getEventTypeByCode("10003");	
+			event.setEventType(eventType);
+			event.setName("新建项目提交");
+			event.setMoreinfo(moreinfo);
+			event.setEffectflag("E");
+			event.setUserId(Long.toString(userid));
+			eventService.saveEvent(event);
+			request.getRequestDispatcher("backVisit/result.jsp").forward(request, response);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

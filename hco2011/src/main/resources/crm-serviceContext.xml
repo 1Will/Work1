@@ -351,6 +351,17 @@
 			</bean>
 		</property>
 	</bean>
+	<!-- 周计划管理 -->
+	<bean id="weekPlanManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.workReport.weekPlan.pojo.DefaultWeekPlanManager">
+				<constructor-arg index="0">
+					<ref bean="weekPlanDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
 	
 	
 	<!-- 人事管理 -->

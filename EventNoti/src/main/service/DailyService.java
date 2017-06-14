@@ -9,6 +9,8 @@ import org.hibernate.Session;
 public interface DailyService {
     
      public void saveDaily(Daily daily);
+     
+     public void updateDaily(Daily daily);//更新日报
     
      public List<Daily> getAllDaily();
      

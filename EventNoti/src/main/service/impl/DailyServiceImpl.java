@@ -17,6 +17,11 @@ public class DailyServiceImpl implements DailyService {
 	}
 
 	@Override
+	public void updateDaily(Daily daily) {
+		 dailyDao.updateDaily(daily);
+	}
+
+	@Override
 	public List<Daily> getAllDaily() {
 		return dailyDao.getAllDaily();
 	}
@@ -54,6 +59,7 @@ public class DailyServiceImpl implements DailyService {
 	public void setDailyDao(DailyDao dailyDao) {
 		this.dailyDao = dailyDao;
 	}
+
 
 
 

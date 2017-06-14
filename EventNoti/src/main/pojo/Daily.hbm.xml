@@ -91,6 +91,8 @@
         <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
         <!-- 最后修改人 -->
         <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+        <!-- ISSAVED-->
+        <property name="isSaved" column="ISSAVED" type="string" />
         <!-- 组织ID 5 -->
         <property name="organization" type="long">
 			<column name="ORG_ID"/>

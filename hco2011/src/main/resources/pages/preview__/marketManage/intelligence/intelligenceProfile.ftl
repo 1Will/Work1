@@ -54,7 +54,7 @@
 	       		<label class="label">${action.getText('主题')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
 	<tr>
@@ -63,7 +63,7 @@
 	       		<label class="label">${action.getText('内容')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
  	<tr>
@@ -72,7 +72,7 @@
 	       		<label class="label">${action.getText('竞争者产品动向 ')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
  	<tr>
@@ -81,7 +81,7 @@
 	       		<label class="label">${action.getText('竞争者价格动向')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
  	<tr>
@@ -90,7 +90,7 @@
 	       		<label class="label">${action.getText('竞争者促销动向')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
  	<tr>
@@ -99,7 +99,7 @@
 	       		<label class="label">${action.getText('竞争者广告动向')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
  	<tr>
@@ -108,7 +108,7 @@
 	       		<label class="label">${action.getText('竞争者分销渠道')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
  	<tr>
@@ -117,7 +117,7 @@
 	       		<label class="label">${action.getText('客户意见')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
    	<tr>
@@ -126,7 +126,7 @@
 	       		<label class="label">${action.getText('备注')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>             
 </@inputTable>

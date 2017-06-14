@@ -73,6 +73,8 @@ public class AddCustomerInfoServlet extends HttpServlet {
 	
 		//获取业务员列表 来自t_users表
 		List<UsersInfo> usersInfoList=usersInfoService.getAllUsersInfoByEnabled();
+		System.out.println("usersInfoList.size(): "+usersInfoList.size());
+		
 	    request.setAttribute("usersInfoList", usersInfoList);
 	    //获取Area信息列表
 	    List<Area> areaList=new ArrayList<Area>();
@@ -217,6 +219,7 @@ public class AddCustomerInfoServlet extends HttpServlet {
 			customerInfo.setLastOperator(lastOperator);
 			customerInfo.setRegisteredCapital(Double.valueOf("0"));
 			customerInfo.setPersonCount(0);
+			customerInfo.setUnconnect(Long.parseLong("0")); //未联系时间
 		
 			// 下面字段不能为空
 			customerInfo.setStep(Long.parseLong("339"));// 客户等级 Long 自定义为1星

@@ -21,6 +21,15 @@ public class DailyDaoImpl extends HibernateDaoSupport implements DailyDao {
 		}
 	}
 	
+	@Override
+	public void updateDaily(Daily daily){
+		try {
+			this.getHibernateTemplate().merge(daily);
+		} catch (Exception e) {
+		     e.printStackTrace();
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Daily> getAllDaily() {

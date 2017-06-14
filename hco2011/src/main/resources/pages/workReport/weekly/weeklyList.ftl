@@ -27,6 +27,14 @@
 			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/workReport/editWeekly.html"/>
         </@buttonBar>
    	<@list title="${action.getText('weekly.List')}" includeParameters="code|name|rapporteur|inst.id|dept.id|duty.id|startDate|endDate|onlyInvalid|onlyValid" fieldMap="like:code|name|rapporteur" >
+    	
+    	<#if req.getParameter('projectFlag')?exists>
+    	 <@vcolumn title="${action.getText('weekly.code')}" property="code" sortable="asc">
+            <a href="javascript: returnDialog(new Array(#{object.id}, '${object.code}'))">${object.code}</a>
+            <@alignLeft/>
+        </@vcolumn>
+    	
+    	<#else>
     	<@vlh.checkbox property="id" name="weeklyIds">
             <@vlh.attribute name="width" value="30" />
         </@vlh.checkbox>
@@ -38,6 +46,8 @@
          </#if>
             <@alignLeft/>
         </@vcolumn>
+        </#if>
+        
         <@vcolumn title="${action.getText('weekly.name')}" property="name" sortable="asc">
         	<@vlh.attribute name="width" value="50" />
             <@alignLeft/>
@@ -61,12 +71,18 @@
             ${(object.endDate?string('yyyy-MM-dd'))}
         </@vcolumn>
     </@list>
-	<#if !first>
-	  <#if !(action.isReadOnly())>
-        <@buttonBar>
-		  <@crm_disabledOrEnabled_button message="${action.getText('weekly.info')}" boxName="weeklyIds" jsFunctionName="checkInvalidParms()"/>
-       </@buttonBar>
-       </#if>
+	
+	<#if req.getParameter('projectFlag')?exists>
+    <#else>
+		<#if !first>
+		  <#if !(action.isReadOnly())>
+	        <@buttonBar>
+			  <@crm_disabledOrEnabled_button message="${action.getText('weekly.info')}" boxName="weeklyIds" jsFunctionName="checkInvalidParms()"/>
+	       </@buttonBar>
+	       </#if>
+		</#if>
 	</#if>
+	
+	
 	</@ww.form>
 </@htmlPage>

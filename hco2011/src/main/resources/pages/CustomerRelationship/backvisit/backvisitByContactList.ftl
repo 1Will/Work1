@@ -15,7 +15,7 @@
 			<@ww.hidden name="'projectInfo.id'" value="#{projectInfoId}"/>
 		</#if>
         <@list title="" 
-        includeParameters="contactArchive.id|customerInfo.id|readOnly|onlyInvalid|onlyValid|employee|backVisitDate_start|backVisitDate_end|" 
+        includeParameters="contactArchive.id|customerInfo.id|readOnly|onlyInvalid|onlyValid|employee|backVisitDate_start|backVisitDate_end|projectInfo.id|" 
         fieldMap="" >
             <@vcolumn title="${action.getText('backVisitType')}" property="backVisitType.name" sortable="desc">
             <a href="javascript:backvist_OpenDialog('#{object.id}')">

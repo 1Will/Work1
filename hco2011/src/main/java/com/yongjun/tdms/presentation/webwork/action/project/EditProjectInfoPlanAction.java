@@ -52,7 +52,12 @@
 /*  77 */       ProjectInfo projectInfo = this.projectInfoManager.loadProjectInfo(getId("projectInfo.id"));
 /*  78 */       this.projectInfoPlan.setProjectInfo(projectInfo);
 /*     */     }
-/*     */ 
+			  if(hasId("projectInfoPlan.percentt")){
+				this.projectInfoPlan.setPercentt(Integer.parseInt(request.getParameter("projectInfoPlan.percentt")));
+			  }
+			  if(hasId("projectInfoPlan.priority")){
+				  this.projectInfoPlan.setPriority(Integer.parseInt(request.getParameter("projectInfoPlan.priority")));
+			  }
 /*  86 */    
 /*  91 */     if (hasId("personnelFiles.id")) {
 /*  92 */       this.personnelFiles = this.personnelFilesManager.loadPersonnel(getId("personnelFiles.id"));

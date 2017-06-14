@@ -53,6 +53,7 @@
 				<prop key="hibernate.query.factory_class">
 					org.hibernate.hql.classic.ClassicQueryTranslatorFactory
 				</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
 		<property name="mappingResources">
@@ -82,6 +83,8 @@
  				<value>main/pojo/UsersInfo.hbm.xml</value>  
  				<value>main/pojo/ReplyDaily.hbm.xml</value>  
  				<value>main/pojo/ContractManagement.hbm.xml</value>  
+ 				
+ 				<value>main/pojo/ProjectInfoPlan.hbm.xml</value>  
 
 				</list>
 		</property>

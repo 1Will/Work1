@@ -117,7 +117,7 @@
 	        		</label>
 	        	</td>
 		        <td colspan="10">
-		        	<textarea name="supplier.ManagingScope" rows="3" cols="120" >${supplier.managingScope?if_exists}</textarea>
+		        	<textarea name="supplier.ManagingScope" rows="4" cols="150" >${supplier.managingScope?if_exists}</textarea>
 		        </td>
 		    </tr>
 		</@inputTable>

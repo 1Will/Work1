@@ -5,8 +5,12 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import main.java.task.BackVisitIntervalTimerTask;
 import main.java.task.BirthdayTimerTask;
 import main.java.task.ContractTimerTask;
+import main.java.task.DailyTimerTask;
+import main.java.task.ProjectPlanTimerTask;
+import main.java.task.SpaceCheckerTimerTask;
 
 public class TimerManager {
 	 //时间间隔
@@ -46,8 +50,21 @@ public class TimerManager {
          TimerTask task=null;
           if(type.equals("0001")){//生日提醒
         	  task = new  BirthdayTimerTask();
-          }else if(type.equals("0002")){
+          } 
+          if(type.equals("0002")){
         	  task = new  ContractTimerTask();
+          }
+          if(type.equals("0003")){//更新拜访时间间隔
+        	  task = new  BackVisitIntervalTimerTask();
+          }
+          if(type.equals("0004")){//项目计划提醒
+        	  task = new  ProjectPlanTimerTask();
+          }
+          if(type.equals("0005")){//磁盘容量检查
+        	  task = new  SpaceCheckerTimerTask();
+          }
+          if(type.equals("0006")){//磁盘容量检查
+        	  task = new DailyTimerTask();
           }
 //         NFDFlightDataTimerTask task = new NFDFlightDataTimerTask();
          //安排指定的任务在指定的时间开始进行重复的固定延迟执行。

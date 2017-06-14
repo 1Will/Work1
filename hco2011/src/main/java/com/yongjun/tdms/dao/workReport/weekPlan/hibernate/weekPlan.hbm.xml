@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.workReport.weekPlan.WeekPlan" table="t_weekPlan">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_weekPlan_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<many-to-one name="weekly" class="com.yongjun.tdms.model.workReport.weekly.Weekly" lazy="false">
+			<column name="WEEKLY_ID" not-null="true"/>
+		</many-to-one>
+		
+		<many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
+			<column name="PROJECTINFO_ID" not-null="true"/>
+		</many-to-one>
+		
+		<property name="lastPlan" type="string">
+			<column name="LASTPLAN" sql-type="NVARCHAR(500)" />
+		</property>
+		
+		<property name="thisPlan" type="string">
+			<column name="THISPLAN" sql-type="NVARCHAR(500)" />
+		</property>
+		
+		<property name="nextPlan" type="string">
+			<column name="NEXTPLAN" sql-type="NVARCHAR(500)" />
+		</property>
+	</class>
+</hibernate-mapping>

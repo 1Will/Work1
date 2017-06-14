@@ -64,7 +64,7 @@
 	       		<label class="label">${action.getText('salaryItems.introduction')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="salaryItems.introduction" rows="3" cols="120" >${salaryItems.introduction?if_exists}</textarea>
+				<textarea name="salaryItems.introduction" rows="4" cols="150" >${salaryItems.introduction?if_exists}</textarea>
 			</td>
 		</tr>
 		<tr>
@@ -72,7 +72,7 @@
 	       		<label class="label">${action.getText('salaryItems.remark')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="salaryItems.remark" rows="3" cols="120" >${salaryItems.remark?if_exists}</textarea>
+				<textarea name="salaryItems.remark" rows="4" cols="150" >${salaryItems.remark?if_exists}</textarea>
 			</td>
 		</tr>
          </@inputTable>

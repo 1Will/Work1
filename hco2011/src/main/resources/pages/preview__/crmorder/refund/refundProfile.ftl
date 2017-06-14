@@ -28,7 +28,7 @@
 	       		<label class="label">${action.getText('退货原因')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>
  	<tr>
@@ -37,7 +37,7 @@
 	       		<label class="label">${action.getText('备注')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>
 </@inputTable>

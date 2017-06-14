@@ -25,6 +25,7 @@ import com.yongjun.tdms.util.personnelFilesToUser.PersonnelFilesToUserManager;
 
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 /*     */ import java.util.List;
 import java.util.Map;
@@ -173,9 +174,6 @@ import net.sf.json.JSONObject;
 ///*     */ 
 ///* 118 */       cif.setStep(cve);
 //                cif.setState(cvState);
-//
-//
-///*     */ 
 ///* 121 */       this.backVisit.setCustomerInfo(cif);
 ///*     */     }
 			  if ("" != this.request.getParameter("isSaved")) {
@@ -187,9 +185,20 @@ import net.sf.json.JSONObject;
 /*     */       try
 /*     */       {
 /* 127 */         List<BackVisit> backVisits = this.backVisitManager.loadByKey("customerInfo", this.backVisit.getCustomerInfo());
-/*     */         Long sum= Long.valueOf(backVisits.size() + 1);
-				  customerInfo.setBackVisitSum(sum);
-				  customerInfoManager.storeCustomerInfo(customerInfo);
+/*     */         	Long sum = null;
+					if(backVisits!=null){
+					  sum= Long.valueOf(backVisits.size() + 1);
+					}else{
+						sum =1L;
+					}
+					  customerInfo.setBackVisitSum(sum);
+					  
+					  Date da =this.backVisit.getBackVisitDate();
+					  customerInfo.setNearestBackVisitDate(da);
+					  customerInfo.setState(codeValueManager.loadByKey("code", "20001").get(0));
+					  customerInfo.setUnconnect(0L);
+					  customerInfoManager.storeCustomerInfo(customerInfo);
+				  
 /*     */       } catch (DaoException e) {
 /* 140 */         e.printStackTrace();
 /*     */       }
@@ -273,10 +282,6 @@ import net.sf.json.JSONObject;
 //			}
 //	
 //			}
-
-          
-
-
 /* 179 */     return "success";
 /*     */   }
 /*     */ 

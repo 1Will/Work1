@@ -27,13 +27,16 @@
 		<meta charset="UTF-8">
 		<meta name="viewport"
 			content="width=device-width,initial-scale=1,user-scalable=0">
+	
 		<title>新增项目页面</title>
+		
 		<link rel="stylesheet" href="<%=basePath%>/css/page.css" />
 		<link rel="stylesheet" href="<%=basePath%>/css/weui.css" />
 		<script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
 		<script type="text/javascript" src="<%=basePath%>/js/jquery-1.8.3.js"></script>
 		
 		<script type="text/javascript">
+		
     		     function add(){
 		     
 		    window.open("searchCusomerServlet");
@@ -92,15 +95,20 @@ function searchData(){
             $("#searchResult").empty();
             if(result != null && result != ""){
             var html = "";
+            var jsonLength=0; //记录长度
             $.each(result, function(commentIndex, comment){
                 html += "<div class='weui_cells'><div class='weui_cell'><div class='weui_cell_bd weui_cell_primary'>"
                 +"<p><span>"+comment.name+"</span></p>"
-                +"</div><div class='weui_cell_ft'><a onclick=\"binding('"+comment.id+"','"+comment.name+"')\""
-                +"href='javascript:' class='weui_btn weui_btn_mini weui_btn_primary'>选择</a></div></div></div>";
-
+                +"</div><div class='weui_cell_ft'><a onclick=\"binding('"+comment.id+"','"+comment.name+"');"
+                +"document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'\""
+                +"href='javascript:void(0)' class='weui_btn weui_btn_mini weui_btn_primary'>选择</a></div></div></div>";
+                jsonLength++;
 
           });
+          
             $("#searchResult").html(html);
+            $("#searchResult").prepend("<p>当前检索到<span style='color:green;' >"+jsonLength+"</span>条</p>");
+           
             }else{
             	var html = "<div class='weui_cells_title' style='margin-top:30%;margin-left:35%'>未搜索到客户</div>";
             	 $("#searchResult").html(html);
@@ -109,11 +117,41 @@ function searchData(){
         }
     });
 }
+
+  //获取当前(yyyy-MM-dd)型日期
+   function aa(){
+     var nowDate=formatDate();
+     document.getElementById("createdTime").value=nowDate; 
+  
+   }
+ 
+			function formatDate() {
+				var d = new Date(); 
+				month = '' + (d.getMonth() + 1);				 
+				day = '' + d.getDate();
+				year = d.getFullYear();
+				if (month.length < 2) {
+					month = '0' + month;
+				}
+				if (day.length < 2) {
+					day = '0' + day;
+				}
+				return [ year, month, day ].join('-');
+			}
+			
+		
+
  function submitInfo(){
   
        if(document.getElementById("customerName").value.replace(/\s*/g, "") == "")
        {
         alert("请先选择客户名称");
+		return false;
+		}
+      
+       if(document.getElementById("projectName").value.replace(/\s*/g, "") == "")
+       {
+        alert("请先填写项目名称");
 		return false;
 		}
       
@@ -153,9 +191,10 @@ right: 1%;
 }         
 </style>
 
+
 	</head>
 
-	<body>
+	<body onload="aa()">
 		<div class="container" id="container">
 		</div>
 		<form name="myForm" id="myForm" method="post" action="/EventNoti/addProjectInfoServlet">
@@ -165,7 +204,7 @@ right: 1%;
 			<input type="hidden" name="customerId" id="customerId" value="" />
 			<%-- <input type="hidden" name="creatorName" id="creatorName" value="<%=creatorName%>" /> --%>
 			<div class="bd">
-
+            
             <div class="weui_cells weui_cells_form">
 					<div class="weui_cell">
 						<div class="weui_cell_hd">
@@ -186,7 +225,7 @@ right: 1%;
 					<div class="weui_cell weui_cell_select">
 						<div class="weui_cell_bd weui_cell_primary">
 							<textarea id="customerName" name="customerName" class="weui_textarea"
-									placeholder="" rows="1"></textarea>
+									placeholder="" rows="1" readonly="readonly" ></textarea>
                                      <a class="weui_btn weui_btn_mini weui_btn_primary"
 									href="javascript:void(0)"
 									onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">选择</a>
@@ -215,7 +254,8 @@ right: 1%;
 					<div class="weui_cell">
 						<div class="weui_cell_bd weui_cell_primary">
 							<textarea id="conOutline" name="conOutline"
-								class="weui_textarea" placeholder="请输入联系人简介" onfocus="this.placeholder=' '" rows="3"></textarea>
+								class="weui_textarea" placeholder="请输入联系人简介" onfocus="this.placeholder=' '"
+								maxlength="1000" rows="3"></textarea>
 						</div>
 					</div>
 				</div>
@@ -256,7 +296,8 @@ right: 1%;
 					<div class="weui_cell">
 						<div class="weui_cell_bd weui_cell_primary">
 							<textarea id="outline" name="outline"
-								class="weui_textarea" placeholder="请输入项目简介" onfocus="this.placeholder=' '" rows="3"></textarea>
+								class="weui_textarea" placeholder="请输入项目简介" onfocus="this.placeholder=' '" 
+								maxlength="1000" rows="3"></textarea>
 						</div>
 					</div>
 				</div>
@@ -297,7 +338,7 @@ right: 1%;
 				</div>
             </div> 
 		
-
+		
 		</form>
 	</body>
 </html>

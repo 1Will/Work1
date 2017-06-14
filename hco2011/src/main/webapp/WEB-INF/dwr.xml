@@ -63,6 +63,12 @@
    			<param name="beanName" value="dailyManager"></param>
    			<include method="loadDailyByDate" />
    		</create>
+   		
+   		<!-- 查询上周计划 -->
+   		<create javascript="GetLastPlan" creator="spring">
+   			<param name="beanName" value="editWeekPlanAction"></param>
+   			<include method="getLastPlanMethod" />
+   		</create>
    </allow>
 </dwr>
 

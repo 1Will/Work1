@@ -16,6 +16,8 @@ import com.yongjun.tdms.model.project.ProjectInfo;
 			private PersonnelFiles personnelFiles;//责任人
 			private String assist  ;//协助者
 			private String outline;//主要说明
+			private int percentt;//百分比
+			private int priority;//优先级
 /*     */ 
 /*     */   public boolean equals(Object arg0)
 /*     */   {
@@ -81,21 +83,18 @@ import com.yongjun.tdms.model.project.ProjectInfo;
 			public void setAssist(String assist) {
 				this.assist = assist;
 			}
-			
-			
-			
-			
-			
-
-/*     */  
-/*     */ 
-/*     */  
-			
-			
-            
-/*     */ 
-/*     */   
-			
+			public int getPercentt() {
+				return percentt;
+			}
+			public void setPercentt(int percentt) {
+				this.percentt = percentt;
+			}
+			public int getPriority() {
+				return priority;
+			}
+			public void setPriority(int priority) {
+				this.priority = priority;
+			}
 
 /*     */ }
 

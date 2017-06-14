@@ -101,7 +101,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="projectInfo.conOutline" rows="3" cols="120" >${projectInfo.conOutline?if_exists}</textarea>
+	        	<textarea name="projectInfo.conOutline" rows="4" cols="150" >${projectInfo.conOutline?if_exists}</textarea>
 	        </td>
 			<!---->
 		</tr>
@@ -147,7 +147,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="projectInfo.outline" rows="3" cols="120" >${projectInfo.outline?if_exists}</textarea>
+	        	<textarea name="projectInfo.outline" rows="4" cols="150" >${projectInfo.outline?if_exists}</textarea>
 	        </td>
 			<!---->
 		</tr>
@@ -331,7 +331,11 @@
 		<a id="backvisit" onclick="activeTab(this);" href='${req.contextPath}/backvisit/listBackVisitByContact.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.backvisit')}</a>
 	</li>
 	
+	<li>
+		<a id="weekPlanInfo" onclick="activeTab(this);"  href='${req.contextPath}/workReport/listWeekPlanTab.html?projectInfo.id=#{projectInfo.id}' target="frame" >${action.getText('周计划')}</a>
+	</li>
+	
 </ul>
-<iframe name="frame" frameborder="0.5" src="${req.contextPath}/projectInfo/listProCon.html?projectInfo.id=#{projectInfo.id}&customerInfo.id=#{projectInfo.customer.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="100%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/projectInfo/listProCon.html?projectInfo.id=#{projectInfo.id}&customerInfo.id=#{projectInfo.customer.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="60%"/>
 </#if>
 

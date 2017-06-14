@@ -85,6 +85,9 @@ public class AddNewBackVisitServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//在获取请求对象内容前，调用setCharacterEncoding(“字符集”)
+		request.setCharacterEncoding("UTF-8");
+		
 		try  
 		{ 
 			BackVisit visit = new BackVisit();
@@ -93,8 +96,8 @@ public class AddNewBackVisitServlet extends HttpServlet {
 		long backvisittype=Long.parseLong(request.getParameter("backvisittype")) ;
 		long visitType=Long.parseLong(request.getParameter("visitType")) ;
 		
-		//测试 回访类型多选
-		String employees=new String(request.getParameter("employees2").getBytes("iso-8859-1"), "UTF-8");
+		//多选
+		String employees=request.getParameter("employees2");
 		//耗时(分)
 		String expendTime=request.getParameter("expendTime").toString();
 		
@@ -137,18 +140,18 @@ public class AddNewBackVisitServlet extends HttpServlet {
 		 
 		 System.out.println("444444444");
 		//回访内容
-		String visitContent =new String(request.getParameter("visitContent").getBytes("iso-8859-1"), "UTF-8");
+		String visitContent =request.getParameter("visitContent");
 		
 		//反馈
-		String fankui =new String(request.getParameter("feedback").getBytes("iso-8859-1"), "UTF-8");
+		String fankui =request.getParameter("feedback");
 		
 
 		//后期注意
-		String attention =new String(request.getParameter("attention").getBytes("iso-8859-1"), "UTF-8"); 
+		String attention =request.getParameter("attention"); 
 		
 		//备注
 
-		String remarks =new String(request.getParameter("remarks").getBytes("iso-8859-1"), "UTF-8"); 
+		String remarks =request.getParameter("remarks"); 
 		
 		long userid = Long.parseLong(request.getParameter("userid"));
 		String code = request.getParameter("code");
@@ -159,20 +162,19 @@ public class AddNewBackVisitServlet extends HttpServlet {
 			PersonnelFiles personnelFiles=pList.get(0);
 			visiterid=personnelFiles.getId();
 		}
-		
+	/*	
 		//获取回访次数
 		List<BackVisit> backVisitList = backVisitService.getBackVisitByCustomerName(customer);
-	            Long sum;
-		        if (null != backVisitList) {
-		        sum = Long.valueOf(backVisitList.size() + 1);
-		        visit.setBackVisitSum(sum);
-		        for (BackVisit b : backVisitList) {
-		           b.setBackVisitSum(sum);
-		             backVisitService.updateBackVisit(b);//修改bc_sum并更新
-		             }
-		         } else {
-		         visit.setBackVisitSum(Long.valueOf(1L));
-		         }
+		Long sum = Long.valueOf(backVisitList.size() + 1);
+		customerInfo.setBackVisitSum(sum);
+		customerInfoService.saveCustomerInfo(customerInfo);
+		*/
+		//获取回访次数
+				List<BackVisit> backVisitList = backVisitService.getBackVisitByCustomerName(customer);
+				Long sum = Long.valueOf(backVisitList.size() + 1);
+				customerInfo.setBackVisitSum(sum);
+				customerInfoService.updateCustomerInfo(customerInfo);
+
 		
 			
 		String username = SQLUtil.getUserDetail(Integer.parseInt(request.getParameter("userid"))).getName();
@@ -205,15 +207,17 @@ public class AddNewBackVisitServlet extends HttpServlet {
 	    visit.setContactArchives(contact);
 	    visit.setIsPublic("0");
 	    visit.setCustomerStating(Long.parseLong("459"));
-	    visit.setUnconnect(Long.parseLong("0"));
+	    //visit.setUnconnect(Long.parseLong("0"));
 	    visit.setContinuebackvisit("0");
+	    visit.setReplyTime(Long.parseLong("0")); //初始化记录回复次数为0
 		backVisitService.saveBackVisit(visit);
 		System.out.println("新增BackVisit: id= "+visit.getId());
 	
         //插入事件表
 		//获取发送的集合
 		String moreinfo="{\"backVisitId\":\""+visit.getId()+"\",\"users\":\"";
-		//判断projectinfoid是否为空
+	
+	/*	//判断projectinfoid是否为空
 		if( projectinfoid!=null)
 		 {//发送项目组成员
 		 List<ProjectInfoPersonnels> ProjectInfoPersonnelsList = new ArrayList<ProjectInfoPersonnels>();
@@ -225,7 +229,36 @@ public class AddNewBackVisitServlet extends HttpServlet {
 		 }
 		 moreinfo = moreinfo.substring(0,moreinfo.length()-1);
 		 }
-		 else
+	*/	
+		
+		//判断projectinfoid是否为空
+		if( projectinfoid!=null)
+		{//发送项目组成员 如果userid不在其中 也发送给userid
+			int k=0;   //用k做标记，判断userid是否在项目组成员中
+			List<ProjectInfoPersonnels> ProjectInfoPersonnelsList = new ArrayList<ProjectInfoPersonnels>();
+			ProjectInfoPersonnelsList= projectInfoPersonnelsService.getProjectInfoPersonnelsById(Long.parseLong(projectinfoid));
+			for (int i = 0; i < ProjectInfoPersonnelsList.size(); i++) {
+				ProjectInfoPersonnels Personnels = ProjectInfoPersonnelsList.get(i);
+	            Long personelId=Personnels.getProPerson_id();
+	            PersonnelFiles pFiles=personnelFilesService.getPersonnelFilesById(personelId);
+	            String code1=pFiles.getCode();
+	            List<UsersInfo> userList=usersInfoService.getUsersInfoByCode(code1);
+	            for (int j = 0; j < userList.size(); j++) {
+	            	UsersInfo usersInfo=userList.get(j);
+	            	moreinfo+=usersInfo.getId().toString()+",";
+	            	if (userid==usersInfo.getId()) {
+						k=1;
+					}
+	            	
+				}
+			}
+			if (k!=1) {
+				moreinfo+=userid+"," ;
+			}
+			moreinfo = moreinfo.substring(0,moreinfo.length()-1);
+		}  
+		
+		else
 		 {//发送全员
 			 
 			 List<UsersInfo> UserInfoList = usersInfoService.getAllUsersInfoByOpenId();
@@ -237,12 +270,11 @@ public class AddNewBackVisitServlet extends HttpServlet {
 			 moreinfo = moreinfo.substring(0,moreinfo.length()-1);
 		 }
 				
-		 System.out.println();
 	    moreinfo+="\"}";
 	    System.out.println(moreinfo);
 		EventNew event=new EventNew();
-		 EventType eventType = new EventType();
-		 eventType = eventService.getEventTypeByCode("10001");	
+		EventType eventType = new EventType();
+		eventType = eventService.getEventTypeByCode("10001");	
 		event.setEventType(eventType);
 		event.setName("回访提交");
 		event.setMoreinfo(moreinfo);

@@ -2,7 +2,6 @@ package main.servlet;
 
 import java.io.IOException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import main.pojo.Daily;
 import main.pojo.PersonnelFiles;
 import main.pojo.Weekly;
 import main.service.DepartmentService;
@@ -106,8 +104,9 @@ public class AddWeeklyServlet extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	//	synchronized (this) {
 	            
-
-			
+    	       //在获取请求对象内容前，调用setCharacterEncoding(“字符集”)
+    			request.setCharacterEncoding("UTF-8");
+    			
 			try  
 			{ 
 				
@@ -116,21 +115,21 @@ public class AddWeeklyServlet extends HttpServlet{
 			//人事表ID PERSON_ID
 			long personnelId=Long.parseLong(request.getParameter("personnelId")) ;
 			//记录人 没有存储 存简写
-			String userName =new String(request.getParameter("userName").getBytes("iso-8859-1"), "UTF-8");
+			String userName =request.getParameter("userName");
 			//周计划名称
-			String weeklyName =new String(request.getParameter("weeklyName").getBytes("iso-8859-1"), "UTF-8");
+			String weeklyName =request.getParameter("weeklyName");
            //开始时间
 			String startDate=request.getParameter("startDate");
 			//结束时间
 			String endDate=request.getParameter("endDate");
 			
             //本周总结
-			String summary =new String(request.getParameter("summary").getBytes("iso-8859-1"), "UTF-8");
+			String summary =request.getParameter("summary");
 			
 			//备注
 			String comment=null;
 			if (!request.getParameter("comment").equals("null")) {
-				comment =new String(request.getParameter("comment").getBytes("iso-8859-1"), "UTF-8");
+				comment =request.getParameter("comment");
 			}
 			//部门ID deptId
 			long deptId=Long.parseLong(request.getParameter("deptId")) ;

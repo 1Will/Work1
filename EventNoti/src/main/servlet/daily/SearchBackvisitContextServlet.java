@@ -54,23 +54,24 @@ public class SearchBackvisitContextServlet extends HttpServlet{
 	 @SuppressWarnings({ "unused", "unchecked" })
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	            throws ServletException, IOException {
-	     	 String currentDate = request.getParameter("currentDate");
-	     	 String userName = request.getParameter("userName");
+
+     		 String currentDate = request.getParameter("currentDate");
+	 
+     		 String userName = request.getParameter("userName");
 	     	 //获取用户名简称
 	     	 String loginName = request.getParameter("loginName");
-	     	 //根据选择时间 和姓名简称  到日报表中查询该日报是否存在
-	     	 List<Daily> dailyList=dailyService.getDailyByDate(currentDate, loginName);
-	     	 System.out.println("dailyList.size(): "+dailyList.size());
 	     	 
 	     	 //json 处理准备
 	     	 JSONArray jsonArray = new JSONArray();//new一个json数组  
  	     	 JSONObject obj = new JSONObject();
  	   	     List<Object> list =new ArrayList<Object>();
  	   	     
-	     if (dailyList.size()>0) {
-			 list.add("F");
-		  } else {
+	//    if ( !TODAY.equals(currentDate) &&  dailyList.size()>0 ) {
+	//		 list.add("F");
+	//	  } else {
 		  
+ 	   	     //根据选择时间 和姓名简称  到日报表中查询该日报是否存在
+ 	   	     List<Daily> dailyList=dailyService.getDailyByDate(currentDate, loginName);
 			  //获取 BackvisitList
 	     	 List<BackVisit> backVisitList=backVisitService.getBackVisitByDate(currentDate, userName);
 	     	 
@@ -81,7 +82,9 @@ public class SearchBackvisitContextServlet extends HttpServlet{
 	     	 System.out.println("测试！！+backVisitList.size() : "+backVisitList.size());
 	     	 System.out.println("测试！！+customerInfoList.size() : "+customerInfoList.size());
 	     	 System.out.println("测试！！+contactArchivesList.size() : "+contactArchivesList.size());
-	     	 
+	     	 System.out.println("选择日期已经存在日报dailyList.size(): "+dailyList.size());
+	     	
+	     	
 	     	 //传递  backVisitList 里的内容
 	     	 List list2=new ArrayList();
  	     	for (BackVisit backVisit : backVisitList) {
@@ -96,7 +99,16 @@ public class SearchBackvisitContextServlet extends HttpServlet{
      	     	 list.add(contactArchivesList.size());
      	     	 list.add(customerInfoList.size());
 		  
-		  }     	 
+		// }       
+	            //当所选日期存在日报记录  获取此日报ID
+	     	    if (dailyList.size()>0 ) {
+					   Daily daily=dailyList.get(0);
+					   Long  dailyId=daily.getId();   
+                       list.add(dailyId);
+                       list.add(daily.getWorkContext());
+                       list.add(daily.getQuestions());
+                       list.add(daily.getVersion());
+	     	    }
      	         	
      	     	 obj.put("list", list);
      	     	    jsonArray.add(obj);//循环new jsonObject 并把回访内容信息 put进去 再add到josnArray里去  	

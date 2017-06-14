@@ -1069,11 +1069,11 @@ function getObjByName(name){
 	
 }
  function openNewWindow(url,width,height){
-	 var wd = (width == null) ? 900 :width;
+	 var wd = (width == null) ? 1000 :width;
 	 var hg = (height == null) ? 600 :height;
 	 var top= (window.screen.availHeight - hg)/2;
 	 var left= (window.screen.availWidth - wd)/2;
-	 var windowProperty ='height='+ hg +', width='+ wd +', top='+ top +', left='+left+', toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no' ;
+	 var windowProperty ='height='+ hg +', width='+ wd +', top='+ top +', left='+left+', toolbar=no, menubar=no, scrollbars=yes, resizable=no,location=no, status=no' ;
 	 window.open (url, '新窗口', windowProperty )
  }
  

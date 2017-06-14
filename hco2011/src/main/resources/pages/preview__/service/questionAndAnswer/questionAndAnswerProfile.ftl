@@ -55,7 +55,7 @@
 	       		<label class="label">${action.getText('问题')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" >系统无法升级</textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" >系统无法升级</textarea>
 			</td>
 	</tr>	
 	<tr>
@@ -64,7 +64,7 @@
 	       		<label class="label">${action.getText('解决方案')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
  	<tr>
@@ -73,7 +73,7 @@
 	       		<label class="label">${action.getText('内部提示')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
  	<tr>
@@ -82,7 +82,7 @@
 	       		<label class="label">${action.getText('备注')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
                

@@ -120,7 +120,7 @@
 	       		<label class="label">${action.getText('rejection.reason')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="rejection.reason" rows="3" cols="120" >${rejection.reason?if_exists}</textarea>
+				<textarea name="rejection.reason" rows="4" cols="150" >${rejection.reason?if_exists}</textarea>
 			</td>
 		</tr>
 		<tr>
@@ -128,7 +128,7 @@
 	       		<label class="label">${action.getText('rejection.remark')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="rejection.remark" rows="3" cols="120" >${rejection.remark?if_exists}</textarea>
+				<textarea name="rejection.remark" rows="4" cols="150" >${rejection.remark?if_exists}</textarea>
 			</td>
 		</tr>
     </@inputTable>

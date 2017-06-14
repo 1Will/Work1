@@ -24,6 +24,11 @@
             <@ww.hidden name="'supplier.id'" value="#{supplier.id}"/>
         </#if>
         </#if>
+        <#if contractAdministrator?exists>
+        <#if contractAdministrator.id?exists>
+            <@ww.hidden name="'contractAdministrator.id'" value="#{contractAdministrator.id}"/>
+        </#if>
+        </#if>
         <#assign itemNo=1/>
 		<@list title="" excel=false setupTable=false includeParameters="advisory.id|id|applicationDoc.id|projectInfo.id" fieldMap="like:" >
 			<@vlh.checkbox property="id" name="applicationDocIds">
@@ -125,18 +130,22 @@ function uploadEdit(id){
 		</#if>
 		</#if>
 		
-		<#if projectInfo?exists>
-			<#if backVisit?exists>
-	        	<#if backVisit.id?exists>
-				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?backVisit.id='+#{backVisit.id}+'&applicationDoc.id='+id;
-				</#if>
-			</#if>
-        <#if projectInfo.id?exists>
-			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?projectInfo.id='+#{projectInfo.id}+'&applicationDoc.id='+id;
-		</#if>
+		<#if backVisit?exists>
+        <#if backVisit.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?backVisit.id='+#{backVisit.id}+'&applicationDoc.id='+id;
 			//popupModalDialog(url,750,500);
 			openNewWindow(url);
 			if(isIE()){self.location.reload();};
+		</#if>
+		</#if>
+		
+		<#if projectInfo?exists>
+        <#if projectInfo.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?projectInfo.id='+#{projectInfo.id}+'&applicationDoc.id='+id;
+			//popupModalDialog(url,750,500);
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
+		</#if>
 		</#if>
 		
 		<#if contractAdministrator?exists>

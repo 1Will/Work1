@@ -20,6 +20,7 @@
 
 <#include "../../includes/hco2011.ftl" />
 <@htmlPage title="${action.getText('customerInfo.profile')}">
+
 <@ww.form name="'listForm'" action="'saveCustomerInfo'" method="'post'">
 <@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 	<@ww.token name="saveCustomerInfoToken"/>
@@ -27,6 +28,9 @@
 	<@ww.hidden name="'salesmanName'" value="'${req.getParameter('salesmanName')?if_exists}'"/>
 	<#if customerInfo.id?exists>
 		<@ww.hidden name="'customerInfo.id'" value="#{customerInfo.id}"/>
+	</#if>
+	<#if customerInfo.id?exists>
+		<@ww.hidden name="'customerInfoNameCopy'" value="'${customerInfo.name?if_exists}'"/>
 	</#if>
 	<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag' >
     	<@ww.hidden  name="popWindowFlag"  value="${popWindowFlag}"/>
@@ -235,7 +239,7 @@
 	       		<label class="label">${action.getText('企业简介')}:</label>
 	     	</td>
 			<td colspan="10">
-				<textarea name="customerInfo.businessScope" rows="3" cols="120" >${customerInfo.businessScope?if_exists}</textarea>
+				<textarea name="customerInfo.businessScope" rows="4" cols="150" >${customerInfo.businessScope?if_exists}</textarea>
 			</td>
 			<#--
 			<@ww.textarea label="'${action.getText('customerInfo.businessScope')}'" name="'customerInfo.businessScope'" value="'${customerInfo.businessScope?if_exists}'" rows="'3'" cols="'30'"/>
@@ -292,7 +296,7 @@
         		</label>
         	</td>
 	        <td colspan="5">
-	        	<textarea name="customerInfo.effectDescribe" rows="3" cols="120" >${customerInfo.effectDescribe?if_exists}</textarea>
+	        	<textarea name="customerInfo.effectDescribe" rows="4" cols="150" >${customerInfo.effectDescribe?if_exists}</textarea>
 	        </td>
 		
 		<!---->
@@ -354,7 +358,7 @@
         		</label>
         	</td>
 	        <td colspan="5">
-	        	<textarea name="customerInfo.advisoryContent" rows="3" cols="120" >${customerInfo.advisoryContent?if_exists}</textarea>
+	        	<textarea name="customerInfo.advisoryContent" rows="4" cols="150" >${customerInfo.advisoryContent?if_exists}</textarea>
 	        </td>
 	</tr>
 	</@inputTable>
@@ -491,6 +495,7 @@
 		}
 	}
 	
+	var tORf =true;
 	//验证字段
 	function storeValidation(){
 		if(getObjByName('show').style.display == "block"){
@@ -730,7 +735,28 @@
 	        	return false;
             }
 	     }
-	     return true;
+	     DWREngine.setAsync(false); 
+	     var obj = getObjByName('customerInfo.name').value;
+	     <#if customerInfo.id?exists>
+	     var copyName = getObjByName('customerInfoNameCopy').value;
+	     if(obj != "" && obj != null && obj!=copyName){
+			CustomerList.getOneCustomerByName(obj,callback);
+		 }
+		 <#else>
+		  if(obj != "" && obj != null){
+			CustomerList.getOneCustomerByName(obj,callback);
+		 }
+		 </#if>
+		 DWREngine.setAsync(true);
+	     return tORf;
+	}
+	function callback(data){
+		if(data.length > 0){
+			alert("您所输入的客户名称已经存在!");
+			tORf=false;
+		}else{
+			tORf=true;
+		}
 	}
 </script>
 
@@ -741,21 +767,33 @@
 
        function toEditCustomer(){
        var obj = getObjByName('customerInfo.name').value;
-	 	if(obj != "" && obj != null && obj){
-			CustomerList.getOneCustomerByName(obj,
-				{
-					callback:function(data){
+        <#if customerInfo.id?exists>
+        	var copyName = getObjByName('customerInfoNameCopy').value;
+        	if(obj != "" && obj != null && obj!=copyName){
+        		CustomerList.getOneCustomerByName(obj,
+				{callback:function(data){
 						if(data.length > 0){
 							 if(confirm("您所输入的客户名称已经存在，是否需要跳转到编辑页面?")){
-							document.location='${req.contextPath}/customerRelationship/editCustomerInfo.html?customerInfo.id='+data[0]["id"]+'&readOnly=${req.getParameter('readOnly')?if_exists}';
+								document.location='${req.contextPath}/customerRelationship/editCustomerInfo.html?customerInfo.id='+data[0]["id"]+'&readOnly=${req.getParameter('readOnly')?if_exists}';
 							 }
 						}
 					}			
-				}
-			);
+				});
+        	}
+        <#else>
+	 	if(obj != "" && obj != null && obj){
+			CustomerList.getOneCustomerByName(obj,
+				{callback:function(data){
+						if(data.length > 0){
+							 if(confirm("您所输入的客户名称已经存在，是否需要跳转到编辑页面?")){
+								document.location='${req.contextPath}/customerRelationship/editCustomerInfo.html?customerInfo.id='+data[0]["id"]+'&readOnly=${req.getParameter('readOnly')?if_exists}';
+							 }
+						}
+					}			
+				});
 	 	}
-       
-       } 
+       </#if>
+       }
 	 
 	 function showCustomer(){
 	 	var obj = getObjByName('customerInfo.name').value;

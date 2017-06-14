@@ -193,7 +193,7 @@
 	       		<label class="label">${action.getText('financialManagement.remark')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="financialManagement.remark" rows="3" cols="120" >${financialManagement.remark?if_exists}</textarea>
+				<textarea name="financialManagement.remark" rows="4" cols="150" >${financialManagement.remark?if_exists}</textarea>
 			</td>
 		</tr>
     </@inputTable>

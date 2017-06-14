@@ -14,12 +14,14 @@ import main.pojo.Daily;
 import main.pojo.ReplyBackVisit;
 import main.pojo.ReplyDaily;
 import main.service.DailyService;
+import main.service.DepartmentService;
 import main.service.ReplyBackVisitService;
 import main.service.ReplyDailyService;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import souvc.pojo.UserInfo;
 import souvc.util.SQLUtil;
 
 
@@ -45,21 +47,38 @@ public class DailyServlet extends HttpServlet{
 	 //dailyServlet?dailyId="+dailyId+"&userName="+userName+"&dutyName="+dutyName+"&deptName="+deptName+"&userid="+Long.parseLong(list[i])+"&sender="+sender;
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		synchronized (this) {
+			
+			request.setCharacterEncoding("UTF-8");
 		Long dailyId = Long.parseLong(request.getParameter("dailyId"));
 		String userid =request.getParameter("userid");
 		String sender =request.getParameter("sender");
-		String userName =new String(request.getParameter("userName").getBytes("iso-8859-1"), "UTF-8");
-		String deptName =new String(request.getParameter("deptName").getBytes("iso-8859-1"), "UTF-8");
-		String dutyName =new String(request.getParameter("dutyName").getBytes("iso-8859-1"), "UTF-8");
-		
+
+		/*		String reporterName=request.getParameter("reporterName"); //日报模板进来没有值 日报回复模板进来有值
+		//获取报告人姓名 即填写日报人
+		if ("".equals(reporterName)||reporterName==null) {
+			//如果reporterName不存在 第一次解析senderid
+			UserInfo userInfo  = SQLUtil.getUserDetail(Integer.parseInt(sender));
+		    reporterName = userInfo.getName();
+		} */
+	   
 		Daily daily =dailyService.getDailyById(dailyId);
+		Long dutyId=daily.getDutyId();
+		Long deptId=daily.getDeptId();
+	    String loginName=daily.getCreator();
+		
+		//根据loginName 获取用户信息
+		String reporterName=SQLUtil.getUserByLoginName(loginName).getName();
+		
+		String dutyName=SQLUtil.getDutyById(dutyId).getName();
+		String deptName=SQLUtil.getDeptById(deptId).getName();
+		
 	//	Map<String,String> map = SQLUtil.getBackVisit(id);
 		request.setAttribute("dailyId", dailyId.toString()); 
 		request.setAttribute("userid", userid);
 		request.setAttribute("sender", sender);
 		request.setAttribute("deptName", deptName);
 		request.setAttribute("dutyName", dutyName);
-		request.setAttribute("userName", userName);
+		request.setAttribute("reporterName", reporterName);
 		
 		request.setAttribute("currentDate", daily.getCurrentDate());
 		request.setAttribute("weekDate", daily.getWeekDate().toString());

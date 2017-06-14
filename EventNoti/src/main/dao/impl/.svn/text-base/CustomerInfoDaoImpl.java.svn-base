@@ -2,7 +2,6 @@ package main.dao.impl;
 import java.util.List;
 
 import main.dao.CustomerInfoDao;
-import main.pojo.BackVisit;
 import main.pojo.CustomerInfo;
 
 import org.hibernate.Session;
@@ -20,6 +19,18 @@ public class CustomerInfoDaoImpl extends HibernateDaoSupport  implements Custome
 			e.printStackTrace();
 		}
 	}
+
+
+	
+	public void updateCustomerInfo(CustomerInfo customerInfo)
+	{
+		try{
+			this.getHibernateTemplate().update(customerInfo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public  CustomerInfo getCustomerInfoById(Long id) {
 		
@@ -70,8 +81,12 @@ public class CustomerInfoDaoImpl extends HibernateDaoSupport  implements Custome
 
 	public  CustomerInfo getById(Long id) {
 		String hql="from CustomerInfo temp where temp.id="+id;
-		
 		return (CustomerInfo) this.getHibernateTemplate().find(hql).get(0);
+	}
+	
+	public Long getMaxId() {
+		String hql="select max(sa.id) from CustomerInfo sa";
+		return (Long) this.getHibernateTemplate().find(hql).get(0);
 	}
 	
 	@SuppressWarnings("unchecked")

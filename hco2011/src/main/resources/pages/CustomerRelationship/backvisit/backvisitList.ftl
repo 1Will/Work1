@@ -66,7 +66,7 @@
             <@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('costTime')}" property="costTime" sortable="desc" format="#####" >
-            <@alignRight />
+            <@alignRight attributes="width:40;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('backVisitDate')}" property="backVisitDate" sortable="desc" format="yyyy-MM-dd" >
             <@alignCenter attributes="width:110;"/>

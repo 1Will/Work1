@@ -132,7 +132,7 @@
         		</label>
         	</td>
 	        <td colspan="5">
-	        	<textarea name="contactArchives.outline" rows="3" cols="120" >${contactArchives.outline?if_exists}</textarea>
+	        	<textarea name="contactArchives.outline" rows="4" cols="150" >${contactArchives.outline?if_exists}</textarea>
 	        </td>
 	-->
 	</tr>
@@ -159,7 +159,7 @@
         		</label>
         	</td>
 	        <td colspan="5">
-	        	<textarea name="contactArchives.enterpriseSynopsis" rows="3" cols="120" >${contactArchives.enterpriseSynopsis?if_exists}</textarea>
+	        	<textarea name="contactArchives.enterpriseSynopsis" rows="4" cols="150" >${contactArchives.enterpriseSynopsis?if_exists}</textarea>
 	        </td>
 		<!---->
 	</tr>

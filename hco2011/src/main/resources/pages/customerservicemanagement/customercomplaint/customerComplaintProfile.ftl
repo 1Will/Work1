@@ -173,7 +173,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="customerComplaint.complaintContent" rows="3" cols="120" >${customerComplaint.complaintContent?if_exists}</textarea>
+	        	<textarea name="customerComplaint.complaintContent" rows="4" cols="150" >${customerComplaint.complaintContent?if_exists}</textarea>
 	        </td>
 		</tr>
 		
@@ -184,7 +184,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="customerComplaint.disposeContent" rows="3" cols="120" >${customerComplaint.disposeContent?if_exists}</textarea>
+	        	<textarea name="customerComplaint.disposeContent" rows="4" cols="150" >${customerComplaint.disposeContent?if_exists}</textarea>
 	        </td>
 		</tr>
 		<tr>
@@ -194,7 +194,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="customerComplaint.customerFeedback" rows="3" cols="120" >${customerComplaint.customerFeedback?if_exists}</textarea>
+	        	<textarea name="customerComplaint.customerFeedback" rows="4" cols="150" >${customerComplaint.customerFeedback?if_exists}</textarea>
 	        </td>
 		</tr>
 		<tr>
@@ -204,7 +204,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="customerComplaint.remark" rows="3" cols="120" >${customerComplaint.remark?if_exists}</textarea>
+	        	<textarea name="customerComplaint.remark" rows="4" cols="150" >${customerComplaint.remark?if_exists}</textarea>
 	        </td>
 		</tr>
 		

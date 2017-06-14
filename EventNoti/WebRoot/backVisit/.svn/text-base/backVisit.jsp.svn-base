@@ -23,9 +23,12 @@
 	String sender = (String) request.getAttribute("sender"); 
 
 	String employees = (String) request.getAttribute("employees"); // 回访人同行者  
-	String expendTime = (String) request.getAttribute("expendTime"); // 耗时(分)
 	String nextVisitDate = (String) request.getAttribute("nextVisitDate"); // 下次回访时间
-	
+	String expendTime = (String) request.getAttribute("expendTime"); // 耗时(分)
+    double expendTime1=Double.parseDouble(expendTime);
+    int expendTime2=(int)expendTime1; //转化为int
+
+ //   String expendTime2=expendTime.substring(0,expendTime.length()-2);
 	
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -104,7 +107,8 @@
 								回访耗时(分)
 							</label>
 							<em class="weui-form-preview__value">
-							<%=(expendTime==null||expendTime.equals(""))?"":expendTime%></em>
+ 						 <%--    	<%=(expendTime2==null||expendTime2.equals(""))?"":expendTime2%>   --%>
+                                                    <%=expendTime2%> </em>
 						</div>
 					</div>       
 					
@@ -148,7 +152,8 @@
 							<label class="weui-form-preview__label">
 								回访内容
 							</label>
-							<span class="weui-form-preview__value"><%=visitContent%></span>
+							<span class="weui-form-preview__value">
+							<%=(visitContent==null||visitContent.equals(""))?"":visitContent%></span>
 						</div>
 					</div>
 					<div class="weui-form-preview__bd">
@@ -156,7 +161,8 @@
 							<label class="weui-form-preview__label">
 								客户反馈
 							</label>
-							<span class="weui-form-preview__value"><%=feed%></span>
+							<span class="weui-form-preview__value">
+							<%=(feed==null||feed.equals(""))?"":feed%></span>
 						</div>
 					</div>
 
@@ -165,7 +171,8 @@
 							<label class="weui-form-preview__label">
 								后期注意
 							</label>
-							<span class="weui-form-preview__value"><%=laterAtten%></span>
+							<span class="weui-form-preview__value">
+							<%=(laterAtten==null||laterAtten.equals(""))?"":laterAtten%></span>
 						</div>
 					</div>
 
@@ -174,7 +181,8 @@
 							<label class="weui-form-preview__label">
 								备注
 							</label>
-							<span class="weui-form-preview__value"><%=remark%></span>
+							<span class="weui-form-preview__value">
+							<%=(remark==null||remark.equals(""))?"":remark%></span>
 						</div>
 					</div>
 					<!-- <div class="weui-form-preview__ft">

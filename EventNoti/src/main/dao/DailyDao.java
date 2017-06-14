@@ -11,6 +11,8 @@ import main.pojo.Daily;
 public interface DailyDao {
 	
 	public void saveDaily(Daily daily);//保存日报
+
+	public void updateDaily(Daily daily);//更新日报
     
     public List<Daily> getAllDaily(); //初始化获取所有日报集合
     

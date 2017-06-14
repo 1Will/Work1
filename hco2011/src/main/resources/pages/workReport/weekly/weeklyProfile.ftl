@@ -101,7 +101,7 @@
 	        		</label>
 	        	</td>
 		        <td colspan="10">
-		        	<textarea id="weekly.summary" name="weekly.summary" rows="4" cols="95" >${weekly.summary?if_exists}</textarea>
+		        	<textarea id="weekly.summary" name="weekly.summary" rows="4" cols="150" >${weekly.summary?if_exists}</textarea>
 		        </td>
 			</tr>
 			<tr>
@@ -111,7 +111,7 @@
 	        		</label>
 	        	</td>
 		        <td colspan="10">
-		        	<textarea id="weekly.leaderIdea" name="weekly.leaderIdea" rows="4" cols="95" >${weekly.leaderIdea?if_exists}</textarea>
+		        	<textarea id="weekly.leaderIdea" name="weekly.leaderIdea" rows="4" cols="150" >${weekly.leaderIdea?if_exists}</textarea>
 		        </td>
 			</tr>
 			<tr>
@@ -121,7 +121,7 @@
 	        		</label>
 	        	</td>
 		        <td colspan="10">
-		        	<textarea name="weekly.comment" rows="4" cols="95" >${weekly.comment?if_exists}</textarea>
+		        	<textarea name="weekly.comment" rows="4" cols="150" >${weekly.comment?if_exists}</textarea>
 		        </td>
 			</tr>
      	  </@inputTable>
@@ -363,15 +363,48 @@
 		}
 		return true;
   }
+  		document.onclick = function (){
+  			var sd = getObjByName('weekly.startDate').value;
+  			var ed = getObjByName('weekly.endDate').value;
+  			if(sd!=''&&ed==''){
+  				var newed =addDate(sd,4);
+  				getObjByName('weekly.endDate').value= newed;
+  			}
+	    }
+	    
+	    function addDate(date,days){ 
+	    	if(isIE()){
+	    		var a = date.split('-');
+	    		var d= new Date(parseInt(a[0]),(parseInt(a[1])-1),parseInt(a[2]));
+	    	}else{
+				var d= new Date(date); 
+	    	}
+			d.setDate(d.getDate()+days); 
+			var month=d.getMonth()+1; 
+			var day = d.getDate(); 
+			if(month<10){ 
+			month = "0"+month; 
+			} 
+			if(day<10){ 
+			day = "0"+day; 
+			} 
+			var val = d.getFullYear()+"-"+month+"-"+day; 
+			return val; 
+		}
 </script>
 <#if !first>
 <ul id="beautytab">
+<#-- 
 	<li>
 		<a id="dailyInfo" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/workReport/listDailyTab.html?weekly.id=${weekly.id}&org.id=${weekly.organization.id}&rapporteur.id=${weekly.rapporteur.id}' target="frame" >日报信息</a>
 	</li>
 	<li>
-		<a id="nextWeekPlanInfo" onclick="activeTab(this);"  href='listNextWeekPlan.html?weekly.id=${weekly.id}' target="frame" >${action.getText('下周计划')}</a>
+		<a id="nextWeekPlanInfo" onclick="activeTab(this);"  href='${req.contextPath}/workReport/listNextWeekPlan.html?weekly.id=${weekly.id}' target="frame" >${action.getText('下周计划')}</a>
+	</li>
+-->	
+	<li>
+		<a id="weekPlanInfo" onclick="activeTab(this);"  href='${req.contextPath}/workReport/listWeekPlanTab.html?weekly.id=${weekly.id}' target="frame" >${action.getText('周计划')}</a>
 	</li>
 </ul>
-<iframe name="frame" frameborder="0.5" src="${req.contextPath}/workReport/listDailyTab.html?weekly.id=${weekly.id}&org.id=${weekly.organization.id}&rapporteur.id=${weekly.rapporteur.id}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="40%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/workReport/listWeekPlanTab.html?weekly.id=${weekly.id}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="40%"/>
 </#if>

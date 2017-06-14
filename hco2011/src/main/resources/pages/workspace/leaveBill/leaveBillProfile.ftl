@@ -129,7 +129,7 @@
 	       		<label class="label">${action.getText('leaveBill.betreffzeile')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="leaveBill.betreffzeile" rows="3" cols="120" >${leaveBill.betreffzeile?if_exists}</textarea>
+				<textarea name="leaveBill.betreffzeile" rows="4" cols="150" >${leaveBill.betreffzeile?if_exists}</textarea>
 			</td>
 		</tr>
 		<tr>
@@ -137,7 +137,7 @@
 	       		<label class="label">${action.getText('leaveBill.failReason')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="leaveBill.failReason" rows="3" cols="120" readonly="true">${leaveBill.failReason?if_exists}</textarea>
+				<textarea name="leaveBill.failReason" rows="4" cols="150" readonly="true">${leaveBill.failReason?if_exists}</textarea>
 			</td>
 		</tr>
     </@inputTable>

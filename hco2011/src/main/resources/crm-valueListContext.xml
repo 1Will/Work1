@@ -161,6 +161,7 @@
                 /~products.standard: AND products.standard LIKE {products.standard} ~/
                 /~product_source_ID.id: AND products.product_source_ID.id = {product_source_ID.id} ~/
                 /~supplier.id: AND products.supplier.id = {supplier.id} ~/
+                /~ppIds: AND products.id not in ({ppIds})~/
                 /~sortColumn: ORDER BY products.[sortColumn] [sortDirection] ~/
             </value>
         </property>
@@ -448,6 +449,25 @@
 			</value>
 		</property>
 	</bean>
+	
+    	<!-- 周计划 -->
+		<bean id="weekPlan" parent="abstractHibernate20Adapter">
+		<property name="hql">
+			<value>
+			<![CDATA[
+				FROM WeekPlan AS w WHERE 1=1 
+				/~weekPlan.id: AND w.id = {weekPlan.id} ~/ 	
+				/~weekly.id: AND w.weekly.id = {weekly.id} ~/ 	
+				/~projectInfo.id: AND w.projectInfo.id = {projectInfo.id}~/
+				/~sortColumn: ORDER BY w.[sortColumn] [sortDirection] ~/
+			 ]]>
+			</value>
+		</property>
+	</bean>
+	
+	
+	
+	
 	<!-- 日报管理 -->
 	<bean id="daily" parent="abstractHibernate20Adapter">
 		<property name="hql">

@@ -89,7 +89,7 @@
 	        		</label>
 	        	</td>
 		        <td colspan="10">
-		        	<textarea name="supplier.afterSaleService" rows="3" cols="120" >${supplier.afterSaleService?if_exists}</textarea>
+		        	<textarea name="supplier.afterSaleService" rows="4" cols="150" >${supplier.afterSaleService?if_exists}</textarea>
 		        </td>
 		    </tr>			
 			<tr>
@@ -99,7 +99,7 @@
 	        		</label>
 	        	</td>
 		        <td colspan="10">
-		        	<textarea name="supplier.qos" rows="3" cols="120" >${supplier.qos?if_exists}</textarea>
+		        	<textarea name="supplier.qos" rows="4" cols="150" >${supplier.qos?if_exists}</textarea>
 		        </td>
 		    </tr>
 		</@inputTable>

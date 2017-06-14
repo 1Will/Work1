@@ -77,7 +77,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="projectInfoContract.outline" rows="3" cols="120" >${projectInfoContract.outline?if_exists}</textarea>
+	        	<textarea name="projectInfoContract.outline" rows="4" cols="150" >${projectInfoContract.outline?if_exists}</textarea>
 	        </td>
 		</tr>
     </@inputTable>

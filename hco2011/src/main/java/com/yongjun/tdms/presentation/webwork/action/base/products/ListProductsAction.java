@@ -5,12 +5,16 @@
 /*     */ import com.yongjun.pluto.service.codevalue.CodeValueManager;
 /*     */ import com.yongjun.pluto.webwork.action.valuelist.ValueListAction;
 /*     */ import com.yongjun.tdms.model.base.products.Products;
+import com.yongjun.tdms.model.project.projectInfoProduct.ProjectInfoProduct;
 /*     */ import com.yongjun.tdms.model.supplier.Supplier;
 /*     */ import com.yongjun.tdms.service.base.products.ProductsManager;
 /*     */ import com.yongjun.tdms.service.base.producttype.ProductTypeManager;
+import com.yongjun.tdms.service.project.projectInfoProduct.ProjectInfoProductManager;
 /*     */ import com.yongjun.tdms.service.supplier.SupplierManager;
+
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.List;
+import java.util.Map;
 /*     */ 
 /*     */ public class ListProductsAction extends ValueListAction
 /*     */ {
@@ -19,15 +23,17 @@
 /*     */   private final ProductTypeManager productTypeManager;
 /*     */   private final SupplierManager supplierManager;
 /*     */   private final CodeValueManager codeValueManager;
+/*     */   private final ProjectInfoProductManager projectInfoProductManager;
 /*     */   private List<Products> productses;
             private String productCheckBox;
 /*     */ 
-/*     */   public ListProductsAction(ProductsManager productsManager, ProductTypeManager productTypeManager, SupplierManager supplierManager, CodeValueManager codeValueManager)
+/*     */   public ListProductsAction(ProductsManager productsManager, ProductTypeManager productTypeManager, SupplierManager supplierManager, CodeValueManager codeValueManager,ProjectInfoProductManager projectInfoProductManager)
 /*     */   {
 /*  35 */     this.productsManager = productsManager;
 /*  36 */     this.productTypeManager = productTypeManager;
 /*  37 */     this.supplierManager = supplierManager;
 /*  38 */     this.codeValueManager = codeValueManager;
+			  this.projectInfoProductManager=projectInfoProductManager;
 /*     */   }
 /*     */ 
 /*     */   public String execute()
@@ -115,6 +121,28 @@
 /*     */   {
 /* 131 */     return this.productTypeManager.getAllProductTypeByNull(getText("select.all.option"));
 /*     */   }
+
+			protected Map getRequestParameterMap()
+/*     */   {
+/* 121 */     Map map = super.getRequestParameterMap();
+			  if(hasIds("projectInfoId")){
+				 long projectInfoId =Long.parseLong(request.getParameter("projectInfoId"));
+				 List<ProjectInfoProduct> ppList =null;
+				 try {
+					 ppList =projectInfoProductManager.loadByKey("projectInfo", projectInfoId);
+				} catch (DaoException e) {
+					e.printStackTrace();
+				}
+				 if(ppList!=null){
+					 List ppIds=new ArrayList();
+					for(int i=0;i<ppList.size();i++){
+						ppIds.add(ppList.get(i).getProducts().getId());
+					}
+					map.put("ppIds", ppIds);
+				}
+			  }
+			  return map;
+			}
 /*     */ 
 /*     */   protected String getAdapterName() {
 /* 135 */     return "products";

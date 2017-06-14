@@ -144,7 +144,7 @@
 	       			<label class="label">${action.getText('contractAdministrator.remark')}:</label>
 	     		</td>
 				<td colspan=10">
-					<textarea name="contractAdministrator.remark" rows="3" cols="120" >${contractAdministrator.remark?if_exists}</textarea>
+					<textarea name="contractAdministrator.remark" rows="4" cols="150" >${contractAdministrator.remark?if_exists}</textarea>
 				</td>
             </tr>-->
             <!--*********************************************************************************-->

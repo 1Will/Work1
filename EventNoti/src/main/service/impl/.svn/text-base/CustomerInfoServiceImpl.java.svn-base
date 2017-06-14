@@ -12,12 +12,15 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 	
 	private CustomerInfoDao customerInfoDao;
 
-
-	
+	public void updateCustomerInfo(CustomerInfo customerInfo) {
+		customerInfoDao.updateCustomerInfo(customerInfo);
+		
+	}
 	public void saveCustomerInfo(CustomerInfo customerInfo) {
 		customerInfoDao.saveCustomerInfo(customerInfo);
 		
 	}
+
 
 	public  CustomerInfo getCustomerInfoById(Long id){
 		return customerInfoDao.getCustomerInfoById(id);
@@ -45,6 +48,11 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 	{
 		return customerInfoDao.getById(id);
 	}
+	
+	public Long getMaxId(){
+		return customerInfoDao.getMaxId();
+	}
+	
 	public  List<CustomerInfo> getCustomerInfoByName(String name) 
 	{
 		return customerInfoDao.getCustomerInfoByName(name);

@@ -19,7 +19,7 @@
 	  
 <div class="hd">
     <h1 class="page_title" style="margin-bottom:10%">欢迎注册</h1>
-    <span class="page_desc">&nbsp;&nbsp;永君的主要软件产品包括在线教育平台，<br/>英文的名字是e-Learning（电子学习）；
+    <span class="page_desc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;永君的主要软件产品包括在线教育平台，<br/>英文的名字是e-Learning（电子学习）；
 	</span><span class="page_desc">
 	产品可以在企业，开发区，行业协会，创业领域等领域应用；<br/>产品可以延展的应用场景很多，学生教育，培训机构，考证培训，老年教育，职业培训，大学，农业，成人教育.
 	</span>

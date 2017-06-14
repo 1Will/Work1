@@ -72,7 +72,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="qaStorage.question" rows="3" cols="120" >${qaStorage.question?if_exists}</textarea>
+	        	<textarea name="qaStorage.question" rows="4" cols="150" >${qaStorage.question?if_exists}</textarea>
 	        </td>
 		</tr>
 		<tr>
@@ -82,7 +82,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="qaStorage.resolveProject" rows="3" cols="120" >${qaStorage.resolveProject?if_exists}</textarea>
+	        	<textarea name="qaStorage.resolveProject" rows="4" cols="150" >${qaStorage.resolveProject?if_exists}</textarea>
 	        </td>
 		</tr>
 		
@@ -93,7 +93,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="qaStorage.innerPrompt" rows="3" cols="120" >${qaStorage.innerPrompt?if_exists}</textarea>
+	        	<textarea name="qaStorage.innerPrompt" rows="4" cols="150" >${qaStorage.innerPrompt?if_exists}</textarea>
 	        </td>
 		</tr>
 		
@@ -104,7 +104,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="qaStorage.remark" rows="3" cols="120" >${qaStorage.remark?if_exists}</textarea>
+	        	<textarea name="qaStorage.remark" rows="4" cols="150" >${qaStorage.remark?if_exists}</textarea>
 	        </td>
 		</tr>
 		

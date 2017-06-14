@@ -171,7 +171,7 @@
 	       		<#--<label class="label">${action.getText('customerInfo.businessScope')}:</label>
 	     	</td>
 			<td colspan="10">
-				<textarea name="customerInfo.businessScope" rows="3" cols="120" >${customerInfo.businessScope?if_exists}</textarea>
+				<textarea name="customerInfo.businessScope" rows="4" cols="150" >${customerInfo.businessScope?if_exists}</textarea>
 			</td>
 			
 			<@ww.textarea label="'${action.getText('customerInfo.businessScope')}'" name="'customerInfo.businessScope'" value="'${customerInfo.businessScope?if_exists}'" rows="'3'" cols="'30'"/>
@@ -330,7 +330,7 @@
 	       		<label class="label">${action.getText('企业简介')}:</label>
 	     	</td>
 			<td colspan="10">
-				<textarea name="customerInfo.businessScope" rows="3" cols="120" >${customerInfo.businessScope?if_exists}</textarea>
+				<textarea name="customerInfo.businessScope" rows="4" cols="150" >${customerInfo.businessScope?if_exists}</textarea>
 			</td>
 			<#--
 			<@ww.textarea label="'${action.getText('customerInfo.businessScope')}'" name="'customerInfo.businessScope'" value="'${customerInfo.businessScope?if_exists}'" rows="'3'" cols="'30'"/>
@@ -379,7 +379,7 @@
         		</label>
         	</td>
 	        <td colspan="5">
-	        	<textarea name="customerInfo.effectDescribe" rows="3" cols="120" >${customerInfo.effectDescribe?if_exists}</textarea>
+	        	<textarea name="customerInfo.effectDescribe" rows="4" cols="150" >${customerInfo.effectDescribe?if_exists}</textarea>
 	        </td>
 		
 		<!---->
@@ -441,7 +441,7 @@
         		</label>
         	</td>
 	        <td colspan="5">
-	        	<textarea name="customerInfo.advisoryContent" rows="3" cols="120" >${customerInfo.advisoryContent?if_exists}</textarea>
+	        	<textarea name="customerInfo.advisoryContent" rows="4" cols="150" >${customerInfo.advisoryContent?if_exists}</textarea>
 	        </td>
 	</tr>
 	</@inputTable>

@@ -43,18 +43,15 @@ public class ReplyDailyServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+        
+	//	request.setCharacterEncoding("UTF-8");
 		long dailyId = Long.parseLong(request.getParameter("dailyId"));
 		long userid = Long.parseLong(request.getParameter("userid"));
 		int sender = Integer.parseInt(request.getParameter("sender"));
-		//接收 reporterName日报填写人
-		String reporterName =new String(request.getParameter("reporterName").getBytes("iso-8859-1"), "UTF-8");
-		String deptName =new String(request.getParameter("deptName").getBytes("iso-8859-1"), "UTF-8");
-		String dutyName =new String(request.getParameter("dutyName").getBytes("iso-8859-1"), "UTF-8");
 		
 		byte[] arrayStr = request.getParameter("fankui").getBytes("iso-8859-1");
 		String fankui = new String(arrayStr, "UTF-8");
-			
+		// 记录到replydaily userame为使用者名称	
 		String username = SQLUtil.getUserDetail(Integer.parseInt(request.getParameter("userid"))).getName();
 		ReplyDaily replyDaily = new ReplyDaily();
 		
@@ -72,14 +69,13 @@ public class ReplyDailyServlet extends HttpServlet {
 		
 		//dailyServlet?dailyId="+dailyId+"&userName="+userName+"&dutyName="+dutyName+"&deptName="+deptName+"&userid="+Long.parseLong(list[i])+"&sender="+sender;
 		String title = "你有新的日报回复信息";
-		String url = "http://www.yj-tech.com/EventNoti/dailyServlet?dailyId="
-				+ dailyId+"&userName="+reporterName +"&dutyName="+dutyName+"&deptName="+deptName+ "&userid=" + sender + "&sender=" + userid;
-		 System.out.println(username+","+openid+","+url+","+title+","+reporterName+","+dutyName+","+userid+","+fankui);
+		String url = "http://yjkj.ngrok.cc/EventNoti/dailyServlet?dailyId="+dailyId+ "&userid=" + sender + "&sender=" + userid ;
+		 System.out.println(username+","+openid+","+url+","+title+","+userid+","+fankui);
 		 Map<String,String> map1 = SQLUtil.getDaily((int) dailyId);
 		 String workContext=map1.get("workContext"); //当天工作内容 对应模板中的描述
 		 String workContext2=workContext;
-			if (workContext.length()>15) {
-				 workContext2=workContext.substring(0,15);
+			if (workContext.length()>25) {
+				 workContext2=workContext.substring(0,25);
 			}
 		 
 		 SendUtil.sendTemplateRBHF(openid, url, title,String.valueOf(dailyId),workContext2,username, fankui, "请点击查看详情");

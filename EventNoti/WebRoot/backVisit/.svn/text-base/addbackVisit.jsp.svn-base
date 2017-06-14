@@ -118,15 +118,19 @@ function searchData(){
             $("#searchResult").empty();
             if(result != null && result != ""){
             var html = "";
+            var jsonLength=0; //记录长度
             $.each(result, function(commentIndex, comment){
                 html += "<div class='weui_cells'><div class='weui_cell'><div class='weui_cell_bd weui_cell_primary'>"
                 +"<p><span>"+comment.name+"</span></p>"
-                +"</div><div class='weui_cell_ft'><a onclick=\"binding('"+comment.id+"','"+comment.name+"')\""
-                +"href='javascript:' class='weui_btn weui_btn_mini weui_btn_primary'>选择</a></div></div></div>";
-
+                +"</div><div class='weui_cell_ft'><a onclick=\"binding('"+comment.id+"','"+comment.name+"');"
+                +"document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'\""
+                +"href='javascript:void(0)' class='weui_btn weui_btn_mini weui_btn_primary'>选择</a></div></div></div>";
+                jsonLength++;
 
           });
             $("#searchResult").html(html);
+            $("#searchResult").prepend("<p>当前检索到<span style='color:green;' >"+jsonLength+"</span>条</p>");
+              
             }else{
             	var html = "<div class='weui_cells_title' style='margin-top:30%;margin-left:35%'>未搜索到客户</div>";
             	 $("#searchResult").html(html);
@@ -181,7 +185,16 @@ function searchData(){
 				}
 				return [ year, month, day ].join('-');
 			}
-
+  
+  //核对日期
+  function checkDate(){
+	  var visitDate=$('#visitDate').val();
+	  var nextVisitDate=$('#nextVisitDate').val();
+	  if(visitDate>nextVisitDate){
+	     alert("下次回访日期早于回访日期，请重新选择");
+	    }
+	}	
+	
  
  function submitInfo(){
   
@@ -190,11 +203,14 @@ function searchData(){
         alert("请先选择回访企业");
 		return false;
 		}
-		if(document.getElementById("visitDate").value.replace(/\s*/g, "") == "")
+	
+       if(document.getElementById("expendTime").value.replace(/\s*/g, "") == "")
        {
-        alert("请输入回访日期");
+        alert("请先填写回访所用时间");
 		return false;
 		}
+	
+	
     	$('#myForm').submit();
 
   }
@@ -280,7 +296,7 @@ right: 1%;
 						<div class="weui_cell">
 							<div class="weui_cell_bd weui_cell_primary">
 								<textarea id="customerName" name="customerName" class="weui_textarea"
-									placeholder="" rows="1"></textarea>
+									placeholder="" rows="1" readonly="readonly"  ></textarea>
                                      <a class="weui_btn weui_btn_mini weui_btn_primary"
 									href="javascript:void(0)"
 									onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">选择</a>
@@ -341,7 +357,7 @@ right: 1%;
 							</div>
 							<div class="weui_cell_bd weui_cell_primary">
 								<input class="weui_input" type="date" id="nextVisitDate"
-									name="nextVisitDate" />
+									name="nextVisitDate" onchange="checkDate()" />
 							</div>
 						</div>
 					</div>
@@ -411,7 +427,7 @@ right: 1%;
 						<div class="weui_cell">
 							<div class="weui_cell_bd weui_cell_primary">
 								<textarea id="visitContent" name="visitContent"
-									class="weui_textarea" rows="3"></textarea>
+									class="weui_textarea" maxlength="500" rows="3"></textarea>
 							</div>
 						</div>
 					</div>
@@ -422,7 +438,7 @@ right: 1%;
 						<div class="weui_cell">
 							<div class="weui_cell_bd weui_cell_primary">
 								<textarea id="feedback" name="feedback" class="weui_textarea"
-									rows="3"></textarea>
+									maxlength="500" rows="3"></textarea>
 							</div>
 						</div>
 					</div>
@@ -433,7 +449,7 @@ right: 1%;
 						<div class="weui_cell">
 							<div class="weui_cell_bd weui_cell_primary">
 								<textarea id="attention" name="attention" class="weui_textarea"
-									rows="3"></textarea>
+									maxlength="500" rows="3"></textarea>
 							</div>
 						</div>
 					</div>
@@ -444,7 +460,7 @@ right: 1%;
 						<div class="weui_cell">
 							<div class="weui_cell_bd weui_cell_primary">
 								<textarea id="remarks" name="remarks" class="weui_textarea"
-									placeholder="" rows="3"></textarea>
+									maxlength="500" placeholder="" rows="3"></textarea>
 							</div>
 						</div>
 					</div>

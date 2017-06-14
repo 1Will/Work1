@@ -111,8 +111,36 @@
 					}
 				</#if>
 		   </script>
-		
+		<tr>
+		<td align="right" valign="top">
+			<label class="label">完成百分比:</label>
+		</td>
+		<td>
+			<input type="text" style="width:60px" value="${projectInfoPlan.percentt?if_exists}" id="projectInfoPlan.percentt" name="projectInfoPlan.percentt">%
+		</td>
+		<td align="right" valign="top">
+			<label class="label">优先级:</label>
+		</td>
+		<td>
+			<select id="projectInfoPlan.priority" name ="projectInfoPlan.priority">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			</select>
+		</td>
+		<script>
+			getObjByName("projectInfoPlan.priority").value=${projectInfoPlan.priority?if_exists};
+		</script>
 		</tr>
+		</tr>
+		
      <tr>
 			<!--描述-->
 			<td align="right" valign="top">
@@ -121,7 +149,7 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="projectInfoPlan.outline" rows="3" cols="120" >${projectInfoPlan.outline?if_exists}</textarea>
+	        	<textarea name="projectInfoPlan.outline" rows="6" cols="120" >${projectInfoPlan.outline?if_exists}</textarea>
 	        </td>
 		</tr>
     </@inputTable>

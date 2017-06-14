@@ -52,6 +52,10 @@ public class OAuth2Servlet extends HttpServlet{
 		  List<Code> list = SQLUtil.getType();
 		  request.setAttribute("userList", userList);
 		  request.setAttribute("userInfo", userInfo);
+		  
+         System.out.println("userInfo.getCode(): "+userInfo.getCode());		  
+         System.out.println("userInfo: "+userInfo.getName());		  
+		  
 		  request.setAttribute("list", list);
 		  }else{
 			  out.print("授权获取失败。。。");
@@ -61,6 +65,7 @@ public class OAuth2Servlet extends HttpServlet{
 		  if(state.equals("qingjia")){
 			  request.getRequestDispatcher("qingjia/qingjiaAdd.jsp").forward(request, response);
 		  }
+		 //跳转到新增回访登记Servlet页面    
 		  if(state.equals("backvisit")){
 			 // request.getRequestDispatcher("backVisit/addbackVisit.jsp").forward(request, response);
 			  request.getRequestDispatcher("addBackVisitServlet").forward(request, response);

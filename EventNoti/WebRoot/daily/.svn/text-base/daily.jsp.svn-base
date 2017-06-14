@@ -1,4 +1,5 @@
 
+<%@page import="bsh.This"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
 <%@ page language="java" pageEncoding="UTF-8"
@@ -12,7 +13,7 @@
 	String dailyId = (String)request.getAttribute("dailyId");
 	String userid = (String)request.getAttribute("userid");
 	String sender = (String)request.getAttribute("sender");
-	String reporterName = (String)request.getAttribute("userName");
+	String reporterName = (String)request.getAttribute("reporterName");
 	Date currentDate1 = (Date)request.getAttribute("currentDate");
 	String weekDate = (String)request.getAttribute("weekDate");
 	String deptName = (String)request.getAttribute("deptName");
@@ -23,7 +24,50 @@
 
     DateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
     String currentDate=format1.format(currentDate1);
-	
+    
+	 String backvisitContext2="&nbsp&nbsp&nbsp&nbsp";
+ 	if(!"".equals(backvisitContext)&& backvisitContext!=null)
+	 {
+	   String bvContext[]=backvisitContext.split(";");
+	   for(int i=0;i<bvContext.length;i++){
+	            if (i<bvContext.length-1) {
+		    	   backvisitContext2+=bvContext[i]+"；<br>&nbsp&nbsp&nbsp&nbsp";
+		    	}else {
+		    		backvisitContext2+=bvContext[i];
+				}
+				
+	   }
+	}
+	 
+	/* 
+	String workContext2="&nbsp&nbsp&nbsp&nbsp";
+ 	if(!"".equals(workContext)&& workContext!=null)
+	 {
+	   String wkContext[]=workContext.split("；");
+	   for(int i=0;i<wkContext.length;i++){
+	            if (i<wkContext.length-1) {
+		    	   workContext2+=wkContext[i]+"；<br>&nbsp&nbsp&nbsp&nbsp";
+		    	}else {
+		    		workContext2+=wkContext[i]+"；";
+				}
+				
+	   }
+	}
+	 
+	 String questions2="&nbsp&nbsp&nbsp&nbsp";
+ 	if(!"".equals(questions)&& questions!=null)
+	 {
+	   String quest[]=workContext.split("；");
+	   for(int i=0;i<quest.length;i++){
+	            if (i<quest.length-1) {
+		    	   questions2+=quest[i]+"；<br>&nbsp&nbsp&nbsp&nbsp";
+		    	}else {
+		    		questions2+=quest[i]+"；";
+				}
+				
+	   }
+	}
+ */	 
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
 
@@ -31,11 +75,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>日报页面</title>
+<title>工作日报</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<%=basePath%>/css/weui.css"/>
 <link rel="stylesheet" href="<%=basePath%>/css/page.css"/>
-<script src="<%=basePath%>/js/zepto.min.js"></script>
 <script src="<%=basePath%>/js/router.min.js"></script>
 <script src="<%=basePath%>/js/example.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
@@ -102,19 +145,19 @@
                 <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">拜访工作内容</label>
                     <span class="weui-form-preview__value">
-                      <%=(backvisitContext==null || backvisitContext.equals(""))?"":backvisitContext%></span>
+                      <%=(backvisitContext2==null || backvisitContext2.equals(""))?"":backvisitContext2%></span>
                 </div>
             </div>
 				<div class="weui-form-preview__bd">
                 <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">其他工作内容</label>
+                    <label class="weui-form-preview__label">工作内容</label>
                     <span class="weui-form-preview__value">
                       <%=(workContext==null || workContext.equals(""))?"":workContext%></span>
                 </div>
             </div>
 				<div class="weui-form-preview__bd">
                 <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">问题</label>
+                    <label class="weui-form-preview__label">收获/问题/建议</label>
                     <span class="weui-form-preview__value">
                       <%=(questions==null || questions.equals(""))?"":questions%></span>
                 </div>

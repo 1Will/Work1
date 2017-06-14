@@ -39,36 +39,38 @@
                  <@textfield label="${action.getText('duty.name')}" anothername="name" maxlength="20" name="duty.name" value="${duty.name?if_exists}" cssClass="underline" required="true" />
                 </tr>
                 <tr>
-                <#if req.getParameter('dept.id')?exists>
-                    <#if req.getParameter('dept.id')!="">
-                    <@ww.select  
-		    		label="${action.getText('duty.dept.name')}"
-					required="true"
-					name="dept"
-					id="dept"
-					value="${req.getParameter('dept.id')?if_exists}"
-					listKey="id"
-					listValue="name" 
-					list="allDepts"
-			    	emptyOption="true" 
-			    	disabled="true"
-			    	onchange="'DutyCascadeDWR(\"dept\",\"jobName.id\",'14',\"${action.getText('')}\",\"edit\")'">
-			    	</@ww.select> 
-			    	 <#else>
-			    	 <@ww.select label="'${action.getText('duty.dept.name')}'" 
-				name="'dept'" 				
+             <#if req.getParameter('dept.id')?exists && req.getParameter('dept.id')!="">
+                <@select  
+	    		label="${action.getText('duty.dept.name')}"
+				required="true"
+				name="dept"
+				id="dept"
+				value="${req.getParameter('dept.id')?if_exists}"
+				listKey="id"
+				listValue="name" 
+				list="allDepts"
+		    	emptyOption="false" 
+		    	disabled="true"
+		    	onchange="DutyCascadeDWR(\"dept.id\",\"jobName.id\",14,\"${action.getText('')}\",\"edit\")">
+		    	</@select> 
+		    	<script>
+					DutyCascadeDWR('dept.id','jobName.id',14,'${action.getText('')}','edit');
+				</script>
+			 <#else>
+			  	<@select 
+			  	label="${action.getText('duty.dept.name')}" 
+				name="dept" 				
 				id="dept" 
-				value="'${req.getParameter('country.id')?if_exists}'"
+				value="${req.getParameter('dept.id')?if_exists}"
 				listKey="id"
 				listValue="name"
 				list="allDepts"
 				required="true"
-				emptyOption="true" 
+				emptyOption="false" 
 				disabled="false"
-				onchange="'DutyCascadeDWR(\"dept\",\"jobName.id\",14,\"${action.getText('')}\",\"edit\")'">
-			</@ww.select>  
-			    	</#if>
-			    	</#if>
+				onchange="DutyCascadeDWR(\"dept\",\"jobName.id\",14,\"${action.getText('')}\",\"edit\")">
+				</@select>  
+			 </#if>
 				    <@select 
 		    		label="${action.getText('duty.jobName.name')}"
 					required="true"

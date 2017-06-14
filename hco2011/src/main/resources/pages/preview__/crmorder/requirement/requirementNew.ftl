@@ -86,7 +86,7 @@
 	       		<label class="label">${action.getText('解决方案')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
  	<tr>
@@ -95,7 +95,7 @@
 	       		<label class="label">${action.getText('客户反馈')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
  	<tr>
@@ -104,7 +104,7 @@
 	       		<label class="label">${action.getText('联系内容')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="contactArchives.comment" rows="3" cols="120" ></textarea>
+				<textarea name="contactArchives.comment" rows="4" cols="150" ></textarea>
 			</td>
 	</tr>	
 </@inputTable>

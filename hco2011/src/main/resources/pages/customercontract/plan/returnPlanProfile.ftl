@@ -204,7 +204,7 @@
 	       		<label class="label">${action.getText('returnPlan.remark')}:</label>
 	     	</td>
 			<td colspan=10">
-				<textarea name="returnPlan.remark" rows="3" cols="120" >${returnPlan.remark?if_exists}</textarea>
+				<textarea name="returnPlan.remark" rows="4" cols="150" >${returnPlan.remark?if_exists}</textarea>
 			</td>
 		</tr>
     </@inputTable>
