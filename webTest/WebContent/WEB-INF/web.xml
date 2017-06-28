@@ -14,6 +14,7 @@
     <servlet-name>TestJS</servlet-name>
     <url-pattern>/TestJS</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>LoadPlace</display-name>
@@ -24,6 +25,8 @@
     <servlet-name>LoadPlace</servlet-name>
     <url-pattern>/LoadPlace</url-pattern>
   </servlet-mapping>
+  
+  
   <filter>
     <display-name>CharsetFilter</display-name>
     <filter-name>CharsetFilter</filter-name>

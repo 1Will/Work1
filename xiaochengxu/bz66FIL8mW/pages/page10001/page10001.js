@@ -1,28 +1,28 @@
 var appInstance = getApp();
-var WxParse     = require('../../components/wxParse/wxParse.js');
-var util        = require('../../utils/util.js');
+var WxParse = require('../../components/wxParse/wxParse.js');
+var util = require('../../utils/util.js');
 
-var pageData    = {
-  data: {"picture1":{"type":"picture","style":"opacity:1;background-color:transparent;border-color:rgb(34, 34, 34);border-style:none;height:382.03125rpx;width:750rpx;margin-left:auto;margin-right:auto;","content":"http:\/\/img.weiye.me\/zcimgdir\/album\/file_58b63ecb0ce96.png","customFeature":{"boxShadow":"5","boxColor":"#000","boxX":"0","boxY":"0","boxR":"5"},"animations":[],"page_form":"","compId":"picture1","parentCompid":"picture1"},"classify2":{"type":"classify","style":"font-size:30.46875rpx;height:82.03125rpx;line-height:82.03125rpx;opacity:1;background-color:rgb(255, 255, 255);color:rgb(178, 178, 178);margin-top:0;margin-left:auto;","content":[{"customFeature":{"index_value":"","action":"refresh-list","page-link":"page10001","refresh_object":"list-141538335689","index_segment":"category"},"text":"推荐","content":"","parentCompid":"classify2","style":"","itemType":null,"itemParentType":"classify","itemIndex":0,"eventParams":"{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":0,\"type\":null,\"parent_type\":\"classify\"}","eventHandler":"tapRefreshListHandler"},{"customFeature":{"index_value":"墙砖","action":"refresh-list","page-link":"page10016","refresh_object":"list-141538335689","index_segment":"category"},"text":"墙砖","content":"","parentCompid":"classify2","style":"","itemType":null,"itemParentType":"classify","itemIndex":1,"eventParams":"{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\\u5899\\u7816\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":1,\"type\":null,\"parent_type\":\"classify\"}","eventHandler":"tapRefreshListHandler"},{"customFeature":{"index_value":"地砖","action":"refresh-list","page-link":"page10017","phone-num":"收纳","refresh_object":"list-141538335689","index_segment":"category"},"text":"地砖","content":"","parentCompid":"classify2","style":"","itemType":null,"itemParentType":"classify","itemIndex":2,"eventParams":"{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\\u5730\\u7816\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":2,\"type\":null,\"parent_type\":\"classify\"}","eventHandler":"tapRefreshListHandler"},{"customFeature":{"index_value":"地脚线\/楼梯砖","action":"refresh-list","page-link":"page10018","refresh_object":"list-141538335689","index_segment":"category"},"text":"其他砖","content":"","parentCompid":"classify2","style":"","itemType":null,"itemParentType":"classify","itemIndex":3,"eventParams":"{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\\u5730\\u811a\\u7ebf\\\/\\u697c\\u68af\\u7816\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":3,\"type\":null,\"parent_type\":\"classify\"}","eventHandler":"tapRefreshListHandler"},{"customFeature":{"index_value":"太阳能\/热水器","action":"refresh-list","page-link":"page10019","refresh_object":"list-141538335689","index_segment":"category"},"text":"热水器","content":"","parentCompid":"classify2","style":"","itemType":null,"itemParentType":"classify","itemIndex":4,"eventParams":"{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\\u592a\\u9633\\u80fd\\\/\\u70ed\\u6c34\\u5668\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":4,\"type\":null,\"parent_type\":\"classify\"}","eventHandler":"tapRefreshListHandler"},{"customFeature":{"action":"refresh-list","page-link":"prePage","refresh_object":"list-141538335689","index_segment":"category","index_value":"水暖配件"},"text":"水暖配件","content":"","parentCompid":"classify2","style":"","itemType":null,"itemParentType":"classify","itemIndex":5,"eventParams":"{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\\u6c34\\u6696\\u914d\\u4ef6\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":5,\"type\":null,\"parent_type\":\"classify\"}","eventHandler":"tapRefreshListHandler"},{"customFeature":{"action":"refresh-list","refresh_object":"list-141538335689","index_segment":"category","index_value":"电器配件"},"text":"电器配件","content":"","parentCompid":"classify2","style":"","itemType":null,"itemParentType":"classify","itemIndex":6,"eventParams":"{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\\u7535\\u5668\\u914d\\u4ef6\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":6,\"type\":null,\"parent_type\":\"classify\"}","eventHandler":"tapRefreshListHandler"},{"customFeature":{"action":"refresh-list","refresh_object":"list-141538335689","index_segment":"category","index_value":"吸油烟机"},"text":"吸油烟机","content":"","parentCompid":"classify2","style":"","itemType":null,"itemParentType":"classify","itemIndex":7,"eventParams":"{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\\u5438\\u6cb9\\u70df\\u673a\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":7,\"type\":null,\"parent_type\":\"classify\"}","eventHandler":"tapRefreshListHandler"}],"customFeature":{"mode":"0","selected":"0","selectedColor":"rgb(159, 197, 232)"},"animations":[],"page_form":"","compId":"classify2"},"goods_list3":{"type":"goods-list","style":"background-color:rgba(0,0,0);margin-top:2.34375rpx;opacity:1;color:rgb(102, 102, 102);font-size:32.8125rpx;height:auto;margin-left:auto;","content":"","customFeature":{"lineBackgroundColor":"","lineBackgroundImage":"","margin":"10","lineHeight":"207","imgWidth":"140","imgHeight":"140","vesselAutoheight":1,"height":"300px","form":"tostore","mode":1,"name":"商品列表","ifUseContact":true,"id":"list-141538335689","source":"none"},"animations":[],"page_form":"","compId":"goods_list3","parentCompid":"goods_list3","list_style":"margin-bottom:23.4375rpx;height:485.15625rpx;margin-left:auto;","img_style":"width:328.125rpx;height:328.125rpx;margin-left:auto;","title_width":{"width":"398.4375rpx"},"param":"{\"id\":\"list-141538335689\",\"form\":\"tostore\",\"goods_type\":3,\"page\":1,\"app_id\":\"bz66FIL8mW\",\"is_count\":0,\"is_integral\":0}"},"has_tabbar":1},
-    need_login: false,
-    page_router: 'page10001',
-    page_form: 'none',
-      list_compids_params: [],
-      goods_compids_params: [{"compid":"goods_list3","param":{"id":"list-141538335689","form":"tostore","goods_type":3,"page":1,"app_id":"bz66FIL8mW","is_count":0,"is_integral":0}}],
-  prevPage:0,
-      relobj_auto: [],
-      bbsCompIds: [],
-      dynamicVesselComps: [],
-      communityComps: [],
-      franchiseeComps: [],
-      cityLocationComps: [],
-      onLoad: function (e) {
+var pageData = {
+  data: { "picture1": { "type": "picture", "style": "opacity:1;background-color:transparent;border-color:rgb(34, 34, 34);border-style:none;height:382.03125rpx;width:750rpx;margin-left:auto;margin-right:auto;", "content": "http:\/\/img.weiye.me\/zcimgdir\/album\/file_58b63ecb0ce96.png", "customFeature": { "boxShadow": "5", "boxColor": "#000", "boxX": "0", "boxY": "0", "boxR": "5" }, "animations": [], "page_form": "", "compId": "picture1", "parentCompid": "picture1" }, "classify2": { "type": "classify", "style": "font-size:30.46875rpx;height:82.03125rpx;line-height:82.03125rpx;opacity:1;background-color:rgb(255, 255, 255);color:rgb(178, 178, 178);margin-top:0;margin-left:auto;", "content": [{ "customFeature": { "index_value": "", "action": "refresh-list", "page-link": "page10001", "refresh_object": "list-141538335689", "index_segment": "category" }, "text": "推荐", "content": "", "parentCompid": "classify2", "style": "", "itemType": null, "itemParentType": "classify", "itemIndex": 0, "eventParams": "{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":0,\"type\":null,\"parent_type\":\"classify\"}", "eventHandler": "tapRefreshListHandler" }, { "customFeature": { "index_value": "墙砖", "action": "refresh-list", "page-link": "page10016", "refresh_object": "list-141538335689", "index_segment": "category" }, "text": "墙砖", "content": "", "parentCompid": "classify2", "style": "", "itemType": null, "itemParentType": "classify", "itemIndex": 1, "eventParams": "{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\\u5899\\u7816\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":1,\"type\":null,\"parent_type\":\"classify\"}", "eventHandler": "tapRefreshListHandler" }, { "customFeature": { "index_value": "地砖", "action": "refresh-list", "page-link": "page10017", "phone-num": "收纳", "refresh_object": "list-141538335689", "index_segment": "category" }, "text": "地砖", "content": "", "parentCompid": "classify2", "style": "", "itemType": null, "itemParentType": "classify", "itemIndex": 2, "eventParams": "{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\\u5730\\u7816\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":2,\"type\":null,\"parent_type\":\"classify\"}", "eventHandler": "tapRefreshListHandler" }, { "customFeature": { "index_value": "地脚线\/楼梯砖", "action": "refresh-list", "page-link": "page10018", "refresh_object": "list-141538335689", "index_segment": "category" }, "text": "其他砖", "content": "", "parentCompid": "classify2", "style": "", "itemType": null, "itemParentType": "classify", "itemIndex": 3, "eventParams": "{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\\u5730\\u811a\\u7ebf\\\/\\u697c\\u68af\\u7816\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":3,\"type\":null,\"parent_type\":\"classify\"}", "eventHandler": "tapRefreshListHandler" }, { "customFeature": { "index_value": "太阳能\/热水器", "action": "refresh-list", "page-link": "page10019", "refresh_object": "list-141538335689", "index_segment": "category" }, "text": "热水器", "content": "", "parentCompid": "classify2", "style": "", "itemType": null, "itemParentType": "classify", "itemIndex": 4, "eventParams": "{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\\u592a\\u9633\\u80fd\\\/\\u70ed\\u6c34\\u5668\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":4,\"type\":null,\"parent_type\":\"classify\"}", "eventHandler": "tapRefreshListHandler" }, { "customFeature": { "action": "refresh-list", "page-link": "prePage", "refresh_object": "list-141538335689", "index_segment": "category", "index_value": "水暖配件" }, "text": "水暖配件", "content": "", "parentCompid": "classify2", "style": "", "itemType": null, "itemParentType": "classify", "itemIndex": 5, "eventParams": "{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\\u6c34\\u6696\\u914d\\u4ef6\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":5,\"type\":null,\"parent_type\":\"classify\"}", "eventHandler": "tapRefreshListHandler" }, { "customFeature": { "action": "refresh-list", "refresh_object": "list-141538335689", "index_segment": "category", "index_value": "电器配件" }, "text": "电器配件", "content": "", "parentCompid": "classify2", "style": "", "itemType": null, "itemParentType": "classify", "itemIndex": 6, "eventParams": "{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\\u7535\\u5668\\u914d\\u4ef6\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":6,\"type\":null,\"parent_type\":\"classify\"}", "eventHandler": "tapRefreshListHandler" }, { "customFeature": { "action": "refresh-list", "refresh_object": "list-141538335689", "index_segment": "category", "index_value": "吸油烟机" }, "text": "吸油烟机", "content": "", "parentCompid": "classify2", "style": "", "itemType": null, "itemParentType": "classify", "itemIndex": 7, "eventParams": "{\"refresh_object\":\"list-141538335689\",\"index_segment\":\"category\",\"index_value\":\"\\u5438\\u6cb9\\u70df\\u673a\",\"comp_id\":null,\"parent_comp_id\":\"classify2\",\"item_index\":7,\"type\":null,\"parent_type\":\"classify\"}", "eventHandler": "tapRefreshListHandler" }], "customFeature": { "mode": "0", "selected": "0", "selectedColor": "rgb(159, 197, 232)" }, "animations": [], "page_form": "", "compId": "classify2" }, "goods_list3": { "type": "goods-list", "style": "background-color:rgba(0,0,0);margin-top:2.34375rpx;opacity:1;color:rgb(102, 102, 102);font-size:32.8125rpx;height:auto;margin-left:auto;", "content": "", "customFeature": { "lineBackgroundColor": "", "lineBackgroundImage": "", "margin": "10", "lineHeight": "207", "imgWidth": "140", "imgHeight": "140", "vesselAutoheight": 1, "height": "300px", "form": "tostore", "mode": 1, "name": "商品列表", "ifUseContact": true, "id": "list-141538335689", "source": "none" }, "animations": [], "page_form": "", "compId": "goods_list3", "parentCompid": "goods_list3", "list_style": "margin-bottom:23.4375rpx;height:485.15625rpx;margin-left:auto;", "img_style": "width:328.125rpx;height:328.125rpx;margin-left:auto;", "title_width": { "width": "398.4375rpx" }, "param": "{\"id\":\"list-141538335689\",\"form\":\"tostore\",\"goods_type\":3,\"page\":1,\"app_id\":\"bz66FIL8mW\",\"is_count\":0,\"is_integral\":0}" }, "has_tabbar": 1 },
+  need_login: false,
+  page_router: 'page10001',
+  page_form: 'none',
+  list_compids_params: [],
+  goods_compids_params: [{ "compid": "goods_list3", "param": { "id": "list-141538335689", "form": "tostore", "goods_type": 3, "page": 1, "app_id": "bz66FIL8mW", "is_count": 0, "is_integral": 0 } }],
+  prevPage: 0,
+  relobj_auto: [],
+  bbsCompIds: [],
+  dynamicVesselComps: [],
+  communityComps: [],
+  franchiseeComps: [],
+  cityLocationComps: [],
+  onLoad: function (e) {
     this.setData({
       addShoppingCartShow: false,
-      addTostoreShoppingCartShow:false
+      addTostoreShoppingCartShow: false
     });
     appInstance.setPageUserInfo();
-    if(e.detail){
+    if (e.detail) {
       this.dataId = e.detail;
     }
     appInstance.checkLogin();
@@ -32,26 +32,26 @@ var pageData    = {
     appInstance.globalData.urlLocationId = e.location_id;
 
   },
-  dataInitial: function(){
+  dataInitial: function () {
     appInstance.dataInitial();
   },
-  onShareAppMessage: function(){
+  onShareAppMessage: function () {
     var pageRouter = this.page_router,
-        pagePath = '/pages/'+pageRouter+'/'+pageRouter;
+      pagePath = '/pages/' + pageRouter + '/' + pageRouter;
 
     // 统计用户分享APP
     appInstance.countUserShareApp();
 
-    pagePath += this.dataId ? '?detail='+this.dataId : '';
+    pagePath += this.dataId ? '?detail=' + this.dataId : '';
     return {
       title: appInstance.getAppTitle() || '即速应用',
       desc: appInstance.getAppDescription() || '即速应用，拖拽生成app，无需编辑代码，一键打包微信小程序',
       path: pagePath
     }
   },
-  onShow: function(){
+  onShow: function () {
     var that = this;
-    setTimeout(function(){
+    setTimeout(function () {
       appInstance.setPageUserInfo();
     });
 
@@ -60,42 +60,42 @@ var pageData    = {
       appInstance.turnToPage('/pages/bindCellphone/bindCellphone', true);
     }
   },
-  tapPrevewPictureHandler:function(e){
+  tapPrevewPictureHandler: function (e) {
     appInstance.tapPrevewPictureHandler(e);
   },
-  suspensionBottom: function(){
+  suspensionBottom: function () {
     for (let i in this.data) {
-      if(/suspension/.test(i)){
+      if (/suspension/.test(i)) {
         let suspension = this.data[i],
-            newdata = {};
+          newdata = {};
 
-        if(this.data.has_tabbar == 1){
-          newdata[i + '.suspension_bottom'] = (+suspension.suspension_bottom - 56)*2.34;
-        }else{
-          newdata[i + '.suspension_bottom'] = (+suspension.suspension_bottom)*2.34;
+        if (this.data.has_tabbar == 1) {
+          newdata[i + '.suspension_bottom'] = (+suspension.suspension_bottom - 56) * 2.34;
+        } else {
+          newdata[i + '.suspension_bottom'] = (+suspension.suspension_bottom) * 2.34;
         }
         this.setData(newdata);
       }
     }
   },
   pageScrollFunc: function (e) {
-    let compid  = e.target.dataset.compid;
-    let curpage = parseInt(e.target.dataset.curpage) + 1;
-      if (this.prevPage !== curpage) {
-          this.prevPage = curpage;
-          appInstance.pageScrollFunc(compid, curpage);
-      }
-  },
-  goodsScrollFunc: function (e) {
-    let compid  = e.target.dataset.compid;
+    let compid = e.target.dataset.compid;
     let curpage = parseInt(e.target.dataset.curpage) + 1;
     if (this.prevPage !== curpage) {
-        this.prevPage = curpage;
-        appInstance.goodsScrollFunc(compid, curpage);
+      this.prevPage = curpage;
+      appInstance.pageScrollFunc(compid, curpage);
+    }
+  },
+  goodsScrollFunc: function (e) {
+    let compid = e.target.dataset.compid;
+    let curpage = parseInt(e.target.dataset.curpage) + 1;
+    if (this.prevPage !== curpage) {
+      this.prevPage = curpage;
+      appInstance.goodsScrollFunc(compid, curpage);
     }
   },
   franchiseeScrollFunc: function (e) {
-    let compid  = e.target.dataset.compid;
+    let compid = e.target.dataset.compid;
     let curpage = parseInt(e.target.dataset.curpage) + 1;
     appInstance.franchiseeScrollFunc(compid, curpage);
   },
@@ -108,22 +108,22 @@ var pageData    = {
     let value = e.detail.value;
     appInstance.inputChange(dataset, value);
   },
-  bindDateChange: function(e) {
+  bindDateChange: function (e) {
     let dataset = e.currentTarget.dataset;
-    let value   = e.detail.value;
+    let value = e.detail.value;
     appInstance.bindDateChange(dataset, value);
   },
-  bindTimeChange: function(e) {
+  bindTimeChange: function (e) {
     let dataset = e.currentTarget.dataset;
-    let value   = e.detail.value;
+    let value = e.detail.value;
     appInstance.bindTimeChange(dataset, value);
   },
-  bindSelectChange: function(e) {
+  bindSelectChange: function (e) {
     let dataset = e.currentTarget.dataset;
     let value = e.detail.value;
     appInstance.bindSelectChange(dataset, value);
   },
-  bindScoreChange: function(e){
+  bindScoreChange: function (e) {
     let dataset = e.currentTarget.dataset;
     appInstance.bindScoreChange(dataset);
   },
@@ -143,7 +143,7 @@ var pageData    = {
     let dataset = e.currentTarget.dataset;
     appInstance.uploadFormImg(dataset);
   },
-  deleteUploadImg:function(e){
+  deleteUploadImg: function (e) {
     let dataset = e.currentTarget.dataset;
     appInstance.deleteUploadImg(dataset);
   },
@@ -154,211 +154,211 @@ var pageData    = {
   UserCenterTurnToPage: function (e) {
     let router = e.currentTarget.dataset.router;
     let openVerifyPhone = e.currentTarget.dataset.openVerifyPhone; // 是否开启短信验证
-    if(openVerifyPhone){
-      if(!appInstance.getUserInfo().phone) {
+    if (openVerifyPhone) {
+      if (!appInstance.getUserInfo().phone) {
         appInstance.turnToPage('/pages/bindCellphone/bindCellphone', true);
       } else {
-        appInstance.turnToPage('/pages/' + router + '/' + router +'?from=userCenterEle');
+        appInstance.turnToPage('/pages/' + router + '/' + router + '?from=userCenterEle');
       }
     } else {
-      appInstance.turnToPage('/pages/' + router + '/' + router +'?from=userCenterEle');
+      appInstance.turnToPage('/pages/' + router + '/' + router + '?from=userCenterEle');
     }
   },
   turnToGoodsDetail: function (e) {
     let id = e.currentTarget.dataset.id;
     let contact = e.currentTarget.dataset.contact;
     let goodsType = e.currentTarget.dataset.goodsType;
-    switch(+goodsType){
+    switch (+goodsType) {
       case 0:
-      case 1: appInstance.turnToPage('/pages/goodsDetail/goodsDetail?detail=' + id +'&contact=' + contact);
+      case 1: appInstance.turnToPage('/pages/goodsDetail/goodsDetail?detail=' + id + '&contact=' + contact);
         break;
       case 3: appInstance.turnToPage('/pages/toStoreDetail/toStoreDetail?detail=' + id);
         break;
     }
   },
-  turnToFranchiseeDetail: function(e){
+  turnToFranchiseeDetail: function (e) {
     let dataset = e.currentTarget.dataset,
-        id = dataset.id;
+      id = dataset.id;
     appInstance.turnToPage('/pages/franchiseeDetail/franchiseeDetail?detail=' + id);
   },
   sortListFunc: function (e) {
     let dataset = e.currentTarget.dataset;
     appInstance.sortListFunc(dataset);
   },
-  bbsInputComment: function(e){
+  bbsInputComment: function (e) {
     var dataset = e.target.dataset,
-        comment = e.detail.value;
+      comment = e.detail.value;
     appInstance.bbsInputComment(dataset, comment);
   },
-  bbsInputReply: function(e){
+  bbsInputReply: function (e) {
     var dataset = e.target.dataset,
-        comment = e.detail.value;
+      comment = e.detail.value;
     appInstance.bbsInputReply(dataset, comment);
   },
-  uploadBbsCommentImage: function(e){
+  uploadBbsCommentImage: function (e) {
     var dataset = e.currentTarget.dataset;
     appInstance.uploadBbsCommentImage(dataset);
   },
-  uploadBbsReplyImage: function(e){
+  uploadBbsReplyImage: function (e) {
     var dataset = e.currentTarget.dataset;
     appInstance.uploadBbsReplyImage(dataset);
   },
-  deleteCommentImage: function(e){
+  deleteCommentImage: function (e) {
     var dataset = e.currentTarget.dataset;
     appInstance.deleteCommentImage(dataset);
   },
-  deleteReplyImage: function(e){
+  deleteReplyImage: function (e) {
     var dataset = e.currentTarget.dataset;
     appInstance.deleteReplyImage(dataset);
   },
-  bbsPublishComment: function(e){
+  bbsPublishComment: function (e) {
     var dataset = e.currentTarget.dataset;
     appInstance.bbsPublishComment(dataset);
   },
-  clickBbsReplyBtn: function(e){
+  clickBbsReplyBtn: function (e) {
     var dataset = e.currentTarget.dataset;
     appInstance.clickBbsReplyBtn(dataset);
   },
-  bbsPublishReply: function(e){
+  bbsPublishReply: function (e) {
     var dataset = e.currentTarget.dataset;
     appInstance.bbsPublishReply(dataset);
   },
-  keywordList:{},
-  bindSearchTextChange : function(e){
+  keywordList: {},
+  bindSearchTextChange: function (e) {
     this.keywordList[e.currentTarget.dataset.compid] = e.detail.value;
   },
-  searchList:function(e){
+  searchList: function (e) {
     let dataset = e.currentTarget.dataset;
     appInstance.searchList(dataset);
   },
-  selectLocal:function(e){
+  selectLocal: function (e) {
     var that = this;
     let id = e.currentTarget.dataset.id,
-        newdata = this.data;
-    newdata[id].hidden = typeof(this.data[id].hidden) == undefined ? false : !this.data[id].hidden;
-    newdata[id].provinces = ['请选择'];  newdata[id].citys =['请选择']; newdata[id].districts = ['请选择']
-    newdata[id].provinces_ids =[null]; newdata[id].city_ids =[null]; newdata[id].district_ids = [null];
-    for(var i in newdata[id].areaList){
+      newdata = this.data;
+    newdata[id].hidden = typeof (this.data[id].hidden) == undefined ? false : !this.data[id].hidden;
+    newdata[id].provinces = ['请选择']; newdata[id].citys = ['请选择']; newdata[id].districts = ['请选择']
+    newdata[id].provinces_ids = [null]; newdata[id].city_ids = [null]; newdata[id].district_ids = [null];
+    for (var i in newdata[id].areaList) {
       newdata[id].provinces.push(newdata[id].areaList[i].name);
       newdata[id].provinces_ids.push(newdata[id].areaList[i].region_id);
     }
     newdata[id].newlocal = '';
     this.setData(newdata);
   },
-  cancelCity:function(e){
+  cancelCity: function (e) {
     var that = this;
     let id = e.currentTarget.dataset.id,
-        newdata = this.data;
+      newdata = this.data;
     newdata[id].hidden = !this.data[id].hidden;
     newdata[id].province = '';
     newdata[id].city = '';
     newdata[id].district = '';
     this.setData(newdata);
   },
-  bindCityChange:function(e){
+  bindCityChange: function (e) {
     const val = e.detail.value;
     let id = e.currentTarget.dataset.id,
-        newdata = this.data,
-        cityList = newdata[id].areaList;
-        if(!newdata[id].newlocal){
-          if(newdata[id].value[0] == val[0]){
-            newdata[id].province = this.data[id].provinces[val[0]] == '请选择' ? '' : this.data[id].provinces[val[0]];
-            newdata[id].citys = newdata[id].province == '' ? ['请选择'] : this.getCityList(cityList[val[0] - 1].cities);
-            newdata[id].city_ids = newdata[id].province == '' ? [null] : this.getCityList(cityList[val[0] - 1].cities, 1);
-            newdata[id].city = newdata[id].province == '' ? '' : newdata[id].citys[val[1]];
-            newdata[id].districts = newdata[id].city == '' ? ['请选择'] : this.getCityList(cityList[val[0] - 1].cities[val[1]].towns);
-            newdata[id].district_ids = newdata[id].city == '' ? [null] : this.getCityList(cityList[val[0] - 1].cities[val[1]].towns, 1);
-            newdata[id].region_id = newdata[id].district_ids[val[2]];
-            newdata[id].district = newdata[id].city == '' ? '' : newdata[id].districts[val[2]];
-            newdata[id].value = val;
-          }else{
-            newdata[id].province = this.data[id].provinces[val[0]] == '请选择' ? '' : this.data[id].provinces[val[0]];
-            newdata[id].citys = newdata[id].province == '' ? ['请选择'] : this.getCityList(cityList[val[0] - 1].cities);
-            newdata[id].city_ids = newdata[id].province == '' ? [null] : this.getCityList(cityList[val[0] - 1].cities, 1);
-            newdata[id].city = newdata[id].province == '' ? '' : newdata[id].citys[0];
-            newdata[id].districts = newdata[id].city == '' ? ['请选择'] : this.getCityList(cityList[val[0] - 1].cities[0].towns);
-            newdata[id].district_ids = newdata[id].city == '' ? [null] : this.getCityList(cityList[val[0] - 1].cities[0].towns, 1);
-            newdata[id].region_id = newdata[id].district_ids[val[2]];
-            newdata[id].district = newdata[id].city == '' ? '' : newdata[id].districts[val[2]];
-            newdata[id].value = val;
-          }          
-          // newdata[id].district = newdata[id].district == '请选择'? '' :newdata[id].district
-          this.setData(newdata)
+      newdata = this.data,
+      cityList = newdata[id].areaList;
+    if (!newdata[id].newlocal) {
+      if (newdata[id].value[0] == val[0]) {
+        newdata[id].province = this.data[id].provinces[val[0]] == '请选择' ? '' : this.data[id].provinces[val[0]];
+        newdata[id].citys = newdata[id].province == '' ? ['请选择'] : this.getCityList(cityList[val[0] - 1].cities);
+        newdata[id].city_ids = newdata[id].province == '' ? [null] : this.getCityList(cityList[val[0] - 1].cities, 1);
+        newdata[id].city = newdata[id].province == '' ? '' : newdata[id].citys[val[1]];
+        newdata[id].districts = newdata[id].city == '' ? ['请选择'] : this.getCityList(cityList[val[0] - 1].cities[val[1]].towns);
+        newdata[id].district_ids = newdata[id].city == '' ? [null] : this.getCityList(cityList[val[0] - 1].cities[val[1]].towns, 1);
+        newdata[id].region_id = newdata[id].district_ids[val[2]];
+        newdata[id].district = newdata[id].city == '' ? '' : newdata[id].districts[val[2]];
+        newdata[id].value = val;
+      } else {
+        newdata[id].province = this.data[id].provinces[val[0]] == '请选择' ? '' : this.data[id].provinces[val[0]];
+        newdata[id].citys = newdata[id].province == '' ? ['请选择'] : this.getCityList(cityList[val[0] - 1].cities);
+        newdata[id].city_ids = newdata[id].province == '' ? [null] : this.getCityList(cityList[val[0] - 1].cities, 1);
+        newdata[id].city = newdata[id].province == '' ? '' : newdata[id].citys[0];
+        newdata[id].districts = newdata[id].city == '' ? ['请选择'] : this.getCityList(cityList[val[0] - 1].cities[0].towns);
+        newdata[id].district_ids = newdata[id].city == '' ? [null] : this.getCityList(cityList[val[0] - 1].cities[0].towns, 1);
+        newdata[id].region_id = newdata[id].district_ids[val[2]];
+        newdata[id].district = newdata[id].city == '' ? '' : newdata[id].districts[val[2]];
+        newdata[id].value = val;
+      }
+      // newdata[id].district = newdata[id].district == '请选择'? '' :newdata[id].district
+      this.setData(newdata)
     }
   },
-  submitCity:function(e){
+  submitCity: function (e) {
     let id = e.currentTarget.dataset.id,
-        newdata = this.data;
-    if(!newdata[id].districts){
-      appInstance.showModal({content: '您未选择城市!'});
+      newdata = this.data;
+    if (!newdata[id].districts) {
+      appInstance.showModal({ content: '您未选择城市!' });
       newdata[id].province = '';
       newdata[id].city = '';
       newdata[id].district = '';
-    }else{
+    } else {
       newdata[id].hidden = !this.data[id].hidden;
-      newdata[id].newlocal = newdata[id].province + ' ' + newdata[id].city + ' ' +      newdata[id].district;
-      newdata[id].value = [0,0,0];
+      newdata[id].newlocal = newdata[id].province + ' ' + newdata[id].city + ' ' + newdata[id].district;
+      newdata[id].value = [0, 0, 0];
       appInstance.citylocationList(e.currentTarget.dataset, newdata[id].region_id);
     }
     this.setData(newdata);
   },
-  getCityList:function (province, id){
+  getCityList: function (province, id) {
     let cityList = [], cityList_id = [];
-    for(let i in province){
-      if(typeof(province[i]) == 'object'){
+    for (let i in province) {
+      if (typeof (province[i]) == 'object') {
         cityList.push(province[i].name)
         cityList_id.push(province[i].region_id);
-      }else{
+      } else {
         cityList[1] = province.name;
-        cityList_id[1]=province.region_id;
+        cityList_id[1] = province.region_id;
       }
     }
-    if(id){
+    if (id) {
       return cityList_id;
-    }else{
+    } else {
       return cityList;
     }
 
   },
-  
 
-  
-  
-  tapGoodsTradeHandler: function(event) {
+
+
+
+  tapGoodsTradeHandler: function (event) {
     appInstance.tapGoodsTradeHandler(event);
   },
-  tapInnerLinkHandler: function(event) {
+  tapInnerLinkHandler: function (event) {
     appInstance.tapInnerLinkHandler(event);
   },
-  tapPhoneCallHandler: function(event) {
+  tapPhoneCallHandler: function (event) {
     appInstance.tapPhoneCallHandler(event);
   },
-  tapRefreshListHandler: function(event) {
+  tapRefreshListHandler: function (event) {
     var _this = this;
     appInstance.tapRefreshListHandler(event, _this);
   },
-  tapGetCouponHandler: function(event) {
+  tapGetCouponHandler: function (event) {
     appInstance.tapGetCouponHandler(event);
   },
-  tapCommunityHandler: function(event) {
+  tapCommunityHandler: function (event) {
     appInstance.tapCommunityHandler(event);
   },
-  turnToCommunityPage: function(event){
+  turnToCommunityPage: function (event) {
     let id = event.currentTarget.dataset.id;
     appInstance.turnToPage('/pages/communityPage/communityPage?detail=' + id);
   },
-  tapToFranchiseeHandler: function(event){
+  tapToFranchiseeHandler: function (event) {
     appInstance.tapToFranchiseeHandler(event);
   },
-  tapToTransferPageHandler: function(event){
+  tapToTransferPageHandler: function (event) {
     appInstance.tapToTransferPageHandler(event);
   },
-  tapFranchiseeLocation: function(event){
+  tapFranchiseeLocation: function (event) {
     appInstance.tapFranchiseeLocation(event);
   },
-  showAddShoppingcart: function(event) {
+  showAddShoppingcart: function (event) {
     var that = this,
-        goods_id = event.currentTarget.dataset.id;
+      goods_id = event.currentTarget.dataset.id;
     appInstance.sendRequest({
       url: '/index.php?r=AppShop/getGoods',
       data: {
@@ -368,29 +368,29 @@ var pageData    = {
       success: function (res) {
         if (res.status == 0) {
           var goods = res.data[0].form_data,
-              defaultSelect = goods.model_items[0],
-              goodsModel = [],
-              selectModels = [],
-              goodprice = 0,
-              goodstock = 0,
-              goodid ;
-          if(goods.model_items.length){
+            defaultSelect = goods.model_items[0],
+            goodsModel = [],
+            selectModels = [],
+            goodprice = 0,
+            goodstock = 0,
+            goodid;
+          if (goods.model_items.length) {
             goodprice = defaultSelect.price;
             goodstock = defaultSelect.stock;
             goodid = defaultSelect.id;
-          }else{
+          } else {
             goodprice = goods.price;
             goodstock = goods.stock;
           }
-          for(let key in goods.model){
-            if(key){
+          for (let key in goods.model) {
+            if (key) {
               let model = goods.model[key];
               goodsModel.push(model);
               selectModels.push(model.subModelId[0]);
             }
           }
           goods.model = goodsModel;
-          if (goods.goods_type == 3){
+          if (goods.goods_type == 3) {
             var businesssTimeString = '';
             if (goods.business_time && goods.business_time.business_time) {
               var goodBusinesssTime = goods.business_time.business_time;
@@ -399,26 +399,26 @@ var pageData    = {
               }
               businesssTimeString = '出售时间：' + businesssTimeString.substring(0, businesssTimeString.length - 1);
               that.setData({
-                
+
               })
             }
-	  	      that.getCartList();
+            that.getCartList();
             that.setData({
               'addTostoreShoppingCartShow': true,
               businesssTimeString: businesssTimeString
             })
-          }else{
+          } else {
             that.setData({
               'addShoppingCartShow': true
             })
           }
           that.setData({
-            goodsInfo: goods ,
+            goodsInfo: goods,
             'selectGoodsModelInfo.price': goodprice,
             'selectGoodsModelInfo.stock': goodstock,
             'selectGoodsModelInfo.buyCount': 1,
             'selectGoodsModelInfo.buyTostoreCount': 0,
-            'selectGoodsModelInfo.cart_id':'',
+            'selectGoodsModelInfo.cart_id': '',
             'selectGoodsModelInfo.models': selectModels,
             'selectGoodsModelInfo.modelId': goodid
           });
@@ -426,30 +426,30 @@ var pageData    = {
       }
     });
   },
-  hiddeAddShoppingcart: function(){
+  hiddeAddShoppingcart: function () {
     this.setData({
       addShoppingCartShow: false,
-      addTostoreShoppingCartShow:false
+      addTostoreShoppingCartShow: false
     });
   },
-  selectGoodsSubModel: function(e){
+  selectGoodsSubModel: function (e) {
     let dataset = e.target.dataset,
-        modelIndex = dataset.modelIndex,
-        submodelIndex = dataset.submodelIndex,
-        data = {};
+      modelIndex = dataset.modelIndex,
+      submodelIndex = dataset.submodelIndex,
+      data = {};
 
-    data['selectGoodsModelInfo.models['+modelIndex+']'] = this.data.goodsInfo.model[modelIndex].subModelId[submodelIndex];
+    data['selectGoodsModelInfo.models[' + modelIndex + ']'] = this.data.goodsInfo.model[modelIndex].subModelId[submodelIndex];
     this.setData(data);
     this.resetSelectCountPrice();
   },
-  resetSelectCountPrice: function(){
+  resetSelectCountPrice: function () {
     let selectModelIds = this.data.selectGoodsModelInfo.models.join(','),
-        modelItems = this.data.goodsInfo.model_items,
-        data = {};
+      modelItems = this.data.goodsInfo.model_items,
+      data = {};
     data['selectGoodsModelInfo.buyCount'] = 1;
     data['selectGoodsModelInfo.buyTostoreCount'] = 0;
     for (let i = modelItems.length - 1; i >= 0; i--) {
-      if(modelItems[i].model == selectModelIds){
+      if (modelItems[i].model == selectModelIds) {
         data['selectGoodsModelInfo.stock'] = modelItems[i].stock;
         data['selectGoodsModelInfo.price'] = modelItems[i].price;
         data['selectGoodsModelInfo.modelId'] = modelItems[i].id;
@@ -459,44 +459,44 @@ var pageData    = {
     this.setData(data);
   },
   // 电商
-  clickGoodsMinusButton: function(e){
+  clickGoodsMinusButton: function (e) {
     var that = this;
     let count = this.data.selectGoodsModelInfo.buyCount;
-    if(count <= 1){
+    if (count <= 1) {
       return;
     }
     this.setData({
       'selectGoodsModelInfo.buyCount': count - 1
     });
   },
-  clickGoodsPlusButton: function(e){
+  clickGoodsPlusButton: function (e) {
     let selectGoodsModelInfo = this.data.selectGoodsModelInfo,
-        count = selectGoodsModelInfo.buyCount,
-        stock = selectGoodsModelInfo.stock;
+      count = selectGoodsModelInfo.buyCount,
+      stock = selectGoodsModelInfo.stock;
 
-    if(count >= stock) {
+    if (count >= stock) {
       return;
     }
     this.setData({
       'selectGoodsModelInfo.buyCount': count + 1
     });
   },
-  sureAddToShoppingCart: function(){
+  sureAddToShoppingCart: function () {
     var that = this,
-        param = {
-          goods_id: this.data.goodsInfo.id,
-          model_id: this.data.selectGoodsModelInfo.modelId || '',
-          num: this.data.selectGoodsModelInfo.buyCount,
-          sub_shop_app_id : ''
-        };
+      param = {
+        goods_id: this.data.goodsInfo.id,
+        model_id: this.data.selectGoodsModelInfo.modelId || '',
+        num: this.data.selectGoodsModelInfo.buyCount,
+        sub_shop_app_id: ''
+      };
 
     appInstance.sendRequest({
       url: '/index.php?r=AppShop/addCart',
       data: param,
-      success: function(res){
+      success: function (res) {
         appInstance.showToast({
-          title:'添加成功',
-          icon:'success'
+          title: '添加成功',
+          icon: 'success'
         })
         that.hiddeAddShoppingcart();
       }
@@ -511,7 +511,7 @@ var pageData    = {
     if (count <= 0) {
       return;
     }
-    if(count <= 1){
+    if (count <= 1) {
       appInstance.sendRequest({
         hideLoading: true,
         url: '/index.php?r=AppShop/deleteCart',
@@ -557,21 +557,21 @@ var pageData    = {
   },
   sureAddTostoreShoppingCart: function (type) {
     var that = this,
-        goodsNum = this.data.selectGoodsModelInfo.buyTostoreCount;
-    if(type == 'plus'){
+      goodsNum = this.data.selectGoodsModelInfo.buyTostoreCount;
+    if (type == 'plus') {
       goodsNum = goodsNum + 1;
-    }else{
+    } else {
       goodsNum = goodsNum - 1;
     }
-     var param = {
-        _app_id: appInstance.getAppId(),
-        app_id: appInstance.getAppId(),
-        session_key: appInstance.getSessionKey(),
-        goods_id: this.data.goodsInfo.id,
-        model_id: this.data.selectGoodsModelInfo.modelId || '',
-        num: goodsNum,
-        sub_shop_app_id: ''
-      };
+    var param = {
+      _app_id: appInstance.getAppId(),
+      app_id: appInstance.getAppId(),
+      session_key: appInstance.getSessionKey(),
+      goods_id: this.data.goodsInfo.id,
+      model_id: this.data.selectGoodsModelInfo.modelId || '',
+      num: goodsNum,
+      sub_shop_app_id: ''
+    };
 
     // appInstance.sendRequest({
     //   url: '/index.php?r=AppShop/addCart',
@@ -597,10 +597,10 @@ var pageData    = {
           that.getCartList();
         } else {
           if (res.data.status == 401 || res.data.status == 2) {
-              // 未登录
-              app.login();
-              return;
-            }
+            // 未登录
+            app.login();
+            return;
+          }
           that.setData({
             'selectGoodsModelInfo.buyTostoreCount': 0
           });
@@ -618,7 +618,7 @@ var pageData    = {
     appInstance.turnToPage(pagePath);
     this.hiddeAddShoppingcart();
   },
-  getValidateTostore: function(){
+  getValidateTostore: function () {
     var that = this;
     wx.request({
       url: appInstance.getSiteBaseUrl() + '/index.php?r=AppShop/precheckShoppingCart',
@@ -629,24 +629,24 @@ var pageData    = {
         sub_shop_app_id: that.franchiseeId || ''
       },
       success: function (res) {
-        if (res.data.status == 0){
+        if (res.data.status == 0) {
           that.readyToPay();
         } else if (res.data.status == 401 || res.data.status == 2) {
-            // 未登录
-            appInstance.login();
-            return;
-        } else if (res.data.status == 1){
-            appInstance.showModal({
-              content: res.data.data,
-              confirm: function () {
-                that.goToShoppingCart();
-              }
-            })
-        }else{
+          // 未登录
+          appInstance.login();
+          return;
+        } else if (res.data.status == 1) {
+          appInstance.showModal({
+            content: res.data.data,
+            confirm: function () {
+              that.goToShoppingCart();
+            }
+          })
+        } else {
           appInstance.showModal({
             content: res.data.data
           })
-        }    
+        }
       }
     })
   },
@@ -663,7 +663,7 @@ var pageData    = {
       data: {
         page: 1,
         page_size: 100,
-        sub_shop_app_id: this.franchiseeId || '' 
+        sub_shop_app_id: this.franchiseeId || ''
       },
       success: function (res) {
         var price = 0,
@@ -688,11 +688,11 @@ var pageData    = {
       }
     })
   },
-  stopPropagation: function(){},
-  turnToSearchPage:function(e){
+  stopPropagation: function () { },
+  turnToSearchPage: function (e) {
     if (e.target.dataset.param) {
       appInstance.turnToPage('/pages/advanceSearch/advanceSearch?param=' + e.target.dataset.param);
-    }else{
+    } else {
       appInstance.turnToPage('/pages/advanceSearch/advanceSearch');
     }
   }

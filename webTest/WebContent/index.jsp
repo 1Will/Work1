@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>主页</title>
 </head>
 <body>
-<a href="testJson.jsp">跳转</a>
-<a href="testAjax.jsp">测试ajax</a>
+<a href="testJson.jsp">跳转</a><br>
+<a href="testAjax.jsp">测试ajax</a><br>
+<a href="testUpload.jsp">测试文件上传</a><br>
 	<span>请选择：</span>
 	<select id="select1" onchange='btnChange()'>
 		<option></option>
