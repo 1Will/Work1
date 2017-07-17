@@ -27,6 +27,9 @@
     <@inputTable>
     	<@ww.hidden name="'customer.id'" value="''"/>
     	<@ww.hidden name="'customerType.id'" value="''"/>
+    	<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag' >
+    		<@ww.hidden name="'popWindowFlag'" value="'${popWindowFlag}'"/>
+    	</#if>
     	<@ww.hidden name="'payee.id'" value="'${req.getParameter('payee.id')?if_exists}'"/>
     	<@ww.hidden name="'contactArchives.id'" value="'${req.getParameter('contactArchives.id')?if_exists}'"/>
     	<@ww.hidden name="'contractManagement.id'" value="'${req.getParameter('contractManagement.id')?if_exists}'"/>
@@ -92,7 +95,7 @@
 	       		<label class="label">${action.getText('returnPlan.contactArchives')}:</label>
 	     	</td>
 			<td>
-	     		<#if returnPlan.customerInfo?exists>
+	     		<#if returnPlan.contactArchives?exists>
 		   			<input type="text" name="returnPlan.contactArchives" class="underline"  value="${returnPlan.contactArchives.name?if_exists}" maxlength="140" size="20" disabled="true"/>
 				<#else>
 					<input type="text" name="returnPlan.contactArchives" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
@@ -151,8 +154,19 @@
 		</tr>
 		
 		<tr>
-			<@ww.textfield label="'${action.getText('returnPlan.factSum')}'" name="'returnPlan.factSum'" value="'#{returnPlan.factSum?if_exists}'" cssClass="'underline'" readonly="true"/>
-			<@ww.textfield label="'${action.getText('returnPlan.paytime')}'" name="'returnPlan.paytime'" value="'${returnPlan.paytime?if_exists}'" cssClass="'underline'" readonly="true"/>
+			<@ww.textfield label="'${action.getText('returnPlan.factSum')}'" name="'returnPlan.factSum'" value="'#{returnPlan.factSum?if_exists}'" cssClass="'underline'" />
+			
+			<@pp.datePicker 
+				label="'${action.getText('returnPlan.paytime')}'" 
+				name="'returnPlan.paytime'" 
+	   			value="'${(returnPlan.planDate?string('yyyy-MM-dd'))?if_exists}'"
+				cssClass="'underline'" 
+				dateFormat="'%Y-%m-%d'"
+				required="true"
+				maxlength="10"/>
+			<#-- 
+			<@ww.textfield label="'${action.getText('returnPlan.paytime')}'" name="'returnPlan.paytime'" value="'${returnPlan.paytime?if_exists}'" cssClass="'underline'" />
+			 -->
 			<#--收款人弹出框-->
 	 		<td align="right" valign="top">
 	       		<label class="label">${action.getText('returnPlan.payee')}:</label>
@@ -223,7 +237,7 @@
 		</script>
 		</#if>
 		
-		<#if popWindowFlag?exists&&popWindowFlag==popWindowFlag>
+		<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
 			<@vbutton class="button" value="${action.getText('close')}" onclick="closeThis()"/>
 		<#else>
 			<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/contractManagement/listReturnPlan.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
@@ -236,8 +250,7 @@
 	function checkSum(){
 			if(getObjByName('returnPlan.sum').value==''){
 				return false;
-			}
-			if(getObjByName('returnPlan.sum').value!=''){
+			}else{
 		     	if(!isDoubleNumber("returnPlan.sum")){
 					alert("${action.getText('number.must.be.double')}");
 					getObjByName('returnPlan.sum').value="";

@@ -79,7 +79,7 @@
 		getObjByName('parentInsts').value = getObjByName('institution.pId').value;
 	}
  	function storeValidation(){
-        if(document.getElementById("institution.code").value==''){
+        if(getObjByName("institution.code").value==''){
 	        alert('${action.getText('institution.code.not.null')}');
 	        return false;
 	     }else{
@@ -88,7 +88,7 @@
 				return false;
 			   }
 		}
-		if(document.getElementById("institution.name").value==''){
+		if(getObjByName("institution.name").value==''){
 	        alert('${action.getText('institution.name.not.null')}');
 	        return false;
 	     }else{
@@ -98,7 +98,7 @@
 			}   
 		} 
 
-		if(document.getElementById("institution.lader").value==''){
+		if(getObjByName("institution.lader").value==''){
 	        alert('${action.getText('institution.lader.not.null')}');
 	        return false;
 	     }else{
@@ -108,8 +108,8 @@
 			}   
 		} 
 
-		if(document.getElementById("institution.tel").value != ''){
-			   var str = document.getElementById("institution.tel").value
+		if(getObjByName("institution.tel").value != ''){
+			   var str = getObjByName("institution.tel").value
 			   var reg=/^([0-9]|[\-])+$/g ;
 		       if(str.length<7 || str.length>18){
 		       		alert('${action.getText('institution.phone.format')}');
@@ -117,14 +117,14 @@
 		       }
 		     
 		}
-		if("" != document.getElementById("institution.address").value){
+		if("" != getObjByName("institution.address").value){
 			if(!isValidLength(document.forms[0], "institution.address", null, 50)){
 				alert("${action.getText('institution.address.length')}");
 				return false;
 			}
 		}
 		
-		if("" != document.getElementById("institution.comment").value){
+		if("" != getObjByName("institution.comment").value){
 			if(!isValidLength(document.forms[0], "institution.comment", null, 250)){
 				alert("${action.getText('institution.comment.length')}");
 				return false;

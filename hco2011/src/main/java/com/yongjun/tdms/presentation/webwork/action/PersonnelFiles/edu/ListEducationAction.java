@@ -62,7 +62,7 @@ import com.yongjun.tdms.service.CustomerRelationship.contactArchives.ContactArch
 /*     */ 
 /*     */   protected String getAdapterName()
 /*     */   {
-/*  97 */     return "education";
+/*  97 */     return "getEducation";
 /*     */   }
 /*     */ 
 /*     */   protected Map getRequestParameterMap()

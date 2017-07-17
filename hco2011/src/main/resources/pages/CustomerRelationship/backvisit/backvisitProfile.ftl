@@ -535,25 +535,37 @@
 	}
 	function creatorSelectorHandlerContactArchivess(result) {
 		if (null != result) {
-		var contactArchivesTemp=document.forms[0].elements["contactArchives"].value;
-		var contactArchives_Temp=document.forms[0].elements["contactArchives_"].value;
-		if(contactArchivesTemp==""){
-		contactArchivesTemp=result[0];
-		}else{
-		
-		contactArchivesTemp+=","+result[0];
+			var contactArchives_Temp=document.forms[0].elements["contactArchives_"].value;
+			if(contactArchives_Temp==""){
+				contactArchives_Temp=result[0];
+			}else{
+				contactArchives_Temp+=","+result[0];
+			}
+			var names =contactArchives_Temp.split(',');
+			var newNames =unique(names);
+			var newContactArchives_Temp='';
+			for(var i=0;i<newNames.length;i++){
+				if(i==newNames.length-1){
+					newContactArchives_Temp+=newNames[i];
+				}else{
+					newContactArchives_Temp+=newNames[i]+',';
+				}
+			}
+	 		document.forms[0].elements["contactArchives"].value = newContactArchives_Temp;
+	 		document.forms[0].elements["contactArchives_"].value = newContactArchives_Temp;
 		}
-		
-		
-		if(contactArchives_Temp==""){
-		contactArchives_Temp=result[0];
-		}else{
-		
-		contactArchives_Temp+=","+result[0];
+	}
+	
+	function unique(arr){
+		// 遍历arr，把元素分别放入tmp数组(不存在才放)
+		var tmp = new Array();
+		for(var i=0;i<arr.length;i++){
+			//该元素在tmp内部不存在才允许追加
+			if(tmp.indexOf(arr[i])==-1){
+				tmp.push(arr[i]);
+			}
 		}
-	 	document.forms[0].elements["contactArchives"].value = contactArchivesTemp;
-	 	document.forms[0].elements["contactArchives_"].value = contactArchives_Temp;
-		}
+		return tmp;
 	}
 	
 	//弹出业务员查询模态窗体
@@ -578,23 +590,24 @@
 	 //获得模态窗体返回值
 	function creatorSelectorHandler_(result) {
 		if (null != result) {
-		var tempEmployees =document.forms[0].elements["employees"].value;
-		var tempEmployees_ =document.forms[0].elements["employees_"].value;
-		if(tempEmployees==""){
-		tempEmployees=result[0];
-		}else{
-		
-		tempEmployees+=","+result[0];
-		}
-		
-		if(tempEmployees_==""){
-		tempEmployees_=result[0];
-		}else{
-		
-		tempEmployees_+=","+result[0];
-		}
-			document.forms[0].elements["employees_"].value = tempEmployees;
-	   		document.forms[0].elements["employees"].value = tempEmployees_;		 	
+			var tempEmployees_ =document.forms[0].elements["employees_"].value;
+			if(tempEmployees_==""){
+				tempEmployees_=result[0];
+			}else{
+				tempEmployees_+=","+result[0];
+			}
+			var names =tempEmployees_.split(',');
+			var newNames =unique(names);
+			var newTempEmployees='';
+			for(var i=0;i<newNames.length;i++){
+				if(i==newNames.length-1){
+					newTempEmployees+=newNames[i];
+				}else{
+					newTempEmployees+=newNames[i]+',';
+				}
+			}
+			document.forms[0].elements["employees_"].value = newTempEmployees;
+		   	document.forms[0].elements["employees"].value = newTempEmployees;		 	
 		}
 	}
 	

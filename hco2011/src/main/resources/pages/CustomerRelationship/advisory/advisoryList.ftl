@@ -11,6 +11,7 @@
 			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/advisoryManager/editAdvisory.html"/>
         </#if>
         </@buttonBar>
+         <#assign returnName='replaceWord'>
         <@list title="${action.getText('advisoryList')}" 
         includeParameters="advisory.name|industry|advisory.connectPeople|isNoB|advisory.customerServiceName|advisory.advisoryTime_start|advisory.advisoryTime_end|onlyInvalid|onlyValid|readOnly|advisory.infoSource" 
         fieldMap="like:advisory.name|advisory.connectPeople|advisory.customerServiceName|advisory.customerService,date:advisory.advisoryTime_start|advisory.advisoryTime_end" >
@@ -64,6 +65,17 @@
 			<@alignCenter attributes="width:30;"/>
 			</@vcolumn>
 			<@vcolumn title="${action.getText('advisory.advisoryContent')}" property="advisoryContent" sortable="desc">
+            
+            <#assign returnName=returnName +'replaceWord'>
+             <@ww.hidden name="'${returnName}'" value="'${object.advisoryContent?if_exists}'"/>
+	            <span title="${object.advisoryContent?if_exists}">
+		            <script>
+		            	var s = getObjByName('${returnName}').value;
+		            	s=s.replace(/[\r\n]/g, "");
+		            	document.write(s.slice(0,18)+"...");
+		            </script>
+	            </span>
+            
             <@alignLeft/>
             </@vcolumn>
         </@list>

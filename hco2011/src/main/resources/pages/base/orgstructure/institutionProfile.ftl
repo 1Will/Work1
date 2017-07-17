@@ -168,7 +168,7 @@
 		}
 
  	function storeValidation(){
-        if(document.getElementById("institution.code").value==''){
+        if(getObjByName("institution.code").value==''){
 	        alert('${action.getText('institution.code.not.null')}');
 	        getObjByName('institution.code').focus();
 	        return false;
@@ -180,7 +180,7 @@
 				return  false;
 			   }
 		}
-		if(document.getElementById("institution.name").value==''){
+		if(getObjByName("institution.name").value==''){
 	        alert('${action.getText('institution.name.not.null')}');
 	        getObjByName('institution.name').focus();
 	        return false;
@@ -193,7 +193,7 @@
 			}   
 		} 
 
-		if(document.getElementById("institution.lader").value==''){
+		if(getObjByName("institution.lader").value==''){
 	        alert('${action.getText('institution.lader.not.null')}');
 	        getObjByName('institution.lader').focus();
 	        return false;
@@ -218,8 +218,8 @@
 		if(!textfieldCheck_checkFax()){
 			return false;
 		}-->
-		if(document.getElementById("institution.tel").value != ''){
-			   var str = document.getElementById("institution.tel").value
+		if(getObjByName("institution.tel").value != ''){
+			   var str = getObjByName("institution.tel").value
 		       if(str.length>20){
 		       		alert('${action.getText('institution.phone.length')}');
 		       		getObjByName('institution.tel').value="";
@@ -242,7 +242,7 @@
 		if(!dateCheck_dateCheckSetupTime()){
 			return false;
 		}-->
-		if("" != document.getElementById("institution.address").value){
+		if("" != getObjByName("institution.address").value){
 			if(!isValidLength(document.forms[0], "institution.address", null, 50)){
 				alert("${action.getText('institution.address.length')}");
 				getObjByName('institution.address').value="";
@@ -251,7 +251,7 @@
 			}
 		}
 		
-		if("" != document.getElementById("institution.comment").value){
+		if("" != getObjByName("institution.comment").value){
 			if(!isValidLength(document.forms[0], "institution.comment", null, 250)){
 				alert("${action.getText('institution.comment.length')}");
 				getObjByName('institution.comment').value="";

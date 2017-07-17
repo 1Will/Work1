@@ -24,6 +24,7 @@
 	<@ww.token name="saveAdditionalInfoToken"/>
 	<@ww.hidden name="'customerInfo.id'" value="'#{customerInfo.id?if_exists}'" />
 	<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
+	<@ww.hidden name="'cusAdditionalInfo.website'" value="'${cusAdditionalInfo.website?if_exists}'"/>
 	<@inputTable>
  	<tr>
  	    <@ww.textfield label="'${action.getText('cusAdditionalInfo.licenseNumber')}'" name="'cusAdditionalInfo.licenseNumber'" value="'${cusAdditionalInfo.licenseNumber?if_exists}'" cssClass="'underline'" required="false"/>
@@ -35,7 +36,6 @@
 	</tr>
     <tr>
     	<@ww.textfield label="'${action.getText('cusAdditionalInfo.bankAccount')}'" name="'cusAdditionalInfo.bankAccount'" value="'${cusAdditionalInfo.bankAccount?if_exists}'" cssClass="'underline'" required="false"/>
-    	<@ww.textfield label="'${action.getText('cusAdditionalInfo.website')}'" name="'cusAdditionalInfo.website'" value="'${cusAdditionalInfo.website?if_exists}'" cssClass="'underline'" required="false"/>
     </tr>   
     <tr>
     	<td align="right" valign="top">

@@ -61,6 +61,10 @@
         <property name="accountNumber" type="string">
 			<column name="ACCOUNT_NUMBER" not-null="false" sql-type="NVARCHAR(50)" />
 		</property>
+		 <!--银行名称 -->
+        <property name="accountName" type="string">
+			<column name="ACCOUNT_NAME" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
 		<!-- 批次 -->
         <many-to-one name="batch" class="com.yongjun.pluto.model.codevalue.CodeValue">
 			<column name="BATCH"  not-null="true" />
@@ -103,7 +107,10 @@
         <property name="remark" type="string">
 			<column name="REMARK" not-null="false" sql-type="NVARCHAR(50)" />
 		</property>
-		
+		<!-- 是否提交 -->
+		<property name="isSaved" type="string">
+			<column name="isSaved" sql-type="NVARCHAR(1)"/>
+		</property>
 
 		
 	    <property name="disabled" type="boolean">

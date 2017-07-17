@@ -27,6 +27,7 @@
     <@inputTable>
     	<@ww.hidden name="'customer.id'" value="''"/>
     	<@ww.hidden name="'customerType.id'" value="''"/>
+    	<@ww.hidden name="'financialManagement.isSaved'" value="''"/>
     	<@ww.hidden name="'payee.id'" value="'${req.getParameter('payee.id')?if_exists}'"/>
     	<@ww.hidden name="'saleman.id'" value="'${req.getParameter('saleman.id')?if_exists}'"/>
     	<@ww.hidden name="'contractManagement.id'" value="'${req.getParameter('contractManagement.id')?if_exists}'"/>
@@ -68,6 +69,18 @@
 			</td>
 		</tr>
 		<tr>
+			<td align="right" valign="top">
+	       		<label class="label">${action.getText('financialManagement.contractManagement.projectInfo.name')}:</label>
+	     	</td>
+			 <td>
+			 <#if financialManagement.contractManagement?exists>
+	     		<#if financialManagement.contractManagement.project?exists>
+		   			<input type="text" name="financialManagement.contractManagement.name" class="underline"  value="${financialManagement.contractManagement.project.name?if_exists}" maxlength="140" size="20" disabled="true"/>
+				</#if>
+			<#else>
+				<input type="text" name="financialManagement.contractManagement.name" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+			</#if>
+			</td>
 			<#--业务员弹出框-->
 	 		<td align="right" valign="top">
 	 			<span class="required">*</span>
@@ -83,7 +96,6 @@
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
 				</a>
 			</td>
-			
 			<@ww.select label="'${action.getText('financialManagement.collectionType')}'" 
 				name="'collectionType.id'" 
 				value="${req.getParameter('collectionType.id')?if_exists}"
@@ -93,6 +105,8 @@
 				required="true"
 				disabled="false">
 			</@ww.select>
+		</tr>
+		<tr>
 			
 			<@ww.select label="'${action.getText('financialManagement.payment')}'" 
 				name="'payment.id'" 
@@ -103,41 +117,19 @@
 				required="true"
 				disabled="false">
 			</@ww.select>
-		</tr>
-		<tr>
-			<@text2 label="${action.getText('financialManagement.accountNumber')}" name="financialManagement.accountNumber" value="${financialManagement.accountNumber?if_exists}"></@text2>
-			<#--<span id="id_select">	-->
-				<@ww.select label="'${action.getText('financialManagement.batch')}'" 
-					name="'batch.id'" 
-					value="${req.getParameter('batch.id')?if_exists}"
-					listKey="id"
-					listValue="name"
-					list="allBatchs"
-					required="true"
-					emptyOption="false" 
-					disabled="false">
-				</@ww.select>
-			<#--</span>	-->
-		</tr>
-		<tr>
-			<@ww.textfield label="'${action.getText('financialManagement.sumReceivable')}'" name="'financialManagement.sumReceivable'" value="'#{financialManagement.sumReceivable?if_exists}'" cssClass="'underline'" readonly="true" required="true"/>
-			<@ww.textfield label="'${action.getText('financialManagement.trueSum')}'" name="'financialManagement.trueSum'" value="'#{financialManagement.trueSum?if_exists}'" cssClass="'underline'" required="true" onfocus="'return getTrueSum();'" onchange="'chooseValue()'" onblur="'checkSum()'"/>
-			<span id="sum_id" name=""></span>
-			<@ww.textfield label="'${action.getText('financialManagement.totalSum')}'" name="'financialManagement.totalSum'" value="'#{financialManagement.totalSum?if_exists}'" cssClass="'underline'" readonly="true"/>
-		</tr>
-		<tr>
-			<@ww.textfield label="'${action.getText('financialManagement.withoutGotSum')}'" name="'financialManagement.withoutGotSum'" value="'#{financialManagement.withoutGotSum?if_exists}'" cssClass="'underline'" readonly="true"/>
-			<td align="right">
-			<span class="required">*</span>
-			<label for="" class="label">${action.getText('financialManagement.invoice')}:</label>
-			</td>
-	        <td align="left">
-	        	<input type="radio" id="yes" name="invoice" value="0" />已开
-	        	<input type="radio" id="no" name="invoice" value="1" />未开
-			</td>
-			<@ww.textfield label="'${action.getText('financialManagement.invoiceCode')}'" name="'financialManagement.invoiceCode'" value="'${financialManagement.invoiceCode?if_exists}'" cssClass="'underline'"/>
-		</tr>
-		<tr>
+			
+			<@ww.select label="'${action.getText('financialManagement.batch')}'" 
+				id="'batch.id'" 
+				name="'batch.id'" 
+				value="${req.getParameter('batch.id')?if_exists}"
+				listKey="id"
+				listValue="name"
+				list="allBatchs"
+				required="true"
+				emptyOption="false" 
+				disabled="false">
+			</@ww.select>
+			
 			<@pp.datePicker 
 				label="'${action.getText('financialManagement.collectionDate')}'" 
 				name="'financialManagement.collectionDate'" 
@@ -152,6 +144,36 @@
 						getObjByName("financialManagement.collectionDate").value = date.format("yyyy-MM-dd");
 					}
 			</script>
+		</tr>
+		
+		<tr>
+			<@ww.textfield label="'${action.getText('financialManagement.accountName')}'" name="'financialManagement.accountName'" value="'${financialManagement.accountName?if_exists}'" cssClass="'underline'"/>
+			<@text2 label="${action.getText('financialManagement.accountNumber')}" name="financialManagement.accountNumber" value="${financialManagement.accountNumber?if_exists}"></@text2>
+		</tr>
+		
+		<tr>
+			<@ww.textfield label="'${action.getText('financialManagement.sumReceivable')}'" name="'financialManagement.sumReceivable'" value="'#{financialManagement.sumReceivable?if_exists}'" cssClass="'underline'" required="true"/>
+			<@ww.textfield label="'${action.getText('financialManagement.trueSum')}'" name="'financialManagement.trueSum'" value="'#{financialManagement.trueSum?if_exists}'" cssClass="'underline'" required="true" onfocus="'return getTrueSum();'" onchange="'chooseValue()'" onblur="'checkSum()'"/>
+			<td align="right">
+			<span class="required">*</span>
+			<label for="" class="label">${action.getText('financialManagement.invoice')}:</label>
+			</td>
+	        <td align="left">
+	        	<input type="radio" id="yes" name="invoice" value="0" />已开
+	        	<input type="radio" id="no" name="invoice" value="1" />未开
+			</td>
+			
+		</tr>
+		<tr>
+			<span id="sum_id" name=""></span>
+			<@ww.textfield label="'${action.getText('financialManagement.totalSum')}'" name="'financialManagement.totalSum'" value="'#{financialManagement.totalSum?if_exists}'" readonly="true" cssClass="'underline'"/>
+		
+			<@ww.textfield label="'${action.getText('financialManagement.withoutGotSum')}'" name="'financialManagement.withoutGotSum'" value="'#{financialManagement.withoutGotSum?if_exists}'" readonly="true" cssClass="'underline'"/>
+
+			<@ww.textfield label="'${action.getText('financialManagement.invoiceCode')}'" name="'financialManagement.invoiceCode'" value="'${financialManagement.invoiceCode?if_exists}'" cssClass="'underline'"/>
+		</tr>
+		<tr>
+			
 				<#--收款人弹出框-->
 	 		<td align="right" valign="top">
 	 			<span class="required">*</span>
@@ -199,9 +221,21 @@
     </@inputTable>
     <@buttonBar>
     	<#if !(action.isReadOnly())>
-		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 		</#if>
+		<#--
+		<#if financialManagement.isSaved?exists &&financialManagement.isSaved=='0' >
+	    	<@vsubmit name="'submit'" value="'${action.getText('提交')}'" onclick="'return submitt();'"/>
+	    <#else>
+	    	<@vsubmit name="'submit'" value="'${action.getText('提交')}'" onclick="'return submitt();'" disabled="true"/>
+	    </#if>
+		-->
+		<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
+		<!-- 关闭按钮 -->
+		<@vbutton name="close" value="${action.getText('close')}" class="button" onclick="closeThis();"/>
+  		<#else>
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/financialManagement/listFinancialManagement.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+  		</#if>
     </@buttonBar>
 
 </@ww.form>
@@ -351,6 +385,9 @@
 	   		if(null !=result[9]){
 	   			getObjByName('financialManagement.accountNumber').value=result[9];
 	   		}
+	   		if(null !=result[10]){
+	   			getObjByName('financialManagement.contractManagement.name').value=result[10];
+	   		}
 	   		
 	   		// 选择合同的时候带出，该合同下所有回款计划的批次
 	    	DWREngine.setAsync(false); 
@@ -358,7 +395,7 @@
 			ContractAndBatchDWR("contractManagement.id","batch.id","${action.getText('')}","false"); 
 	    	//重新设置为异步方式
 	    	DWREngine.setAsync(true); 
-	   		ContractAndBatchDWR(result[0],"batch.id","${action.getText('')}","false"); 
+	   		//ContractAndBatchDWR(result[0],"batch.id","${action.getText('')}","false"); 
 		}
 	}
 	function chooseFirst(){
@@ -370,20 +407,29 @@
 		ContractManagementAndBatchDWR("contractManagement.id","batch.id","financialManagement.sumReceivable","financialManagement.trueSum","financialManagement.totalSum","financialManagement.withoutGotSum","trueSum","${action.getText('')}","false");
 	}
 	
-	var trueSums="";
 	function getTrueSum(){
 		trueSums = getObjByName('financialManagement.trueSum').value;
 		return trueSums;
 	}
 	function getNowSum(){
-		nowSums = getObjByName('financialManagement.trueSum').value;
+		nowSums = getObjByName('financialManagement.sumReceivable').value;
 		return nowSums;
 	}
 	function chooseValue(){
-		var a =getNowSum();
-		var a =trueSums-a;
-		getObjByName('financialManagement.totalSum').value=getObjByName('financialManagement.totalSum').value-a;
-		getObjByName('financialManagement.withoutGotSum').value=getObjByName('financialManagement.withoutGotSum').value-(-a);
+		var a = getNowSum();
+		var b = getTrueSum();
+		getObjByName('financialManagement.totalSum').value = parseInt(getObjByName('financialManagement.totalSum').value) + parseInt(b);
+		getObjByName('financialManagement.withoutGotSum').value=parseInt(getObjByName('financialManagement.withoutGotSum').value)-(a-b);
+	}
+	//提交
+	function submitt(){
+		getObjByName("financialManagement.isSaved").value = 1;
+		return storeValidation();
+	}
+	//保存
+	function savee(){
+		getObjByName("financialManagement.isSaved").value = 0;
+		return storeValidation();
 	}
 	//保存前给隐藏域赋值和验证字段
 	function storeValidation(){
@@ -489,3 +535,11 @@
 	}
 </script>
 </@htmlPage>
+<#if financialManagement.id?exists>
+<ul id="beautytab">
+	<li>
+		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?financialManagement.id=#{financialManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
+	</li>
+</ul>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/applicationDocManager/listApplicationDoc.html?financialManagement.id=#{financialManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="50%"/>
+</#if>

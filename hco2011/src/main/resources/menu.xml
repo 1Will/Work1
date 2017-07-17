@@ -132,25 +132,22 @@
 			<Item name="contractManagementWRITE" title="合同管理"
 				location="contractManagement/listContractManagementActionWRITE.html">
 			</Item>
-			<!--<Item name="receivedPaymentsREAD" title="回款记录"
+<!--
+			<Item name="receivedPaymentsREAD" title="回款记录"
 				location="contractManagement/listReceivedPaymentsREAD.html">
 			</Item>
 			<Item name="receivedPaymentsWRITE" title="回款记录"
 				location="contractManagement/listReceivedPaymentsWRITE.html">
 			</Item>
-			--><Item name="returnPlanREAD" title="回款计划"
+-->
+<!-- 	
+			<Item name="returnPlanREAD" title="回款计划"
 				location="contractManagement/listReturnPlanREAD.html">
 			</Item>
 			<Item name="returnPlanWRITE" title="回款计划"
 				location="contractManagement/listReturnPlanWRITE.html">
 			</Item>
-			<Item name="billingRecordREAD" title="开票记录"
-				location="contractManagement/listBillingRecordREAD.html">
-			</Item>
-			<Item name="billingRecordWRITE" title="开票记录"
-				location="contractManagement/listBillingRecordWRITE.html">
-			</Item>
-<!--			</Item>-->
+-->
 		</Menu>
 		
 		<!--5-->
@@ -230,6 +227,12 @@
 <!--			</Item>-->
 		</Menu>
 		<Menu name="FinancialManagement" title="财务管理">
+			<Item name="billingRecordREAD" title="开票记录"
+				location="contractManagement/listBillingRecordREAD.html">
+			</Item>
+			<Item name="billingRecordWRITE" title="开票记录"
+				location="contractManagement/listBillingRecordWRITE.html">
+			</Item>
 			<Item name="financialManagementREAD" title="收款单"
 				location="financialManagement/listFinancialManagementREAD.html">
 			</Item>

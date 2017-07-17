@@ -241,6 +241,7 @@ import java.util.Collections;
 /* 306 */     this.custormerInfo.setAbbreviations(this.advisory.getShortName());
 /*     */     try
 /*     */     {
+				this.custormerInfo.setState(codeValueManager.loadByKey("code", "20001").get(0));
 /* 311 */       this.custormerInfo.setCustomerType((CodeValue)getAllTypes().get(1));
 /*     */ 
 /* 313 */       this.custormerInfo.setStep((CodeValue)this.codeValueManager.loadByKey("parentCV", ((CodeValue)this.codeValueManager.loadByKey("code", "022").get(0)).getId()).get(0));

@@ -50,11 +50,11 @@
 	      </#if>
 	    }
     function checkInvalidParms(){
-           if (document.getElementById("parentPT.id").value==-1){
-              document.getElementById("parentPT.id").value='';
+           if (getObjByName("parentPT.id").value==-1){
+              getObjByName("parentPT.id").value='';
            }
-           if (document.getElementById("parentPT.id").value==-2){
-              document.getElementById("parentPT.id").value='';
+           if (getObjByName("parentPT.id").value==-2){
+              getObjByName("parentPT.id").value='';
            }
           return true;
     }

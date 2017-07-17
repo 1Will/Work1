@@ -30,9 +30,11 @@
 			<#if !(action.isReadOnly())>
 				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/customerRelationship/editCustomerInfo.html"/>
        		</#if>
+       		
+       		<#--<@redirectButton value="${action.getText('importCustomer.button')}" url="${req.contextPath}/customerRelationship/toImportCustomerInfo.html"/>-->
         </@buttonBar>
         <@list title="${action.getText('customerInfo.list.title')}" 
-            includeParameters="customerInfo.code|customerInfo.name|type.id|country.id|province.id|city.id|industry.id|companyNature.id|customerInfo.keyContacter|customerInfo.salesman|step.id|readOnly|onlyInvalid|onlyValid" 
+            includeParameters="customerInfo.code|customerInfo.name|type.id|country.id|province.id|city.id|industry.id|companyNature.id|customerInfo.keyContacter|customerInfo.salesman|step.id|customerInfo.state|readOnly|onlyInvalid|onlyValid" 
         	fieldMap="like:customerInfo.code|customerInfo.name|customerInfo.keyContacter|customerInfo.salesman" >
         	<#if !(action.isReadOnly())>
 	        	<@vlh.checkbox property="id" name="customerInfoIds">

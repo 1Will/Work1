@@ -50,7 +50,7 @@
 		</property>
         
         <property name="idNumber" type="string">
-			<column name="IDNUMBER" not-null="true" sql-type="NVARCHAR(20)" />
+			<column name="IDNUMBER" not-null="false" sql-type="NVARCHAR(20)" />
 		</property>
         
         <property name="birthday" type="timestamp">
@@ -162,7 +162,7 @@
 			<column name="ORG_ID"/>
 		</many-to-one>
 		<many-to-one name="superiorLeader" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
-			<column name="SUPERIORLEADER_ID" not-null="true"/>
+			<column name="SUPERIORLEADER_ID" not-null="false"/>
 		</many-to-one>
 	</class>
 </hibernate-mapping>

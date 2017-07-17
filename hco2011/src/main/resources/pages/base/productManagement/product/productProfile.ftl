@@ -280,3 +280,14 @@
 	}
 </script>
 </@htmlPage>
+<#if products.id?exists>
+<ul id="beautytab">
+	<li>
+		<a id="project" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProCon.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('项目列表')}</a>
+	</li>
+	<li>
+		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
+	</li>
+</ul>
+<iframe name="frame" frameborder="0.5" src="" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="50%"/>
+</#if>

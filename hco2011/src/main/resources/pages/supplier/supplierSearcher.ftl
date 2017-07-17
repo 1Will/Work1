@@ -69,14 +69,14 @@
       </#if>
     }
     function checkInvalidParms(){
-           if (document.getElementById("supplier.supplierType").value==0){
-              document.getElementById("supplier.supplierType").value='';
+           if (getObjByName("supplier.supplierType").value==0){
+              getObjByName("supplier.supplierType").value='';
            }
-           if (document.getElementById("supplier.tradeType").value==0){
-              document.getElementById("supplier.tradeType").value='';
+           if (getObjByName("supplier.tradeType").value==0){
+              getObjByName("supplier.tradeType").value='';
            }
-           if (document.getElementById("supplier.companyType").value==0){
-              document.getElementById("supplier.companyType").value='';
+           if (getObjByName("supplier.companyType").value==0){
+              getObjByName("supplier.companyType").value='';
            }
           return true;
     }

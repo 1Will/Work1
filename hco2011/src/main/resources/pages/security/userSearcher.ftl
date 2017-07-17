@@ -69,11 +69,11 @@
 	}
 	 
   function checkInvalidParms() {
-    if (-1 == document.getElementById("institution.id").value) {
-		document.getElementById("institution.id").value = '';
+    if (-1 == getObjByName("institution.id").value) {
+		getObjByName("institution.id").value = '';
     }
-    if (-1 == document.getElementById("department.id").value) {
-		document.getElementById("department.id").value = '';
+    if (-1 == getObjByName("department.id").value) {
+		getObjByName("department.id").value = '';
     }
     return true;
   }

@@ -73,14 +73,14 @@
       </#if>
     }
     function checkInvalidParms(){
-           if (document.getElementById("pt.id").value==0){
-              document.getElementById("pt.id").value='';
+           if (getObjByName("pt.id").value==0){
+              getObjByName("pt.id").value='';
            }
-           if (document.getElementById("supplier.id").value==-1){
-              document.getElementById("supplier.id").value='';
+           if (getObjByName("supplier.id").value==-1){
+              getObjByName("supplier.id").value='';
            }
-           if (document.getElementById("product_source_ID.id").value==-1){
-              document.getElementById("product_source_ID.id").value='';
+           if (getObjByName("product_source_ID.id").value==-1){
+              getObjByName("product_source_ID.id").value='';
            }
           return true;
     }

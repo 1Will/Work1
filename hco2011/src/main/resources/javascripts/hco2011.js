@@ -116,8 +116,10 @@ function areaCascadeDWR(country,province,city,current,msg,flag){
 			areaId = getObjByName(country).value;
 			child_Id = province_id;
 			if(areaId == ""){
-				DWRUtil.removeAllOptions(province_id);
-				DWRUtil.removeAllOptions(city_id);
+				 getObjByName(province_id).options.length = 0; 
+				 getObjByName(city_id).options.length = 0; 
+				//DWRUtil.removeAllOptions(province_id);
+				//DWRUtil.removeAllOptions(city_id);
 			}else{
 				AreaSelectJs.loadAreaKeyProperty(areaId, areaCallBack);
 			}
@@ -135,9 +137,9 @@ function areaCascadeDWR(country,province,city,current,msg,flag){
 			areaId = getObjByName(country).value;
 			child_Id = province_id;
 			if(areaId == -1){
-				DWRUtil.removeAllOptions(province_id);
+				getObjByName(province_id).options.length = 0; 
 				getObjByName(province_id).options.add(new Option(area_msg,-1));
-				DWRUtil.removeAllOptions(city_id);
+				 getObjByName(city_id).options.length = 0; 
 				getObjByName(city_id).options.add(new Option(area_msg,-1));
 			}else{
 				AreaSelectJs.loadAreaKeyProperty(areaId, areaCallBack);
@@ -146,7 +148,7 @@ function areaCascadeDWR(country,province,city,current,msg,flag){
 			areaId = getObjByName(province_id).value;
 			child_Id = city_id;
 			if(areaId == -1){
-				DWRUtil.removeAllOptions(city_id);
+				 getObjByName(city_id).options.length = 0; 
 				getObjByName(city_id).options.add(new Option(area_msg,-1));
 			}else{
 				AreaSelectJs.loadAreaKeyProperty(areaId, areaCallBack);
@@ -158,19 +160,19 @@ function areaCascadeDWR(country,province,city,current,msg,flag){
 function areaCallBack(data){
 	if("" == data){
 		if(current_id == 1){
-			DWRUtil.removeAllOptions(province_id);
-			DWRUtil.removeAllOptions(city_id);
+			getObjByName(province_id).options.length = 0; 
+			getObjByName(city_id).options.length = 0; 
 			getObjByName(province_id).options.add(new Option(area_msg,-1));
 			getObjByName(city_id).options.add(new Option(area_msg,-1));
 		}else if(current_id == 2){
-			DWRUtil.removeAllOptions(city_id);
+			getObjByName(city_id).options.length = 0; 
 			getObjByName(city_id).options.add(new Option(area_msg,-1));
 		}
-		DWRUtil.removeAllOptions(child_Id);
+		getObjByName(child_Id).options.length = 0;
 		getObjByName(child_Id).options.add(new Option(area_msg,-1));
 	}else if(null != data){
 		if(data.length > 0){
-			DWRUtil.removeAllOptions(child_Id);
+			getObjByName(child_Id).options.length = 0;
 			for(var i =0 ;i<data.length;i++){
 				if(i == 0){
 					getObjByName(child_Id).options.add(new Option(area_msg,-1));
@@ -302,7 +304,7 @@ function bacthCallBack(data){
 		for(var i =0 ;i<data.length;i++){
 			if(i == 0){
 				getObjByName(bh_id).options.add(new Option(m,-1));
-				document.all(bh_id).options[i].value = -1;
+				//document.all(bh_id).options[i].value = -1;
 				getObjByName(bh_id).options.add(new Option(data[0][1],data[0][0]));
 			}else{
 				getObjByName(bh_id).options.add(new Option(data[i][1],data[i][0]));

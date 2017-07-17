@@ -99,12 +99,12 @@
     }
     function checkInvalidParms(){
       <#--
-       if (document.getElementById("customerType").value==-1){
-           document.getElementById("customerType").value='';
+       if (getObjByName("customerType").value==-1){
+           getObjByName("customerType").value='';
        }
        -->
-       if (document.getElementById("industry").value==-1){
-           document.getElementById("industry").value='';
+       if (getObjByName("industry").value==-1){
+           getObjByName("industry").value='';
        }
        if (getObjByName('advisory.isNoBack1').checked) {
        		getObjByName('isNoB').value=true;

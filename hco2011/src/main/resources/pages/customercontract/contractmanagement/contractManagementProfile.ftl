@@ -22,6 +22,7 @@
 <@htmlPage title="${action.getText('contractManagementAction.edit')}">
 <@ww.form name="'listForm'" action="'saveContractManagementAction'" method="'post'">
 	<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
+	<@ww.hidden name="'contractManagement.isSaved'" value="''"/>
 	<@ww.token name="saveContractManagementActionToken"/>
 	<#if contractManagement.id?exists>
 		<@ww.hidden name="'contractManagement.id'" value="#{contractManagement.id?if_exists}"/>
@@ -85,7 +86,21 @@
 			</td>
 		</tr>
 		<tr>
-			<@textfield  label="${action.getText('contractManagement.address')}" name="contractManagement.address" value="${contractManagement.address?if_exists}" required="true"/>
+			<#-- 以下td为添加内容(项目名称) -->
+			<td align="right" valign="top">
+				<span class="required">*</span>
+	       		<label class="label">${action.getText('contractManagement.project.name')}:</label>
+	     	</td>
+			<td>
+			<#if contractManagement.project?exists>
+			<input type="text" id="projectName" name="projectName" class="underline"  value="${contractManagement.project.name?if_exists}" maxlength="140" size="20" disabled="true"/>
+			<#else>
+			<input type="text" id="projectName"  name="projectName" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+			</#if>
+			<a onClick="projectName_OpenDialog();">
+					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+			</a>
+			</td>
 	     	<#--  
 			<@text2 label="${action.getText('contractManagement.address')}" name="contractManagement.address" value="${contractManagement.address?if_exists}" required="true" ></@text2>
 			-->
@@ -103,21 +118,8 @@
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
 				</a>
 			</td>
-			<#-- 以下td为添加内容(项目名称) -->
-			<td align="right" valign="top">
-				<span class="required">*</span>
-	       		<label class="label">${action.getText('contractManagement.project.name')}:</label>
-	     	</td>
-			<td>
-			<#if contractManagement.project?exists>
-			<input type="text" id="projectName" name="projectName" class="underline"  value="${contractManagement.project.name?if_exists}" maxlength="140" size="20" disabled="true"/>
-			<#else>
-			<input type="text" id="projectName"  name="projectName" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
-			</#if>
-			<a onClick="projectName_OpenDialog();">
-					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
-			</a>
-			</td>
+			
+			<@textfield  label="${action.getText('contractManagement.address')}" name="contractManagement.address" value="${contractManagement.address?if_exists}" required="true"/>
 		</tr>
 		<tr>
 			<@textfield id="telephone" label="${action.getText('contractManagement.telephone')}" maxlength="15"  name="contractManagement.telephone"  value="${contractManagement.telephone?if_exists}"  required="true" anothername="checkTelephone" readonly="false"/>
@@ -238,7 +240,16 @@
 		</@inputTable>
 	<@buttonBar>
 		<#if !(action.isReadOnly())>
-			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
+		
+			<#-- 
+			<#if contractManagement.isSaved?exists &&contractManagement.isSaved=='0' >
+		    	<@vsubmit name="'submit'" value="'${action.getText('提交')}'" onclick="'return submitt();'"/>
+		    <#else>
+		    	<@vsubmit name="'submit'" value="'${action.getText('提交')}'" onclick="'return submitt();'" disabled="true"/>
+		    </#if>
+			 -->
+			 
 		</#if>
 		<#-- 继续新建按钮   -->
 		<#if contractManagement.id?exists>
@@ -327,88 +338,98 @@ function instiChange(){
 			getObjByName("deparmentid").value=(result[4]);
 		}
 	}
-		<#-- 提交验证-->
-		function storeValidation(){
-			if(!textfieldCheck_checkcontractName()){
-				getObjByName("contractName").focus();
-				return false;
-			}
-			if(getObjByName("customerInfoid").value==""){
-				alert("${action.getText('validation.customerInfoid')}");
-				return false;
-			}
-			
-			if(getObjByName('contractManagement.address').value==""){
-	       		alert("${action.getText('validation.contractManagement.address')}");
-		        getObjByName('contractManagement.address').focus();
-				return false;
-			}
-			if(getObjByName("linkmanid").value==""){
-				alert("${action.getText('validation.linkmanid')}");
-				return false;
-			}
-			if(getObjByName("projectid").value==""){
-				alert("${action.getText('validation.projectid')}");
-				return false;
-			}
-			if(getObjByName("telephone").value==""){
-	       		alert("${action.getText('validation.telephone')}");
-		        getObjByName('contractManagement.telephone').focus();
-				return false;
-			}
-			if(getObjByName("salemanid").value==""){
-				alert("${action.getText('validation.salemanid')}");
-				return false;
-			}
-			if(!dateCheckPicker(true,'contractManagement.ciemdinghTime','${action.getText('validation.ciemdinghTime')}','%Y-%m-%d')){
-				return false;
-			}
-			if(!dateCheckPicker(true,'contractManagement.startTime','${action.getText('validation.startTime')}','%Y-%m-%d')){
-				return false;
-			}	
-			if(!dateCheckPicker(true,'contractManagement.endTime','${action.getText('validation.endTime')}','%Y-%m-%d')){
-				return false;
-			}	
-			//验证开始日期是否大于终止时间
-			var star = getObjByName('contractManagement.startTime').value;
-			var end = getObjByName('contractManagement.endTime').value;
-			if(isDateLessThenOldDate(star,end)){
-				alert('${action.getText('validation.time.error')}');
-				getObjByName('contractManagement.endTime').focus();
-				return false;
-			}
-			
-			if(!selectCheck_selectMoneyType()){
-				getObjByName('moneyType.id').focus();
-		  	    return false;
-			}
-	        if(getObjByName("sum").value==""){
-	       		alert("${action.getText('validation.contractMoney1')}");
-		        getObjByName('contractManagement.contractMoney').focus();
-				return false;
-			}
-			if(!isDoubleNumber("sum")){
-				alert("${action.getText('validation.contractMoney2')}");
-				getObjByName("sum").focus();
-				return false;
-			}
-			if(!isDoubleNumber("paidMoney")){
-				alert("${action.getText('validation.paidMoney')}");
-				getObjByName("paidMoney").focus();
-				return false;
-			}
-			if(getObjByName("contractContent").value==""){
-				alert("${action.getText('validation.contractContent')}");
-				getObjByName("contractContent").focus();
-				return false;
-			}
-			if(!textareaCheck_contractContent()){
-				getObjByName("contractContent").focus();
-				return false;
-			}
-			
-			return true;
+	<#-- 提交验证-->
+	function storeValidation(){
+		if(!textfieldCheck_checkcontractName()){
+			getObjByName("contractName").focus();
+			return false;
 		}
+		if(getObjByName("customerInfoid").value==""){
+			alert("${action.getText('validation.customerInfoid')}");
+			return false;
+		}
+		
+		if(getObjByName('contractManagement.address').value==""){
+       		alert("${action.getText('validation.contractManagement.address')}");
+	        getObjByName('contractManagement.address').focus();
+			return false;
+		}
+		if(getObjByName("linkmanid").value==""){
+			alert("${action.getText('validation.linkmanid')}");
+			return false;
+		}
+		if(getObjByName("projectid").value==""){
+			alert("${action.getText('validation.projectid')}");
+			return false;
+		}
+		if(getObjByName("telephone").value==""){
+       		alert("${action.getText('validation.telephone')}");
+	        getObjByName('contractManagement.telephone').focus();
+			return false;
+		}
+		if(getObjByName("salemanid").value==""){
+			alert("${action.getText('validation.salemanid')}");
+			return false;
+		}
+		if(!dateCheckPicker(true,'contractManagement.ciemdinghTime','${action.getText('validation.ciemdinghTime')}','%Y-%m-%d')){
+			return false;
+		}
+		if(!dateCheckPicker(true,'contractManagement.startTime','${action.getText('validation.startTime')}','%Y-%m-%d')){
+			return false;
+		}	
+		if(!dateCheckPicker(true,'contractManagement.endTime','${action.getText('validation.endTime')}','%Y-%m-%d')){
+			return false;
+		}	
+		//验证开始日期是否大于终止时间
+		var star = getObjByName('contractManagement.startTime').value;
+		var end = getObjByName('contractManagement.endTime').value;
+		if(isDateLessThenOldDate(star,end)){
+			alert('${action.getText('validation.time.error')}');
+			getObjByName('contractManagement.endTime').focus();
+			return false;
+		}
+		
+		if(!selectCheck_selectMoneyType()){
+			getObjByName('moneyType.id').focus();
+	  	    return false;
+		}
+        if(getObjByName("sum").value==""){
+       		alert("${action.getText('validation.contractMoney1')}");
+	        getObjByName('contractManagement.contractMoney').focus();
+			return false;
+		}
+		if(!isDoubleNumber("sum")){
+			alert("${action.getText('validation.contractMoney2')}");
+			getObjByName("sum").focus();
+			return false;
+		}
+		if(!isDoubleNumber("paidMoney")){
+			alert("${action.getText('validation.paidMoney')}");
+			getObjByName("paidMoney").focus();
+			return false;
+		}
+		if(getObjByName("contractContent").value==""){
+			alert("${action.getText('validation.contractContent')}");
+			getObjByName("contractContent").focus();
+			return false;
+		}
+		if(!textareaCheck_contractContent()){
+			getObjByName("contractContent").focus();
+			return false;
+		}
+		return true;
+	}
+	//提交
+	function submitt(){
+		getObjByName("contractManagement.isSaved").value = 1;
+		return storeValidation();
+	}
+	//保存
+	function savee(){
+		getObjByName("contractManagement.isSaved").value = 0;
+		return storeValidation();
+	}
+		
 	getObjByName(function(){
 	
 		<#if contractManagement.contractType?exists>
@@ -447,6 +468,24 @@ function instiChange(){
 	<li>
 		<a id="productInfo" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/productList/listProductList.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('产品明细')}</a>
 	</li>
+	<li>
+		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
+	</li>
+	<li>
+		<a id="additionalInfo" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/editContractAdditionalInfo.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附加信息')}</a>
+	</li>
+	<li>
+		<a id="returnPlan" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listReturnPlanByCustomerAction.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('回款计划')}</a>
+	</li>
+	<li>
+		<a id="financialManagement" onclick="activeTab(this);"  href='${req.contextPath}/financialManagement/listFinancialManagementTab.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('收款单')}</a>
+	</li>
+	<li>
+		<a id="billingRecord" onclick="activeTab(this);"  href='${req.contextPath}/contractManagement/listBillingRecordByCustomerAction.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('开票记录')}</a>
+	</li>
+	<li>
+		<a id="changeToHistory" onclick="activeTab(this);" href='${req.contextPath}/customerRelationship/listContactToHistory.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('变更历史')}</a>
+	</li>
 </ul>
-<iframe name="frame" frameborder="0.5" src="${req.contextPath}/productList/listProductList.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="100%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/productList/listProductList.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="50%"/>
 </#if>

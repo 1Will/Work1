@@ -100,6 +100,7 @@
 		
 		<input type="button" value="${action.getText('close')}"  onclick="closeThis();">
     </@buttonBar>
+    
 
 </@ww.form>
 

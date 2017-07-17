@@ -115,6 +115,20 @@
 			disabled="false">
 		</@ww.select>
 	<!---->
+	
+	<td align="right">
+			<laber class="label">告警状态:</laber>
+			</td>
+			<td align="left">
+				<select id="customerInfo.state" name="customerInfo.state">
+    				<option value="">所有</option>
+    				<option value="正常状态">正常状态</option>
+    				<option value="初步告警">初步告警</option>
+    				<option value="中度告警">中度告警</option>
+    				<option value="高度告警">高度告警</option>
+    				<option value="严重告警">严重告警</option>
+				</select>
+			</td>
 	</tr>
 	<tr>
 	<!--仅查询失效-->

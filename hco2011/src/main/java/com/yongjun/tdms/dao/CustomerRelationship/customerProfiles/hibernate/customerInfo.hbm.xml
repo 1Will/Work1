@@ -119,6 +119,9 @@
         <many-to-one name="customerType" class="com.yongjun.pluto.model.codevalue.CodeValue">
 			<column name="CUSTOMER_TYPE" not-null="false"/>
 		</many-to-one>
+		<many-to-one name="classification" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="classification" not-null="false"/>
+		</many-to-one>
 		<many-to-one name="step" class="com.yongjun.pluto.model.codevalue.CodeValue">
 			<column name="STEP" not-null="false"/>
 		</many-to-one>

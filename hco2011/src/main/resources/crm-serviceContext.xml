@@ -25,6 +25,7 @@
 			<tx:method name="unread*" propagation="REQUIRED"/>
 			<!-- 配置启动工作流事物  -->
 			<tx:method name="start*" propagation="REQUIRED"/>
+			<tx:method name="sav*" propagation="REQUIRED"/>
 			<!-- 其他操作事物 -->
 			<tx:method name="*" read-only="true"/>
 		</tx:attributes>
@@ -247,6 +248,9 @@
 				</constructor-arg>
 				<constructor-arg index="2">
 					<ref bean="userManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="contactArchivesDao" />
 				</constructor-arg>
 			</bean>
 		</property>
@@ -816,6 +820,17 @@
 			<bean class="com.yongjun.tdms.service.COM.contractCustomer.pojo.DefaultContractCustomer">
 				<constructor-arg index="0">
 					<ref bean="contractCustomerDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 合同附加-->
+	<bean id="contractAdditionInfoManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.service.customercontract.contractmanagement.additionInfo.pojo.DefaultContractAdditionInfoManager">
+				<constructor-arg index="0">
+					<ref bean="contactAdditionalInfoDao" />
 				</constructor-arg>
 			</bean>
 		</property>

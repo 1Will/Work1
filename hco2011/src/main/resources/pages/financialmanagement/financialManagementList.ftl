@@ -46,17 +46,18 @@
 				<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('contractManagement.code')}" property="contractManagement.code" sortable="desc">
-            <@vlh.attribute name="width" value="11%" />
+            <@vlh.attribute name="width" value="8%" />
             	<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('financialManagement.contractManagement')}" property="contractManagement.contractName" sortable="desc">
+            	<@vlh.attribute name="width" value="12%" />
             	<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('customerInfo.code')}" property="customerInfo.code" sortable="desc">
-            <@vlh.attribute name="width" value="11%" />
      			<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('financialManagement.customerInfo')}" property="customerInfo.name" sortable="desc">
+     			<@vlh.attribute name="width" value="10%" />
      			<@alignLeft/>
             </@vcolumn>
              <@vcolumn title="${action.getText('financialManagement.saleman')}" property="saleman.name" sortable="desc">
@@ -91,7 +92,7 @@
             	<@alignLeft/>
             </@vcolumn>
               <@vcolumn title="${action.getText('financialManagement.collectionDate')}" property="collectionDate" format="yyyy-MM-dd" sortable="desc">
-              <@vlh.attribute name="width" value="11%" />
+              <@vlh.attribute name="width" value="9%" />
             	<@alignCenter/><#-- attributes="width:110;"-->
             </@vcolumn>
              

@@ -6,7 +6,7 @@
 		<@ww.token name="searchReturnPlanToken"/>
         <@list title="" 
             includeParameters="contractManagement.code|returnPlan.contractManagement|returnPlan.paytime_start|returnPlan.paytime_end
-            |returnPlan.planDate_start|returnPlan.planDate_end|customerInfo.code|customerInfo.name|readOnly|onlyInvalid|onlyValid|customerInfo.id|contactArchives.id|" 
+            |returnPlan.planDate_start|returnPlan.planDate_end|customerInfo.code|customerInfo.name|contractManagement.id|readOnly|onlyInvalid|onlyValid|customerInfo.id|contactArchives.id|" 
         	fieldMap="like:,date:" >
             <@vcolumn title="${action.getText('contractManagement.code')}" property="contractManagement.code" sortable="desc">
                 <a href="javascript:contract_OpenDialog('#{object.id}')">${object.contractManagement.code}</a>
@@ -76,6 +76,11 @@
      			<@alignLeft/>
             </@vcolumn>
         </@list>
+        <#if req.getParameter('contractManagement.id')?exists>
+		    <@buttonBar>
+		    <@vbutton class="button" value="${action.getText('new')}" onclick="openReturnPlan()"/>
+			</@buttonBar>
+	 	</#if>
     </@ww.form>
 </@framePage>
 <script language="javascript">
@@ -83,5 +88,10 @@
 			 var url = "${req.contextPath}/contractManagement/editReturnPlan.html?returnPlan.id="+id+"&readOnly=${req.getParameter('readOnly')?if_exists}&popWindowFlag=popWindowFlag";
 	  		 //popupModalDialog(url, 800, 600);
 	  		 openNewWindow(url);
+	 }
+	 
+	 function openReturnPlan(){
+	 	url="${req.contextPath}/contractManagement/editReturnPlan.html?contractManagement.id=${req.getParameter('contractManagement.id')?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}&popWindowFlag=popWindowFlag";
+	 	openNewWindow(url);
 	 }
 </script>

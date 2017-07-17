@@ -41,5 +41,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mssqlserver.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/msutil.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/sqljdbc4.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jtds-1.2.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

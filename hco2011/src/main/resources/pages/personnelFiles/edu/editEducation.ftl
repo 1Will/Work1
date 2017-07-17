@@ -90,7 +90,7 @@
          	 <#if !(action.isReadOnly())>
 	        	<@vsubmit value="'${action.getText('save')}'" onclick ="'return checkField()'"/>
 	         </#if>
-	         <@vbutton value="${action.getText('close')}" onclick="window.close()"/>
+	         <@vbutton value="${action.getText('close')}" onclick="closeThis()"/>
          </@buttonBar>	
      </@ww.form>
 </@htmlPage>

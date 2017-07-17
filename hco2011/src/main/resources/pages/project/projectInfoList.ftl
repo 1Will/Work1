@@ -13,6 +13,7 @@
 			</#if>
 			</#if>
         </@buttonBar>
+        <#assign returnName='replaceWord'>
         <@list title="${action.getText('projectInfoList')}" 
         includeParameters="code|name|customer.name|customer.id|contact.name|controller.name|state.id|readOnly|onlyInvalid|onlyValid" 
         fieldMap="like:code|name|customer.name|contact.name|controller.name" >
@@ -63,6 +64,17 @@
             <@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('outline')}" property="outline" sortable="desc"  >
+            
+            <#assign returnName=returnName +'replaceWord'>
+             <@ww.hidden name="'${returnName}'" value="'${object.outline?if_exists}'"/>
+	            <span title="${object.outline?if_exists}">
+		            <script>
+		            	var s = getObjByName('${returnName}').value;
+		            	s=s.replace(/[\r\n]/g, "");
+		            	document.write(s.slice(0,18)+"...");
+		            </script>
+	            </span>
+            
             <@alignLeft />
             </@vcolumn>
             <@vcolumn title="${action.getText('state.name')}" property="state.name" sortable="desc"  >

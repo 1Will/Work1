@@ -51,7 +51,7 @@
    		 <#if !(action.isReadOnly())>
 		 	<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return validate();'"/>
 		 </#if>
-	     <@vbutton class="button"  value="${action.getText('close')}" onclick="returnBack();"/>
+	     <@vbutton class="button"  value="${action.getText('close')}" onclick="closeThis();"/>
    </@buttonBar>
    </@ww.form>
 </@htmlPage>

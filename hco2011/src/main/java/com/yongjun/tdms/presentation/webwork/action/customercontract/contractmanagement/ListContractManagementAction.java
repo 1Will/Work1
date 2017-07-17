@@ -4,28 +4,32 @@
 /*     */ import com.yongjun.pluto.model.codevalue.CodeValue;
 /*     */ import com.yongjun.pluto.service.codevalue.CodeValueManager;
 /*     */ import com.yongjun.pluto.webwork.action.valuelist.ValueListAction;
+import com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactToHistory;
 import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo;
 /*     */ import com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement;
+import com.yongjun.tdms.service.CustomerRelationship.contactArchives.ContactToHistoryManager;
 /*     */ import com.yongjun.tdms.service.customercontract.contractmanagement.ContractManagementManager;
 
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.List;
 /*     */ import java.util.Map;
 
-/*     */ import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 /*     */ 
 /*     */ public class ListContractManagementAction extends ValueListAction
 /*     */ {
 /*     */   private static final long serialVersionUID = 1L;
 /*     */   private final ContractManagementManager contractManagementManager;
+			private final ContactToHistoryManager contactToHistoryManager;
 /*     */   private final CodeValueManager codeValueManager;
 /*  56 */   private List<ContractManagement> contractManagements = null;
 			private Long customerInfoId;
 /*     */ 
-/*     */   public ListContractManagementAction(ContractManagementManager contractManagementManager, CodeValueManager codeValueManager)
+/*     */   public ListContractManagementAction(ContractManagementManager contractManagementManager, CodeValueManager codeValueManager,ContactToHistoryManager contactToHistoryManager)
 /*     */   {
 /*  65 */     this.contractManagementManager = contractManagementManager;
 /*  66 */     this.codeValueManager = codeValueManager;
+/*  66 */     this.contactToHistoryManager = contactToHistoryManager;
 /*     */   }
 /*     */ 
 /*     */   public void prepare()
@@ -80,10 +84,16 @@ import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo
 /*     */   {
 /*     */     try
 /*     */     {
+				for(int i=0;i<this.contractManagements.size();i++){
+					List<ContactToHistory> contactToHistorys =this.contactToHistoryManager.loadByKey("contractManagement.id", this.contractManagements.get(i).getId());
+					if(contactToHistorys!=null){
+						this.contactToHistoryManager.deleteAllContactToHistory(contactToHistorys);
+					}
+				}
 /* 141 */       this.contractManagementManager.deleteAllContractManagement(this.contractManagements);
 /* 142 */       addActionMessage(getText("contractManagement.delete.success"));
 /* 143 */       return "success";
-/*     */     } catch (RuntimeException e) {
+/*     */     } catch (DaoException e) {
 /* 145 */       addActionMessage(getText("contractManagement.delete.error"));
 /* 146 */     }return "error";
 /*     */   }
@@ -92,6 +102,7 @@ import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo
 /*     */   {
 /*     */     try
 /*     */     {
+				
 /* 157 */       this.contractManagementManager.disabledAllContractManagement(this.contractManagements);
 /* 158 */       addActionMessage(getText("contractManagement.disabled.success"));
 /* 159 */       return "success";

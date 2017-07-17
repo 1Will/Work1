@@ -28,7 +28,7 @@
 	  <script language="javascript" type="text/javascript">
 	    //确认选择的用户组或用户
 	    function confirmRecevicer() {
-	      var selectedRecevicers = document.getElementById("selectedRecevicers").value;
+	      var selectedRecevicers = getObjByName("selectedRecevicers").value;
 	      if (selectedRecevicers == "") {
 	        window.close();
 	      } else {
@@ -39,8 +39,8 @@
 	    }
 		
 		function resetRecevices() {
-		  document.getElementById("selectedRecevicers").value = "";
-		  document.getElementById("recevicers").value = "";
+		  getObjByName("selectedRecevicers").value = "";
+		  getObjByName("recevicers").value = "";
 		  tagObj = parent.frames["mainFrame"].document.getElementsByTagName("input");    //获取mainFrame页面所有input对象
 		  for (i=0; i<tagObj.length; i++) {
 		    if (tagObj[i].type=='checkbox') {      //判断是否为checkbox对象

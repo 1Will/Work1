@@ -83,7 +83,7 @@
 		<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
 		</#if>
-		<@vbutton class="button" value="${action.getText('close')}" onclick="window.close();"/>
+		<@vbutton class="button" value="${action.getText('close')}" onclick="closeThis();"/>
     </@buttonBar>
 </@ww.form>
 <script language="JavaScript" type="text/JavaScript"> 
@@ -97,42 +97,42 @@
 	}
 	<#-- 提交验证-->
 	function storeValidation(){
-		if(jgetObjByName("#productid").val()==""){
+		if(getObjByName("productid").value==""){
 			alert("${action.getText('validation.productid')}");
 		    return false;
 		}
 		if(!isNumber("count")){
 			alert("${action.getText('validation.count')}");
-			jgetObjByName("#count").focus();
+			getObjByName("count").focus();
 			return false;
 		}
 		if(!isDoubleNumber("unitPrice")){
 			alert("${action.getText('validation.unitPrice')}");
-			jgetObjByName("#unitPrice").focus();
+			getObjByName("unitPrice").focus();
 			return false;
 		}
 		if(!isDoubleNumber("discount")){
 			alert("${action.getText('validation.discount0')}");
-			jgetObjByName("#discount").focus();
+			getObjByName("discount").focus();
 			return false;
 		}
-		if(parseInt(jgetObjByName("#count").val())<=0){
+		if(parseInt(getObjByName("count").value)<=0){
 			alert("${action.getText('validation.count')}");
-			jgetObjByName("#count").focus();
+			getObjByName("count").focus();
 			return false;
 		}
-		if(parseInt(jgetObjByName("#unitPrice").val())<=0){
+		if(parseInt(getObjByName("unitPrice").value)<=0){
 			alert("${action.getText('validation.unitPrice')}");
-			jgetObjByName("#unitPrice").focus();
+			getObjByName("unitPrice").focus();
 			return false;
 		}
 		
 		if(getObjByName('productList.discount').value<0 || getObjByName('productList.discount').value>100){
 			alert("${action.getText('validation.discount1')}");
-			jgetObjByName("#discount").focus();
+			getObjByName("discount").focus();
 			return false;
 		}else{
-			jgetObjByName("#totalPrice").val(jgetObjByName("#count").val()*jgetObjByName("#unitPrice").val()*(jgetObjByName("#discount").val()/100));
+			getObjByName("totalPrice").value = getObjByName("count").value * (getObjByName("unitPrice").value) * (getObjByName("discount").value/100);
 		}	
 		
 		<#--if(!isDoubleNumber("totalPrice")){

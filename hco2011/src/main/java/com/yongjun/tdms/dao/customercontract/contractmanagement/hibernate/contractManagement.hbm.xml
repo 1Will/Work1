@@ -76,6 +76,10 @@
 	    <property name="contractMoney" type="double">
             <column name="CONTRACTMONEY" />
         </property>
+        <property name="isSaved" type="string">
+			<column name="isSaved" sql-type="NVARCHAR(1)"/>
+		</property>
+        
         <property name="paidMoney" type="double">
 			<column name="PAIDMONEY" />
 		</property>

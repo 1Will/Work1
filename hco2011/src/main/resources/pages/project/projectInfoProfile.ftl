@@ -38,13 +38,7 @@
      <tr>
 	    <!--项目编码-->
 	    <@ww.textfield label="'${action.getText('code')}'" name="'projectInfo.code'" value="'${projectInfo.code?if_exists}'" cssClass="'underline'" readonly="true" disabled="true" />
-	   <!--项目名称-->
-	    <@ww.textfield label="'${action.getText('name')}'" name="'projectInfo.name'" value="'${projectInfo.name?if_exists}'" cssClass="'underline'" required="true" />
-	    
-	   
-    </tr>
-    <tr>
-	    <!--客户名称-->
+	     <!--客户名称-->
 	    <td align="right" valign="top">
 	       		<span class="required">*</span>
 	       		<label class="label">${action.getText('projectInfo.customerInfoName')}:</label>
@@ -60,6 +54,10 @@
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
 				</a>
 			</td>
+    </tr>
+    <tr>
+		   	<!--项目名称-->
+		    <@ww.textfield label="'${action.getText('name')}'" name="'projectInfo.name'" value="'${projectInfo.name?if_exists}'" cssClass="'underline'" required="true" />
 			<!--联系人-->
 			<td align="right" valign="top">
 	       		<span class="required">*</span>
@@ -154,7 +152,7 @@
     </@inputTable>
     <@buttonBar>
     	<#if !(action.isReadOnly())>
-			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 		</#if>
 		
 		<#if projectInfo.isSaved?exists &&projectInfo.isSaved=='0' >
@@ -245,7 +243,7 @@
 	//保存前给隐藏域赋值和验证字段
 	function storeValidation(){
 	/* 验证项目名称*/
-	if('' == getObjByName('projectInfo.name').value){
+		if('' == getObjByName('projectInfo.name').value){
 			alert("${action.getText('name.required')}");
      		return false;
 		}
@@ -265,47 +263,22 @@
      		return false;
 		}
 		/* 验证项目概要 */
-     		if(''!= getObjByName('projectInfo.outline').value&&!isValidLengthValue(getObjByName('projectInfo.outline').value,0,500)){
-     			alert("${action.getText('outline.maxLength')}");
-     			getObjByName('projectInfo.outline').value="";
-     			getObjByName('projectInfo.outline').focus();
-     			return false;
-     		}
-     	getObjByName('saveProjectInfo_projectInfo.isSaved').value= 0 ;
+ 		if(''!= getObjByName('projectInfo.outline').value&&!isValidLengthValue(getObjByName('projectInfo.outline').value,0,500)){
+ 			alert("${action.getText('outline.maxLength')}");
+ 			getObjByName('projectInfo.outline').value="";
+ 			getObjByName('projectInfo.outline').focus();
+ 			return false;
+ 		}
 		return true;
 	}
-	//提交前给隐藏域赋值和验证字段
+	
+	function savee(){
+     	getObjByName('saveProjectInfo_projectInfo.isSaved').value=0;
+		return storeValidation();
+	}
 	function submitt(){
-	/* 验证项目名称*/
-	if('' == getObjByName('projectInfo.name').value){
-			alert("${action.getText('name.required')}");
-     		return false;
-		}
-		/* 验证客户名称*/
-		if('' == getObjByName('customer.name').value){
-			alert("${action.getText('customer.name.required')}");
-     		return false;
-		}
-		/* 验证项目联系人*/
-		if('' == getObjByName('contact.name').value){
-			alert("${action.getText('contact.name.required')}");
-     		return false;
-		}
-		/* 验证项目负责人*/
-		if('' == getObjByName('controller.name').value){
-			alert("${action.getText('controller.name.required')}");
-     		return false;
-		}
-		/* 验证项目概要 */
-     		if(''!= getObjByName('projectInfo.outline').value&&!isValidLengthValue(getObjByName('projectInfo.outline').value,0,500)){
-     			alert("${action.getText('outline.maxLength')}");
-     			getObjByName('projectInfo.outline').value="";
-     			getObjByName('projectInfo.outline').focus();
-     			return false;
-     		}
-     	
      	getObjByName('saveProjectInfo_projectInfo.isSaved').value=1;
-		return true;
+		return storeValidation();
 	}
 	
 </script>
@@ -313,10 +286,10 @@
 <#if projectInfo.id?exists>
 <ul id="beautytab">
 	<li>
-		<a id="contactArchives" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/projectInfo/listProCon.html?projectInfo.id=#{projectInfo.id}&customerInfo.id=#{projectInfo.customer.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.contactArchives')}</a>
+		<a id="contactArchives" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProCon.html?projectInfo.id=#{projectInfo.id}&customerInfo.id=#{projectInfo.customer.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.contactArchives')}</a>
 	</li>
 	<li>
-		<a id="contactArchives" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProPer.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.personnelFiles')}</a>
+		<a id="projectPer" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProPer.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.personnelFiles')}</a>
 	</li>
 	<li>
 		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >附件资料</a>

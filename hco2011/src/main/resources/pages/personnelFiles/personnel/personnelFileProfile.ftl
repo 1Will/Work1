@@ -60,7 +60,7 @@
 						flag="true">
 				</@datePickerRanger>
             	<!--身份证号-->
-            	<@textfield label="${action.getText('personnel.idNumber')}" type="IDCARD" name="personnelFile.idNumber" value="${personnelFile.idNumber?if_exists}"  required="true" anothername="idNumber" maxlength="20"/>	
+            	<@textfield label="${action.getText('personnel.idNumber')}" type="IDCARD" name="personnelFile.idNumber" value="${personnelFile.idNumber?if_exists}"  anothername="idNumber" maxlength="20"/>	
             	
             </tr>
             <tr>
@@ -305,6 +305,40 @@
 <script>
   //验证各属性是否必填、格式
   function validate(){
+  //姓名
+		if(!textfieldCheck_name()){
+			getObjByName('personnelFile.name').focus();
+			return false;
+		}
+		//出生日期
+		if(!dateCheck_birthday()){
+			getObjByName('personnelFile.birthday').focus();
+			return false;
+		}
+		//身份证号
+		//if(!textfieldCheck_idNumber()){
+			//getObjByName('personnelFile.idNumber').focus();
+			//return false;
+		//}
+		//籍贯
+		if(!selectCheck_birthplace()){
+		    return false;
+		}
+		//政治面貌
+		if(!selectCheck_politice()){
+		    return false;
+		}
+		
+		//手机
+		if(!textfieldCheck_mobile()){
+			getObjByName('personnelFile.mobile').focus();
+			return false;
+		}
+		//Email
+		if(!textfieldCheck_email()){
+			getObjByName('personnelFile.email').focus();
+			return false;
+		} 
   		if(getObjByName('personnelFile.sex').value=="${action.getText('personnel.sex.man')}"){
 			getObjByName('sex').value=false;
 		}else if(getObjByName('personnelFile.sex').value=="${action.getText('personnel.sex.women')}"){
@@ -315,11 +349,7 @@
 	        getObjByName('personnelFile.code').focus();
 			return false;
 		}
-		//姓名
-		if(!textfieldCheck_name()){
-			getObjByName('personnelFile.name').focus();
-			return false;
-		}
+		
 		//档案编码
 		if(!textfieldCheck_fileNo()){
 	        getObjByName('personnelFile.fileNo').focus();
@@ -340,35 +370,7 @@
 			getObjByName('duty.id').focus();
 		    return false;
 		}
-		//身份证号
-		if(!textfieldCheck_idNumber()){
-			getObjByName('personnelFile.idNumber').focus();
-			return false;
-		}
-		//出生日期
-		if(!dateCheck_birthday()){
-			getObjByName('personnelFile.birthday').focus();
-			return false;
-		}
-		//籍贯
-		if(!selectCheck_birthplace()){
-		    return false;
-		}
-		//政治面貌
-		if(!selectCheck_politice()){
-		    return false;
-		}
 		
-		//手机
-		if(!textfieldCheck_mobile()){
-			getObjByName('personnelFile.mobile').focus();
-			return false;
-		}
-		//Email
-		if(!textfieldCheck_email()){
-			getObjByName('personnelFile.email').focus();
-			return false;
-		} 
 		//入职日期
 		if(!dateCheck_entryDate()){
 			getObjByName('personnelFile.entryDate').focus();
@@ -437,7 +439,7 @@
   
   //弹出人事档案查询模态窗体
 	function personnelFile_OpenDialog(){
-	   var url = "${req.contextPath}/personnelFile/listPerson.html?popWindowFlag=popWindowFlag&readOnly="+${req.getParameter('readOnly')?if_exists};
+	   var url = "${req.contextPath}/personnelFile/listPerson.html?popWindowFlag=popWindowFlag&readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandlerPersonnel);
 	 }
 	 //获得模态窗体返回值

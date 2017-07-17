@@ -305,6 +305,7 @@
 				/~province.id: AND customer.province.id = {province.id}~/ 
 				/~city.id: AND customer.city.id = {city.id}~/ 
 				/~step.id: AND customer.step.id = {step.id}~/ 
+				/~customerInfo.state: AND customer.state.name = {customerInfo.state}~/ 
 				/~customerInfo.createdTime: AND convert(varchar,customer.createdTime,120) like {customerInfo.createdTime} ~/ 
 				/~industry.id: AND customer.industry.id = {industry.id}~/ 
 				/~companyNature.id: AND customer.companyNature.id = {companyNature.id}~/ 
@@ -398,8 +399,11 @@
                 /~advisory.id: AND applicationDoc.advisory.id = {advisory.id} ~/
                 /~backVisit.id: AND applicationDoc.backVisit.id = {backVisit.id} ~/
                  /~projectInfo.id: AND applicationDoc.projectInfo.id = {projectInfo.id} ~/
+                 /~products.id: AND applicationDoc.products.id = {products.id} ~/
                 /~supplier.id: AND applicationDoc.supplier.id = {supplier.id} ~/
                 /~contractAdministrator.id: AND applicationDoc.contractAdministrator.id = {contractAdministrator.id} ~/
+                /~contractManagement.id: AND applicationDoc.contractManagement.id = {contractManagement.id} ~/
+                /~financialManagement.id: AND applicationDoc.financialManagement.id = {financialManagement.id} ~/
                 /~id: AND applicationDoc.id = {id} ~/
                 /~sortColumn: ORDER BY applicationDoc.[sortColumn] [sortDirection] ~/
                 ]]>
@@ -625,7 +629,7 @@
 	</bean>
 	
 	<!-- 教育背景 -->
-	<bean id="education" parent="abstractHibernate20Adapter">
+	<bean id="getEducation" parent="abstractHibernate20Adapter">
 		<property name="hql">
 			<value>
 				<![CDATA[
@@ -690,6 +694,7 @@
 				<![CDATA[
 				FROM ContactToHistory AS w WHERE 1=1 
 				/~cr.id: AND w.contactArchivesId.id={cr.id} ~/ 
+				/~contractManagement.id: AND w.contractManagement.id={contractManagement.id} ~/ 
 				/~sortColumn: ORDER BY w.[sortColumn] [sortDirection] ~/
 			 ]]>
 			</value>
@@ -1458,6 +1463,7 @@
                 /~onlyInvalid: AND r.disabled=true ~/
                 /~onlyValid: AND r.disabled=false ~/
                 /~customerInfo.id: AND r.customerInfo.id LIKE {customerInfo.id} ~/
+                /~contractManagement.id: AND r.contractManagement.id = {contractManagement.id} ~/
                 /~contractManagement.code: AND r.contractManagement.code LIKE {contractManagement.code} ~/
                 /~customerInfo.code: AND r.customerInfo.code LIKE {customerInfo.code} ~/
                 /~billingRecord.customerInfo: AND r.customerInfo.name LIKE {billingRecord.customerInfo} ~/
@@ -1481,6 +1487,7 @@
                 /~onlyInvalid: AND r.disabled=true ~/
                 /~onlyValid: AND r.disabled=false ~/
                 /~customerInfo.id: AND r.customerInfo.id = {customerInfo.id} ~/
+                /~contractManagement.id: AND r.contractManagement.id = {contractManagement.id} ~/
                 /~contactArchives.id: AND r.contactArchives.id LIKE {contactArchives.id} ~/
                 /~contractManagement.code: AND r.contractManagement.code LIKE {contractManagement.code} ~/
                 /~returnPlan.contractManagement: AND r.contractManagement.contractName LIKE {returnPlan.contractManagement} ~/
@@ -1531,6 +1538,7 @@
                 /~financialManagement.saleman: AND r.saleman.name LIKE {financialManagement.saleman} ~/
                 /~financialManagement.payee: AND r.payee.name LIKE {financialManagement.payee} ~/
                 /~financialManagement.contractManagement: AND r.contractManagement.contractName LIKE {financialManagement.contractManagement} ~/
+                /~contractManagement.id: AND r.contractManagement.id = {contractManagement.id} ~/
                 /~financialManagement.collectionDate_start: AND r.collectionDate >= {financialManagement.collectionDate_start} ~/
                 /~financialManagement.collectionDate_end: AND r.collectionDate <= {financialManagement.collectionDate_end} ~/
                 /~customerInfo.code: AND r.customerInfo.code LIKE {customerInfo.code} ~/
@@ -1815,7 +1823,7 @@
 			</value>
 		</property>
 	</bean>
-	<bean id="projectInfo" parent="abstractHibernate20Adapter">
+	<bean id="getProjectInfo" parent="abstractHibernate20Adapter">
     	<property name="hql">
             <value>
             	<![CDATA[
@@ -1890,11 +1898,11 @@
     	<property name="hql">
             <value>
             	<![CDATA[
-            		FROM ProjectInfoProduct AS projectInfo
+            		FROM ProjectInfoProduct AS pp
                 	WHERE 1=1
-                	/~onlyInvalid: AND projectInfo.disabled=true ~/
-                	/~onlyValid: AND projectInfo.disabled=false ~/ 
-                	 /~projectInfoId: AND projectInfo.projectInfo.id ={projectInfoId} ~/
+                	/~onlyInvalid: AND pp.disabled=true ~/
+                	/~onlyValid: AND pp.disabled=false ~/ 
+                	 /~projectInfoId: AND pp.projectInfo.id ={projectInfoId} ~/
                 	 
             	 ]]>
             </value>

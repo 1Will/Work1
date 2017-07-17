@@ -19,6 +19,7 @@
 /*     */   private String name;
 /*     */   private String abbreviations;
 /*     */   private CodeValue customerType;
+			private CodeValue classification;
 /*     */   private CodeValue industry;
 /*     */   private CodeValue companyNature;
 /*     */   private String legalPerson;
@@ -505,7 +506,14 @@
 			}
 			public void setNearestBackVisitDate(Date nearestBackVisitDate) {
 				this.nearestBackVisitDate = nearestBackVisitDate;
+			}
+			public CodeValue getClassification() {
+				return classification;
+			}
+			public void setClassification(CodeValue classification) {
+				this.classification = classification;
 			} 
+			
 
 /*     */ }
 

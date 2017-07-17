@@ -19,6 +19,24 @@
         </#if>
         </#if>
         
+        <#if contractManagement?exists>
+        <#if contractManagement.id?exists>
+            <@ww.hidden name="'contractManagement.id'" value="#{contractManagement.id}"/>
+        </#if>
+        </#if>
+        
+        <#if financialManagement?exists>
+        <#if financialManagement.id?exists>
+            <@ww.hidden name="'financialManagement.id'" value="#{financialManagement.id}"/>
+        </#if>
+        </#if>
+        
+        <#if products?exists>
+        <#if products.id?exists>
+            <@ww.hidden name="'products.id'" value="#{products.id}"/>
+        </#if>
+        </#if>
+        
         <#if supplier?exists>
         <#if supplier.id?exists>
             <@ww.hidden name="'supplier.id'" value="#{supplier.id}"/>
@@ -94,9 +112,36 @@ function upload(){
        		</#if>
 		</#if>
 		
+		<#if contractManagement?exists>
+        	<#if contractManagement.id?exists>
+				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?contractManagement.id='+#{contractManagement.id};
+       			//popupModalDialog(url,750,500);
+       			openNewWindow(url);
+				if(isIE()){self.location.reload();};
+       		</#if>
+		</#if>
+		
+		<#if financialManagement?exists>
+        	<#if financialManagement.id?exists>
+				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?financialManagement.id='+#{financialManagement.id};
+       			//popupModalDialog(url,750,500);
+       			openNewWindow(url);
+				if(isIE()){self.location.reload();};
+       		</#if>
+		</#if>
+		
+		<#if products?exists>
+        	<#if products.id?exists>
+				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?products.id='+#{products.id};
+       			//popupModalDialog(url,750,500);
+       			openNewWindow(url);
+				if(isIE()){self.location.reload();};
+       		</#if>
+		</#if>
+		
 		<#if supplier?exists>
         <#if supplier.id?exists>
-			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?supplier.id='+#{supplier.id};
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?supplier.id=#{supplier.id}';
 			//popupModalDialog(url,750,500);
 			openNewWindow(url);
 			if(isIE()){self.location.reload();};
@@ -151,6 +196,33 @@ function uploadEdit(id){
 		<#if contractAdministrator?exists>
 		<#if contractAdministrator.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?contractAdministrator.id='+#{contractAdministrator.id}+'&applicationDoc.id='+id;
+			//popupModalDialog(url,750,500);
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
+		</#if>
+		</#if>
+		
+		<#if contractManagement?exists>
+		<#if contractManagement.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?contractManagement.id='+#{contractManagement.id}+'&applicationDoc.id='+id;
+			//popupModalDialog(url,750,500);
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
+		</#if>
+		</#if>
+		
+		<#if financialManagement?exists>
+		<#if financialManagement.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?financialManagement.id='+#{financialManagement.id}+'&applicationDoc.id='+id;
+			//popupModalDialog(url,750,500);
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
+		</#if>
+		</#if>
+		
+		<#if products?exists>
+		<#if products.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?products.id='+#{products.id}+'&applicationDoc.id='+id;
 			//popupModalDialog(url,750,500);
 			openNewWindow(url);
 			if(isIE()){self.location.reload();};

@@ -28,8 +28,8 @@
     </#if>
   }
   function checkInvalidParms() {
-    if (-1 == document.getElementById("department.id").value) {
-		document.getElementById("department.id").value = '';
+    if (-1 == getObjByName("department.id").value) {
+		getObjByName("department.id").value = '';
     }
     return true;
   }

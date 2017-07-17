@@ -140,8 +140,8 @@ function persons_OpenDialog(){
 function creatorSelectorHandler(result) {
 	if (null != result) {
 		getObjByName('point.personnelFiles').value = result[0];
-   		document.getElementById("personnelFiles.name").value = result[2];
-   		document.getElementById("flag").value = 0;
+   		getObjByName("personnelFiles.name").value = result[2];
+   		getObjByName("flag").value = 0;
 	}
 }
 //保存前给隐藏域赋值和验证字段

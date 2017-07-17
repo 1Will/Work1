@@ -113,7 +113,11 @@
 	</tr>
 	<tr>
 		<!--员工人数-->
+		<#if customerInfo.personCount?exists>
 		<@ww.textfield label="'${action.getText('customerInfo.personCount')}'" name="'customerInfo.personCount'" value="'#{customerInfo.personCount?if_exists}'" cssClass="'underline'" />
+		<#else>
+		<@ww.textfield label="'${action.getText('customerInfo.personCount')}'" name="'customerInfo.personCount'" value="''" cssClass="'underline'" />
+		</#if>
 		<!--创立日期-->
 		<@pp.datePicker label="'${action.getText('customerInfo.setupTime')}'" 
 				name="'customerInfo.setupTime'" 
@@ -536,22 +540,21 @@
 			//}
 		//}
 	
-		if(getObjByName('type.id').value==""){
-		    alert('${action.getText('customerInfo.type.not.null')}');
-		    getObjByName('type.id').focus();
-		    return false;
-		}
-		
+		if(getObjByName('companyNature.id').value==""){
+	        alert('${action.getText('customerInfo.companyNature.not.null')}');
+	        getObjByName('companyNature.id').focus();
+	        return false;
+	    }
 	    if(getObjByName('industry.id').value==""){
 	        alert('${action.getText('customerInfo.industry.not.null')}');
 	        getObjByName('industry.id').focus();
 	        return false;
 	    }
-	    if(getObjByName('companyNature.id').value==""){
-	        alert('${action.getText('customerInfo.companyNature.not.null')}');
-	        getObjByName('companyNature.id').focus();
-	        return false;
-	    }
+		if(getObjByName('type.id').value==""){
+		    alert('${action.getText('customerInfo.type.not.null')}');
+		    getObjByName('type.id').focus();
+		    return false;
+		}
 	    if(getObjByName('country.id').value==""){
 	        alert('${action.getText('customerInfo.country.not.null')}');
 	         getObjByName('country.id').focus();
@@ -568,6 +571,19 @@
 	        return false;
 	    }
 	    -->
+	    
+	    if(getObjByName('customerInfo.keyContacter').value==''){
+		    alert('${action.getText('customerInfo.keyContacter.not.null')}');
+		    getObjByName('customerInfo.keyContacter').focus();
+		    return false;
+		 }else{
+		    if(!isValidLength(document.forms[0], "customerInfo.keyContacter", null, 20)){
+				alert("${action.getText('customerInfo.keyContacter.length')}");
+				getObjByName('customerInfo.keyContacter').value="";
+				getObjByName('customerInfo.keyContacter').focus();
+				return false;
+			}
+		}
 
 	    if(getObjByName('customerInfo.legalPerson').value !=''){
 	        if(!isValidLength(document.forms[0], "customerInfo.legalPerson", null, 20)){
@@ -647,6 +663,13 @@
 			getObjByName('customerInfo.effectDescribe').focus();
 			return false;
 		}
+		
+		if(getObjByName('customerInfo.salesman').value==""){
+	        alert('${action.getText('customerInfo.salesman.not.null')}');
+	        return false;
+	    }
+	     
+		
 		<#-- 咨询内容 23 -->
 	    if(getObjByName('customerInfo.advisoryContent').value==""){
 			alert('${action.getText('customerInfo.advisoryContent.not.null')}');
@@ -661,18 +684,7 @@
 				return false;
 			}
 		}
-	    if(getObjByName('customerInfo.keyContacter').value==''){
-		    alert('${action.getText('customerInfo.keyContacter.not.null')}');
-		    getObjByName('customerInfo.keyContacter').focus();
-		    return false;
-		 }else{
-		    if(!isValidLength(document.forms[0], "customerInfo.keyContacter", null, 20)){
-				alert("${action.getText('customerInfo.keyContacter.length')}");
-				getObjByName('customerInfo.keyContacter').value="";
-				getObjByName('customerInfo.keyContacter').focus();
-				return false;
-			}
-		}
+	    
 		<!--zsz 2010.03.23 begin-->
 		if(getObjByName('customerInfo.telphone').value==''){
 	     }else{
@@ -714,11 +726,7 @@
 	        	}
             }
 	     }
-	    if(getObjByName('customerInfo.salesman').value==""){
-	        alert('${action.getText('customerInfo.salesman.not.null')}');
-	        return false;
-	    }
-	     
+
 	     if(getObjByName('customerInfo.qq').value!=""){
      		if(!isValidLength(document.forms[0], "customerInfo.qq", null, 20)){
         		alert('${action.getText('customerInfo.qq.length')}');

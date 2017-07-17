@@ -80,8 +80,18 @@
 		<many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
 			<column name="projectInfo_id" not-null="false" />
 		</many-to-one>
+		<many-to-one name="products" class="com.yongjun.tdms.model.base.products.Products" lazy="false">
+			<column name="products_id" not-null="false" />
+		</many-to-one>
 		<many-to-one name="contractAdministrator" class="com.yongjun.tdms.model.personnelFiles.contractadministrator.ContractAdministrator" lazy="false">
 			<column name="CONTRACTADMINISTRATOR_ID" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="contractManagement" class="com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement" lazy="false">
+			<column name="CONTRACTMANAGEMENT_ID" not-null="false" />
+		</many-to-one>
+		<many-to-one name="financialManagement" class="com.yongjun.tdms.model.financialmanagement.FinancialManagement" lazy="false">
+			<column name="FINANCIALMANAGEMENT_ID" not-null="false" />
 		</many-to-one>
 		<property name="creatorName" type="string">
 			<column name="CREATED_NAME" sql-type="NVARCHAR(50)" />

@@ -5,7 +5,9 @@
 	<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 		<@ww.token name="searchBillingRecordToken"/>
         <@list title="" 
-            includeParameters="contractManagement.code|customerInfo.code|billingRecord.customerInfo|billingRecord.contractManagement|billingRecord.billingTime_start|billingRecord.billingTime_end|billingRecord.code|readOnly|onlyInvalid|onlyValid|customerInfo.id|" 
+            includeParameters="contractManagement.code|customerInfo.code|billingRecord.customerInfo
+            |billingRecord.contractManagement|billingRecord.billingTime_start|billingRecord.billingTime_end
+            |billingRecord.code|contractManagement.id|readOnly|onlyInvalid|onlyValid|customerInfo.id|" 
         	fieldMap="like:" >
             <@vcolumn title="${action.getText('contractManagement.code')}" property="payee" sortable="desc">
 				<a href="javascript:contract_OpenDialog('#{object.id}')">${object.contractManagement.code}</a>

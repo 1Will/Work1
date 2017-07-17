@@ -82,8 +82,8 @@
       </#if>
     }
     function checkInvalidParms(){
-           if (document.getElementById("pt.id").value==-1){
-              document.getElementById("pt.id").value='';
+           if (getObjByName("pt.id").value==-1){
+              getObjByName("pt.id").value='';
            }
           return true;
     }

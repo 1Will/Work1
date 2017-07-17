@@ -73,13 +73,15 @@
 <script language="javascript">
 	function editProductList(v){
       var url='${req.contextPath}/productList/editProductList.html?productList.id='+v+'&contractManagementid='+${req.getParameter('contractManagement.id')?if_exists}+"&readOnly=${req.getParameter('readOnly')?if_exists}";
-      popupModalDialog(url,800,600);
+      //popupModalDialog(url,800,600);
+      openNewWindow(url);
       if(isIE()){self.location.reload();};
 	}
 	 //获得模态窗体返回值
 	function newProductList(){
       var url='${req.contextPath}/productList/editProductList.html?contractManagementid='+${req.getParameter('contractManagement.id')?if_exists};
-      popupModalDialog(url,800,600);
+      //popupModalDialog(url,800,600);
+      openNewWindow(url);
       if(isIE()){self.location.reload();};
 	}
 	function checkInvalidParms(){

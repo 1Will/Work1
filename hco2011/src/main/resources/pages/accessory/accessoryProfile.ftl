@@ -14,18 +14,42 @@
         	<#assign returnUrl=returnUrl + '&advisory.id=#{advisory.id}'/>
         </#if>
         </#if>
+        
         <#if backVisit?exists>
         <#if backVisit.id?exists>
         	<@ww.hidden name="'backVisit.id'" value="#{backVisit.id}"/>
         	<#assign returnUrl=returnUrl + '&backVisit.id=#{backVisit.id}'/>
         </#if>
         </#if>
+        
          <#if projectInfo?exists>
         <#if projectInfo.id?exists>
         	<@ww.hidden name="'projectInfo.id'" value="#{projectInfo.id}"/>
         	<#assign returnUrl=returnUrl + '&projectInfo.id=#{projectInfo.id}'/>
         </#if>
         </#if>
+        
+        <#if contractManagement?exists>
+        <#if contractManagement.id?exists>
+        	<@ww.hidden name="'contractManagement.id'" value="#{contractManagement.id}"/>
+        	<#assign returnUrl=returnUrl + '&contractManagement.id=#{contractManagement.id}'/>
+        </#if>
+        </#if>
+        
+        <#if financialManagement?exists>
+        <#if financialManagement.id?exists>
+        	<@ww.hidden name="'financialManagement.id'" value="#{financialManagement.id}"/>
+        	<#assign returnUrl=returnUrl + '&financialManagement.id=#{financialManagement.id}'/>
+        </#if>
+        </#if>
+        
+        <#if products?exists>
+        <#if products.id?exists>
+        	<@ww.hidden name="'products.id'" value="#{products.id}"/>
+        	<#assign returnUrl=returnUrl + '&products.id=#{products.id}'/>
+        </#if>
+        </#if>
+        
         <#if supplier?exists>
         <#if supplier.id?exists>
         	<@ww.hidden name="'supplier.id'" value="#{supplier.id}"/>

@@ -8,6 +8,7 @@ import java.util.List;
 public abstract interface CustomerInfoManager
 {
   public abstract void storeCustomerInfo(CustomerInfo paramCustomerInfo);
+  public abstract void saveCustomerInfoByImp(List<CustomerInfo> customerInfos);
 
   public abstract CustomerInfo loadCustomerInfo(Long paramLong);
 
