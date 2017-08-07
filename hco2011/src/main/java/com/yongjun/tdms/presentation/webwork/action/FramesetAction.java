@@ -1,6 +1,7 @@
 /*     */ package com.yongjun.tdms.presentation.webwork.action;
 /*     */ 
-/*     */ import com.yongjun.pluto.exception.DaoException;
+/*     */ import com.hp.hpl.sparta.xpath.ThisNodeTest;
+import com.yongjun.pluto.exception.DaoException;
 /*     */ import com.yongjun.pluto.model.security.User;
 /*     */ import com.yongjun.pluto.service.security.UserManager;
 /*     */ import com.yongjun.pluto.webwork.action.BaseAction;
@@ -9,18 +10,29 @@
 /*     */ import com.yongjun.tdms.model.notice.NoticeUtil;
 /*     */ import com.yongjun.tdms.model.notice.ReceviceNotice;
 /*     */ import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
+import com.yongjun.tdms.model.project.projectInfoPlan.ProjectInfoPlan;
 /*     */ import com.yongjun.tdms.model.task.Task;
 /*     */ import com.yongjun.tdms.model.workReport.daily.Daily;
+import com.yongjun.tdms.model.workspace.data.Data;
 /*     */ import com.yongjun.tdms.model.workspace.warnning.WorkWarnning;
 /*     */ import com.yongjun.tdms.service.base.document.ApplicationDocManager;
 /*     */ import com.yongjun.tdms.service.customercontract.contractmanagement.ContractManagementManager;
+import com.yongjun.tdms.service.financialmanagement.FinancialManagementManager;
 /*     */ import com.yongjun.tdms.service.notice.ReceviceNoticeManager;
 /*     */ import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
+import com.yongjun.tdms.service.project.projectInfoPlan.ProjectInfoPlanManager;
 /*     */ import com.yongjun.tdms.service.task.TaskManager;
 /*     */ import com.yongjun.tdms.service.workReport.daily.DailyManager;
+import com.yongjun.tdms.service.workspace.data.DataManager;
 /*     */ import com.yongjun.tdms.service.workspace.warnning.WorkWarnningManager;
+
+import java.text.SimpleDateFormat;
 /*     */ import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 /*     */ import java.util.List;
+
 /*     */ import org.apache.commons.logging.Log;
 /*     */ import org.apache.commons.logging.LogFactory;
 /*     */ 
@@ -36,10 +48,14 @@
 /*     */   private final PersonnelFilesManager personnelFilesManager;
 /*     */   private final ContractManagementManager contractManagementManager;
 /*     */   private final TaskManager taskManager;
+			private final FinancialManagementManager financialManagementManager;
+			private final ProjectInfoPlanManager projectInfoPlanManager;
+			private final DataManager dataManager;
 /*     */   private User user;
 /*     */   private NoticeUtil noticeUtil;
 /*     */ 
-/*     */   public FramesetAction(UserManager userManager, ApplicationDocManager applicationDocManager, WorkWarnningManager workWarnningManager, ReceviceNoticeManager receviceNoticeManager, ContractManagementManager contractManagementManager, TaskManager taskManager, DailyManager dailyManager, PersonnelFilesManager personnelFilesManager)
+/*     */   public FramesetAction(UserManager userManager, ApplicationDocManager applicationDocManager, WorkWarnningManager workWarnningManager, ReceviceNoticeManager receviceNoticeManager, ContractManagementManager contractManagementManager, TaskManager taskManager, DailyManager dailyManager, PersonnelFilesManager personnelFilesManager,FinancialManagementManager financialManagementManager,ProjectInfoPlanManager projectInfoPlanManager
+		,DataManager dataManager)
 /*     */   {
 /*  80 */     this.userManager = userManager;
 /*  81 */     this.applicationDocManager = applicationDocManager;
@@ -49,6 +65,9 @@
 /*  85 */     this.taskManager = taskManager;
 /*  86 */     this.dailyManager = dailyManager;
 /*  87 */     this.personnelFilesManager = personnelFilesManager;
+              this.financialManagementManager =financialManagementManager;
+              this.projectInfoPlanManager=projectInfoPlanManager;
+              this.dataManager = dataManager;
 /*     */   }
 /*     */ 
 /*     */   public String execute() throws Exception {
@@ -105,9 +124,9 @@
 /* 160 */     Long userId = getLoginUser().getId();
 /* 161 */     List noticeList = new ArrayList();
 /*     */ 
-/* 163 */     List unReadNoticeList = getReceiveNoticeList(userId, "UNREAD", Boolean.valueOf(false), "通知");
+/* 163 */     List unReadNoticeList = getReceiveNoticeList(userId, "UNREAD", Boolean.valueOf(false), "新闻");
 /*     */ 
-/* 166 */     List readNoticeList = getReceiveNoticeList(userId, "READED", Boolean.valueOf(false), "通知");
+/* 166 */     List readNoticeList = getReceiveNoticeList(userId, "READED", Boolean.valueOf(false), "新闻");
 /*     */ 
 /* 169 */     List unReadAnnounceList = getReceiveNoticeList(userId, "UNREAD", Boolean.valueOf(false), "公告");
 /*     */ 
@@ -134,7 +153,7 @@
 /*     */   public long getUnReadNoticeSize()
 /*     */   {
 /* 199 */     long userId = getLoginUser().getId().longValue();
-/* 200 */     long unReadNum = getReceiveNoticeSize(Long.valueOf(userId), "UNREAD", Boolean.valueOf(false), "通知") + getReceiveNoticeSize(Long.valueOf(userId), "UNREAD", Boolean.valueOf(false), "公告");
+/* 200 */     long unReadNum = getReceiveNoticeSize(Long.valueOf(userId), "UNREAD", Boolean.valueOf(false), "通知") + getReceiveNoticeSize(Long.valueOf(userId), "UNREAD", Boolean.valueOf(false), "公告")+getReceiveNoticeSize(Long.valueOf(userId), "UNREAD", Boolean.valueOf(false), "新闻") ;
 /*     */ 
 /* 202 */     if ((0L == unReadNum) || (unReadNum < 1L)) {
 /* 203 */       return 0L;
@@ -218,6 +237,15 @@
 /* 297 */     return null;
 /*     */   }
 /*     */ 
+			public Long getMyTeamSize()
+/*     */   {
+/* 362 */     Long size = Long.valueOf(0L);
+              List<PersonnelFiles> personnelFiles =getMyTeam();
+/* 363 */     if ((null != personnelFiles) && (!personnelFiles.isEmpty())) {
+/* 364 */       size = Long.valueOf(personnelFiles.size());
+/*     */     }
+/* 369 */     return size;
+/*     */   }
 /*     */   public List<Daily> getDailys()
 /*     */   {
 /* 322 */     List reList = new ArrayList();
@@ -268,6 +296,18 @@
 /*     */     }
 /* 383 */     return null;
 /*     */   }
+            public List<ProjectInfoPlan> getMyProjectInfoPlan(){
+            	 List<ProjectInfoPlan> plans = null;
+            	 try {
+					plans = this.projectInfoPlanManager.loadByKey("personnelFiles.code",getLoginUser().getCode());
+				} catch (DaoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            	
+            	return plans;
+            	
+            }
 /*     */ 
 /*     */   public Long getTaskSize()
 /*     */   {
@@ -305,6 +345,83 @@
 /*     */     }
 /* 432 */     return Long.valueOf(0L);
 /*     */   }
+            public HashMap getMyDataMap(){
+            	 SimpleDateFormat sfMonth = new SimpleDateFormat("yyyy年MM月");
+          	   SimpleDateFormat sfYear = new SimpleDateFormat("yyyy年"); 
+//          	  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
+            	
+//	             String  MFirstday = format.format(getCurrMouthFirst());  //获取当月第一天
+//	             String mLastday = format.format(getCurrMouthLast());  //获取当月最后一天
+//	             String yFirstday= format.format(getCurrYearFirst());//获取当年第一天
+//	             String yLastday= format.format(getCurrYearLast());//获取当年最后一天
+//            	
+//            	HashMap mapYear = this.contractManagementManager.getDataMap(yFirstday, yLastday);
+//            	HashMap mapMouth = this.contractManagementManager.getDataMap(MFirstday, mLastday);
+//            	HashMap mapThisMouth = this.financialManagementManager.getDataMap(MFirstday, mLastday);
+//            	map.put("yearCount", mapYear.get("count"));
+//            	map.put("yearMoney", mapYear.get("money"));
+//            	map.put("mouthCount", mapMouth.get("count"));
+//            	map.put("mouthMoney", mapMouth.get("money"));
+//            	map.put("payCount", mapThisMouth.get("count"));
+//            	map.put("payMoney", mapThisMouth.get("money"));
+          	String[]keyStrings={"personnelFiles.code","month"};
+        	String[]valueStrings={getLoginUser().getCode(),sfMonth.format(new Date())};
+        	Data data=null;
+        	Object [] objectArr =null;
+        	try {
+				List<Data> myDatas = this.dataManager.loadByKeyArray(keyStrings, valueStrings);
+				HashMap map = new HashMap();
+				map.put("year", sfYear.format(new Date()));
+				map.put("code", getLoginUser().getCode());
+				Object object = this.dataManager.loadAllDataByYear(map);
+				 objectArr =(Object [])object;
+				if(myDatas!=null&&myDatas.size()>0){
+					data = myDatas.get(0);
+				}
+				
+			} catch (DaoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	HashMap map = new HashMap();
+        	if(objectArr!=null){
+        	map.put("yearCMCount", objectArr[1]);
+        	map.put("yearCMMoney", objectArr[0]);
+        	map.put("yearFMCount", objectArr[2]);
+        	map.put("yearFMMoney", objectArr[3]);
+        	map.put("yearBRCount", objectArr[4]);
+        	map.put("yearBRMoney", objectArr[5]);
+        	}else {
+        		map.put("yearCMCount", 0);
+            	map.put("yearCMMoney",0);
+            	map.put("yearFMCount", 0);
+            	map.put("yearFMMoney", 0);
+            	map.put("yearBRCount", 0);
+            	map.put("yearBRMoney", 0);
+			}
+        	if(data!=null){
+        	map.put("monthCMCount", data.getContractManagementNum());
+        	map.put("monthCMMoney", data.getContractManagementMoney());
+        	map.put("monthFMCount", data.getFinancialManagementNum());
+        	map.put("monthFMMoney", data.getFinancialManagementMoney());
+        	map.put("monthBRCount", data.getBillingRecordNum());
+        	map.put("monthBRMoney", data.getBillingRecordMoney());
+        	}else {
+        		map.put("monthCMCount", 0);
+            	map.put("monthCMMoney", 0);
+            	map.put("monthFMCount", 0);
+            	map.put("monthFMMoney", 0);
+            	map.put("monthBRCount", 0);
+            	map.put("monthBRMoney", 0);
+			}
+        	
+            	return map;
+            }
+            public List<PersonnelFiles> getMyTeam(){
+            	List  list =this.projectInfoPlanManager.loadByTeam(getLoginUser().getCode());
+            	return list;
+            	
+            }
 /*     */ 
 /*     */   public Integer getAllNumberOfUnRead()
 /*     */   {
@@ -343,6 +460,58 @@
 /*     */   {
 /* 487 */     this.user = user;
 /*     */   }
+
+
+		public static Date getCurrYearFirst(){  
+			Calendar currCal=Calendar.getInstance();    
+			int currentYear = currCal.get(Calendar.YEAR);  
+			return getYearFirst(currentYear);  
+		} 
+		public static Date getYearFirst(int year){  
+	        Calendar calendar = Calendar.getInstance();  
+	        calendar.clear();  
+	        calendar.set(Calendar.YEAR, year);  
+	        Date currYearFirst = calendar.getTime();  
+	        return currYearFirst;  
+	    }  
+		public static Date getCurrYearLast(){  
+	        Calendar currCal=Calendar.getInstance();    
+	        int currentYear = currCal.get(Calendar.YEAR);  
+	        return getYearLast(currentYear);  
+	    }  
+		public static Date getYearLast(int year){  
+	        Calendar calendar = Calendar.getInstance();  
+	        calendar.clear();  
+	        calendar.set(Calendar.YEAR, year);  
+	        calendar.roll(Calendar.DAY_OF_YEAR, -1);  
+	        Date currYearLast = calendar.getTime();  
+	          
+	        return currYearLast;  
+	    }  
+		public static Date getCurrMouthFirst(){  
+			Calendar cale = null;  
+            cale = Calendar.getInstance();  
+            cale.add(Calendar.MONTH, 0);  
+            cale.set(Calendar.DAY_OF_MONTH, 1);  
+			return cale.getTime();  
+		} 
+		public static Date getCurrMouthLast(){  
+			Calendar cale = null;  
+            cale = Calendar.getInstance();  
+             cale.add(Calendar.MONTH, 1);  
+             cale.set(Calendar.DAY_OF_MONTH, 0);  
+             return cale.getTime();  
+		}
+		public Integer getMyPlanSize() {
+			Integer sizeInteger=0;
+			List<ProjectInfoPlan> plans =this.getMyProjectInfoPlan();
+			if(plans!=null&&plans.size()>0){
+				sizeInteger=plans.size();
+			}
+			return sizeInteger;
+		}
+		
+		
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

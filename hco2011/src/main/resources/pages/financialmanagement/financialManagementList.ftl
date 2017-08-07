@@ -31,9 +31,9 @@
 			</#if>
         </@buttonBar>
         <@list title="${action.getText('financialManagement.list.title')}" 
-            includeParameters="financialManagement.saleman|contractManagement.code|financialManagement.payee|financialManagement.contractManagement|financialManagement.collectionDate_start|financialManagement.collectionDate_end
+            includeParameters="financialManagement.saleman|financialManagement.code|projectInfo.name|financialManagement.payee|financialManagement.contractManagement|financialManagement.collectionDate_start|financialManagement.collectionDate_end
         	|customerInfo.code|financialManagement.customerInfo|readOnly|onlyInvalid|onlyValid" 
-        	fieldMap="like:financialManagement.saleman|contractManagement.code|financialManagement.payee|financialManagement.contractManagement|customerInfo.code|financialManagement.customerInfo
+        	fieldMap="like:financialManagement.saleman|financialManagement.code|projectInfo.name|financialManagement.payee|financialManagement.contractManagement|customerInfo.code|financialManagement.customerInfo
         	,date:financialManagement.collectionDate_start|financialManagement.collectionDate_end">
         	<#if !(action.isReadOnly())>
 	        	<@vlh.checkbox property="id" name="financialManagementIds">
@@ -45,38 +45,37 @@
                 <a href="editFinancialManagement.html?financialManagement.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}">${object.code}</a>
 				<@alignLeft/>
             </@vcolumn>
-            <@vcolumn title="${action.getText('contractManagement.code')}" property="contractManagement.code" sortable="desc">
-            <@vlh.attribute name="width" value="8%" />
-            	<@alignLeft/>
-            </@vcolumn>
+           
             <@vcolumn title="${action.getText('financialManagement.contractManagement')}" property="contractManagement.contractName" sortable="desc">
             	<@vlh.attribute name="width" value="12%" />
             	<@alignLeft/>
             </@vcolumn>
-            <@vcolumn title="${action.getText('customerInfo.code')}" property="customerInfo.code" sortable="desc">
-     			<@alignLeft/>
-            </@vcolumn>
+            
             <@vcolumn title="${action.getText('financialManagement.customerInfo')}" property="customerInfo.name" sortable="desc">
      			<@vlh.attribute name="width" value="10%" />
      			<@alignLeft/>
             </@vcolumn>
-             <@vcolumn title="${action.getText('financialManagement.saleman')}" property="saleman.name" sortable="desc">
+            
+            <@vcolumn title="${action.getText('financialManagement.contractManagement.projectInfo.name')}" property="contractManagement.project.name" sortable="desc">
+     			<@vlh.attribute name="width" value="10%" />
      			<@alignLeft/>
             </@vcolumn>
+            
             <@vcolumn title="${action.getText('financialManagement.batch')}" property="batch.name" sortable="desc">
-            	<@alignLeft/>
+            	<@alignRight/>
             </@vcolumn>
+            
              <@vcolumn title="${action.getText('financialManagement.sumReceivable')}" property="sumReceivable" sortable="desc">
-            	<@alignLeft/>
+            	<@alignRight/>
             </@vcolumn>
             <@vcolumn title="${action.getText('financialManagement.trueSum')}" property="trueSum" sortable="desc">
-            	<@alignLeft/>
+            	<@alignRight/>
             </@vcolumn>
             <@vcolumn title="${action.getText('financialManagement.totalSum')}" property="totalSum" sortable="desc">
-            	<@alignLeft/>
+            	<@alignRight/>
             </@vcolumn>
             <@vcolumn title="${action.getText('financialManagement.withoutGotSum')}" property="withoutGotSum" sortable="desc">
-            	<@alignLeft/>
+            	<@alignRight/>
             </@vcolumn>
             <#assign invoice=""/>
             <#if (object.invoice)=='0'>

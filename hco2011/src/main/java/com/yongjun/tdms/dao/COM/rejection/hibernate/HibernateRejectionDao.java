@@ -60,7 +60,7 @@
 /*     */   {
 /*  98 */     String hql = "select r.code from Rejection as r where  r.code like '%" + code + "%'";
 /*  99 */     List codeList = getSession().createQuery(hql).list();
-/* 100 */     if (codeList.size() > 0) {
+/* 100 */     if (null!=codeList && codeList.size() > 0) {
 /* 101 */       List items = new ArrayList();
 /* 102 */       for (int i = 0; i < codeList.size(); i++) {
 /* 103 */         String item = ((String)codeList.get(i)).substring(((String)codeList.get(i)).lastIndexOf("-") + 1);

@@ -37,32 +37,32 @@
     
     <tr>
     <!--项目组成员-->
-    <td align="right" valign="top">
-	       		<span class="required">*</span>
-	       		<label class="label">${action.getText('projectInfoPersonnels.proPerson')}:</label>
-	     	</td>
-	     	<td>
+		<td align="right" valign="top">
+       		<span class="required">*</span>
+       		<label class="label">${action.getText('projectInfoPersonnels.proPerson')}:</label>
+     	</td>
+     	<td>
 	     	<#if projectInfoPersonnels.proPerson?exists>
 	     	<input type="text" name="proPerson.name" class="underline"  value="${projectInfoPersonnels.proPerson.name?if_exists}" maxlength="140" size="20" disabled="true"/>
 	     	<#else>
 	     	<input type="text" name="proPerson.name" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
 	     	</#if>
-		   		
-				<a onClick="salesman_OpenDialog();">
-					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
-				</a>
-			</td>
-			<@ww.select label="'${action.getText('业务属性')}'" 
-				name="'businessType.id'" 
-				value="'${req.getParameter('businessType.id')?if_exists}'"
-				listKey="id"
-				listValue="name"
-				list="allBusinessType"
-				required="true"
-				emptyOption="false" 
-				>
-			</@ww.select>
-			<script language="javascript">
+	   		
+			<a onClick="salesman_OpenDialog();">
+				<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+			</a>
+		</td>
+		<@ww.select label="'${action.getText('业务属性')}'" 
+			name="'businessType.id'" 
+			value="'${req.getParameter('businessType.id')?if_exists}'"
+			listKey="id"
+			listValue="name"
+			list="allBusinessType"
+			required="true"
+			emptyOption="false" 
+			>
+		</@ww.select>
+		<script language="javascript">
 			<#if projectInfoPersonnels.businessType?exists>
 				getObjByName('businessType.id').value = '${projectInfoPersonnels.businessType.id?if_exists}';
 			</#if>
@@ -98,7 +98,7 @@
 			</script>
 			</#if>
 		
-		<input type="button" value="${action.getText('close')}"  onclick="closeThis();">
+		<input class="button" type="button" value="${action.getText('close')}"  onclick="closeThis();">
     </@buttonBar>
     
 

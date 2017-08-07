@@ -205,13 +205,13 @@
 	  <TABLE width="100%">
 	  <tr>
 	     <td class="title">
-         <span class="STYLE1">待审批项
+         <span class="STYLE1">我的团队
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           <#if (toDoTaskSize?exists && toDoTaskSize > 0) >
-		  		 有<strong>${toDoTaskSize?if_exists}</strong>条未批
+           <#if (myTeamSize?exists && myTeamSize > 0) >
+		  		 有<strong>${myTeamSize?if_exists}</strong>名团队队员
 		   <#else>
-		  		 有<strong>0</strong></a>条未批
+		  		 有<strong>0</strong></a>名团队队员
 		   </#if>
 		  </span>
         </td>
@@ -219,24 +219,23 @@
 	  <td>   
 		   <hr align="center" size="3" style="background:#D6E9F1">
 	  </td>
-  		<tr>
-  			<td><font color="green">任务审批:</font>
-	        </td>
-  		</tr>
   	    <#assign count=0>
-	  	<#if toDoTasks?exists>
-	  	<#list toDoTasks as toDoTask>
+	  	<#if myTeam?exists>
+	  	<#list myTeam as team>
 			<tr>
 				<td>
 				<#if count<4>
-				    <li>有<a href="${req.contextPath}/toDoTask/listToDoTask.html?loginUser.id=#{loginUser.id?if_exists}&task.id=${toDoTask.id?if_exists}">
- 						<span title="${toDoTask.name?if_exists}">
-				           <script>
-				            	var s = "${toDoTask.name?if_exists}";
-				            	document.write(s.slice(0,14)+"...");
-				           </script>
+				    <li><a href="">
+ 						<span title="${team.pname?if_exists}">
+				            	${team.pname?if_exists}
 		             	  </span>
-					    </a>的待办审批</li>
+					    </a>
+					    <a> 　　　　　
+					    <span >
+					    有 ${team.num?if_exists} 项任务
+		             	  </span>
+					    
+					    </a></li>
 				     <#assign count=count+1>
 				</#if>
 			    </td>
@@ -245,7 +244,7 @@
 		<#else>
 			<tr>
 				<td>
-					 暂无任务审批
+					 暂无团队
 			    </td>
 			</tr>
 		</#if>
@@ -264,17 +263,13 @@
 	  <TABLE width="100%">
 	  <tr>
 	     <td class="title">
-            <span class="STYLE1">待办任务
+            <span class="STYLE1">我的任务
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           <#if (taskSize?exists && taskSize > 0) >
-		   有<a href="${req.contextPath}/notice/listReceviceNotices.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true"  target="_blank">
+		   有<a href="${req.contextPath}/projectInfo/listMyPlan.html"  >
 		   <strong>
-		   ${taskSize?if_exists}
+		   ${myPlanSize?if_exists}
 		   </strong></a>条任务
-		   <#else>
-		   有<strong>0</strong></a>条任务
-		   </#if>
 		   </span>
         </td>
 	  </tr> 
@@ -282,128 +277,70 @@
 		   <hr align="center" size="3" style="background:#D6E9F1">
 	  </td> 
 	 		<#assign count=0>
-			<#if taskList?exists>
-		  	<#list taskList as urn>
+			<#if myProjectInfoPlan?exists>
+		  	<#list myProjectInfoPlan as urn>
 				<tr>
-					<td>
-					<#if urn.readStatus == "UNREAD"&&count<4>
-					    <li><a href="${req.contextPath}/notice/listReceviceNotices.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true&receviceNotice.id=${urn.id}">
- 						<span title="${urn.title?if_exists}">
+					<#if count<4>
+				<td>
+					    <li><a href="${req.contextPath}/projectInfo/listMyPlan.html?projectInfoPlan.id=#{urn.id}">
+ 						<span title="${urn.name?if_exists}">
 				           <script>
-				            	var s = "${urn.title?if_exists}";
-				            	document.write(s.slice(0,14)+"...");
+				            	var s = "${urn.name?if_exists}";
+				            	document.write(s.slice(0,44)+"...");
 				           </script>
 		             	  </span>
-					    </a>  未读</li>
+					    </a> <#if urn.planState?exists> ${urn.planState.name?if_exists}</#if></li>
 					    <#assign count=count+1>
-					<#elseif count<4>
-					    <li><a href="${req.contextPath}/notice/listReceviceNotices.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true&receviceNotice.id=${urn.id}">
- 						<span title="${urn.title?if_exists}">
-				           <script>
-				            	var s = "${urn.title?if_exists}";
-				            	document.write(s.slice(0,14)+"...");
-				           </script>
-		             	  </span>
-					    </a>  已读</li>
-					    <#assign count=count+1>
-					</#if>
 				    </td>
+				    </#if>
 				</tr>
 			</#list>
-			<#else>
-				<tr>
-					<td>
-						 暂无待办任务
-				    </td>
-				</tr>
-			</#if>
-	<tr>
-		<#if 3<count>
+		<tr>
         <td align="right">
-        <a href="${req.contextPath}/notice/listReceviceNotices.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true"  target="_blank">
+        <a href="${req.contextPath}/projectInfo/listMyPlan.html" >
         &lt;&lt;更多
         &nbsp;&nbsp;&nbsp;&nbsp;</a>
         </td>
-        </#if>
       </tr>
+			<#else>
+				<tr>
+					<td>
+						 暂无任务
+				    </td>
+				</tr>
+			</#if>
 	  </TABLE>
     </td>
     <td width="30%" height="50%" VALIGN="TOP" style="border: 1 solid #D6E9F1;">
 	  <TABLE width="100%">
 	  <tr>
 	     <td class="title">
-            <span class="STYLE1">公司新闻
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           <#if (newsSize?exists && newsSize > 0) >
-		   有<a href="${req.contextPath}/notice/listReceviceNotices.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true&first=false">
-		   <strong>
-		   ${newsSize?if_exists}
-		   </strong></a>条新闻
-		   <#else>
-		   有<strong>0</strong></a>条新闻
-		   </#if>
+            <span class="STYLE1">我的数据
 		   </span>
         </td>
 	  </tr> 
 	  <td>
 		   <hr align="center" size="3" style="background:#D6E9F1">
 	  </td> 
-	    <#assign count=0>
-		<#if newsList?exists>
-	  	<#list newsList as urn>
-			<tr>
-				<td>
-				<#--
-	  	<marquee direction="up" height=100 scrollamount=2 onmouseover="this.stop()" 
-		onmouseout="this.start()"> 
-		-->
-				<#if urn.readStatus == "UNREAD"&&count<4>
-				    <li><a href="${req.contextPath}/notice/listReceviceNotices.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true&receviceNotice.id=${urn.id}">
- 						<span title="${urn.title?if_exists}">
-				           <script>
-				            	var s = "${urn.title?if_exists}";
-				            	document.write(s.slice(0,14)+"...");
-				           </script>
-		             	  </span>(${urn.receviceDate?string('yyyy-MM-dd')?if_exists})
-					    </a>  未读</li>
-				    <#assign count=count+1>
-				<#elseif count<4>
-				    <li><a href="${req.contextPath}/notice/listReceviceNotices.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true&receviceNotice.id=${urn.id}">
- 						<span title="${urn.title?if_exists}">
-				           <script>
-				            	var s = "${urn.title?if_exists}";
-				            	document.write(s.slice(0,14)+"...");
-				           </script>
-		             	  </span>(${urn.receviceDate?string('yyyy-MM-dd')?if_exists})
-					    </a>  已读</li>
-				    <#assign count=count+1>
-				</#if>
-	<#--	</MARQUEE> -->
-			    </td>
-			</tr>
-		</#list>
-		<#else>
-			<tr>
-				<td>
-					 <div id="blink">暂无公司新闻</div>
-			    </td>
-			</tr>
-		</#if>
-	 <tr>
-		<#if 3<count>
+		<#if myDataMap?exists>
+		<tr><td>本月合同:</td><td>合同数：  ${myDataMap.monthCMCount} 个</td><td>合同金额合计： ${myDataMap.monthCMMoney} 万</td></tr>
+		<tr><td>本年合同:</td><td>合同数：  ${myDataMap.yearCMCount} 个</td><td>合同金额合计： ${myDataMap.yearCMMoney} 万</td></tr>
+		<tr><td>本月收款:</td><td>笔数：  ${myDataMap.monthFMCount} 个</td><td>收款金额合计： ${myDataMap.monthFMMoney} 万</td></tr>
+		<tr><td>本年收款:</td><td>笔数：  ${myDataMap.yearFMCount} 个</td><td>收款金额合计： ${myDataMap.yearFMMoney} 万</td></tr>
+		<tr><td>本月收入:</td><td>笔数：  ${myDataMap.monthBRCount} 个</td><td>收入金额合计： ${myDataMap.monthBRMoney} 万</td></tr>
+		<tr><td>本年收入:</td><td>笔数：  ${myDataMap.yearBRCount} 个</td><td>收入金额合计： ${myDataMap.yearBRMoney} 万</td></tr>
+		 <tr>
         <td align="right">
-         <a href="${req.contextPath}/notice/listReceviceNotices.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true&first=false"  target="_blank">
+        <a href="${req.contextPath}/workspace/data/listMyData.html" >
         &lt;&lt;更多
         &nbsp;&nbsp;&nbsp;&nbsp;</a>
         </td>
-        </#if>
       </tr>
+		</#if>
 	  </TABLE>
     </td>
   </tr>
 </table>
-
 <script>
 /*
 	function changeColor(){ 

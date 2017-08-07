@@ -25,5 +25,6 @@ public abstract interface ProjectInfoPlanDao
 
 	  public abstract List<ProjectInfoPlan> loadByKeyArray(String[] paramArrayOfString, Object[] paramArrayOfObject)
 	    throws DaoException;
+	  public abstract List loadByTeam(String code);
 }
 

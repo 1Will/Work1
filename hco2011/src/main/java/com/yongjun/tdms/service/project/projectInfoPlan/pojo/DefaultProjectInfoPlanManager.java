@@ -65,5 +65,10 @@ import com.yongjun.tdms.service.project.projectInfoPlan.ProjectInfoPlanManager;
 /*    */   }
 /*    */ 
 /*    */   
-/*    */ }
+/*    */
+		public List loadByTeam(String code) {
+	// TODO Auto-generated method stub
+			return this.projectInfoPlanDao.loadByTeam(code);
+		} 
+		}
 

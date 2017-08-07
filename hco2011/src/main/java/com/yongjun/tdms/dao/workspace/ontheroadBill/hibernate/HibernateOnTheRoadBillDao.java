@@ -54,7 +54,7 @@
 /* 61 */     String hql = "select otrb.code from OnTheRoadBill as otrb where otrb.organization.id=" + orgId + " and otrb.code like '%" + code + "%'";
 /*    */ 
 /* 63 */     List codeList = getSession().createQuery(hql).list();
-/* 64 */     if (codeList.size() > 0) {
+/* 64 */     if (null!= codeList && codeList.size() > 0) {
 /* 65 */       List items = new ArrayList();
 /* 66 */       for (int i = 0; i < codeList.size(); i++) {
 /* 67 */         String item = ((String)codeList.get(i)).substring(((String)codeList.get(i)).lastIndexOf("-") + 1);

@@ -81,7 +81,7 @@ public class DefaultCustomerInfoManager extends BaseManager implements CustomerI
 		List<CustomerInfo> allAdvisory = this.customerInfoDao.getCustomerByName(advisoryName);
 
 		List list = new ArrayList();
-		if (allAdvisory.size() > 0) {
+		if (null!= allAdvisory && allAdvisory.size() > 0) {
 			for (CustomerInfo info : allAdvisory) {
 				CustomerInfo c = new CustomerInfo();
 				c.setId(info.getId());

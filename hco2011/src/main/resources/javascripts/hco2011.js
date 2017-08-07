@@ -285,7 +285,7 @@ function callBackCm(data){
 
 var cn_id="";
 var bh_id="";
-//由合同的id级联出回款计划的批次
+//由合同的id级联出收款计划的批次
 function ContractAndBatchDWR(cmId,batchId,msg,isNew){
 	cn_id = cmId;
 	bh_id = batchId;
@@ -293,12 +293,37 @@ function ContractAndBatchDWR(cmId,batchId,msg,isNew){
 	is_new = isNew;
 	var contractManagementId = getObjByName(cn_id).value;
 	if(null != contractManagementId && "" != contractManagementId ){
-		ContractAndBatchJs.contractAndBatch(contractManagementId,is_new , bacthCallBack);
+		ContractAndBatchJs.contractAndBatch(contractManagementId,is_new,bacthCallBack);
 	}
-
+}
+function bacthCallBack(data){
+	if(null != data ){
+	 	DWRUtil.removeAllOptions(bh_id);
+		for(var i =0 ;i<data.length;i++){
+			if(i == 0){
+				getObjByName(bh_id).options.add(new Option(m,-1));
+				//document.all(bh_id).options[i].value = -1;
+				getObjByName(bh_id).options.add(new Option(data[0][1],data[0][0]));
+			}else{
+				getObjByName(bh_id).options.add(new Option(data[i][1],data[i][0]));
+			}
+		}	  
+	}
 }
 
-function bacthCallBack(data){
+//由合同的id级联出开票记录的批次
+function BatchForBillDWR(cmId,batchId,msg,isNew){
+	cn_id = cmId;
+	bh_id = batchId;
+	m = msg;
+	is_new = isNew;
+	var contractManagementId = getObjByName(cn_id).value;
+	if(null != contractManagementId && "" != contractManagementId ){
+		BatchForBillJs.batchForBill(contractManagementId,is_new,bacthBack);
+	}
+}
+
+function bacthBack(data){
 	if(null != data ){
 	 	DWRUtil.removeAllOptions(bh_id);
 		for(var i =0 ;i<data.length;i++){
@@ -317,21 +342,21 @@ var cd_id="";
 var sum_value="";
 var div="";
 //验证预付款金额
-function checkSumDWR(cmd,sum,id,msg,isNew){
+function checkSumDWR(cmd,sum,id,msg,rpId){
 	cd_id=cmd;
 	sum_value=sum;
 	div =id;
 	var contractManagementId = getObjByName(cd_id).value;
 	var sums = getObjByName(sum).value;
 	if(null != contractManagementId && "" != contractManagementId ){
-		CheckSumJs.checkSum(contractManagementId,sums,is_new,callBackSum);
+		CheckSumJs.checkSum(contractManagementId,sums,rpId,callBackSum);
 	}
 }
 function callBackSum(data){
 	if(null != data && data.size()>0){
 		var a =data[0];
 		if(a =='unuser'){
-			alert("应付金额大于总金额")
+			alert("应付金额累积已大于总金额");
 			getObjByName(sum_value).value="";
 			getObjByName(sum_value).focus();
 			return false;

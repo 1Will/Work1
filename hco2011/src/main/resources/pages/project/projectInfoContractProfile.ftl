@@ -98,7 +98,7 @@
 			</script>
 			</#if>
 		
-		<input type="button" value="${action.getText('close')}"  onclick="closeThis();">
+		<input class="button" type="button" value="${action.getText('close')}"  onclick="closeThis();">
     </@buttonBar>
 
 </@ww.form>
@@ -112,7 +112,7 @@
 	
 	
 	function contactArchive_OpenDialog(){
-			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitFlag=backVisit&customer.id=${customerInfoId?if_exists}";
+			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitFlag=backVisit&projectInfoCus=${projectInfoCus?if_exists}";
 			popupModalDialog(url, 800, 600, creatorSelectorHandlerContactArchives);
 	}
 	function creatorSelectorHandlerContactArchives(result) {

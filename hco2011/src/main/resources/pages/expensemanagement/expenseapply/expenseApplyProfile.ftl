@@ -126,7 +126,7 @@
 		<@textfield id="residualMoney" label="${action.getText('expenseApply.residualMoney')}" maxlength="10"  name="expenseApply.residualMoney"  value="${expenseApply.residualMoney?if_exists}"  required="false" anothername="checkresidualMoney" disabled="true"/>
 		</tr>
 		<tr>
-		    <@textarea name="expenseApply.description" label="${action.getText('expenseApply.description')}" anothername="content" maxLength="500" required="false" value="${expenseApply.description?if_exists}"/>	
+		    <@textarea name="expenseApply.description" label="${action.getText('expenseApply.description')}" anothername="content" rows="4" cols="150" maxLength="500" required="false" value="${expenseApply.description?if_exists}"/>	
 	    </tr>
 		</@inputTable>
 	<@buttonBar>

@@ -38,6 +38,10 @@
         <many-to-one name="payee" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
 			<column name="PAYEE_ID" not-null="false" />
 		</many-to-one>
+		<!-- 负责人 -->
+        <many-to-one name="chargMan" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+			<column name="CHARGMAN_ID" not-null="false" />
+		</many-to-one>
 		<!-- 相关客户 -->
         <many-to-one name="customerInfo" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo">
 			<column name="CUSTOMERINFO_ID" not-null="true"/>
@@ -90,10 +94,26 @@
         <property name="billingOrNot" type="string">
 			<column name="BILLING_OR_IS" not-null="false" sql-type="NVARCHAR(50)" />
 		</property>
+		<!-- 是否开票 -->     
+        <property name="isBill" type="string">
+			<column name="ISBILL" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		 <!-- 百分比 -->
+        <property name="percentt"  column="PERCENTT"   type="int" length="4"/>
+        <!--计划状态 -->
+		<many-to-one name="planState" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+			<column name="planState" not-null="false" />
+		</many-to-one>
 		<!-- 备注  --> 
 		<property name="remark" type="string">
 			<column name="REMARK" not-null="false" sql-type="NVARCHAR(500)" />
 		</property>
+		<!-- 开票金额 -->
+        <property name="billMoney" type="double">
+            <column name="BILLMONEY" not-null="false"/>
+        </property>
+        <!-- 开票日期 -->
+		<property name="billDate" column="BILLDATE" type="timestamp" not-null="false"/>
 		
 	    <property name="disabled" type="boolean">
             <column name="DISABLED" not-null="true"/>

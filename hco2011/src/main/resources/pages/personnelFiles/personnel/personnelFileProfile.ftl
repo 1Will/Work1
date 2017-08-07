@@ -562,5 +562,5 @@
 		<a id="societyRelation" onclick="activeTab(this);" href='${req.contextPath}/personnelFile/listSocialRelation.html?pf.id=${personnelFile.id?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('personnel.socialRelation')}</a>
 	</li>
 </ul>
-<iframe name="frame" frameborder="0.5" src="${req.contextPath}/personnelFile/editAdditionalInfo.html?personnelFiles.id=${personnelFile.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="100%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/personnelFile/editAdditionalInfo.html?personnelFiles.id=${personnelFile.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="50%"/>
 </#if>

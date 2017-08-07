@@ -8,7 +8,7 @@
         <@buttonBar>
          <#if productCheckBox?exists>
           <@vsubmit value="'${action.getText('search')}'" onclick="'checkInvalidParms()'" />
-         <input type="button" value="选择" onclick="return_product()"/>
+         <input class="button" type="button" value="选择" onclick="return_product()"/>
          <#else>
            <@vsubmit value="'${action.getText('search')}'" onclick="'checkInvalidParms()'" />
 			<#if !(action.isReadOnly())>

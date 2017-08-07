@@ -27,8 +27,11 @@
 		<@ww.hidden name="'customerIsNotNull'" value="'${req.getParameter('customerIsNotNull')?if_exists}'"/>
 		<#if backVistiFlag?exists>
 			<@ww.hidden name="'backVisitFlag'" value="'${backVistiFlag?if_exists}'"/>
-			<@ww.hidden name="'customer.id'" value="'#{customerId?if_exists}'"/>
+			<#if customerId?exists>
+				<@ww.hidden name="'customer.id'" value="'#{customerId?if_exists}'"/>
+			</#if>
 		</#if>
+			
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'checkInvalidParms()'"/>
 			<#if !(action.isReadOnly())>
@@ -43,7 +46,7 @@
 			</#if>
         </@buttonBar>
         <@list title="${action.getText('contactArchives.list.title')}" 
-            includeParameters="contactArchives.name|customerIsNotNull|customer.id|contactArchives.customerName|type.id|readOnly|onlyInvalid|onlyValid|customer.id|backVisitFlag" 
+            includeParameters="contactArchives.name|customerIsNotNull|customer.id|contactArchives.customerName|con_Project.id|type.id|readOnly|onlyInvalid|onlyValid|customer.id|backVisitFlag" 
         	fieldMap="like:contactArchives.name|contactArchives.customerName" >
         	
         	<#--列表名称： 客户参与者信息列表 -->
@@ -66,7 +69,7 @@
         		<#if backVisitCheckBox?exists>
 	                    ${object.name}
         		<#else>
-        		<a href="javascript: returnDialog(new Array(#{object.id}, '${object.name}', '${object.phone?if_exists}', '${object.email?if_exists}'));">
+        		<a href="javascript: returnDialog(new Array(#{object.id}, '${object.name}', '${object.phone?if_exists}','${object.mobilePhone?if_exists}', '${object.email?if_exists}'));">
 	                    ${object.name}
                 	</a>
         		 </#if>
@@ -97,22 +100,22 @@
 			</#if>
 			<@vcolumn title="${action.getText('contactArchives.sex')}" property="sex" sortable="desc">
 				${sex}
-				<@alignLeft/>
+				<@alignCenter/>
 			</@vcolumn>
 			<@vcolumn title="${action.getText('contactArchives.dept')}" property="dept" sortable="desc">
      			<@alignLeft/>
             </@vcolumn>
 			<@vcolumn title="${action.getText('contactArchives.duty')}" property="duty" sortable="desc">
-     			<@alignLeft/>
+     			<@alignLeft attributes="width:100;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('contactArchives.mobilePhone')}" property="mobilePhone" sortable="desc">
      			<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('contactArchives.phone')}" property="phone" sortable="desc">
-     			<@alignLeft/>
+     			<@alignLeft attributes="width:150;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('contactArchives.caType')}" property="type.name" sortable="desc">
-     			<@alignLeft/>
+     			<@alignCenter/>
             </@vcolumn>
         </@list>
         <#if backVistiFlag?exists>

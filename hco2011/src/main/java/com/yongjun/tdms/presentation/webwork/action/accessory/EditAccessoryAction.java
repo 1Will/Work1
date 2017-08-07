@@ -114,7 +114,8 @@ public class EditAccessoryAction extends FileTransportAction {
 
 			this.applicationDoc.setPosition(location);
 			String orgFileName = this.request.getParameter("origFileName");
-			this.applicationDoc.setFileName(orgFileName);
+			String of  = getFile().getName();
+			this.applicationDoc.setFileName(of);
 			this.applicationDoc.setFileNo(location);
 		}
 		try {

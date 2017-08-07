@@ -4,7 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -16,21 +20,31 @@ import com.yongjun.pluto.webwork.action.PrepareAction;
 import com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives;
 import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo;
 import com.yongjun.tdms.model.base.area.Area;
+import com.yongjun.tdms.model.base.event.EventNew;
+import com.yongjun.tdms.model.base.event.EventType;
 import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
 import com.yongjun.tdms.service.CustomerRelationship.contactArchives.ContactArchivesManager;
 import com.yongjun.tdms.service.CustomerRelationship.customerProfiles.CustomerInfoManager;
 import com.yongjun.tdms.service.base.area.AreaManager;
+import com.yongjun.tdms.service.base.event.EventNewManager;
+import com.yongjun.tdms.service.base.event.EventTypeManager;
 import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 import com.yongjun.tdms.util.comparator.CodeValueComparator;
+import com.yongjun.tdms.util.personnelFilesToUser.PersonnelFilesToUserManager;
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class EditCustomerInfoAction extends PrepareAction {
 	private static final long serialVersionUID = 1L;
 	private final CustomerInfoManager customerInfoManager;
 	private final CodeValueManager codeValueManager;
 	private final AreaManager areaManager;
 	private final PersonnelFilesManager personnelFilesManager;
-	private ContactArchivesManager contactArchivesManager;
 	private final UserManager userManager;
+	private final EventNewManager eventNewManager;
+	private final EventTypeManager eventTypeManager;
+	private final PersonnelFilesToUserManager personnelFilesToUserManager;
+	
+	private ContactArchivesManager contactArchivesManager;
 	private PersonnelFiles personnelFiles;
 	private CustomerInfo customerInfo;
 	private CodeValue customerType;
@@ -45,13 +59,17 @@ public class EditCustomerInfoAction extends PrepareAction {
 
 	public EditCustomerInfoAction(CustomerInfoManager customerInfoManager, CodeValueManager codeValueManager,
 			AreaManager areaManager, PersonnelFilesManager personnelFilesManager,
-			ContactArchivesManager contactArchivesManager, UserManager userManager) {
+			ContactArchivesManager contactArchivesManager, UserManager userManager,EventNewManager eventNewManager,
+			EventTypeManager eventTypeManager,PersonnelFilesToUserManager personnelFilesToUserManager) {
 		this.customerInfoManager = customerInfoManager;
 		this.codeValueManager = codeValueManager;
 		this.areaManager = areaManager;
 		this.personnelFilesManager = personnelFilesManager;
 		this.contactArchivesManager = contactArchivesManager;
 		this.userManager = userManager;
+		this.eventNewManager = eventNewManager;
+		this.eventTypeManager = eventTypeManager;
+		this.personnelFilesToUserManager = personnelFilesToUserManager;
 		this.customerType = new CodeValue();
 		this.industry = new CodeValue();
 		this.companyNature = new CodeValue();
@@ -86,6 +104,7 @@ public class EditCustomerInfoAction extends PrepareAction {
 
 	public String save() {
 		boolean isNew = this.customerInfo.isNew();
+		String submit =null;
 		try {
 			if (hasId("type.id")) {
 				this.customerType = this.codeValueManager.loadCodeValue(getId("type.id"));
@@ -113,6 +132,14 @@ public class EditCustomerInfoAction extends PrepareAction {
 			if (hasId("familiarityType.id")) {
 				CodeValue familiarityType = this.codeValueManager.loadCodeValue(getId("familiarityType.id"));
 				this.customerInfo.setFamiliarityType(familiarityType);
+			}
+			if (hasId("classification.id")) {
+				CodeValue classification = this.codeValueManager.loadCodeValue(getId("classification.id"));
+				this.customerInfo.setClassification(classification);
+			}
+			if (hasId("businessType.id")) {
+				CodeValue businessType = this.codeValueManager.loadCodeValue(getId("businessType.id"));
+				this.customerInfo.setBusinessType(businessType);
 			}
 
 			if (hasId("companyNature.id")) {
@@ -167,6 +194,10 @@ public class EditCustomerInfoAction extends PrepareAction {
 				String isOrNot = this.request.getParameter("isOrNot");
 				this.customerInfo.setIsOrNot(isOrNot);
 			}
+			if (hasId("isPartner")) {
+				String isPartner = this.request.getParameter("isPartner");
+				this.customerInfo.setIsPartner(isPartner);
+			}
 			if (isNew) {
 				List li = this.customerInfoManager.loadByKey("name", this.customerInfo.getName());
 
@@ -176,7 +207,37 @@ public class EditCustomerInfoAction extends PrepareAction {
 					return "error";
 				}
 			}
+			this.customerInfo.setIsSaved(this.request.getParameter("isSaved"));
+			
 			this.customerInfoManager.storeCustomerInfo(this.customerInfo);
+			//添加事件
+			if ("1".equals(this.request.getParameter("isSaved"))) {
+				try {
+					EventType eventType = null;
+					List<EventType> eventTypes = this.eventTypeManager.loadByKey("code", "10008");
+					if (eventTypes != null && eventTypes.size() > 0) {
+						eventType = eventTypes.get(0);
+					} else {
+						eventType = new EventType();
+						eventType.setId(9L);
+					}
+					EventNew event = new EventNew();
+					event.setEffectflag("E");
+					event.setEventType(eventType);
+					event.setName("新增客户");
+					event.setUserId(this.userManager.getUser().getId() + "");
+					Map<String, String> map = new HashMap();
+					String pids = this.personnelFilesToUserManager.loadUserIdToStrByEnable();
+					map.put("users", pids);
+					map.put("customerInfoId", this.customerInfo.getId() + "");
+					String moreinfo = JSONObject.fromObject(map).toString();
+					event.setMoreinfo(moreinfo);
+					eventNewManager.storeEventNew(event);
+					submit = "submit";
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 
 			String[] keys = new String[2];
 			Object[] values = new Object[2];
@@ -273,19 +334,21 @@ public class EditCustomerInfoAction extends PrepareAction {
 			} else {
 				addActionMessage(getText("customerInfo.edit.error",
 						Arrays.asList(new Object[] { this.customerInfo.getCode() })));
-
 				return "error";
 			}
 		}
 		if (isNew) {
 			addActionMessage(getText("customerInfo.add.success",
 					Arrays.asList(new Object[] { this.customerInfo.getCode() })));
-
 			return "new";
 		}
-		addActionMessage(getText("customerInfo.edit.success",
-				Arrays.asList(new Object[] { this.customerInfo.getCode() })));
-
+		if("submit".equals(submit)){
+			addActionMessage(getText("customerInfo.submit.success",
+					Arrays.asList(new Object[] { this.customerInfo.getCode() })));
+		}else{
+			addActionMessage(getText("customerInfo.edit.success",
+					Arrays.asList(new Object[] { this.customerInfo.getCode() })));
+		}
 		return "success";
 	}
 
@@ -418,6 +481,41 @@ public class EditCustomerInfoAction extends PrepareAction {
 		try {
 			List companyNatures = new ArrayList();
 			List one = this.codeValueManager.loadByKey("code", Long.valueOf("003"));
+			if ((null != one) && (one.size() > 0)) {
+				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
+				if ((null != list) && (list.size() > 0)) {
+					companyNatures.addAll(list);
+				}
+			}
+			return companyNatures;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ArrayList();
+		}
+	}
+	public List<CodeValue> getAllClassification() {
+		try {
+			List companyNatures = new ArrayList();
+			List one = this.codeValueManager.loadByKey("code", Long.valueOf("209"));
+			if ((null != one) && (one.size() > 0)) {
+				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
+				if ((null != list) && (list.size() > 0)) {
+					companyNatures.addAll(list);
+				}
+			}
+			return companyNatures;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ArrayList();
+		}
+	}
+	public List<CodeValue> getAllBusinessType() {
+		try {
+			List companyNatures = new ArrayList();
+			String[] keys={"code","name"};
+			String[] values={"210","客户属性"};
+			List one =this.codeValueManager.loadByKeyArray(keys, values);// this.codeValueManager.loadByKey("code", Long.valueOf("210"));
+			
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {

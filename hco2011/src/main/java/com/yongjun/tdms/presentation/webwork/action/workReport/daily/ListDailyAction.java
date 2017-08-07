@@ -261,7 +261,7 @@ import org.apache.commons.logging.Log;
 /* 377 */     Object[] keyValues = { this.userManager.getUser().getCode(), this.userManager.getUser().getOrganization().getId() };
 /*     */     try {
 /* 379 */       List pf = this.personnelFilesManager.loadByKeyArray(keyNames, keyValues);
-/* 380 */       if (pf.size() > 0)
+/* 380 */       if (null!=pf && pf.size() > 0)
 /* 381 */         return false;
 /*     */     }
 /*     */     catch (DaoException e) {

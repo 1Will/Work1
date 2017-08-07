@@ -234,7 +234,7 @@
 			</td>
 		</tr>
 		<tr>
-		    <@textarea name="expenseUse.remark" label="${action.getText('expenseUse.remark')}" anothername="remark" maxLength="500" required="false" value="${expenseUse.remark?if_exists}"/>	
+		    <@textarea name="expenseUse.remark" label="${action.getText('expenseUse.remark')}" anothername="remark" rows="4" cols="150" maxLength="500" required="false" value="${expenseUse.remark?if_exists}"/>	
 	    </tr>
 		</@inputTable>
 	<@buttonBar>

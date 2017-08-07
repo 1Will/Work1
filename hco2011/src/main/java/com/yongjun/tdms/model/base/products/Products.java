@@ -1,195 +1,172 @@
-/*     */ package com.yongjun.tdms.model.base.products;
-/*     */ 
-/*     */ import com.yongjun.pluto.model.BaseInfoEntity;
-/*     */ import com.yongjun.pluto.model.codevalue.CodeValue;
-/*     */ import com.yongjun.pluto.model.tracking.CreatedTimeTracking;
-/*     */ import com.yongjun.pluto.model.tracking.CreatorTracking;
-/*     */ import com.yongjun.pluto.model.tracking.LastModifiedTimeTracking;
-/*     */ import com.yongjun.pluto.model.tracking.LastOperatorTracking;
-/*     */ import com.yongjun.tdms.model.base.produttype.ProductType;
-/*     */ import com.yongjun.tdms.model.supplier.Supplier;
-/*     */ import java.util.Date;
-/*     */ 
-/*     */ public class Products extends BaseInfoEntity
-/*     */   implements CreatedTimeTracking, CreatorTracking, LastOperatorTracking, LastModifiedTimeTracking
-/*     */ {
-/*     */   private static final long serialVersionUID = 4076912356110674435L;
-/*     */   private String code;
-/*     */   private String name;
-/*     */   private String model;
-/*     */   private String standard;
-/*     */   private Double etcPrice;
-/*     */   private Double salePrice;
-/*     */   private String salelimit;
-/*     */   private Date launch;
-/*     */   private String remark;
-/*     */   private ProductType pt;
-/*     */   private String productSource;
-/*     */   private CodeValue product_source_ID;
-/*     */   private Supplier supplier;
-/*  47 */   private boolean isNoMain = true;
-/*     */ 
-/*     */   public boolean equals(Object arg0) {
-/*  50 */     if (arg0 == this) {
-/*  51 */       return true;
-/*     */     }
-/*  53 */     if (!(arg0 instanceof Products)) {
-/*  54 */       return false;
-/*     */     }
-/*     */ 
-/*  57 */     Products p = (Products)arg0;
-/*     */ 
-/*  59 */     if (!p.getId().equals(getId())) {
-/*  60 */       return false;
-/*     */     }
-/*  62 */     return true;
-/*     */   }
-/*     */ 
-/*     */   public int hashCode()
-/*     */   {
-/*  69 */     return getId().hashCode();
-/*     */   }
-/*     */ 
-/*     */   public String getCode()
-/*     */   {
-/*  74 */     return this.code;
-/*     */   }
-/*     */ 
-/*     */   public Double getEtcPrice()
-/*     */   {
-/*  79 */     return this.etcPrice;
-/*     */   }
-/*     */ 
-/*     */   public boolean getIsNoMain() {
-/*  83 */     return this.isNoMain;
-/*     */   }
-/*     */ 
-/*     */   public String getModel() {
-/*  87 */     return this.model;
-/*     */   }
-/*     */ 
-/*     */   public String getName()
-/*     */   {
-/*  92 */     return this.name;
-/*     */   }
-/*     */ 
-/*     */   public String getProductSource()
-/*     */   {
-/*  97 */     return this.productSource;
-/*     */   }
-/*     */ 
-/*     */   public ProductType getPt()
-/*     */   {
-/* 102 */     return this.pt;
-/*     */   }
-/*     */ 
-/*     */   public Double getSalePrice()
-/*     */   {
-/* 107 */     return this.salePrice;
-/*     */   }
-/*     */ 
-/*     */   public String getStandard()
-/*     */   {
-/* 112 */     return this.standard;
-/*     */   }
-/*     */ 
-/*     */   public void setCode(String code)
-/*     */   {
-/* 117 */     this.code = code;
-/*     */   }
-/*     */ 
-/*     */   public void setEtcPrice(Double etcPrice)
-/*     */   {
-/* 122 */     this.etcPrice = etcPrice;
-/*     */   }
-/*     */ 
-/*     */   public void setIsNoMain(boolean isNoMain)
-/*     */   {
-/* 127 */     this.isNoMain = isNoMain;
-/*     */   }
-/*     */ 
-/*     */   public void setModel(String model)
-/*     */   {
-/* 132 */     this.model = model;
-/*     */   }
-/*     */ 
-/*     */   public void setName(String name)
-/*     */   {
-/* 137 */     this.name = name;
-/*     */   }
-/*     */ 
-/*     */   public void setProductSource(String productSource)
-/*     */   {
-/* 142 */     this.productSource = productSource;
-/*     */   }
-/*     */ 
-/*     */   public void setPt(ProductType pt)
-/*     */   {
-/* 147 */     this.pt = pt;
-/*     */   }
-/*     */ 
-/*     */   public String getSalelimit()
-/*     */   {
-/* 152 */     return this.salelimit;
-/*     */   }
-/*     */ 
-/*     */   public void setSalelimit(String salelimit)
-/*     */   {
-/* 157 */     this.salelimit = salelimit;
-/*     */   }
-/*     */ 
-/*     */   public void setSalePrice(Double salePrice)
-/*     */   {
-/* 162 */     this.salePrice = salePrice;
-/*     */   }
-/*     */ 
-/*     */   public void setStandard(String standard)
-/*     */   {
-/* 167 */     this.standard = standard;
-/*     */   }
-/*     */ 
-/*     */   public Supplier getSupplier()
-/*     */   {
-/* 172 */     return this.supplier;
-/*     */   }
-/*     */ 
-/*     */   public void setSupplier(Supplier supplier)
-/*     */   {
-/* 177 */     this.supplier = supplier;
-/*     */   }
-/*     */ 
-/*     */   public Date getLaunch()
-/*     */   {
-/* 182 */     return this.launch;
-/*     */   }
-/*     */ 
-/*     */   public void setLaunch(Date launch)
-/*     */   {
-/* 187 */     this.launch = launch;
-/*     */   }
-/*     */ 
-/*     */   public String getRemark()
-/*     */   {
-/* 192 */     return this.remark;
-/*     */   }
-/*     */ 
-/*     */   public void setRemark(String remark)
-/*     */   {
-/* 197 */     this.remark = remark;
-/*     */   }
-/*     */ 
-/*     */   public CodeValue getProduct_source_ID()
-/*     */   {
-/* 202 */     return this.product_source_ID;
-/*     */   }
-/*     */ 
-/*     */   public void setProduct_source_ID(CodeValue product_source_ID)
-/*     */   {
-/* 207 */     this.product_source_ID = product_source_ID;
-/*     */   }
-/*     */ }
+package com.yongjun.tdms.model.base.products;
 
-/* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\
- * Qualified Name:     com.yongjun.tdms.model.base.products.Products
- * JD-Core Version:    0.6.2
- */
+import java.util.Date;
+
+import com.yongjun.pluto.model.BaseInfoEntity;
+import com.yongjun.pluto.model.codevalue.CodeValue;
+import com.yongjun.pluto.model.tracking.CreatedTimeTracking;
+import com.yongjun.pluto.model.tracking.CreatorTracking;
+import com.yongjun.pluto.model.tracking.LastModifiedTimeTracking;
+import com.yongjun.pluto.model.tracking.LastOperatorTracking;
+import com.yongjun.tdms.model.base.produttype.ProductType;
+import com.yongjun.tdms.model.supplier.Supplier;
+
+public class Products extends BaseInfoEntity implements CreatedTimeTracking, CreatorTracking, LastOperatorTracking,
+		LastModifiedTimeTracking {
+	private static final long serialVersionUID = 4076912356110674435L;
+	private String code;
+	private String name;
+	private String model;
+	private String standard;
+	private Double etcPrice;
+	private Double salePrice;
+	private String salelimit;
+	private Date launch;
+	private String remark;
+	private ProductType pt;
+	private String productSource;
+	private CodeValue product_source_ID;
+	private Supplier supplier;
+	private boolean isNoMain = true;
+	private String isSaved;// 存在并且等于0，，方可提交
+
+	public boolean equals(Object arg0) {
+		if (arg0 == this) {
+			return true;
+		}
+		if (!(arg0 instanceof Products)) {
+			return false;
+		}
+
+		Products p = (Products) arg0;
+
+		if (!p.getId().equals(getId())) {
+			return false;
+		}
+		return true;
+	}
+
+	public int hashCode() {
+		return getId().hashCode();
+	}
+
+	public String getCode() {
+		return this.code;
+	}
+
+	public Double getEtcPrice() {
+		return this.etcPrice;
+	}
+
+	public boolean getIsNoMain() {
+		return this.isNoMain;
+	}
+
+	public String getModel() {
+		return this.model;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public String getProductSource() {
+		return this.productSource;
+	}
+
+	public ProductType getPt() {
+		return this.pt;
+	}
+
+	public Double getSalePrice() {
+		return this.salePrice;
+	}
+
+	public String getStandard() {
+		return this.standard;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public void setEtcPrice(Double etcPrice) {
+		this.etcPrice = etcPrice;
+	}
+
+	public void setIsNoMain(boolean isNoMain) {
+		this.isNoMain = isNoMain;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setProductSource(String productSource) {
+		this.productSource = productSource;
+	}
+
+	public void setPt(ProductType pt) {
+		this.pt = pt;
+	}
+
+	public String getSalelimit() {
+		return this.salelimit;
+	}
+
+	public void setSalelimit(String salelimit) {
+		this.salelimit = salelimit;
+	}
+
+	public void setSalePrice(Double salePrice) {
+		this.salePrice = salePrice;
+	}
+
+	public void setStandard(String standard) {
+		this.standard = standard;
+	}
+
+	public Supplier getSupplier() {
+		return this.supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+
+	public Date getLaunch() {
+		return this.launch;
+	}
+
+	public void setLaunch(Date launch) {
+		this.launch = launch;
+	}
+
+	public String getRemark() {
+		return this.remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public CodeValue getProduct_source_ID() {
+		return this.product_source_ID;
+	}
+
+	public void setProduct_source_ID(CodeValue product_source_ID) {
+		this.product_source_ID = product_source_ID;
+	}
+
+	public String getIsSaved() {
+		return isSaved;
+	}
+
+	public void setIsSaved(String isSaved) {
+		this.isSaved = isSaved;
+	}
+}

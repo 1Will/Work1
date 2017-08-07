@@ -44,6 +44,10 @@
         <property name="isSaved" type="string">
             <column name="isSaved" not-null="false" sql-type="NVARCHAR(1)"/>
         </property>
+        <!-- 提交次数 -->
+		<property name="submitNum" type="long">
+			<column name="submitNum"/>
+		</property>
         <!-- 项目概要 -->
 		<property name="outline" type="string">
 			<column name="project_outline" not-null="false" sql-type="NVARCHAR(1000)" />

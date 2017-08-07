@@ -242,7 +242,10 @@
 		<many-to-one name="education" class="com.yongjun.pluto.model.codevalue.CodeValue">
 			<column name="education" not-null="false"/>
 		</many-to-one>
-		
+		<!-- 是否提交 -->
+		<property name="isSaved" type="string">
+			<column name="isSaved" sql-type="NVARCHAR(1)"/>
+		</property>
 		
 	</class>
 </hibernate-mapping>

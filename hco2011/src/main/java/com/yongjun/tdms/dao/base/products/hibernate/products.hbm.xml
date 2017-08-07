@@ -80,6 +80,10 @@
         <property name="disabled" type="boolean">
             <column name="DISABLED" not-null="true"/>
         </property>
+        <!-- 是否提交 -->
+		<property name="isSaved" type="string">
+			<column name="isSaved" sql-type="NVARCHAR(1)"/>
+		</property>
 		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
         <property name="creator"  column="CREATOR"   type="string" length="20"/>
         <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>

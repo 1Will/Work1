@@ -99,7 +99,8 @@ function openContactInfo(){
 		}else{
 			var url = '${req.contextPath}/supplierManager/editContactInfo.html?supplier.id='+#{supplier.id}+'&readOnly=${req.getParameter('readOnly')?if_exists}';
 		}
-			popupModalDialog(url,800,600);
+			//popupModalDialog(url,800,600);
+			openNewWindow(url);
 			if(isIE()){self.location.reload();};
 		</#if>
 		</#if>
@@ -112,8 +113,8 @@ function editOpenContactInfo(id){
 			}else{
 				var url = '${req.contextPath}/supplierManager/editContactInfo.html?supplier.id='+#{supplier.id}+'&contactArchives.id='+id+'&readOnly=${req.getParameter('readOnly')?if_exists}';
 			}
-			popupModalDialog(url,800,600);
-			//window.open(url,800,600);
+			//popupModalDialog(url,800,600);
+			openNewWindow(url);
 			if(isIE()){self.location.reload();};
 		</#if>
 		</#if>

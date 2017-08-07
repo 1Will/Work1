@@ -3,6 +3,7 @@ package com.yongjun.tdms.dao.customercontract.plan;
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.pluto.model.codevalue.CodeValue;
 import com.yongjun.tdms.model.customercontract.plan.ReturnPlan;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -29,6 +30,8 @@ public abstract interface ReturnPlanDao
   public abstract List<ReturnPlan> contractManagementAndBatch(Long paramLong1, Long paramLong2, String paramString, boolean paramBoolean);
 
   public abstract List<CodeValue> contractAndBatch(Long paramLong, boolean paramBoolean);
+  
+  public List<CodeValue> batchForBill(Long contractManagementId, boolean isNew);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

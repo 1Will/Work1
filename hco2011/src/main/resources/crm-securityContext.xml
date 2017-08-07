@@ -99,10 +99,10 @@
 					<!-- 合同管理 -->
 					/contractManagement/listContractManagementActionREAD.html*=ROLE_CONTRACTMANAGEMENT_READ
 					/contractManagement/listContractManagementActionWRITE.html*=ROLE_CONTRACTMANAGEMENT_WRITE
-					<!-- 回款记录 -->
+					<!-- 收款计划 -->
 					/contractManagement/listReceivedPaymentsREAD.html*=ROLE_RECEIVEDPAYMENTS_READ
 					/contractManagement/listReceivedPaymentsWRITE.html*=ROLE_RECEIVEDPAYMENTS_WRITE
-					<!-- 回款计划 -->
+					<!-- 收款计划 -->
 					/contractManagement/listReturnPlanREAD.html*=ROLE_RETURNPLAN_READ
 					/contractManagement/listReturnPlanWRITE.html*=ROLE_RETURNPLAN_WRITE
 					<!-- 开票记录 -->

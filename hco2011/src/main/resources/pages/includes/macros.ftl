@@ -79,6 +79,7 @@
 			<script type='text/javascript' src='${req.contextPath}/dwr/interface/DeptCascadeDutyJs.js'></script>
 			<script type='text/javascript' src='${req.contextPath}/dwr/interface/ContractManagementAndBatchJs.js'></script>
 			<script type='text/javascript' src='${req.contextPath}/dwr/interface/ContractAndBatchJs.js'></script>
+			<script type='text/javascript' src='${req.contextPath}/dwr/interface/BatchForBillJs.js'></script>
 			<script type='text/javascript' src='${req.contextPath}/dwr/interface/CheckSumJs.js'></script>
 			<script type='text/javascript' src='${req.contextPath}/dwr/interface/loginNameRepeatJs.js'></script>
        

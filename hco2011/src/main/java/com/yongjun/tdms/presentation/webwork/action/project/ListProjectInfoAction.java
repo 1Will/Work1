@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.pluto.model.codevalue.CodeValue;
+import com.yongjun.pluto.model.security.User;
 import com.yongjun.pluto.service.codevalue.CodeValueManager;
 import com.yongjun.pluto.service.security.UserManager;
 import com.yongjun.pluto.webwork.action.valuelist.ValueListAction;
@@ -55,6 +56,11 @@ public class ListProjectInfoAction extends ValueListAction {
 
 	protected Map getRequestParameterMap() {
 		Map map = super.getRequestParameterMap();
+		
+		if (hasId("projectInfo.creator")) {
+			User  user = this.userManager.loadUser(getId("projectInfo.creator"));
+			map.put("projectInfo.creator", user.getName());
+		}
 		if (hasId("customer.id")) {
 			map.put("customerId", getId("customer.id"));
 		}
@@ -149,9 +155,7 @@ public class ListProjectInfoAction extends ValueListAction {
 					codes.add(0, cv);
 					codes.addAll(list);
 				}
-
 			}
-
 			return codes;
 		} catch (DaoException e) {
 			e.printStackTrace();

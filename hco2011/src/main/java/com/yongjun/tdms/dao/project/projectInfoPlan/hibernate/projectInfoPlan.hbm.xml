@@ -42,9 +42,16 @@
 		<many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
 			<column name="projectInfo_id" not-null="false" />
 		</many-to-one>
+		<many-to-one name="contractManagement" class="com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement" lazy="false">
+			<column name="contractManagement_id" not-null="false" />
+		</many-to-one>
 		
 		<many-to-one name="personnelFiles" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles" lazy="false">
 			<column name="personnelFiles_id" not-null="false" />
+		</many-to-one>
+		<!--计划状态 -->
+		<many-to-one name="planState" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+			<column name="planState" not-null="false" />
 		</many-to-one>
 		<property name="assist" type="string">
 			<column name="assist" not-null="false" sql-type="NVARCHAR(200)" />
@@ -55,6 +62,12 @@
 		<property name="endDate" type="timestamp">
 			<column name="end_Date"/>
 		</property>
+		
+		<!-- 提交判断 -->
+        <property name="isSaved" type="string">
+            <column name="isSaved" not-null="false" sql-type="NVARCHAR(1)"/>
+        </property>
+		
 		<property name="disabled" type="boolean">
             <column name="DISABLED" not-null="true"/>
         </property>

@@ -6,6 +6,8 @@ import com.yongjun.tdms.model.project.projectInfoPlan.ProjectInfoPlan;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.taglibs.standard.lang.jstl.Literal;
+
 public abstract interface ProjectInfoPlanManager
 {
 	 public abstract void storeProjectInfoPlan(ProjectInfoPlan paramProjectInfoPlan);
@@ -30,5 +32,6 @@ public abstract interface ProjectInfoPlanManager
 
 	  public abstract List<ProjectInfoPlan> loadByKeyArray(String[] paramArrayOfString, Object[] paramArrayOfObject)
 	    throws DaoException;
+	  public abstract List loadByTeam(String code);
 }
 

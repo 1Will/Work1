@@ -24,14 +24,17 @@
 <@ww.form namespace="'/projectInfo'" name="'projectInfo'" action="'saveProjectInfo'" method="'post'">
 	<@ww.token name="saveProjectInfoToken"/>
     <@inputTable>
-    	<@ww.hidden name="'customer.id'" value="''"/>
     	<@ww.hidden name="'stateId'" value="''"/>
-    	<@ww.hidden name="'contact.id'" value="''"/>
     	<@ww.hidden name="'controller.id'" value="''"/>
     	<@ww.hidden name="'projectInfo.isSaved'" value="''"/>
     	<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
     	<#if projectInfo.id?exists>
+    		<@ww.hidden name="'contact.id'" value="'#{projectInfo.contact.id?if_exists}'"/>
     		<@ww.hidden name="'projectInfo.id'" value="#{projectInfo.id}"/>
+    		<@ww.hidden name="'customer.id'" value="'#{projectInfo.customer.id?if_exists}'"/>
+	 	<#else>
+    		<@ww.hidden name="'contact.id'" value="''"/>
+    		<@ww.hidden name="'customer.id'" value="''"/>
 	 	</#if>
 	
     
@@ -156,9 +159,9 @@
 		</#if>
 		
 		<#if projectInfo.isSaved?exists &&projectInfo.isSaved=='0' >
-	    	<@vsubmit name="'submit'" value="'${action.getText('提交')}'" onclick="'return submitt();'"/>
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
 	    <#else>
-	    	<@vsubmit name="'submit'" value="'${action.getText('提交')}'" onclick="'return submitt();'" disabled="true"/>
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
 	    </#if>
 	
 	<#if notNewFlag?exists&&notNewFlag==notNewFlag>
@@ -286,8 +289,11 @@
 <#if projectInfo.id?exists>
 <ul id="beautytab">
 	<li>
-		<a id="contactArchives" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProCon.html?projectInfo.id=#{projectInfo.id}&customerInfo.id=#{projectInfo.customer.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.contactArchives')}</a>
+		<a id="customers" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProCus.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.customers')}</a>
 	</li>
+	<li>
+		<a id="contactArchives" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProCon.html?projectInfo.id=#{projectInfo.id}&customerInfo.id=#{projectInfo.customer.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.contactArchives')}</a>
+	</li>																																																				
 	<li>
 		<a id="projectPer" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProPer.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.personnelFiles')}</a>
 	</li>
@@ -305,10 +311,17 @@
 	</li>
 	
 	<li>
-		<a id="weekPlanInfo" onclick="activeTab(this);"  href='${req.contextPath}/workReport/listWeekPlanTab.html?projectInfo.id=#{projectInfo.id}' target="frame" >${action.getText('周计划')}</a>
+		<a id="weekPlanInfo" onclick="activeTab(this);"  href='${req.contextPath}/workReport/listWeekPlanTab.html?projectInfo.id=#{projectInfo.id}' target="frame" >${action.getText('项目周计划')}</a>
 	</li>
-	
+	<#-- 
+	<li>
+		<a id="projectPartner" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProjectPartner.html?projectInfo.id=#{projectInfo.id}' target="frame" >${action.getText('合作伙伴')}</a>
+	</li>
+	<li>
+		<a id="projectPartner" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProjectContactArchives.html?projectInfo.id=#{projectInfo.id}' target="frame" >${action.getText('合作伙伴项目组成员')}</a>
+	</li>
+	-->
 </ul>
-<iframe name="frame" frameborder="0.5" src="${req.contextPath}/projectInfo/listProCon.html?projectInfo.id=#{projectInfo.id}&customerInfo.id=#{projectInfo.customer.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="60%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/projectInfo/listProCus.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="60%"/>
 </#if>
 

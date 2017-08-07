@@ -207,9 +207,9 @@
 	    <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return check();'"/>
 	    
 	    <#if daily.isSaved?exists &&daily.isSaved=='0' >
-	    	<@vsubmit name="'submit'" value="'${action.getText('提交')}'" onclick="'return submitt();'"/>
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
 	    <#else>
-	    	<@vsubmit name="'submit'" value="'${action.getText('提交')}'" onclick="'return submitt();'" disabled="true"/>
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
 	    </#if>
 	    
 	    <#-- 继续新建按钮   -->
@@ -420,20 +420,20 @@
 		<!-- 联系人弹窗 -->
 		function contact_OpenDialog(){
 		<#if daily.rapporteur?exists>
-			var url="${req.contextPath}/customerRelationship/listContactArchives.html?contactArchives.creator=${daily.rapporteur.name?if_exists}&contactArchives.createdTime=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}"
+			var url="${req.contextPath}/customerRelationship/listContactArchives.html?contactArchives.creator=${daily.rapporteur.id?if_exists}&contactArchives.createdTime=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}"
 		<#else>
 			var date =getObjByName('daily.currentDate').value;
-			var url="${req.contextPath}/customerRelationship/listContactArchives.html?contactArchives.creator=${user.name?if_exists}&contactArchives.createdTime="+date;
+			var url="${req.contextPath}/customerRelationship/listContactArchives.html?contactArchives.creator=${user.id?if_exists}&contactArchives.createdTime="+date;
 		</#if>	
 			openNewWindow(url);
 		}
 		<!-- 客户档案弹窗 -->
 		function customer_OpenDialog(){
 		<#if daily.rapporteur?exists>
-			var url="${req.contextPath}/customerRelationship/listCustomerInfo.html?customerInfo.salesman=${daily.rapporteur.name?if_exists}&customerInfo.createdTime=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}";
+			var url="${req.contextPath}/customerRelationship/listCustomerInfo.html?customerInfo.salesmanName=${daily.rapporteur.id?if_exists}&customerInfo.createdTime=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}";
 		<#else>
 			var date =getObjByName('daily.currentDate').value;
-			var url="${req.contextPath}/customerRelationship/listCustomerInfo.html?customerInfo.salesman=${user.name?if_exists}&customerInfo.createdTime="+date;
+			var url="${req.contextPath}/customerRelationship/listCustomerInfo.html?customerInfo.salesmanName=${user.id?if_exists}&customerInfo.createdTime="+date;
 		</#if>		
 			openNewWindow(url);
 		}
@@ -441,10 +441,10 @@
 		<!-- 项目弹窗 -->
 		function project_OpenDialog(){
 		<#if daily.rapporteur?exists>
-			var url="${req.contextPath}/projectInfo/listProjectInfo.html?projectInfo.creator=${daily.rapporteur.name?if_exists}&projectInfo.createdTime=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}";
+			var url="${req.contextPath}/projectInfo/listProjectInfo.html?projectInfo.creator=${daily.rapporteur.id?if_exists}&projectInfo.createdTime=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}";
 		<#else>
 			var date =getObjByName('daily.currentDate').value;
-			var url="${req.contextPath}/projectInfo/listProjectInfo.html?projectInfo.creator=${user.name?if_exists}&projectInfo.createdTime="+date;
+			var url="${req.contextPath}/projectInfo/listProjectInfo.html?projectInfo.creator=${user.id?if_exists}&projectInfo.createdTime="+date;
 		</#if>		
 			openNewWindow(url);
 		}

@@ -89,6 +89,10 @@ public class EditReturnPlanAction extends PrepareAction {
 			}
 		}
 
+		if (hasId("chargMan.id")) {
+			this.returnPlan.setChargMan(this.personnelFilesManager.loadPersonnel(getId("chargMan.id")));
+		}
+
 		if (hasId("payee.id")) {
 			PersonnelFiles payee = this.personnelFilesManager.loadPersonnel(getId("payee.id"));
 
@@ -106,6 +110,13 @@ public class EditReturnPlanAction extends PrepareAction {
 			}
 		}
 
+		if (hasId("planState.id")) {
+			CodeValue cv = this.codeValueManager.loadCodeValue(getId("planState.id"));
+			if (null != cv) {
+				this.returnPlan.setPlanState(cv);
+			}
+		}
+		this.returnPlan.setIsBill("1");
 		this.returnPlan.setIsOrNot("1");
 
 		if (hasId("notOrIs")) {
@@ -121,11 +132,17 @@ public class EditReturnPlanAction extends PrepareAction {
 			String remark = this.request.getParameter("returnPlan.remark");
 			this.returnPlan.setRemark(remark);
 		}
-		this.returnPlanManager.storeReturnPlan(this.returnPlan);
-		// 回款计划完成后，项目状态改为付费
-		this.projectInfo = this.returnPlan.getContractManagement().getProject();
-		this.projectInfo.setState(this.codeValueManager.loadCodeValue(466L));
-		this.projectInfoManager.storeProjectInfo(this.projectInfo);
+		try {
+			this.returnPlanManager.storeReturnPlan(this.returnPlan);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// 收款计划完成后，项目状态改为付费
+		// this.projectInfo =
+		// this.returnPlan.getContractManagement().getProject();
+		// this.projectInfo.setState(this.codeValueManager.loadByKey("code",
+		// "20103").get(0));
+		// this.projectInfoManager.storeProjectInfo(this.projectInfo);
 		List<ReturnPlan> lists = this.returnPlanManager.loadAllReturnPlans();
 		Double sum = Double.valueOf(0.0D);
 		if (null != lists) {
@@ -160,6 +177,20 @@ public class EditReturnPlanAction extends PrepareAction {
 
 				if ((null != list) && (list.size() > 0)) {
 					codes.addAll(list);
+				}
+			}
+			if (this.contractManagement != null) {
+				List<ReturnPlan> returnPlans = this.returnPlanManager.loadByKey("contractManagement.id",
+						this.contractManagement.getId());
+				if (returnPlans!= null && returnPlans.size()>0) {
+					for (int j = codes.size() - 1; j >= 0; j--) {
+						for (int i = 0; i < returnPlans.size(); i++) {
+							if (codes.get(j).getId() == returnPlans.get(i).getBatch().getId()) {
+								codes.remove(j);
+							}
+						}
+
+					}
 				}
 			}
 			return codes;
@@ -219,5 +250,27 @@ public class EditReturnPlanAction extends PrepareAction {
 
 	public void setPopWindowFlag(String popWindowFlag) {
 		this.popWindowFlag = popWindowFlag;
+	}
+
+	public List<CodeValue> getAllPlanState() {
+		try {
+			List codes = new ArrayList();
+			String[] keys = { "name", "code" };
+			String[] values = { "收款计划状态", "213" };
+			List one = this.codeValueManager.loadByKeyArray(keys, values);// this.codeValueManager.loadByKey("code",
+																			// Long.valueOf("211"));
+			if ((null != one) && (one.size() > 0)) {
+				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
+				if ((null != list) && (list.size() > 0)) {
+					codes.addAll(list);
+				}
+
+			}
+
+			return codes;
+		} catch (DaoException e) {
+			e.printStackTrace();
+			return new ArrayList();
+		}
 	}
 }

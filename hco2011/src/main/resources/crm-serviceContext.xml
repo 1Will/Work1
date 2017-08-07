@@ -296,7 +296,7 @@
 	</bean>
 	
 	<!-- 工作报告 -->
-	<!-- 周报管理 -->
+	<!-- 周计划管理 -->
 	<bean id="weeklyManager" parent="abstractTransactionProxy">
 		<property name="target">
 			<bean
@@ -650,7 +650,7 @@
 	  	</property>
 	</bean>
 	
-	<!-- 回款计划提醒定时器  每天凌晨00:10执行--> 
+	<!-- 收款计划提醒定时器  每天凌晨00:10执行--> 
 	<bean id="timeCreateReturnPlan" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject">
 			<ref local="myRemindManager"/>
@@ -720,6 +720,16 @@
 			<bean class="com.yongjun.tdms.service.workspace.leaveBill.pojo.DefaultLeaveBillManager">
 				<constructor-arg index="0">
 					<ref bean="leaveBillDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- w w我的数据1-->
+	<bean id="dataManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.service.workspace.data.pojo.DefaultDataManager">
+				<constructor-arg index="0">
+					<ref bean="dataDao" />
 				</constructor-arg>
 			</bean>
 		</property>
@@ -1019,7 +1029,7 @@
 	</bean>
 	<!-- 任务管理 结束 -->
 	
-		<!-- 回款记录 -->
+		<!-- 收款计划 -->
 	<bean id="receivedPaymentsManager" parent="abstractTransactionProxy">
 		<property name="target">
 			<bean class="com.yongjun.tdms.service.customercontract.receivedpayments.pojo.DefaultReceivedPaymentsManager">
@@ -1039,7 +1049,7 @@
 			</bean>
 		</property>
 	</bean>
-		<!-- 回款计划 -->
+		<!-- 收款计划 -->
 	<bean id="returnPlanManager" parent="abstractTransactionProxy">
 		<property name="target">
 			<bean class="com.yongjun.tdms.service.customercontract.plan.pojo.DefaultReturnPlanManager">
@@ -1118,6 +1128,16 @@
 			<bean class="com.yongjun.tdms.service.expensemanagement.expenseuse.pojo.DefaultExpenseUseManager">
 				<constructor-arg index="0">
 					<ref bean="expenseUseDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- 报销单-->
+	<bean id="expenseFormManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.service.expensemanagement.expenseForm.pojo.DefaultExpenseFormManager">
+				<constructor-arg index="0">
+					<ref bean="expenseFormDao" />
 				</constructor-arg>
 			</bean>
 		</property>
@@ -1294,6 +1314,18 @@
 			</bean>
 		</property>
 	</bean>
+	<!-- 项目客户-->
+	<bean id="projectInfoCustomerManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.project.projectInfoCustomer.pojo.DefaultProjectInfoCustomerManager">
+				<constructor-arg index="0">
+					<ref bean="projectInfoCustomerDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
 	<!-- 项目联系人-->
 	<bean id="projectInfoContractManager"
 		parent="abstractTransactionProxy">
@@ -1356,6 +1388,71 @@
 		</property>
 	</bean>
 	
+	<!-- 产品开发人员 -->
+	<bean id="productsPersonManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.products.productsPerson.pojo.DefaultProductsPersonManager">
+				<constructor-arg index="0">
+					<ref bean="productsPersonDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 合同计划 -->
+	<bean id="contractPlanManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.customercontract.contractmanagement.plan.pojo.DefaultContractPlanManager">
+				<constructor-arg index="0">
+					<ref bean="contractPlanDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 合作伙伴 -->
+	<bean id="projectPartnerManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.project.projectPartner.pojo.DefaultProjectPartnerManager">
+				<constructor-arg index="0">
+					<ref bean="projectPartnerDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 合作伙伴项目组成员 -->
+	<bean id="projectContactArchivesManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.project.projectContactArchives.pojo.DefaultProjectContactArchivesManager">
+				<constructor-arg index="0">
+					<ref bean="projectContactArchivesDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 合同状态 -->
+	<bean id="contractStateManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.customercontract.contractmanagement.state.pojo.DefaultContractStateManager">
+				<constructor-arg index="0">
+					<ref bean="contractStateDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
 	<!--通用方法，用于人事档案与用户之间查询-->
 	<bean id="personnelFilesToUserManager"
 		parent="abstractTransactionProxy">
@@ -1367,6 +1464,19 @@
 				</constructor-arg>
 				<constructor-arg index="1">
 					<ref bean="projectInfoPersonnelsManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 周 -->
+	<bean id="weekManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.workReport.week.pojo.DefaultWeekManager">
+				<constructor-arg index="0">
+					<ref bean="weekDao" />
 				</constructor-arg>
 			</bean>
 		</property>

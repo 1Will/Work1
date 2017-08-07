@@ -24,6 +24,7 @@
 <@ww.form name="'listForm'" action="'saveCustomerInfo'" method="'post'">
 <@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 	<@ww.token name="saveCustomerInfoToken"/>
+	<@ww.hidden id="'isSaved'" name="'isSaved'" value=""/>
 	<@ww.hidden name="'salesman.id'" value="'${req.getParameter('salesman.id')?if_exists}'"/>
 	<@ww.hidden name="'salesmanName'" value="'${req.getParameter('salesmanName')?if_exists}'"/>
 	<#if customerInfo.id?exists>
@@ -104,7 +105,31 @@
 				disabled="false">
 			</@ww.select>
 	</tr>
-
+	<!--片区分类 业务属性
+	<tr>
+		
+		<@ww.select label="'${action.getText('customerInfo.classification')}'" 
+				name="'classification.id'" 
+				value="'${req.getParameter('classification.id')?if_exists}'"
+				listKey="id"
+				listValue="name"
+				list="allClassification"
+				required="true"
+				emptyOption="true" 
+				disabled="false">
+			</@ww.select>
+			<@ww.select label="'${action.getText('customerInfo.businessType')}'" 
+				name="'businessType.id'" 
+				value="'${req.getParameter('businessType.id')?if_exists}'"
+				listKey="id"
+				listValue="name"
+				list="allBusinessType"
+				required="true"
+				emptyOption="true" 
+				disabled="false">
+			</@ww.select>
+	</tr>
+-->  
 	<tr>
 		<!--企业法人-->
 		<@ww.textfield label="'${action.getText('customerInfo.legalPerson')}'" name="'customerInfo.legalPerson'" value="'${customerInfo.legalPerson?if_exists}'" cssClass="'underline'" />
@@ -222,6 +247,11 @@
 	 <!--公司网站-->
 	    <@ww.textfield label="'${action.getText('customerInfo.web')}'" name="'customerInfo.web'" value="'${customerInfo.web?if_exists}'" cssClass="'underline'"  />
 	 
+	   <td align="right"><label for="" class="label">${action.getText('customerInfo.isPartner')}:</label></td>
+	        <td align="left">
+	        	<input type="radio" id="isPartner0" name="isPartner" value="0" checked="true" />否
+	        	<input type="radio" id="isPartner1" name="isPartner" value="1" />是
+			</td>
 	</tr>
 		
 	<tr>
@@ -368,8 +398,17 @@
 	</@inputTable>
 	<@buttonBar>
 		<#if !(action.isReadOnly())>
-			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 		</#if>
+		
+		<#if customerInfo.isSaved?exists &&customerInfo.isSaved=='0' >
+            <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return submitt();'"  >
+            </@vsubmit>
+        <#else>
+            <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return submitt();'"  disabled="true">
+            </@vsubmit>
+        </#if>
+		
 		<#if notNewFlag?exists&&notNewFlag=='notNewFlag'>
 		<#else>
 			<#-- 继续新建按钮   -->
@@ -397,6 +436,16 @@
 
 
 	window.onload = function () {
+	<#if customerInfo.isPartner?exists>
+			<#if customerInfo.isPartner=="0">
+				getObjByName('isPartner0').checked=true;
+			<#else>
+				getObjByName('isPartner1').checked=true;
+			</#if>
+		<#else>
+		    getObjByName('isPartner0').checked=true;
+		</#if>
+	
 		<#if customerInfo.isOrNot?exists>
 			<#if customerInfo.isOrNot=="0">
 				getObjByName('isOrNot0').checked=true;
@@ -436,6 +485,18 @@
 			getObjByName('companyNature.id').value='${customerInfo.companyNature.id?if_exists}';
 			<#elseif req.getParameter('companyNature.id')?exists>
 			getObjByName('companyNature.id').value='${req.getParameter('companyNature.id')}';
+		</#if>
+		 //片区分类
+		<#if customerInfo.classification?exists>
+			getObjByName('classification.id').value='${customerInfo.classification.id?if_exists}';
+			<#elseif req.getParameter('classification.id')?exists>
+			getObjByName('classification.id').value='${req.getParameter('classification.id')}';
+		</#if>
+		 //业务属性
+		<#if customerInfo.businessType?exists>
+			getObjByName('businessType.id').value='${customerInfo.businessType.id?if_exists}';
+			<#elseif req.getParameter('businessType.id')?exists>
+			getObjByName('businessType.id').value='${req.getParameter('businessType.id')}';
 		</#if>
 	    //国家
 		<#if customerInfo.country?exists>
@@ -498,6 +559,17 @@
 	   		document.forms[0].elements["customerInfo.parlorDept"].value = result[9];
 		}
 	}
+	
+	function submitt(){
+		getObjByName('isSaved').value="1";
+		return storeValidation();
+	}
+	
+	function savee(){
+		getObjByName('isSaved').value="0";
+		return storeValidation();
+	}
+	
 	
 	var tORf =true;
 	//验证字段
@@ -975,6 +1047,9 @@
 	</li>
 	<li>
 		<a id="backvisit" onclick="activeTab(this);" href='${req.contextPath}/backvisit/listBackVisitByContact.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('customerInfo.backvisit')}</a>
+	</li>
+	<li>
+		<a id="projectInfo" onclick="activeTab(this);" href='${req.contextPath}/projectInfo/listProjectByCus.html?customer.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('项目列表')}</a>
 	</li>
 	<li>
 		<a id="contractInfo" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listContractManagementByCustomerAction.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('customerInfo.contract')}</a>

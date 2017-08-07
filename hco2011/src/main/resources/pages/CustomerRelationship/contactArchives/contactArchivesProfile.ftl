@@ -25,6 +25,7 @@
 	<@ww.token name="saveContactArchivesToken"/>
 	<#assign returnUrl='${req.contextPath}/customerRelationship/editContactArchives.html?yesUrl=yesUrl'/>
     <@inputTable>
+    	<@ww.hidden name="'isSaved'" value=""/>
     	<@ww.hidden name="'sex'" value="'${req.getParameter('sex')?if_exists}'"/>
     	<#--<@ww.hidden name="'temperament'" value="'${req.getParameter('temperament')?if_exists}'"/>-->
     	<#--<@ww.hidden name="'type'" value="'${req.getParameter('type')?if_exists}'"/>-->
@@ -182,8 +183,16 @@
     </@inputTable>
     <@buttonBar>
     	<#if !(action.isReadOnly())>
-			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 		</#if>
+		
+		<#if contactArchives.isSaved?exists &&contactArchives.isSaved=='0' >
+            <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return submitt();'"  >
+            </@vsubmit>
+            <#else>
+            <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return submitt();'"  disabled="true">
+            </@vsubmit>
+        </#if>
 		
 		<#if notNewFlag?exists&&notNewFlag=='notNewFlag'>
 		<#else>
@@ -242,6 +251,16 @@
 		 	document.forms[0].elements["contactArchives.industry"].value = result[4];
 		 	//document.forms[0].elements["contactArchives.enterpriseSynopsis"].value = result[10];
 		}
+	}
+	
+	function submitt(){
+		getObjByName('saveContactArchives_isSaved').value="1";
+		return storeValidation();
+	}
+	
+	function savee(){
+		getObjByName('saveContactArchives_isSaved').value="0";
+		return storeValidation();
 	}
 	
 	//保存前给隐藏域赋值和验证字段
@@ -367,7 +386,7 @@
 		<a id="contractInfo" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listContractManagementByCustomerAction.html?contactArchives.id=#{contactArchives.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('contactArchives.contract')}</a>
 	</li>
 	<li>
-		<a id="returnPlan" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listReturnPlanByCustomerAction.html?contactArchives.id=#{contactArchives.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('contactArchives.returnPlan')}</a>
+		<a id="returnPlan" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listReturnPlanByCustomerAction.html?contactArchives.id=#{contactArchives.id}&sortColumn=batch.name&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('contactArchives.returnPlan')}</a>
 	</li>
 	<li>
 		<a id="changeToHistory" onclick="activeTab(this);" href='${req.contextPath}/customerRelationship/listContactToHistory.html?cr.id=#{contactArchives.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('contactArchives.changeToHistory')}</a>

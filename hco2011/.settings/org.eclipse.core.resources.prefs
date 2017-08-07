@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java=utf-8
+encoding//src/main/java/com/yongjun/tdms/presentation/webwork/action/workReport/weekPlan/package.properties=ISO-8859-1
 encoding//src/main/resources/pages/customercontract/contractmanagement/contractManagementList.ftl=UTF-8
 encoding//src/main/resources/pages/customercontract/contractmanagement/contractManagementProfile.ftl=UTF-8
 encoding//src/test/java=utf-8

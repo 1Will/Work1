@@ -37,6 +37,7 @@ import java.util.Set;
 			private String backVisitContext;
 /*     */   private Weekly weekly;
 			private String isSaved;//存在并且等于0，，方可提交
+			private long submitNum=0;
 			public Set bvtList =new HashSet();
 /*     */ 
 /*     */   public boolean equals(Object arg0)
@@ -232,6 +233,13 @@ import java.util.Set;
 			public void setIsSaved(String isSaved) {
 				this.isSaved = isSaved;
 			}
+			public long getSubmitNum() {
+				return submitNum;
+			}
+			public void setSubmitNum(long submitNum) {
+				this.submitNum = submitNum;
+			}
+			
 			
 /*     */ }
 

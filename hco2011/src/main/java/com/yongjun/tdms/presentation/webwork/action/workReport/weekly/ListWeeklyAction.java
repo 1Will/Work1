@@ -274,7 +274,7 @@
 /* 402 */     Object[] keyValues = { this.userManager.getUser().getCode(), this.userManager.getUser().getOrganization().getId() };
 /*     */     try {
 /* 404 */       List pf = this.personnelFilesManager.loadByKeyArray(keyNames, keyValues);
-/* 405 */       if (pf.size() > 0)
+/* 405 */       if (null!=pf && pf.size() > 0)
 /* 406 */         return false;
 /*     */     }
 /*     */     catch (DaoException e) {

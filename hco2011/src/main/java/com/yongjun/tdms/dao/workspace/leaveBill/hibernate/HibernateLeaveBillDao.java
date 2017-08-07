@@ -54,7 +54,7 @@
 /* 57 */     String hql = "select lb.code from LeaveBill as lb where lb.organization.id=" + orgId + " and lb.code like '%" + code + "%'";
 /*    */ 
 /* 59 */     List codeList = getSession().createQuery(hql).list();
-/* 60 */     if (codeList.size() > 0) {
+/* 60 */     if (null!= codeList && codeList.size() > 0) {
 /* 61 */       List items = new ArrayList();
 /* 62 */       for (int i = 0; i < codeList.size(); i++) {
 /* 63 */         String item = ((String)codeList.get(i)).substring(((String)codeList.get(i)).lastIndexOf("-") + 1);

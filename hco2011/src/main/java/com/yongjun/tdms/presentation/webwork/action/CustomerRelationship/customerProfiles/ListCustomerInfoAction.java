@@ -2,6 +2,7 @@
 /*     */ 
 /*     */ import com.yongjun.pluto.exception.DaoException;
 /*     */ import com.yongjun.pluto.model.codevalue.CodeValue;
+import com.yongjun.pluto.model.security.User;
 /*     */ import com.yongjun.pluto.service.codevalue.CodeValueManager;
 /*     */ import com.yongjun.pluto.webwork.action.valuelist.ValueListAction;
 /*     */ import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo;
@@ -46,6 +47,10 @@ import java.util.Map;
 			protected Map getRequestParameterMap()
 /*     */   {
 /* 121 */     Map map = super.getRequestParameterMap();
+				if (hasId("customerInfo.salesmanName")) {
+					User  user = this.userManager.loadUser(getId("customerInfo.salesmanName"));
+					map.put("customerInfo.salesmanName", user.getName());
+					}
  			 if (this.request.getParameter("customerInfo.createdTime")!=null) {
 /* 126 */       map.put("customerInfo.createdTime", this.request.getParameter("customerInfo.createdTime")+"%");
 /*     */     }

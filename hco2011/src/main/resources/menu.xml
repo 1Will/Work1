@@ -116,10 +116,10 @@
 				<Item name="contractManagement" title="合同管理"
 					location="contractManagement/listContractManagementAction.html">
 				</Item>
-				<Item name="returnPlan" title="回款计划"
+				<Item name="returnPlan" title="收款计划"
 					location="contractManagement/listReturnPlan.html">
 				</Item>
-				<Item name="receivedPayments" title="回款记录"
+				<Item name="receivedPayments" title="收款计划"
 					location="contractManagement/listReceivedPayments.html">
 				</Item>
 				<Item name="billingRecord" title="开票记录"
@@ -133,18 +133,18 @@
 				location="contractManagement/listContractManagementActionWRITE.html">
 			</Item>
 <!--
-			<Item name="receivedPaymentsREAD" title="回款记录"
+			<Item name="receivedPaymentsREAD" title="收款计划"
 				location="contractManagement/listReceivedPaymentsREAD.html">
 			</Item>
-			<Item name="receivedPaymentsWRITE" title="回款记录"
+			<Item name="receivedPaymentsWRITE" title="收款计划"
 				location="contractManagement/listReceivedPaymentsWRITE.html">
 			</Item>
 -->
 <!-- 	
-			<Item name="returnPlanREAD" title="回款计划"
+			<Item name="returnPlanREAD" title="收款计划"
 				location="contractManagement/listReturnPlanREAD.html">
 			</Item>
-			<Item name="returnPlanWRITE" title="回款计划"
+			<Item name="returnPlanWRITE" title="收款计划"
 				location="contractManagement/listReturnPlanWRITE.html">
 			</Item>
 -->
@@ -243,6 +243,8 @@
 				location="paymentorder/listPaymentorderActionREAD.html" />
 			<Item name="paymentorderWRITE" title="付款单"
 				location="paymentorder/listPaymentorderActionWRITE.html" />
+			
+			<!-- 
 			<Item name="expenseapplyREAD" title="费用申请"
 				location="expenseApply/listExpenseApplyActionREAD.html" />
 			<Item name="expenseapplyWRITE" title="费用申请"
@@ -251,6 +253,11 @@
 				location="expenseUse/listExpenseUseActionREAD.html" />
 			<Item name="expenseUseWRITE" title="费用使用"
 				location="expenseUse/listExpenseUseActionWRITE.html" />
+			<Item name="expenseFormREAD" title="报销单"
+				location="expenseUse/listExpenseFormActionREAD.html" />
+			 -->
+			<Item name="expenseFormWRITE" title="报销单"
+				location="expenseForm/listExpenseFormActionWRITE.html" />
 		</Menu>
 		<!-- 7-->
 		<!--  
@@ -261,6 +268,10 @@
 		<Menu name="Office" title="日常办公">
 			<Item name="do" title="我的提醒"
 				location="workspace/warnning/myWarnning/listWorkWarnnings.html" />
+			<Item name="plan" title="我的任务"
+				location="projectInfo/listMyPlan.html" />
+			<Item name="myData" title="我的数据"
+				location="workspace/data/listMyData.html" />
 		    <Item name="notice" title="内部邮件">
 				<Item name="doREAD" title="发件箱" location="notice/listNotice_READ.html" />
 				<Item name="doWRITE" title="发件箱" location="notice/listNotice_WRITE.html" />
@@ -268,13 +279,13 @@
 				<Item name="" title="通讯组"   location="communication/groups/listGroups.html" />
 		    </Item>
 			<Item name="workArrange" title="工作安排">
-				<Item name="weeklyREAD" title="周报管理"
+				<Item name="weeklyREAD" title="周计划管理"
 					location="workReport/listWeeklyREAD.html">
 				</Item>
-				<Item name="weeklyWRITE" title="周报管理"
+				<Item name="weeklyWRITE" title="周计划管理"
 					location="workReport/listWeeklyWRITE.html">
 				</Item>
-				<Item name="dailyREAD" title="日报查询"
+				<Item name="dailyREAD" title="日报管理"
 					location="workReport/listDailyREAD.html">
 				</Item>
 			</Item>

@@ -26,51 +26,51 @@
 	    //设置部门是否选中
 	    function setDeptValue(checkBox) {
 			//获取隐藏已经被选中的部门或用户，是以Id1:name1,Id2:name2字符串组合一起的
-			var selectedRecevicers = parent.frames["buttomFrame"].document.getElementById("selectedRecevicers").value;
+			var selectedRecevicers = parent.frames["buttomFrame"].document.getElementsByName("selectedRecevicers")[0].value;
 	      	//获取显示的部门名或用户名
-	      	var selectedNames = parent.frames["buttomFrame"].document.getElementById("recevicers").value;
+	      	var selectedNames = parent.frames["buttomFrame"].document.getElementsByName("recevicers")[0].value;
 	      	if (checkBox.checked) {
 	        	//获取刚被选中的部门ID
-	        	var selectedRecevicer = document.getElementById("hidden"+checkBox.name).value;
+	        	var selectedRecevicer = document.getElementsByName("hidden"+checkBox.name)[0].value;
 	        	var temp = selectedRecevicer + "_dept" + ":" + checkBox.value;
 	        	selectedRecevicers = selectedRecevicers + temp + ",";
 	        	//重新设置隐藏的选中的部门或用户
-	        	parent.frames["buttomFrame"].document.getElementById("selectedRecevicers").value = selectedRecevicers;
+	        	parent.frames["buttomFrame"].document.getElementsByName("selectedRecevicers")[0].value = selectedRecevicers;
 	        	//加上刚选中的部门名
 	        	selectedNames = selectedNames + checkBox.value + ",";
 	        	//重新设置显示的值
-	        	parent.frames["buttomFrame"].document.getElementById("recevicers").value = selectedNames;
+	        	parent.frames["buttomFrame"].document.getElementsByName("recevicers")[0].value = selectedNames;
 	      	} else {
-	        	var unSelectedRecevicer = document.getElementById("hidden"+checkBox.name).value;
+	        	var unSelectedRecevicer = document.getElementsByName("hidden"+checkBox.name)[0].value;
 	        	var temp =  unSelectedRecevicer + "_dept" + ":" + checkBox.value;
 	        	//重新设置隐藏的选中的组或用户
-	        	parent.frames["buttomFrame"].document.getElementById("selectedRecevicers").value = filterUnselected(selectedRecevicers,temp);
-	        	parent.frames["buttomFrame"].document.getElementById("recevicers").value = filterUnselected(selectedNames,checkBox.value);
+	        	parent.frames["buttomFrame"].document.getElementsByName("selectedRecevicers")[0].value = filterUnselected(selectedRecevicers,temp);
+	        	parent.frames["buttomFrame"].document.getElementsByName("recevicers")[0].value = filterUnselected(selectedNames,checkBox.value);
 	      		}
 	    	}
 	    //设置用户是否选中
 	    function setUserValue(checkBox) {
 			//获取隐藏已经被选中的部门或用户，是以Id1:name1,Id2:name2字符串组合一起的
-			var selectedRecevicers = parent.frames["buttomFrame"].document.getElementById("selectedRecevicers").value;
+			var selectedRecevicers = parent.frames["buttomFrame"].document.getElementsByName("selectedRecevicers")[0].value;
 	      	//获取显示的部门名或用户名
-	      	var selectedNames = parent.frames["buttomFrame"].document.getElementById("recevicers").value;
+	      	var selectedNames = parent.frames["buttomFrame"].document.getElementsByName("recevicers")[0].value;
 	      	if (checkBox.checked) {
 	        	//获取刚被选中的部门ID
-	        	var selectedRecevicer = document.getElementById("hidden"+checkBox.name).value;
+	        	var selectedRecevicer = document.getElementsByName("hidden"+checkBox.name)[0].value;
 	        	var temp = selectedRecevicer + "_user" + ":" + checkBox.value;
 	        	selectedRecevicers = selectedRecevicers + temp + ",";
 	        	//重新设置隐藏的选中的部门或用户
-	        	parent.frames["buttomFrame"].document.getElementById("selectedRecevicers").value = selectedRecevicers;
+	        	parent.frames["buttomFrame"].document.getElementsByName("selectedRecevicers")[0].value = selectedRecevicers;
 	        	//加上刚选中的用户名
 	        	selectedNames = selectedNames + checkBox.value + ",";
 	        	//重新设置显示的值
-	        	parent.frames["buttomFrame"].document.getElementById("recevicers").value = selectedNames;
+	        	parent.frames["buttomFrame"].document.getElementsByName("recevicers")[0].value = selectedNames;
 	      	} else {
-	        	var unSelectedRecevicer = document.getElementById("hidden"+checkBox.name).value;
+	        	var unSelectedRecevicer = document.getElementsByName("hidden"+checkBox.name)[0].value;
 	        	var temp =  unSelectedRecevicer + "_user" + ":" + checkBox.value;
 	        	//重新设置隐藏的选中的组或用户
-	        	parent.frames["buttomFrame"].document.getElementById("selectedRecevicers").value = filterUnselected(selectedRecevicers,temp);
-	        	parent.frames["buttomFrame"].document.getElementById("recevicers").value = filterUnselected(selectedNames,checkBox.value);
+	        	parent.frames["buttomFrame"].document.getElementsByName("selectedRecevicers")[0].value = filterUnselected(selectedRecevicers,temp);
+	        	parent.frames["buttomFrame"].document.getElementsByName("recevicers")[0].value = filterUnselected(selectedNames,checkBox.value);
 	      		}
 	    }
 	    //从选中的部门或用户列表删除为选中的部门或用户
@@ -88,21 +88,21 @@
 		}
 	    function setCheckedForDeptOrUser() {
 			//获取隐藏已经被选中的部门或用户，是以Id1:name1,Id2:name2字符串组合一起的
-	      	var selectedRecevicers = parent.frames["buttomFrame"].document.getElementById("selectedRecevicers").value;
+	      	var selectedRecevicers = parent.frames["buttomFrame"].document.getElementsByName("selectedRecevicers")[0].value;
 	      	selectedRecevicers = selectedRecevicers.substring(0,selectedRecevicers.lastIndexOf(","));
 	      	var seletedReceviceArray = selectedRecevicers.split(",");
 	      	for (var i=0; i<seletedReceviceArray.length; i++) {
 	        	var temp = seletedReceviceArray[i].split(":");
-	        	if (document.getElementById(temp[0]) == null || 
-					typeof(document.getElementById(temp[0])) != 'object' || 
-	             	typeof(document.getElementById(temp[0])) == 'undefined') {
+	        	if (document.getElementsByName(temp[0])[0] == null || 
+					typeof(document.getElementsByName(temp[0])[0]) != 'object' || 
+	             	typeof(document.getElementsByName(temp[0])[0]) == 'undefined') {
 	              	continue;
 	        	} 
-			document.getElementById(temp[0]).checked = true;
+			document.getElementsByName(temp[0])[0].checked = true;
 			}
 		}
 	    window.onload = function() {
-			if (parent.frames["buttomFrame"].document.getElementById("selectedRecevicers") != null) {
+			if (parent.frames["buttomFrame"].document.getElementsByName("selectedRecevicers")[0] != null) {
 			setCheckedForDeptOrUser();	      
 	      	}
 	    }

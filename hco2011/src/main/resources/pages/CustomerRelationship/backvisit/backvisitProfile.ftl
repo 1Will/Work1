@@ -134,6 +134,22 @@
 			     		getObjByName('backVisitWay.id').value = ${backVisit.backVisitWay.id};
 			     	</#if>
 			</script>
+			
+			<@ww.select 
+	    		label="'${action.getText('重要程度')}'"
+				required="true"
+				name="'importanceType.id'" 
+				value="${req.getParameter('importanceType.id')?if_exists}" 
+				listKey="id"
+				listValue="name"
+			    list="allImportanceType"
+			    emptyOption="true" 
+		    	disabled="false"/>
+		    <script language="javascript">
+			     	<#if backVisit.importanceType?exists>
+			     		getObjByName('importanceType.id').value = ${backVisit.importanceType.id};
+			     	</#if>
+			</script>
 		</tr>
 		<tr>
 			<!--回访人-->
@@ -409,10 +425,10 @@
             <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'">
             </@vsubmit>
             <#if backVisit.isSaved?exists &&backVisit.isSaved=='0' >
-            <@vsubmit name="'save'" value="'${action.getText('tj')}'" onclick="'return storeValidationTj();'"  >
+            <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return storeValidationTj();'"  >
             </@vsubmit>
             <#else>
-            <@vsubmit name="'save'" value="'${action.getText('tj')}'" onclick="'return storeValidationTj();'"  disabled="true">
+            <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return storeValidationTj();'"  disabled="true">
             </@vsubmit>
              </#if>
         </#if>
@@ -441,9 +457,9 @@
        </#if>
         </#if>
         <#if backVisit.id?exists>
-        <input type="button" value="等级变更" onclick="backvistStep_OpenDialog()"/>
-        <input type="button" value="风险预警" onclick="backvistState_OpenDialog()"/>
-        <input type="button" value="项目失败" onclick=""/>
+        <input class="button" type="button" value="等级变更" onclick="backvistStep_OpenDialog()"/>
+        <input class="button" type="button" value="风险预警" onclick="backvistState_OpenDialog()"/>
+        <input class="button" type="button" value="项目失败" onclick=""/>
         </#if>
 	</@buttonBar>
 </@ww.form>
@@ -508,7 +524,7 @@
 		 	getObjByName('customer').value = result[1];	
 		 	//getObjByName('contactArchive').value = result[8];
 		 	getObjByName('customerSteping.id').value = result[9];
-		 	getObjByName('customerStepingId').value =  result[9];
+		 	//getObjByName('customerStepingId').value =  result[9];
 		}
 	}
 	function contactArchive_OpenDialog(){
@@ -654,8 +670,13 @@
      			return false;
      		}
      	}
-     	/* 验证回访方式 */
-     	if('-1'==getObjByName('backVisitWay.id').value){
+     	/* 验证重要程度 */
+     	if(''==getObjByName('importanceType.id').value){
+			alert("${action.getText('importanceType.id.required')}");
+			getObjByName('importanceType.id').focus();
+     		return false;
+		}
+		if('-1'==getObjByName('backVisitWay.id').value){
 			alert("${action.getText('backVisitWay.id.required')}");
 			getObjByName('backVisitWay.id').focus();
      		return false;

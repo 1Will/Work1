@@ -2,6 +2,8 @@ package com.yongjun.tdms.dao.customercontract.contractmanagement;
 
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement;
+
+import java.util.HashMap;
 import java.util.List;
 
 public abstract interface ContractManagementDao
@@ -28,6 +30,7 @@ public abstract interface ContractManagementDao
 
   public abstract double getSumReturnPrice(long paramLong)
     throws DaoException;
+  public abstract HashMap getDataMap(String staDate,String endDate);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

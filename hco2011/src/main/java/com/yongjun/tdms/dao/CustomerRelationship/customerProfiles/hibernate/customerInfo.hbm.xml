@@ -80,7 +80,10 @@
         <property name="personCount" type="integer">
             <column name="EMPLOYEE_NUM" not-null="false"/>
         </property>
-        <property name="saleman" type="string">
+        <property name="isPartner" type="string">
+            <column name="isPartner" sql-type="NVARCHAR(2)"/>
+        </property>
+          <property name="saleman" type="string">
             <column name="BUSINESSMAN" not-null="true" sql-type="NVARCHAR(20)"/>
         </property>
         <property name="postCode" type="string">
@@ -121,6 +124,9 @@
 		</many-to-one>
 		<many-to-one name="classification" class="com.yongjun.pluto.model.codevalue.CodeValue">
 			<column name="classification" not-null="false"/>
+		</many-to-one>
+		<many-to-one name="businessType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="businessType" not-null="false"/>
 		</many-to-one>
 		<many-to-one name="step" class="com.yongjun.pluto.model.codevalue.CodeValue">
 			<column name="STEP" not-null="false"/>
@@ -181,5 +187,9 @@
 		<property name="nearestBackVisitDate" type="timestamp">
             <column name="NEAREST_BACKVISIT_DATE"/>
         </property>
+        <!-- 是否提交 -->
+		<property name="isSaved" type="string">
+			<column name="isSaved" sql-type="NVARCHAR(1)"/>
+		</property>
 	</class>
 </hibernate-mapping>

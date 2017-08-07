@@ -46,7 +46,29 @@
            <@vcolumn title="${action.getText('paymentorder.supplier')}" property="supplier.name" sortable="desc">
      			<@alignLeft/>
             </@vcolumn>
+             <@vcolumn title="${action.getText('合同名称')}"  >
+              <#if object.contractManagement?exists>
+              <a href="javascript:contractManagement_OpenDialog(#{object.contractManagement.id?if_exists})">
+             ${object.contractManagement.contractName}
+             </a>
+             </#if>
+     			<@alignLeft/>
+            </@vcolumn>
+             <@vcolumn title="${action.getText('项目名称')}" >
+             <#if object.projectInfo?exists>
+             <a href="javascript:projectInfo_OpenDialog(#{object.projectInfo.id?if_exists})">
+             ${object.projectInfo.name}
+             </a>
+             </#if>
+     			<@alignLeft/>
+            </@vcolumn>
             <@vcolumn title="${action.getText('paymentorder.produceType')}" property="produceType.name" sortable="desc">
+     			<@alignLeft/>
+            </@vcolumn>
+             <@vcolumn title="${action.getText('附件名称')}" property="fileName" sortable="desc">
+             <#if object.fileName?exists>
+             <a href="downloadPaymentorder.html?paymentorder.id=#{object.id}"> ${object.fileName} </a>
+             </#if>
      			<@alignLeft/>
             </@vcolumn>
              <@vcolumn title="${action.getText('paymentorder.totalMoney')}" property="totalMoney" sortable="desc">
@@ -63,3 +85,16 @@
 		</#if>
     </@ww.form>
 </@htmlPage>
+<script>
+	  //弹出项目信息窗体
+	function projectInfo_OpenDialog(id){
+	   var url = "${req.contextPath}/projectInfo/editProjectInfo.html?projectInfo.id="+id+"&readOnly=${req.getParameter('readOnly')?if_exists}&openFlag=openFlag";
+	   openNewWindow(url);
+	 }
+	   //弹出合同信息窗体
+	function contractManagement_OpenDialog(id){
+	   var url = "${req.contextPath}/contractManagement/editContractManagementAction.html?contractManagement.id="+id+"&readOnly=${req.getParameter('readOnly')?if_exists}&popWindowFlag=popWindowFlag";
+	   openNewWindow(url);
+	 }
+	 
+</script>

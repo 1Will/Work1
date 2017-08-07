@@ -23,10 +23,16 @@
      	  		<@ww.hidden name="'weekPlan.id'" value="#{weekPlan.id}"/>
      	  	</#if>
      	  	
-     	  	<#if weekPlan.id?exists>
+     	  	<#if weekPlan.weekly?exists>
      	  		<@ww.hidden id="weekly.id" name="'weekly.id'" value="#{weekPlan.weekly.id}"/>
      	  	<#else>
      	  		<@ww.hidden id="weekly.id" name="'weekly.id'" value="${req.getParameter('weekly.id')?if_exists}"/>
+     	  	</#if>
+     	  	
+     	  	<#if weekPlan.week?exists>
+     	  		<@ww.hidden id="week.id" name="'week.id'" value="#{weekPlan.week.id}"/>
+     	  	<#else>
+     	  		<@ww.hidden id="week.id" name="'week.id'" value=""/>
      	  	</#if>
      	  	
      	  	<#if weekPlan.id?exists>
@@ -34,45 +40,45 @@
      	  	<#else>
      	  		<@ww.hidden id="projectInfo.id" name="'projectInfo.id'" value="${req.getParameter('projectInfo.id')?if_exists}"/>
      	  	</#if>
+     	  	
   			<@inputTable>
-  			
   			<tr>
-  			<#if req.getParameter('weekly.id')?exists||weekPlan.id?exists>
+	     	  	<td align="right" valign="top">
+					<span class="required">*</span>
+		       		<label class="label">${action.getText('周')}:</label>
+		     	</td>
+				<td>
+			<#if weekPlan.week?exists>
+				<input type="text" id="week.name" name="week.name" class="underline"  value="${weekPlan.week.name?if_exists}" maxlength="140" size="20" disabled="true"/>
+			<#else>
+				<input type="text" id="week.name" name="week.name" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+	     	  	<a onClick="week_OpenDialog();">
+					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+				</a>
+     	  	</#if>
+	     	  	</td>
+  			
 	  			<td align="right" valign="top">
+	  				<span class="required">*</span>
 		       		<label class="label">项目名称:</label>
 		     	</td>
 		     	<td>
-		     	<#if weekPlan.id?exists>
-			   		<input type="text" id="weekPlan.projectName" name="weekPlan.projectName" class="underline"  value="${weekPlan.projectInfo.name?if_exists}" maxlength="140" size="20" disabled="true"/>
-				<#else>	
-			   		<input type="text" id="weekPlan.projectName" name="weekPlan.projectName" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
-				</#if>
-					<a href="javascript:pj_OpenDialog()">
-						<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
-					</a>
+	     	<#if weekPlan.projectInfo?exists>
+		   		<input type="text" id="weekPlan.projectName" name="weekPlan.projectName" class="underline"  value="${weekPlan.projectInfo.name?if_exists}" maxlength="140" size="20" disabled="true"/>
+			<#else>	
+		   		<input type="text" id="weekPlan.projectName" name="weekPlan.projectName" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+				<a href="javascript:pj_OpenDialog()">
+					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+				</a>
+			</#if>
 				</td>
-     	  	</#if>
-     	  	
-     	  	<#if req.getParameter('projectInfo.id')?exists||weekPlan.id?exists>
-     	  		<td align="right" valign="top">
-     	  			<label class="label">周报:</label>
-     	  		</td>
-     	  		<td>
-     	  			<#if weekPlan.id?exists>
-			   			<input type="text" id="weekPlan.weeklyCode" name="weekPlan.weeklyCode" class="underline"  value="${weekPlan.weekly.code?if_exists}" maxlength="140" size="20" disabled="true"/>
-					<#else>	
-			   			<input type="text" id="weekPlan.weeklyCode" name="weekPlan.weeklyCode" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
-					</#if>
-						<a href="javascript:weekly_OpenDialog()">
-							<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
-						</a>
-     	  		</td>
-     	  	</#if>
+
      	  	</tr>
      	  	
      	  	
 		    <tr>
 		    	<td align="right" valign="top">
+		    	<span class="required">*</span>
 	        		<label class="label">
 	        			${action.getText('上周计划')}:
 	        		</label>
@@ -83,8 +89,9 @@
 			</tr>
 			<tr>
 				<td align="right" valign="top">
+				<span class="required">*</span>
 	        		<label class="label">
-	        			${action.getText('本周计划')}:
+	        			${action.getText('本周实绩')}:
 	        		</label>
 	        	</td>
 		    	<td colspan="10">
@@ -93,6 +100,7 @@
 			</tr>
 			<tr>
 				<td align="right" valign="top">
+				<span class="required">*</span>
 	        		<label class="label">
 	        			${action.getText('下周计划')}:
 	        		</label>
@@ -106,7 +114,7 @@
      	  
      	  <@buttonBar>
 	         <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return saveCheck();'"/>
-	         <@vbutton value="${action.getText('close')}" onclick="closeThis()"/>
+	         <@vbutton class="button" value="${action.getText('close')}" onclick="closeThis()"/>
          </@buttonBar>	
      </@ww.form>
 </@htmlPage>
@@ -117,23 +125,55 @@
 			var  url = "${req.contextPath}/projectInfo/listProjectInfo.html?contactArchivesFlag=contactArchivesFlag";
 			popupModalDialog(url, 900, 600, setProjectInfo);
 		}
-		
+		var flag = true;
 		function setProjectInfo(result) {
-			if (null != result) {
+			<#if req.getParameter('week.id')?exists>
+				var weekId = ${req.getParameter('week.id')?if_exists};
+			</#if>
+			<#if user?exists>
+				var userId = ${user.id?if_exists};
+			</#if>
+			getLastPlan(result[0],weekId,userId);
+			if (null != result&&flag) {
 			 	getObjByName('projectInfo.id').value = result[0];	
 			 	getObjByName('weekPlan.projectName').value = result[1];	
 			}
-//			var wklyId = getObjByName('weekly.id').value;
-//			DWREngine.setAsync(false);
-//			GetLastPlan.getLastPlanMethod(result[0],wklyId,setLastPlan);
-//			DWREngine.setAsync(true);
+		}
+		
+		//弹出周选择
+		function week_OpenDialog(){
+			 var url = "${req.contextPath}/workReport/listWeek.html";
+			 popupModalDialog(url, 800, 600, setDate);
+		}
+		function setDate(data){
+			<#if user?exists>
+				var userId = ${user.id?if_exists};
+			</#if>
+			var pjid = getObjByName('projectInfo.id').value;
+			getLastPlan(pjid,data[0],userId)
+			if(flag){
+				getObjByName('week.id').value =data[0];
+				getObjByName('week.name').value =data[1];
+			}
+		}
+		
+		function getLastPlan(projectId,weekId,userId){
+			DWREngine.setAsync(false);
+			GetLastPlan.getLastPlanMethod(projectId,weekId,userId,setLastPlan);
+			DWREngine.setAsync(true);
 		}
 		
 		function setLastPlan(data){
-			getObjByName('weekPlan.lastPlan').value = data;
+			if(data!=""){
+				getObjByName('weekPlan.lastPlan').value = data;
+				flag = true ;
+			}else{
+				alert("周计划已存在！");
+				flag =false;
+			}
 		}
 		
-		//弹出周报选择
+		//弹出周计划选择
 		function weekly_OpenDialog(){
 			var  url = "${req.contextPath}/workReport/listWeekly.html?projectFlag=projectFlag";
 			popupModalDialog(url, 900, 600, setWeekly);
@@ -155,10 +195,11 @@
 			}
 			</#if>
 			<#if req.getParameter('projectInfo.id')?exists>
-			if(getObjByName('weekPlan.weeklyCode').value==''){
-				alert('请选择周报！');
+			if(getObjByName('week.name').value==''){
+				alert('请选择周！');
 				return false;
 			}
+			
 			</#if>
 			
 			if(getObjByName('weekPlan.thisPlan').value==''){

@@ -339,6 +339,30 @@
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
 	</package>
+	<!-- 我的数据 -->
+	<package name="data" namespace="/workspace/data"
+		extends="pluto">
+		<action name="listMyData" class="listMyDataAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/workspace/data/myDataList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+
+		<action name="searchMyData" class="listMyDataAction">
+			<result name="success" type="redirect">
+				listMyData.html
+			</result>
+			<result name="error" type="redirect">
+				listMyData.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				listMyData.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+	</package>
 	<!-- 组织架构 -->
 	<package name="orgstructure" namespace="/orgstructure" extends="pluto">
 		<action name="orgStructureFrameREAD" class="nullAction">
@@ -400,13 +424,13 @@
 		<action name="saveDepartment" class="editDepartmentAction"
 			method="save">
 			<result name="input" type="redirect">
-				editDepartment.html?department.id=${department.id}
+				editDepartment.html?department.instId=${department.instId}&amp;department.id=${department.id}&amp;parentid=${parentId}
 			</result>
 			<result name="new" type="redirect">
-				editDepartment.html?department.id=${department.id}
+				editDepartment.html?department.instId=${department.instId}&amp;department.id=${department.id}&amp;parentid=${parentId}
 			</result>
 			<result name="success" type="redirect">
-				editDepartment.html?department.id=${department.id}
+				editDepartment.html?department.instId=${department.instId}&amp;department.id=${department.id}&amp;parentid=${parentId}
 			</result>
 			<result name="error" type="redirect">
 				editDepartment.html?department.instId=${department.instId}&amp;department.id=${department.id}&amp;parentid=${parentId}
@@ -801,6 +825,50 @@
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
+		<!-- 产品开发者 -->
+		<action name="listProductsPerson" class="listProductsPersonAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/base/productManagement/productPerson/productsPersonList.ftl
+			</result>
+			<result name="error" type="freemarker">
+				/pages/base/productManagement/productPerson/productsPersonList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		
+		<action name="editProductsPerson" class="editProductsPersonAction" >
+			<result name="success" type="freemarker">
+				/pages/base/productManagement/productPerson/productsPersonProfile.ftl
+			</result>
+			<result name="error" type="freemarker">
+				/pages/base/productManagement/productPerson/productsPersonProfile.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<!-- 保存 -->
+		<action name="saveProductsPerson" class="editProductsPersonAction" method="save">
+			<result name="new" type="redirect">
+				listProductsPerson.html?productsPerson.id=${productsPerson.id}&amp;readOnly=false
+			</result>
+			<result name="success" type="redirect">
+				editProductsPerson.html?productsPerson.id=${productsPerson.id}&amp;readOnly=false
+			</result>
+			<result name="error" type="redirect">
+				editProductsPerson.html?productsPerson.id=${productsPerson.id}&amp;readOnly=false
+			</result>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<!-- 删除 -->
+		<action name="searchProductsPerson" class="listProductsPersonAction" >
+			<result name="success" type="redirect">
+				listProductsPerson.html?products.id=${products.id}&amp;readOnly=false
+			</result>
+			<result name="error" type="redirect">
+				listProductsPerson.html?products.id=${products.id}&amp;readOnly=false
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		
 	</package>
 	<!-- 产品管理 -->
 	<!-- 产品类别管理 -->
@@ -1926,15 +1994,27 @@
 				listReplyDailyTab.html?daily.id=${dailyId}
 			</result>
 		</action>
-		<!-- 周计划 -->
-
+		<!-- 项目周计划 -->
+		
 		<action name="listWeekPlanTab" class="listWeekPlanAction"
 			method="list">
 			<result name="success" type="freemarker">
 				/pages/workReport/weekPlan/weekPlanList.ftl
 			</result>
 		</action>
-
+		
+		<action name="searchWeekPlan" class="listWeekPlanAction">
+			<result name="success" type="redirect">
+				listWeekPlanTab.html?weekly.id=${weekly.id}&amp;projectInfo.id=${projectInfo.id}
+			</result>
+			<result name="error" type="redirect">
+				listWeekPlanTab.html?weekly.id=${weekly.id}&amp;projectInfo.id=${projectInfo.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				listWeekPlanTab.html?weekly.id=${weekly.id}&amp;projectInfo.id=${projectInfo.id}
+			</result>
+		</action>
+		
 		<action name="editWeekPlan" class="editWeekPlanAction">
 			<result name="success" type="freemarker">
 				/pages/workReport/weekPlan/weekPlanProfile.ftl
@@ -1943,18 +2023,24 @@
 
 		<action name="saveWeekPlan" class="editWeekPlanAction" method="save">
 			<result name="success" type="redirect">
-				editWeekPlan.html?weekPlan.id=${weekPlan.id}&amp;readOnly=${readOnly}&amp;mes=${mes}
+				editWeekPlan.html?weekPlan.id=${weekPlan.id}&amp;projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;mes=${mes}
 			</result>
 			<result name="error" type="dispatcher">
-				editWeekPlan.html?weekPlan.id=${weekPlan.id}&amp;readOnly=${readOnly}
+				editWeekPlan.html?weekPlan.id=${weekPlan.id}&amp;projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;mes=${mes}
 			</result>
 			<result name="invalid.token" type="redirect">
-				editWeekPlan.html?readOnly=${readOnly}
+				editWeekPlan.html?weekPlan.id=${weekPlan.id}&amp;projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;mes=${mes}
 			</result>
 			<interceptor-ref name="propertySenderStack" />
 		</action>
 
-
+		<!-- 周 -->
+		<action name="listWeek" class="listWeekAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/workReport/week/weekList.ftl
+			</result>
+		</action>
 
 
 
@@ -4149,7 +4235,7 @@
 			<interceptor-ref name="parameterReceiverStack" />
 		</action>
 
-		<!-- 回款记录 -->
+		<!-- 收款计划 -->
 		<action name="listReceivedPaymentsREAD" class="nullAction">
 			<result name="success" type="redirect">
 				listReceivedPayments.html?readOnly=true
@@ -4205,7 +4291,7 @@
 			<interceptor-ref name="propertySenderStack" />
 		</action>
 
-		<!-- 回款计划 -->
+		<!-- 收款计划 -->
 		<action name="listReturnPlanREAD" class="nullAction">
 			<result name="success" type="redirect">
 				listReturnPlan.html?readOnly=true
@@ -4267,6 +4353,45 @@
 			</interceptor-ref>
 			<interceptor-ref name="propertySenderStack" />
 		</action>
+		
+		<!-- 合同计划 -->
+		<action name="listContractPlan" class="listContractPlanAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/customercontract/contractmanagement/plan/contractPlanList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		
+		<action name="editContractPlan" class="editContractPlanAction">
+			<result name="success" type="freemarker">
+				/pages/customercontract/contractmanagement/plan/contractPlanProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		
+		<action name="saveContractPlan" class= "editContractPlanAction" method="save">
+			<result name="new" type="redirect">
+				editContractPlan.html?contractPlan.id=${contractPlan.id}
+			</result>
+			<result name="success" type="redirect">
+				editContractPlan.html?contractPlan.id=${contractPlan.id}
+			</result>
+			<result name="error" type="redirect">
+				editContractPlan.html?contractPlan.id=${contractPlan.id}
+			</result>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		
+		<action name="searchContractPlan" class="listContractPlanAction">
+			<result name="success" type="redirect">
+				listContractPlan.html?contractManagement.id=${contractManagement.id}
+			</result>
+			<result name="error" type="redirect">
+				listContractPlan.html?contractManagement.id=${contractManagement.id}
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
 
 		<!-- 开票记录 -->
 		<action name="listBillingRecordREAD" class="nullAction">
@@ -4316,13 +4441,13 @@
 		<action name="saveBillingRecord" class="editBillingRecordAction"
 			method="save">
 			<result name="input" type="redirect">
-				editBillingRecord.html?billingRecord.id=${billingRecord.id}
+				editBillingRecord.html?billingRecord.id=${billingRecord.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="new" type="redirect">
-				editBillingRecord.html?billingRecord.id=${billingRecord.id}
+				editBillingRecord.html?billingRecord.id=${billingRecord.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="success" type="redirect">
-				editBillingRecord.html?billingRecord.id=${billingRecord.id}
+				editBillingRecord.html?billingRecord.id=${billingRecord.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="error" type="redirect">
 				editBillingRecord.html
@@ -4332,6 +4457,51 @@
 			</interceptor-ref>
 			<interceptor-ref name="propertySenderStack" />
 		</action>
+		<!-- 合同状态 -->
+		<action name="listContractState" class="listContractStateAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/customercontract/contractmanagement/state/contractStateList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="editContractState" class="editContractStateAction">
+			<result name="success" type="freemarker">
+				/pages/customercontract/contractmanagement/state/contractStateProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		
+		<action name="saveContractState" class= "editContractStateAction" method="save">
+			<result name="new" type="redirect">
+				editContractState.html?contractState.id=${contractState.id}
+			</result>
+			<result name="success" type="redirect">
+				editContractState.html?contractState.id=${contractState.id}
+			</result>
+			<result name="error" type="redirect">
+				editContractState.html?contractState.id=${contractState.id}
+			</result>
+			<interceptor-ref name="fileUploadStack" />
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="downloadContractState" class="listContractStateAction"
+			method="download">
+			<result name="success" type="freemarker">
+				/pages/customercontract/contractmanagement/state/contractStateList.ftl
+			</result>
+			<result name="download" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">
+					attachment;filename="${fileName}"
+				</param>
+				<param name="bufferSize">2048</param>
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		
+
 	</package>
 
 
@@ -4442,13 +4612,13 @@
 		<action name="saveFinancialManagement" class="editFinancialManagementAction"
 			method="save">
 			<result name="input" type="redirect">
-				editFinancialManagement.html?financialManagement.id=${financialManagement.id}
+				editFinancialManagement.html?financialManagement.id=${financialManagement.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="new" type="redirect">
-				editFinancialManagement.html?financialManagement.id=${financialManagement.id}
+				editFinancialManagement.html?financialManagement.id=${financialManagement.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="success" type="redirect">
-				editFinancialManagement.html?financialManagement.id=${financialManagement.id}
+				editFinancialManagement.html?financialManagement.id=${financialManagement.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="error" type="redirect">
 				editFinancialManagement.html
@@ -4458,7 +4628,7 @@
 			</interceptor-ref>
 			<interceptor-ref name="propertySenderStack" />
 		</action>
-		<!-- 财务管理中回款计划弹出框 -->
+		<!-- 财务管理中收款计划弹出框 -->
 		<action name="searchReturnPlanWindow" class="listReturnPlanWindowAction">
 			<result name="success" type="redirect">
 				listReturnPlanWindow.html
@@ -4629,6 +4799,70 @@
 			</interceptor-ref>
 			<interceptor-ref name="propertySenderStack" />
 		</action>
+		</package>
+		
+		<package name="expenseForm" namespace="/expenseForm" extends="pluto">
+		<!-- 报销单 -->
+		<action name="listExpenseFormActionREAD" class="nullAction">
+			<result name="success" type="redirect">
+				listExpenseFormAction.html?readOnly=true
+			</result>
+		</action>
+		<action name="listExpenseFormActionWRITE" class="nullAction">
+			<result name="success" type="redirect">
+				listExpenseFormAction.html?readOnly=false
+			</result>
+		</action>
+		<action name="editExpenseFormAction" class="editExpenseFormAction">
+			<result name="success" type="freemarker">
+				/pages/expensemanagement/expenseForm/expenseFormProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="listExpenseFormAction" class="listExpenseFormAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/expensemanagement/expenseForm/expenseFormList.ftl
+			</result>
+			<result name="error" type="redirect">
+				/pages/expensemanagement/expenseForm/expenseFormList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		
+		<action name="saveExpenseFormAction" class="editExpenseFormAction"
+			method="save">
+			<result name="input" type="redirect">
+				editExpenseFormAction.html?expenseForm.id=${expenseForm.id}
+			</result>
+			<result name="new" type="redirect">
+				editExpenseFormAction.html?expenseForm.id=${expenseForm.id}
+			</result>
+			<result name="success" type="redirect">
+				editExpenseFormAction.html?expenseForm.id=${expenseForm.id}
+			</result>
+			<result name="error" type="redirect">
+				editExpenseFormAction.html
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">expenseUse</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		
+		<action name="searchExpenseFormAction" class="listExpenseFormAction">
+			<result name="success" type="dispatcher">
+				listExpenseFormAction.html
+			</result>
+			<result name="error" type="redirect">
+				listExpenseFormAction.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				listExpenseUseAction.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		
 	</package>
 	<!-- 付款单 -->
 	<package name="paymentorder" namespace="/paymentorder" extends="pluto">
@@ -4690,11 +4924,31 @@
 			<result name="error" type="redirect">
 				editPaymentorderAction.html
 			</result>
+			<interceptor-ref name="fileUploadStack" />
 			<interceptor-ref name="propertySender">
 				<param name="propertyNames">paymentorder</param>
 			</interceptor-ref>
 			<interceptor-ref name="propertySenderStack" />
 		</action>
+		
+		
+		
+		<action name="downloadPaymentorder" class="listPaymentorderAction"
+			method="download">
+			<result name="success" type="freemarker">
+				/pages/financeManagement/paymentorder/paymentorderList.ftl
+			</result>
+			<result name="download" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">
+					attachment;filename="${fileName}"
+				</param>
+				<param name="bufferSize">2048</param>
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		
 	</package>
 
 
@@ -5101,13 +5355,32 @@
 		</action>
 		<action name="searchProjectInfo" class="listProjectInfoAction">
 			<result name="success" type="redirect">
-				listProjectInfo.html?readOnly=${readOnly}
+				listProjectInfo.html?readOnly=${readOnly}&amp;backVisitCheckBox=${backVisitCheckBox}
 			</result>
 			<result name="error" type="redirect">
-				listProjectInfo.html?readOnly=${readOnly}
+				listProjectInfo.html?readOnly=${readOnly}&amp;backVisitCheckBox=${backVisitCheckBox}
 			</result>
 			<result name="invalid.token" type="redirect">
-				listProjectInfo.html?readOnly=${readOnly}
+				listProjectInfo.html?readOnly=${readOnly}&amp;backVisitCheckBox=${backVisitCheckBox}
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<action name="listProjectByCus" class="ListProjectByCusAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/project/projectByCusList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="searchProjectByCus" class="ListProjectByCusAction">
+			<result name="success" type="redirect">
+				listProjectByCus.html?readOnly=${readOnly}&amp;customer.id=${customerId}
+			</result>
+			<result name="error" type="redirect">
+				listProjectByCus.html?readOnly=${readOnly}&amp;customer.id=${customerId}
+			</result>
+			<result name="invalid.token" type="redirect">
+				listProjectByCus.html?readOnly=${readOnly}&amp;customer.id=${customerId}
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
@@ -5146,6 +5419,26 @@
 				/pages/project/projectInfoContractList.ftl
 			</result>
 			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		
+		<action name="listProCus" class="listProjectInfoCustomerAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/project/projectInfoCustomerList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="searchProCus" class="listProjectInfoCustomerAction">
+			<result name="success" type="redirect">
+				listProCus.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
+			</result>
+			<result name="error" type="redirect">
+				listProCus.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
+			</result>
+			<result name="invalid.token" type="redirect">
+				listProCus.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
 		</action>
 
 		<action name="searchProPer" class="listProjectInfoPersonnelsAction">
@@ -5193,6 +5486,25 @@
 			<interceptor-ref name="propertySenderStack" />
 		</action>
 
+		<action name="editProCus" class="editProjectInfoCustomerAction">
+			<result name="success" type="freemarker">
+				/pages/project/projectInfoCustomerProfile.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="saveProCus" class="editProjectInfoCustomerAction"
+			method="save">
+			<result name="success" type="redirect">
+				editProCus.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;projectInfoCustomer.id=${projectInfoCustomer.id}
+			</result>
+			<result name="error" type="dispatcher">
+				editProCus.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;projectInfoCustomer.id=${projectInfoCustomer.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editProCus.html?readOnly=${readOnly}
+			</result>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
 		<action name="editProCon" class="editProjectInfoContractAction">
 			<result name="success" type="freemarker">
 				/pages/project/projectInfoContractProfile.ftl
@@ -5212,7 +5524,6 @@
 			</result>
 			<interceptor-ref name="propertySenderStack" />
 		</action>
-
 
 		<action name="listProPro" class="listProjectInfoProductAction"
 			method="list">
@@ -5244,13 +5555,32 @@
 		</action>
 		<action name="searchProPlan" class="listProjectInfoPlanAction">
 			<result name="success" type="redirect">
-				listProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
+				listProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;contractManagementId=${contractManagementId}
 			</result>
 			<result name="error" type="redirect">
-				listProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
+				listProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;contractManagementId=${contractManagementId}
 			</result>
 			<result name="invalid.token" type="redirect">
-				listProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}
+				listProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;contractManagementId=${contractManagementId}
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<action name="listMyPlan" class="listMyPlanAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/project/myPlanList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="searchMyPlan" class="listMyPlanAction">
+			<result name="success" type="redirect">
+				listMyPlan.html?readOnly=${readOnly}
+			</result>
+			<result name="error" type="redirect">
+				listMyPlan.html?readOnly=${readOnly}
+			</result>
+			<result name="invalid.token" type="redirect">
+				listMyPlan.html?readOnly=${readOnly}
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
@@ -5264,17 +5594,100 @@
 		<action name="saveProPlan" class="editProjectInfoPlanAction"
 			method="save">
 			<result name="success" type="redirect">
-				editProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;projectInfoPlan.id=${projectInfoPlan.id}
+				editProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;projectInfoPlan.id=${projectInfoPlan.id}&amp;contractManagement.id=${contractManagementId}&amp;editFlag=${editFlag}
 			</result>
 			<result name="error" type="dispatcher">
-				editProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;projectInfoPlan.id=${projectInfoPlan.id}
+				editProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;projectInfoPlan.id=${projectInfoPlan.id}&amp;contractManagement.id=${contractManagementId}
 			</result>
 			<result name="invalid.token" type="redirect">
 				editProPlan.html?readOnly=${readOnly}
 			</result>
 			<interceptor-ref name="propertySenderStack" />
 		</action>
-
+		
+		
+		<!-- 项目合作伙伴 -->
+		<action name="editProjectPartner" class="editProjectPartnerAction">
+			<result name="success" type="freemarker">
+				/pages/project/projectPartner/projectPartnerProfile.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="listProjectPartner" class="listProjectPartnerAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/project/projectPartner/projectPartnerList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		
+		<action name="saveProjectPartner" class="editProjectPartnerAction"
+			method="save">
+			<result name="new" type="redirect">
+				editProjectPartner.html?projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;projectPartner.id=${projectPartner.id}
+			</result>
+			<result name="success" type="redirect">
+				editProjectPartner.html?projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;projectPartner.id=${projectPartner.id}
+			</result>
+			<result name="error" type="dispatcher">
+				editProjectPartner.html?projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;projectPartner.id=${projectPartner.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editProjectPartner.html?projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;projectPartner.id=${projectPartner.id}
+			</result>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="searchProjectPartner" class="listProjectPartnerAction">
+			<result name="success" type="redirect">
+				listProjectPartner.html?projectInfo.id=${projectInfo。id}&amp;readOnly=${readOnly}
+			</result>
+			<result name="error" type="redirect">
+				listProjectPartner.html?projectInfo.id=${projectInfo。id}&amp;readOnly=${readOnly}
+			</result>
+			<result name="invalid.token" type="redirect">
+				listProjectPartner.html?projectInfo.id=${projectInfo。id}&amp;readOnly=${readOnly}
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		
+		<!-- 项目合作伙伴项目组成员 -->
+		<action name="editProjectContactArchives" class="editProjectContactArchivesAction">
+			<result name="success" type="freemarker">
+				/pages/project/projectContactArchives/projectContactArchivesProfile.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		
+		<action name="saveProjectContactArchives" class="editProjectContactArchivesAction" method="save">
+			<result name="success" type="redirect">
+				editProjectContactArchives.html?projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;projectContactArchives.id=${projectContactArchives.id}
+			</result>
+			<result name="error" type="redirect">
+				editProjectContactArchives.html?projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;projectContactArchives.id=${projectContactArchives.id}
+			</result>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		
+		<action name="listProjectContactArchives" class="listProjectContactArchivesAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/project/projectContactArchives/projectContactArchivesList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="searchProjectContactArchives" class="listProjectContactArchivesAction">
+			<result name="success" type="redirect">
+				listProjectContactArchives.html?projectInfo.id=${projectInfo。id}&amp;readOnly=${readOnly}
+			</result>
+			<result name="error" type="redirect">
+				listProjectContactArchives.html?projectInfo.id=${projectInfo。id}&amp;readOnly=${readOnly}
+			</result>
+			<result name="invalid.token" type="redirect">
+				listProjectContactArchives.html?projectInfo.id=${projectInfo。id}&amp;readOnly=${readOnly}
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		
 	</package>
 
 

@@ -60,7 +60,7 @@
 /*     */   {
 /*  93 */     String hql = "select c.code from Co as c where  c.code like '%" + code + "%'";
 /*  94 */     List codeList = getSession().createQuery(hql).list();
-/*  95 */     if (codeList.size() > 0) {
+/*  95 */     if (null!=codeList&&codeList.size() > 0) {
 /*  96 */       List items = new ArrayList();
 /*  97 */       for (int i = 0; i < codeList.size(); i++) {
 /*  98 */         String item = ((String)codeList.get(i)).substring(((String)codeList.get(i)).lastIndexOf("-") + 1);

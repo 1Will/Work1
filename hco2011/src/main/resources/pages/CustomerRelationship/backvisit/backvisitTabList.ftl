@@ -81,6 +81,7 @@
             <@alignCenter/>
             </@vcolumn>
             <@vcolumn title="${action.getText('backVisitSum')}" property="backVisitSum" sortable="desc">
+            <a href="javascript:visitBack_OpenDialog(#{object.customerInfo.id?if_exists})" >${object.customerInfo.backVisitSum?if_exists}</a>
             <@alignLeft/>
              </@vcolumn>
             <@vcolumn title="${action.getText('checkdetail')}"  sortable="desc">

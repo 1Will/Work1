@@ -16,7 +16,7 @@
             </#if>
               <@vcolumn title="${action.getText('id')}" property="id" >
               <a href="javascript:editProPer_OpenDialog_update('#{object.id}');">#{itemNo}</a> 
-            <@alignLeft/>
+            <@alignLeft attributes="width:100;"/>
             </@vcolumn>
             <#assign itemNo=itemNo + 1/>
              <@vcolumn title="${action.getText('proPersonName')}" property="proPerson.name" sortable="desc">

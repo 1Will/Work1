@@ -41,6 +41,11 @@
 	   		<param name="beanName" value="returnPlanManager"></param>
 	   		<include method="contractAndBatch" />
 	   	</create>
+	   	<!-- 2017.08.03-->
+		<create javascript="BatchForBillJs" creator="spring">
+	   		<param name="beanName" value="returnPlanManager"></param>
+	   		<include method="batchForBill" />
+	   	</create>
 	   	
 	   		<!--gliang 2010.03.28-->
 		<create javascript="CheckSumJs" creator="spring">
@@ -69,6 +74,29 @@
    			<param name="beanName" value="editWeekPlanAction"></param>
    			<include method="getLastPlanMethod" />
    		</create>
+   		<!-- 获取收款计划,收款单 -->
+   		<create javascript="ReturnPlan" creator="spring">
+   			<param name="beanName" value="returnPlanManager"></param>
+   			<include method="getReturnPlan" />
+   		</create>
+   		<!-- 获取收款计划，开票记录 -->
+   		<create javascript="ReturnPlanBill" creator="spring">
+   			<param name="beanName" value="returnPlanManager"></param>
+   			<include method="getReturnPlanBill" />
+   		</create>
+   		
+   		<!-- 获取周计划是否存在 -->
+   		<create javascript="HasWeekly" creator="spring">
+   			<param name="beanName" value="editWeeklyAction"></param>
+   			<include method="hasWeekly" />
+   		</create>
+   		
+   		<!-- 获取银行信息 -->
+   		<create javascript="Bank" creator="spring">
+   			<param name="beanName" value="contractAdditionInfoManager"></param>
+   			<include method="getBankInfo" />
+   		</create>
+   		
    </allow>
 </dwr>
 

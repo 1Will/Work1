@@ -282,7 +282,9 @@
 				/~contactArchives.customerName: AND ca.customerName.name LIKE {contactArchives.customerName} ~/ 
 				/~type.id: AND ca.customerType.id = {type.id}~/ 
 				/~customerId: AND ca.customerName.id = {customerId}~/ 
+				/~projectInfoCus:and ca.customerName.id in ({projectInfoCus})~/ 
 				/~projectInfoId: AND ca.projectInfo.id = {projectInfoId}~/ 
+				/~con_projectIds: AND ca.customerName.id in ({con_projectIds})~/ 
 				/~supplierId: AND ca.supplier.id = {supplierId} ~/
 				/~customerIsNotNull: AND ca.customerName is NOT NULL ~/
 				/~contactArchives.abbreviations: AND ca.abbreviations like {contactArchives.abbreviations} ~/				
@@ -310,14 +312,15 @@
 				/~industry.id: AND customer.industry.id = {industry.id}~/ 
 				/~companyNature.id: AND customer.companyNature.id = {companyNature.id}~/ 
 				/~customerInfo.keyContacter: AND customer.keyContacter LIKE {customerInfo.keyContacter} ~/ 
-				/~customerInfo.salesman: AND customer.salesman.name LIKE {customerInfo.salesman} ~/ 
+				/~customerInfo.salesmanName: AND customer.salesman.name LIKE {customerInfo.salesmanName} ~/ 
 				/~customerInfo.abbreviations: AND customer.abbreviations LIKE {customerInfo.abbreviations} ~/ 
+				/~isPartner: AND customer.isPartner = {isPartner}~/
 				/~sortColumn: ORDER BY customer.[sortColumn] [sortDirection] ~/
 			</value>
 		</property>
 	</bean>
 	<!-- 咨询登记HQL查询 -->
-	<bean id="advisory" parent="abstractHibernate20Adapter">
+	<bean id="advisoryHQL" parent="abstractHibernate20Adapter">
         <property name="hql">
             <value>
             	<![CDATA[
@@ -429,7 +432,7 @@
         </property>
     </bean>
     
-    	<!-- 周报 -->
+    	<!-- 周计划 -->
 		<bean id="weekly" parent="abstractHibernate20Adapter">
 		<property name="hql">
 			<value>
@@ -843,6 +846,20 @@
             	/~leaveBill.code: AND otrb.code LIKE {leaveBill.code} ~/
             	/~dept.id: AND otrb.dept.id = {dept.id} ~/
             	/~status.id: AND otrb.status.id = {status.id} ~/
+                /~sortColumn: ORDER BY otrb.[sortColumn] [sortDirection]~/
+                ]]>
+			</value>
+		</property>
+	</bean>
+	<!-- 我的数据 -->
+	<bean id="datas" parent="abstractHibernate20Adapter">
+		<property name="hql">
+			<value>
+				<![CDATA[
+                FROM Data AS otrb
+                WHERE 1=1 
+            	/~personnelFiles.code: AND otrb.personnelFiles.code = {personnelFiles.code} ~/
+            	/~data.year: AND otrb.year like  {data.year} ~/
                 /~sortColumn: ORDER BY otrb.[sortColumn] [sortDirection]~/
                 ]]>
 			</value>
@@ -1337,6 +1354,9 @@
                 /~contractManagement.paidMoney: AND contractManagement.paidMoney = {contractManagement.paidMoney} ~/
                 /~contractManagement.contractContent: AND contractManagement.contractContent LIKE {contractManagement.contractContent} ~/
                 /~contractManagement.remark: AND contractManagement.remark LIKE {contractManagement.remark} ~/
+             
+                /~products.id: AND contractManagement.id in (select pl.contractManagement.id from ProductList pl where pl.product.id = {products.id}) ~/
+                
                 /~sortColumn: ORDER BY contractManagement.[sortColumn] [sortDirection]~/
                 ]]>
 			</value>
@@ -1433,7 +1453,21 @@
 		</property>
 	</bean>
 	
-			<!-- 回款记录 -->
+	<!-- 产品开发者 -->
+	<bean id="getProductsPerson" parent="abstractHibernate20Adapter">
+		<property name="hql">
+			<value>
+				<![CDATA[
+                FROM ProductsPerson AS pp 
+                WHERE 1=1 
+                /~products.id: AND pp.products.id = {products.id} ~/
+                /~sortColumn: ORDER BY pp.[sortColumn] [sortDirection]~/
+                ]]>
+			</value>
+		</property>
+	</bean>
+	
+			<!-- 收款计划 -->
 	<bean id="receivedPaymentses" parent="abstractHibernate20Adapter">
 		<property name="hql">
 			<value>
@@ -1477,7 +1511,7 @@
 		</property>
 	</bean>
 	
-	<!-- 回款计划 -->
+	<!-- 收款计划 -->
 	<bean id="returnPlanes" parent="abstractHibernate20Adapter">
 		<property name="hql">
 			<value>
@@ -1502,7 +1536,7 @@
 			</value>
 		</property>
 	</bean>
-		<!-- 回款计划（弹出框）  -->
+		<!-- 收款计划（弹出框）  -->
 	<bean id="returnPlaneWindows" parent="abstractHibernate20Adapter">
 		<property name="hql">
 			<value>
@@ -1535,9 +1569,11 @@
                 /~onlyInvalid: AND r.disabled=true ~/
                 /~onlyValid: AND r.disabled=false ~/
                 /~contractManagement.code: AND r.contractManagement.code LIKE {contractManagement.code} ~/
+                /~financialManagement.code: AND r.code LIKE {financialManagement.code} ~/
                 /~financialManagement.saleman: AND r.saleman.name LIKE {financialManagement.saleman} ~/
                 /~financialManagement.payee: AND r.payee.name LIKE {financialManagement.payee} ~/
                 /~financialManagement.contractManagement: AND r.contractManagement.contractName LIKE {financialManagement.contractManagement} ~/
+                /~projectInfo.name: AND r.contractManagement.project.name LIKE {projectInfo.name} ~/
                 /~contractManagement.id: AND r.contractManagement.id = {contractManagement.id} ~/
                 /~financialManagement.collectionDate_start: AND r.collectionDate >= {financialManagement.collectionDate_start} ~/
                 /~financialManagement.collectionDate_end: AND r.collectionDate <= {financialManagement.collectionDate_end} ~/
@@ -1846,6 +1882,21 @@
             </value>
         </property>
     </bean>
+    <bean id="projectByCus" parent="abstractHibernate20Adapter">
+    	<property name="hql">
+            <value>
+            	<![CDATA[
+            		FROM ProjectInfo AS projectInfo
+                	WHERE 1=1
+                	/~onlyInvalid: AND projectInfo.disabled=true ~/
+                	/~onlyValid: AND projectInfo.disabled=false ~/ 
+                	 /~customer.id: AND projectInfo.customer.id = {customer.id} ~/
+                	  /~sortColumn: ORDER BY projectInfo.[sortColumn] [sortDirection]~/
+                	 
+            	 ]]>
+            </value>
+        </property>
+    </bean>
      <!-- 项目组成员 -->
 	<bean id="projectInfoPersonnels" parent="abstractHibernate20Adapter">
     	<property name="hql">
@@ -1861,6 +1912,21 @@
             </value>
         </property>
     </bean>
+    <!-- 项目客户 -->
+    <bean id="projectInfoCustomer" parent="abstractHibernate20Adapter">
+    	<property name="hql">
+            <value>
+            	<![CDATA[
+            		FROM ProjectInfoCustomer AS customer
+                	WHERE 1=1
+                	/~onlyInvalid: AND customer.disabled=true ~/
+                	/~onlyValid: AND customer.disabled=false ~/ 
+                	/~projectInfoId: AND customer.projectInfo.id ={projectInfoId} ~/
+                	 
+            	 ]]>
+            </value>
+        </property>
+    </bean>
     <!-- 项目联系人 -->
     <bean id="projectInfoContract" parent="abstractHibernate20Adapter">
     	<property name="hql">
@@ -1870,9 +1936,9 @@
                 	WHERE 1=1
                 	/~onlyInvalid: AND projectInfo.disabled=true ~/
                 	/~onlyValid: AND projectInfo.disabled=false ~/ 
-                	 /~projectInfoId: AND projectInfo.projectInfo.id ={projectInfoId} ~/
-                	  /~contactArchivesId: AND projectInfo.contactArchives.id ={contactArchivesId} ~/
-                	 
+                	/~projectInfoId: AND projectInfo.projectInfo.id ={projectInfoId} ~/
+                	/~contactArchivesId: AND projectInfo.contactArchives.id ={contactArchivesId} ~/
+                	/~sortColumn: ORDER BY projectInfo.[sortColumn] [sortDirection]~/
             	 ]]>
             </value>
         </property>
@@ -1888,7 +1954,93 @@
                 	/~onlyInvalid: AND projectInfo.disabled=true ~/
                 	/~onlyValid: AND projectInfo.disabled=false ~/ 
                 	 /~projectInfoId: AND projectInfo.projectInfo.id ={projectInfoId} ~/
+                	 /~contractManagementId: AND projectInfo.contractManagement.id ={contractManagementId} ~/
+                	   /~sortColumn: ORDER BY projectInfo.[sortColumn] [sortDirection]~/
                 	 
+            	 ]]>
+            </value>
+        </property>
+    </bean>
+      <!-- 项目任务计划  我的工作计划 -->
+    <bean id="myPlan" parent="abstractHibernate20Adapter">
+    	<property name="hql">
+            <value>
+            	<![CDATA[
+            		FROM ProjectInfoPlan AS projectInfo
+                	WHERE 1=1
+                	/~onlyInvalid: AND projectInfo.disabled=true ~/
+                	/~onlyValid: AND projectInfo.disabled=false ~/ 
+                	 /~projectInfoPlan.id: AND projectInfo.id = {projectInfoPlan.id} ~/
+                	 /~name: AND projectInfo.name like {name} ~/
+                	 /~personnelFiles.code: AND projectInfo.personnelFiles.code = {personnelFiles.code} ~/
+                	  /~planState.id: AND projectInfo.planState.id = {planState.id} ~/
+                	 /~projectInfo.name: AND projectInfo.projectInfo.name like {projectInfo.name} ~/
+                	 /~contractManagement.contractName: AND projectInfo.contractManagement.contractName like {contractManagement.contractName} ~/
+                	   /~sortColumn: ORDER BY projectInfo.[sortColumn] [sortDirection]~/
+                	 
+            	 ]]>
+            </value>
+        </property>
+    </bean>
+    
+     <!-- 合同计划 -->
+    <bean id="getContractPlan" parent="abstractHibernate20Adapter">
+    	<property name="hql">
+            <value>
+            	<![CDATA[
+            		FROM ContractPlan AS cp
+                	WHERE 1=1
+                	/~onlyInvalid: AND cp.disabled=true ~/
+                	/~onlyValid: AND cp.disabled=false ~/ 
+                	/~contractManagement.id: AND cp.contractManagement.id ={contractManagement.id} ~/
+                	/~sortColumn: ORDER BY cp.[sortColumn] [sortDirection]~/
+            	 ]]>
+            </value>
+        </property>
+    </bean
+    >
+     <!-- 合作伙伴 -->
+    <bean id="getProjectPartner" parent="abstractHibernate20Adapter">
+    	<property name="hql">
+            <value>
+            	<![CDATA[
+            		FROM ProjectPartner AS pp
+                	WHERE 1=1
+                	/~onlyInvalid: AND pp.disabled=true ~/
+                	/~onlyValid: AND pp.disabled=false ~/ 
+                	/~projectInfo.id: AND pp.projectInfo.id ={projectInfo.id} ~/
+                	/~sortColumn: ORDER BY pp.[sortColumn] [sortDirection]~/ 
+            	 ]]>
+            </value>
+        </property>
+    </bean>
+    
+     <!-- 合作伙伴项目组成员 -->
+    <bean id="projectContactArchivesHQL" parent="abstractHibernate20Adapter">
+    	<property name="hql">
+            <value>
+            	<![CDATA[
+            		FROM ProjectContactArchives AS pc
+                	WHERE 1=1
+                	/~onlyInvalid: AND pc.disabled=true ~/
+                	/~onlyValid: AND pc.disabled=false ~/ 
+                	/~projectInfo.id: AND pc.projectInfo.id ={projectInfo.id} ~/
+                	/~sortColumn: ORDER BY pc.[sortColumn] [sortDirection]~/ 
+            	 ]]>
+            </value>
+        </property>
+    </bean>
+     <!-- 合同状态 -->
+    <bean id="contractStatesHQL" parent="abstractHibernate20Adapter">
+    	<property name="hql">
+            <value>
+            	<![CDATA[
+            		FROM ContractState AS cs
+                	WHERE 1=1
+                	/~onlyInvalid: AND cs.disabled=true ~/
+                	/~onlyValid: AND cs.disabled=false ~/ 
+                	/~contractManagement.id: AND cs.contractManagement.id ={contractManagement.id} ~/
+                	/~sortColumn: ORDER BY cs.[sortColumn] [sortDirection]~/ 
             	 ]]>
             </value>
         </property>
@@ -1902,14 +2054,52 @@
                 	WHERE 1=1
                 	/~onlyInvalid: AND pp.disabled=true ~/
                 	/~onlyValid: AND pp.disabled=false ~/ 
-                	 /~projectInfoId: AND pp.projectInfo.id ={projectInfoId} ~/
-                	 
+                	/~projectInfoId: AND pp.projectInfo.id ={projectInfoId} ~/
+                	/~products.id: AND pp.products.id ={products.id} ~/
+                	/~sortColumn: ORDER BY pp.[sortColumn] [sortDirection]~/ 
+            	 ]]>
+            </value>
+        </property>
+    </bean>
+    
+    <!-- 报销单 -->
+    <bean id="expenseFormHQL" parent="abstractHibernate20Adapter">
+    	<property name="hql">
+            <value>
+            	<![CDATA[
+            		FROM ExpenseForm AS ef
+                	WHERE 1=1
+                	/~onlyInvalid: AND ef.disabled=true ~/
+                	/~onlyValid: AND ef.disabled=false ~/ 
+                	/~projectInfo.id: AND ef.projectInfo.id ={projectInfo.id} ~/
+                	/~expenseForm.code: AND ef.code like {expenseForm.code} ~/
+                	/~expenseForm.projectInfo.name: AND ef.projectInfo.name like {expenseForm.projectInfo.name} ~/
+                	/~expenseForm.applyPeople.name: AND ef.applyPeople.name like {expenseForm.applyPeople.name} ~/
+                	
+                	/~expenseForm.applyDate_start: AND ef.applyDate >= {expenseForm.applyDate_start} ~/
+                	/~expenseForm.applyDate_end: AND ef.applyDate <= {expenseForm.applyDate_end} ~/
+                	
+                	/~sortColumn: ORDER BY ef.[sortColumn] [sortDirection]~/ 
             	 ]]>
             </value>
         </property>
     </bean>
 	
 	
+     <!-- 查找周 -->
+    <bean id="weekHQL" parent="abstractHibernate20Adapter">
+    	<property name="hql">
+            <value>
+            	<![CDATA[
+            		FROM Week AS w
+                	WHERE 1=1
+                	/~week.id: AND w.id ={week.id} ~/
+                	/~week.name: AND w.name LIKE {week.name} ~/
+                	/~sortColumn: ORDER BY w.[sortColumn] ~/ 
+            	 ]]>
+            </value>
+        </property>
+    </bean>
 	
 </beans>
 

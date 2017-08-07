@@ -76,10 +76,17 @@
 	    <property name="contractMoney" type="double">
             <column name="CONTRACTMONEY" />
         </property>
+        <!-- 提交之前的合同金额 -->
+         <property name="lastSubmitMoney" type="double">
+            <column name="lastSubmitMoney" />
+        </property>
         <property name="isSaved" type="string">
 			<column name="isSaved" sql-type="NVARCHAR(1)"/>
 		</property>
-        
+        <!-- 提交次数 -->
+		<property name="submitNum" type="long">
+			<column name="submitNum"/>
+		</property>
         <property name="paidMoney" type="double">
 			<column name="PAIDMONEY" />
 		</property>
@@ -108,7 +115,7 @@
 			<column name="OVER_GET" not-null="false" sql-type="NVARCHAR(20)" />
 		</property>
 		
-		<!--回款计划是否付完 -->
+		<!--收款计划是否付完 -->
 		 <property name="overReturnPlan" type="string">
 			<column name="OVER_RETURN_PLAN" not-null="false" sql-type="NVARCHAR(20)" />
 		</property>

@@ -17,6 +17,16 @@
         <@list title="" 
         includeParameters="contactArchive.id|customerInfo.id|readOnly|onlyInvalid|onlyValid|employee|backVisitDate_start|backVisitDate_end|projectInfo.id|" 
         fieldMap="" >
+         <@vcolumn title="${action.getText('重要程度')}" property="importanceType.name" sortable="desc">
+             <#if (object.backVisitType?exists)>
+             <#if object.importanceType.id==563>
+             <font color="red">${object.importanceType.name}</font>
+             <#else>
+             <font color="green">${object.importanceType.name}</font>
+             </#if>
+             </#if>
+            	<@alignLeft/>
+            </@vcolumn>
             <@vcolumn title="${action.getText('backVisitType')}" property="backVisitType.name" sortable="desc">
             <a href="javascript:backvist_OpenDialog('#{object.id}')">
             ${object.backVisitType.name?if_exists}

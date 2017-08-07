@@ -96,7 +96,7 @@
 	    		<label class="label">${action.getText('applicationDoc.description')}:</label>
 	    	</td>
 	        <td colspan="10">
-	        	<textarea name="applicationDoc.description" rows="3" cols="114" >${applicationDoc.description?if_exists}</textarea>
+	        	<textarea name="applicationDoc.description" rows="4" cols="150" >${applicationDoc.description?if_exists}</textarea>
 	        </td>
 	   </tr>
     </@inputTable>

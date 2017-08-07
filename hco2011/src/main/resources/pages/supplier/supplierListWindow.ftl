@@ -14,9 +14,11 @@
         <@list title="${action.getText('supplierList')}" 
         	   includeParameters="supplier.supplierNo|supplier.name|supplier.supplierType|supplier.tradeType|supplier.companyType|onlyInvalid|onlyValid" 
         	   fieldMap="like:supplier.supplierNo|supplier.name" >
+        	<#-- 
             <@vlh.checkbox property="id" name="supplierIds">
                 <@vlh.attribute name="width" value="30" />
             </@vlh.checkbox>
+            -->
              <#if (object.disabled)>
 	            <@vlh.column title="${action.getText('supplier.supplierNo')}"  property="supplierNo" sortable="desc">
 	             ${object.supplierNo}

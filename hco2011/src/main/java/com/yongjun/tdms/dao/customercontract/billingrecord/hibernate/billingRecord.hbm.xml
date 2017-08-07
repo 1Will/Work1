@@ -59,6 +59,22 @@
         <property name="sum" type="double">
             <column name="SUM" not-null="true"/>
         </property>
+        <!-- 提交之前的金额 -->
+         <property name="lastSubmitMoney" type="double">
+            <column name="lastSubmitMoney" />
+        </property>
+        <!-- 已开票金额 -->
+        <property name="hasBillSum" type="double">
+            <column name="HASBILLSUM" not-null="false"/>
+        </property>
+        <!-- 计划开票金额 -->
+        <property name="planSum" type="double">
+            <column name="PLANSUM" not-null="false"/>
+        </property>
+        <!-- 剩下未开票金额 -->
+        <property name="restSum" type="double">
+            <column name="RESTSUM" not-null="false"/>
+        </property>
          <!--金额备注 -->
         <property name="currency" type="string">
 			<column name="CURRENCY" not-null="false" sql-type="NVARCHAR(50)"/>
@@ -70,6 +86,20 @@
         <!-- 发票内容 -->
         <property name="content" type="string">
 			<column name="CONTENT" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+		
+		<!-- 批次 -->
+        <many-to-one name="batch" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="BATCH"  not-null="true" />
+		</many-to-one>
+		
+		<!-- 是否提交 -->
+		<property name="isSaved" type="string">
+			<column name="isSaved" sql-type="NVARCHAR(1)"/>
+		</property>
+		<!-- 提交次数 -->
+		<property name="submitNum" type="long">
+			<column name="submitNum"/>
 		</property>
 		
 		<property name="disabled" type="boolean">

@@ -59,7 +59,7 @@
 /*     */   {
 /*  97 */     String hql = "select c.code from ProductList as c where  c.code like '%" + code + "%'";
 /*  98 */     List codeList = getSession().createQuery(hql).list();
-/*  99 */     if (codeList.size() > 0) {
+/*  99 */     if (null!=codeList && codeList.size() > 0) {
 /* 100 */       List items = new ArrayList();
 /* 101 */       for (int i = 0; i < codeList.size(); i++) {
 /* 102 */         String item = ((String)codeList.get(i)).substring(((String)codeList.get(i)).lastIndexOf("-") + 1);
@@ -76,7 +76,7 @@
 /*     */   {
 /* 118 */     String hql = "select sum(c.totalPrice) from ProductList as c where c.contractManagement.id=" + id;
 /* 119 */     List codeList = getSession().createQuery(hql).list();
-/* 120 */     if ((null != codeList) && (codeList.size() > 0)) {
+/* 120 */     if ((null != codeList) && (null!= codeList && codeList.size() > 0)) {
 /* 121 */       Double item = (Double)codeList.get(0);
 /* 122 */       if (null == item) {
 /* 123 */         return 0.0D;

@@ -28,6 +28,7 @@ public class ContractManagement extends BaseInfoEntity {
 	private Date endTime;
 	private CodeValue contractType;
 	private double contractMoney;
+	private double lastSubmitMoney;
 	private double paidMoney;
 	private CodeValue moneyType;
 	private CodeValue payType;
@@ -37,6 +38,7 @@ public class ContractManagement extends BaseInfoEntity {
 	private String remark;
 	private String overGet = "no";
 	private String isSaved = "0";
+	private long submitNum=0;
 
 	private String overReturnPlan = "no";
 
@@ -247,4 +249,22 @@ public class ContractManagement extends BaseInfoEntity {
 	public void setIsSaved(String isSaved) {
 		this.isSaved = isSaved;
 	}
+
+	public long getSubmitNum() {
+		return submitNum;
+	}
+
+	public void setSubmitNum(long submitNum) {
+		this.submitNum = submitNum;
+	}
+
+	public double getLastSubmitMoney() {
+		return lastSubmitMoney;
+	}
+
+	public void setLastSubmitMoney(double lastSubmitMoney) {
+		this.lastSubmitMoney = lastSubmitMoney;
+	}
+	
+	
 }

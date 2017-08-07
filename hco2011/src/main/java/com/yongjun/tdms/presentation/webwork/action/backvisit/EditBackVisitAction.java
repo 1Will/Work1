@@ -1,6 +1,7 @@
 /*     */ package com.yongjun.tdms.presentation.webwork.action.backvisit;
 /*     */ 
-/*     */ import com.yongjun.pluto.exception.DaoException;
+/*     */ import com.hp.hpl.sparta.xpath.ThisNodeTest;
+import com.yongjun.pluto.exception.DaoException;
 /*     */ import com.yongjun.pluto.model.codevalue.CodeValue;
 /*     */ import com.yongjun.pluto.model.security.User;
 /*     */ import com.yongjun.pluto.service.codevalue.CodeValueManager;
@@ -21,6 +22,7 @@ import com.yongjun.tdms.service.base.event.EventNewManager;
 import com.yongjun.tdms.service.base.event.EventTypeManager;
 /*     */ import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 import com.yongjun.tdms.service.project.ProjectInfoManager;
+import com.yongjun.tdms.service.workspace.data.DataManager;
 import com.yongjun.tdms.util.personnelFilesToUser.PersonnelFilesToUserManager;
 
 /*     */ import java.util.ArrayList;
@@ -53,8 +55,9 @@ import net.sf.json.JSONObject;
             private CustomerInfo customerInfo;
 /*     */   private StepInfo stepInfo;
 /*     */   private PersonnelFiles personnelFiles;
+            private DataManager dataManager;
 /*     */ 
-/*     */   public EditBackVisitAction(CodeValueManager codeValueManager, BackVisitManager backVisitManager, PersonnelFilesManager personnelFilesManager, CustomerInfoManager customerInfoManager, ContactArchivesManager contactArchivesManager, UserManager userManager,EventNewManager eventNewManager,ProjectInfoManager projectInfoManager,EventTypeManager eventTypeManager,PersonnelFilesToUserManager personnelFilesToUserManager)
+/*     */   public EditBackVisitAction(CodeValueManager codeValueManager, BackVisitManager backVisitManager, PersonnelFilesManager personnelFilesManager, CustomerInfoManager customerInfoManager, ContactArchivesManager contactArchivesManager, UserManager userManager,EventNewManager eventNewManager,ProjectInfoManager projectInfoManager,EventTypeManager eventTypeManager,PersonnelFilesToUserManager personnelFilesToUserManager,DataManager dataManager)
 /*     */   {
 /*  40 */     this.codeValueManager = codeValueManager;
 /*  41 */     this.backVisitManager = backVisitManager;
@@ -66,6 +69,7 @@ import net.sf.json.JSONObject;
 			  this.projectInfoManager =projectInfoManager;
 			  this.eventTypeManager =eventTypeManager;
 			  this.personnelFilesToUserManager=personnelFilesToUserManager;
+			  this.dataManager = dataManager;
 /*     */   }
 /*     */   public BackVisit getBackVisit() {
 /*  48 */     return this.backVisit;
@@ -80,7 +84,7 @@ import net.sf.json.JSONObject;
 /*     */       } else {
 /*  58 */         this.backVisit = new BackVisit();
 /*  59 */         if (this.userManager.getUser().getCode() != null) {
-/*  60 */           List pfs = this.personnelFilesManager.loadByKey("name", this.userManager.getUser().getName());
+/*  60 */           List pfs = this.personnelFilesManager.loadByKey("code", this.userManager.getUser().getCode());
 /*  61 */           if ((null != pfs) && (pfs.size() > 0))
 /*     */           {
 /*  64 */             this.personnelFiles = ((PersonnelFiles)pfs.get(0));
@@ -115,6 +119,10 @@ import net.sf.json.JSONObject;
 /*  82 */     if (hasId("backVisitType.id")) {
 /*  83 */       CodeValue cv = this.codeValueManager.loadCodeValue(getId("backVisitType.id"));
 /*  84 */       this.backVisit.setBackVisitType(cv);
+/*     */     }
+				if (hasId("importanceType.id")) {
+/*  83 */       CodeValue cv = this.codeValueManager.loadCodeValue(getId("importanceType.id"));
+/*  84 */       this.backVisit.setImportanceType(cv);
 /*     */     }
 				if (hasId("projectInfo.id")) {
 /*  83 */       ProjectInfo pInfo = this.projectInfoManager.loadProjectInfo(getId("projectInfo.id"));
@@ -205,6 +213,7 @@ import net.sf.json.JSONObject;
 /*     */     }
 /* 143 */     if (isNew) {
 				this.backVisit.setReplyTime(0L);
+				 this.backVisit.setSubmitNum(0l);
 /* 144 */       this.backVisitManager.storeBackVisit(this.backVisit);
 /*     */ 
 ///* 146 */       if (("0" == this.request.getParameter("gradeChange")) || ("0".equals(this.request.getParameter("gradeChange")))) {
@@ -219,6 +228,9 @@ import net.sf.json.JSONObject;
 ///* 155 */         this.backVisitManager.storeStepInfo(this.stepInfo);
 ///*     */       }
 /*     */     } else {
+	             if(this.backVisit.getIsSaved().equals("1")){
+	            	 this.backVisit.setSubmitNum(this.backVisit.getSubmitNum()+1);
+	             }  
 /* 158 */       this.backVisitManager.storeBackVisit(this.backVisit);
 ///* 159 */       if (("0" == this.request.getParameter("gradeChange")) || ("0".equals(this.request.getParameter("gradeChange")))) {
 ///* 160 */         CodeValue cve = this.codeValueManager.loadCodeValue(getId("customerSteped.id"));
@@ -259,6 +271,13 @@ import net.sf.json.JSONObject;
 						   String moreinfo = JSONObject.fromObject(map).toString();
 							event.setMoreinfo(moreinfo);
 							eventNewManager.storeEventNew(event);
+							 HashMap mapData =new HashMap();
+				              mapData.put("type", "10001");
+				              mapData.put("thisMoney", "0");
+				              mapData.put("lastMoney", "0");
+							 mapData.put("submitNum", this.backVisit.getSubmitNum());
+							 mapData.put("date", this.backVisit.getBackVisitDate());
+							this.dataManager.storeData(personnelFiles, mapData);
 
 							addActionMessage(getText("backvisit.submit.success", Arrays.asList(new Object[] { this.backVisit.getBackVisitType().getName() })));
 							return "success";
@@ -376,6 +395,26 @@ import net.sf.json.JSONObject;
 /* 259 */       e.printStackTrace();
 /* 260 */     }return new ArrayList();
 /*     */   }
+			public List<CodeValue> getAllImportanceType() {
+				try {
+					List codes = new ArrayList();
+					String[] keys ={"name","code"};
+					String[] values ={"重要程度","212"};
+					List one =  this.codeValueManager.loadByKeyArray(keys, values);//this.codeValueManager.loadByKey("code", Long.valueOf("211"));
+				if ((null != one) && (one.size() > 0)) {
+					List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
+					if ((null != list) && (list.size() > 0)) {
+						codes.addAll(list);
+					}
+
+				}
+
+				return codes;
+				} catch (DaoException e) {
+					e.printStackTrace();
+					return new ArrayList();
+				}
+			}
 			public String getOpenFlag() {
 				return openFlag;
 			}
@@ -394,6 +433,7 @@ import net.sf.json.JSONObject;
 			public void setCustomerInfo(CustomerInfo customerInfo) {
 				this.customerInfo = customerInfo;
 			}
+			
  
 /*     */ 
 ///*     */   public CodeValue getCustomerSteped()

@@ -106,7 +106,7 @@
         	</script>
 		</tr>
 		<tr>
-			<@textarea label="${action.getText('备注')}" name="point.remark" value="" colspan="5" rows="3" cols="100" 
+			<@textarea label="${action.getText('备注')}" name="point.remark" value="" colspan="5" rows="4" cols="150" 
 			           value="${point.remark?if_exists}"/>
 		</tr>
 	</@inputTable>

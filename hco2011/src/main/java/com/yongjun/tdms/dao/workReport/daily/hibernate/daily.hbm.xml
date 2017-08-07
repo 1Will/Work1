@@ -72,7 +72,10 @@
         <property name="isSaved" type="string">
 			<column name="ISSAVED" not-null="false" sql-type="NVARCHAR(1)" />
 		</property>
-        
+        <!-- 提交次数 -->
+		<property name="submitNum" type="long">
+			<column name="submitNum"/>
+		</property>
         <property name="tomorrowPlan" type="string">
 			<column name="TOMORROWPLAN" not-null="false" sql-type="NVARCHAR(500)" />
 		</property>

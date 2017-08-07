@@ -52,6 +52,7 @@ import com.yongjun.tdms.model.customercontract.contractmanagement.additionalInfo
 		 * @return 附加信息集合
 		 */
 		public List<ContractAdditionalInfo> loadByKey(String key, Object value) throws DaoException;
-
-
+		
+		
+		public List<String> getBankInfo(Long contractManagementId);
 }

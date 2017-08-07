@@ -34,7 +34,7 @@
        		<#--<@redirectButton value="${action.getText('importCustomer.button')}" url="${req.contextPath}/customerRelationship/toImportCustomerInfo.html"/>-->
         </@buttonBar>
         <@list title="${action.getText('customerInfo.list.title')}" 
-            includeParameters="customerInfo.code|customerInfo.name|type.id|country.id|province.id|city.id|industry.id|companyNature.id|customerInfo.keyContacter|customerInfo.salesman|step.id|customerInfo.state|readOnly|onlyInvalid|onlyValid" 
+            includeParameters="customerInfo.code|customerInfo.name|type.id|country.id|province.id|city.id|industry.id|companyNature.id|isPartner|customerInfo.keyContacter|customerInfo.salesman|step.id|customerInfo.state|readOnly|onlyInvalid|onlyValid" 
         	fieldMap="like:customerInfo.code|customerInfo.name|customerInfo.keyContacter|customerInfo.salesman" >
         	<#if !(action.isReadOnly())>
 	        	<@vlh.checkbox property="id" name="customerInfoIds">
@@ -83,10 +83,10 @@
      			<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('customerInfo.mobilePhone')}" property="mobilePhone" sortable="desc">
-     			<@alignLeft/>
+     			<@alignLeft attributes="width:100;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('customerInfo.telphone')}" property="telphone" sortable="desc">
-     			<@alignLeft/>
+     			<@alignLeft attributes="width:100;"/>
 			</@vcolumn>
             <@vcolumn title="${action.getText('customerInfo.customerInfoIntegrity')}" property="customerInfoIntegrity" sortable="desc">
      			<@alignRight/>

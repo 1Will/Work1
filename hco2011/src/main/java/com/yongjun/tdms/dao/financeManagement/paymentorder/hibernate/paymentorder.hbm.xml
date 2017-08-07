@@ -51,8 +51,26 @@
         <many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
 			<column name="DEPARMENT" not-null="false"/>
 		</many-to-one>
+		<!-- 合同 -->
+		 <many-to-one name="contractManagement" class="com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement">
+			<column name="contractManagement_id" not-null="false"/>
+		</many-to-one>
+	<!-- 项目 -->
+		 <many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo">
+			<column name="projectInfo" not-null="false"/>
+		</many-to-one>
+		<property name="position" type="string">
+			<column name="position" not-null="false" sql-type="NVARCHAR(200)"/>
+		</property>
+		<property name="fileName" type="string">
+			<column name="fileName" not-null="false" sql-type="NVARCHAR(200)"/>
+		</property>
 		<property name="remark" type="string">
 			<column name="REMARK" not-null="false" sql-type="NVARCHAR(100)"/>
+		</property>
+		<!-- 是否提交 -->
+		<property name="isSaved" type="string">
+			<column name="isSaved" sql-type="NVARCHAR(1)"/>
 		</property>
 		
 		<property name="disabled" type="boolean">

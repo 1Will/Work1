@@ -3,49 +3,47 @@
 	<@ww.form name="'listFrom'" namespace="'/financialManagement'" action="'searchFinancialManagement'" method="'post'">
 		<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 		<@ww.token name="searchFinancialManagementToken"/>
-        <@list title="" 
-            includeParameters="financialManagement.saleman|contractManagement.code|financialManagement.payee|financialManagement.contractManagement|financialManagement.collectionDate_start|financialManagement.collectionDate_end
-        	|customerInfo.code|financialManagement.customerInfo|contractManagement.id|readOnly|onlyInvalid|onlyValid" 
-        	fieldMap="like:financialManagement.saleman|contractManagement.code|financialManagement.payee|financialManagement.contractManagement|customerInfo.code|financialManagement.customerInfo
+   <@list title="${action.getText('financialManagement.list.title')}" 
+            includeParameters="financialManagement.saleman|financialManagement.code|projectInfo.name|financialManagement.payee|financialManagement.contractManagement|financialManagement.collectionDate_start|financialManagement.collectionDate_end
+        	|customerInfo.code|financialManagement.customerInfo|readOnly|onlyInvalid|onlyValid" 
+        	fieldMap="like:financialManagement.saleman|financialManagement.code|projectInfo.name|financialManagement.payee|financialManagement.contractManagement|customerInfo.code|financialManagement.customerInfo
         	,date:financialManagement.collectionDate_start|financialManagement.collectionDate_end">
             
             <@vcolumn title="${action.getText('financialManagement.code')}" property="code" sortable="desc">
                 <a href="javascript:financialManagement_OpenDialog('#{object.id}')">${object.code}</a>
 				<@alignLeft/>
             </@vcolumn>
-            <#-- 
-            <@vcolumn title="${action.getText('contractManagement.code')}" property="contractManagement.code" sortable="desc">
-            	<@alignLeft/>
-            </@vcolumn>
+     <#--
             <@vcolumn title="${action.getText('financialManagement.contractManagement')}" property="contractManagement.contractName" sortable="desc">
+            	<@vlh.attribute name="width" value="12%" />
             	<@alignLeft/>
             </@vcolumn>
+            
             <@vcolumn title="${action.getText('financialManagement.customerInfo')}" property="customerInfo.name" sortable="desc">
      			<@vlh.attribute name="width" value="10%" />
      			<@alignLeft/>
             </@vcolumn>
-             <@vcolumn title="${action.getText('financialManagement.saleman')}" property="saleman.name" sortable="desc">
+            
+            <@vcolumn title="${action.getText('financialManagement.contractManagement.projectInfo.name')}" property="contractManagement.project.name" sortable="desc">
+     			<@vlh.attribute name="width" value="10%" />
      			<@alignLeft/>
             </@vcolumn>
-            -->
-            <@vcolumn title="${action.getText('customerInfo.code')}" property="customerInfo.code" sortable="desc">
-     			<@alignLeft/>
-            </@vcolumn>
+      -->      
             <@vcolumn title="${action.getText('financialManagement.batch')}" property="batch.name" sortable="desc">
-            	<@alignLeft/>
+            	<@alignRight/>
             </@vcolumn>
+            
              <@vcolumn title="${action.getText('financialManagement.sumReceivable')}" property="sumReceivable" sortable="desc">
-            	<@alignLeft/>
+            	<@alignRight/>
             </@vcolumn>
             <@vcolumn title="${action.getText('financialManagement.trueSum')}" property="trueSum" sortable="desc">
-            	<@alignLeft/>
+            	<@alignRight/>
             </@vcolumn>
             <@vcolumn title="${action.getText('financialManagement.totalSum')}" property="totalSum" sortable="desc">
-            	<@alignLeft/>
+            	<@alignRight/>
             </@vcolumn>
             <@vcolumn title="${action.getText('financialManagement.withoutGotSum')}" property="withoutGotSum" sortable="desc">
-            	<@vlh.attribute name="width" value="3%" />
-            	<@alignLeft/>
+            	<@alignRight/>
             </@vcolumn>
             <#assign invoice=""/>
             <#if (object.invoice)=='0'>
@@ -64,23 +62,6 @@
               <@vlh.attribute name="width" value="9%" />
             	<@alignCenter/><#-- attributes="width:110;"-->
             </@vcolumn>
-             
-            <#-- 
-             <@vcolumn title="${action.getText('financialManagement.collectionType')}" property="collectionType.name" sortable="desc">
-     			<@alignLeft/>
-            </@vcolumn>
-            <@vcolumn title="${action.getText('financialManagement.payment')}" property="payment.name" sortable="desc">
-     			<@alignLeft/>
-            </@vcolumn>
-            <@vcolumn title="${action.getText('financialManagement.accountNumber')}" property="accountNumber" sortable="desc">
-            	<@alignLeft/>
-            </@vcolumn>
-            <@vcolumn title="${action.getText('financialManagement.invoiceCode')}" property="invoiceCode" sortable="desc">
-            	<@alignLeft/>
-            </@vcolumn>
-            <@vcolumn title="${action.getText('financialManagement.dept')}" property="dept.name" sortable="desc">
-            	<@alignLeft/>
-            </@vcolumn>-->
         </@list>
     </@ww.form>
     <script>
@@ -88,5 +69,11 @@
 	    var url = "${req.contextPath}/financialManagement/editFinancialManagement.html?financialManagement.id="+id+"&readOnly=${req.getParameter('readOnly')?if_exists}&popWindowFlag=popWindowFlag";
 	    openNewWindow(url);
     }
+     <#-- 
+    function newFinancialManagement_OpenDialog(){
+	    var url = "${req.contextPath}/financialManagement/editFinancialManagement.html?contractManagement.id=${req.getParameter('contractManagement.id')?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}&popWindowFlag=popWindowFlag";
+	    openNewWindow(url);
+    }
+    -->
     </script>
 </@framePage>

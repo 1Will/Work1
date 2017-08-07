@@ -65,7 +65,7 @@
 			<@ww.hidden  id="deparmentid" name="'deparment.id'" value=""/>			
 		</#if>
 	</#if>
-	<@ww.hidden  id="stateid" name="'state.id'" value=""/>
+	<@ww.hidden  id="state.id" name="'state.id'" value=""/>
 	<@inputTable>
 		<tr>
 			<@textfield id="code" label="${action.getText('contractManagement.code')}" maxlength="10"  name="contractManagement.code"  value="${contractManagement.code?if_exists}"  required="false" anothername="checkcode" disabled="true"/>
@@ -119,10 +119,10 @@
 				</a>
 			</td>
 			
-			<@textfield  label="${action.getText('contractManagement.address')}" name="contractManagement.address" value="${contractManagement.address?if_exists}" required="true"/>
+			<@textfield id="telephone" label="${action.getText('contractManagement.telephone')}" maxlength="15"  name="contractManagement.telephone"  value="${contractManagement.telephone?if_exists}"  required="true" anothername="checkTelephone" readonly="false"/>
 		</tr>
 		<tr>
-			<@textfield id="telephone" label="${action.getText('contractManagement.telephone')}" maxlength="15"  name="contractManagement.telephone"  value="${contractManagement.telephone?if_exists}"  required="true" anothername="checkTelephone" readonly="false"/>
+			<@textfield  label="${action.getText('contractManagement.address')}" name="contractManagement.address" value="${contractManagement.address?if_exists}" required="true"/>
 			<td align="right" valign="top">
 	       		<span class="required">*</span>
 	       		<label class="label">${action.getText('contractManagement.saleman.name')}:</label>
@@ -221,7 +221,7 @@
 				disabled="false">
 			</@ww.select>
 			<@ww.select label="'${action.getText('contractManagement.state')}'" 
-				id="state"
+				id="stateid"
 				name="'stateid'" 
 				value="''"
 				listKey="id"
@@ -242,24 +242,33 @@
 		<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 		
-			<#-- 
 			<#if contractManagement.isSaved?exists &&contractManagement.isSaved=='0' >
-		    	<@vsubmit name="'submit'" value="'${action.getText('提交')}'" onclick="'return submitt();'"/>
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
 		    <#else>
-		    	<@vsubmit name="'submit'" value="'${action.getText('提交')}'" onclick="'return submitt();'" disabled="true"/>
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
 		    </#if>
-			 -->
-			 
 		</#if>
 		<#-- 继续新建按钮   -->
 		<#if contractManagement.id?exists>
-		<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html"/>
+			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html"/>
 		<#else>
-		<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html"/>
-		<script language="JavaScript" type="text/JavaScript"> 
-		getObjByName("newNext").disabled="true";
-		</script>
-		</#if> 
+			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html"/>
+			<script language="JavaScript" type="text/JavaScript"> 
+			getObjByName("newNext").disabled="true";
+			</script>
+		</#if>
+		<#if contractManagement.id?exists>
+		<#-- 添加收款单   -->
+			<#if !(action.isReadOnly())>
+				<@vbutton value="${action.getText('新建收款单')}" class="button" onclick ="newFinancialManagement_OpenDialog()"/>
+				<@vbutton value="${action.getText('新建开票记录')}" class="button" onclick ="newBillingRecord_OpenDialog()"/>
+				<@vbutton value="${action.getText('状态变更')}" class="button" onclick ="changeState()"/>
+	   		</#if>
+   		</#if>
+		
+		
+		
+		 
 		<#if popWindowFlag?exists&&popWindowFlag==popWindowFlag>
 		<@vbutton class="button" value="${action.getText('close')}" onclick="closeThis()"/>
 		<#else>
@@ -268,6 +277,20 @@
     </@buttonBar>
 </@ww.form>
 <script language="JavaScript" type="text/JavaScript"> 
+<#if contractManagement.id?exists>
+	function newFinancialManagement_OpenDialog(){
+	    var url = "${req.contextPath}/financialManagement/editFinancialManagement.html?contractManagement.id=${contractManagement.id?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}&popWindowFlag=popWindowFlag";
+	    openNewWindow(url);
+    }
+	function newBillingRecord_OpenDialog(){
+	    var url = "${req.contextPath}/contractManagement/editBillingRecord.html?contractManagement.id=${contractManagement.id?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}&popWindowFlag=popWindowFlag";
+	    openNewWindow(url);
+    }
+    function changeState(){
+    	var url = "${req.contextPath}/contractManagement/editContractState.html?contractManagement.id=${contractManagement.id?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}";
+    	openNewWindow(url);
+    }
+</#if>
 function instiChange(){
 	DWREngine.setAsync(false); 
 	//回调单位的值后触发DWR 级联部门 
@@ -320,7 +343,11 @@ function instiChange(){
 		if (null != result) {
 			getObjByName("linkmanid").value=(result[0]);
 			getObjByName("linkmanName").value=(result[1]);
-			getObjByName("telephone").value=(result[2]);
+			if(result[2] !=''){
+				getObjByName("telephone").value=(result[2]);
+			}else{
+				getObjByName("telephone").value=(result[3]);
+			}
 		}
 	}
 	//弹出业务员查询模态窗体
@@ -430,8 +457,7 @@ function instiChange(){
 		return storeValidation();
 	}
 		
-	getObjByName(function(){
-	
+	window.onload=function (){
 		<#if contractManagement.contractType?exists>
 			getObjByName("contractType").value=("${contractManagement.contractType.id?if_exists}");
 		</#if>
@@ -443,12 +469,12 @@ function instiChange(){
 			getObjByName("moneyType").value=("${contractManagement.moneyType.id?if_exists}");
 		</#if>
 		<#if contractManagement.state?exists>
-			getObjByName("state").value=("${contractManagement.state.id?if_exists}");
 			getObjByName("stateid").value=("${contractManagement.state.id?if_exists}");
+			getObjByName("state.id").value=("${contractManagement.state.id?if_exists}");
 		<#else>
 			<#if stateDefault?exists>
-				getObjByName("state").value=("${stateDefault?if_exists}");
-				getObjByName("stateid").value=("${stateDefault?if_exists}");
+				getObjByName("stateid").value=("${stateDefault.id?if_exists}");
+				getObjByName("state.id").value=("${stateDefault.id?if_exists}");
 			</#if>
 		</#if>
 		<#if contractManagement.saleman?exists>
@@ -458,8 +484,7 @@ function instiChange(){
 		getObjByName("moneyType").change(function(){
 			getObjByName(getObjByName("moneyType option").get(0)).attr("selected",true);
 		});
-		
-	});
+		}
 </script>
 
 </@htmlPage>
@@ -469,13 +494,16 @@ function instiChange(){
 		<a id="productInfo" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/productList/listProductList.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('产品明细')}</a>
 	</li>
 	<li>
+		<a id="contractPlan" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProPlan.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('工作计划')}</a>
+	</li>
+	<li>
+		<a id="returnPlan" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listReturnPlanByCustomerAction.html?contractManagement.id=#{contractManagement.id}&sortColumn=batch.name&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('收款计划')}</a>
+	</li>
+	<li>
 		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
 	</li>
 	<li>
 		<a id="additionalInfo" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/editContractAdditionalInfo.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附加信息')}</a>
-	</li>
-	<li>
-		<a id="returnPlan" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listReturnPlanByCustomerAction.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('回款计划')}</a>
 	</li>
 	<li>
 		<a id="financialManagement" onclick="activeTab(this);"  href='${req.contextPath}/financialManagement/listFinancialManagementTab.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('收款单')}</a>
@@ -485,6 +513,9 @@ function instiChange(){
 	</li>
 	<li>
 		<a id="changeToHistory" onclick="activeTab(this);" href='${req.contextPath}/customerRelationship/listContactToHistory.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('变更历史')}</a>
+	</li>
+	<li>
+		<a id="contractState" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listContractState.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('合同状态变更')}</a>
 	</li>
 </ul>
 <iframe name="frame" frameborder="0.5" src="${req.contextPath}/productList/listProductList.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="50%"/>

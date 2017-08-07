@@ -763,7 +763,7 @@ public class DefaultMyRemindManager extends BaseManager
     int m = 7;
     try
     {
-      List remindList = this.remindManager.loadByKey("type", "回款计划提醒");
+      List remindList = this.remindManager.loadByKey("type", "收款计划提醒");
       if ((null != remindList) && (!remindList.isEmpty()))
         remind = (Remind)remindList.get(0);
     }
@@ -778,7 +778,7 @@ public class DefaultMyRemindManager extends BaseManager
       remind = new Remind();
       remind.setCode("R005");
       remind.setDays(Long.valueOf(7L));
-      remind.setType("回款计划提醒");
+      remind.setType("收款计划提醒");
       this.remindManager.storeRemind(remind);
     }
     String[] keyNames = new String[2];
@@ -791,7 +791,7 @@ public class DefaultMyRemindManager extends BaseManager
     try {
       rePlanList = this.returnPlanManager.loadByKeyArray(keyNames, keyValues);
     } catch (DaoException e1) {
-      this.logger.info("回款计划查询出错！");
+      this.logger.info("收款计划查询出错！");
     }
     if ((null != rePlanList) && (rePlanList.size() > 0))
       for (ReturnPlan rePlan : rePlanList) {
@@ -848,7 +848,7 @@ public class DefaultMyRemindManager extends BaseManager
               w.setRemindObjectId(rePlan.getId());
               ContractManagement objectCon = this.contractManagementManager.loadContractManagement(rePlan.getContractManagement().getId());
 
-              w.setContent("有回款计划：" + objectCon.getCode() + "(" + rePlan.getBatch().getName() + ")" + " 提醒");
+              w.setContent("有收款计划：" + objectCon.getCode() + "(" + rePlan.getBatch().getName() + ")" + " 提醒");
               w.setOrganization(user.getOrganization());
               this.workWarnningManager.storeWorkWarnning(w);
 

@@ -25,14 +25,33 @@
 	<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 	<@ww.token name="saveBillingRecordToken"/>
     <@inputTable>
-    	<@ww.hidden name="'customer.id'" value="''"/>
     	<@ww.hidden name="'customerType.id'" value="''"/>
-    	<@ww.hidden name="'payee.id'" value="'${req.getParameter('payee.id')?if_exists}'"/>
-    	<@ww.hidden name="'contractManagement.id'" value="'${req.getParameter('contractManagement.id')?if_exists}'"/>
-    	<@ww.hidden name="'contactArchives.id'" value="'${req.getParameter('contactArchives.id')?if_exists}'"/>
+    	<@ww.hidden name="'billingRecord.isSaved'" value="''"/>
+    	<@ww.hidden name="'popWindowFlag'" value="'${req.getParameter('popWindowFlag')?if_exists}'"/>
     	<#if billingRecord.id?exists>
+	    	<@ww.hidden name="'payee.id'" value="'#{billingRecord.payee.id?if_exists}'"/>
     		<@ww.hidden name="'billingRecord.id'" value="#{billingRecord.id?if_exists}"/>
+    	<#else>
+	    	<@ww.hidden name="'payee.id'" value="''"/>
 	 	</#if>
+	 	<#if billingRecord.customerInfo?exists>
+    		<@ww.hidden name="'customer.id'" value="'#{billingRecord.customerInfo.id?if_exists}'"/>
+	 	<#else>
+    		<@ww.hidden name="'customer.id'" value="''"/>
+	 	</#if>
+	 	
+ 		<#if billingRecord.contractManagement?exists>
+    		<@ww.hidden name="'contractManagement.id'" value="'#{billingRecord.contractManagement.id?if_exists}'"/>
+	 	<#else>
+    		<@ww.hidden name="'contractManagement.id'" value="''"/>
+	 	</#if>
+	 	
+	 	<#if billingRecord.contactArchives?exists>
+    		<@ww.hidden name="'contactArchives.id'" value="'#{billingRecord.contactArchives.id?if_exists}'"/>
+	 	<#else>
+    		<@ww.hidden name="'contactArchives.id'" value="''"/>
+	 	</#if>
+	 	
 	 	<tr>
 			<#--相关合同弹出框-->
 			<td align="right" valign="top">
@@ -65,11 +84,26 @@
 				</#if>
 			</td>
 			
+	
+	     	<#if billingRecord.contractManagement?exists>
+		     	<#if billingRecord.contractManagement.project?exists>
+		     		<@ww.textfield label="'${action.getText('项目名称')}'" name="'projectInfo.name'" value="'${billingRecord.contractManagement.project.name?if_exists}'" disabled="true" cssClass="'underline'" />
+		     	<#else>
+		     		<@ww.textfield label="'${action.getText('项目名称')}'" name="'projectInfo.name'" value="" cssClass="'underline'" disabled="true"/>
+		     	</#if>
+	     	<#else>
+	     		<@ww.textfield label="'${action.getText('项目名称')}'" name="'projectInfo.name'" value="" cssClass="'underline'" disabled="true"/>
+	     	</#if>
+	     	</td>
+	     	
+		</tr>
+		<tr>
 			<#--相关联系人弹出框-->
 			<td align="right" valign="top">
 	       		<label class="label">${action.getText('billingRecord.contactArchives')}:</label>
 	     	</td>
 	     	<td>
+	     	   		
 	     		<#if billingRecord.contactArchives?exists>
 		   		<input type="text" name="billingRecord.contactArchives" class="underline"  value="${billingRecord.contactArchives.name?if_exists}" maxlength="140" size="20" disabled="true"/>
 				<#else>
@@ -79,14 +113,43 @@
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
 				</a>
 			</td>
-		</tr>
-		<tr>
-            <@ww.textfield label="'${action.getText('billingRecord.code')}'" name="'billingRecord.code'" value="'${billingRecord.code?if_exists}'" cssClass="'underline'" required="true"/>
+	     		
+	     	<@ww.select label="'${action.getText('批次')}'" 
+				id="batch.id" 
+				name="'batch.id'" 
+				value="${req.getParameter('batch.id')?if_exists}"
+				listKey="id"
+				listValue="name"
+				list="allBatchs"
+				required="true"
+				emptyOption="false" 
+				onchange="'getReturnPlan(this.options[this.options.selectedIndex].value)'"
+				disabled="false">
+			</@ww.select>
+			<#if billingRecord.id?exists>
+				<script language="javascript">
+					getObjByName('batch.id').disabled="true";
+				</script>
+			</#if>
+	     		
 			<@ww.textfield label="'${action.getText('billingRecord.invoiceTitle')}'" name="'billingRecord.invoiceTitle'" value="'${billingRecord.invoiceTitle?if_exists}'" cssClass="'underline'" />
-			<@ww.textfield label="'${action.getText('billingRecord.sum')}'" name="'billingRecord.sum'" value="'#{billingRecord.sum?if_exists}'" cssClass="'underline'" required="true"/>
+		</tr>
+		
+		
+		<tr>
+			<@ww.textfield label="'${action.getText('计划开票金额')}'" name="'billingRecord.planSum'" value="'#{billingRecord.planSum?if_exists}'" cssClass="'underline'" readonly="true" />
+			<@ww.textfield label="'${action.getText('已开票金额')}'" name="'billingRecord.hasBillSum'" value="'#{billingRecord.hasBillSum?if_exists}'" cssClass="'underline'" readonly="true" />
+			
 		</tr>
 		<tr>
+			<@ww.textfield label="'${action.getText('本次开票金额')}'" name="'billingRecord.sum'" value="'#{billingRecord.sum?if_exists}'" cssClass="'underline'" required="true" onblur="'getRest()'"/>
+			<@ww.textfield label="'${action.getText('剩余开票金额')}'" name="'billingRecord.restSum'" value="'#{billingRecord.restSum?if_exists}'" cssClass="'underline'" readonly="true"/>
+		
+		
 			<@ww.textfield label="'${action.getText('billingRecord.currency')}'" name="'billingRecord.currency'" value="'${billingRecord.currency?if_exists}'" cssClass="'underline'"/>
+		</tr>
+		<tr>	
+            <@ww.textfield label="'${action.getText('billingRecord.code')}'" name="'billingRecord.code'" value="'${billingRecord.code?if_exists}'" cssClass="'underline'" required="true"/>
 			<@pp.datePicker 
 				label="'${action.getText('billingRecord.billingTime')}'" 
 				name="'billingRecord.billingTime'" 
@@ -101,7 +164,7 @@
 						getObjByName("billingRecord.billingTime").value = date.format("yyyy-MM-dd");
 					}
 			</script>
-			<#--开票人弹出框-->
+		<#--开票人弹出框-->
 	 		<td align="right" valign="top">
 	       		<span class="required">*</span>
 	       		<label class="label">${action.getText('billingRecord.payee')}:</label>
@@ -128,8 +191,14 @@
     </@inputTable>
     <@buttonBar>
     	<#if !(action.isReadOnly())>
-			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 		</#if>
+		
+		<#if billingRecord.isSaved?exists &&billingRecord.isSaved=='0' >
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+	    <#else>
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+	    </#if>
 		
 		<#-- 继续新建按钮   -->
 		<#if billingRecord.id?exists>
@@ -141,18 +210,74 @@
 		</script>
 		</#if>
 		
-		<#if popWindowFlag?exists&&popWindowFlag==popWindowFlag>
-		<@vbutton class="button" value="${action.getText('close')}" onclick="closeThis()"/>
+		<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
+			<@vbutton class="button" value="${action.getText('close')}" onclick="closeThis()"/>
 		<#else>
-		<@redirectButton class="button" value="${action.getText('back')}" url="${req.contextPath}/contractManagement/listBillingRecord.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+			<@redirectButton class="button" value="${action.getText('back')}" url="${req.contextPath}/contractManagement/listBillingRecord.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
    		</#if>
 		
     </@buttonBar>
 
 </@ww.form>
-
+<script type='text/javascript' src='${req.contextPath}/dwr/interface/ReturnPlanBill.js'></script>
 <script type="text/javascript">
 	
+	window.onload=function(){
+		 <#if billingRecord.id?exists>
+	    <#else>
+	    	getBatch();
+	    </#if>
+	}
+	
+	function getBatch(){
+		// 选择合同的时候带出，该合同下所有收款计划的批次
+    	DWREngine.setAsync(false); 
+    	//回调单位的值后触发DWR 级联部门  
+		BatchForBillDWR("contractManagement.id","batch.id","${action.getText('')}","false"); 
+    	//重新设置为异步方式
+    	DWREngine.setAsync(true); 
+	}
+	
+	function getReturnPlan(batchId){
+		var cmid = getObjByName('contractManagement.id').value
+		if(batchId>0){
+			DWREngine.setAsync(false); 
+			ReturnPlanBill.getReturnPlanBill(cmid,batchId,setMoney)
+			//重新设置为异步方式
+			DWREngine.setAsync(true); 
+		}else{
+			getObjByName('billingRecord.planSum').value ="";
+			getObjByName('billingRecord.hasBillSum').value ="";
+		}
+	}
+	function setMoney(data){
+		getObjByName('billingRecord.planSum').value =data[0];
+		getObjByName('billingRecord.hasBillSum').value =data[1];
+	}
+	
+	
+	function getRest(){
+		if(getObjByName('batch.id').value=='' || getObjByName('batch.id').value == -1){
+			alert("${action.getText('请选择批次！')}");
+			getObjByName('batch.id').focus();
+			return false;
+		}
+		var plan = getObjByName('billingRecord.planSum').value;
+		var sum = getObjByName('billingRecord.sum').value;
+		var has = getObjByName('billingRecord.hasBillSum').value;
+		if(sum==""){
+			getObjByName('billingRecord.restSum').value="";
+			return;
+		}
+		var rest = plan-has-sum;
+		if(rest>=0){
+			getObjByName('billingRecord.restSum').value =rest;
+		}else{
+			alert("剩余开票金额不能小于0！")
+			getObjByName('billingRecord.sum').value="";
+			getObjByName('billingRecord.restSum').value="";
+		}
+	}
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
 	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
@@ -197,7 +322,9 @@
 	   		document.forms[0].elements["contactArchives.id"].value=result[5];
 	   		getObjByName('billingRecord.contactArchives').value=result[3];
 	   		getObjByName('billingRecord.invoiceTitle').value=result[2]
+	   		getObjByName('projectInfo.name').value=result[10]
 		}
+		getBatch();
 	}
 	
 		//联系人查询模态窗体
@@ -214,17 +341,30 @@
 		}
 	}
 	
+	//提交
+	function submitt(){
+		getObjByName("billingRecord.isSaved").value = 1;
+		return storeValidation();
+	}
+	//保存
+	function savee(){
+		getObjByName("billingRecord.isSaved").value = 0;
+		return storeValidation();
+	}
+	
 	//保存前给隐藏域赋值和验证字段
 	function storeValidation(){
 		if(getObjByName('billingRecord.contractManagement').value==''){
 			alert("${action.getText('billingRecord.contractManagement.requiredstring')}");
 			return false;
 		}
-		if(getObjByName('billingRecord.code').value==''){
-			alert("${action.getText('billingRecord.code.requiredstring')}");
-			getObjByName('billingRecord.code').focus();
+		
+		if(getObjByName('batch.id').value=='' || getObjByName('batch.id').value == -1){
+			alert("${action.getText('请选择批次！')}");
+			getObjByName('batch.id').focus();
 			return false;
 		}
+		
 		if(getObjByName('billingRecord.sum').value==''){
 			alert("${action.getText('billingRecord.sum.requiredstring')}");
 			getObjByName('billingRecord.sum').focus();
@@ -239,6 +379,12 @@
 				return false;
 			}
 	     }
+	     
+	     if(getObjByName('billingRecord.code').value==''){
+			alert("${action.getText('billingRecord.code.requiredstring')}");
+			getObjByName('billingRecord.code').focus();
+			return false;
+		}
 	     
 	     if(getObjByName('billingRecord.billingTime').value==''){
 			alert("${action.getText('billingRecord.billingTime.requiredstring')}");

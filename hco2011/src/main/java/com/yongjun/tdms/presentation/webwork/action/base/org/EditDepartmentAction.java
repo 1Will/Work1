@@ -126,8 +126,10 @@
 /* 177 */       this.department.setParentDept(newParentDept);
 /* 178 */       this.department.setInst(newParentDept.getInst());
 /*     */     } else {
+	            if(isNew){
 /* 180 */       this.department.setParentDept(null);
 /* 181 */       this.department.setStep(0);
+	            }
 /* 182 */       if (this.instId != null) {
 /* 183 */         this.institution = this.institutionManager.loadInstitution(this.instId);
 /* 184 */         this.department.setInst(this.institution);

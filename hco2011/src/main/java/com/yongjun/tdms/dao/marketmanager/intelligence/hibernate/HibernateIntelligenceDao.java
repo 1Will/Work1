@@ -61,7 +61,7 @@
 /* 138 */     String hql = "select int.code from Intelligence as int where int.organization.id=" + orgId + " and int.code like '%" + code + "%'";
 /*     */ 
 /* 140 */     List codeList = getSession().createQuery(hql).list();
-/* 141 */     if (codeList.size() > 0) {
+/* 141 */     if (null!= codeList && codeList.size() > 0) {
 /* 142 */       List items = new ArrayList();
 /* 143 */       for (int i = 0; i < codeList.size(); i++) {
 /* 144 */         String item = ((String)codeList.get(i)).substring(((String)codeList.get(i)).lastIndexOf("-") + 1);

@@ -312,7 +312,7 @@ function __priv_containE(ary, e) {
 }
 
 function isNumber(e) {
-	var num=document.getElementById(e).value;
+	var num=getObjByName(e).value;
 	num = formatDigital(num);
 	s = new String(num);
 	var regu = "^[0-9]+$";
@@ -340,7 +340,7 @@ function isBlank(e) {
  * ??e??????
 */
 function isDoubleNumber(e) {
-  	var num=document.getElementById(e).value;
+  	var num=getObjByName(e).value;
   	num = formatDigital(num);
 	s = new String(num);
 	s = formatDigital(s);

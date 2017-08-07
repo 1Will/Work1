@@ -61,7 +61,7 @@
 /* 132 */     String hql = "select wfc.code from WorkflowCase as wfc where wfc.organization.id=" + orgId + " and wfc.code like '%" + code + "%'";
 /*     */ 
 /* 134 */     List codeList = getSession().createQuery(hql).list();
-/* 135 */     if (codeList.size() > 0) {
+/* 135 */     if (null!= codeList && codeList.size() > 0) {
 /* 136 */       List items = new ArrayList();
 /* 137 */       for (int i = 0; i < codeList.size(); i++) {
 /* 138 */         String item = ((String)codeList.get(i)).substring(((String)codeList.get(i)).lastIndexOf("-") + 1);

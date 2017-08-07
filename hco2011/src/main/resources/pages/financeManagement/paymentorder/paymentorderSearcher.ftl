@@ -49,13 +49,13 @@
 	
 		return true;
     }
-  jgetObjByName(function(){
+  getObjByName(function(){
   
    	<#if req.getParameter('paymentorder.produceType.id')?exists>
-    		jgetObjByName("#produceType").val("${req.getParameter('paymentorder.produceType.id')?if_exists}");
+    		getObjByName("#produceType").value=("${req.getParameter('paymentorder.produceType.id')?if_exists}");
     	</#if>
     <#--	<#if req.getParameter('contractManagement.state.id')?exists>
-    		jgetObjByName("#state").val("${req.getParameter('contractManagement.state.id')?if_exists}");
+    		getObjByName("#state").val("${req.getParameter('contractManagement.state.id')?if_exists}");
     	</#if>
     	-->
   });

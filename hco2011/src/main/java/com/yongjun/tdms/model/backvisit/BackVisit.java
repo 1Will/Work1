@@ -40,12 +40,14 @@ import java.util.Date;
 /*     */   private CodeValue customerSteped;
 			private CodeValue customerStating;
 /*     */   private CodeValue customerStated;
+			private CodeValue importanceType;
 			private String changStateReason;
 /*     */   private String changReason;
             private String contactArchives;
             private String  employees;
             private String isPublic;
             private String isSaved;//存在并且等于0，，方可提交
+            private long submitNum=0;                                                                                                              
             private ProjectInfo projectInfo;
             private String projectName;
             private Daily daily;
@@ -332,6 +334,20 @@ import java.util.Date;
 			public void setReplyTime(Long replyTime) {
 				this.replyTime = replyTime;
 			}
+			public CodeValue getImportanceType() {
+				return importanceType;
+			}
+			public void setImportanceType(CodeValue importanceType) {
+				this.importanceType = importanceType;
+			}
+			public long getSubmitNum() {
+				return submitNum;
+			}
+			public void setSubmitNum(long submitNum) {
+				this.submitNum = submitNum;
+			}
+			
+			
 			
 
 /*     */ }

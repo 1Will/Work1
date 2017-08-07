@@ -60,7 +60,7 @@
 /*     */   {
 /*  92 */     String hql = "select r.code from Remit as r where  r.code like '%" + code + "%'";
 /*  93 */     List codeList = getSession().createQuery(hql).list();
-/*  94 */     if (codeList.size() > 0) {
+/*  94 */     if (null!= codeList && codeList.size() > 0) {
 /*  95 */       List items = new ArrayList();
 /*  96 */       for (int i = 0; i < codeList.size(); i++) {
 /*  97 */         String item = ((String)codeList.get(i)).substring(((String)codeList.get(i)).lastIndexOf("-") + 1);

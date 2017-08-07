@@ -52,7 +52,6 @@
         <property name="summary" type="string">
 			<column name="SUMMARY" not-null="false" sql-type="NVARCHAR(500)" />
 		</property>
-        
         <property name="leaderIdea" type="string">
 			<column name="LEADERIDEA" not-null="false" sql-type="NVARCHAR(500)" />
 		</property>
@@ -61,7 +60,14 @@
 			<column name="COMMENT" not-null="false" sql-type="NVARCHAR(500)" />
 		</property>
         
-       
+        <!-- 提交判断 -->
+        <property name="isSaved" type="string">
+            <column name="isSaved" not-null="false" sql-type="NVARCHAR(1)"/>
+        </property>
+       <!-- 提交次数 -->
+		<property name="submitNum" type="long">
+			<column name="submitNum"/>
+		</property>
 		<many-to-one name="rapporteur" class="com.yongjun.pluto.model.security.User" lazy="false">
 			<column name="RAPPORTEUR_ID" not-null="true"/>
 		</many-to-one>
@@ -80,6 +86,10 @@
         
         <many-to-one name="duty" class="com.yongjun.tdms.model.base.duty.Duty" lazy="false">
 			<column name="DUTY_ID" not-null="true"/>
+		</many-to-one>
+		
+        <many-to-one name="week" class="com.yongjun.tdms.model.workReport.week.Week" lazy="false">
+			<column name="WEEK_ID" not-null="true"/>
 		</many-to-one>
         
         

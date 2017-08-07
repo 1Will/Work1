@@ -33,6 +33,7 @@
 		<@inputTable>
 		<tr>
 			<td align="right" valign="top">
+				<span class="required">*</span>
 	       		<label class="label">${action.getText('财务联系人')}:</label>
 	     	</td>
 			<td>
@@ -57,7 +58,7 @@
 		</tr>
 		</@inputTable>
 		<@buttonBar>
-            <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick=""/>
+            <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation()'"/>
         </@buttonBar>
     </@ww.form>
 </@framePage>
@@ -73,5 +74,14 @@
 			getObjByName("contractAdditionalInfo.financialPer.id").value=result[0];
 			getObjByName("contractAdditionalInfo.financialPer.name").value=result[1];
 		}
+	}
+	
+	function storeValidation(){
+		if(getObjByName('contractAdditionalInfo.financialPer.name').value==''){
+			alert("请选择财务联系人");
+			getObjByName('contractAdditionalInfo.financialPer.name').focus();
+			return false;
+		}
+		return true;
 	}
 </script>

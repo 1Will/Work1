@@ -9,9 +9,9 @@
             |billingRecord.contractManagement|billingRecord.billingTime_start|billingRecord.billingTime_end
             |billingRecord.code|contractManagement.id|readOnly|onlyInvalid|onlyValid|customerInfo.id|" 
         	fieldMap="like:" >
-            <@vcolumn title="${action.getText('contractManagement.code')}" property="payee" sortable="desc">
-				<a href="javascript:contract_OpenDialog('#{object.id}')">${object.contractManagement.code}</a>
-				<@alignLeft/>
+            <@vcolumn title="${action.getText('批次')}" property="payee" sortable="desc">
+				<a href="javascript:contract_OpenDialog('#{object.id}')">${object.batch.name}</a>
+				<@alignCenter/>
             </@vcolumn>
              <@vcolumn title="${action.getText('billingRecord.contractManagement')}" property="contractManagement.contractName" sortable="desc">
      			<@alignLeft/>

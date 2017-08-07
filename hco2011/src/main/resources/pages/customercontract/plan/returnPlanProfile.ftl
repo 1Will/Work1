@@ -37,8 +37,15 @@
     		<@ww.hidden name="'returnPlan.id'" value="'#{returnPlan.id?if_exists}'"/>
     		<@ww.hidden name="'contractManagement2.id'" value="'${returnPlan.contractManagement.id?if_exists}'"/>
 	 	</#if>
+	 	<#if returnPlan.chargMan?exists>
+			<@ww.hidden id="chargMan.id" name="'chargMan.id'" value="#{returnPlan.chargMan.id?if_exists}"/>
+		<#else>
+			<@ww.hidden id="chargMan.id" name="'chargMan.id'" value=""/>		
+		</#if>
+	 	
+	 	<#--
 	 	<tr>
-				<#--相关合同弹出框-->
+				<#--相关合同弹出框--
 			<td align="right" valign="top">
 				<span class="required">*</span>
 	       		<label class="label">${action.getText('returnPlan.contractManagement')}:</label>
@@ -53,7 +60,7 @@
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
 				</a>
 			</td>
-				<#--相关客户弹出框弹出框-->
+				<#--相关客户弹出框弹出框--
 				<#assign custName = ''/>
 		 	<#if returnPlan.customerInfo?exists>
 		   		<#assign custName = "${returnPlan.customerInfo}" />
@@ -70,9 +77,9 @@
 				<#--
 				<a onClick="customer_OpenDialog();">
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
-				</a>-->
+				</a>--
 			</td>
-				<#--项目名称-->
+				<#--项目名称
 			<td align="right" valign="top">
 	       		<label class="label">${action.getText('returnPlan.contractManagement.project')}:</label>
 	     	</td>
@@ -89,7 +96,7 @@
 			</td>
 		</tr>
 		<tr>
-			<#--相关联系人弹出框-->
+			<#--相关联系人弹出框
 			<td align="right" valign="top">
 				<span class="required">*</span>
 	       		<label class="label">${action.getText('returnPlan.contactArchives')}:</label>
@@ -103,10 +110,27 @@
 				<#--
 				<a onClick="customer_OpenDialog();">
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
-				</a>-->
+				</a>
 			</td>
 		
 			<@ww.textfield label="'${action.getText('returnPlan.phone')}'" name="'returnPlan.phone'" value="'${returnPlan.phone?if_exists}'" cssClass="'underline'" required="true"/>
+			-->
+		<tr>
+			
+			<span id="id_select">
+				<@ww.select label="'${action.getText('returnPlan.batch')}'" 
+					name="'batch.id'" 
+					value="${req.getParameter('batch.id')?if_exists}"
+					listKey="id"
+					listValue="name"
+					list="allBatchs"
+					required="true"
+					emptyOption="false" 
+					disabled="false">
+				</@ww.select>
+			</span>
+			
+			
 			<@pp.datePicker 
 				label="'${action.getText('returnPlan.planDate')}'" 
 				name="'returnPlan.planDate'" 
@@ -122,10 +146,7 @@
 					}
 			</script>
 			
-		</tr>
-		<tr>
-		
-		<@ww.select label="'${action.getText('returnPlan.payment')}'" 
+			<@ww.select label="'${action.getText('returnPlan.payment')}'" 
 				name="'payment.id'" 
 				value="${req.getParameter('payment.id')?if_exists}"
 				listKey="id"
@@ -134,67 +155,44 @@
 				required="true"
 				disabled="false">
 			</@ww.select>
-		
-		<span id="id_select">
-		<@ww.select label="'${action.getText('returnPlan.batch')}'" 
-				name="'batch.id'" 
-				value="${req.getParameter('batch.id')?if_exists}"
-				listKey="id"
-				listValue="name"
-				list="allBatchs"
-				required="true"
-				emptyOption="false" 
-				disabled="false">
-			</@ww.select>
-		</span>
+			
+		</tr>
+		<tr>
 			<span id="ab_id">
 			<@ww.textfield label="'${action.getText('returnPlan.sum')}'" name="'returnPlan.sum'" value="'#{returnPlan.sum?if_exists}'" cssClass="'underline'" required="true" onblur="'checkSum()'"/>
 			</span>
 			
+			<@ww.textfield label="'${action.getText('returnPlan.factSum')}'" name="'returnPlan.factSum'" value="'#{returnPlan.factSum?if_exists}'" readonly="true" cssClass="'underline'" />
+			<@ww.textfield label="'${action.getText('returnPlan.currency')}'" name="'returnPlan.currency'" value="'${returnPlan.currency?if_exists}'" cssClass="'underline'"/>
 		</tr>
+
+		<tr>
 		
-		<tr>
-			<@ww.textfield label="'${action.getText('returnPlan.factSum')}'" name="'returnPlan.factSum'" value="'#{returnPlan.factSum?if_exists}'" cssClass="'underline'" />
-			
-			<@pp.datePicker 
-				label="'${action.getText('returnPlan.paytime')}'" 
-				name="'returnPlan.paytime'" 
-	   			value="'${(returnPlan.planDate?string('yyyy-MM-dd'))?if_exists}'"
-				cssClass="'underline'" 
-				dateFormat="'%Y-%m-%d'"
-				required="true"
-				maxlength="10"/>
-			<#-- 
-			<@ww.textfield label="'${action.getText('returnPlan.paytime')}'" name="'returnPlan.paytime'" value="'${returnPlan.paytime?if_exists}'" cssClass="'underline'" />
-			 -->
-			<#--收款人弹出框-->
-	 		<td align="right" valign="top">
-	       		<label class="label">${action.getText('returnPlan.payee')}:</label>
-	     	</td>
-	     	<td>
-	     		<#if returnPlan.payee?exists>
-		   		<input type="text" name="returnPlan.payee" class="underline"  value="${returnPlan.payee.name?if_exists}" maxlength="140" size="20" disabled="true"/>
-				<#else>
-				<input type="text" name="returnPlan.payee" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
-				</#if>
-				<#--
-				<a onClick="payee_OpenDialog();">
-					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
-				</a>-->
+			<td align="right" valign="top">
+				<label class="label">${action.getText('负责人')}:</label>
 			</td>
-		</tr>
-		<tr>
+			<td>
+			<#if returnPlan.chargMan?exists>
+				<input type="text" id="chargMan.name" name="chargMan.name" class="underline"  value="${returnPlan.chargMan.name?if_exists}" maxlength="140" size="20" disabled="true"/>
+			<#else>
+				<input type="text" id="chargMan.name" name="chargMan.name" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+			</#if>
+			<a onClick="chargMan_OpenDialog();">
+				<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+			</a>
+			</td>
+		
+		
 			<td align="right"><label for="" class="label">${action.getText('returnPlan.notOrIs')}:</label></td>
 	        <td align="left">
 	        	<input type="radio" id="notOrIs0" name="notOrIs" value="0" />是
 	        	<input type="radio" id="notOrIs1" name="notOrIs" value="1" />否
 			</td>
 			
-			<td align="right"><label for="" class="label">${action.getText('returnPlan.billingOrNot')}:</label></td>
-	        <td align="left">
-	        	<input type="radio" id="billingOrNot0" name="billingOrNot" value="0" />是
-	        	<input type="radio" id="billingOrNot1" name="billingOrNot" value="1" />否
-			</td>
+	        
+	        
+	        
+	        
 			<td align="right"><label for="" class="label">${action.getText('returnPlan.isOrNot')}:</label></td>
 	        <td align="left">
 	        	<input type="radio" id="isOrNot0" name="isOrNot" value="0" disabled/>是
@@ -210,9 +208,68 @@
 				maxlength="10"/>-->
 		</tr>
 		<tr>
-		<span id="sum_id" name=""></span>
-			<@ww.textfield label="'${action.getText('returnPlan.currency')}'" name="'returnPlan.currency'" value="'${returnPlan.currency?if_exists}'" cssClass="'underline'"/>
+			
+			<@ww.select label="'${action.getText('计划状态')}'" 
+				name="'planState.id'" 
+				value="'${req.getParameter('planState.id')?if_exists}'"
+				listKey="id"
+				listValue="name"
+				list="allPlanState"
+				required="true"
+				emptyOption="false">
+			</@ww.select>
+		
+			<td align="right" valign="top">
+				<label class="label">完成百分比:</label>
+			</td>
+			<td>
+				<input type="text" style="width:60px" value="${returnPlan.percentt?if_exists}" readonly="readonly" id="returnPlan.percentt" name="returnPlan.percentt" onblur="checkPercentt();">%
+			</td>
+
+			<td align="right"><label for="" class="label">${action.getText('returnPlan.billingOrNot')}:</label></td>
+			<td align="left">
+				<select name="billingOrNot" id="billingOrNot" disabled="disabled">
+				  <option value ="0">未开发票</option>
+				  <option value ="1">部分已开</option>
+				  <option value="2">发票全开</option>
+				</select>
+				<script>
+					<#if returnPlan.id?exists>
+						getObjByName('billingOrNot').value=${returnPlan.billingOrNot};
+					<#else>
+						getObjByName('billingOrNot').value=0;
+					</#if>
+				</script>
+			</td>
 		</tr>
+
+		<tr>
+			
+			<@ww.textfield label="'${action.getText('开票金额')}'" name="'returnPlan.billMoney'" value="'${returnPlan.billMoney?if_exists}'" readonly="true" cssClass="'underline'"/>
+			
+			<@ww.textfield label="'${action.getText('开票日期')}'" name="'returnPlan.billDate'" value="'${(returnPlan.billDate?string('yyyy-MM-dd'))?if_exists}'" readonly="true" cssClass="'underline'" />
+		</tr>
+		<tr>	
+			
+			<#--收款人弹出框-->
+	 		<td align="right" valign="top">
+	       		<label class="label">${action.getText('returnPlan.payee')}:</label>
+	     	</td>
+	     	<td>
+	     		<#if returnPlan.payee?exists>
+		   		<input type="text" name="returnPlan.payee" class="underline"  value="${returnPlan.payee.name?if_exists}" maxlength="140" size="20" disabled="true"/>
+				<#else>
+				<input type="text" name="returnPlan.payee" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+				</#if>
+				<#--
+				<a onClick="payee_OpenDialog();">
+					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+				</a>-->
+			</td>
+			<@ww.textfield label="'${action.getText('returnPlan.paytime')}'" name="'returnPlan.paytime'" value="'${(returnPlan.paytime?string('yyyy-MM-dd'))?if_exists}'" readonly="true" cssClass="'underline'" />
+		</tr>
+		
+		
 		<tr>	
 			<td align="right" valign="top">
 	       		<label class="label">${action.getText('returnPlan.remark')}:</label>
@@ -229,7 +286,7 @@
 		
 		<#-- 继续新建按钮   -->
 		<#if returnPlan.id?exists>
-		<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editReturnPlan.html"/>
+			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editReturnPlan.html?contractManagement.id=${returnPlan.contractManagement.id?if_exists}&popWindowFlag=${popWindowFlag}"/>
 		<#else>
 		<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editReturnPlan.html"/>
 		<script language="JavaScript" type="text/JavaScript"> 
@@ -261,16 +318,31 @@
 			//验证预付款金额
 	    	DWREngine.setAsync(false); 
 	    	//失去焦点出发改函数  
-	    	if(getObjByName('contractManagement.id').value !=''){
-				checkSumDWR("contractManagement.id","returnPlan.sum","sum_id","${action.getText('')}",false); 
-			}else{
-				checkSumDWR("contractManagement2.id","returnPlan.sum","sum_id","${action.getText('')}",false);
-			}
+	    	<#if returnPlan.id?exists>
+		    	if(getObjByName('contractManagement.id').value !=''){
+					checkSumDWR("contractManagement.id","returnPlan.sum","sum_id","${action.getText('')}","#{returnPlan.id}"); 
+				}else{
+					checkSumDWR("contractManagement2.id","returnPlan.sum","sum_id","${action.getText('')}","#{returnPlan.id}");
+				}
+			<#else>
+		    	if(getObjByName('contractManagement.id').value !=''){
+					checkSumDWR("contractManagement.id","returnPlan.sum","sum_id","${action.getText('')}",0); 
+				}else{
+					checkSumDWR("contractManagement2.id","returnPlan.sum","sum_id","${action.getText('')}",0);
+				}
+			</#if>
+			
 	    	//重新设置为异步方式
 	    	DWREngine.setAsync(true); 
 	    	}
 
 	window.onload=function(){
+	<#if returnPlan.planState?exists>
+			getObjByName('planState.id').value='${returnPlan.planState.id?if_exists}';
+			<#elseif req.getParameter('planState.id')?exists>
+			getObjByName('planState.id').value='${req.getParameter('planState.id')}';
+		</#if>
+	
 	<#if returnPlan.batch?exists>
 		<#if  returnPlan.batch.id ==368>
 			init();
@@ -294,7 +366,6 @@
 		<#else>
 			getObjByName('isOrNot1').checked=true;
 		</#if>
-		
 		<#if returnPlan.notOrIs?exists>
 			<#if returnPlan.notOrIs=="0">
 				getObjByName('notOrIs0').checked=true;
@@ -302,18 +373,10 @@
 				getObjByName('notOrIs1').checked=true;
 			</#if>
 		<#else>
-			getObjByName('notOrIs0').checked=true;
+			getObjByName('notOrIs1').checked=true;
 		</#if>
 		
-		<#if returnPlan.billingOrNot?exists>
-			<#if returnPlan.billingOrNot=="0">
-				getObjByName('billingOrNot0').checked=true;
-			<#else>
-				getObjByName('billingOrNot1').checked=true;
-			</#if>
-		<#else>
-			getObjByName('billingOrNot0').checked=true;
-		</#if>
+		
 	}
 	
 	//弹出客户档案查询模态窗体
@@ -414,9 +477,27 @@
       selectReadOnly(m);
     }
 	
+	//弹出负责人查询模态窗体
+	function chargMan_OpenDialog(){
+	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
+	   //window.open(url);
+	 }
+	 //获得模态窗体返回值
+	function creatorSelectorHandler(result) {
+		if (null != result) {
+			getObjByName("chargMan.id").value=(result[0]);
+			getObjByName("chargMan.name").value=(result[2]);
+			//getObjByName("department").value=(result[4]);
+			//getObjByName("deparmentid").value=(result[4]);
+		}
+	}
+	
+	
 	
 	//保存前给隐藏域赋值和验证字段
 	function storeValidation(){
+	<#-- 
 		if(getObjByName('returnPlan.contractManagement').value==''){
 			alert("${action.getText('returnPlan.contractManagement.requiredstring')}");
 			return false;
@@ -431,7 +512,7 @@
 			getObjByName('returnPlan.phone').focus();
 			return false;
 		}
-		
+	-->
 		if(getObjByName('returnPlan.planDate').value==''){
 			alert("${action.getText('returnPlan.paytime.requiredstring')}");
 			getObjByName('returnPlan.planDate').focus();
@@ -474,13 +555,6 @@
 			}
 	     }
 		
-		if(getObjByName('returnPlan.paytime').value !=''){
-		 	if(!isDate('returnPlan.paytime')){
-				alert("${action.getText('returnPlan.paytime.dateFormate.error')}");
-	      	    getObjByName('returnPlan.paytime').focus();
-				return false;
-			}
-		}
 		if(getObjByName('returnPlan.remark').value !=''){
 			var s = getObjByName('returnPlan.remark').value;
     		//var length = s.replace(/[^\x00-\xff]/g,"aa").length;
@@ -489,7 +563,9 @@
     			return false;
     		}  
 		}
+		getObjByName('billingOrNot').removeAttribute('disabled');
 		return true;
 	}
+
 </script>
 </@htmlPage>

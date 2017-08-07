@@ -60,7 +60,7 @@
 /*     */   {
 /* 125 */     String hql = "select pf.code from PersonnelFiles as pf where pf.organization.id=" + orgId + " and pf.code like '%" + code + "%'";
 /* 126 */     List codeList = getSession().createQuery(hql).list();
-/* 127 */     if (codeList.size() > 0) {
+/* 127 */     if (null!= codeList && codeList.size() > 0) {
 /* 128 */       List items = new ArrayList();
 /* 129 */       for (int i = 0; i < codeList.size(); i++) {
 /* 130 */         String item = ((String)codeList.get(i)).substring(((String)codeList.get(i)).lastIndexOf("-") + 1);

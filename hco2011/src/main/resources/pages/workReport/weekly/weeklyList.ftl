@@ -44,13 +44,13 @@
             <#else>
             ${object.code}
          </#if>
-            <@alignLeft/>
+            <@alignLeft attributes="width:160;"/>
         </@vcolumn>
         </#if>
         
         <@vcolumn title="${action.getText('weekly.name')}" property="name" sortable="asc">
         	<@vlh.attribute name="width" value="50" />
-            <@alignLeft/>
+            <@alignLeft attributes="width:180;"/>
         </@vcolumn>
         <@vcolumn title="${action.getText('weekly.rapporteur')}" property="rapporteur.name" sortable="asc">
             <@alignLeft/>

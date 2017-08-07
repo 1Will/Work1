@@ -49,10 +49,7 @@
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
 				</a>
 			</td>
-			<@textfield id="count" label="${action.getText('productList.count')}" maxlength="5"  name="productList.count"  value="#{productList.count?if_exists}"  required="false" anothername="checkcount"/>
-			<@textfield id="unitPrice" label="${action.getText('productList.unitPrice')}" maxlength="10"  name="productList.unitPrice"  value="#{productList.unitPrice?if_exists}"  required="false" anothername="checkunitPrice"/>
-		</tr>
-		<tr>
+			<@textfield id="count" label="${action.getText('productList.count')}" maxlength="5"  name="productList.count"  value="#{productList.count?if_exists}"  required="false" onblur="getDiscount()"/>
 			<@select label="${action.getText('productList.unit')}" 
 		   	   anothername="selectCheckUnit"
 		       name="unit.id" 
@@ -64,8 +61,11 @@
 		       disabled="false" 
 		       required="true">
 		    </@select>
-			<@textfield id="discount" label="${action.getText('productList.discount')}" maxlength="10"  name="productList.discount"  value="#{productList.discount?if_exists}"  required="false" anothername="checkdiscount"/>
-			<@textfield id="totalPrice" label="${action.getText('productList.totalPrice')}" maxlength="10"  name="productList.totalPrice"  value="#{productList.totalPrice?if_exists}"  required="false"  readonly="true" anothername="checkdiscount"/>
+		</tr>
+		<tr>
+			<@textfield id="unitPrice" label="${action.getText('productList.unitPrice')}" maxlength="10"  name="productList.unitPrice"  value="#{productList.unitPrice?if_exists}"  required="false" readonly="true" anothername="checkunitPrice" onblur="getDiscount()"/>
+			<@textfield id="totalPrice" label="${action.getText('productList.totalPrice')}" maxlength="10"  name="productList.totalPrice"  value="#{productList.totalPrice?if_exists}"  required="false"   anothername="checkdiscount" onblur="getDiscount()"/>
+			<@textfield id="discount" label="${action.getText('productList.discount')}" maxlength="10"  name="productList.discount"  value="#{productList.discount?if_exists}"  required="false"  readonly="true" anothername="checkdiscount"/>
 		    
 		</tr>
 		<tr>
@@ -75,7 +75,7 @@
         		</label>
         	</td>
 	        <td colspan="5">
-	        	<textarea name="productList.remark" rows="6" cols="120" >${productList.remark?if_exists}</textarea>
+	        	<textarea name="productList.remark" rows="4" cols="150" >${productList.remark?if_exists}</textarea>
 	        </td>
 		</tr>
 		</@inputTable>
@@ -87,6 +87,7 @@
     </@buttonBar>
 </@ww.form>
 <script language="JavaScript" type="text/JavaScript"> 
+
 	window.onload=function(){
 		<#if productList.product?exists>
 			getObjByName('product.id').value='${productList.product.id?if_exists}';
@@ -94,6 +95,37 @@
 		<#if productList.unit?exists>
 			getObjByName('unit.id').value='${productList.unit.id?if_exists}';
 		</#if>
+	}
+		function getDiscount(){
+		var discount='';
+		var count =getObjByName("count").value;
+		var unitPrice =getObjByName("unitPrice").value;
+		var totalPrice =getObjByName("totalPrice").value;
+		if(!isNumber("count")){
+			alert("${action.getText('validation.count')}");
+			getObjByName("count").focus();
+			return false;
+		}
+		if(!isDoubleNumber("unitPrice")){
+			alert("${action.getText('validation.unitPrice')}");
+			getObjByName("unitPrice").focus();
+			return false;
+		}
+		if(!isDoubleNumber("totalPrice")){
+			alert("${action.getText('validation.unitPrice')}");
+			getObjByName("totalPrice").focus();
+			return false;
+		}
+		if(count.value!=''&&unitPrice.value!=''&&totalPrice.value!=''){
+			if(parseFloat(unitPrice)==0||parseInt(count)==0){
+				discount="";
+				getObjByName("discount").value=discount;
+			}else{
+				discount =(parseFloat(totalPrice) *100) /( parseFloat(unitPrice) * parseInt(count));
+				discount = discount.toFixed(2);
+				getObjByName("discount").value=discount;
+			}
+		}
 	}
 	<#-- 提交验证-->
 	function storeValidation(){
@@ -127,6 +159,7 @@
 			return false;
 		}
 		
+		<#--
 		if(getObjByName('productList.discount').value<0 || getObjByName('productList.discount').value>100){
 			alert("${action.getText('validation.discount1')}");
 			getObjByName("discount").focus();
@@ -135,7 +168,7 @@
 			getObjByName("totalPrice").value = getObjByName("count").value * (getObjByName("unitPrice").value) * (getObjByName("discount").value/100);
 		}	
 		
-		<#--if(!isDoubleNumber("totalPrice")){
+		if(!isDoubleNumber("totalPrice")){
 			alert("总价是数字!");
 			jgetObjByName("#totalPrice").focus();
 			return false;

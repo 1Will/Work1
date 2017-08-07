@@ -13,23 +13,31 @@
 		</id>
 		
 		<many-to-one name="weekly" class="com.yongjun.tdms.model.workReport.weekly.Weekly" lazy="false">
-			<column name="WEEKLY_ID" not-null="true"/>
+			<column name="WEEKLY_ID" not-null="false"/>
 		</many-to-one>
 		
 		<many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
 			<column name="PROJECTINFO_ID" not-null="true"/>
 		</many-to-one>
 		
-		<property name="lastPlan" type="string">
+		<property name="lastPlan" type="string" lazy="false">
 			<column name="LASTPLAN" sql-type="NVARCHAR(500)" />
 		</property>
 		
-		<property name="thisPlan" type="string">
+		<property name="thisPlan" type="string" lazy="false">
 			<column name="THISPLAN" sql-type="NVARCHAR(500)" />
 		</property>
 		
-		<property name="nextPlan" type="string">
+		<property name="nextPlan" type="string" lazy="false">
 			<column name="NEXTPLAN" sql-type="NVARCHAR(500)" />
 		</property>
+		
+		<many-to-one name="week" class="com.yongjun.tdms.model.workReport.week.Week" lazy="false">
+			<column name="WEEK_ID" not-null="false"/>
+		</many-to-one>
+		
+		<many-to-one name="user" class="com.yongjun.pluto.model.security.User" lazy="false">
+			<column name="USER_ID" not-null="false"/>
+		</many-to-one>
 	</class>
 </hibernate-mapping>

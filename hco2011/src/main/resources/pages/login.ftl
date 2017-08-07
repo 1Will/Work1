@@ -237,7 +237,7 @@ function Locate(e){
 </form>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td height="33" align="center" ><font color="#000000" size="1"><strong>Copyright 2009-2017 Yongjun Technology All Rights Reserved 永君数码科技有限公司版权所有</strong></font></td>
+          <td height="33" align="center" ><font color="#000000" size="1"><strong>Copyright 2009-2017 Yongjun Technology All Rights Reserved 合肥天鹅制冷科技有限公司版权所有</strong></font></td>
         </tr>
       </table>
 </center>

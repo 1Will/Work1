@@ -5,6 +5,8 @@
 /*     */ import com.yongjun.tdms.dao.financialmanagement.FinancialManagementDao;
 /*     */ import com.yongjun.tdms.model.financialmanagement.FinancialManagement;
 /*     */ import com.yongjun.tdms.service.financialmanagement.FinancialManagementManager;
+
+import java.util.HashMap;
 /*     */ import java.util.List;
 /*     */ 
 /*     */ public class DefaultFinancialManagementManager extends BaseManager
@@ -79,7 +81,11 @@
 /*     */   {
 /* 128 */     return this.financialManagementDao.getMaxPFCode(code);
 /*     */   }
-/*     */ }
+/*     */
+			public HashMap getDataMap(String staDate, String endDate) {
+				return this.financialManagementDao.getDataMap(staDate, endDate);
+			} 
+}
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\
  * Qualified Name:     com.yongjun.tdms.service.financialmanagement.pojo.DefaultFinancialManagementManager

@@ -6,8 +6,14 @@
 		<@ww.token name="saveProductsActionToken"/>
 		<@inputTable>
 			<#if products.id?exists>
-                <@ww.hidden name="'products.id'" value="#{products.id}"/>
+                <@ww.hidden name="'products.id'" value="#{products.id?if_exists}"/>
             </#if>
+            <#if products.supplier?exists>
+                <@ww.hidden id="supplier.name"  name="'supplier.id'" value="#{products.supplier.id?if_exists}"/>
+            <#else>
+                <@ww.hidden id="supplier.name"  name="'supplier.id'" value=""/>
+            </#if>
+            <@ww.hidden id="'isSaved'" name="'isSaved'" value="''"/>
             <@ww.hidden name="'products.ptId'" value="'${req.getParameter('products.ptId')?if_exists}'"/>
             <@ww.hidden name="'products.psId'" value="'${req.getParameter('products.psId')?if_exists}'"/>
             <@ww.hidden name="'products.supplierId'" value="'${req.getParameter('products.supplierId')?if_exists}'"/>
@@ -60,21 +66,21 @@
 				</script>
 			</tr>
 			<tr>
-				<@ww.select label="'${action.getText('products.supplier')}'" 
-			           name="'supplier.id'" 
-				       value="'${req.getParameter('supplier.id')?if_exists}'" 
-				       listKey="id" 
-				       listValue="name"
-			           list="allSupplier" 
-			           emptyOption="false" 
-			           disabled="false"
-			           required="false">
-			           </@ww.select>
-				     <script language="javascript">
-				     	<#if products.supplier?exists>
-				     		getObjByName('supplier.id').value = ${products.supplier.id};
-				     	</#if>
-					</script>
+			
+				<td align="right" valign="top">
+		       		<label class="label">${action.getText('供应商')}:</label>
+		     	</td>
+				<td>
+					<#if products.supplier?exists>
+						<input type="text" id="supplier.name"  name="supplier.name" class="underline"  value="${products.supplier.name}" maxlength="140" size="20" disabled="true"/>
+		            <#else>
+						<input type="text" id="supplier.name"  name="supplier.name" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+		            </#if>
+					<a onClick="supplier_OpenDialog();">
+						<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+					</a>
+				</td>
+					
 					<td align="right"><label for="" class="label">${action.getText('products.isNoMain')}:</label></td>
 			        <td align="left">
 			        	<input type="radio" id="products.isNoMain1" name="products.isNoMain" value=false checked>是
@@ -110,15 +116,22 @@
 		    		<label class="label">${action.getText('products.remark')}:</label>
 		    	</td>
 		        <td colspan="10">
-		        	<textarea name="products.remark" rows="3" cols="114" >${products.remark?if_exists}</textarea>
+		        	<textarea name="products.remark" rows="4" cols="150" >${products.remark?if_exists}</textarea>
 		        </td>
 	   		</tr>
 		</@inputTable>
 		<@buttonBar>
         <#if !(action.isReadOnly())>
-            <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'">
+            <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'">
             </@vsubmit>
         </#if>
+        
+        <#if products.isSaved?exists &&products.isSaved=='0' >
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+	    <#else>
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+	    </#if>
+        
         <#if backFlag?exists>
         <input type="button" value="关闭" onclick="window.close()">
             <#else>
@@ -127,6 +140,17 @@
 	</@buttonBar>
 	</@ww.form>
 <script language="javascript">
+	function supplier_OpenDialog(){
+		var url ="${req.contextPath}/supplierManager/listSupplierWindow.html";
+		popupModalDialog(url, 800, 600, setSupplier);
+	}
+	
+	function setSupplier(data){
+		getObjByName('supplier.id').value =data[0];
+		getObjByName('supplier.name').value =data[2]
+	}
+
+
 	function saleLimit(){
 		var etcPrice = getObjByName('products.etcPrice').value;
 		var salePrice = getObjByName('products.salePrice').value;
@@ -161,6 +185,16 @@
  	if(-1 == getObjByName('supplier.id').value){
  		getObjByName('supplier.id').value = getObjByName('products.supplierId').value;
  	}
+ 	
+ 	function savee(){
+     	getObjByName('isSaved').value=0;
+		return storeValidation();
+	}
+	function submitt(){
+     	getObjByName('isSaved').value=1;
+		return storeValidation();
+	}
+ 	
 	function storeValidation(){
 		var code = getObjByName('products.code').value;
 		var name = getObjByName('products.name').value;
@@ -283,11 +317,18 @@
 <#if products.id?exists>
 <ul id="beautytab">
 	<li>
-		<a id="project" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProCon.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('项目列表')}</a>
+		<a id="project" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProPro.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('项目列表')}</a>
+	</li>
+	<li>
+		<a id="contractInfo" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listContractManagementByCustomerAction.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('合同列表')}</a>
 	</li>
 	<li>
 		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
 	</li>
+	
+	<li>
+		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/productsManager/listProductsPerson.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('开发团队')}</a>
+	</li>
 </ul>
-<iframe name="frame" frameborder="0.5" src="" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="50%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/projectInfo/listProPro.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="50%"/>
 </#if>

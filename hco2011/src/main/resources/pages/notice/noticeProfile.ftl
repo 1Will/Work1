@@ -52,7 +52,7 @@
 		<tr>
 	      <td align="right">上传:</td>
             <td colspan="3">
-               <input type="file" name="file" size="60"  required="true" onpaste="return false" onconTextmenu=window.event.returnValue=false  onkeydown="return false" onchange="return getName();"/>
+               <input type="file" name="file" size="60"  required="true"  onchange="return getName();"/>
             </td>
 	    </tr>
 		<tr>
@@ -123,56 +123,13 @@ window.onload = function(){
     var ary1 = ary[ary.length-1].split("\.");
     document.forms["notice"].elements["sendNotice.name"].value=ary1[0];
 	document.forms["notice"].elements["origFileName"].value=ary[ary.length-1];
-		<#--
-	try
-        {
-         var maxsize = 100;     //定义允许文件的大小，单位KB，请根据需要自行修改！
-         alert(1);
-         var objStream = new ActiveXObject("ADODB.Stream");
-         alert(3);
-         objStream.Type = 1;
-         alert(0);
-         objStream.Open();
-         objStream.LoadFromFile(filename);
-         if(Math.round(objStream.Size/1024)>maxsize)
-             {alert ("抱歉！您选择的文件为 "+Math.round(objStream.Size/1024,2)+" KB　n超过了程序"+maxsize+" KB 的限制！");
-             document.forms["notice"].elements["file"].reset();
-             return false;
-         }
-         else
-            alert("可以上传");
-        }catch(e)
-        {
-            alert("不支持");
-        }
-------------------------------------------------------
-	var fso, f;
-   var maxsize=1024*1024;//定义允许文件的大小，单位B
-   fso = new ActiveXObject("Scripting.FileSystemObject");
-   if (fso.FolderExists(filename))
-   {
-      f = fso.GetFolder(filename);
-   }
-   else if (fso.FileExists(filename))
-   {
-      f = fso.GetFile(filename);
-   }
-   else
-   {
-   alert("该文件不存在！");
-		return false;
-   }
-   if(f.size>maxsize)
-   {
-  	 alert("文件大小超出规定，请您选择小于"+maxsize+"字节的文件进行上传");
-	 return false;
-   }-->
+		
    return true;
   }
 
   function selectAvailableUser() {
   	  	var ary = new Array();
-      	var selector = document.getElementById("availableUser.id");
+      	var selector = getObjByName("availableUser.id");
       	groups = selector.options.length;
       	if(groups ==0){
       		alert("请选择要发送的对象！");
@@ -184,7 +141,7 @@ window.onload = function(){
       	}
      	document.forms["notice"].elements["availableUserIds"].value = ary;
      	
-      if(document.getElementById("sendNotice.title").value==''){
+      if(getObjByName("sendNotice.title").value==''){
          alert('${action.getText('sendNotice.title.not.null')}');
          getObjByName('sendNotice.title').focus();
 	     return false;
@@ -193,7 +150,7 @@ window.onload = function(){
          getObjByName('sendNotice.title').focus();
          return false;
       }
-      if (document.getElementById("sendNotice.content").value=="") {
+      if (getObjByName("sendNotice.content").value=="") {
 	       alert("请输入通知内容");
 	       getObjByName('sendNotice.content').focus();
 	       return false;
@@ -208,24 +165,11 @@ window.onload = function(){
           getObjByName('noticeType.id').focus();
           return false
       }
-       if(document.getElementById("sendNotice.validityDate").value==''){
+       if(getObjByName("sendNotice.validityDate").value==''){
 	        alert('${action.getText('sendNotice.validityDate.not.null')}');
 	        getObjByName('sendNotice.validityDate').focus();
 	        return false;
 	      }
-	    var date=document.getElementById("sendNotice.validityDate").value;
-		if(!isDate("sendNotice.validityDate")){
-		    alert("${action.getText('select.right.sendNotice.validityDate')}");
-		    getObjByName('sendNotice.validityDate').value="";
-		    getObjByName('sendNotice.validityDate').focus();
-			return false;
-		  }
-		if(!isDateLessEqualThenCurrent(date)){
-			alert("${action.getText('afresh.validityDate')}");
-			getObjByName('sendNotice.validityDate').value="";
-		    getObjByName('sendNotice.validityDate').focus();
-		    return false;
-		  }
       return true;
       
   }
@@ -239,7 +183,8 @@ window.onload = function(){
 		if (null != result) {
 			//result = result.substring(0, result.lastIndexOf(","));
 			var userArray = result.split(",");
-       		var obj = document.getElementById("availableUser.id");
+			alert(reslut);
+       		var obj = getObjByName("availableUser.id");
        		for (var i=0; i<userArray.length; i++) {
          		var temp = userArray[i].split(":");
          		filterRepeatTel(obj,temp[0]);   //过滤重复的部门或用户
@@ -258,7 +203,7 @@ window.onload = function(){
 	function choose_group_information(result){
      	if (null != result) {
        		var groupsArray = result.split(",");
-       		var obj = document.getElementById("availableUser.id");
+       		var obj = getObjByName("availableUser.id");
        		for (var i=0; i<groupsArray.length; i++) {
          		var temp = groupsArray[i].split(":");
          		filterRepeatTel(obj,temp[0]);   //过滤重复的用户组或用户
@@ -280,7 +225,7 @@ window.onload = function(){
 	
 	//删除select中指定的某一项     
    	function Delete() {
-     	var selector = document.getElementById("availableUser.id"); 
+     	var selector = getObjByName("availableUser.id"); 
      	//定义一个标记，表示是否有选中
      	var flag = false; 
      	if(selector.options.length<=0){
@@ -304,7 +249,7 @@ window.onload = function(){
    	}  
    	//删除select中所有值
   	function Reset(){
-     	var selector = document.getElementById("availableUser.id"); 
+     	var selector = getObjByName("availableUser.id"); 
      	var length = selector.length;
      	if (length>0 && !confirm("确认删除所有收件人?")) {
        		return false;
@@ -326,7 +271,7 @@ window.onload = function(){
           if (null != result) {
             user = result.substring(0, result.lastIndexOf(","));
             var userArray = user.split(",");
-            var obj = document.getElementById("availableUser.id");
+            var obj = getObjByName("availableUser.id");
             for (var i=0; i<userArray.length; i=i+2) {
               var opt = new Option(userArray[i+1], userArray[i]);
 		      eval("obj.options[obj.options.length]=opt");
@@ -334,33 +279,4 @@ window.onload = function(){
 	      }
 	    }
 	    
-	    
-	    <#--
-function ShowFolderSize(filespec)
-{
-   var fso, f;
-   var maxsize=1024*1024;//定义允许文件的大小，单位B
-   fso = new ActiveXObject("Scripting.FileSystemObject");
-   
-   if (fso.FolderExists(filespec))
-   {
-      f = fso.GetFolder(filespec);
-   }
-   else if (fso.FileExists(filespec))
-   {
-      f = fso.GetFile(filespec);
-   }
-   else
-   {
-   alert("该文件不存在！");
-return false;
-   }
-   if(f.size>maxsize)
-   {
-   alert("文件大小超出规定，请您选择小于"+maxsize+"字节的文件进行上传");
-return false;
-   }
-   return true;
-}
-	  -->  
 </script>      

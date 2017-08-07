@@ -42,8 +42,8 @@
 	            	  <@vlh.attribute name="width" value="30" />
 	                </@vlh.checkbox>
 	            <@vcolumn title="${action.getText('send.title')}" property="title" sortable="desc">
-	                 <@alignLeft/>
 	                  ${object.title}
+	                  <@alignLeft/>
                 </@vcolumn>
                 <#else>
                   <@vlh.checkbox property="id" name="sendNoticeIds">

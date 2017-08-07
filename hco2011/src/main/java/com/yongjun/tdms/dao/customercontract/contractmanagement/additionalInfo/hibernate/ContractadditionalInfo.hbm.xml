@@ -27,7 +27,7 @@
 			<column name="REMARKES" not-null="false" sql-type="NVARCHAR(500)" />
 		</property>
 		<many-to-one name="financialPer"  class="com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives">
-			<column name="FINANCIALPER_ID" not-null="false"></column>
+			<column name="FINANCIALPER_ID" not-null="false" ></column>
 		</many-to-one>
 		<many-to-one name="contractManagement" class="com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement">
 			<column name="CONTRACTMANAGEMENT_ID" not-null="true"></column>

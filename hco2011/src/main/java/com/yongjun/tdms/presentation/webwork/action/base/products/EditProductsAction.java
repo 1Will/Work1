@@ -1,178 +1,222 @@
-/*     */ package com.yongjun.tdms.presentation.webwork.action.base.products;
-/*     */ 
-/*     */ import com.yongjun.pluto.exception.DaoException;
-/*     */ import com.yongjun.pluto.model.codevalue.CodeValue;
-/*     */ import com.yongjun.pluto.service.codevalue.CodeValueManager;
-/*     */ import com.yongjun.pluto.webwork.action.PrepareAction;
-/*     */ import com.yongjun.tdms.model.base.products.Products;
-/*     */ import com.yongjun.tdms.model.base.produttype.ProductType;
-/*     */ import com.yongjun.tdms.model.supplier.Supplier;
-/*     */ import com.yongjun.tdms.service.base.products.ProductsManager;
-/*     */ import com.yongjun.tdms.service.base.producttype.ProductTypeManager;
-/*     */ import com.yongjun.tdms.service.supplier.SupplierManager;
-/*     */ import java.util.ArrayList;
-/*     */ import java.util.Arrays;
-/*     */ import java.util.List;
-/*     */ import javax.servlet.http.HttpServletRequest;
-/*     */ import org.apache.commons.lang.StringUtils;
-/*     */ 
-/*     */ public class EditProductsAction extends PrepareAction
-/*     */ {
-/*     */   private static final long serialVersionUID = -6722017437417848485L;
-/*     */   private final ProductsManager productsManager;
-/*     */   private final ProductTypeManager productTypeManager;
-/*     */   private final SupplierManager supplierManager;
-/*     */   private final CodeValueManager codeValueManager;
-/*     */   private Products products;
-/*     */   private ProductType pt;
-/*     */   private Supplier supplier;
-            private String backFlag;
-/*     */ 
-/*     */   public EditProductsAction(ProductsManager productsManager, ProductTypeManager productTypeManager, SupplierManager supplierManager, CodeValueManager codeValueManager)
-/*     */   {
-/*  51 */     this.productsManager = productsManager;
-/*  52 */     this.productTypeManager = productTypeManager;
-/*  53 */     this.supplierManager = supplierManager;
-/*  54 */     this.codeValueManager = codeValueManager;
-/*     */   }
-/*     */ 
-/*     */   public void prepare()
-/*     */     throws Exception
-/*     */   {
-/*  62 */     if (this.products == null)
-/*  63 */       if (hasId("products.id")) {
-/*  64 */         this.products = this.productsManager.loadProducts(getId("products.id"));
-/*  65 */         this.pt = this.products.getPt();
-/*  66 */         this.supplier = this.products.getSupplier();
-/*     */       } else {
-/*  68 */         this.products = new Products();
-/*     */       }
-               if(this.request.getParameter("backFlag")!=null){
-              this.backFlag =backFlag;
-               }
-/*     */   }
-/*     */ 
-/*     */   public String delete()
-/*     */   {
-/*  78 */     this.productsManager.deleteProducts(this.products);
-/*  79 */     addActionMessage(getText("products.invalid.success", Arrays.asList(new Object[] { this.products.getName() })));
-/*  80 */     return "success";
-/*     */   }
-/*     */ 
-/*     */   public String save()
-/*     */   {
-/*  89 */     boolean isNew = this.products.isNew();
-/*     */     try
-/*     */     {
-/*  92 */       if (isNew) {
-/*  93 */         if (null == this.productsManager.loadByKey("code", this.products.getCode())) {
-/*  94 */           saver();
-/*  95 */           this.productsManager.storeProducts(this.products);
-/*  96 */           addActionMessage(getText("products.add.success", Arrays.asList(new Object[] { this.products.getCode() })));
-/*  97 */           return "new";
-/*     */         }
-/*  99 */         saver();
-/* 100 */         addActionMessage(getText("products.add.exist", Arrays.asList(new Object[] { this.products.getCode() })));
-/* 101 */         return "error";
-/*     */       }
-/*     */ 
-/* 104 */       saver();
-/* 105 */       this.productsManager.storeProducts(this.products);
-/* 106 */       addActionMessage(getText("products.edit.success", Arrays.asList(new Object[] { this.products.getCode() })));
-/* 107 */       return "success";
-/*     */     }
-/*     */     catch (Exception e) {
-/* 110 */       if (isNew)
-/* 111 */         addActionMessage(getText("products.add.exist", Arrays.asList(new Object[] { this.products.getCode() })));
-/*     */       else {
-/* 113 */         addActionMessage(getText("products.edit.exist", Arrays.asList(new Object[] { this.products.getCode() })));
-/*     */       }
-/* 115 */       e.printStackTrace();
-/* 116 */     }return "error";
-/*     */   }
-/*     */ 
-/*     */   private void saver()
-/*     */   {
-/* 126 */     if (!StringUtils.isEmpty(this.request.getParameter("pt.id"))) {
-/* 127 */       this.pt = this.productTypeManager.loadProductType(getId("pt.id"));
-/* 128 */       this.products.setPt(this.pt);
-/*     */     }
-/*     */ 
-/* 131 */     if (!StringUtils.isEmpty(this.request.getParameter("product_source_ID.id"))) {
-/* 132 */       this.products.setProduct_source_ID(this.codeValueManager.loadCodeValue(Long.valueOf(this.request.getParameter("product_source_ID.id"))));
-/*     */ 
-/* 134 */       this.products.setProductSource(this.codeValueManager.loadCodeValue(Long.valueOf(this.request.getParameter("product_source_ID.id"))).getName());
-/*     */     }
-/*     */ 
-/* 138 */     if (!StringUtils.isEmpty(this.request.getParameter("supplier.id"))) {
-/* 139 */       this.supplier = this.supplierManager.loadSupplier(getId("supplier.id"));
-/* 140 */       this.products.setSupplier(this.supplier);
-/*     */     } else {
-/* 142 */       this.products.setSupplier(null);
-/*     */     }
-/*     */ 
-/* 145 */     if (Integer.parseInt(this.request.getParameter("isNoM")) == 0)
-/* 146 */       this.products.setIsNoMain(false);
-/*     */     else
-/* 148 */       this.products.setIsNoMain(true);
-/*     */   }
-/*     */ 
-/*     */   public List getAllProductSource()
-/*     */   {
-/*     */     try
-/*     */     {
-/* 159 */       CodeValue codeValue = (CodeValue)this.codeValueManager.loadByKey("code", "013").get(0);
-/*     */ 
-/* 161 */       List list = this.codeValueManager.loadByKey("parentCV", codeValue.getId());
-/*     */ 
-/* 163 */       if (list != null) {
-/* 164 */         CodeValue cv = new CodeValue();
-/* 165 */         cv.setName(getText(""));
-/* 166 */         cv.setId(Long.valueOf(-1L));
-/* 167 */         list.add(0, cv);
-/* 168 */         return list;
-/*     */       }
-/* 170 */       return new ArrayList();
-/*     */     }
-/*     */     catch (DaoException e)
-/*     */     {
-/* 174 */       e.printStackTrace();
-/* 175 */       return new ArrayList();
-/*     */     }
-/*     */   }
-/*     */ 
-/*     */   public List getAllSupplier()
-/*     */   {
-/* 184 */     List suppliers = this.supplierManager.loadAllSupplier();
-/* 185 */     Supplier sup = new Supplier();
-/* 186 */     sup.setName("");
-/* 187 */     sup.setId(Long.valueOf(-1L));
-/* 188 */     suppliers.add(0, sup);
-/* 189 */     return suppliers;
-/*     */   }
-/*     */ 
-/*     */   public List getAllType()
-/*     */   {
-/* 196 */     return this.productTypeManager.getAllProductTypeByNull(getText(""));
-/*     */   }
-/*     */ 
-/*     */   public Products getProducts() {
-/* 200 */     return this.products;
-/*     */   }
-/*     */ 
-/*     */   public void setProducts(Products products) {
-/* 204 */     this.products = products;
-/*     */   }
-			public String getBackFlag() {
-				return backFlag;
+package com.yongjun.tdms.presentation.webwork.action.base.products;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import net.sf.json.JSONObject;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.yongjun.pluto.exception.DaoException;
+import com.yongjun.pluto.model.codevalue.CodeValue;
+import com.yongjun.pluto.service.codevalue.CodeValueManager;
+import com.yongjun.pluto.service.security.UserManager;
+import com.yongjun.pluto.webwork.action.PrepareAction;
+import com.yongjun.tdms.model.base.event.EventNew;
+import com.yongjun.tdms.model.base.event.EventType;
+import com.yongjun.tdms.model.base.products.Products;
+import com.yongjun.tdms.model.base.produttype.ProductType;
+import com.yongjun.tdms.model.supplier.Supplier;
+import com.yongjun.tdms.service.base.event.EventNewManager;
+import com.yongjun.tdms.service.base.event.EventTypeManager;
+import com.yongjun.tdms.service.base.products.ProductsManager;
+import com.yongjun.tdms.service.base.producttype.ProductTypeManager;
+import com.yongjun.tdms.service.supplier.SupplierManager;
+import com.yongjun.tdms.util.personnelFilesToUser.PersonnelFilesToUserManager;
+
+@SuppressWarnings({ "rawtypes", "unchecked" })
+public class EditProductsAction extends PrepareAction {
+	private static final long serialVersionUID = -6722017437417848485L;
+	private final ProductsManager productsManager;
+	private final ProductTypeManager productTypeManager;
+	private final SupplierManager supplierManager;
+	private final CodeValueManager codeValueManager;
+	private final EventNewManager eventNewManager;
+	private final EventTypeManager eventTypeManager;
+	private final PersonnelFilesToUserManager personnelFilesToUserManager;
+	private final UserManager userManager;
+
+	private Products products;
+	private ProductType pt;
+	private Supplier supplier;
+	private String backFlag;
+
+	public EditProductsAction(ProductsManager productsManager, ProductTypeManager productTypeManager,
+			SupplierManager supplierManager, CodeValueManager codeValueManager, EventNewManager eventNewManager,
+			EventTypeManager eventTypeManager, PersonnelFilesToUserManager personnelFilesToUserManager,
+			UserManager userManager) {
+		this.productsManager = productsManager;
+		this.productTypeManager = productTypeManager;
+		this.supplierManager = supplierManager;
+		this.codeValueManager = codeValueManager;
+		this.eventNewManager = eventNewManager;
+		this.eventTypeManager = eventTypeManager;
+		this.personnelFilesToUserManager = personnelFilesToUserManager;
+		this.userManager = userManager;
+	}
+
+	public void prepare() throws Exception {
+		if (this.products == null)
+			if (hasId("products.id")) {
+				this.products = this.productsManager.loadProducts(getId("products.id"));
+				this.pt = this.products.getPt();
+				this.supplier = this.products.getSupplier();
+			} else {
+				this.products = new Products();
 			}
-			public void setBackFlag(String backFlag) {
-				this.backFlag = backFlag;
+		if (this.request.getParameter("backFlag") != null) {
+			this.backFlag = this.request.getParameter("backFlag");
+		}
+	}
+
+	public String delete() {
+		this.productsManager.deleteProducts(this.products);
+		addActionMessage(getText("products.invalid.success", Arrays.asList(new Object[] { this.products.getName() })));
+		return "success";
+	}
+
+	public String save() {
+		boolean isNew = this.products.isNew();
+		String submit = null;
+		this.products.setIsSaved(this.request.getParameter("isSaved"));
+		try {
+			if (isNew) {
+				if (null == this.productsManager.loadByKey("code", this.products.getCode())) {
+					saver();
+					this.productsManager.storeProducts(this.products);
+					addActionMessage(getText("products.add.success",
+							Arrays.asList(new Object[] { this.products.getCode() })));
+					return "new";
+				}
+				saver();
+				addActionMessage(getText("products.add.exist", Arrays.asList(new Object[] { this.products.getCode() })));
+				return "error";
 			}
 
-/*     */ }
+			saver();
+			this.productsManager.storeProducts(this.products);
 
-/* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\
- * Qualified Name:     com.yongjun.tdms.presentation.webwork.action.base.products.EditProductsAction
- * JD-Core Version:    0.6.2
- */
+			// 添加事件
+			if ("1".equals(this.request.getParameter("isSaved"))) {
+				EventType eventType = null;
+				List<EventType> eventTypes = this.eventTypeManager.loadByKey("code", "10010");
+				if (eventTypes != null && eventTypes.size() > 0) {
+					eventType = eventTypes.get(0);
+				} else {
+					eventType = new EventType();
+					eventType.setId(11L);
+				}
+				EventNew event = new EventNew();
+				event.setEffectflag("E");
+				event.setEventType(eventType);
+				event.setName("新增产品");
+				event.setUserId(this.userManager.getUser().getId() + "");
+				Map<String, String> map = new HashMap();
+				String pids = this.personnelFilesToUserManager.loadUserIdToStrByEnable();
+				map.put("users", pids);
+				map.put("productsId", this.products.getId() + "");
+				String moreinfo = JSONObject.fromObject(map).toString();
+				event.setMoreinfo(moreinfo);
+				eventNewManager.storeEventNew(event);
+				submit = "submit";
+			}
+
+			if ("submit".equals(submit)) {
+				addActionMessage(getText("products.submit.success",
+						Arrays.asList(new Object[] { this.products.getCode() })));
+			} else {
+				addActionMessage(getText("products.edit.success",
+						Arrays.asList(new Object[] { this.products.getCode() })));
+			}
+			return "success";
+		} catch (Exception e) {
+			if (isNew)
+				addActionMessage(getText("products.add.exist", Arrays.asList(new Object[] { this.products.getCode() })));
+			else {
+				addActionMessage(getText("products.edit.exist", Arrays.asList(new Object[] { this.products.getCode() })));
+			}
+			e.printStackTrace();
+		}
+		return "error";
+	}
+
+	private void saver() {
+		if (!StringUtils.isEmpty(this.request.getParameter("pt.id"))) {
+			this.pt = this.productTypeManager.loadProductType(getId("pt.id"));
+			this.products.setPt(this.pt);
+		}
+
+		if (!StringUtils.isEmpty(this.request.getParameter("product_source_ID.id"))) {
+			this.products.setProduct_source_ID(this.codeValueManager.loadCodeValue(Long.valueOf(this.request
+					.getParameter("product_source_ID.id"))));
+
+			this.products.setProductSource(this.codeValueManager.loadCodeValue(
+					Long.valueOf(this.request.getParameter("product_source_ID.id"))).getName());
+		}
+
+		if (!StringUtils.isEmpty(this.request.getParameter("supplier.id"))) {
+			this.supplier = this.supplierManager.loadSupplier(getId("supplier.id"));
+			this.products.setSupplier(this.supplier);
+		} else {
+			this.products.setSupplier(null);
+		}
+
+		if (Integer.parseInt(this.request.getParameter("isNoM")) == 0)
+			this.products.setIsNoMain(false);
+		else
+			this.products.setIsNoMain(true);
+	}
+
+	public List getAllProductSource() {
+		try {
+			CodeValue codeValue = (CodeValue) this.codeValueManager.loadByKey("code", "013").get(0);
+
+			List list = this.codeValueManager.loadByKey("parentCV", codeValue.getId());
+
+			if (list != null) {
+				CodeValue cv = new CodeValue();
+				cv.setName(getText(""));
+				cv.setId(Long.valueOf(-1L));
+				list.add(0, cv);
+				return list;
+			}
+			return new ArrayList();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			return new ArrayList();
+		}
+	}
+
+	public List getAllSupplier() {
+		List suppliers = this.supplierManager.loadAllSupplier();
+		Supplier sup = new Supplier();
+		sup.setName("");
+		sup.setId(Long.valueOf(-1L));
+		suppliers.add(0, sup);
+		return suppliers;
+	}
+
+	public List getAllType() {
+		return this.productTypeManager.getAllProductTypeByNull(getText(""));
+	}
+
+	public Products getProducts() {
+		return this.products;
+	}
+
+	public void setProducts(Products products) {
+		this.products = products;
+	}
+
+	public String getBackFlag() {
+		return backFlag;
+	}
+
+	public void setBackFlag(String backFlag) {
+		this.backFlag = backFlag;
+	}
+
+}

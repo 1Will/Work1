@@ -69,7 +69,7 @@
         	</script>
 		</tr>
 		<tr>
-			<@textarea label="备注" name="remark" colspan="5" rows="3" cols="100" 
+			<@textarea label="备注" name="remark" colspan="5" rows="4" cols="150"
 			           value="${flow.remark?if_exists}"/>
 		</tr>
 	</@inputTable>

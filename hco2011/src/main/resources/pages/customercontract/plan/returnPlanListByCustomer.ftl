@@ -8,6 +8,12 @@
             includeParameters="contractManagement.code|returnPlan.contractManagement|returnPlan.paytime_start|returnPlan.paytime_end
             |returnPlan.planDate_start|returnPlan.planDate_end|customerInfo.code|customerInfo.name|contractManagement.id|readOnly|onlyInvalid|onlyValid|customerInfo.id|contactArchives.id|" 
         	fieldMap="like:,date:" >
+      <#if req.getParameter('contractManagement.id')?exists>
+      	    <@vcolumn title="${action.getText('returnPlan.batch')}" property="batch.name" sortable="desc">
+            	<a href="javascript:contract_OpenDialog('#{object.id}')">${object.batch.name}</a>
+            	<@alignCenter/>
+            </@vcolumn>
+      <#else>
             <@vcolumn title="${action.getText('contractManagement.code')}" property="contractManagement.code" sortable="desc">
                 <a href="javascript:contract_OpenDialog('#{object.id}')">${object.contractManagement.code}</a>
 				<@alignLeft/>
@@ -27,15 +33,38 @@
              <@vcolumn title="${action.getText('returnPlan.phone')}" property="phone" sortable="desc">
      			<@alignRight/>
             </@vcolumn>
+            <@vcolumn title="${action.getText('returnPlan.batch')}" property="batch.name" sortable="desc">
+            	<@alignCenter/>
+            </@vcolumn>
+      </#if>
             <@vcolumn title="${action.getText('returnPlan.planDate')}" property="planDate" format="yyyy-MM-dd" sortable="desc">
             	<@alignCenter/><#-- attributes="width:110;"-->
             </@vcolumn>
-            <@vcolumn title="${action.getText('returnPlan.sum')}" property="sum" sortable="desc">
-            	<@alignLeft/>
+            <@vcolumn title="${action.getText('收款方式')}" property="payment.name" sortable="desc">
+     			<@alignLeft/>
             </@vcolumn>
-            <@vcolumn title="${action.getText('returnPlan.batch')}" property="batch.name" sortable="desc">
+            
+            <@vcolumn title="${action.getText('returnPlan.sum')}" property="sum" sortable="desc">
             	<@alignRight/>
             </@vcolumn>
+            
+            <@vcolumn title="${action.getText('负责人')}" property="chargMan.name" sortable="desc">
+     			<@alignLeft/>
+            </@vcolumn>
+            <@vcolumn title="${action.getText('returnPlan.factSum')}" property="factSum" sortable="desc">
+     			<@alignRight/>
+            </@vcolumn>
+            <@vcolumn title="${action.getText('returnPlan.paytime')}" property="paytime" format="yyyy-MM-dd" sortable="desc">
+            	<@alignCenter/><#-- attributes="width:110;"-->
+            </@vcolumn>
+           	<@vcolumn title="${action.getText('计划状态')}" property="planState.name" sortable="desc">
+     			<@alignLeft/>
+            </@vcolumn>
+           	<@vcolumn title="${action.getText('收款进度(%)')}" property="percentt" sortable="desc">
+     			<@alignLeft/>
+            </@vcolumn>
+            
+            <#-- 
              <#assign isOrNot=""/>
             <#if (object.isOrNot)=='0'>
             	<#assign isOrNot="${action.getText('是')}">
@@ -66,14 +95,16 @@
             	${billingOrNot?if_exists}
             	<@alignLeft/>
             </@vcolumn>
-            <@vcolumn title="${action.getText('returnPlan.paytime')}" property="paytime" format="yyyy-MM-dd" sortable="desc">
-            	<@alignCenter/><#-- attributes="width:110;"-->
-            </@vcolumn>
-             <@vcolumn title="${action.getText('returnPlan.factSum')}" property="factSum" sortable="desc">
-     			<@alignRight/>
-            </@vcolumn>
+			-->
+  
              <@vcolumn title="${action.getText('returnPlan.payee')}" property="payee.name" sortable="desc">
      			<@alignLeft/>
+            </@vcolumn>
+             <@vcolumn title="${action.getText('开票金额')}" property="billMoney" sortable="desc">
+     			<@alignLeft/>
+            </@vcolumn>
+             <@vcolumn title="${action.getText('开票日期')}" property="billDate" format="yyyy-MM-dd" sortable="desc">
+     			<@alignCenter/>
             </@vcolumn>
         </@list>
         <#if req.getParameter('contractManagement.id')?exists>

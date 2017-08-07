@@ -19,6 +19,7 @@ public class FinancialManagement extends BaseInfoEntity {
 	private CodeValue payment;
 	private String accountNumber;
 	private String accountName;
+	private String payNumber;
 	private CodeValue batch;
 	private Double sumReceivable = Double.valueOf(0.0D);
 
@@ -33,7 +34,9 @@ public class FinancialManagement extends BaseInfoEntity {
 	private PersonnelFiles payee;
 	private Department dept;
 	private String remark;
-	private String isSaved = "0";
+	private String isSaved;
+	private long submitNum=0;
+	private double lastSubmitMoney;
 
 	public String getAccountNumber() {
 		return this.accountNumber;
@@ -49,6 +52,14 @@ public class FinancialManagement extends BaseInfoEntity {
 
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
+	}
+
+	public String getPayNumber() {
+		return payNumber;
+	}
+
+	public void setPayNumber(String payNumber) {
+		this.payNumber = payNumber;
 	}
 
 	public CodeValue getBatch() {
@@ -202,4 +213,20 @@ public class FinancialManagement extends BaseInfoEntity {
 	public void setIsSaved(String isSaved) {
 		this.isSaved = isSaved;
 	}
+
+	public long getSubmitNum() {
+		return submitNum;
+	}
+
+	public void setSubmitNum(long submitNum) {
+		this.submitNum = submitNum;
+	}
+	public double getLastSubmitMoney() {
+		return lastSubmitMoney;
+	}
+
+	public void setLastSubmitMoney(double lastSubmitMoney) {
+		this.lastSubmitMoney = lastSubmitMoney;
+	}
+	
 }

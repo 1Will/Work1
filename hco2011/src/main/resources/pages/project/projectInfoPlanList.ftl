@@ -5,9 +5,10 @@
 		<@ww.token name="searchProjectInfoPlanToken"/>
 		<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 			<@ww.hidden name="'projectInfo.id'" value="'${projectInfoId?if_exists}'"/>
+			<@ww.hidden name="'contractManagement.id'" value="'${contractManagementId?if_exists}'"/>
 			 <#assign itemNo=1/>
  	        <@list title="" 
-        includeParameters="projectInfo.id|readOnly|onlyInvalid|onlyValid" 
+        includeParameters="projectInfo.id|readOnly|onlyInvalid|onlyValid|contractManagement.id|" 
         fieldMap="" >
             <#if !(action.isReadOnly())>
 	            <@vlh.checkbox property="id" name="projectInfoPlanIds">
@@ -32,6 +33,12 @@
             <@alignLeft/>
             </@vcolumn>
              <@vcolumn title="${action.getText('projectInfoPlan.endDate')}" property="endDate" sortable="desc" format="yyyy-MM-dd"  >
+            <@alignLeft/>
+            </@vcolumn>
+             <@vcolumn title="${action.getText('proPlanPercentage')}" property="percentt"   >
+            <@alignRight/>
+            </@vcolumn>
+            <@vcolumn title="${action.getText('proPlanState')}" property="planState.name"   >
             <@alignLeft/>
             </@vcolumn>
              <@vcolumn title="${action.getText('proPlanOutline')}" property="outline"   >
@@ -59,7 +66,11 @@
 <script>
 	function editProPlan_OpenDialog(){
 	   var url="";
+	   <#if projectInfoId?exists>
 	   url= "${req.contextPath}/projectInfo/editProPlan.html?projectInfo.id=${projectInfoId?if_exists}";
+	   <#elseif contractManagementId?exists>
+	   url= "${req.contextPath}/projectInfo/editProPlan.html?contractManagement.id=${contractManagementId?if_exists}";
+	   </#if>
 	   //popupModalDialog(url, 850, 600);
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};

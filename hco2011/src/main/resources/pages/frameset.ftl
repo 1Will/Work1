@@ -22,7 +22,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-	<title id="Title_CPLogin">欢迎进入永君客户关系管理系统</title>
+	<title id="Title_CPLogin">欢迎进入合肥天鹅制冷科技客户关系管理系统</title>
         <SCRIPT LANGUAGE="JavaScript">
             if (top.location != self.location){
                 top.location = self.location;

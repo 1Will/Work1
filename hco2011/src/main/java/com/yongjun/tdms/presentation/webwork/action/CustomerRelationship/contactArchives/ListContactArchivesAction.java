@@ -6,13 +6,18 @@ import java.util.Map;
 
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.pluto.model.codevalue.CodeValue;
+import com.yongjun.pluto.model.security.User;
 import com.yongjun.pluto.service.codevalue.CodeValueManager;
 import com.yongjun.pluto.webwork.action.valuelist.ValueListAction;
 import com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives;
 import com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactToHistory;
+import com.yongjun.tdms.model.project.projectContactArchives.ProjectContactArchives;
+import com.yongjun.tdms.model.project.projectPartner.ProjectPartner;
 import com.yongjun.tdms.model.supplier.Supplier;
 import com.yongjun.tdms.service.CustomerRelationship.contactArchives.ContactArchivesManager;
 import com.yongjun.tdms.service.CustomerRelationship.contactArchives.ContactToHistoryManager;
+import com.yongjun.tdms.service.project.projectContactArchives.ProjectContactArchivesManager;
+import com.yongjun.tdms.service.project.projectPartner.ProjectPartnerManager;
 import com.yongjun.tdms.service.supplier.SupplierManager;
 
 public class ListContactArchivesAction extends ValueListAction {
@@ -21,6 +26,7 @@ public class ListContactArchivesAction extends ValueListAction {
 	private final CodeValueManager codeValueManager;
 	private final SupplierManager supplierManager;
 	private final ContactToHistoryManager contactToHistoryManager;
+	private final ProjectPartnerManager projectPartnerManager;
 	private List<ContactArchives> cas;
 	private Long customerId;
 	private Long projectInfoId;
@@ -30,11 +36,13 @@ public class ListContactArchivesAction extends ValueListAction {
 	private Supplier supplier;
 
 	public ListContactArchivesAction(ContactArchivesManager contactArchivesManager, CodeValueManager codeValueManager,
-			SupplierManager supplierManager, ContactToHistoryManager contactToHistoryManager) {
+			SupplierManager supplierManager, ContactToHistoryManager contactToHistoryManager,
+			ProjectPartnerManager projectPartnerManager) {
 		this.contactArchivesManager = contactArchivesManager;
 		this.codeValueManager = codeValueManager;
 		this.supplierManager = supplierManager;
 		this.contactToHistoryManager = contactToHistoryManager;
+		this.projectPartnerManager = projectPartnerManager;
 	}
 
 	public void prepare() throws Exception {
@@ -60,7 +68,9 @@ public class ListContactArchivesAction extends ValueListAction {
 		}
 		if (this.request.getParameter("backVisitFlag") != null) {
 			this.backVistiFlag = this.request.getParameter("backVisitFlag");
-			this.customerId = Long.valueOf(this.request.getParameter("customer.id"));
+			if(hasId("customer.id")){
+				this.customerId = Long.valueOf(this.request.getParameter("customer.id"));
+			}
 		}
 		if (this.request.getParameter("backVisitCheckBox") != null) {
 			this.backVisitCheckBox = this.request.getParameter("backVisitCheckBox");
@@ -76,11 +86,18 @@ public class ListContactArchivesAction extends ValueListAction {
 
 	protected Map getRequestParameterMap() {
 		Map map = super.getRequestParameterMap();
+		if (hasId("contactArchives.creator")) {
+			User  user = this.userManager.loadUser(getId("contactArchives.creator"));
+			map.put("contactArchives.creator", user.getName());
+		}
 		if ((null != this.request.getParameter("sex")) && ("" != this.request.getParameter("sex"))) {
 			map.put("sex", Boolean.valueOf(this.request.getParameter("sex")));
 		}
 		if (hasId("customerInfo.id")) {
 			map.put("customerId", getId("customerInfo.id"));
+		}
+		if (hasId("customer.id")) {
+			map.put("customerId", getId("customer.id"));
 		}
 		if (this.request.getParameter("contactArchives.createdTime") != null) {
 			map.put("contactArchives.createdTime", this.request.getParameter("contactArchives.createdTime") + "%");
@@ -88,9 +105,37 @@ public class ListContactArchivesAction extends ValueListAction {
 		if (hasId("projectInfo.id")) {
 			map.put("projectInfoId", getId("projectInfo.id"));
 		}
+		
+		if (hasId("con_Project.id")) {
+			
+			List<ProjectPartner> projectPartners = null;
+			List<Long> conIds = new ArrayList<Long>();
+			try {
+				projectPartners = projectPartnerManager.loadByKey("projectInfo.id", getId("con_Project.id"));
+			} catch (DaoException e) {
+				e.printStackTrace();
+			}
+ 			if(projectPartners!=null){
+				for(int i =0;i<projectPartners.size();i++){
+					conIds.add(projectPartners.get(i).getCustomerInfo().getId());
+				}
+				System.out.println(conIds.toString().replace("[", "").replace("]", ""));
+				map.put("con_projectIds",conIds);
+			}else {
+				map.put("con_projectIds","0");
+			}
+		}
 
-		if (hasId("customer.id")) {
-			map.put("customerId", getId("customer.id"));
+		if (this.request.getParameter("projectInfoCus")!=null) {
+			String projectInfoCus=this.request.getParameter("projectInfoCus");
+			String []alStrings=projectInfoCus.split(",");
+			List<Long> cList = new ArrayList<Long>();
+			if(alStrings!=null&&alStrings.length>0){
+				for(int i=0;i<alStrings.length;i++){
+					cList.add(Long.parseLong(alStrings[i]));
+				}
+			}
+			map.put("projectInfoCus", cList);
 		}
 		if ((null != this.request.getParameter("supplier.id")) && ("" != this.request.getParameter("supplier.id"))) {
 			map.put("supplierId", Long.valueOf(this.request.getParameter("supplier.id")));

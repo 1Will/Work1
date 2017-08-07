@@ -37,7 +37,7 @@ import java.util.Collections;
 /*     */ 
 /*     */   protected String getAdapterName()
 /*     */   {
-/*  44 */     return "advisory";
+/*  44 */     return "advisoryHQL";
 /*     */   }
 /*     */ 
 /*     */   protected Map getRequestParameterMap()

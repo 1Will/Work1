@@ -97,7 +97,7 @@
         	label="${action.getText('organization.comment')}"
         	name="org.comment"
         	rows="4"
-        	cols="95"
+        	cols="150"
         	value="${org.comment?if_exists}" />
     </@inputTable>
     <@buttonBar>

@@ -30,10 +30,16 @@
     	<@ww.hidden name="'financialManagement.isSaved'" value="''"/>
     	<@ww.hidden name="'payee.id'" value="'${req.getParameter('payee.id')?if_exists}'"/>
     	<@ww.hidden name="'saleman.id'" value="'${req.getParameter('saleman.id')?if_exists}'"/>
-    	<@ww.hidden name="'contractManagement.id'" value="'${req.getParameter('contractManagement.id')?if_exists}'"/>
     	<#if financialManagement.id?exists>
+    		<@ww.hidden name="'copyTrueSum'" value="'#{financialManagement.trueSum?if_exists}'"/>
+    		<@ww.hidden name="'contractManagement.id'" value="'${financialManagement.contractManagement.id?if_exists}'"/>
     		<@ww.hidden name="'financialManagement.id'" value="#{financialManagement.id?if_exists}"/>
+	 	<#else>
+    		<@ww.hidden name="'contractManagement.id'" value="'${req.getParameter('contractManagement.id')?if_exists}'"/>
 	 	</#if>
+	 	<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag' >
+    		<@ww.hidden  name="popWindowFlag"  value="${popWindowFlag}"/>
+    	</#if>
 	 	<tr>										 
 	 		<@ww.textfield label="'${action.getText('financialManagement.code')}'" name="'financialManagement.code'" value="'${financialManagement.code?if_exists}'" cssClass="'underline'" disabled="true"/>
 				<#--相关合同弹出框-->
@@ -119,7 +125,7 @@
 			</@ww.select>
 			
 			<@ww.select label="'${action.getText('financialManagement.batch')}'" 
-				id="'batch.id'" 
+				id="batch.id" 
 				name="'batch.id'" 
 				value="${req.getParameter('batch.id')?if_exists}"
 				listKey="id"
@@ -127,8 +133,15 @@
 				list="allBatchs"
 				required="true"
 				emptyOption="false" 
+				onchange="'getReturnPlan(this.options[this.options.selectedIndex].value)'"
 				disabled="false">
 			</@ww.select>
+			<#if financialManagement.id?exists>
+				<script language="javascript">
+					getObjByName('batch.id').disabled="true";
+				</script>
+			</#if>
+			
 			
 			<@pp.datePicker 
 				label="'${action.getText('financialManagement.collectionDate')}'" 
@@ -148,26 +161,40 @@
 		
 		<tr>
 			<@ww.textfield label="'${action.getText('financialManagement.accountName')}'" name="'financialManagement.accountName'" value="'${financialManagement.accountName?if_exists}'" cssClass="'underline'"/>
-			<@text2 label="${action.getText('financialManagement.accountNumber')}" name="financialManagement.accountNumber" value="${financialManagement.accountNumber?if_exists}"></@text2>
+			<@ww.textfield label="'${action.getText('financialManagement.accountNumber')}'" name="'financialManagement.accountNumber'" value="'${financialManagement.accountNumber?if_exists}'" cssClass="'underline'"/>
+			<@ww.textfield label="'${action.getText('支付凭证号')}'" name="'financialManagement.payNumber'" value="'${financialManagement.payNumber?if_exists}'" cssClass="'underline'"/>
 		</tr>
 		
 		<tr>
-			<@ww.textfield label="'${action.getText('financialManagement.sumReceivable')}'" name="'financialManagement.sumReceivable'" value="'#{financialManagement.sumReceivable?if_exists}'" cssClass="'underline'" required="true"/>
-			<@ww.textfield label="'${action.getText('financialManagement.trueSum')}'" name="'financialManagement.trueSum'" value="'#{financialManagement.trueSum?if_exists}'" cssClass="'underline'" required="true" onfocus="'return getTrueSum();'" onchange="'chooseValue()'" onblur="'checkSum()'"/>
+			<@ww.textfield label="'${action.getText('financialManagement.sumReceivable')}'" name="'financialManagement.sumReceivable'" value="'#{financialManagement.sumReceivable?if_exists}'" cssClass="'underline'" readonly="true" required="true"/>
+			<@ww.textfield label="'${action.getText('financialManagement.totalSum')}'" name="'financialManagement.totalSum'" value="'#{financialManagement.totalSum?if_exists}'" readonly="true" cssClass="'underline'"/>
+			
+			
 			<td align="right">
-			<span class="required">*</span>
 			<label for="" class="label">${action.getText('financialManagement.invoice')}:</label>
 			</td>
 	        <td align="left">
 	        	<input type="radio" id="yes" name="invoice" value="0" />已开
 	        	<input type="radio" id="no" name="invoice" value="1" />未开
 			</td>
-			
+			<script language="javascript">
+				var xradio = document.getElementsByName("invoice");
+				<#if financialManagement.id?exists>
+	                for(var i=0;i<xradio.length;i++){
+	                    if(xradio[i].value == ${financialManagement.invoice?if_exists}){
+	                        xradio[i].checked = true;
+	                        break;
+	                    }
+	                }
+	             <#else>
+	             	xradio[0].checked = true;
+	             </#if>
+			</script>
 		</tr>
 		<tr>
 			<span id="sum_id" name=""></span>
-			<@ww.textfield label="'${action.getText('financialManagement.totalSum')}'" name="'financialManagement.totalSum'" value="'#{financialManagement.totalSum?if_exists}'" readonly="true" cssClass="'underline'"/>
-		
+			<@ww.textfield label="'${action.getText('financialManagement.trueSum')}'" name="'financialManagement.trueSum'" value="'#{financialManagement.trueSum?if_exists}'" cssClass="'underline'" required="true" onblur="'getSum()'"/>
+					
 			<@ww.textfield label="'${action.getText('financialManagement.withoutGotSum')}'" name="'financialManagement.withoutGotSum'" value="'#{financialManagement.withoutGotSum?if_exists}'" readonly="true" cssClass="'underline'"/>
 
 			<@ww.textfield label="'${action.getText('financialManagement.invoiceCode')}'" name="'financialManagement.invoiceCode'" value="'${financialManagement.invoiceCode?if_exists}'" cssClass="'underline'"/>
@@ -223,13 +250,12 @@
     	<#if !(action.isReadOnly())>
 		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 		</#if>
-		<#--
 		<#if financialManagement.isSaved?exists &&financialManagement.isSaved=='0' >
-	    	<@vsubmit name="'submit'" value="'${action.getText('提交')}'" onclick="'return submitt();'"/>
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
 	    <#else>
-	    	<@vsubmit name="'submit'" value="'${action.getText('提交')}'" onclick="'return submitt();'" disabled="true"/>
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
 	    </#if>
-		-->
+	    
 		<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
 		<!-- 关闭按钮 -->
 		<@vbutton name="close" value="${action.getText('close')}" class="button" onclick="closeThis();"/>
@@ -239,8 +265,59 @@
     </@buttonBar>
 
 </@ww.form>
-
+<script type='text/javascript' src='${req.contextPath}/dwr/interface/ReturnPlan.js'></script>
+<script type='text/javascript' src='${req.contextPath}/dwr/interface/Bank.js'></script>
 <script type="text/javascript">
+	function getReturnPlan(batchId){
+		var cmid = getObjByName('contractManagement.id').value
+		if(batchId>0){
+			DWREngine.setAsync(false); 
+			ReturnPlan.getReturnPlan(cmid,batchId,setMoney)
+			//重新设置为异步方式
+			DWREngine.setAsync(true); 
+		}else{
+			getObjByName('financialManagement.sumReceivable').value ="";
+			getObjByName('financialManagement.totalSum').value ="";
+		}
+	}
+	function setMoney(data){
+		getObjByName('financialManagement.sumReceivable').value =data[0];
+		getObjByName('financialManagement.totalSum').value =data[1];
+	}
+	
+	function getSum(){
+		var sumReceivable = getObjByName('financialManagement.sumReceivable').value;
+		var totalSum = getObjByName('financialManagement.totalSum').value;
+		var trueSum = getObjByName('financialManagement.trueSum').value;
+		if(sumReceivable==""||totalSum==""){
+			alert("请选择批次!");
+			getObjByName("batch.id").focus();
+			return;
+		}
+		if(sumReceivable==0 && totalSum==0){
+			getObjByName("batch.id").focus();
+			alert("请选择批次!");
+			return;
+		}
+		if(trueSum==""){
+			getObjByName('financialManagement.withoutGotSum').value = "";
+			return;
+		}
+		if(isNaN(trueSum)){
+			getObjByName("financialManagement.trueSum").focus();
+			alert("请输入数字!");
+			return;
+		}
+		var rest = sumReceivable-totalSum-trueSum;
+		if(rest>=0){
+			getObjByName('financialManagement.withoutGotSum').value = rest;
+		}else{
+			alert("未收金额必须大于等于0！");
+			getObjByName('financialManagement.trueSum').value = "";
+			getObjByName('financialManagement.withoutGotSum').value = "";
+		}
+	}
+	
 	function checkSum(){
 			if(getObjByName('financialManagement.trueSum').value==''){
 				return false;
@@ -261,6 +338,7 @@
 	    	DWREngine.setAsync(true); 
 	    	}
 	window.onload=function(){
+	<#-- 
 		<#if financialManagement.invoice?exists>
 			<#if financialManagement.invoice=="0">
 				getObjByName('yes').checked=true;
@@ -289,7 +367,7 @@
 	    	//设置同步
 	    	DWREngine.setAsync(false); 
 	    	//回调单位的值后触发DWR 级联部门  																			  
-			ContractManagementAndBatchDWR("contractManagement.id","batch.id","financialManagement.sumReceivable","financialManagement.trueSum","financialManagement.totalSum","financialManagement.withoutGotSum","trueSum","${action.getText('')}",false); 
+			//ContractManagementAndBatchDWR("contractManagement.id","batch.id","financialManagement.sumReceivable","financialManagement.trueSum","financialManagement.totalSum","financialManagement.withoutGotSum","trueSum","${action.getText('')}",false); 
 	    	//重新设置为异步方式
 	    	DWREngine.setAsync(true); 
 	    <#else>
@@ -302,7 +380,11 @@
 		    	DWREngine.setAsync(true); 
     	    </#if>
 	    </#if>
-	    
+	    -->
+	    <#if financialManagement.id?exists>
+	    <#else>
+	    	getBatch();
+	    </#if>
 	}
 		//将下来菜单设为只读
 	function selectReadOnly(selectedId){
@@ -371,7 +453,8 @@
 		//合同管理模态窗体
 	function contractManagement_OpenDialog(){
 		var over ="no";
-	   var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?flag="+over;
+	   var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html";
+//	   var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?flag="+over;
 	   popupModalDialog(url, 800, 600, creatorSelector3Handler);
 	   //window.open(url);
 	 }
@@ -388,16 +471,40 @@
 	   		if(null !=result[10]){
 	   			getObjByName('financialManagement.contractManagement.name').value=result[10];
 	   		}
-	   		
-	   		// 选择合同的时候带出，该合同下所有回款计划的批次
-	    	DWREngine.setAsync(false); 
-	    	//回调单位的值后触发DWR 级联部门  
-			ContractAndBatchDWR("contractManagement.id","batch.id","${action.getText('')}","false"); 
-	    	//重新设置为异步方式
-	    	DWREngine.setAsync(true); 
-	   		//ContractAndBatchDWR(result[0],"batch.id","${action.getText('')}","false"); 
+	   		getBatch();
+	   		getBank(result[0]);
 		}
 	}
+	
+	function getBatch(){
+		// 选择合同的时候带出，该合同下所有收款计划的批次
+    	DWREngine.setAsync(false); 
+    	//回调单位的值后触发DWR 级联部门  
+		ContractAndBatchDWR("contractManagement.id","batch.id","${action.getText('')}","false"); 
+    	//重新设置为异步方式
+    	DWREngine.setAsync(true); 
+   		//ContractAndBatchDWR(result[0],"batch.id","${action.getText('')}","false");
+	}
+	
+	function getBank(id){
+		// 选择合同的时候带出，该合同下所有收款计划的批次
+    	DWREngine.setAsync(false); 
+    	//回调单位的值后触发DWR 级联部门  
+    	Bank.getBankInfo(id,setBank)
+    	//重新设置为异步方式
+    	DWREngine.setAsync(true); 
+	}
+	
+	function setBank(data){
+		if(data!=""){
+			getObjByName('financialManagement.accountName').value =data[0];
+			getObjByName('financialManagement.accountNumber').value =data[1];
+		}else{
+			getObjByName('financialManagement.accountName').value ="";
+			getObjByName('financialManagement.accountNumber').value ="";
+		}
+	}
+	
 	function chooseFirst(){
 		if(getObjByName('financialManagement.contractManagement').value==''){
 			alert("${action.getText('please.choose.contractManagement.first')}");
@@ -433,11 +540,6 @@
 	}
 	//保存前给隐藏域赋值和验证字段
 	function storeValidation(){
-		if(getObjByName('batch.id').value=='' || getObjByName('batch.id').value == -1){
-			alert("${action.getText('financialManagement.batch.requiredstring')}");
-			getObjByName('batch.id').focus();
-			return false;
-		}
 		if(getObjByName('financialManagement.contractManagement').value==''){
 			alert("${action.getText('financialManagement.contractManagement.requiredstring')}");
 			return false;
@@ -451,6 +553,16 @@
 			getObjByName('payment.id').focus();
 			return false;
 		}
+		if(getObjByName('batch.id').value=='' || getObjByName('batch.id').value == -1){
+			alert("${action.getText('financialManagement.batch.requiredstring')}");
+			getObjByName('batch.id').focus();
+			return false;
+		}
+		if(getObjByName('financialManagement.collectionDate').value==''){
+			alert("${action.getText('financialManagement.collectionDate.requiredstring')}");
+			getObjByName('financialManagement.collectionDate').focus();
+			return false;
+		}
 		if(getObjByName('financialManagement.sumReceivable').value==''){
 			alert("${action.getText('financialManagement.sumReceivable.requiredstring')}");
 			getObjByName('financialManagement.sumReceivable').focus();
@@ -458,10 +570,9 @@
 		}
 		
 		 //验证费用为double类型
-		if(getObjByName('financialManagement.sumReceivable').value!=''){
-	     	if(!isDoubleNumber("financialManagement.sumReceivable")){
+		if(getObjByName('financialManagement.sumReceivable').value !=''){
+			if(isNaN(getObjByName('financialManagement.sumReceivable').value)){
 				alert("${action.getText('sumReceivable.must.be.double')}");
-				getObjByName('financialManagement.sumReceivable').value="";
 				getObjByName('financialManagement.sumReceivable').focus();
 				return false;
 			}
@@ -475,48 +586,33 @@
 		}
 		
 		 //验证费用为double类型
-		if(getObjByName('financialManagement.trueSum').value!=''){
-	     	if(!isDoubleNumber("financialManagement.trueSum")){
+		if(getObjByName('financialManagement.trueSum').value !=''){
+			if(isNaN(getObjByName('financialManagement.trueSum').value)){
 				alert("${action.getText('trueSum.must.be.double')}");
-				getObjByName('financialManagement.trueSum').value="";
 				getObjByName('financialManagement.trueSum').focus();
 				return false;
 			}
 	     }
-		if(getObjByName('yes').checked){
-			if(getObjByName('financialManagement.invoiceCode').value==''){
-			alert("${action.getText('financialManagement.invoiceCode.requiredstring')}");
-			getObjByName('financialManagement.invoiceCode').focus();
-			return false;
-			}
-		}
-		
-		 //验证费用为double类型
-		if(getObjByName('financialManagement.totalSum').value!=''){
-	     	if(!isDoubleNumber("financialManagement.totalSum")){
-				alert("${action.getText('totalSum.must.be.double')}");
-				getObjByName('financialManagement.totalSum').value="";
-				getObjByName('financialManagement.totalSum').focus();
-				return false;
-			}
-	     }
 	     
-	      //验证费用为double类型
-		if(getObjByName('financialManagement.withoutGotSum').value!=''){
-	     	if(!isDoubleNumber("financialManagement.withoutGotSum")){
-				alert("${action.getText('withoutGotSum.must.be.double')}");
-				getObjByName('financialManagement.withoutGotSum').value="";
-				getObjByName('financialManagement.withoutGotSum').focus();
+		var radios = document.getElementsByName("invoice");
+		var tag = true;
+		var val;
+		for(var i = 0 ;i< radios.length;i++) {
+		   if(radios[i].checked) {
+		      tag = false;
+		      val = radios[i].value;
+		      break;
+		   }
+		}
+		if(tag){
+			alert("请选择发票！");
+			return false;
+		}else{
+			if(getObjByName('financialManagement.invoiceCode').value==''&&val==0){
+				alert("${action.getText('financialManagement.invoiceCode.requiredstring')}");
+				getObjByName('financialManagement.invoiceCode').focus();
 				return false;
 			}
-	     }
-		
-		
-		
-		if(getObjByName('financialManagement.collectionDate').value==''){
-			alert("${action.getText('financialManagement.collectionDate.requiredstring')}");
-			getObjByName('financialManagement.collectionDate').focus();
-			return false;
 		}
 		
 		if(getObjByName('financialManagement.collectionDate').value !=''){

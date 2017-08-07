@@ -189,7 +189,7 @@
     <#if !(action.isReadOnly())>
     <@buttonBar>
 		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
-		<@vbutton class="button" name="${action.getText('close')}" value="${action.getText('close')}" onclick="javascript:window.close();"/>
+		<@vbutton class="button" name="${action.getText('close')}" value="${action.getText('close')}" onclick="closeThis()"/>
     </@buttonBar>
 	</#if>
 </@ww.form>

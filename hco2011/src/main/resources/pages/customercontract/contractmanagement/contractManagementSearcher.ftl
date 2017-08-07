@@ -43,6 +43,11 @@
 				emptyOption="false" 
 				disabled="false">
 			</@ww.select>
+			<script language="javascript">
+			<#if req.getParameter('contractManagement.contractType.id')?exists>
+				getObjByName('contractManagement.contractType.id').value = '${req.getParameter('contractManagement.contractType.id')?if_exists}';
+			</#if>
+		</script>
 		
 		<@ww.select label="'${action.getText('contractManagement.state')}'" 
 				id="state"
@@ -54,6 +59,11 @@
 				emptyOption="false" 
 				disabled="false">
 			</@ww.select>
+			<script language="javascript">
+			<#if req.getParameter('contractManagement.state.id')?exists>
+				getObjByName('contractManagement.state.id').value = '${req.getParameter('contractManagement.state.id')?if_exists}';
+			</#if>
+		</script>
 	</tr>
 	<tr>	
 		<@crm_onlySearchInvalid_checkBox />

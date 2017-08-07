@@ -50,11 +50,11 @@
 				listValue="name" 
 				list="allDepts"
 		    	emptyOption="false" 
-		    	disabled="true"
-		    	onchange="DutyCascadeDWR(\"dept.id\",\"jobName.id\",14,\"${action.getText('')}\",\"edit\")">
+		    	disabled="true">
+		    	<#-- onchange="DutyCascadeDWR(\"dept.id\",\"jobName.id\",14,\"${action.getText('')}\",\"edit\")"> -->
 		    	</@select> 
 		    	<script>
-					DutyCascadeDWR('dept.id','jobName.id',14,'${action.getText('')}','edit');
+					//DutyCascadeDWR('dept.id','jobName.id',14,'${action.getText('')}','edit');
 				</script>
 			 <#else>
 			  	<@select 
@@ -67,8 +67,8 @@
 				list="allDepts"
 				required="true"
 				emptyOption="false" 
-				disabled="false"
-				onchange="DutyCascadeDWR(\"dept\",\"jobName.id\",14,\"${action.getText('')}\",\"edit\")">
+				disabled="false">
+				<#-- onchange="DutyCascadeDWR(\"dept\",\"jobName.id\",14,\"${action.getText('')}\",\"edit\")" -->
 				</@select>  
 			 </#if>
 				    <@select 

@@ -7,8 +7,6 @@ import java.util.Map;
 
 import net.sf.json.JSONObject;
 
-import org.apache.commons.lang.StringUtils;
-
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.pluto.model.codevalue.CodeValue;
 import com.yongjun.pluto.model.security.Department;
@@ -20,6 +18,7 @@ import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo
 import com.yongjun.tdms.model.base.event.EventNew;
 import com.yongjun.tdms.model.base.event.EventType;
 import com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement;
+import com.yongjun.tdms.model.customercontract.contractmanagement.additionalInfo.ContractAdditionalInfo;
 import com.yongjun.tdms.model.customercontract.plan.ReturnPlan;
 import com.yongjun.tdms.model.financialmanagement.FinancialManagement;
 import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
@@ -28,11 +27,14 @@ import com.yongjun.tdms.service.base.event.EventNewManager;
 import com.yongjun.tdms.service.base.event.EventTypeManager;
 import com.yongjun.tdms.service.base.org.DepartmentManager;
 import com.yongjun.tdms.service.customercontract.contractmanagement.ContractManagementManager;
+import com.yongjun.tdms.service.customercontract.contractmanagement.additionInfo.ContractAdditionInfoManager;
 import com.yongjun.tdms.service.customercontract.plan.ReturnPlanManager;
 import com.yongjun.tdms.service.financialmanagement.FinancialManagementManager;
 import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
+import com.yongjun.tdms.service.workspace.data.DataManager;
 import com.yongjun.tdms.util.personnelFilesToUser.PersonnelFilesToUserManager;
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class EditFinancialManagementAction extends PrepareAction {
 	private static final long serialVersionUID = -8934817289873115007L;
 	private final FinancialManagementManager financialManagementManager;
@@ -46,6 +48,8 @@ public class EditFinancialManagementAction extends PrepareAction {
 	private final EventTypeManager eventTypeManager;
 	private final EventNewManager eventNewManager;
 	private final PersonnelFilesToUserManager personnelFilesToUserManager;
+	private final ContractAdditionInfoManager contractAdditionInfoManager;
+	private DataManager dataManager;
 
 	private FinancialManagement financialManagement;
 	private List<CodeValue> batchs = new ArrayList();
@@ -56,7 +60,8 @@ public class EditFinancialManagementAction extends PrepareAction {
 			CustomerInfoManager customerInfoManager, ContractManagementManager contractManagementManager,
 			DepartmentManager departmentManager, UserManager userManager, ReturnPlanManager returnPlanManager,
 			EventTypeManager eventTypeManager, EventNewManager eventNewManager,
-			PersonnelFilesToUserManager personnelFilesToUserManager) {
+			PersonnelFilesToUserManager personnelFilesToUserManager,
+			ContractAdditionInfoManager contractAdditionInfoManager, DataManager dataManager) {
 		this.financialManagementManager = financialManagementManager;
 		this.codeValueManager = codeValueManager;
 		this.personnelFilesManager = personnelFilesManager;
@@ -68,12 +73,15 @@ public class EditFinancialManagementAction extends PrepareAction {
 		this.eventTypeManager = eventTypeManager;
 		this.eventNewManager = eventNewManager;
 		this.personnelFilesToUserManager = personnelFilesToUserManager;
+		this.contractAdditionInfoManager = contractAdditionInfoManager;
+		this.dataManager=dataManager;
 	}
 
 	public void prepare() throws Exception {
 		if (request.getParameter("popWindowFlag") != null) {
 			this.popWindowFlag = request.getParameter("popWindowFlag");
 		}
+
 		if (hasId("financialManagement.id")) {
 			this.financialManagement = this.financialManagementManager
 					.loadFinancialManagement(getId("financialManagement.id"));
@@ -84,7 +92,24 @@ public class EditFinancialManagementAction extends PrepareAction {
 		} else {
 			this.financialManagement = new FinancialManagement();
 		}
+
+		if (hasId("contractManagement.id")) {
+			ContractManagement contractManagement = this.contractManagementManager
+					.loadContractManagement(getId("contractManagement.id"));
+			if (contractManagement != null) {
+				this.financialManagement.setContractManagement(contractManagement);
+				this.financialManagement.setCustomerInfo(contractManagement.getCustomerInfo());
+				List<ContractAdditionalInfo> contractAdditionalInfos = this.contractAdditionInfoManager.loadByKey(
+						"contractManagement.id", contractManagement.getId());
+				if (contractAdditionalInfos != null) {
+					this.financialManagement.setAccountName(contractAdditionalInfos.get(0).getBank());
+					this.financialManagement.setAccountNumber(contractAdditionalInfos.get(0).getBankAccount());
+				}
+			}
+		}
+
 		User user = this.userManager.getUser();
+
 		if (null != user.getCode()) {
 			List salemans = this.personnelFilesManager.loadByKey("code", user.getCode());
 			if (null != salemans) {
@@ -98,55 +123,45 @@ public class EditFinancialManagementAction extends PrepareAction {
 	public String save() throws Exception {
 		boolean isNew = this.financialManagement.isNew();
 
-		if (!StringUtils.isEmpty(this.request.getParameter("payment.id"))) {
-			this.financialManagement.setPayment(this.codeValueManager.loadCodeValue(Long.valueOf(this.request
-					.getParameter("payment.id"))));
+		if (hasId("payment.id")) {
+			this.financialManagement.setPayment(this.codeValueManager.loadCodeValue(getId("payment.id")));
 		}
-		if (!StringUtils.isEmpty(this.request.getParameter("financialManagement.accountName"))) {
+		if (hasId("financialManagement.accountName")) {
 			this.financialManagement.setAccountName(this.request.getParameter("financialManagement.accountName"));
 		}
 
-		if (!StringUtils.isEmpty(this.request.getParameter("collectionType.id"))) {
-			this.financialManagement.setCollectionType(this.codeValueManager.loadCodeValue(Long.valueOf(this.request
-					.getParameter("collectionType.id"))));
+		if (hasId("collectionType.id")) {
+			this.financialManagement.setCollectionType(this.codeValueManager.loadCodeValue(getId("collectionType.id")));
 		}
 
-		if (!StringUtils.isEmpty(this.request.getParameter("batch.id"))) {
-			this.financialManagement.setBatch(this.codeValueManager.loadCodeValue(Long.valueOf(this.request
-					.getParameter("batch.id"))));
+		if (hasId("batch.id")) {
+			this.financialManagement.setBatch(this.codeValueManager.loadCodeValue(getId("batch.id")));
 		}
 
-		if (!StringUtils.isEmpty(this.request.getParameter("dept.id"))) {
-			Department dept = this.departmentManager.loadDepartment(Long.valueOf(this.request.getParameter("dept.id")));
-
+		if (hasId("dept.id")) {
+			Department dept = this.departmentManager.loadDepartment(getId("dept.id"));
 			if (null != dept) {
 				this.financialManagement.setDept(dept);
 			}
 
 		}
 
-		if (!StringUtils.isEmpty(this.request.getParameter("customer.id"))) {
-			CustomerInfo customer = this.customerInfoManager.loadCustomerInfo(Long.valueOf(this.request
-					.getParameter("customer.id")));
-
+		if (hasId("customer.id")) {
+			CustomerInfo customer = this.customerInfoManager.loadCustomerInfo(getId("customer.id"));
 			if (null != customer) {
 				this.financialManagement.setCustomerInfo(customer);
 			}
 		}
 
-		if (!StringUtils.isEmpty(this.request.getParameter("payee.id"))) {
-			PersonnelFiles payee = this.personnelFilesManager.loadPersonnel(Long.valueOf(this.request
-					.getParameter("payee.id")));
-
+		if (hasId("payee.id")) {
+			PersonnelFiles payee = this.personnelFilesManager.loadPersonnel(getId("payee.id"));
 			if (null != payee) {
 				this.financialManagement.setPayee(payee);
 			}
 		}
 
-		if (!StringUtils.isEmpty(this.request.getParameter("saleman.id"))) {
-			PersonnelFiles saleman = this.personnelFilesManager.loadPersonnel(Long.valueOf(this.request
-					.getParameter("saleman.id")));
-
+		if (hasId("saleman.id")) {
+			PersonnelFiles saleman = this.personnelFilesManager.loadPersonnel(getId("saleman.id"));
 			if (null != saleman) {
 				this.financialManagement.setSaleman(saleman);
 			}
@@ -158,15 +173,29 @@ public class EditFinancialManagementAction extends PrepareAction {
 			this.financialManagement.setInvoice(invoice);
 		}
 
-		if (!StringUtils.isEmpty(this.request.getParameter("contractManagement.id"))) {
-			ContractManagement contractManagement = this.contractManagementManager.loadContractManagement(Long
-					.valueOf(this.request.getParameter("contractManagement.id")));
-
+		if (hasId("contractManagement.id")) {
+			ContractManagement contractManagement = this.contractManagementManager
+					.loadContractManagement(getId("contractManagement.id"));
 			if (null != contractManagement) {
 				this.financialManagement.setContractManagement(contractManagement);
 			}
 		}
+		// 提交事件
 		String submit = "";
+
+		this.financialManagement.setIsSaved(request.getParameter("financialManagement.isSaved"));
+
+		String code = autoCompleteCode();
+		this.financialManagement.setCode(code);
+		if(isNew){
+			this.financialManagement.setSubmitNum(0l);
+		}else {
+			if(this.financialManagement.getIsSaved().equals("1")){
+            	 this.financialManagement.setSubmitNum(this.financialManagement.getSubmitNum()+1);
+             }
+		}
+		this.financialManagementManager.storeFinancialManagement(this.financialManagement);
+
 		if ("1".equals(this.request.getParameter("financialManagement.isSaved"))) {
 			try {
 				EventType eventType = null;
@@ -191,141 +220,160 @@ public class EditFinancialManagementAction extends PrepareAction {
 				String moreinfo = JSONObject.fromObject(map).toString();
 				event.setMoreinfo(moreinfo);
 				eventNewManager.storeEventNew(event);
+				
+				 HashMap mapData =new HashMap();
+	              mapData.put("type", "10007");
+	              mapData.put("thisMoney", financialManagement.getTrueSum());
+	              mapData.put("lastMoney",financialManagement.getLastSubmitMoney() );
+				mapData.put("submitNum", this.financialManagement.getSubmitNum());
+				mapData.put("date",financialManagement.getCollectionDate());
+				this.dataManager.storeData(getPersonnelF(), mapData);
+				this.financialManagement.setLastSubmitMoney(financialManagement.getTrueSum());
+				this.financialManagementManager.storeFinancialManagement(financialManagement);//更新上次金额
 				submit = "submit";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		this.financialManagement.setIsSaved(request.getParameter("financialManagement.isSaved"));
-		if (isNew) {
-			List<FinancialManagement> financialManagements = this.financialManagementManager.loadByKey(
-					"contractManagement", this.financialManagement.getContractManagement().getId());
 
-			if (null != financialManagements) {
-				for (FinancialManagement f : financialManagements) {
-					f.setTotalSum(f.getTotalSum());
-					f.setWithoutGotSum(f.getWithoutGotSum());
-					this.financialManagementManager.storeFinancialManagement(f);
-				}
-			}
-			String code = autoCompleteCode();
-			this.financialManagement.setCode(code);
-
-			this.financialManagementManager.storeFinancialManagement(this.financialManagement);
-			addActionMessage(getText("financialManagement.save.success"));
-
-			ContractManagement contractManagement = this.contractManagementManager
-					.loadContractManagement(this.financialManagement.getContractManagement().getId());
-
-			if (null != contractManagement) {
-				contractManagement.setPaidMoney(this.financialManagement.getTotalSum().doubleValue());
-				this.contractManagementManager.storeContractManagement(contractManagement);
-			}
-
-			String[] keyArray = new String[2];
-			Object[] valueArray = new Object[2];
-			keyArray[0] = "contractManagement";
-			keyArray[1] = "batch";
-			valueArray[0] = this.financialManagement.getContractManagement().getId();
-			valueArray[1] = this.financialManagement.getBatch();
-			List list = this.returnPlanManager.loadByKeyArray(keyArray, valueArray);
-			if (null != list) {
-				ReturnPlan r = (ReturnPlan) list.get(0);
-
-				r.setFactSum(this.financialManagement.getTrueSum());
-				r.setPaytime(this.financialManagement.getCollectionDate());
-				r.setPayee(this.financialManagement.getPayee());
-				r.setIsOrNot("0");
-				this.returnPlanManager.storeReturnPlan(r);
-			}
-
-			if (this.financialManagement.getWithoutGotSum().doubleValue() == 0.0D) {
-				ContractManagement c = this.financialManagement.getContractManagement();
-				if (null != c) {
-					c.setOverGet("yes");
-					this.contractManagementManager.storeContractManagement(c);
-				}
-
-				List<ReturnPlan> returnPlans = null;
-				if (null != this.financialManagement.getContractManagement()) {
-					returnPlans = this.returnPlanManager.loadByKey("contractManagement", this.financialManagement
-							.getContractManagement().getId());
-
-					if (null != returnPlans) {
-						for (ReturnPlan r : returnPlans) {
-							if (r.getFactSum().doubleValue() == 0.0D) {
-								r.setFactSum(Double.valueOf(0.0D));
-								r.setPaytime(this.financialManagement.getCollectionDate());
-								r.setPayee(this.financialManagement.getPayee());
-								r.setIsOrNot("0");
-								this.returnPlanManager.storeReturnPlan(r);
-							}
-						}
-					}
-				}
-			}
-			return "new";
-		}
+		// 修改合同已付金额
 		List<FinancialManagement> financialManagements = this.financialManagementManager.loadByKey(
 				"contractManagement", this.financialManagement.getContractManagement().getId());
-
-		if (null != financialManagements) {
-			for (FinancialManagement f : financialManagements) {
-				f.setTotalSum(f.getTotalSum());
-				f.setWithoutGotSum(f.getWithoutGotSum());
-				this.financialManagementManager.storeFinancialManagement(f);
+		double paidMoney = 0.0D;
+		for (FinancialManagement f : financialManagements) {
+			paidMoney += f.getTrueSum();
+		}
+		ContractManagement contractManagement = this.financialManagement.getContractManagement();
+		if (null != contractManagement) {
+			contractManagement.setPaidMoney(paidMoney);
+			if (contractManagement.getPaidMoney() >= contractManagement.getContractMoney()) {
+				contractManagement.setOverGet("yes");
 			}
+			this.contractManagementManager.storeContractManagement(contractManagement);
 		}
-		this.financialManagementManager.storeFinancialManagement(this.financialManagement);
-		if ("submit".equals(submit)) {
-			addActionMessage(getText("financialManagement.submit.success"));
-		} else {
-			addActionMessage(getText("financialManagement.edit.success"));
-		}
-
-		ContractManagement contractManagement = this.contractManagementManager
-				.loadContractManagement(this.financialManagement.getContractManagement().getId());
-
-		contractManagement.setPaidMoney(this.financialManagement.getTotalSum().doubleValue());
-		this.contractManagementManager.storeContractManagement(contractManagement);
-
-		String[] keyArray = new String[2];
-		Object[] valueArray = new Object[2];
-		keyArray[0] = "contractManagement";
-		keyArray[1] = "batch";
-		valueArray[0] = this.financialManagement.getContractManagement().getId();
-		valueArray[1] = this.financialManagement.getBatch();
-		List list = this.returnPlanManager.loadByKeyArray(keyArray, valueArray);
-		if (null != list) {
-			ReturnPlan r = (ReturnPlan) list.get(0);
-
-			r.setFactSum(this.financialManagement.getTrueSum());
-			r.setPaytime(this.financialManagement.getCollectionDate());
+		String[] keyArray = { "contractManagement", "batch" };
+		Object[] valueArray = { this.financialManagement.getContractManagement().getId(),
+				this.financialManagement.getBatch() };
+		// 获取同意开票计划的所有的收款单
+		List<FinancialManagement> flist = financialManagementManager.loadByKeyArray(keyArray, valueArray);
+		// 判断收款计划是否全部到款，并修改状态
+		List<ReturnPlan> list = this.returnPlanManager.loadByKeyArray(keyArray, valueArray);
+		if (null != list && list.size() != 0) {
+			ReturnPlan r = list.get(0);
 			r.setPayee(this.financialManagement.getPayee());
-			r.setIsOrNot("0");
+			r.setFactSum((this.financialManagement.getTotalSum() + this.financialManagement.getTrueSum()));
+			if (this.financialManagement.getWithoutGotSum().doubleValue() == 0.0D) {
+				r.setIsOrNot("0");
+				r.setPlanState(codeValueManager.loadByKey("code", "21304").get(0));
+			} else {
+				r.setIsOrNot("1");
+				r.setPlanState(codeValueManager.loadByKey("code", "21302").get(0));
+			}
+			// 设置收款计划开票状态,不由他控制了
+			// if(flist.size()!=0){
+			// int a =0;
+			// for(int i=0;i<flist.size();i++){
+			// a+=Integer.parseInt(flist.get(i).getInvoice());
+			// }
+			// if(this.financialManagement.getWithoutGotSum().doubleValue() ==
+			// 0.0D&&a==0){
+			// r.setBillingOrNot("2");
+			// }else {
+			// if(a==flist.size()){
+			// r.setBillingOrNot("0");
+			// }else {
+			// r.setBillingOrNot("1");
+			// }
+			// }
+			// }
+			r.setPercentt((int) (100 * r.getFactSum() / r.getSum()));
+			r.setPaytime(this.financialManagement.getCollectionDate());
 			this.returnPlanManager.storeReturnPlan(r);
 		}
 
 		if (this.financialManagement.getWithoutGotSum().doubleValue() == 0.0D) {
-			List<ReturnPlan> returnPlans = null;
-			if (null != this.financialManagement.getContractManagement()) {
-				returnPlans = this.returnPlanManager.loadByKey("contractManagement", this.financialManagement
-						.getContractManagement().getId());
-
-				if (null != returnPlans) {
-					for (ReturnPlan r : returnPlans) {
-						if (r.getFactSum().doubleValue() == 0.0D) {
-							r.setFactSum(Double.valueOf(0.0D));
-							r.setPaytime(this.financialManagement.getCollectionDate());
-							r.setPayee(this.financialManagement.getPayee());
-							r.setIsOrNot("0");
-							this.returnPlanManager.storeReturnPlan(r);
-						}
-					}
-				}
+			ContractManagement c = this.financialManagement.getContractManagement();
+			if (null != c) {
+				c.setOverGet("yes");
+				this.contractManagementManager.storeContractManagement(c);
 			}
 		}
-		return "success";
+		if (isNew) {
+			addActionMessage(getText("financialManagement.save.success"));
+			return "new";
+		} else {
+			if ("submit".equals(submit)) {
+				addActionMessage(getText("financialManagement.submit.success"));
+			} else {
+				addActionMessage(getText("financialManagement.edit.success"));
+			}
+			return "success";
+		}
+
+		//
+		// List<FinancialManagement> financialManagements =
+		// this.financialManagementManager.loadByKey(
+		// "contractManagement",
+		// this.financialManagement.getContractManagement().getId());
+		//
+		// if (null != financialManagements) {
+		// for (FinancialManagement f : financialManagements) {
+		// f.setTotalSum(f.getTotalSum());
+		// f.setWithoutGotSum(f.getWithoutGotSum());
+		// this.financialManagementManager.storeFinancialManagement(f);
+		// }
+		// }
+		// this.financialManagementManager.storeFinancialManagement(this.financialManagement);
+		//
+		//
+		// ContractManagement contractManagement =
+		// this.contractManagementManager
+		// .loadContractManagement(this.financialManagement.getContractManagement().getId());
+		//
+		// contractManagement.setPaidMoney(this.financialManagement.getTotalSum().doubleValue());
+		// this.contractManagementManager.storeContractManagement(contractManagement);
+		//
+		// String[] keyArray = { "contractManagement", "batch" };
+		// Object[] valueArray = {
+		// this.financialManagement.getContractManagement().getId(),
+		// this.financialManagement.getBatch() };
+		// List<ReturnPlan> list =
+		// this.returnPlanManager.loadByKeyArray(keyArray, valueArray);
+		// if (null != list) {
+		// ReturnPlan r = (ReturnPlan) list.get(0);
+		//
+		// r.setFactSum(this.financialManagement.getTrueSum());
+		// r.setPayee(this.financialManagement.getPayee());
+		// r.setFactSum((this.financialManagement.getTotalSum() +
+		// this.financialManagement.getTrueSum()));
+		// if (this.financialManagement.getWithoutGotSum().doubleValue() ==
+		// 0.0D) {
+		// r.setIsOrNot("0");
+		// }
+		// this.returnPlanManager.storeReturnPlan(r);
+		// }
+
+		// if (this.financialManagement.getWithoutGotSum().doubleValue() ==
+		// 0.0D) {
+		// List<ReturnPlan> returnPlans = null;
+		// if (null != this.financialManagement.getContractManagement()) {
+		// returnPlans = this.returnPlanManager.loadByKey("contractManagement",
+		// this.financialManagement
+		// .getContractManagement().getId());
+		//
+		// if (null != returnPlans) {
+		// for (ReturnPlan r : returnPlans) {
+		// if (r.getFactSum().doubleValue() == 0.0D) {
+		// r.setFactSum(Double.valueOf(0.0D));
+		// r.setPaytime(this.financialManagement.getCollectionDate());
+		// r.setPayee(this.financialManagement.getPayee());
+		// r.setIsOrNot("0");
+		// this.returnPlanManager.storeReturnPlan(r);
+		// }
+		// }
+		// }
+		// }
+		// }
 	}
 
 	public List<CodeValue> getAllBatchs() {
@@ -420,5 +468,13 @@ public class EditFinancialManagementAction extends PrepareAction {
 
 	public void setPopWindowFlag(String popWindowFlag) {
 		this.popWindowFlag = popWindowFlag;
+	}
+	public PersonnelFiles getPersonnelF() throws Exception {
+		List pfs = this.personnelFilesManager.loadByKey("code", this.userManager.getUser().getCode());
+
+		if ((null != pfs) && (pfs.size() > 0)) {
+			return (PersonnelFiles) pfs.get(0);
+		}
+		return null;
 	}
 }

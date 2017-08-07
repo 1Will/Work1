@@ -3,9 +3,11 @@
 /*     */ import com.yongjun.pluto.exception.DaoException;
 /*     */ import com.yongjun.pluto.model.codevalue.CodeValue;
 /*     */ import com.yongjun.pluto.service.codevalue.CodeValueManager;
+import com.yongjun.pluto.service.file.FileTransportManager;
 /*     */ import com.yongjun.pluto.webwork.action.valuelist.ValueListAction;
 /*     */ import com.yongjun.tdms.model.financeManagement.paymentorder.Paymentorder;
 /*     */ import com.yongjun.tdms.service.financeManagement.paymentorder.PaymentorderManager;
+
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.List;
 /*     */ 
@@ -14,17 +16,23 @@
 /*     */   private static final long serialVersionUID = 1L;
 /*     */   private final PaymentorderManager paymentorderManager;
 /*     */   private final CodeValueManager codeValueManager;
+            private final FileTransportManager fileTransportManager;
 /*  59 */   private List<Paymentorder> paymentorders = null;
+            private Paymentorder paymentorder;
 /*     */ 
-/*     */   public ListPaymentorderAction(PaymentorderManager paymentorderManager, CodeValueManager codeValueManager)
+/*     */   public ListPaymentorderAction(PaymentorderManager paymentorderManager, CodeValueManager codeValueManager,FileTransportManager fileTransportManager)
 /*     */   {
 /*  68 */     this.paymentorderManager = paymentorderManager;
 /*  69 */     this.codeValueManager = codeValueManager;
+              this.fileTransportManager=fileTransportManager;
 /*     */   }
 /*     */ 
 /*     */   public void prepare()
 /*     */     throws Exception
 /*     */   {
+				if(hasId("paymentorder.id")){
+				this.paymentorder =paymentorderManager.loadPaymentorder(getId("paymentorder.id"));
+				}
 /*  79 */     if ((null == this.paymentorders) && 
 /*  80 */       (hasIds("paymentorderIds")))
 /*  81 */       this.paymentorders = this.paymentorderManager.loadAllPaymentorder(getIds("paymentorderIds"));
@@ -86,6 +94,11 @@
 /* 159 */       addActionMessage(getText("paymentorder.enabled.error"));
 /* 160 */     }return "error";
 /*     */   }
+			public String download() {
+			this.fileTransportManager.download(this.request, this.response, this.paymentorder.getFileName(),
+			this.paymentorder.getPosition());
+			return null;
+			}
 /*     */ 
 /*     */   public List<CodeValue> getAllProduceType()
 /*     */   {
@@ -116,6 +129,13 @@
 /* 192 */       codes.add(0, cv);
 /* 193 */     }return codes;
 /*     */   }
+public Paymentorder getPaymentorder() {
+	return paymentorder;
+}
+public void setPaymentorder(Paymentorder paymentorder) {
+	this.paymentorder = paymentorder;
+}
+           
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

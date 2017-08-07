@@ -23,9 +23,9 @@
 <@inputTable>
 	<#--<@ww.hidden name="'sex'" value="'${req.getParameter('sex')?if_exists}'"/>-->
 	<tr>
- 		<@ww.textfield label="'${action.getText('contractManagement.code')}'" name="'contractManagement.code'" value="'${req.getParameter('contractManagement.code')?if_exists}'" cssClass="'underline'" />
+ 		<@ww.textfield label="'${action.getText('financialManagement.code')}'" name="'financialManagement.code'" value="'${req.getParameter('financialManagement.code')?if_exists}'" cssClass="'underline'" />
 		<@ww.textfield label="'${action.getText('financialManagement.contractManagement')}'" name="'financialManagement.contractManagement'" value="'${req.getParameter('financialManagement.contractManagement')?if_exists}'" cssClass="'underline'"/>
-		<@ww.textfield label="'${action.getText('customerInfo.code')}'" name="'customerInfo.code'" value="'${req.getParameter('customerInfo.code')?if_exists}'" cssClass="'underline'"/>
+		<@ww.textfield label="'${action.getText('financialManagement.contractManagement.projectInfo.name')}'" name="'projectInfo.name'" value="'${req.getParameter('projectInfo.name')?if_exists}'" cssClass="'underline'"/>
 	</tr>
 	<tr>
 		<@ww.textfield label="'${action.getText('financialManagement.customerInfo')}'" name="'financialManagement.customerInfo'" value="'${req.getParameter('financialManagement.customerInfo')?if_exists}'" cssClass="'underline'"/>

@@ -35,6 +35,7 @@ import com.yongjun.tdms.service.customercontract.contractmanagement.ContractMana
 import com.yongjun.tdms.service.customercontract.contractmanagement.productlist.ProductListManager;
 import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 import com.yongjun.tdms.service.project.ProjectInfoManager;
+import com.yongjun.tdms.service.workspace.data.DataManager;
 import com.yongjun.tdms.util.personnelFilesToUser.PersonnelFilesToUserManager;
 
 public class EditContractManagementAction extends PrepareAction {
@@ -53,6 +54,7 @@ public class EditContractManagementAction extends PrepareAction {
 	private final EventNewManager eventNewManager;
 	private final PersonnelFilesToUserManager personnelFilesToUserManager;
 	private final ContactToHistoryManager contactToHistoryManager;
+	private DataManager dataManager;
 
 	private ContractManagement contractManagement = null;
 	private CustomerInfo customerInfo = null;
@@ -66,14 +68,15 @@ public class EditContractManagementAction extends PrepareAction {
 	private CodeValue payType;
 	private CodeValue state;
 	private String popWindowFlag;
+	private PersonnelFiles personnelFiles;
 
 	public EditContractManagementAction(ContractManagementManager contractManagementManager,
 			CustomerInfoManager customerInfoManager, ContactArchivesManager contactArchivesManager,
 			CodeValueManager codeValueManager, PersonnelFilesManager personnelFilesManager,
 			DepartmentManager departmentManager, InstitutionManager institutionManager, UserManager userManager,
 			ProductListManager productListManager, ProjectInfoManager projectInfoManager,
-			EventTypeManager eventTypeManager,EventNewManager eventNewManager,PersonnelFilesToUserManager personnelFilesToUserManager,
-			ContactToHistoryManager contactToHistoryManager) {
+			EventTypeManager eventTypeManager, EventNewManager eventNewManager,
+			PersonnelFilesToUserManager personnelFilesToUserManager, ContactToHistoryManager contactToHistoryManager,DataManager dataManager) {
 		this.contractManagementManager = contractManagementManager;
 		this.customerInfoManager = customerInfoManager;
 		this.personnelFilesManager = personnelFilesManager;
@@ -88,6 +91,7 @@ public class EditContractManagementAction extends PrepareAction {
 		this.eventNewManager = eventNewManager;
 		this.personnelFilesToUserManager = personnelFilesToUserManager;
 		this.contactToHistoryManager = contactToHistoryManager;
+		this.dataManager=dataManager;
 	}
 
 	public void prepare() throws Exception {
@@ -107,6 +111,7 @@ public class EditContractManagementAction extends PrepareAction {
 					if (null != list) {
 						this.saleman = ((PersonnelFiles) list.get(0));
 						this.contractManagement.setSaleman(this.saleman);
+						personnelFiles=((PersonnelFiles) list.get(0));
 					}
 				}
 			}
@@ -169,7 +174,7 @@ public class EditContractManagementAction extends PrepareAction {
 			if (hasId("state.id")) {
 				this.state = this.codeValueManager.loadCodeValue(getId("state.id"));
 			} else {
-				this.state = null;
+				this.state = codeValueManager.loadByKey("code", "06603").get(0);
 			}
 		}
 		if (null == this.institution)
@@ -198,35 +203,7 @@ public class EditContractManagementAction extends PrepareAction {
 		if (hasId("saleman.id")) {
 			this.saleman = this.personnelFilesManager.loadPersonnel(getId("saleman.id"));
 		}
-		String submit ="";
-        if ("1".equals(this.request.getParameter("contractManagement.isSaved"))) {
-				try {
-					EventType eventType=null;
-					List<EventType> eventTypes =this.eventTypeManager.loadByKey("code", "10006");
-					if(eventTypes!=null&&eventTypes.size()>0){
-						eventType=eventTypes.get(0);
-					}else {
-						eventType = new EventType();
-						eventType.setId(7L);
-					}
-				 	EventNew event = new EventNew();
-				    event.setEffectflag("E");
-				    event.setEventType(eventType);
-				    event.setName("合同事件");
-				    event.setUserId(this.userManager.getUser().getId()+"");
-				    Map<String, String> map = new HashMap();
-				    String pids =this.personnelFilesToUserManager.loadUserIdToStrByProjectInfoId(this.projectInfo.getId(), this.projectInfo.getCreateUser());
-				    map.put("users",pids);
-				    map.put("contractManagementId", this.contractManagement.getId()+"");
-					String moreinfo = JSONObject.fromObject(map).toString();
-					event.setMoreinfo(moreinfo);
-					eventNewManager.storeEventNew(event);
-					submit ="submit";
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-			}
-        this.contractManagement.setIsSaved(request.getParameter("contractManagement.isSaved"));
+		this.contractManagement.setIsSaved(request.getParameter("contractManagement.isSaved"));
 		try {
 			this.contractManagement.setCustomerInfo(this.customerInfo);
 			this.contractManagement.setLinkman(this.linkman);
@@ -239,41 +216,85 @@ public class EditContractManagementAction extends PrepareAction {
 			this.contractManagement.setState(this.state);
 			this.contractManagement.setInstitution(this.institution);
 			this.contractManagement.setDeparment(this.deparment);
+			
+			if(isNew){
+				this.contractManagement.setSubmitNum(0l);
+			}else {
+				if(this.contractManagement.getIsSaved().equals("1")){
+	            	 this.contractManagement.setSubmitNum(this.contractManagement.getSubmitNum()+1);
+	             }
+			}
+			
 			this.contractManagementManager.storeContractManagement(this.contractManagement);
+
+			String submit = "";
+			if ("1".equals(this.request.getParameter("contractManagement.isSaved"))) {
+				EventType eventType = null;
+				List<EventType> eventTypes = this.eventTypeManager.loadByKey("code", "10006");
+				if (eventTypes != null && eventTypes.size() > 0) {
+					eventType = eventTypes.get(0);
+				} else {
+					eventType = new EventType();
+					eventType.setId(7L);
+				}
+				EventNew event = new EventNew();
+				event.setEffectflag("E");
+				event.setEventType(eventType);
+				event.setName("合同事件");
+				event.setUserId(this.userManager.getUser().getId() + "");
+				Map<String, String> map = new HashMap();
+				String pids = this.personnelFilesToUserManager.loadUserIdToStrByProjectInfoId(this.projectInfo.getId(),
+						this.projectInfo.getCreateUser());
+				map.put("users", pids);
+				map.put("contractManagementId", this.contractManagement.getId() + "");
+				String moreinfo = JSONObject.fromObject(map).toString();
+				event.setMoreinfo(moreinfo);
+				eventNewManager.storeEventNew(event);
+				
+				 HashMap mapData =new HashMap();
+	              mapData.put("type", "10006");
+	              mapData.put("thisMoney", contractManagement.getContractMoney());
+	              mapData.put("lastMoney",contractManagement.getLastSubmitMoney() );
+				mapData.put("submitNum", this.contractManagement.getSubmitNum());
+				mapData.put("date", contractManagement.getCiemdinghTime());
+				this.dataManager.storeData(getPersonnelF(), mapData);
+				this.contractManagement.setLastSubmitMoney(contractManagement.getContractMoney());
+				this.contractManagementManager.storeContractManagement(this.contractManagement);//更新上次提交金额为本次的合同金额
+				submit = "submit";
+			}
+
 			// 仅当项目状态为立项的情况下，合同保存后，项目状态改为合同
 			if ("20101".equals(projectInfo.getState().getCode())) {
 				this.projectInfo.setState(this.codeValueManager.loadByKey("code", "20102").get(0));
 				this.projectInfoManager.storeProjectInfo(projectInfo);
 			}
-			
-			if(isNew){
-         	   ContactToHistory history = new ContactToHistory();
-         	   history.setCreator(this.userManager.getUser().getName());
-         	   history.setLastOperator(this.userManager.getUser().getName());
-         	   history.setContractManagement(this.contractManagement);
-         	   history.setConment("创建合同");
-         	   this.contactToHistoryManager.storeContactToHistory(history);
-            }else {
-         	   ContactToHistory history = new ContactToHistory();
-//         	   history.setCreator(this.userManager.getUser().getName());
-         	   history.setLastOperator(this.userManager.getUser().getName());
-         	   history.setContractManagement(this.contractManagement);
-         	   history.setConment("修改基本信息");
-         	   this.contactToHistoryManager.storeContactToHistory(history);
-            }
-			
-			
+
+			if (isNew) {
+				ContactToHistory history = new ContactToHistory();
+				history.setCreator(this.userManager.getUser().getName());
+				history.setLastOperator(this.userManager.getUser().getName());
+				history.setContractManagement(this.contractManagement);
+				history.setConment("创建合同");
+				this.contactToHistoryManager.storeContactToHistory(history);
+			} else {
+				ContactToHistory history = new ContactToHistory();
+				// history.setCreator(this.userManager.getUser().getName());
+				history.setLastOperator(this.userManager.getUser().getName());
+				history.setContractManagement(this.contractManagement);
+				history.setConment("修改基本信息");
+				this.contactToHistoryManager.storeContactToHistory(history);
+			}
+
 			if (isNew) {
 				addActionMessage(getText("contractManagement.add.success"));
 				return "new";
 			}
-			if("submit".equals(submit)){
+			if ("submit".equals(submit)) {
 				addActionMessage(getText("contractManagement.submit.success"));
-			}else {
+			} else {
 				addActionMessage(getText("contractManagement.edit.success"));
 			}
-			
-			
+
 			return "success";
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -477,5 +498,6 @@ public class EditContractManagementAction extends PrepareAction {
 	public void setPopWindowFlag(String popWindowFlag) {
 		this.popWindowFlag = popWindowFlag;
 	}
+	
 
 }

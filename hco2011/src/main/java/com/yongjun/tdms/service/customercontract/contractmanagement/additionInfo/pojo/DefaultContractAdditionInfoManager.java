@@ -1,5 +1,6 @@
 package com.yongjun.tdms.service.customercontract.contractmanagement.additionInfo.pojo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.yongjun.pluto.exception.DaoException;
@@ -87,5 +88,19 @@ public class DefaultContractAdditionInfoManager extends BaseManager implements C
 	 */
 	public List<ContractAdditionalInfo> loadByKey(String key, Object value) throws DaoException {
 		return this.additionalInfoDao.loadByKey(key, value);
+	}
+	
+	public List<String> getBankInfo(Long contractManagementId){
+		List<String> bank =new ArrayList<String>();
+		try {
+			List<ContractAdditionalInfo> contractAdditionalInfos = this.additionalInfoDao.loadByKey("contractManagement.id",contractManagementId);
+			if(contractAdditionalInfos!=null){
+				bank.add(contractAdditionalInfos.get(0).getBank());
+				bank.add(contractAdditionalInfos.get(0).getBankAccount());
+			}
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return bank;
 	}
 }

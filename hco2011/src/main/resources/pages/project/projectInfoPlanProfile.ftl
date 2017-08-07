@@ -23,8 +23,19 @@
 <@htmlPage title="${action.getText('projectInfo.proPlan')}">
 <@ww.form namespace="'/projectInfo'" name="'projectInfo'" action="'saveProPlan'" method="'post'">
 	<@ww.token name="saveProjectInfoPlanToken"/>
+	<#assign returnUrl='${req.contextPath}/projectInfo/editProPlan.html??yesUrl=yesUrl'/>
     <@inputTable>
-    	<@ww.hidden name="'projectInfo.id'" value="'${projectInfoId?if_exists}'"/>
+    	<#if projectInfoId?exists>
+    		<@ww.hidden name="'projectInfo.id'" value="'${projectInfoId}'"/>
+    		<#assign returnUrl=returnUrl + '&projectInfo.id=${projectInfoId}'/>
+    	</#if>
+    	<#if contractManagementId?exists>
+    		<@ww.hidden name="'contractManagement.id'" value="'${contractManagementId}'"/>
+    		<#assign returnUrl=returnUrl + '&contractManagement.id=${contractManagementId}'/>
+    	</#if>
+    	
+    	<@ww.hidden name="'editFlag'" value="'${editFlag?if_exists}'"/>
+    	<@ww.hidden name="'projectInfoPlan.isSaved'" value="''"/>
     	<#if projectInfoPlan.id?exists>
     	<@ww.hidden name="'personnelFiles.id'" value="'#{projectInfoPlan.personnelFiles.id}'"/>
     	<#else>
@@ -45,10 +56,20 @@
 	       		<span class="required">*</span>
 	       		<label class="label">${action.getText('projectInfoPlan.name')}:</label>
 	     	</td>
-			<td colspan="3">
-				<input type="text" name="projectInfoPlan.name" class="underline"  value="${projectInfoPlan.name?if_exists}" maxlength="140" size="120" />
+			<td>
+				<input type="text" name="projectInfoPlan.name" class="underline"  value="${projectInfoPlan.name?if_exists}" maxlength="100" size="80" />
 			</td>
 		<!---->
+		<@ww.select label="'${action.getText('计划状态')}'" 
+				name="'planState.id'" 
+				value="'${req.getParameter('planState.id')?if_exists}'"
+				listKey="id"
+				listValue="name"
+				list="allPlanState"
+				required="true"
+				emptyOption="false" 
+				>
+			</@ww.select>
 	</tr>
     
    <tr>
@@ -116,7 +137,7 @@
 			<label class="label">完成百分比:</label>
 		</td>
 		<td>
-			<input type="text" style="width:60px" value="${projectInfoPlan.percentt?if_exists}" id="projectInfoPlan.percentt" name="projectInfoPlan.percentt">%
+			<input type="text" style="width:60px" value="${projectInfoPlan.percentt?if_exists}" id="projectInfoPlan.percentt" name="projectInfoPlan.percentt" onblur="checkPercentt();">%
 		</td>
 		<td align="right" valign="top">
 			<label class="label">优先级:</label>
@@ -133,7 +154,7 @@
 			<option value="8">8</option>
 			<option value="9">9</option>
 			<option value="10">10</option>
-			</select>
+			</select><font color="red">10级为最高优先级</font>
 		</td>
 		<script>
 			getObjByName("projectInfoPlan.priority").value=${projectInfoPlan.priority?if_exists};
@@ -149,19 +170,29 @@
         		</label>
         	</td>
 	        <td colspan="10">
-	        	<textarea name="projectInfoPlan.outline" rows="6" cols="120" >${projectInfoPlan.outline?if_exists}</textarea>
+	        	<textarea name="projectInfoPlan.outline" rows="4" cols="150" >${projectInfoPlan.outline?if_exists}</textarea>
 	        </td>
 		</tr>
     </@inputTable>
     <@buttonBar>
     	<#if !(action.isReadOnly())>
-			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 		</#if>
+		<#-- 
+		<#if projectInfoPlan.isSaved?exists &&projectInfoPlan.isSaved=='0' >
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+	    <#else>
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+	    </#if>
+		 -->
 		
+		<#if (editFlag?exists&&editFlag=='editFlag')>
+		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/projectInfo/listMyPlan.html"/>
+		<#else>
 		<#-- 继续新建按钮   -->
 			<#if projectInfoPlan.id?exists>
 			<@redirectButton value="${action.getText('newNext')}" 
-				url="${req.contextPath}/projectInfo/editProPlan.html?projectInfo.id=${projectInfoId?if_exists}"/>
+				url="${returnUrl}"/>
 			<#else>
 			<@redirectButton name="newNext" value="${action.getText('newNext')}" 
 				url="${req.contextPath}/projectInfo/editProPlan.html"/>
@@ -170,14 +201,19 @@
 			</script>
 			</#if>
 		
-		<input type="button" value="${action.getText('close')}"  onclick="closeThis();">
+		<input class="button" type="button" value="${action.getText('close')}"  onclick="closeThis();">
+		</#if>
     </@buttonBar>
 
 </@ww.form>
 
 <script type="text/javascript">
 	window.onload=function(){
-		
+		 <#if projectInfoPlan.planState?exists>
+			getObjByName('planState.id').value='${projectInfoPlan.planState.id?if_exists}';
+			<#elseif req.getParameter('planState.id')?exists>
+			getObjByName('planState.id').value='${req.getParameter('planState.id')}';
+		</#if>
 		
 	}
 	//弹出业务员查询模态窗体
@@ -222,8 +258,34 @@
 		}
 	}
 	
+	function checkPercentt(){
+	var  percentt =getObjByName("projectInfoPlan.percentt").value;
+	if(!isNumber("projectInfoPlan.percentt")){
+	alert("完成百分比请输入数字");
+	getObjByName("projectInfoPlan.percentt").fcous();
+	}
+	if(percentt<0||percentt>100){
+	alert("完成百分比只能是1到100之间的数字数字");
+	getObjByName("projectInfoPlan.percentt").fcous();
+	}
+	//当完成百分比为100的时候。就是自动更新状态为已完成
+	if(percentt==100){
+	getObjByName('planState.id').value="545";//已完成
+	}else if(percentt==0){
+	getObjByName('planState.id').value="542";//待执行
+	}else{
+	getObjByName('planState.id').value="543";//执行中
+	}
+	}
 	
-	
+	function savee(){
+     	getObjByName('projectInfoPlan.isSaved').value=0;
+		return storeValidation();
+	}
+	function submitt(){
+     	getObjByName('projectInfoPlan.isSaved').value=1;
+		return storeValidation();
+	}
 	
 	//保存前给隐藏域赋值和验证字段
 	function storeValidation(){
@@ -244,6 +306,15 @@
 			alert("${action.getText('projectInfoPlan.endDate.required')}");
      		return false;
 		}
+		var  percentt =getObjByName("projectInfoPlan.percentt").value;
+	if(!isNumber("projectInfoPlan.percentt")){
+	alert("完成百分比请输入数字");
+	return false;
+	}
+	if(percentt<0||percentt>100){
+	alert("完成百分比只能是1到100之间的数字数字");
+	return false;
+	}
 		/* 验证项目概要 */
      		if(''!= getObjByName('projectInfoPlan.outline').value&&!isValidLengthValue(getObjByName('projectInfoPlan.outline').value,0,500)){
      			alert("${action.getText('planOutline.maxLength')}");

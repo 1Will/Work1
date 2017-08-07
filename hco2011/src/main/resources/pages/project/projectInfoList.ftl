@@ -4,10 +4,13 @@
 	<@ww.form name="'listForm'" namespace="'/projectInfo'" action="'searchProjectInfo'" method="'post'">
 		<@ww.token name="searchProjectInfoToken"/>
 		<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
+		<@ww.hidden name="'backVisitCheckBox'" value="'${backVisitCheckBox?if_exists}'"/>
 		<#include "./projectInfoSearcher.ftl" />
 		<@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'"  />
-			<#if !backVisitCheckBox?exists>
+			<#if backVisitCheckBox?exists&&backVisitCheckBox=='backVisitCheckBox'>
+				<@ww.hidden name="'customer.id'" value="'${req.getParameter('customer.id')?if_exists}'"/>
+			<#else>
 			<#if !(action.isReadOnly())>
 				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/projectInfo/editProjectInfo.html"/>
 			</#if>
@@ -15,11 +18,12 @@
         </@buttonBar>
         <#assign returnName='replaceWord'>
         <@list title="${action.getText('projectInfoList')}" 
-        includeParameters="code|name|customer.name|customer.id|contact.name|controller.name|state.id|readOnly|onlyInvalid|onlyValid" 
+        includeParameters="code|name|customer.name|customer.id|contact.name|backVisitCheckBox|controller.name|state.id|readOnly|onlyInvalid|onlyValid" 
         fieldMap="like:code|name|customer.name|contact.name|controller.name" >
           <#if !contactArchivesFlag?exists>
             <#if !(action.isReadOnly())>
-          <#if !backVisitCheckBox?exists>
+          <#if backVisitCheckBox?exists&&backVisitCheckBox=='backVisitCheckBox'>
+	      <#else>
 	            <@vlh.checkbox property="id" name="projectInfoIds">
 	                <@vlh.attribute name="width" value="30" />
 	            </@vlh.checkbox>
@@ -30,15 +34,15 @@
               <@vcolumn title="${action.getText('code')}" property="code" sortable="desc">
              <a href="javascript: returnDialog(new Array(#{object.id}, '${object.name}',#{object.contact.id},'${object.contact.name}'));"
                  title="${object.code}%">${object.code}</a>
-            <@alignLeft/>
+            <@alignCenter/>
             </@vcolumn>
             <#else>
               <@vcolumn title="${action.getText('code')}" property="code" sortable="desc">
-              <#if !backVisitCheckBox?exists>
-             	<a href="editProjectInfo.html?projectInfo.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}"
+              <#if backVisitCheckBox?exists && backVisitCheckBox=='backVisitCheckBox'>
+                <a href="javascript: returnDialog(new Array(#{object.id}, '${object.name}',#{object.contact.id},'${object.contact.name}'));"
                  title="${object.code}%">${object.code}</a>
                 <#else> 
-                <a href="javascript: returnDialog(new Array(#{object.id}, '${object.name}',#{object.contact.id},'${object.contact.name}'));"
+             	<a href="editProjectInfo.html?projectInfo.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}"
                  title="${object.code}%">${object.code}</a>
                 </#if>
             <@alignLeft/>
@@ -71,18 +75,23 @@
 		            <script>
 		            	var s = getObjByName('${returnName}').value;
 		            	s=s.replace(/[\r\n]/g, "");
+		            	if(s.length>18){
 		            	document.write(s.slice(0,18)+"...");
+		            	}else if(s.length >0){
+		            	document.write(s);
+		            	}else{
+		            	}
 		            </script>
 	            </span>
             
             <@alignLeft />
             </@vcolumn>
             <@vcolumn title="${action.getText('state.name')}" property="state.name" sortable="desc"  >
-            <@alignCenter attributes="width:50;"/>
+            <@alignLeft attributes="width:50;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('回访次数')}" property="backVisitSum" sortable="desc">
             	<a href="javascript:visitBack_OpenDialog(#{object.customer.id?if_exists})" >${object.customer.backVisitSum?if_exists}</a>
-            <@alignLeft attributes="width:50;"/>
+            <@alignRight attributes="width:50;"/>
             </@vcolumn>
              <@vcolumn title="${action.getText('告警状态')}" property="customer.state.name" sortable="desc">
             <@alignLeft/>
@@ -95,7 +104,8 @@
        <#if !contactArchivesFlag?exists>
 	    <#if !first>
 	        <#if !(action.isReadOnly())>
-	        <#if !backVisitCheckBox?exists>
+	        <#if backVisitCheckBox?exists&&backVisitCheckBox=='backVisitCheckBox'>
+	        <#else>
 		        <@buttonBar>
 		        <@crm_disabledOrEnabled_Nodelete_button message="${action.getText('项目管理')}" boxName="projectInfoIds" jsFunctionName="checkInvalidParms()"/>
 		        </@buttonBar>

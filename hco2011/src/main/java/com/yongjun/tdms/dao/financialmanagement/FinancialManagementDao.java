@@ -2,6 +2,8 @@ package com.yongjun.tdms.dao.financialmanagement;
 
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.tdms.model.financialmanagement.FinancialManagement;
+
+import java.util.HashMap;
 import java.util.List;
 
 public abstract interface FinancialManagementDao
@@ -25,6 +27,7 @@ public abstract interface FinancialManagementDao
     throws DaoException;
 
   public abstract String getMaxPFCode(String paramString);
+  public abstract HashMap getDataMap(String staDate,String endDate);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

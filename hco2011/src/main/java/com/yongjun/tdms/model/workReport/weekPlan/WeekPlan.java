@@ -1,10 +1,12 @@
 package com.yongjun.tdms.model.workReport.weekPlan;
 
 import com.yongjun.pluto.model.BaseInfoEntity;
+import com.yongjun.pluto.model.security.User;
 import com.yongjun.pluto.model.tracking.CreatedTimeTracking;
 import com.yongjun.pluto.model.tracking.CreatorTracking;
 import com.yongjun.pluto.model.tracking.LastOperatorTracking;
 import com.yongjun.tdms.model.project.ProjectInfo;
+import com.yongjun.tdms.model.workReport.week.Week;
 import com.yongjun.tdms.model.workReport.weekly.Weekly;
 
 public class WeekPlan extends BaseInfoEntity implements CreatedTimeTracking, CreatorTracking, LastOperatorTracking {
@@ -12,6 +14,14 @@ public class WeekPlan extends BaseInfoEntity implements CreatedTimeTracking, Cre
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private ProjectInfo projectInfo;
+	private Weekly weekly;
+	private String lastPlan;
+	private String thisPlan;
+	private String nextPlan;
+	private Week week;
+	private User user;
 
 	@Override
 	public int hashCode() {
@@ -28,13 +38,7 @@ public class WeekPlan extends BaseInfoEntity implements CreatedTimeTracking, Cre
 		}
 		return false;
 	}
-
-	private ProjectInfo projectInfo;
-	private Weekly weekly;
-	private String lastPlan;
-	private String thisPlan;
-	private String nextPlan;
-
+	
 	public ProjectInfo getProjectInfo() {
 		return projectInfo;
 	}
@@ -73,6 +77,22 @@ public class WeekPlan extends BaseInfoEntity implements CreatedTimeTracking, Cre
 
 	public void setNextPlan(String nextPlan) {
 		this.nextPlan = nextPlan;
+	}
+
+	public Week getWeek() {
+		return week;
+	}
+
+	public void setWeek(Week week) {
+		this.week = week;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }
