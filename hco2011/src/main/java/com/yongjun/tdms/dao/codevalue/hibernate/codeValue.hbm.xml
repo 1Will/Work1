@@ -32,7 +32,7 @@
         </id>
         <version name="version" column="VERSION" type="long"/>
         
-        <property name="code" type="string">
+        <property name="code" type="string" unique="true">
             <column name="CODE" not-null="true" length="20" />
         </property>
 		<property name="name" type="string">

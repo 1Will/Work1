@@ -60,10 +60,10 @@
             <@alignLeft/>
         </@vcolumn>-->
         <@vcolumn title="${action.getText('contractAdministrator.signingDate')}" property="signingDate" format="yyyy-MM-dd" sortable="desc">
-        	<@alignCenter/>
+        	<@alignLeft/>
         </@vcolumn>
         <@vcolumn title="${action.getText('contractAdministrator.contractEndDate')}" property="contractEndDate" format="yyyy-MM-dd" sortable="desc">
-        	<@alignCenter/>
+        	<@alignLeft/>
         </@vcolumn>
         <@vcolumn title="${action.getText('contractAdministrator.duty')}" property="duty.name" sortable="asc">
             <@alignLeft/>

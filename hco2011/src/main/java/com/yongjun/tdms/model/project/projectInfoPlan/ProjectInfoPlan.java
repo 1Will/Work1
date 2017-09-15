@@ -14,8 +14,11 @@ public class ProjectInfoPlan extends BaseInfoEntity {
 	private String name;// 任务名称
 	private Date startDate;// 预计开始时间
 	private Date endDate;// 预计结束时间
+	private Date startFactDate;// 预计开始时间
+	private Date endFactDate;// 预计结束时间
 	private PersonnelFiles personnelFiles;// 责任人
 	private String assist;// 协助者
+	private String assistIds;// 协助者带id
 	private String outline;// 主要说明
 	private int percentt;// 百分比
 	private int priority;// 优先级
@@ -137,6 +140,30 @@ public class ProjectInfoPlan extends BaseInfoEntity {
 
 	public void setIsSaved(String isSaved) {
 		this.isSaved = isSaved;
+	}
+
+	public Date getStartFactDate() {
+		return startFactDate;
+	}
+
+	public void setStartFactDate(Date startFactDate) {
+		this.startFactDate = startFactDate;
+	}
+
+	public Date getEndFactDate() {
+		return endFactDate;
+	}
+
+	public void setEndFactDate(Date endFactDate) {
+		this.endFactDate = endFactDate;
+	}
+
+	public String getAssistIds() {
+		return assistIds;
+	}
+
+	public void setAssistIds(String assistIds) {
+		this.assistIds = assistIds;
 	}
 
 }

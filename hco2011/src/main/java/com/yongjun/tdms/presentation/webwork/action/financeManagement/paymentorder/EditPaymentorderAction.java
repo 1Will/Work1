@@ -1,5 +1,6 @@
 package com.yongjun.tdms.presentation.webwork.action.financeManagement.paymentorder;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ import com.yongjun.pluto.presentation.webwork.FileTransportAction;
 import com.yongjun.pluto.service.codevalue.CodeValueManager;
 import com.yongjun.pluto.service.file.FileTransportManager;
 import com.yongjun.pluto.service.security.UserManager;
+import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo;
 import com.yongjun.tdms.model.base.event.EventNew;
 import com.yongjun.tdms.model.base.event.EventType;
 import com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement;
@@ -22,6 +24,7 @@ import com.yongjun.tdms.model.financeManagement.paymentorder.Paymentorder;
 import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
 import com.yongjun.tdms.model.project.ProjectInfo;
 import com.yongjun.tdms.model.supplier.Supplier;
+import com.yongjun.tdms.service.CustomerRelationship.customerProfiles.CustomerInfoManager;
 import com.yongjun.tdms.service.base.event.EventNewManager;
 import com.yongjun.tdms.service.base.event.EventTypeManager;
 import com.yongjun.tdms.service.base.org.DepartmentManager;
@@ -45,19 +48,25 @@ public class EditPaymentorderAction extends FileTransportAction {
 	private final EventTypeManager eventTypeManager;
 	private final EventNewManager eventNewManager;
 	private final PersonnelFilesToUserManager personnelFilesToUserManager;
+	private final CustomerInfoManager customerInfoManager;
 	private Paymentorder paymentorder;
 	private Supplier supplier;
 	private PersonnelFiles paymentPersion = null;
 	private Department department;
 	private CodeValue produceType;
+	private CodeValue payType;
+	private CodeValue moneyType;
 	private ProjectInfo projectInfo;
 	private ContractManagementManager contractManagementManager;
+	private CustomerInfo customerInfo;
+	private String popWindowFlag;
 
 	public EditPaymentorderAction(PaymentorderManager paymentorderManager, CodeValueManager codeValueManager,
 			PersonnelFilesManager personnelFilesManager, DepartmentManager departmentManager,
 			SupplierManager supplierManager, UserManager userManager, ProjectInfoManager projectInfoManager,
 			ContractManagementManager contractManagementManager, FileTransportManager fileTransportManager,
-			EventTypeManager eventTypeManager,EventNewManager eventNewManager,PersonnelFilesToUserManager personnelFilesToUserManager) {
+			EventTypeManager eventTypeManager, EventNewManager eventNewManager,
+			PersonnelFilesToUserManager personnelFilesToUserManager,CustomerInfoManager customerInfoManager) {
 		this.paymentorderManager = paymentorderManager;
 		this.personnelFilesManager = personnelFilesManager;
 		this.codeValueManager = codeValueManager;
@@ -70,9 +79,13 @@ public class EditPaymentorderAction extends FileTransportAction {
 		this.eventTypeManager = eventTypeManager;
 		this.eventNewManager = eventNewManager;
 		this.personnelFilesToUserManager = personnelFilesToUserManager;
+		this.customerInfoManager = customerInfoManager;
 	}
 
 	public void prepare() throws Exception {
+		if (request.getParameter("popWindowFlag") != null) {
+			this.popWindowFlag = request.getParameter("popWindowFlag");
+		}
 		if (null == this.paymentorder) {
 			if (hasId("paymentorder.id")) {
 				this.paymentorder = this.paymentorderManager.loadPaymentorder(getId("paymentorder.id"));
@@ -106,11 +119,33 @@ public class EditPaymentorderAction extends FileTransportAction {
 			}
 		}
 
-		if (null == this.supplier)
-			if (hasId("supplier.id")) {
-				this.supplier = this.supplierManager.loadSupplier(getId("supplier.id"));
+		if (null == this.payType) {
+			if (hasId("payType.id")) {
+				this.payType = this.codeValueManager.loadCodeValue(getId("payType.id"));
+			} else {
+				this.payType = null;
+			}
+		}
+
+		if (null == this.moneyType) {
+			if (hasId("moneyType.id")) {
+				this.moneyType = this.codeValueManager.loadCodeValue(getId("moneyType.id"));
+			} else {
+				this.moneyType = null;
+			}
+		}
+
+		if (null == this.customerInfo)
+			if (hasId("customerInfo.id")) {
+				this.customerInfo = this.customerInfoManager.loadCustomerInfo(getId("customerInfo.id"));
 			} else
-				this.supplier = null;
+				this.customerInfo = null;
+		
+//		if (null == this.supplier)
+//			if (hasId("supplier.id")) {
+//				this.supplier = this.supplierManager.loadSupplier(getId("supplier.id"));
+//			} else
+//				this.supplier = null;
 	}
 
 	public String save() {
@@ -137,8 +172,11 @@ public class EditPaymentorderAction extends FileTransportAction {
 			}
 			this.paymentorder.setDepartment(this.department);
 			this.paymentorder.setPaymentPersion(this.paymentPersion);
-			this.paymentorder.setSupplier(this.supplier);
+			this.paymentorder.setCustomerInfo(this.customerInfo);
+//			this.paymentorder.setSupplier(this.supplier);
 			this.paymentorder.setProduceType(this.produceType);
+			this.paymentorder.setPayType(this.payType);
+			this.paymentorder.setMoneyType(this.moneyType);
 			if (!isNew) {
 				if (this.paymentorder.getPosition() != null) {
 					this.fileTransportManager.delete(this.request, this.paymentorder.getPosition());
@@ -163,12 +201,15 @@ public class EditPaymentorderAction extends FileTransportAction {
 					EventNew event = new EventNew();
 					event.setEffectflag("E");
 					event.setEventType(eventType);
-					event.setName("付款事件");
+					event.setName(eventType.getName());
 					event.setUserId(this.userManager.getUser().getId() + "");
 					Map<String, String> map = new HashMap();
-					String pids = this.personnelFilesToUserManager.loadUserIdToStrByProjectInfoId(this.paymentorder.getProjectInfo().getId(), this.paymentorder.getProjectInfo().getCreateUser());
+					String pids = this.personnelFilesToUserManager.loadUserIdToStrByProjectInfoId(this.paymentorder
+							.getProjectInfo().getId(), this.paymentorder.getProjectInfo().getCreateUser());
 					map.put("users", pids);
 					map.put("paymentorderId", this.paymentorder.getId() + "");
+					map.put("name", new SimpleDateFormat("yyyy-MM-dd").format(this.paymentorder.getCreatedTime())+","+this.paymentorder.getPaymentPersion().getName()+"提交了付款单");
+					map.put("url", "paymentorder/editPaymentorderAction.html?popWindowFlag=popWindowFlag&paymentorder.id="+this.paymentorder.getId());
 					String moreinfo = JSONObject.fromObject(map).toString();
 					event.setMoreinfo(moreinfo);
 					eventNewManager.storeEventNew(event);
@@ -178,12 +219,12 @@ public class EditPaymentorderAction extends FileTransportAction {
 				}
 			}
 			this.paymentorder.setIsSaved(request.getParameter("paymentorder.isSaved"));
-			
+
 			if (isNew) {
 				addActionMessage(getText("paymentorder.add.success"));
 				return "new";
 			}
-			if("submit".equals(submit)){
+			if ("submit".equals(submit)) {
 				addActionMessage(getText("paymentorder.submit.success"));
 				return "success";
 			}
@@ -195,7 +236,7 @@ public class EditPaymentorderAction extends FileTransportAction {
 				addActionMessage(getText("paymentorder.add.error"));
 				return "new";
 			}
-			if("submit".equals(submit)){
+			if ("submit".equals(submit)) {
 				addActionMessage(getText("paymentorder.submit.error"));
 				return ERROR;
 			}
@@ -251,6 +292,46 @@ public class EditPaymentorderAction extends FileTransportAction {
 		return codes;
 	}
 
+	public List<CodeValue> getAllMoneyType() {
+		List codes = null;
+		try {
+			codes = new ArrayList();
+			List one = this.codeValueManager.loadByKey("code", String.valueOf("046"));
+
+			if ((null != one) && (one.size() > 0)) {
+				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
+
+				if ((null != list) && (list.size() > 0)) {
+					codes.addAll(list);
+				}
+			}
+			return codes;
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return codes;
+	}
+
+	public List<CodeValue> getAllPayType() {
+		List codes = null;
+		try {
+			codes = new ArrayList();
+			List one = this.codeValueManager.loadByKey("code", String.valueOf("067"));
+
+			if ((null != one) && (one.size() > 0)) {
+				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
+
+				if ((null != list) && (list.size() > 0)) {
+					codes.addAll(list);
+				}
+			}
+			return codes;
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return codes;
+	}
+
 	public User getUser() {
 		return this.userManager.getUser();
 	}
@@ -270,5 +351,77 @@ public class EditPaymentorderAction extends FileTransportAction {
 
 	public void setPaymentorder(Paymentorder paymentorder) {
 		this.paymentorder = paymentorder;
+	}
+
+	public Supplier getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+
+	public PersonnelFiles getPaymentPersion() {
+		return paymentPersion;
+	}
+
+	public void setPaymentPersion(PersonnelFiles paymentPersion) {
+		this.paymentPersion = paymentPersion;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public CodeValue getProduceType() {
+		return produceType;
+	}
+
+	public void setProduceType(CodeValue produceType) {
+		this.produceType = produceType;
+	}
+
+	public CodeValue getPayType() {
+		return payType;
+	}
+
+	public void setPayType(CodeValue payType) {
+		this.payType = payType;
+	}
+
+	public CodeValue getMoneyType() {
+		return moneyType;
+	}
+
+	public void setMoneyType(CodeValue moneyType) {
+		this.moneyType = moneyType;
+	}
+
+	public ProjectInfo getProjectInfo() {
+		return projectInfo;
+	}
+
+	public void setProjectInfo(ProjectInfo projectInfo) {
+		this.projectInfo = projectInfo;
+	}
+
+	public String getPopWindowFlag() {
+		return popWindowFlag;
+	}
+
+	public void setPopWindowFlag(String popWindowFlag) {
+		this.popWindowFlag = popWindowFlag;
+	}
+
+	public CustomerInfo getCustomerInfo() {
+		return customerInfo;
+	}
+
+	public void setCustomerInfo(CustomerInfo customerInfo) {
+		this.customerInfo = customerInfo;
 	}
 }

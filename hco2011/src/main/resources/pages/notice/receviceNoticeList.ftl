@@ -50,7 +50,7 @@
 	                 <@alignLeft/>
                 </@vcolumn>
                 <@vcolumn title="${action.getText('notice.receviceDate')}" property="receviceDate" format="yyyy-MM-dd" sortable="desc">
-        		     <@alignCenter/>
+        		     <@alignLeft/>
                 </@vcolumn>
                 <#assign readStatus = ''/>
                 <#if object.readStatus?exists>

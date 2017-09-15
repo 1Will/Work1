@@ -2,6 +2,7 @@
 <!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
 <dwr>
 	<allow>
+	    <convert match="com.yongjun.tdms.model.base.produttype.ProductType" converter="bean" />
 		<convert match="com.yongjun.pluto.model.security.Department" converter="bean" />
 		<convert match="com.yongjun.tdms.model.base.area.Area" converter="bean" />
 		<convert match="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo" converter="bean"></convert>
@@ -97,6 +98,26 @@
    			<include method="getBankInfo" />
    		</create>
    		
+   		<!-- 设置消息已读 -->
+   		<create javascript="Read" creator="spring">
+   			<param name="beanName" value="listWorkWarnningDetailAction"></param>
+   			<include method="setRead" />
+   		</create>
+   		<!-- 获取晨会记录 -->
+   		<create javascript="MeetingMonth" creator="spring">
+   		    <param name="beanName" value="meetingMonthManager"></param>
+   		    <include method="loadByDate"/>
+   		</create>
+   		<!-- 设置军品 、民品下拉选-->
+   		<create javascript="AllClassification" creator="spring">
+   		    <param name="beanName" value="customerInfoManager"></param>
+   		    <include method="getAllClassification"/>
+   		</create>
+   		
+   		<create javascript="AllType" creator="spring">
+   		    <param name="beanName" value="productTypeManager"></param>
+   		    <include method="loadByBtype"/>
+   		</create>
    </allow>
 </dwr>
 

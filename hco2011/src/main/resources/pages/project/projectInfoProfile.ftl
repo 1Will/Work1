@@ -169,6 +169,7 @@
 		<#-- 继续新建按钮   -->
 		<#if projectInfo.id?exists>
 			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/projectInfo/editProjectInfo.html"/>
+			<@vbutton value="${action.getText('状态变更')}" class="button" onclick ="changeState()"/>
 		<#else>
 			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/projectInfo/editProjectInfo.html"/>
 				<script language="JavaScript" type="text/JavaScript"> 
@@ -176,6 +177,7 @@
 				</script>
 		</#if>
 	</#if>
+		 
 		 
 		<#if openFlag?exists>
 		<@vbutton name="close" value="${action.getText('关闭')}" class="button" onclick="closeThis();"/>
@@ -198,7 +200,10 @@
 		
 	}
 	
-	
+	function changeState(){
+    	var url = "${req.contextPath}/projectInfo/editProjectState.html?projectInfo.id=${projectInfo.id?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}";
+    	openNewWindow(url);
+    }
 	
 	
 	//弹出客户档案查询模态窗体
@@ -298,7 +303,7 @@
 		<a id="projectPer" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProPer.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.personnelFiles')}</a>
 	</li>
 	<li>
-		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >附件资料</a>
+		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
 	</li>
 	<li>
 		<a id="product" onclick="activeTab(this);" href='${req.contextPath}/projectInfo/listProPro.html?projectInfo.id=#{projectInfo.id}&customerInfo.id=#{projectInfo.customer.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.product')}</a>
@@ -307,11 +312,30 @@
 		<a id="plan" onclick="activeTab(this);" href='${req.contextPath}/projectInfo/listProPlan.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >项目总计划</a>
 	</li>
 	<li>
+		<a id="weekPlanInfo" onclick="activeTab(this);"  href='${req.contextPath}/workReport/listWeekPlanTab.html?projectInfo.id=#{projectInfo.id}' target="frame" >${action.getText('项目周计划')}</a>
+	</li>
+	
+	<li>
 		<a id="backvisit" onclick="activeTab(this);" href='${req.contextPath}/backvisit/listBackVisitByContact.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('projectInfo.backvisit')}</a>
 	</li>
 	
 	<li>
-		<a id="weekPlanInfo" onclick="activeTab(this);"  href='${req.contextPath}/workReport/listWeekPlanTab.html?projectInfo.id=#{projectInfo.id}' target="frame" >${action.getText('项目周计划')}</a>
+		<a id="expenseForm" onclick="activeTab(this);" href='${req.contextPath}/expenseForm/listExpenseFormTabAction.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('报销单')}</a>
+	</li>
+	<li>
+		<a id="paymentorder" onclick="activeTab(this);" href='${req.contextPath}/paymentorder/listPaymentorderTabAction.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('付款单')}</a>
+	</li>
+	<li>
+		<a id="contractInfo" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listContractManagementByCustomerAction.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('合同管理')}</a>
+	</li>
+	<li>
+		<a id="financialManagement" onclick="activeTab(this);"  href='${req.contextPath}/financialManagement/listFinancialManagementTab.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('收款单')}</a>
+	</li>
+	<li>
+		<a id="billingRecord" onclick="activeTab(this);"  href='${req.contextPath}/contractManagement/listBillingRecordByCustomerAction.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('开票记录')}</a>
+	</li>
+	<li>
+		<a id="changeToHistory" onclick="activeTab(this);" href='${req.contextPath}/projectInfo/listProjectState.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('变更历史')}</a>
 	</li>
 	<#-- 
 	<li>
@@ -322,6 +346,6 @@
 	</li>
 	-->
 </ul>
-<iframe name="frame" frameborder="0.5" src="${req.contextPath}/projectInfo/listProCus.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="60%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/projectInfo/listProCus.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="yes" vspace=0 hspace=0 width="100%" height="60%"/>
 </#if>
 

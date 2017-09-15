@@ -25,11 +25,20 @@
 		<#include "./contactArchivesSearcher.ftl" />
 		<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 		<@ww.hidden name="'customerIsNotNull'" value="'${req.getParameter('customerIsNotNull')?if_exists}'"/>
+		<#--用于项目联系人去重-->
+		<@ww.hidden name="'projectId'" value="'${req.getParameter('projectId')?if_exists}'"/>
+		<@ww.hidden name="'projectInfoCus'" value="'${req.getParameter('projectInfoCus')?if_exists}'"/>
+		
 		<#if backVistiFlag?exists>
 			<@ww.hidden name="'backVisitFlag'" value="'${backVistiFlag?if_exists}'"/>
 			<#if customerId?exists>
 				<@ww.hidden name="'customer.id'" value="'#{customerId?if_exists}'"/>
 			</#if>
+		</#if>
+		<#if contactArchiveIds?exists>
+			<@ww.hidden name="'contactArchiveIds_a'" value="'${contactArchiveIds?if_exists}'"/>
+		<#else>
+			<@ww.hidden name="'contactArchiveIds_a'" value="'${req.getParameter('contactArchiveIds')?if_exists}'"/>
 		</#if>
 			
         <@buttonBar>
@@ -46,7 +55,7 @@
 			</#if>
         </@buttonBar>
         <@list title="${action.getText('contactArchives.list.title')}" 
-            includeParameters="contactArchives.name|customerIsNotNull|customer.id|contactArchives.customerName|con_Project.id|type.id|readOnly|onlyInvalid|onlyValid|customer.id|backVisitFlag" 
+            includeParameters="contactArchives.name|customerIsNotNull|customer.id|contactArchives.customerName|projectId|projectInfoCus|con_Project.id|type.id|readOnly|onlyInvalid|onlyValid|customer.id|backVisitFlag" 
         	fieldMap="like:contactArchives.name|contactArchives.customerName" >
         	
         	<#--列表名称： 客户参与者信息列表 -->
@@ -59,12 +68,14 @@
 			
         	<#if backVistiFlag?exists>
         		<#if backVisitCheckBox?exists>
-        		<#if !(action.isReadOnly())>
-		        	<@vlh.checkbox property="name" name="contactArchivesNames">
-		            	<@vlh.attribute name="width" value="30" />
-		            </@vlh.checkbox>
-	            </#if>
-	            </#if>
+	        		<#if !(action.isReadOnly())>
+			        	<@vlh.checkbox property="id" name="contactArchivesNames">
+			            	<@vlh.attribute name="width" value="30" />
+			            </@vlh.checkbox>
+		            </#if>
+		            <@ww.hidden name="'#{object.id}'" value="'#{object.id}:${object.name}'"/>
+	        </#if>
+	            
         		<@vcolumn title="${action.getText('contactArchives.name')}" property="name" sortable="desc">
         		<#if backVisitCheckBox?exists>
 	                    ${object.name}
@@ -100,7 +111,7 @@
 			</#if>
 			<@vcolumn title="${action.getText('contactArchives.sex')}" property="sex" sortable="desc">
 				${sex}
-				<@alignCenter/>
+				<@alignLeft/>
 			</@vcolumn>
 			<@vcolumn title="${action.getText('contactArchives.dept')}" property="dept" sortable="desc">
      			<@alignLeft/>
@@ -115,7 +126,7 @@
      			<@alignLeft attributes="width:150;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('contactArchives.caType')}" property="type.name" sortable="desc">
-     			<@alignCenter/>
+     			<@alignLeft/>
             </@vcolumn>
         </@list>
         <#if backVistiFlag?exists>
@@ -130,26 +141,73 @@
 		</#if>
     </@ww.form>
 </@htmlPage>
+<script>
+	var contactArchiveIds = getObjByName('contactArchiveIds_a').value;
+	var nameAids =contactArchiveIds.split(',');
+	var idss ='';
+	for(var i=0;i<nameAids.length;i++){
+		if(i==nameAids.length-1){
+			idss+=nameAids[i].split(':')[0];
+		}else{
+			idss+=nameAids[i].split(':')[0]+',';
+		}
+	}
+	var ids = idss.split(',');
+	var selector = document.getElementsByName("contactArchivesNames");
+	for(var i =0 ;i<ids.length;i++){
+		for(var j=0;j<selector.length;j++){
+			if(selector[j].value == ids[i]){
+				selector[j].checked = true;
+			}
+		}
+	}
+</script>
 <script language="javascript">
- function return_contactArchives(){
- var name_="";
-  var selector = document.getElementsByName("contactArchivesNames");
-   var length = selector.length;
-   if(length){
-           for(var i=0;i<length;i++){
-           if(selector[i].checked == true){
-              var tempName = selector[i].value;
-              if(name_==""){
-              name_ =tempName;
-              }else{
-              name_+=","+tempName;
-              }
-              
-              }
-              }
-              }
-    
-    returnDialog(new Array(name_));
-    
-    }
+	function contactArchivess(){
+		var name_="";
+		var selector = document.getElementsByName("contactArchivesNames");
+		var length = selector.length;
+		if(length){
+			for(var i=0;i<length;i++){
+				if(selector[i].checked == true){
+					var tempName = selector[i].value;
+					if(name_==""){
+						name_ =tempName;
+					}else{
+						name_+=","+tempName;
+					}
+				}
+			}
+		}
+		returnDialog(new Array(name_));
+	}
+	
+	function return_contactArchives(){
+		var contactArchiveIds = getObjByName('contactArchiveIds_a').value;
+		returnDialog(new Array(contactArchiveIds));
+	}
+	
+	document.onclick = function(){
+		var contactArchiveIds = getObjByName('contactArchiveIds_a').value;
+		var selector = document.getElementsByName("contactArchivesNames");
+		var length = selector.length;
+		if(length){
+			for(var i=0;i<length;i++){
+				if(selector[i].checked == true){
+					var temp = selector[i].value;
+					var tempName = getObjByName(temp).value;
+					if(contactArchiveIds.indexOf(tempName)<0){
+						contactArchiveIds += tempName +",";
+					}
+				}else{
+					var temp = selector[i].value;
+					var tempName = getObjByName(temp).value;
+					contactArchiveIds = contactArchiveIds.replace(tempName+',','');
+				}
+			}
+		}
+		getObjByName('contactArchiveIds_a').value = contactArchiveIds;
+		
+	}
+	
 </script>

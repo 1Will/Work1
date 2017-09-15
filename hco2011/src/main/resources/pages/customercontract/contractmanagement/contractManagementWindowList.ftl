@@ -22,14 +22,15 @@
 
 <@htmlPage title="${action.getText('contractManagementAction.search')}">
 	<@ww.form name="'listForm'" action="'searchContractManagementWindowAction'" method="'post'">
+		<@ww.hidden name="'project.id'" value="'${req.getParameter('project.id')?if_exists}'"/>
 		<@ww.token name="searchContractManagementWindowActionToken"/>
 		<#include "./contractManagementSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms()'"/>
         </@buttonBar>
         <@list title="${action.getText('contractManagementAction.list')}" 
-            includeParameters="contractManagement.code|contractManagement.applyProduc|contractManagement.type.id|contractManagement.state.id|contractManagement.severityDegree.id|contractManagement.question|contractManagement.resolveProject|contractManagement.innerPrompt|contractManagement.remark|onlyInvalid|onlyValid" 
-        	fieldMap="like:" >
+            includeParameters="contractManagement.code|contractManagement.contractName|contractManagement.customerInfo.name|contractManagement.linkman.name|contractManagement.saleman.name|contractManagement.project.name|project.id|contractManagement.deparment.name|contractManagement.applyProduc|contractManagement.type.id|contractManagement.state.id|contractManagement.severityDegree.id|contractManagement.question|contractManagement.resolveProject|contractManagement.innerPrompt|contractManagement.remark|readOnly|onlyInvalid|onlyValid" 
+        	fieldMap="like:contractManagement.code|contractManagement.contractName|contractManagement.customerInfo.name|contractManagement.linkman.name|contractManagement.saleman.name|contractManagement.project.name|contractManagement.deparment.name|" >
         	<#if !object.disabled>
         		<#if object.customerInfo.additional?exists>
 	        	 <@vcolumn title="${action.getText('contractManagement.code')}" property="code" sortable="asc">

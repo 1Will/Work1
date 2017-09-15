@@ -1,7 +1,10 @@
 package com.yongjun.tdms.presentation.webwork.action.project;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,32 +44,36 @@ public class EditProjectInfoPlanAction extends PrepareAction {
 	private final PersonnelFilesToUserManager personnelFilesToUserManager;
 	private String projectInfoId;
 	private ProjectInfoPlan projectInfoPlan;
-	private String contractManagementId;
+	private ContractManagement contractManagement;
 	private String editFlag;
+	private String title;
 
 	private PersonnelFiles personnelFiles;
 
 	public EditProjectInfoPlanAction(CodeValueManager codeValueManager, ProjectInfoManager projectInfoManager,
 			PersonnelFilesManager personnelFilesManager, UserManager userManager,
-			ProjectInfoPlanManager projectInfoPlanManager,ContractManagementManager contractManagementManager,
-			EventNewManager eventNewManager,EventTypeManager eventTypeManager,PersonnelFilesToUserManager personnelFilesToUserManager) {
+			ProjectInfoPlanManager projectInfoPlanManager, ContractManagementManager contractManagementManager,
+			EventNewManager eventNewManager, EventTypeManager eventTypeManager,
+			PersonnelFilesToUserManager personnelFilesToUserManager) {
 		this.codeValueManager = codeValueManager;
 		this.projectInfoManager = projectInfoManager;
 		this.personnelFilesManager = personnelFilesManager;
 		this.userManager = userManager;
 		this.projectInfoPlanManager = projectInfoPlanManager;
-		this.contractManagementManager=contractManagementManager;
-		this.eventNewManager=eventNewManager;
-		this.eventTypeManager=eventTypeManager;
-		this.personnelFilesToUserManager=personnelFilesToUserManager;
+		this.contractManagementManager = contractManagementManager;
+		this.eventNewManager = eventNewManager;
+		this.eventTypeManager = eventTypeManager;
+		this.personnelFilesToUserManager = personnelFilesToUserManager;
 	}
 
 	public void prepare() throws Exception {
 		if (hasId("projectInfo.id")) {
 			this.projectInfoId = getId("projectInfo.id") + "";
+			this.title = "项目工作计划信息维护";
 		}
 		if (hasId("contractManagement.id")) {
-			this.contractManagementId = getId("contractManagement.id") + "";
+			this.contractManagement =contractManagementManager.loadContractManagement(getId("contractManagement.id"));
+			this.title = "合同工作计划信息维护";
 		}
 
 		if (this.projectInfoPlan == null)
@@ -75,24 +82,22 @@ public class EditProjectInfoPlanAction extends PrepareAction {
 			} else {
 				this.projectInfoPlan = new ProjectInfoPlan();
 			}
-		if(this.request.getParameter("editFlag")!=null){
-			this.editFlag =this.request.getParameter("editFlag");
+		if (this.request.getParameter("editFlag") != null) {
+			this.editFlag = this.request.getParameter("editFlag");
 		}
 	}
 
 	public String save() {
 		boolean isNew = this.projectInfoPlan.isNew();
-
 		if (hasId("projectInfo.id")) {
 			ProjectInfo projectInfo = this.projectInfoManager.loadProjectInfo(getId("projectInfo.id"));
 			this.projectInfoPlan.setProjectInfo(projectInfo);
 		}
 		if (hasId("contractManagement.id")) {
-			ContractManagement contractManagement =this.contractManagementManager.loadContractManagement(getId("contractManagement.id"));
 			this.projectInfoPlan.setContractManagement(contractManagement);
 		}
 		if (hasId("planState.id")) {
-			CodeValue  planState = this.codeValueManager.loadCodeValue(getId("planState.id"));
+			CodeValue planState = this.codeValueManager.loadCodeValue(getId("planState.id"));
 			this.projectInfoPlan.setPlanState(planState);
 		}
 		if (hasId("projectInfoPlan.percentt")) {
@@ -113,14 +118,23 @@ public class EditProjectInfoPlanAction extends PrepareAction {
 		} else {
 			this.projectInfoPlan.setLastOperator(u.getName());
 		}
+
+		if (hasId("assistIds")) {
+			this.projectInfoPlan.setAssistIds(this.request.getParameter("assistIds"));
+		}
+
+		if (hasId("assist")) {
+			this.projectInfoPlan.setAssist(this.request.getParameter("assist"));
+		}
+
 		if (request.getParameter("projectInfoPlan.isSaved") != null) {
 			this.projectInfoPlan.setIsSaved(request.getParameter("projectInfoPlan.isSaved"));
 		}
-		
+
 		String submit = null;
-		
+
 		this.projectInfoPlanManager.storeProjectInfoPlan(projectInfoPlan);
-		
+
 		if ("1".equals(this.request.getParameter("projectInfoPlan.isSaved"))) {
 			try {
 				EventType eventType = null;
@@ -135,23 +149,73 @@ public class EditProjectInfoPlanAction extends PrepareAction {
 				event.setEventType(eventType);
 				event.setUserId(this.userManager.getUser().getId() + "");
 				Map<String, String> map = new HashMap();
-				//项目工作计划提交
-				if(this.projectInfoPlan.getProjectInfo()!=null){
-					event.setName("项目工作计划");
-					String pids = this.personnelFilesToUserManager.loadUserIdToStrByProjectInfoId(this.projectInfoPlan.getProjectInfo().getId(),
-							this.projectInfoPlan.getProjectInfo().getCreateUser());
+				// 项目工作计划提交
+				if (this.projectInfoPlan.getProjectInfo() != null) {
+					event.setName(eventType.getName());
+
+					List<User> users = this.userManager.loadByKey("code", this.projectInfoPlan.getPersonnelFiles()
+							.getCode());
+					String pids = "";
+					if (users != null && users.size() > 0) {
+						pids = this.personnelFilesToUserManager.loadUserIdToStrByProjectInfoId(this.projectInfoPlan
+								.getProjectInfo().getId(), users.get(0));
+					}
 					map.put("users", pids);
 					map.put("projectInfoPlanId", this.projectInfoPlan.getId() + "");
+					if (isNew) {
+						map.put("name",
+								new SimpleDateFormat("yyyy-MM-dd").format(this.projectInfoPlan.getCreatedTime()) + ","
+										+ this.projectInfoPlan.getCreator() + "新建了项目计划:"
+										+ this.projectInfoPlan.getName());
+					} else {
+						if (this.projectInfoPlan.getPercentt() == 100) {
+							map.put("name",
+									new SimpleDateFormat("yyyy-MM-dd").format(this.projectInfoPlan.getCreatedTime())
+											+ "," + this.projectInfoPlan.getCreator() + "完成了项目计划:"
+											+ this.projectInfoPlan.getName());
+						} else {
+							map.put("name",
+									new SimpleDateFormat("yyyy-MM-dd").format(this.projectInfoPlan.getCreatedTime())
+											+ "," + this.projectInfoPlan.getCreator() + "更新了项目计划:"
+											+ this.projectInfoPlan.getName());
+						}
+					}
+					map.put("url", "projectInfo/editProPlan.html?projectInfoPlan.id=" + this.projectInfoPlan.getId());
 				}
-				//合同工作计划提交
-				if(this.projectInfoPlan.getContractManagement()!=null){
-					event.setName("合同工作计划");
-					String pids = this.personnelFilesToUserManager.loadUserIdToStrByProjectInfoId(this.projectInfoPlan.getContractManagement().getProject().getId(),
-							this.projectInfoPlan.getContractManagement().getProject().getCreateUser());
+				// 合同工作计划提交
+				if (this.projectInfoPlan.getContractManagement() != null) {
+					event.setName(eventType.getName());
+					List<User> users = this.userManager.loadByKey("code", this.projectInfoPlan.getPersonnelFiles()
+							.getCode());
+					String pids = "";
+					if (users != null && users.size() > 0) {
+						pids = this.personnelFilesToUserManager.loadUserIdToStrByProjectInfoId(this.projectInfoPlan
+								.getContractManagement().getProject().getId(), users.get(0));
+					}
 					map.put("users", pids);
 					map.put("projectInfoPlanId", this.projectInfoPlan.getId() + "");
+					if (isNew) {
+						map.put("name",
+								new SimpleDateFormat("yyyy-MM-dd").format(this.projectInfoPlan.getCreatedTime()) + ","
+										+ this.projectInfoPlan.getCreator() + "提交了合同计划:"
+										+ this.projectInfoPlan.getName());
+					} else {
+						if (this.projectInfoPlan.getPercentt() == 100) {
+							map.put("name",
+									new SimpleDateFormat("yyyy-MM-dd").format(this.projectInfoPlan.getCreatedTime())
+											+ "," + this.projectInfoPlan.getCreator() + "完成了合同计划:"
+											+ this.projectInfoPlan.getName());
+						} else {
+							map.put("name",
+									new SimpleDateFormat("yyyy-MM-dd").format(this.projectInfoPlan.getCreatedTime())
+											+ "," + this.projectInfoPlan.getCreator() + "更新了合同计划:"
+											+ this.projectInfoPlan.getName());
+						}
+					}
+
+					map.put("url", "projectInfo/editProPlan.html?projectInfoPlan.id=" + this.projectInfoPlan.getId());
 				}
-				
+
 				String moreinfo = JSONObject.fromObject(map).toString();
 				event.setMoreinfo(moreinfo);
 				eventNewManager.storeEventNew(event);
@@ -167,11 +231,11 @@ public class EditProjectInfoPlanAction extends PrepareAction {
 
 			return "success";
 		}
-		if("submit".equals(submit)){
+		if ("submit".equals(submit)) {
 			addActionMessage(getText("projectInfoPlan.submit.success",
 					Arrays.asList(new Object[] { this.projectInfoPlan.getName() })));
 			return "success";
-		}else {
+		} else {
 			addActionMessage(getText("projectInfoPlan.edit.success",
 					Arrays.asList(new Object[] { this.projectInfoPlan.getName() })));
 			return "success";
@@ -190,6 +254,14 @@ public class EditProjectInfoPlanAction extends PrepareAction {
 		this.projectInfoId = projectInfoId;
 	}
 
+	public ContractManagement getContractManagement() {
+		return contractManagement;
+	}
+
+	public void setContractManagement(ContractManagement contractManagement) {
+		this.contractManagement = contractManagement;
+	}
+
 	public ProjectInfoPlan getProjectInfoPlan() {
 		return projectInfoPlan;
 	}
@@ -197,12 +269,14 @@ public class EditProjectInfoPlanAction extends PrepareAction {
 	public void setProjectInfoPlan(ProjectInfoPlan projectInfoPlan) {
 		this.projectInfoPlan = projectInfoPlan;
 	}
+
 	public List<CodeValue> getAllPlanState() {
 		try {
 			List codes = new ArrayList();
-			String[] keys ={"name","code"};
-			String[] values ={"计划状态","211"};
-			List one =  this.codeValueManager.loadByKeyArray(keys, values);//this.codeValueManager.loadByKey("code", Long.valueOf("211"));
+			String[] keys = { "name", "code" };
+			String[] values = { "计划状态", "211" };
+			List one = this.codeValueManager.loadByKeyArray(keys, values);// this.codeValueManager.loadByKey("code",
+																			// Long.valueOf("211"));
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {
@@ -218,13 +292,6 @@ public class EditProjectInfoPlanAction extends PrepareAction {
 		}
 	}
 
-	public String getContractManagementId() {
-		return contractManagementId;
-	}
-
-	public void setContractManagementId(String contractManagementId) {
-		this.contractManagementId = contractManagementId;
-	}
 
 	public String getEditFlag() {
 		return editFlag;
@@ -233,8 +300,14 @@ public class EditProjectInfoPlanAction extends PrepareAction {
 	public void setEditFlag(String editFlag) {
 		this.editFlag = editFlag;
 	}
-	
-	
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	// public CodeValue getCustomerSteped()
 	// {

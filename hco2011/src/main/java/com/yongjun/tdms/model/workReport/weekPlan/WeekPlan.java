@@ -22,6 +22,7 @@ public class WeekPlan extends BaseInfoEntity implements CreatedTimeTracking, Cre
 	private String nextPlan;
 	private Week week;
 	private User user;
+	private String isSaved;// 提交判断
 
 	@Override
 	public int hashCode() {
@@ -93,6 +94,14 @@ public class WeekPlan extends BaseInfoEntity implements CreatedTimeTracking, Cre
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getIsSaved() {
+		return isSaved;
+	}
+
+	public void setIsSaved(String isSaved) {
+		this.isSaved = isSaved;
 	}
 
 }

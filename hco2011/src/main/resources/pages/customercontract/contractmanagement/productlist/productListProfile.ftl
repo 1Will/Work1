@@ -90,10 +90,10 @@
 
 	window.onload=function(){
 		<#if productList.product?exists>
-			getObjByName('product.id').value='${productList.product.id?if_exists}';
+			getObjByName('product.id').value='#{productList.product.id?if_exists}';
 		</#if>
 		<#if productList.unit?exists>
-			getObjByName('unit.id').value='${productList.unit.id?if_exists}';
+			getObjByName('unit.id').value='#{productList.unit.id?if_exists}';
 		</#if>
 	}
 		function getDiscount(){

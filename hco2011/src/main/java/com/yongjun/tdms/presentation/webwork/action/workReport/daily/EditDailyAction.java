@@ -20,7 +20,6 @@ import com.yongjun.pluto.service.codevalue.CodeValueManager;
 import com.yongjun.pluto.service.security.GroupManager;
 import com.yongjun.pluto.service.security.UserManager;
 import com.yongjun.pluto.webwork.action.PrepareAction;
-import com.yongjun.tdms.model.backvisit.BackVisit;
 import com.yongjun.tdms.model.base.event.EventNew;
 import com.yongjun.tdms.model.base.event.EventType;
 import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
@@ -36,6 +35,7 @@ import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 import com.yongjun.tdms.service.workReport.daily.DailyManager;
 import com.yongjun.tdms.service.workReport.weekly.WeeklyManager;
 import com.yongjun.tdms.service.workspace.data.DataManager;
+import com.yongjun.tdms.util.personnelFilesToUser.PersonnelFilesToUserManager;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class EditDailyAction extends PrepareAction {
@@ -52,6 +52,7 @@ public class EditDailyAction extends PrepareAction {
 	private final EventNewManager eventNewManager;
 	private final EventTypeManager eventTypeManager;
 	protected final GroupManager groupManager;
+	private final PersonnelFilesToUserManager personnelFilesToUserManager;
 	private String startHour;
 	private String startMinute;
 	private String endHour;
@@ -68,7 +69,8 @@ public class EditDailyAction extends PrepareAction {
 			CodeValueManager codeValueManager, PersonnelFilesManager personnelFilesManager,
 			BackVisitManager backVisitManager, InstitutionManager institutionManager,
 			DepartmentManager departmentManager, DutyManager dutyManager, EventNewManager eventNewManager,
-			EventTypeManager eventTypeManager, GroupManager groupManager,DataManager dataManager) {
+			EventTypeManager eventTypeManager, GroupManager groupManager, DataManager dataManager,
+			PersonnelFilesToUserManager personnelFilesToUserManager) {
 		this.dailyManager = dailyManager;
 		this.weeklyManager = weeklyManager;
 		this.userManager = userManager;
@@ -81,18 +83,18 @@ public class EditDailyAction extends PrepareAction {
 		this.eventNewManager = eventNewManager;
 		this.eventTypeManager = eventTypeManager;
 		this.groupManager = groupManager;
-		this.dataManager=dataManager;
+		this.dataManager = dataManager;
+		this.personnelFilesToUserManager = personnelFilesToUserManager;
 	}
 
 	public void prepare() throws Exception {
-		
+
 		List pfs = this.personnelFilesManager.loadByKey("code", this.userManager.getUser().getCode());
-	      if ((null != pfs) && (pfs.size() > 0))
-	         {
-	   this.personnelFiles = ((PersonnelFiles)pfs.get(0));
-	 }else {
-		 this.personnelFiles = new PersonnelFiles();
-	}
+		if ((null != pfs) && (pfs.size() > 0)) {
+			this.personnelFiles = ((PersonnelFiles) pfs.get(0));
+		} else {
+			this.personnelFiles = new PersonnelFiles();
+		}
 		if (hasId("weekly.id")) {
 			this.weeklyId = Long.valueOf(this.request.getParameter("weekly.id"));
 		}
@@ -126,6 +128,7 @@ public class EditDailyAction extends PrepareAction {
 			this.daily.setRapporteur(this.userManager.loadUser(getId("personId")));
 		}
 
+	   this.daily.setPerson(personnelFiles);
 		if (hasId("inst.id")) {
 			this.daily.setInst(this.institutionManager.loadInstitution(getId("inst.id")));
 		}
@@ -199,6 +202,9 @@ public class EditDailyAction extends PrepareAction {
 			
 			if ("1".equals(this.request.getParameter("isSaved"))) {
 				Set<User> noticePers = groupManager.getGroupByGroupName("微信日报通知组").getUsers();
+				if(personnelFiles.getBusinessType()!=null){
+					noticePers = personnelFilesToUserManager.getTypeUser(noticePers,personnelFiles.getBusinessType().getCode());
+				}
 				Set<Long> idSet = new HashSet<Long>();
 				idSet.add(getUser().getId());
 				for (User user : noticePers) {
@@ -209,13 +215,12 @@ public class EditDailyAction extends PrepareAction {
 					if (eventTypes != null && eventTypes.size() > 0) {
 						eventType = eventTypes.get(0);
 					} else {
-						eventType = new EventType();
-						eventType.setId(3L);
+						logger.info("eventTypes不存在！");
 					}
 					EventNew event = new EventNew();
 					event.setEffectflag("E");
 					event.setEventType(eventType);
-					event.setName("日报提交");
+					event.setName(eventType.getName());
 					event.setUserId(this.userManager.getUser().getId() + "");
 					Map<String, String> map = new HashMap<String, String>();
 					// 查询领导
@@ -231,16 +236,18 @@ public class EditDailyAction extends PrepareAction {
 					}
 					map.put("users", ids.substring(0, ids.length() - 1));
 					map.put("dailyId", this.daily.getId() + "");
+					map.put("name", new SimpleDateFormat("yyyy-MM-dd").format(this.daily.getCurrentDate())+","+this.daily.getRapporteur().getName()+"提交了日报");
+					map.put("url", "workReport/editDaily.html?popWindowFlag=popWindowFlag&daily.id="+this.daily.getId());
 					String moreinfo = JSONObject.fromObject(map).toString();
 					event.setMoreinfo(moreinfo);
 					eventNewManager.storeEventNew(event);
-					HashMap mapData =new HashMap();
-		              mapData.put("type", "10002");
-		              mapData.put("thisMoney", "0");
-		              mapData.put("lastMoney", "0");
-					mapData.put("submitNum", this.daily.getSubmitNum());
-					mapData.put("date", this.daily.getCurrentDate());
-					this.dataManager.storeData(personnelFiles, mapData);
+//					HashMap mapData =new HashMap();
+//		              mapData.put("type", "10002");
+//		              mapData.put("thisMoney", "0");
+//		              mapData.put("lastMoney", "0");
+//					mapData.put("submitNum", this.daily.getSubmitNum());
+//					mapData.put("date", this.daily.getCurrentDate());
+//					this.dataManager.storeData(personnelFiles, mapData);
 					submit = "submit";
 			}
 			

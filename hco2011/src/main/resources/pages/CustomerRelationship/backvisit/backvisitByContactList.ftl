@@ -63,7 +63,7 @@
             <@alignRight />
             </@vcolumn>
             <@vcolumn title="${action.getText('backVisitDate')}" property="backVisitDate" sortable="desc" format="yyyy-MM-dd" >
-            <@alignCenter/>
+            <@alignLeft/>
             <@vlh.attribute name="width" value="8%" />
             </@vcolumn>
              <@vcolumn title="${action.getText('employee')}" property="employee.name" sortable="desc">

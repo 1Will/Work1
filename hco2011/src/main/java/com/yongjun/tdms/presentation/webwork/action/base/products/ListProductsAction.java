@@ -3,12 +3,16 @@
 /*     */ import com.yongjun.pluto.exception.DaoException;
 /*     */ import com.yongjun.pluto.model.codevalue.CodeValue;
 /*     */ import com.yongjun.pluto.service.codevalue.CodeValueManager;
+import com.yongjun.pluto.service.security.UserManager;
 /*     */ import com.yongjun.pluto.webwork.action.valuelist.ValueListAction;
 /*     */ import com.yongjun.tdms.model.base.products.Products;
+import com.yongjun.tdms.model.base.produttype.ProductType;
+import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
 import com.yongjun.tdms.model.project.projectInfoProduct.ProjectInfoProduct;
 /*     */ import com.yongjun.tdms.model.supplier.Supplier;
 /*     */ import com.yongjun.tdms.service.base.products.ProductsManager;
 /*     */ import com.yongjun.tdms.service.base.producttype.ProductTypeManager;
+import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 import com.yongjun.tdms.service.project.projectInfoProduct.ProjectInfoProductManager;
 /*     */ import com.yongjun.tdms.service.supplier.SupplierManager;
 
@@ -26,14 +30,18 @@ import java.util.Map;
 /*     */   private final ProjectInfoProductManager projectInfoProductManager;
 /*     */   private List<Products> productses;
             private String productCheckBox;
+            private UserManager userManager;
+            private PersonnelFilesManager personnelFilesManager;
 /*     */ 
-/*     */   public ListProductsAction(ProductsManager productsManager, ProductTypeManager productTypeManager, SupplierManager supplierManager, CodeValueManager codeValueManager,ProjectInfoProductManager projectInfoProductManager)
+/*     */   public ListProductsAction(ProductsManager productsManager, ProductTypeManager productTypeManager, SupplierManager supplierManager, CodeValueManager codeValueManager,ProjectInfoProductManager projectInfoProductManager,UserManager userManager,PersonnelFilesManager personnelFilesManager)
 /*     */   {
 /*  35 */     this.productsManager = productsManager;
 /*  36 */     this.productTypeManager = productTypeManager;
 /*  37 */     this.supplierManager = supplierManager;
 /*  38 */     this.codeValueManager = codeValueManager;
 			  this.projectInfoProductManager=projectInfoProductManager;
+			  this.userManager =userManager;
+			  this.personnelFilesManager = personnelFilesManager;
 /*     */   }
 /*     */ 
 /*     */   public String execute()
@@ -125,6 +133,23 @@ import java.util.Map;
 			protected Map getRequestParameterMap()
 /*     */   {
 /* 121 */     Map map = super.getRequestParameterMap();
+
+				PersonnelFiles personnelFiles =null;
+					try {
+						List<PersonnelFiles>  tempList=this.personnelFilesManager.loadByKey("code", this.userManager.getUser().getCode());
+						if(tempList!=null&&tempList.size()>0){
+							personnelFiles  = tempList.get(0);
+							if(personnelFiles.getBusinessType()!=null){
+								if(personnelFiles.getBusinessType().getName().equals("军品")||personnelFiles.getBusinessType().getName().equals("民品")){
+									map.put("businessType", "%"+personnelFiles.getBusinessType().getName()+"%");
+								}
+							
+							}
+						}
+					} catch (DaoException e) {
+	// TODO Auto-generated catch block
+						e.printStackTrace();
+						}
 			  if(hasIds("projectInfoId")){
 				 long projectInfoId =Long.parseLong(request.getParameter("projectInfoId"));
 				 List<ProjectInfoProduct> ppList =null;
@@ -140,6 +165,25 @@ import java.util.Map;
 					}
 					map.put("ppIds", ppIds);
 				}
+			  }
+			  List<Long> ptidList =null;
+			  if(hasId("pt.id")){
+				  ptidList = new ArrayList<Long>();
+				  ptidList.add(getId("pt.id"));
+				  try {
+					List<ProductType> list = this.productTypeManager.loadByKey("parentPT.id", getId("pt.id"));
+					if(list!=null&&list.size()>0){
+						for(ProductType cv:list){
+							ptidList.add(cv.getId());
+						}
+					}
+				} catch (DaoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			  }
+			  if(ptidList!=null){
+				  map.put("ptidList", ptidList);
 			  }
 			  return map;
 			}

@@ -7,6 +7,7 @@ import com.yongjun.tdms.model.project.projectInfoPlan.ProjectInfoPlan;
 import com.yongjun.tdms.service.project.projectInfoPlan.ProjectInfoPlanManager;
 
 /*    */ import java.util.Collection;
+import java.util.HashMap;
 /*    */ import java.util.List;
 /*    */ 
 /*    */ public class DefaultProjectInfoPlanManager extends BaseManager
@@ -66,9 +67,9 @@ import com.yongjun.tdms.service.project.projectInfoPlan.ProjectInfoPlanManager;
 /*    */ 
 /*    */   
 /*    */
-		public List loadByTeam(String code) {
+		public List loadForMyTeam(HashMap  map) {
 	// TODO Auto-generated method stub
-			return this.projectInfoPlanDao.loadByTeam(code);
+			return this.projectInfoPlanDao.loadForMyTeam(map);
 		} 
 		}
 

@@ -43,7 +43,7 @@
                 <a href="editPaymentorderAction.html?paymentorder.id=#{object.id?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}">${object.code?if_exists}</a>
 				<@alignLeft/>
             </@vcolumn>
-           <@vcolumn title="${action.getText('paymentorder.supplier')}" property="supplier.name" sortable="desc">
+           <@vcolumn title="${action.getText('paymentorder.supplier')}" property="customerInfo.name" sortable="desc">
      			<@alignLeft/>
             </@vcolumn>
              <@vcolumn title="${action.getText('合同名称')}"  >
@@ -65,15 +65,10 @@
             <@vcolumn title="${action.getText('paymentorder.produceType')}" property="produceType.name" sortable="desc">
      			<@alignLeft/>
             </@vcolumn>
-             <@vcolumn title="${action.getText('附件名称')}" property="fileName" sortable="desc">
-             <#if object.fileName?exists>
-             <a href="downloadPaymentorder.html?paymentorder.id=#{object.id}"> ${object.fileName} </a>
-             </#if>
-     			<@alignLeft/>
-            </@vcolumn>
+            
              <@vcolumn title="${action.getText('paymentorder.totalMoney')}" property="totalMoney" sortable="desc">
 	            	#{object.totalMoney?if_exists}            	
-     			<@alignLeft/>
+     			<@alignRight/>
             </@vcolumn>
         </@list>
         <#if !first>

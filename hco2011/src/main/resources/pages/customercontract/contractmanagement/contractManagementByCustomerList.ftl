@@ -6,7 +6,7 @@
 		<@ww.token name="searchContractManagementActionToken"/>
         <@list title="" 
             includeParameters="contractManagement.code|contractManagement.contractName|contractManagement.customerInfo.name
-            |contractManagement.linkman.name|contractManagement.saleman.name|contractManagement.project.name|contractManagement.deparment.name
+            |contractManagement.linkman.name|contractManagement.saleman.name|contractManagement.project.name|contractManagement.deparment.name|project.id
             |contractManagement.applyProduc|contractManagement.type.id|contractManagement.state.id|contractManagement.severityDegree.id|contractManagement.question
             |contractManagement.resolveProject|contractManagement.innerPrompt|contractManagement.remark|readOnly|onlyInvalid|onlyValid|customerInfo.id|contactArchives.id|" 
         	fieldMap="like:" >
@@ -54,7 +54,7 @@
      			<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('contractManagement.ciemdinghTime')}" property="ciemdinghTime" format="yyyy-MM-dd" sortable="desc">
-     			<@alignCenter/>
+     			<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('contractManagement.contractType')}" property="contractType.name" sortable="desc">
            	 <#if object.contractType?exists>

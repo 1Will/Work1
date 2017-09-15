@@ -20,16 +20,16 @@
 				</#if>
 				-->
 				#{itemNo}
-			<@alignCenter />
+			<@alignLeft />
 			</@vcolumn>
 			<#assign itemNo=itemNo + 1/>
 			
 	 
 			<@vcolumn title="${action.getText('变更前状态')}" property="beforeState.name" >
-			<@alignCenter/>
+			<@alignLeft/>
 			</@vcolumn>  
 			<@vcolumn title="${action.getText('变更后状态')}" property="newState.name" >
-			<@alignCenter/>
+			<@alignLeft/>
 			</@vcolumn>  
 			<@vcolumn title="${action.getText('变更说明')}" property="explain" >
 			<@alignLeft attributes="width:500;"/>
@@ -43,8 +43,8 @@
 	            	document.write(s.slice(0,18)+"...");
 	            </script>
             </span>
-			
 			</@vcolumn>
+			<#--
 			<@vcolumn title="${action.getText('附件名称')}" property="fileName">
 				<a href="downloadContractState.html?contractState.id=#{object.id}" title="${action.getText('download')}">${object.fileName}</a>
 			<@alignLeft />
@@ -55,6 +55,7 @@
 			<@vcolumn title="${action.getText('变更日期')}"  property="uploadDate" format="yyyy-MM-dd">
         		<@alignCenter />
       		</@vcolumn>
+			-->
 		</@list>
     </@ww.form>
     

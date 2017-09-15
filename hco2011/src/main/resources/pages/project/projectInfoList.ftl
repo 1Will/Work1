@@ -97,10 +97,11 @@
             <@alignLeft/>
              </@vcolumn>
             <@vcolumn title="${action.getText('最后回访时间')}" property="customer.nearestBackVisitDate" sortable="desc" format="yyyy-MM-dd" >
-            <@alignCenter attributes="width:100;"/>
+            <@alignLeft attributes="width:100;"/>
              </@vcolumn>
           
         </@list>
+        <#--
        <#if !contactArchivesFlag?exists>
 	    <#if !first>
 	        <#if !(action.isReadOnly())>
@@ -113,5 +114,6 @@
 	        </#if>
 	          </#if>
         </#if>
+        -->
     </@ww.form>
 </@htmlPage>

@@ -112,7 +112,7 @@
 	
 	
 	function contactArchive_OpenDialog(){
-			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitFlag=backVisit&projectInfoCus=${projectInfoCus?if_exists}";
+			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?projectId=${projectInfoId?if_exists}&backVisitFlag=backVisit&projectInfoCus=${projectInfoCus?if_exists}";
 			popupModalDialog(url, 800, 600, creatorSelectorHandlerContactArchives);
 	}
 	function creatorSelectorHandlerContactArchives(result) {

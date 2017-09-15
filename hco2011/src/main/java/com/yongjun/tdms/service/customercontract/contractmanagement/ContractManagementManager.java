@@ -13,6 +13,10 @@ public abstract interface ContractManagementManager
   public abstract ContractManagement loadContractManagement(Long paramLong);
 
   public abstract List<ContractManagement> loadContractManagement();
+  
+  public List<ContractManagement> loadContractManagementByPj(String pjIds);
+  
+  public List<ContractManagement> loadContractManagementByBType(String type);
 
   public abstract List<ContractManagement> loadAllContractManagement(Long[] paramArrayOfLong);
 

@@ -54,7 +54,7 @@
 		          <#list Details as object>
 		            <tr>
 		              <td><input type="checkbox" name="codeValueDetailIds" value="#{object.id}"/></td>
-		              <td>#{itemNo}</td>
+		              <td style="text-align:left">#{itemNo}</td>
 		              <#assign itemNo = itemNo + 1 />
 		              <td style="text-align:left">${object.code?if_exists}</td>
 		              <td style="text-align:left">${object.name?if_exists}</td>

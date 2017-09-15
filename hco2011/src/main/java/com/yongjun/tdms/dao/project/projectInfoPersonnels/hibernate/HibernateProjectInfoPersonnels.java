@@ -67,5 +67,26 @@ public class HibernateProjectInfoPersonnels extends BaseHibernateDao implements 
 			}
 		});
 	}
+	
+	public List<String> loadPersonnelsCodeByType(final String code) {
+		return this.getHibernateTemplate().executeFind(new HibernateCallback() {
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				String hql = "select pp.code from com.yongjun.tdms.model.personnelFiles.PersonnelFiles pp where pp.disabled=0 and pp.businessType.code ='21003' or pp.businessType.code ='" + code+"'";
+				Query query = session.createQuery(hql);
+				return query.list();
+			}
+		});
+	}
+
+	public List<Long> loadProjectInfoIdByPersonnel(final String code) {
+		// TODO Auto-generated method stub
+		return this.getHibernateTemplate().executeFind(new HibernateCallback() {
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				String hql = "select pp.projectInfo.id from com.yongjun.tdms.model.project.projectInfoPersonnels.ProjectInfoPersonnels pp where pp.proPerson.code='"+code+"'";
+				Query query = session.createQuery(hql);
+				return query.list();
+			}
+		});
+	}
 
 }

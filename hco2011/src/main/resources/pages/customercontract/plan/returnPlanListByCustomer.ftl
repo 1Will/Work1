@@ -11,7 +11,7 @@
       <#if req.getParameter('contractManagement.id')?exists>
       	    <@vcolumn title="${action.getText('returnPlan.batch')}" property="batch.name" sortable="desc">
             	<a href="javascript:contract_OpenDialog('#{object.id}')">${object.batch.name}</a>
-            	<@alignCenter/>
+            	<@alignRight/>
             </@vcolumn>
       <#else>
             <@vcolumn title="${action.getText('contractManagement.code')}" property="contractManagement.code" sortable="desc">
@@ -34,11 +34,11 @@
      			<@alignRight/>
             </@vcolumn>
             <@vcolumn title="${action.getText('returnPlan.batch')}" property="batch.name" sortable="desc">
-            	<@alignCenter/>
+            	<@alignRight/>
             </@vcolumn>
       </#if>
             <@vcolumn title="${action.getText('returnPlan.planDate')}" property="planDate" format="yyyy-MM-dd" sortable="desc">
-            	<@alignCenter/><#-- attributes="width:110;"-->
+            	<@alignLeft/><#-- attributes="width:110;"-->
             </@vcolumn>
             <@vcolumn title="${action.getText('收款方式')}" property="payment.name" sortable="desc">
      			<@alignLeft/>
@@ -55,13 +55,13 @@
      			<@alignRight/>
             </@vcolumn>
             <@vcolumn title="${action.getText('returnPlan.paytime')}" property="paytime" format="yyyy-MM-dd" sortable="desc">
-            	<@alignCenter/><#-- attributes="width:110;"-->
+            	<@alignLeft/><#-- attributes="width:110;"-->
             </@vcolumn>
            	<@vcolumn title="${action.getText('计划状态')}" property="planState.name" sortable="desc">
      			<@alignLeft/>
             </@vcolumn>
            	<@vcolumn title="${action.getText('收款进度(%)')}" property="percentt" sortable="desc">
-     			<@alignLeft/>
+     			<@alignRight/>
             </@vcolumn>
             
             <#-- 
@@ -101,10 +101,10 @@
      			<@alignLeft/>
             </@vcolumn>
              <@vcolumn title="${action.getText('开票金额')}" property="billMoney" sortable="desc">
-     			<@alignLeft/>
+     			<@alignRight/>
             </@vcolumn>
              <@vcolumn title="${action.getText('开票日期')}" property="billDate" format="yyyy-MM-dd" sortable="desc">
-     			<@alignCenter/>
+     			<@alignLeft/>
             </@vcolumn>
         </@list>
         <#if req.getParameter('contractManagement.id')?exists>

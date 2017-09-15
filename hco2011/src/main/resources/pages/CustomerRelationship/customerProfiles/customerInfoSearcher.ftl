@@ -137,8 +137,7 @@
 	</tr>
 </@inputTable>
 <script language="javascript">
-		//瀹㈡埛绫诲埆
-		var typeSele=document.all("type.id");
+		var typeSele= getObjByName("type.id");
 	    var typeGroups=typeSele.options.length;
 	    for(i=0;i<typeGroups;i++){
 			<#if req.getParameter('type.id')?exists>
@@ -152,8 +151,7 @@
 			<#if req.getParameter('step.id')?exists>
 				getObjByName('step.id').value='${req.getParameter('step.id')}';
 			</#if>
-		//鍥藉
-		var countrySele=document.all("country.id");
+		var countrySele= getObjByName("country.id");
 	    var countryGroups=countrySele.options.length;
 	    for(i=0;i<countryGroups;i++){
 			<#if req.getParameter('country.id')?exists>
@@ -163,14 +161,11 @@
 			</#if>
 	    }
 	    <#if req.getParameter('country.id')?exists>
-	    	//璁剧疆鍚屾
 	    	DWREngine.setAsync(false); 
 	    	areaCascadeDWR("country.id","province.id","city.id",1,"${action.getText('select.option.all')}","search");
-	    	//閲嶆柊璁剧疆涓哄紓姝ユ柟寮�
 	    	DWREngine.setAsync(true);
 	    </#if>
-	    //鐪佷唤
-		var provinceSele=document.all("province.id");
+		var provinceSele= getObjByName("province.id");
 	    var provinceGroups=provinceSele.options.length;
 	    for(i=0;i<provinceGroups;i++){
 			<#if req.getParameter('province.id')?exists>
@@ -180,14 +175,11 @@
 			</#if>
 	    }
 	    <#if req.getParameter('province.id')?exists>
-	    	//璁剧疆鍚屾
 	    	DWREngine.setAsync(false); 
 	    	areaCascadeDWR("country.id","province.id","city.id",2,"${action.getText('select.option.all')}","search");
-	    	//閲嶆柊璁剧疆涓哄紓姝ユ柟寮�
 	    	DWREngine.setAsync(true);
 	    </#if>
-	    //鍩庡競
-		var citySele=document.all("city.id");
+		var citySele= getObjByName("city.id");
 	    var cityGroups=citySele.options.length;
 	    for(i=0;i<cityGroups;i++){
 			<#if req.getParameter('city.id')?exists>
@@ -196,8 +188,7 @@
 	        }
 			</#if>
 	    }
-	    //琛屼笟
-		var industrySele=document.all("industry.id");
+		var industrySele= getObjByName("industry.id");
 	    var industryGroups=industrySele.options.length;
 	    for(i=0;i<industryGroups;i++){
 			<#if req.getParameter('industry.id')?exists>
@@ -206,8 +197,7 @@
 	        }
 			</#if>
 	    }
-	    //浼佷笟鎬ц川
-		var companyNatureSele=document.all("companyNature.id");
+		var companyNatureSele= getObjByName("companyNature.id");
 	    var companyNatureGroups=companyNatureSele.options.length;
 	    for(i=0;i<companyNatureGroups;i++){
 			<#if req.getParameter('companyNature.id')?exists>

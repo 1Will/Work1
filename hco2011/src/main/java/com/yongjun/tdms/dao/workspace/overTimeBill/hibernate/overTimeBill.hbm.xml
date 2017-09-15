@@ -43,6 +43,19 @@
 	    <property name="failReason" type="string">
             <column name="FAIL_REASON" not-null="false"  sql-type="NVARCHAR(500)"/>
         </property>
+        <!-- 提交判断 -->
+        <property name="isSaved" type="string">
+            <column name="isSaved" not-null="false" sql-type="NVARCHAR(1)"/>
+        </property>
+        
+        <many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
+			<column name="PROJECTINFO_ID" not-null="false"/>
+		</many-to-one>
+        		
+        <many-to-one name="contractManagement" class="com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement" lazy="false">
+			<column name="CONTRACTMANAGEMENT_ID" not-null="false"/>
+		</many-to-one>
+        
         
         <property name="disabled" type="boolean">
             <column name="DISABLED" not-null="true"/>

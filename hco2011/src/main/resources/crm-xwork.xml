@@ -223,10 +223,16 @@
 			<result name="success" type="freemarker">
 				/pages/base/communication/groups/groupList.ftl
 			</result>
+			<result name="error" type="freemarker">
+				/pages/base/communication/groups/groupList.ftl
+			</result>
 			<interceptor-ref name="parameterReceiverStack" />
 		</action>
 		<action name="searchGroups" class="listCommunicationGroupsAction">
 			<result name="success" type="redirect">
+				listGroups.html
+			</result>
+			<result name="error" type="redirect">
 				listGroups.html
 			</result>
 			<result name="invalid.token" type="redirect">
@@ -359,6 +365,27 @@
 			</result>
 			<result name="invalid.token" type="redirect">
 				listMyData.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<!-- w我的团队 -->
+		<action name="listData" class="listDataAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/workspace/data/dataList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+
+		<action name="searchData" class="listDataAction">
+			<result name="success" type="redirect">
+				listData.html
+			</result>
+			<result name="error" type="redirect">
+				listData.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				listData.html
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
@@ -760,6 +787,22 @@
 	<!-- 产品管理 -->
 	<package name="productsManager" namespace="/productsManager"
 		extends="pluto">
+		<action name="toImportProduct" class="toImportProductAction">
+			<result name="success" type="freemarker">
+				/pages/base/productManagement/product/importProductProfile.ftl
+			</result>
+			<result name="input" type="freemarker">
+				/pages/base/productManagement/product/importProductProfile.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="importProduct" class="importProductAction" method="save">
+			<result name="success" type="freemarker">
+				/pages/base/productManagement/product/importProductResult.ftl
+			</result>
+			<interceptor-ref name="fileUploadStack" />
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
 		<action name="listProductsREAD" class="listProductsAction"
 			method="list">
 			<result name="success" type="redirect">
@@ -1361,6 +1404,7 @@
 			</result>
 			<interceptor-ref name="parameterReceiverStack" />
 		</action>
+		
 		<action name="searchContactToHistory" class="listContactToHistoryAction">
 			<result name="success" type="redirect">
 				listContactToHistory.html?readOnly=${readOnly}
@@ -1373,6 +1417,52 @@
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
+		
+		<!-- 参与人 -->
+		<action name="listParticipant" class="listParticipantAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/CustomerRelationship/participant/participantList.ftl
+			</result>
+			<result name="error" type="freemarker">
+				/pages/CustomerRelationship/participant/participantList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		
+		<action name="editParticipant" class="editParticipantAction">
+			<result name="success" type="freemarker">
+				/pages/CustomerRelationship/participant/participantProfile.ftl
+			</result>
+			<result name="error" type="freemarker">
+				/pages/CustomerRelationship/participant/participantProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		
+		<action name="saveParticipant" class="editParticipantAction"
+			method="save">
+			<result name="success" type="redirect">
+				editParticipant.html?participant.id=${participant.id}&amp;caFlag=${caFlag}&amp;backVisit.id=${backVisit.id}&amp;projectInfoPlan.id=${projectInfoPlan.id}
+			</result>
+			<result name="error" type="redirect">
+				editParticipant.html?participant.id=${participant.id}&amp;caFlag=${caFlag}&amp;backVisit.id=${backVisit.id}&amp;projectInfoPlan.id=${projectInfoPlan.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editParticipant.html?participant.id=${participant.id}&amp;caFlag=${caFlag}&amp;backVisit.id=${backVisit.id}&amp;projectInfoPlan.id=${projectInfoPlan.id}
+			</result>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		
+		<action name="searchParticipant" class="listParticipantAction">
+			<result name="success" type="redirect">
+				listParticipant.html?readOnly=${readOnly}&amp;pfFlag=${pfFlag}&amp;caFlag=${caFlag}&amp;backVisit.id=${backVisit.id}&amp;projectInfoPlan.id=${projectInfoPlan.id}
+			</result>
+			<result name="error" type="redirect">
+				listParticipant.html?readOnly=${readOnly}&amp;pfFlag=${pfFlag}&amp;caFlag=${caFlag}&amp;backVisit.id=${backVisit.id}&amp;projectInfoPlan.id=${projectInfoPlan.id}
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		
 	</package>
 	<!-- 咨询登记管理 -->
 	<package name="advisory" namespace="/advisoryManager" extends="pluto">
@@ -1695,20 +1785,25 @@
 		<action name="saveApplicationDoc" class="editApplicationDocAction"
 			method="save">
 			<result name="input" type="redirect">
-				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}
+				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}&amp;expenseForm.id=${expenseForm.id}&amp;paymentorder.id=${paymentorder.id}&amp;onTheRoadBill.id=${onTheRoadBill.id}&amp;overTimeBill.id=${overTimeBill.id}&amp;leaveBill.id=${leaveBill.id}&amp;billingRecord.id=${billingRecord.id}
 			</result>
+			
 			<result name="new" type="redirect">
-				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}
+				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}&amp;expenseForm.id=${expenseForm.id}&amp;paymentorder.id=${paymentorder.id}&amp;onTheRoadBill.id=${onTheRoadBill.id}&amp;overTimeBill.id=${overTimeBill.id}&amp;leaveBill.id=${leaveBill.id}&amp;billingRecord.id=${billingRecord.id}
 			</result>
+			
 			<result name="success" type="redirect">
-				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}
+				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}&amp;expenseForm.id=${expenseForm.id}&amp;paymentorder.id=${paymentorder.id}&amp;onTheRoadBill.id=${onTheRoadBill.id}&amp;overTimeBill.id=${overTimeBill.id}&amp;leaveBill.id=${leaveBill.id}&amp;billingRecord.id=${billingRecord.id}
 			</result>
+			
 			<result name="error" type="dispatcher">
-				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}
+				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}&amp;expenseForm.id=${expenseForm.id}&amp;paymentorder.id=${paymentorder.id}&amp;onTheRoadBill.id=${onTheRoadBill.id}&amp;overTimeBill.id=${overTimeBill.id}&amp;leaveBill.id=${leaveBill.id}&amp;billingRecord.id=${billingRecord.id}
 			</result>
+			
 			<result name="invalid.token" type="redirect">
-				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}
+				editApplicationDoc.html?projectInfo.id=${projectInfo.id}&amp;applicationDoc.id=${applicationDoc.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;supplier.id=${supplier.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}&amp;expenseForm.id=${expenseForm.id}&amp;paymentorder.id=${paymentorder.id}&amp;onTheRoadBill.id=${onTheRoadBill.id}&amp;overTimeBill.id=${overTimeBill.id}&amp;leaveBill.id=${leaveBill.id}&amp;billingRecord.id=${billingRecord.id}
 			</result>
+			
 			<interceptor-ref name="fileUploadStack" />
 			<interceptor-ref name="propertySender">
 				<param name="propertyNames">applicationDoc</param>
@@ -1717,13 +1812,15 @@
 		</action>
 		<action name="searchApplicationDoc" class="listApplicationDocAction">
 			<result name="success" type="redirect">
-				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}&amp;readOnly=false
+				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}&amp;expenseForm.id=${expenseForm.id}&amp;paymentorder.id=${paymentorder.id}&amp;onTheRoadBill.id=${onTheRoadBill.id}&amp;overTimeBill.id=${overTimeBill.id}&amp;leaveBill.id=${leaveBill.id}&amp;billingRecord.id=${billingRecord.id}&amp;readOnly=false
 			</result>
+			
 			<result name="error" type="redirect">
-				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}&amp;readOnly=false
+				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}&amp;expenseForm.id=${expenseForm.id}&amp;paymentorder.id=${paymentorder.id}&amp;onTheRoadBill.id=${onTheRoadBill.id}&amp;overTimeBill.id=${overTimeBill.id}&amp;leaveBill.id=${leaveBill.id}&amp;billingRecord.id=${billingRecord.id}&amp;readOnly=false
 			</result>
+			
 			<result name="invalid.token" type="redirect">
-				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}&amp;readOnly=false
+				listApplicationDoc.html?supplier.id=${supplier.id}&amp;advisory.id=${advisory.id}&amp;backVisit.id=${backVisit.id}&amp;projectInfo.id=${projectInfo.id}&amp;contractAdministrator.id=${contractAdministrator.id}&amp;contractManagement.id=${contractManagement.id}&amp;financialManagement.id=${financialManagement.id}&amp;products.id=${products.id}&amp;expenseForm.id=${expenseForm.id}&amp;paymentorder.id=${paymentorder.id}&amp;onTheRoadBill.id=${onTheRoadBill.id}&amp;overTimeBill.id=${overTimeBill.id}&amp;leaveBill.id=${leaveBill.id}&amp;billingRecord.id=${billingRecord.id}&amp;readOnly=false
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
@@ -1982,18 +2079,30 @@
 			<interceptor-ref name="propertySenderStack" />
 		</action>
 		<!-- 日报回复 -->
-		<action name="listReplyDailyTab" class="listReplyDailyAction"
+		<action name="listReplyTab" class="listReplyAction"
 			method="list">
 			<result name="success" type="freemarker">
-				/pages/workReport/daily/reply/replyDailyList.ftl
+				/pages/workReport/daily/reply/replyList.ftl
 			</result>
+			<interceptor-ref name="parameterReceiverStack" />
 		</action>
-		<action name="saveReplyDaily" class="editReplyDailyAction"
+		<action name="saveReply" class="editReplyAction"
 			method="save">
 			<result name="success" type="redirect">
-				listReplyDailyTab.html?daily.id=${dailyId}
+				listReplyTab.html?daily.id=${dailyId}
 			</result>
 		</action>
+		
+		<!-- 周计划回复 -->
+		<action name="listReplyWeekly" class="listReplyWeeklyAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/workReport/weekly/reply/replyWeeklyList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		
+		
 		<!-- 项目周计划 -->
 		
 		<action name="listWeekPlanTab" class="listWeekPlanAction"
@@ -2001,6 +2110,7 @@
 			<result name="success" type="freemarker">
 				/pages/workReport/weekPlan/weekPlanList.ftl
 			</result>
+			<interceptor-ref name="parameterReceiverStack" />
 		</action>
 		
 		<action name="searchWeekPlan" class="listWeekPlanAction">
@@ -2013,12 +2123,14 @@
 			<result name="invalid.token" type="redirect">
 				listWeekPlanTab.html?weekly.id=${weekly.id}&amp;projectInfo.id=${projectInfo.id}
 			</result>
+			<interceptor-ref name="parameterReceiverStack" />
 		</action>
 		
 		<action name="editWeekPlan" class="editWeekPlanAction">
 			<result name="success" type="freemarker">
 				/pages/workReport/weekPlan/weekPlanProfile.ftl
 			</result>
+			<interceptor-ref name="propertyReceiverStack" />
 		</action>
 
 		<action name="saveWeekPlan" class="editWeekPlanAction" method="save">
@@ -2041,11 +2153,46 @@
 				/pages/workReport/week/weekList.ftl
 			</result>
 		</action>
-
-
-
-
+		<!-- 早会 -->
+		<action name="searchMeetingMonth" class="listMeetingMonthAction" >
+            <result name="success" type="redirect">
+                listMeetingMonth.html       
+            </result>
+            <result name="error" type="redirect">
+                listMeetingMonth.html  
+            </result>
+            <interceptor-ref name="parameterSenderStack" />
+        </action>
+        <action name="listMeetingMonth" class="listMeetingMonthAction" method="list">
+            <result name="success" type="freemarker">
+                /pages/workReport/meeting/meetingMonthList.ftl              
+            </result>
+            <interceptor-ref name="parameterReceiverStack" />
+        </action>
+		<action name="listMeetingDay" class="listMeetingDayAction" method="list">
+            <result name="success" type="freemarker">
+                /pages/workReport/meeting/meetingDayList.ftl              
+            </result>
+            <interceptor-ref name="parameterReceiverStack" />
+        </action>
+        <action name="editMeeting" class="editMeetingAction">
+			<result name="success" type="freemarker">
+				/pages/workReport/meeting/meetingProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveMeeting" class="editMeetingAction" method="save">
+		    <result name="success" type="redirect">
+		       editMeeting.html?meetingMonth.id=${meetingMonth.id}
+			</result>
+			<result name="error" type="redirect">
+		       editMeeting.html?meetingMonth.id=${meetingMonth.id}
+			</result>
+		    <interceptor-ref name="propertySenderStack" />
+		</action>
+		
 	</package>
+
 
 	<!--职位管理开始 -->
 	<package name="duty" namespace="/duty" extends="pluto">
@@ -2299,12 +2446,12 @@
 		</action>
 		<action name="listPersonREAD" class="nullAction">
 			<result name="success" type="redirect">
-				listPerson.html?readOnly=true
+				listPerson.html?readOnly=true&amp;notOpen=notOpen
 			</result>
 		</action>
 		<action name="listPersonWRITE" class="nullAction">
 			<result name="success" type="redirect">
-				listPerson.html?readOnly=false
+				listPerson.html?readOnly=false&amp;notOpen=notOpen
 			</result>
 		</action>
 
@@ -4198,13 +4345,13 @@
 		<action name="saveContractManagementAction" class="editContractManagementAction"
 			method="save">
 			<result name="input" type="redirect">
-				editContractManagementAction.html?contractManagement.id=${contractManagement.id}
+				editContractManagementAction.html?contractManagement.id=${contractManagement.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="new" type="redirect">
-				editContractManagementAction.html?contractManagement.id=${contractManagement.id}
+				editContractManagementAction.html?contractManagement.id=${contractManagement.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="success" type="redirect">
-				editContractManagementAction.html?contractManagement.id=${contractManagement.id}
+				editContractManagementAction.html?contractManagement.id=${contractManagement.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="error" type="redirect">
 				editContractManagementAction.html
@@ -4830,16 +4977,27 @@
 			<interceptor-ref name="parameterReceiverStack" />
 		</action>
 		
+		<action name="listExpenseFormTabAction" class="listExpenseFormAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/expensemanagement/expenseForm/expenseFormListTab.ftl
+			</result>
+			<result name="error" type="redirect">
+				/pages/expensemanagement/expenseForm/expenseFormListTab.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		
 		<action name="saveExpenseFormAction" class="editExpenseFormAction"
 			method="save">
 			<result name="input" type="redirect">
-				editExpenseFormAction.html?expenseForm.id=${expenseForm.id}
+				editExpenseFormAction.html?expenseForm.id=${expenseForm.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="new" type="redirect">
-				editExpenseFormAction.html?expenseForm.id=${expenseForm.id}
+				editExpenseFormAction.html?expenseForm.id=${expenseForm.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="success" type="redirect">
-				editExpenseFormAction.html?expenseForm.id=${expenseForm.id}
+				editExpenseFormAction.html?expenseForm.id=${expenseForm.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="error" type="redirect">
 				editExpenseFormAction.html
@@ -4894,6 +5052,26 @@
 			</result>
 			<interceptor-ref name="parameterReceiverStack" />
 		</action>
+
+		<action name="listPaymentorderTabAction" class="listPaymentorderAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/financeManagement/paymentorder/paymentorderListTab.ftl
+			</result>
+			<result name="error" type="redirect">
+				/pages/financeManagement/paymentorder/paymentorderListTab.ftl
+			</result>
+			<result name="input" type="freemarker">
+				/pages/financeManagement/paymentorder/paymentorderListTab.ftl
+			</result>
+			<result name="invalid.token" type="freemarker">
+				/pages/financeManagement/paymentorder/paymentorderListTab.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		
+		
+		
 		<action name="searchPaymentorderAction" class="listPaymentorderAction">
 			<result name="success" type="dispatcher">
 				listPaymentorderAction.html
@@ -4913,13 +5091,13 @@
 		<action name="savePaymentorderAction" class="editPaymentorderAction"
 			method="save">
 			<result name="input" type="redirect">
-				editPaymentorderAction.html?paymentorder.id=${paymentorder.id}
+				editPaymentorderAction.html?paymentorder.id=${paymentorder.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="new" type="redirect">
-				editPaymentorderAction.html?paymentorder.id=${paymentorder.id}
+				editPaymentorderAction.html?paymentorder.id=${paymentorder.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="success" type="redirect">
-				editPaymentorderAction.html?paymentorder.id=${paymentorder.id}
+				editPaymentorderAction.html?paymentorder.id=${paymentorder.id}&amp;popWindowFlag=${popWindowFlag}
 			</result>
 			<result name="error" type="redirect">
 				editPaymentorderAction.html
@@ -5687,6 +5865,36 @@
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
+		
+		<!-- 项目状态 -->
+		<action name="listProjectState" class="listProjectStateAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/project/state/projectStateList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="editProjectState" class="editProjectStateAction">
+			<result name="success" type="freemarker">
+				/pages/project/state/projectStateProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		
+		<action name="saveProjectState" class= "editProjectStateAction" method="save">
+			<result name="new" type="redirect">
+				editProjectState.html?projectState.id=${projectState.id}
+			</result>
+			<result name="success" type="redirect">
+				editProjectState.html?projectState.id=${projectState.id}
+			</result>
+			<result name="error" type="redirect">
+				editProjectState.html?projectState.id=${projectState.id}
+			</result>
+			<interceptor-ref name="fileUploadStack" />
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		
 		
 	</package>
 

@@ -47,6 +47,7 @@ import java.util.List;
 /*    */   public void storeData(Data lb) {
 /* 68 */     this.dataDao.storeData(lb);
 /*    */   }
+
            public void storeData(PersonnelFiles pf, HashMap map) throws DaoException{
         	   SimpleDateFormat sfMonth = new SimpleDateFormat("yyyy年MM月");
         	   SimpleDateFormat sfYear = new SimpleDateFormat("yyyy年"); 
@@ -143,6 +144,10 @@ import java.util.List;
 		public Object loadAllDataByYear(HashMap map) {
 			// TODO Auto-generated method stub
 			return this.dataDao.loadAllDataByYear(map);
+		}
+		public List<Data> loadAllDataByTeam(HashMap map) {
+			// TODO Auto-generated method stub
+			return this.dataDao.loadAllDataByTeam(map);
 		}
 }
 

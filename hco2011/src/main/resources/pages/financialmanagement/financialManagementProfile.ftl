@@ -162,7 +162,7 @@
 		<tr>
 			<@ww.textfield label="'${action.getText('financialManagement.accountName')}'" name="'financialManagement.accountName'" value="'${financialManagement.accountName?if_exists}'" cssClass="'underline'"/>
 			<@ww.textfield label="'${action.getText('financialManagement.accountNumber')}'" name="'financialManagement.accountNumber'" value="'${financialManagement.accountNumber?if_exists}'" cssClass="'underline'"/>
-			<@ww.textfield label="'${action.getText('支付凭证号')}'" name="'financialManagement.payNumber'" value="'${financialManagement.payNumber?if_exists}'" cssClass="'underline'"/>
+			<@ww.textfield label="'${action.getText('收款凭证号')}'" name="'financialManagement.payNumber'" value="'${financialManagement.payNumber?if_exists}'" cssClass="'underline'"/>
 		</tr>
 		
 		<tr>
@@ -312,7 +312,7 @@
 		if(rest>=0){
 			getObjByName('financialManagement.withoutGotSum').value = rest;
 		}else{
-			alert("未收金额必须大于等于0！");
+			alert("本次实收金额应该小于等于计划应收金额减去前期已收金额！");
 			getObjByName('financialManagement.trueSum').value = "";
 			getObjByName('financialManagement.withoutGotSum').value = "";
 		}

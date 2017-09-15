@@ -11,20 +11,32 @@ import com.yongjun.tdms.model.advisory.Advisory;
 import com.yongjun.tdms.model.backvisit.BackVisit;
 import com.yongjun.tdms.model.base.document.ApplicationDoc;
 import com.yongjun.tdms.model.base.products.Products;
+import com.yongjun.tdms.model.customercontract.billingrecord.BillingRecord;
 import com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement;
+import com.yongjun.tdms.model.expensemanagement.expenseForm.ExpenseForm;
+import com.yongjun.tdms.model.financeManagement.paymentorder.Paymentorder;
 import com.yongjun.tdms.model.financialmanagement.FinancialManagement;
 import com.yongjun.tdms.model.personnelFiles.contractadministrator.ContractAdministrator;
 import com.yongjun.tdms.model.project.ProjectInfo;
 import com.yongjun.tdms.model.supplier.Supplier;
+import com.yongjun.tdms.model.workspace.leaveBill.LeaveBill;
+import com.yongjun.tdms.model.workspace.ontheroadBill.OnTheRoadBill;
+import com.yongjun.tdms.model.workspace.overTimeBill.OverTimeBill;
 import com.yongjun.tdms.service.advisory.AdvisoryManager;
 import com.yongjun.tdms.service.backvisit.BackVisitManager;
 import com.yongjun.tdms.service.base.document.ApplicationDocManager;
 import com.yongjun.tdms.service.base.products.ProductsManager;
+import com.yongjun.tdms.service.customercontract.billingrecord.BillingRecordManager;
 import com.yongjun.tdms.service.customercontract.contractmanagement.ContractManagementManager;
+import com.yongjun.tdms.service.expensemanagement.expenseForm.ExpenseFormManager;
+import com.yongjun.tdms.service.financeManagement.paymentorder.PaymentorderManager;
 import com.yongjun.tdms.service.financialmanagement.FinancialManagementManager;
 import com.yongjun.tdms.service.personnelFiles.contractadministrator.ContractAdministratorManager;
 import com.yongjun.tdms.service.project.ProjectInfoManager;
 import com.yongjun.tdms.service.supplier.SupplierManager;
+import com.yongjun.tdms.service.workspace.leaveBill.LeaveBillManager;
+import com.yongjun.tdms.service.workspace.ontheroadBill.OnTheRoadBillManager;
+import com.yongjun.tdms.service.workspace.overTimeBill.OverTimeBillManager;
 
 public class ListAccessoryAction extends ValueListAction {
 	private static final long serialVersionUID = 5616960016127750986L;
@@ -38,6 +50,12 @@ public class ListAccessoryAction extends ValueListAction {
 	private final ContractManagementManager contractManagementManager;
 	private final FinancialManagementManager financialManagementManager;
 	private final ProductsManager productsManager;
+	private final ExpenseFormManager expenseFormManager;
+	private final PaymentorderManager paymentorderManager;
+	private final OnTheRoadBillManager onTheRoadBillManager;
+	private final OverTimeBillManager overTimeBillManager;
+	private final LeaveBillManager leaveBillManager;
+	private final BillingRecordManager billingRecordManager;
 
 	private List<ApplicationDoc> applicationDocs;
 	private ApplicationDoc applicationDoc;
@@ -49,12 +67,20 @@ public class ListAccessoryAction extends ValueListAction {
 	private ContractManagement contractManagement;
 	private FinancialManagement financialManagement;
 	private Products products;
+	private ExpenseForm expenseForm;
+	private Paymentorder paymentorder;
+	private OnTheRoadBill onTheRoadBill;
+	private OverTimeBill overTimeBill;
+	private LeaveBill leaveBill;
+	private BillingRecord billingRecord;
 
 	public ListAccessoryAction(ApplicationDocManager applicationDocManager, FileTransportManager fileTransportManager,
 			AdvisoryManager advisoryManager, BackVisitManager backVisitManager, SupplierManager supplierManager,
 			ContractAdministratorManager contractAdministratorManager, ProjectInfoManager projectInfoManager,
 			ContractManagementManager contractManagementManager,FinancialManagementManager financialManagementManager,
-			ProductsManager productsManager) {
+			ProductsManager productsManager,ExpenseFormManager expenseFormManager,PaymentorderManager paymentorderManager,
+			OnTheRoadBillManager onTheRoadBillManager,OverTimeBillManager overTimeBillManager,LeaveBillManager leaveBillManager,
+			BillingRecordManager billingRecordManager) {
 		this.applicationDocManager = applicationDocManager;
 		this.fileTransportManager = fileTransportManager;
 		this.advisoryManager = advisoryManager;
@@ -65,6 +91,12 @@ public class ListAccessoryAction extends ValueListAction {
 		this.contractManagementManager = contractManagementManager;
 		this.financialManagementManager = financialManagementManager;
 		this.productsManager = productsManager;
+		this.expenseFormManager = expenseFormManager;
+		this.paymentorderManager = paymentorderManager;
+		this.onTheRoadBillManager = onTheRoadBillManager;
+		this.overTimeBillManager = overTimeBillManager;
+		this.leaveBillManager = leaveBillManager;
+		this.billingRecordManager = billingRecordManager;
 	}
 
 	public void prepare() throws Exception {
@@ -100,9 +132,28 @@ public class ListAccessoryAction extends ValueListAction {
 			this.products = this.productsManager
 					.loadProducts(getId("products.id"));
 		}
+		if (hasId("expenseForm.id")) {
+			this.expenseForm = this.expenseFormManager.loadExpenseForm(getId("expenseForm.id"));
+		}
+		if (hasId("paymentorder.id")) {
+			this.paymentorder = this.paymentorderManager.loadPaymentorder(getId("paymentorder.id"));
+		}
 		if ((this.applicationDocs == null) && (hasIds("applicationDocIds"))) {
 			this.applicationDocs = this.applicationDocManager.loadAllApplicationDocs(getIds("applicationDocIds"));
 		}
+		if (hasId("onTheRoadBill.id")) {
+			this.onTheRoadBill = this.onTheRoadBillManager.loadOnTheRoadBill(getId("onTheRoadBill.id"));
+		}
+		if (hasId("overTimeBill.id")) {
+			this.overTimeBill = this.overTimeBillManager.loadOverTimeBill(getId("overTimeBill.id"));
+		}
+		if (hasId("leaveBill.id")) {
+			this.leaveBill = this.leaveBillManager.loadLeaveBill(getId("leaveBill.id"));
+		}
+		if (hasId("billingRecord.id")) {
+			this.billingRecord = this.billingRecordManager.loadBillingRecord(getId("billingRecord.id"));
+		}
+		
 		setFirst(false);
 	}
 
@@ -247,5 +298,54 @@ public class ListAccessoryAction extends ValueListAction {
 	public void setProducts(Products products) {
 		this.products = products;
 	}
+
+	public ExpenseForm getExpenseForm() {
+		return expenseForm;
+	}
+
+	public void setExpenseForm(ExpenseForm expenseForm) {
+		this.expenseForm = expenseForm;
+	}
+
+	public Paymentorder getPaymentorder() {
+		return paymentorder;
+	}
+
+	public void setPaymentorder(Paymentorder paymentorder) {
+		this.paymentorder = paymentorder;
+	}
+
+	public OverTimeBill getOverTimeBill() {
+		return overTimeBill;
+	}
+
+	public void setOverTimeBill(OverTimeBill overTimeBill) {
+		this.overTimeBill = overTimeBill;
+	}
+
+	public OnTheRoadBill getOnTheRoadBill() {
+		return onTheRoadBill;
+	}
+
+	public void setOnTheRoadBill(OnTheRoadBill onTheRoadBill) {
+		this.onTheRoadBill = onTheRoadBill;
+	}
+	
+	public LeaveBill getLeaveBill() {
+		return leaveBill;
+	}
+
+	public void setLeaveBill(LeaveBill leaveBill) {
+		this.leaveBill = leaveBill;
+	}
+
+	public BillingRecord getBillingRecord() {
+		return billingRecord;
+	}
+
+	public void setBillingRecord(BillingRecord billingRecord) {
+		this.billingRecord = billingRecord;
+	}
+
 
 }

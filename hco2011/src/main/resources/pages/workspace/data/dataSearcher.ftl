@@ -23,6 +23,8 @@
 <@inputTable>
 	<tr>
  		<@ww.textfield label="'${action.getText('data.year')}'" name="'data.year'" value="'${req.getParameter('data.year')?if_exists}'" cssClass="'underline'" />
+ 		<@ww.textfield label="'${action.getText('data.month')}'" name="'data.month'" value="'${req.getParameter('data.month')?if_exists}'" cssClass="'underline'" />
+ 		<@ww.textfield label="'${action.getText('personnelFiles.name')}'" name="'personnelFiles.name'" value="'${req.getParameter('personnelFiles.name')?if_exists}'" cssClass="'underline'" />
 	</tr>
 </@inputTable>
 <script language="javascript">

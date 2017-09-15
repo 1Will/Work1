@@ -3,8 +3,10 @@ package com.yongjun.tdms.service.workspace.warnning;
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.pluto.model.security.User;
 import com.yongjun.tdms.model.workspace.warnning.WorkWarnning;
+
 import java.util.Collection;
 import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(readOnly=true)
@@ -40,4 +42,6 @@ public abstract interface WorkWarnningManager
 
   public abstract List<WorkWarnning> loadByKey(String paramString, Object paramObject)
     throws DaoException;
+  
+  public List<WorkWarnning> loadWarByUser(Long id);
 }

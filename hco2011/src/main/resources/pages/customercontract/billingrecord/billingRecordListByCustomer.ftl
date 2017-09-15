@@ -11,8 +11,9 @@
         	fieldMap="like:" >
             <@vcolumn title="${action.getText('批次')}" property="payee" sortable="desc">
 				<a href="javascript:contract_OpenDialog('#{object.id}')">${object.batch.name}</a>
-				<@alignCenter/>
+				<@alignRight/>
             </@vcolumn>
+            <#--
              <@vcolumn title="${action.getText('billingRecord.contractManagement')}" property="contractManagement.contractName" sortable="desc">
      			<@alignLeft/>
             </@vcolumn>
@@ -28,15 +29,40 @@
             <@vcolumn title="${action.getText('billingRecord.invoiceTitle')}" property="invoiceTitle" sortable="desc">
             	<@alignLeft/>
             </@vcolumn>
-            <@vcolumn title="${action.getText('billingRecord.sum')}" property="sum" sortable="desc">
-            #{object.sum?if_exists}
+            -->
+            
+           	<@vcolumn title="${action.getText('计划开票金额')}" property="planSum" sortable="desc">
+            	<@alignRight/>
+            </@vcolumn>
+            
+           	<@vcolumn title="${action.getText('已开票金额')}" property="hasBillSum" sortable="desc">
+            	<@alignRight/>
+            </@vcolumn>
+            
+           	<@vcolumn title="${action.getText('本次开票金额')}" property="sum" sortable="desc">
+            	<@alignRight/>
+            </@vcolumn>
+            
+            <@vcolumn title="${action.getText('剩余开票金额')}" property="restSum" sortable="desc">
+            	<@alignRight/>
+            </@vcolumn>
+            
+            <#assign isPay=""/>
+            <#if (object.isPay)=='0'>
+            	<#assign isPay="${action.getText('是')}">
+            <#else>
+           	 	<#assign isPay="${action.getText('否')}">
+		    </#if>
+            <@vcolumn title="${action.getText('收款')}" sortable="desc">
+            	${isPay?if_exists}
             	<@alignLeft/>
             </@vcolumn>
-            <@vcolumn title="${action.getText('billingRecord.billingTime')}" property="billingTime" format="yyyy-MM-dd" sortable="desc">
-            	<@alignCenter/><#-- attributes="width:110;"-->
-            </@vcolumn>
-              <@vcolumn title="${action.getText('billingRecord.payee')}" property="payee.name" sortable="desc">
+            
+            <@vcolumn title="${action.getText('billingRecord.payee')}" property="payee.name" sortable="desc">
 				<@alignLeft/>
+            </@vcolumn>
+            <@vcolumn title="${action.getText('billingRecord.billingTime')}" property="billingTime" format="yyyy-MM-dd" sortable="desc">
+            	<@alignLeft/><#-- attributes="width:110;"-->
             </@vcolumn>
         </@list>
     </@ww.form>

@@ -33,7 +33,7 @@
 	        <@vcolumn title="${action.getText('daily.currentDate')}" format="yyyy-MM-dd" property="currentDate" sortable="desc">
          	<a href="${req.contextPath}/workReport/editDaily.html?daily.id=#{object.id}">${object.currentDate?string('yyyy-MM-dd')}</a>  
             	<@vlh.attribute name="width" value="11%" />
-            	<@alignCenter/>
+            	<@alignLeft/>
          	</@vcolumn>
          	<@vcolumn title="${action.getText('daily.week')}" property="weekDate" sortable="desc">
          	     <@vlh.attribute name="width" value="6%" />

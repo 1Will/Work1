@@ -93,6 +93,29 @@
 		<many-to-one name="financialManagement" class="com.yongjun.tdms.model.financialmanagement.FinancialManagement" lazy="false">
 			<column name="FINANCIALMANAGEMENT_ID" not-null="false" />
 		</many-to-one>
+		<many-to-one name="expenseForm" class="com.yongjun.tdms.model.expensemanagement.expenseForm.ExpenseForm" lazy="false">
+			<column name="EXPENSEFORM_ID" not-null="false" />
+		</many-to-one>
+		<many-to-one name="paymentorder" class="com.yongjun.tdms.model.financeManagement.paymentorder.Paymentorder" lazy="false">
+			<column name="PAYMENTORDER_ID" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="onTheRoadBill" class="com.yongjun.tdms.model.workspace.ontheroadBill.OnTheRoadBill" lazy="false">
+			<column name="ONTHEROADBILL_ID" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="overTimeBill" class="com.yongjun.tdms.model.workspace.overTimeBill.OverTimeBill" lazy="false">
+			<column name="OVERTIMEBILL_ID" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="leaveBill" class="com.yongjun.tdms.model.workspace.leaveBill.LeaveBill" lazy="false">
+			<column name="LEAVEBILL_ID" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="billingRecord" class="com.yongjun.tdms.model.customercontract.billingrecord.BillingRecord" lazy="false">
+			<column name="BILLINGRECORD_ID" not-null="false" />
+		</many-to-one>
+		
 		<property name="creatorName" type="string">
 			<column name="CREATED_NAME" sql-type="NVARCHAR(50)" />
 		</property>

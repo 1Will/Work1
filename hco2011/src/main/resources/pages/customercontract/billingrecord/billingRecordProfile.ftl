@@ -53,6 +53,7 @@
 	 	</#if>
 	 	
 	 	<tr>
+	 		<@ww.textfield label="'${action.getText('开票单编码')}'" name="'billingRecord.myCode'" value="'${billingRecord.myCode?if_exists}'" cssClass="'underline'" disabled="true"/>
 			<#--相关合同弹出框-->
 			<td align="right" valign="top">
 				<span class="required">*</span>
@@ -84,7 +85,8 @@
 				</#if>
 			</td>
 			
-	
+	</tr>
+	<tr>
 	     	<#if billingRecord.contractManagement?exists>
 		     	<#if billingRecord.contractManagement.project?exists>
 		     		<@ww.textfield label="'${action.getText('项目名称')}'" name="'projectInfo.name'" value="'${billingRecord.contractManagement.project.name?if_exists}'" disabled="true" cssClass="'underline'" />
@@ -96,8 +98,8 @@
 	     	</#if>
 	     	</td>
 	     	
-		</tr>
-		<tr>
+		
+		
 			<#--相关联系人弹出框-->
 			<td align="right" valign="top">
 	       		<label class="label">${action.getText('billingRecord.contactArchives')}:</label>
@@ -132,7 +134,6 @@
 				</script>
 			</#if>
 	     		
-			<@ww.textfield label="'${action.getText('billingRecord.invoiceTitle')}'" name="'billingRecord.invoiceTitle'" value="'${billingRecord.invoiceTitle?if_exists}'" cssClass="'underline'" />
 		</tr>
 		
 		
@@ -140,13 +141,35 @@
 			<@ww.textfield label="'${action.getText('计划开票金额')}'" name="'billingRecord.planSum'" value="'#{billingRecord.planSum?if_exists}'" cssClass="'underline'" readonly="true" />
 			<@ww.textfield label="'${action.getText('已开票金额')}'" name="'billingRecord.hasBillSum'" value="'#{billingRecord.hasBillSum?if_exists}'" cssClass="'underline'" readonly="true" />
 			
+			<td align="right">
+				<label for="" class="label">${action.getText('是否收款')}:</label>
+			</td>
+	        <td align="left">
+	        	<input type="radio" id="yes" name="billingRecord.isPay" value="0" />已收
+	        	<input type="radio" id="no" name="billingRecord.isPay" value="1" />未收
+			</td>
+			<script language="javascript">
+				var xradio = document.getElementsByName("billingRecord.isPay");
+				<#if billingRecord.id?exists>
+	                for(var i=0;i<xradio.length;i++){
+	                    if(xradio[i].value == ${billingRecord.isPay?if_exists}){
+	                        xradio[i].checked = true;
+	                        break;
+	                    }
+	                }
+	             <#else>
+	             	xradio[0].checked = true;
+	             </#if>
+			</script>
 		</tr>
 		<tr>
 			<@ww.textfield label="'${action.getText('本次开票金额')}'" name="'billingRecord.sum'" value="'#{billingRecord.sum?if_exists}'" cssClass="'underline'" required="true" onblur="'getRest()'"/>
 			<@ww.textfield label="'${action.getText('剩余开票金额')}'" name="'billingRecord.restSum'" value="'#{billingRecord.restSum?if_exists}'" cssClass="'underline'" readonly="true"/>
 		
-		
+		<#--
 			<@ww.textfield label="'${action.getText('billingRecord.currency')}'" name="'billingRecord.currency'" value="'${billingRecord.currency?if_exists}'" cssClass="'underline'"/>
+		-->
+			<@ww.textfield label="'${action.getText('收款凭证号')}'" name="'billingRecord.payCode'" value="'${billingRecord.payCode?if_exists}'" cssClass="'underline'"/>
 		</tr>
 		<tr>	
             <@ww.textfield label="'${action.getText('billingRecord.code')}'" name="'billingRecord.code'" value="'${billingRecord.code?if_exists}'" cssClass="'underline'" required="true"/>
@@ -179,6 +202,9 @@
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
 				</a>
 			</td>
+		</tr>
+		<tr>
+			<@ww.textfield label="'${action.getText('billingRecord.invoiceTitle')}'" name="'billingRecord.invoiceTitle'" value="'${billingRecord.invoiceTitle?if_exists}'" cssClass="'underline'" />
 		</tr>
 		<tr>	
 			<td align="right" valign="top">
@@ -380,6 +406,27 @@
 			}
 	     }
 	     
+	    var radios = document.getElementsByName("billingRecord.isPay");
+		var tag = true;
+		var val;
+		for(var i = 0 ;i< radios.length;i++) {
+		   if(radios[i].checked) {
+		      tag = false;
+		      val = radios[i].value;
+		      break;
+		   }
+		}
+		if(tag){
+			alert("请选择是否收款！");
+			return false;
+		}else{
+			if(getObjByName('billingRecord.payCode').value==''&&val==0){
+				alert("${action.getText('请输入收款凭证号！')}");
+				getObjByName('billingRecord.payCode').focus();
+				return false;
+			}
+		}
+	     
 	     if(getObjByName('billingRecord.code').value==''){
 			alert("${action.getText('billingRecord.code.requiredstring')}");
 			getObjByName('billingRecord.code').focus();
@@ -407,3 +454,11 @@
 	}
 </script>
 </@htmlPage>
+<#if billingRecord.id?exists>
+<ul id="beautytab">
+	<li>
+		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?billingRecord.id=#{billingRecord.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
+	</li>
+</ul>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/applicationDocManager/listApplicationDoc.html?billingRecord.id=#{billingRecord.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="50%"/>
+</#if>

@@ -23,12 +23,13 @@
 <@fsPage title="${action.getText('customerInfo.title')}">
 	<@ww.form name="'listForm'" action="'searchCustInfo'" method="'post'">
 		<@ww.token name="searchCustomerInfoToken"/>
+		<@ww.hidden name="'isPartner'" value="'${req.getParameter('isPartner')?if_exists}'"/>
 		<#include "./customerInfoSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'checkInvalidParms()'"/>
         </@buttonBar>
         <@list title="${action.getText('customerInfo.list.title')}" 
-            includeParameters="customerInfo.code|customerInfo.name|type.id|country.id|province.id|city.id|industry.id|companyNature.id|customerInfo.keyContacter|onlyInvalid|onlyValid" 
+            includeParameters="customerInfo.code|customerInfo.name|isPartner|type.id|country.id|province.id|city.id|industry.id|companyNature.id|customerInfo.keyContacter|onlyInvalid|onlyValid" 
         	fieldMap="like:customerInfo.code|customerInfo.name|customerInfo.keyContacter" >
         	
             <@vcolumn title="${action.getText('customerInfo.code')}" property="code" sortable="desc">

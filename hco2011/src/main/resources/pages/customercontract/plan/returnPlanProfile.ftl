@@ -162,12 +162,6 @@
 			<@ww.textfield label="'${action.getText('returnPlan.sum')}'" name="'returnPlan.sum'" value="'#{returnPlan.sum?if_exists}'" cssClass="'underline'" required="true" onblur="'checkSum()'"/>
 			</span>
 			
-			<@ww.textfield label="'${action.getText('returnPlan.factSum')}'" name="'returnPlan.factSum'" value="'#{returnPlan.factSum?if_exists}'" readonly="true" cssClass="'underline'" />
-			<@ww.textfield label="'${action.getText('returnPlan.currency')}'" name="'returnPlan.currency'" value="'${returnPlan.currency?if_exists}'" cssClass="'underline'"/>
-		</tr>
-
-		<tr>
-		
 			<td align="right" valign="top">
 				<label class="label">${action.getText('负责人')}:</label>
 			</td>
@@ -181,76 +175,22 @@
 				<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
 			</a>
 			</td>
-		
-		
+			
 			<td align="right"><label for="" class="label">${action.getText('returnPlan.notOrIs')}:</label></td>
 	        <td align="left">
 	        	<input type="radio" id="notOrIs0" name="notOrIs" value="0" />是
 	        	<input type="radio" id="notOrIs1" name="notOrIs" value="1" />否
 			</td>
 			
-	        
-	        
-	        
-	        
-			<td align="right"><label for="" class="label">${action.getText('returnPlan.isOrNot')}:</label></td>
-	        <td align="left">
-	        	<input type="radio" id="isOrNot0" name="isOrNot" value="0" disabled/>是
-	        	<input type="radio" id="isOrNot1" name="isOrNot" value="1" disabled/>否
-			</td>
 			<#--
-			<@pp.datePicker 
-				label="'${action.getText('returnPlan.paytime')}'" 
-				name="'returnPlan.paytime'" 
-	   			value="'${(returnPlan.paytime?string('yyyy-MM-dd'))?if_exists}'"
-				cssClass="'underline'" 
-				dateFormat="'%Y-%m-%d'"
-				maxlength="10"/>-->
-		</tr>
-		<tr>
+			<@ww.textfield label="'${action.getText('returnPlan.currency')}'" name="'returnPlan.currency'" value="'${returnPlan.currency?if_exists}'" cssClass="'underline'"/>
+			-->
 			
-			<@ww.select label="'${action.getText('计划状态')}'" 
-				name="'planState.id'" 
-				value="'${req.getParameter('planState.id')?if_exists}'"
-				listKey="id"
-				listValue="name"
-				list="allPlanState"
-				required="true"
-				emptyOption="false">
-			</@ww.select>
+		</tr>
 		
-			<td align="right" valign="top">
-				<label class="label">完成百分比:</label>
-			</td>
-			<td>
-				<input type="text" style="width:60px" value="${returnPlan.percentt?if_exists}" readonly="readonly" id="returnPlan.percentt" name="returnPlan.percentt" onblur="checkPercentt();">%
-			</td>
-
-			<td align="right"><label for="" class="label">${action.getText('returnPlan.billingOrNot')}:</label></td>
-			<td align="left">
-				<select name="billingOrNot" id="billingOrNot" disabled="disabled">
-				  <option value ="0">未开发票</option>
-				  <option value ="1">部分已开</option>
-				  <option value="2">发票全开</option>
-				</select>
-				<script>
-					<#if returnPlan.id?exists>
-						getObjByName('billingOrNot').value=${returnPlan.billingOrNot};
-					<#else>
-						getObjByName('billingOrNot').value=0;
-					</#if>
-				</script>
-			</td>
-		</tr>
-
-		<tr>
-			
-			<@ww.textfield label="'${action.getText('开票金额')}'" name="'returnPlan.billMoney'" value="'${returnPlan.billMoney?if_exists}'" readonly="true" cssClass="'underline'"/>
-			
-			<@ww.textfield label="'${action.getText('开票日期')}'" name="'returnPlan.billDate'" value="'${(returnPlan.billDate?string('yyyy-MM-dd'))?if_exists}'" readonly="true" cssClass="'underline'" />
-		</tr>
 		<tr>	
-			
+			<@ww.textfield label="'${action.getText('returnPlan.factSum')}'" name="'returnPlan.factSum'" value="'#{returnPlan.factSum?if_exists}'" readonly="true" cssClass="'underline'" />
+		
 			<#--收款人弹出框-->
 	 		<td align="right" valign="top">
 	       		<label class="label">${action.getText('returnPlan.payee')}:</label>
@@ -269,6 +209,64 @@
 			<@ww.textfield label="'${action.getText('returnPlan.paytime')}'" name="'returnPlan.paytime'" value="'${(returnPlan.paytime?string('yyyy-MM-dd'))?if_exists}'" readonly="true" cssClass="'underline'" />
 		</tr>
 		
+		<tr>
+			
+			<td align="right" valign="top">
+				<label class="label">完成百分比:</label>
+			</td>
+			<td>
+				<input type="text" style="width:60px" value="${returnPlan.percentt?if_exists}" readonly="readonly" id="returnPlan.percentt" name="returnPlan.percentt" onblur="checkPercentt();">%
+			</td>
+				
+			<td align="right"><label for="" class="label">${action.getText('returnPlan.isOrNot')}:</label></td>
+	        <td align="left">
+	        	<input type="radio" id="isOrNot0" name="isOrNot" value="0" disabled/>是
+	        	<input type="radio" id="isOrNot1" name="isOrNot" value="1" disabled/>否
+			</td>
+			<#--
+			<@pp.datePicker 
+				label="'${action.getText('returnPlan.paytime')}'" 
+				name="'returnPlan.paytime'" 
+	   			value="'${(returnPlan.paytime?string('yyyy-MM-dd'))?if_exists}'"
+				cssClass="'underline'" 
+				dateFormat="'%Y-%m-%d'"
+				maxlength="10"/>-->
+			
+			<@ww.select label="'${action.getText('计划状态')}'" 
+				name="'planState.id'" 
+				value="'${req.getParameter('planState.id')?if_exists}'"
+				listKey="id"
+				listValue="name"
+				list="allPlanState"
+				required="true"
+				emptyOption="false">
+			</@ww.select>
+			
+		</tr>
+
+		<tr>
+			
+			<@ww.textfield label="'${action.getText('开票金额')}'" name="'returnPlan.billMoney'" value="'${returnPlan.billMoney?if_exists}'" readonly="true" cssClass="'underline'"/>
+			
+			<@ww.textfield label="'${action.getText('开票日期')}'" name="'returnPlan.billDate'" value="'${(returnPlan.billDate?string('yyyy-MM-dd'))?if_exists}'" readonly="true" cssClass="'underline'" />
+			<td align="right"><label for="" class="label">${action.getText('returnPlan.billingOrNot')}:</label></td>
+			<td align="left">
+				<select name="billingOrNot" id="billingOrNot" disabled="disabled">
+				  <option value ="0">未开发票</option>
+				  <option value ="1">部分已开</option>
+				  <option value="2">发票全开</option>
+				</select>
+				<script>
+					<#if returnPlan.id?exists>
+						getObjByName('billingOrNot').value=${returnPlan.billingOrNot};
+					<#else>
+						getObjByName('billingOrNot').value=0;
+					</#if>
+				</script>
+			</td>
+		
+		</tr>
+
 		
 		<tr>	
 			<td align="right" valign="top">

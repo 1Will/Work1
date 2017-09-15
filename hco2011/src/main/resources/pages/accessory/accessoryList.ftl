@@ -37,6 +37,18 @@
         </#if>
         </#if>
         
+        <#if expenseForm?exists>
+        <#if expenseForm.id?exists>
+            <@ww.hidden name="'expenseForm.id'" value="#{expenseForm.id}"/>
+        </#if>
+        </#if>
+        
+        <#if paymentorder?exists>
+        <#if paymentorder.id?exists>
+            <@ww.hidden name="'paymentorder.id'" value="#{paymentorder.id}"/>
+        </#if>
+        </#if>
+        
         <#if supplier?exists>
         <#if supplier.id?exists>
             <@ww.hidden name="'supplier.id'" value="#{supplier.id}"/>
@@ -47,8 +59,35 @@
             <@ww.hidden name="'contractAdministrator.id'" value="#{contractAdministrator.id}"/>
         </#if>
         </#if>
+        
+        <#if onTheRoadBill?exists>
+        <#if onTheRoadBill.id?exists>
+            <@ww.hidden name="'onTheRoadBill.id'" value="#{onTheRoadBill.id}"/>
+        </#if>
+        </#if>
+        
+        <#if overTimeBill?exists>
+        <#if overTimeBill.id?exists>
+            <@ww.hidden name="'overTimeBill.id'" value="#{overTimeBill.id}"/>
+        </#if>
+        </#if>
+        
+        <#if leaveBill?exists>
+        <#if leaveBill.id?exists>
+            <@ww.hidden name="'leaveBill.id'" value="#{leaveBill.id}"/>
+        </#if>
+        </#if>
+        
+        <#if billingRecord?exists>
+        <#if billingRecord.id?exists>
+            <@ww.hidden name="'billingRecord.id'" value="#{billingRecord.id}"/>
+        </#if>
+        </#if>
+        
+        
         <#assign itemNo=1/>
-		<@list title="" excel=false setupTable=false includeParameters="advisory.id|id|applicationDoc.id|projectInfo.id" fieldMap="like:" >
+		<@list title="" excel=false setupTable=false includeParameters="advisory.id|id|billingRecord.id|applicationDoc.id|projectInfo.id|overTimeBill.id|onTheRoadBill.id|contractAdministrator.id|supplier.id|paymentorder.id|expenseForm.id|products.id|leaveBill.id" 
+		fieldMap="like:" >
 			<@vlh.checkbox property="id" name="applicationDocIds">
             	<@vlh.attribute name="width" value="30" />
             </@vlh.checkbox>
@@ -58,7 +97,7 @@
 				<#else>
 				#{itemNo}
 				</#if>
-			<@alignCenter />
+			<@alignLeft />
 			</@vcolumn>
 			<#assign itemNo=itemNo + 1/>
 			<@vcolumn title="${action.getText('applicationDoc.name')}" property="name">
@@ -69,7 +108,7 @@
 			<@alignLeft/>
 			</@vcolumn>
 			<@vcolumn title="${action.getText('applicationDoc.uploadDate')}"  property="uploadDate" format="yyyy-MM-dd">
-        		<@alignCenter />
+        		<@alignLeft />
       		</@vcolumn>
 		</@list>
 		<#if !(action.isReadOnly())>
@@ -88,16 +127,15 @@
 function upload(){
 		<#if advisory?exists>
 		<#if advisory.id?exists>
-			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?advisory.id='+#{advisory.id};
-			//popupModalDialog(url,750,500);
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?advisory.id=#{advisory.id}';
 			openNewWindow(url);
 			if(isIE()){self.location.reload();};
 		</#if>
 		</#if>
+		
 		<#if backVisit?exists>
 			<#if backVisit.id?exists>
-				url= '${req.contextPath}/applicationDocManager/editApplicationDoc.html?backVisit.id='+#{backVisit.id};
-       			//popupModalDialog(url,750,500);
+				url= '${req.contextPath}/applicationDocManager/editApplicationDoc.html?backVisit.id=#{backVisit.id}';
        			openNewWindow(url);
 				if(isIE()){self.location.reload();};
        		</#if>
@@ -105,8 +143,7 @@ function upload(){
        		
 		<#if projectInfo?exists>
         	<#if projectInfo.id?exists>
-				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?projectInfo.id='+#{projectInfo.id};
-       			//popupModalDialog(url,750,500);
+				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?projectInfo.id=#{projectInfo.id}';
        			openNewWindow(url);
 				if(isIE()){self.location.reload();};
        		</#if>
@@ -114,8 +151,7 @@ function upload(){
 		
 		<#if contractManagement?exists>
         	<#if contractManagement.id?exists>
-				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?contractManagement.id='+#{contractManagement.id};
-       			//popupModalDialog(url,750,500);
+				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?contractManagement.id=#{contractManagement.id}';
        			openNewWindow(url);
 				if(isIE()){self.location.reload();};
        		</#if>
@@ -123,8 +159,7 @@ function upload(){
 		
 		<#if financialManagement?exists>
         	<#if financialManagement.id?exists>
-				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?financialManagement.id='+#{financialManagement.id};
-       			//popupModalDialog(url,750,500);
+				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?financialManagement.id=#{financialManagement.id}';
        			openNewWindow(url);
 				if(isIE()){self.location.reload();};
        		</#if>
@@ -132,8 +167,23 @@ function upload(){
 		
 		<#if products?exists>
         	<#if products.id?exists>
-				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?products.id='+#{products.id};
-       			//popupModalDialog(url,750,500);
+				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?products.id=#{products.id}';
+       			openNewWindow(url);
+				if(isIE()){self.location.reload();};
+       		</#if>
+		</#if>
+		
+		<#if expenseForm?exists>
+        	<#if expenseForm.id?exists>
+				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?expenseForm.id=#{expenseForm.id}';
+       			openNewWindow(url);
+				if(isIE()){self.location.reload();};
+       		</#if>
+		</#if>
+		
+		<#if paymentorder?exists>
+        	<#if paymentorder.id?exists>
+				var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?paymentorder.id=#{paymentorder.id}';
        			openNewWindow(url);
 				if(isIE()){self.location.reload();};
        		</#if>
@@ -142,15 +192,46 @@ function upload(){
 		<#if supplier?exists>
         <#if supplier.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?supplier.id=#{supplier.id}';
-			//popupModalDialog(url,750,500);
 			openNewWindow(url);
 			if(isIE()){self.location.reload();};
 		</#if>
 		</#if>
+		
 		<#if contractAdministrator?exists>
 		<#if contractAdministrator.id?exists>
-			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?contractAdministrator.id='+#{contractAdministrator.id};
-			//popupModalDialog(url,750,500);
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?contractAdministrator.id=#{contractAdministrator.id}';
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
+		</#if>
+		</#if>
+		
+		<#if overTimeBill?exists>
+		<#if overTimeBill.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?overTimeBill.id=#{overTimeBill.id}';
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
+		</#if>
+		</#if>
+		
+		<#if onTheRoadBill?exists>
+		<#if onTheRoadBill.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?onTheRoadBill.id=#{onTheRoadBill.id}';
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
+		</#if>
+		</#if>
+		
+		<#if leaveBill?exists>
+		<#if leaveBill.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?leaveBill.id=#{leaveBill.id}';
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
+		</#if>
+		</#if>
+		
+		<#if billingRecord?exists>
+		<#if billingRecord.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?billingRecord.id=#{billingRecord.id}';
 			openNewWindow(url);
 			if(isIE()){self.location.reload();};
 		</#if>
@@ -161,7 +242,6 @@ function uploadEdit(id){
 		<#if advisory.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?advisory.id='+#{advisory.id}+'&applicationDoc.id='+id;
 			openNewWindow(url);
-			//popupModalDialog(url,750,500);
 			if(isIE()){self.location.reload();};
 		</#if>
 		</#if>
@@ -169,7 +249,6 @@ function uploadEdit(id){
 		<#if supplier?exists>
         <#if supplier.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?supplier.id='+#{supplier.id}+'&applicationDoc.id='+id;
-			//popupModalDialog(url,750,500);
 			openNewWindow(url);
 			if(isIE()){self.location.reload();};
 		</#if>
@@ -178,7 +257,6 @@ function uploadEdit(id){
 		<#if backVisit?exists>
         <#if backVisit.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?backVisit.id='+#{backVisit.id}+'&applicationDoc.id='+id;
-			//popupModalDialog(url,750,500);
 			openNewWindow(url);
 			if(isIE()){self.location.reload();};
 		</#if>
@@ -187,7 +265,6 @@ function uploadEdit(id){
 		<#if projectInfo?exists>
         <#if projectInfo.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?projectInfo.id='+#{projectInfo.id}+'&applicationDoc.id='+id;
-			//popupModalDialog(url,750,500);
 			openNewWindow(url);
 			if(isIE()){self.location.reload();};
 		</#if>
@@ -196,7 +273,6 @@ function uploadEdit(id){
 		<#if contractAdministrator?exists>
 		<#if contractAdministrator.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?contractAdministrator.id='+#{contractAdministrator.id}+'&applicationDoc.id='+id;
-			//popupModalDialog(url,750,500);
 			openNewWindow(url);
 			if(isIE()){self.location.reload();};
 		</#if>
@@ -205,7 +281,6 @@ function uploadEdit(id){
 		<#if contractManagement?exists>
 		<#if contractManagement.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?contractManagement.id='+#{contractManagement.id}+'&applicationDoc.id='+id;
-			//popupModalDialog(url,750,500);
 			openNewWindow(url);
 			if(isIE()){self.location.reload();};
 		</#if>
@@ -214,7 +289,6 @@ function uploadEdit(id){
 		<#if financialManagement?exists>
 		<#if financialManagement.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?financialManagement.id='+#{financialManagement.id}+'&applicationDoc.id='+id;
-			//popupModalDialog(url,750,500);
 			openNewWindow(url);
 			if(isIE()){self.location.reload();};
 		</#if>
@@ -223,7 +297,56 @@ function uploadEdit(id){
 		<#if products?exists>
 		<#if products.id?exists>
 			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?products.id='+#{products.id}+'&applicationDoc.id='+id;
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
+		</#if>
+		</#if>
+		
+		<#if expenseForm?exists>
+		<#if expenseForm.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?expenseForm.id='+#{expenseForm.id}+'&applicationDoc.id='+id;
 			//popupModalDialog(url,750,500);
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
+		</#if>
+		</#if>
+		
+		<#if paymentorder?exists>
+		<#if paymentorder.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?paymentorder.id='+#{paymentorder.id}+'&applicationDoc.id='+id;
+			//popupModalDialog(url,750,500);
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
+		</#if>
+		</#if>
+		
+		<#if overTimeBill?exists>
+		<#if overTimeBill.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?overTimeBill.id='+#{overTimeBill.id}+'&applicationDoc.id='+id;
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
+		</#if>
+		</#if>
+		
+		<#if onTheRoadBill?exists>
+		<#if onTheRoadBill.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?onTheRoadBill.id='+#{onTheRoadBill.id}+'&applicationDoc.id='+id;
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
+		</#if>
+		</#if>
+		
+		<#if leaveBill?exists>
+		<#if leaveBill.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?leaveBill.id='+#{leaveBill.id}+'&applicationDoc.id='+id;
+			openNewWindow(url);
+			if(isIE()){self.location.reload();};
+		</#if>
+		</#if>
+		
+		<#if billingRecord?exists>
+		<#if billingRecord.id?exists>
+			var url = '${req.contextPath}/applicationDocManager/editApplicationDoc.html?billingRecord.id='+#{billingRecord.id}+'&applicationDoc.id='+id;
 			openNewWindow(url);
 			if(isIE()){self.location.reload();};
 		</#if>

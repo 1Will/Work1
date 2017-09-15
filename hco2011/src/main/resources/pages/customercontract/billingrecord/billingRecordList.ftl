@@ -38,34 +38,69 @@
             	<@vlh.attribute name="width" value="30" />
             </@vlh.checkbox>
              </#if>
+            <#--
             <@vcolumn title="${action.getText('contractManagement.code')}" property="payee" sortable="desc">
                 <a href="editBillingRecord.html?billingRecord.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}">${object.contractManagement.code}</a>
 				<@alignLeft/>
             </@vcolumn>
-             <@vcolumn title="${action.getText('billingRecord.contractManagement')}" property="contractManagement.contractName" sortable="desc">
-     			<@alignLeft/>
-            </@vcolumn>
-             <@vcolumn title="${action.getText('customerInfo.code')}" property="customerInfo.code" sortable="desc">
-     			<@alignLeft/>
-            </@vcolumn>
-            <@vcolumn title="${action.getText('billingRecord.customerInfo')}" property="customerInfo.name" sortable="desc">
-     			<@alignLeft/>
-            </@vcolumn>
-            <@vcolumn title="${action.getText('billingRecord.code')}" property="code" sortable="desc">
+            
+            <@vcolumn title="${action.getText('billingRecord.contractManagement')}" property="contractManagement.contractName" sortable="desc">
+            	<a href="javascript:contractManagement_OpenDialog(<#if (object.contractManagement?exists)>#{object.contractManagement.id?if_exists}</#if>)"><#if (object.contractManagement?exists)>${object.contractManagement.contractName?if_exists}</#if></a>
+            	<@vlh.attribute name="width" value="12%" />
             	<@alignLeft/>
             </@vcolumn>
-            <@vcolumn title="${action.getText('billingRecord.invoiceTitle')}" property="invoiceTitle" sortable="desc">
+            
+            <@vcolumn title="${action.getText('客户名称')}" property="customerInfo.name" sortable="desc">
+     			<a href="javascript:customer_OpenDialog(#{object.customerInfo.id?if_exists})" title="完整度：${object.customerInfo.customerInfoIntegrity?if_exists}%; 熟悉程度：${object.customerInfo.customerType.name?if_exists}">${object.customerInfo.name?if_exists}</a>
+     			<@vlh.attribute name="width" value="10%" />
+     			<@alignLeft/>
+            </@vcolumn>
+            
+             <@vcolumn title="${action.getText('项目名称')}" property="contractManagement.project.name" sortable="desc">
+     			<a href="javascript:editProjectInfo_OpenDialog(<#if (object.contractManagement?exists)>#{object.contractManagement.project.id}</#if>)" ><#if (object.contractManagement?exists)>${object.contractManagement.project.name}</#if></a>
+     			<@vlh.attribute name="width" value="10%" />
+     			<@alignLeft/>
+            </@vcolumn>
+            
+            <@vcolumn title="${action.getText('批次')}" property="batch.name" sortable="desc">
+            	<@alignRight/>
+            </@vcolumn>
+            -->
+            <@vcolumn title="${action.getText('开票记录编码')}" property="myCode" sortable="desc">
+            	<a href="editBillingRecord.html?billingRecord.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}">${object.myCode?if_exists}</a>
             	<@alignLeft/>
             </@vcolumn>
-            <@vcolumn title="${action.getText('billingRecord.sum')}" property="sum" sortable="desc">
-            #{object.sum?if_exists}
+            
+             <@vcolumn title="${action.getText('计划开票金额')}" property="planSum" sortable="desc">
+            	<@alignRight/>
+            </@vcolumn>
+            <@vcolumn title="${action.getText('前期已收金额')}" property="hasBillSum" sortable="desc">
+            	<@alignRight/>
+            </@vcolumn>
+            <@vcolumn title="${action.getText('本次实收金额')}" property="sum" sortable="desc">
+            	<@alignRight/>
+            </@vcolumn>
+            <@vcolumn title="${action.getText('未收金额')}" property="restSum" sortable="desc">
+            	<@alignRight/>
+            </@vcolumn>
+            
+            <#assign pay=""/>
+            <#if object.isPay?exists && (object.isPay)=='0'>
+            	<#assign pay="${action.getText('是')}">
+            <#else>
+           	 	<#assign pay="${action.getText('否')}">
+		    </#if>
+            <@vcolumn title="${action.getText('是否收款')}" sortable="desc">
+            	${pay?if_exists}
             	<@alignLeft/>
             </@vcolumn>
-            <@vcolumn title="${action.getText('billingRecord.billingTime')}" property="billingTime" format="yyyy-MM-dd" sortable="desc">
-            	<@alignCenter/><#-- attributes="width:110;"-->
-            </@vcolumn>
+            
               <@vcolumn title="${action.getText('billingRecord.payee')}" property="payee.name" sortable="desc">
 				<@alignLeft/>
+            </@vcolumn>
+            
+            <@vcolumn title="${action.getText('billingRecord.billingTime')}" property="billingTime" format="yyyy-MM-dd" sortable="desc">
+            	<@alignCenter/><#-- attributes="width:110;"-->
             </@vcolumn>
         </@list>
          <#if !first>

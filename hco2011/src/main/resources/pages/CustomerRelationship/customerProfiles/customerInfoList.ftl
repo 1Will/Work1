@@ -30,12 +30,13 @@
 			<#if !(action.isReadOnly())>
 				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/customerRelationship/editCustomerInfo.html"/>
        		</#if>
-       		
-       		<#--<@redirectButton value="${action.getText('importCustomer.button')}" url="${req.contextPath}/customerRelationship/toImportCustomerInfo.html"/>-->
+       		<#--
+       		<@redirectButton value="${action.getText('importCustomer.button')}" url="${req.contextPath}/customerRelationship/toImportCustomerInfo.html"/>
+       		-->
         </@buttonBar>
         <@list title="${action.getText('customerInfo.list.title')}" 
             includeParameters="customerInfo.code|customerInfo.name|type.id|country.id|province.id|city.id|industry.id|companyNature.id|isPartner|customerInfo.keyContacter|customerInfo.salesman|step.id|customerInfo.state|readOnly|onlyInvalid|onlyValid" 
-        	fieldMap="like:customerInfo.code|customerInfo.name|customerInfo.keyContacter|customerInfo.salesman" >
+        	fieldMap="like:customerInfo.code|customerInfo.name|customerInfo.keyContacter|customerInfo.salesman|" >
         	<#if !(action.isReadOnly())>
 	        	<@vlh.checkbox property="id" name="customerInfoIds">
 	            	<@vlh.attribute name="width" value="30" />
@@ -53,7 +54,7 @@
      			<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('customerInfo.step')}" property="step.name" sortable="desc">
-     			<@alignCenter/>
+     			<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('customerInfo.sate')}" property="state.name" sortable="desc">
      			<@alignLeft/>

@@ -7,7 +7,7 @@
 	  <@buttonBar>
 			<@vsubmit name="'search'" value="'${action.getText('search')}'" onclick="'checkInvalidParms()'" />
       </@buttonBar>
-	 <@list title="" includeParameters="week.id|week.name|checkbox|" fieldMap="like:week.name|" >
+	 <@list title="" includeParameters="week.id|week.name|checkbox|year" fieldMap="like:week.name|" >
 	 
 		<@vcolumn title="${action.getText('名称')}">
 			<@vlh.attribute name="width" value="5%" />

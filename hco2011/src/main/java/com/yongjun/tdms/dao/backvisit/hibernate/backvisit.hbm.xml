@@ -143,6 +143,14 @@
 		<property name="employees" type="string">
 			<column name="employees"  not-null="false" sql-type="NVARCHAR(500)"/>
 		</property>
+		 <!-- 业务员同行者ids -->
+		<property name="employeesIds" type="string">
+			<column name="employeesIds"  not-null="false" sql-type="NVARCHAR(500)"/>
+		</property>
+		 <!-- 客户同行者ids -->
+		<property name="contactArchiveIds" type="string">
+			<column name="contactArchiveIds"  not-null="false" sql-type="NVARCHAR(500)"/>
+		</property>
 		<!-- 所属项目 -->
 		<many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
 			<column name="projectInfo_id" not-null="false" />

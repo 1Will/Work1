@@ -38,11 +38,18 @@
          <@list title="${action.getText('list.title')}" includeParameters="code|name|nonParentGroup|parent.group" fieldMap="like:code|name" >
             <@vcolumn title="">
                 <input type="checkbox" name="groupIds" value="#{object.id}" width="30" />
+                <@vlh.attribute name="width" value="30" />
             </@vcolumn>
+            
             <@vcolumn title="${action.getText('group.code')}">
                 <a href="${req.contextPath}/communication/groups/editGroup.html?group.id=#{object.id}">${object.code}</a>
+                <@alignLeft/>
             </@vcolumn>
-            <@vcolumn title="${action.getText('group.name')}" property="name"/>
+            
+            <@vcolumn title="${action.getText('group.name')}" property="name">
+            <@alignLeft/>
+            </@vcolumn>
+            
             <#assign parentGroup=""/>
             <#if object.parentGroup?exists>
               <#assign parentGroup="${object.parentGroup.name}"/>
@@ -51,6 +58,7 @@
             </#if>
             <@vcolumn title="${action.getText('parent.group')}" property="parentGroup" sortable="desc">
               ${parentGroup}
+              <@alignLeft/>
             </@vcolumn>
          </@list>
         <#if !first>

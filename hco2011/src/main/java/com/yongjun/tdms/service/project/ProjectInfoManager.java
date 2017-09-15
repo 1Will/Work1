@@ -1,11 +1,10 @@
 package com.yongjun.tdms.service.project;
 
-import com.yongjun.pluto.exception.DaoException;
-import com.yongjun.tdms.model.CustomerRelationship.stepInfo.StepInfo;
-import com.yongjun.tdms.model.project.ProjectInfo;
-
 import java.util.Collection;
 import java.util.List;
+
+import com.yongjun.pluto.exception.DaoException;
+import com.yongjun.tdms.model.project.ProjectInfo;
 
 public abstract interface ProjectInfoManager
 {

@@ -54,19 +54,22 @@ public class ListMyPlanAction extends ValueListAction {
 	}
 
 	protected String getAdapterName() {
-		return "myPlan";
+		return "myPlanHQL";
 	}
 
 	protected Map getRequestParameterMap() {
+		Map map = super.getRequestParameterMap();
 		User user  = this.userManager.getUser();
 		 String codeString = user.getCode();
 		 if(codeString==null|codeString.equals("")){
 			 codeString="yjkj-52";
 		 }
-		Map map = super.getRequestParameterMap();
 		
-			map.put("personnelFiles.code", codeString);
-
+		map.put("personnelFiles.code", codeString);
+		if(request.getParameter("sortColumn")==null||"".equals(request.getParameter("sortColumn"))){
+			map.put("sortColumn", "endDate");
+			map.put("sortDirection", "0");
+		}
 		return map;
 	}
 

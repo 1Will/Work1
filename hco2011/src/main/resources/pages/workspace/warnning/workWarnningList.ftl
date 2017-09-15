@@ -30,15 +30,16 @@
              <@vlh.checkbox property="id" name="workWarnningIds">
                  <@vlh.attribute name="width" value="30"/>
              </@vlh.checkbox> 
-             <@vcolumn title="${action.getText('warnning.type')}" property="type" sortable="desc">
+             <@vcolumn title="${action.getText('提醒名称')}" property="name" sortable="desc">
+               <a href="###" onclick="open_detailDialog(#{object.id},'${object.url}')"><#if object.name?exists>${object.name}<#else>${object.type}</#if></a>
                <@alignLeft/>
              </@vcolumn>
-             <@vcolumn title="${action.getText('warnning.content')}" property="content">
-               <a href="###" onclick="open_detailDialog(${object.id})">${object.content}</a>
+             
+             <@vcolumn title="${action.getText('提醒类型')}" property="type" sortable="desc">
                <@alignLeft/>
              </@vcolumn>
              <@vcolumn title="${action.getText('warnning.warnningDate')}" property="warnningDate" format="yyyy-MM-dd" sortable="desc">
-               <@alignCenter/>
+               <@alignLeft/>
              </@vcolumn>
              <#assign status=''/>
          	 <#if object.readFlag>
@@ -53,22 +54,34 @@
         </@list>
         <#if !first>
          <@buttonBar>
-          <#if (action.isOnlyRead())>
-		  	<#assign confirmMessage1 = "${action.getText('confirm.unRead')}${action.getText('workWarnning')}?" />
-            <@vsubmit name="'unRead'" value="'${action.getText('warnning.notRead')}'">
-	                <@ww.param name="'onclick'" value="'return validateInvalid(confirmUnReads(\"workWarnningIds\", \"${confirmMessage1}\"),checkInvalidParms());'"/>
-	                <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>	
-            </@vsubmit>
+          <#if isRead?exists&&isRead=='1'>
+			<#assign confirmMessage1 = "${action.getText('confirm.unRead')}${action.getText('workWarnning')}?" />
+			<@vsubmit name="'unRead'" value="'${action.getText('warnning.notRead')}'">
+				<@ww.param name="'onclick'" value="'return validateInvalid(confirmUnReads(\"workWarnningIds\", \"${confirmMessage1}\"),checkInvalidParms());'"/>
+				<@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>	
+			</@vsubmit>
+			
 		  <#else>
 		    <#assign confirmMessage1 = "${action.getText('confirm.read')}${action.getText('workWarnning')}?"  />
             <@vsubmit name="'read'" value="'${action.getText('warnning.readed')}'">
-	                <@ww.param name="'onclick'" value="'return validateInvalid(confirmReads(\"workWarnningIds\", \"${confirmMessage1}\"),checkInvalidParms());'"/>
-	                <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>	
+				<@ww.param name="'onclick'" value="'return validateInvalid(confirmReads(\"workWarnningIds\", \"${confirmMessage1}\"),checkInvalidParms());'"/>
+				<@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>	
             </@vsubmit>
 		  </#if>
+		  
+		<#assign confirmMessage = "${action.getText('delete.msg')}${action.getText('workWarnning')}?" />
+        <@vsubmit name="'delete'" value="'${action.getText('delete')}'">
+            <@ww.param name="'onclick'" value="'return confirmDeletes(\"workWarnningIds\", \"${confirmMessage}\");'"/>
+            <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
+            
+        </@vsubmit>
+		  
 		 </@buttonBar>
 	   </#if>
-		  <script language="javascript">
+	   </@ww.form>
+	 </@htmlPage>
+<script type='text/javascript' src='${req.contextPath}/dwr/interface/Read.js'></script>
+<script language="javascript">
 		  	var noSelectUnread = "${action.getText('select.unRead.record')}";
 		  	var noSelectRead = "${action.getText('select.read.record')}";
 			function validateInvalid(delFun, checkFun) {
@@ -94,13 +107,17 @@
                return false;
              }
 		   }
-		   function open_detailDialog(id){
-		   	   var url = '${req.contextPath}/workspace/warnning/myWarnning/listWorkWarnningDetail.html?workWarnningId='+id;
-		       popupModalDialog(url, 865, 600);
-	       }
-		   <#if (action.isOnlyRead())>
-		     document.getElementById("OnlyReadFlag").checked=true;
-		   </#if>
-		  </script>
-	 </@ww.form>
-</@htmlPage>
+		   
+		   
+		function open_detailDialog(id,u){
+			DWREngine.setAsync(false);
+			Read.setRead(id);
+			DWREngine.setAsync(true); 
+			if(u==''||u=='null'){
+				var url = '${req.contextPath}/workspace/warnning/myWarnning/listWorkWarnningDetail.html?workWarnningId='+id;
+			}else{
+				var url = '${req.contextPath}/'+u;
+			}
+			openNewWindow(url);
+		}
+</script>

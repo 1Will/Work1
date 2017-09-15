@@ -19,6 +19,10 @@ public class DefaultContractManagementManager extends BaseManager implements Con
 	public void storeContractManagement(ContractManagement t) {
 		this.dao.storeContractManagement(t);
 	}
+	
+	public List<ContractManagement> loadContractManagementByBType(String type){
+		return this.dao.loadContractManagementByBType(type);
+	}
 
 	public ContractManagement loadContractManagement(Long id) {
 		return this.dao.loadContractManagement(id);
@@ -26,6 +30,10 @@ public class DefaultContractManagementManager extends BaseManager implements Con
 
 	public List<ContractManagement> loadContractManagement() {
 		return this.dao.loadContractManagement();
+	}
+	
+	public List<ContractManagement> loadContractManagementByPj(String pjIds){
+		return this.dao.loadContractManagementByPj(pjIds);
 	}
 
 	public List<ContractManagement> loadAllContractManagement(Long[] tIds) {

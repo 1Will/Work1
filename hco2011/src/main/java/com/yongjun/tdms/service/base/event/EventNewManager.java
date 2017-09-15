@@ -1,7 +1,8 @@
 package com.yongjun.tdms.service.base.event;
 
-import com.yongjun.tdms.model.base.event.EventNew;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.yongjun.tdms.model.base.event.EventNew;
 
 @Transactional(readOnly=true)
 public abstract interface EventNewManager

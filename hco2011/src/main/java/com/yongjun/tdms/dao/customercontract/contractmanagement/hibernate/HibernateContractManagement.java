@@ -22,7 +22,16 @@ public class HibernateContractManagement extends BaseHibernateDao implements Con
 	}
 
 	public List<ContractManagement> loadContractManagement() {
-		return loadAll(ContractManagement.class);
+		
+		return getHibernateTemplate().find("from ContractManagement where disabled =0  order by ciemdinghTime desc  ");
+	}
+	
+	public List<ContractManagement> loadContractManagementByPj(String pjIds) {
+		return getHibernateTemplate().find("from ContractManagement as c where c.disabled =0 and c.project.id in (" +pjIds +") order by c.ciemdinghTime desc  ");
+	}
+	
+	public List<ContractManagement> loadContractManagementByBType(String type) {
+		return getHibernateTemplate().find("from ContractManagement as c where c.disabled =0 and c.customerInfo.businessType.name like '" +type +"' order by c.ciemdinghTime desc  ");
 	}
 
 	public List<ContractManagement> loadAllContractManagement(Long[] tIds) {

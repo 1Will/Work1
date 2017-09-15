@@ -1,7 +1,9 @@
 package com.yongjun.tdms.service.base.products;
 
 import com.yongjun.pluto.exception.DaoException;
+import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo;
 import com.yongjun.tdms.model.base.products.Products;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public abstract interface ProductsManager
 
   public abstract List<Products> loadByKey(String paramString, Object paramObject)
     throws DaoException;
+  public abstract void saveProductfoByImp(List<Products> products);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

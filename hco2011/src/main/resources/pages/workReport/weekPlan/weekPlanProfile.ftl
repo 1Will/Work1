@@ -41,6 +41,7 @@
      	  		<@ww.hidden id="projectInfo.id" name="'projectInfo.id'" value="${req.getParameter('projectInfo.id')?if_exists}"/>
      	  	</#if>
      	  	
+     	  	<@ww.hidden name="'weekPlan.isSaved'" id="'weekPlan.isSaved'" value="''"/>
   			<@inputTable>
   			<tr>
 	     	  	<td align="right" valign="top">
@@ -113,7 +114,14 @@
      	  </@inputTable>
      	  
      	  <@buttonBar>
-	         <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return saveCheck();'"/>
+	         <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
+	         
+		    <#if weekPlan.isSaved?exists &&weekPlan.isSaved=='0' >
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+		    <#else>
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+		    </#if>
+	         
 	         <@vbutton class="button" value="${action.getText('close')}" onclick="closeThis()"/>
          </@buttonBar>	
      </@ww.form>
@@ -184,6 +192,15 @@
 			 	getObjByName('weekly.id').value = result[0];	
 			 	getObjByName('weekPlan.weeklyCode').value = result[1];	
 			}
+		}
+		
+		function savee(){
+		 	getObjByName('weekPlan.isSaved').value=0;
+			return saveCheck();
+		}
+		function submitt(){
+		 	getObjByName('weekPlan.isSaved').value=1;
+			return saveCheck();
 		}
 		
 		function saveCheck(){

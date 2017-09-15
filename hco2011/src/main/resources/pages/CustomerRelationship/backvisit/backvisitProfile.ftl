@@ -6,8 +6,8 @@
 		<@ww.hidden name="'contactArchive.id'" value="''"/>
 		<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 		<@ww.hidden name="'fromType'" value="'${req.getParameter('fromType')?if_exists}'"/>
-		<@ww.hidden name="'contactArchives'" value="'${backVisit.contactArchives?if_exists}'"/>
-		<@ww.hidden name="'employees'" value="'${backVisit.employees?if_exists}'"/>
+		<@ww.hidden name="'employeesIds'" value="'${backVisit.employeesIds?if_exists}'"/>
+		<@ww.hidden name="'contactArchiveIds'" value="'${backVisit.contactArchiveIds?if_exists}'"/>
 		<@ww.hidden name="'gradeChange'" value="1"/>
 		<@ww.hidden name="'isSaved'" value=""/>
 		<#if backVisit.employee?exists>
@@ -18,7 +18,9 @@
 		</#if>
 		<#if backVisit.id?exists>
             <@ww.hidden name="'backVisit.id'" value="#{backVisit.id}"/>
-            <@ww.hidden name="'customer.id'" value="'#{backVisit.customerInfo.id?if_exists}'"/>
+			<#if backVisit.customerInfo?exists>
+	            <@ww.hidden name="'customer.id'" value="'#{backVisit.customerInfo.id?if_exists}'"/>
+	        </#if>
         <#else>
         	<@ww.hidden name="'customer.id'" value="''"/>
         </#if>
@@ -44,9 +46,9 @@
 			    emptyOption="false" 
 		    	disabled="false"/>
 		    <script language="javascript">
-			     	<#if backVisit.backVisitType?exists>
-			     		getObjByName('backVisitType.id').value = ${backVisit.backVisitType.id};
-			     	</#if>
+		     	<#if backVisit.backVisitType?exists>
+		     		getObjByName('backVisitType.id').value = ${backVisit.backVisitType.id};
+		     	</#if>
 			</script>
 			<!--客户名称-->
 			<td align="right" valign="top">
@@ -85,13 +87,10 @@
 			
 			<!--联系人陪同者-->
 			<td align="right" valign="top">
-			<!--
-	       		<span class="required">*</span>
-	       	-->
 	       		<label class="label">${action.getText('contactArchive')}陪同者:</label>
 	     	</td>
 	     	<td>
-		   		<input type="text" name="contactArchives_" class="underline"  value="${backVisit.contactArchives?if_exists}" maxlength="140" size="20" disabled="true"/>
+		   		<input type="text" name="contactArchives" class="underline"  value="${backVisit.contactArchives?if_exists}" maxlength="140" size="20" disabled="true"/>
 				<a onClick="contactArchives_OpenDialog();">
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
 				</a>
@@ -114,6 +113,8 @@
 					}
 				</#if>
 		   </script>
+		   
+		   
 		</tr>
 		<tr>
 			<!--耗时（分）-->
@@ -130,9 +131,9 @@
 			    emptyOption="false" 
 		    	disabled="false"/>
 		    <script language="javascript">
-			     	<#if backVisit.backVisitWay?exists>
-			     		getObjByName('backVisitWay.id').value = ${backVisit.backVisitWay.id};
-			     	</#if>
+		     	<#if backVisit.backVisitWay?exists>
+		     		getObjByName('backVisitWay.id').value = ${backVisit.backVisitWay.id};
+		     	</#if>
 			</script>
 			
 			<@ww.select 
@@ -146,9 +147,9 @@
 			    emptyOption="true" 
 		    	disabled="false"/>
 		    <script language="javascript">
-			     	<#if backVisit.importanceType?exists>
-			     		getObjByName('importanceType.id').value = ${backVisit.importanceType.id};
-			     	</#if>
+		     	<#if backVisit.importanceType?exists>
+		     		getObjByName('importanceType.id').value = ${backVisit.importanceType.id};
+		     	</#if>
 			</script>
 		</tr>
 		<tr>
@@ -163,19 +164,18 @@
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
 				</a>
 			</td>
+			
 			<!--回访人同行者-->
 			<td align="right" valign="top">
-			<!--
-	       		<span class="required">*</span>
-	       	-->
 	       		<label class="label">${action.getText('employee')}同行者:</label>
 	     	</td>
 	     	<td>
-		   		<input type="text" name="employees_" class="underline"  value="<#if backVisit.employees?exists>${backVisit.employees?if_exists}</#if>" maxlength="140" size="20" disabled="true"/>
+		   		<input type="text" name="employees" class="underline"  value="<#if backVisit.employees?exists>${backVisit.employees?if_exists}</#if>" maxlength="140" size="20" disabled="true"/>
 				<a onClick="salesmans_OpenDialog();">
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
 				</a>
 			</td>
+			
 			<!--继续回访-->
 			<td align="right"><label for="" class="label">${action.getText('continueBackVisit')}:</label></td>
 	        <td align="left">
@@ -191,6 +191,7 @@
 			     	</#if>
 	        	</script>
 			</td>
+			
 		</tr>
 		<tr>
 			<!--下次回访时间-->
@@ -203,8 +204,9 @@
 				maxlength="10"/>
 			<!--未联系（天）-->
 			<@ww.textfield label="'${action.getText('unconnect')}'" name="'backVisit.unconnect'" value="'${backVisit.unconnect?if_exists}'" cssClass="'underline'" disabled="true" />
-			<td align="right"><label for="" class="label">${action.getText('publicBackVisit')}:</label></td>
-	        <td align="left">
+			
+	        <td align="right"><label for="" class="label">${action.getText('publicBackVisit')}:</label></td>
+			<td align="left">
 	        	<input type="radio" id="isPublic0" name="backVisit.isPublic" value="0"  checked/>是
 	        	<input type="radio" id="isPublic1" name="backVisit.isPublic" value="1" />否
 	        	<script language="javascript">
@@ -528,16 +530,22 @@
 		}
 	}
 	function contactArchive_OpenDialog(){
-		if(getObjByName('customer.id').value !=''){
-			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitFlag=backVisit&customer.id="+getObjByName('customer.id').value;
+		var customerId = getObjByName('customer.id').value;
+		if(customerId !=''){
+			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitFlag=backVisit&customer.id="+ customerId ;
 			popupModalDialog(url, 800, 600, creatorSelectorHandlerContactArchives);
 		}else{
 			alert('请先选择客户');
 		}
 	}
 	function contactArchives_OpenDialog(){
-		if(getObjByName('customer.id').value !=''){
-			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitCheckBox=backVisitCheckBox&backVisitFlag=backVisit&customer.id="+getObjByName('customer.id').value;
+		var customerId = getObjByName('customer.id').value;
+		if(customerId !=''){
+			var contactArchiveIds = getObjByName('contactArchiveIds').value;
+			if(isIE()){
+	   			contactArchiveIds = encodeURI(contactArchiveIds); 
+	   		}
+			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitCheckBox=backVisitCheckBox&backVisitFlag=backVisit&customer.id="+customerId+"&contactArchiveIds="+contactArchiveIds;
 			popupModalDialog(url, 800, 600, creatorSelectorHandlerContactArchivess);
 		}else{
 			alert('请先选择客户');
@@ -549,26 +557,21 @@
 		 	document.forms[0].elements["contactArchive"].value = result[1];
 		}
 	}
+	
 	function creatorSelectorHandlerContactArchivess(result) {
 		if (null != result) {
-			var contactArchives_Temp=document.forms[0].elements["contactArchives_"].value;
-			if(contactArchives_Temp==""){
-				contactArchives_Temp=result[0];
-			}else{
-				contactArchives_Temp+=","+result[0];
-			}
-			var names =contactArchives_Temp.split(',');
-			var newNames =unique(names);
-			var newContactArchives_Temp='';
-			for(var i=0;i<newNames.length;i++){
-				if(i==newNames.length-1){
-					newContactArchives_Temp+=newNames[i];
+			var nameAids =result[0].split(',');
+			var ids ='';
+			var names ='';
+			for(var i=0;i<nameAids.length-1;i++){
+				if(i==nameAids.length-2){
+					names+=nameAids[i].split(':')[1];
 				}else{
-					newContactArchives_Temp+=newNames[i]+',';
+					names+=nameAids[i].split(':')[1]+',';
 				}
 			}
-	 		document.forms[0].elements["contactArchives"].value = newContactArchives_Temp;
-	 		document.forms[0].elements["contactArchives_"].value = newContactArchives_Temp;
+			document.forms[0].elements["contactArchives"].value = names;
+		   	document.forms[0].elements["contactArchiveIds"].value = result[0];
 		}
 	}
 	
@@ -592,7 +595,11 @@
 	 }
 	 //弹出业务员同行者查询模态窗体
 	 function salesmans_OpenDialog(){
-	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?backVisitCheckBox=backVisitCheckBox";
+	   var employeesIds = getObjByName('employeesIds').value;
+	   if(isIE()){
+	   		employeesIds = encodeURI(employeesIds); 
+	   }
+	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?backVisitCheckBox=backVisitCheckBox&employeesIds_a="+employeesIds;
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler_);
 	   //window.open(url);
 	 }
@@ -606,24 +613,18 @@
 	 //获得模态窗体返回值
 	function creatorSelectorHandler_(result) {
 		if (null != result) {
-			var tempEmployees_ =document.forms[0].elements["employees_"].value;
-			if(tempEmployees_==""){
-				tempEmployees_=result[0];
-			}else{
-				tempEmployees_+=","+result[0];
-			}
-			var names =tempEmployees_.split(',');
-			var newNames =unique(names);
-			var newTempEmployees='';
-			for(var i=0;i<newNames.length;i++){
-				if(i==newNames.length-1){
-					newTempEmployees+=newNames[i];
+			var nameAids =result[0].split(',');
+			var ids ='';
+			var names ='';
+			for(var i=0;i<nameAids.length-1;i++){
+				if(i==nameAids.length-2){
+					names+=nameAids[i].split(':')[1];
 				}else{
-					newTempEmployees+=newNames[i]+',';
+					names+=nameAids[i].split(':')[1]+',';
 				}
 			}
-			document.forms[0].elements["employees_"].value = newTempEmployees;
-		   	document.forms[0].elements["employees"].value = newTempEmployees;		 	
+			document.forms[0].elements["employees"].value = names;
+		   	document.forms[0].elements["employeesIds"].value = result[0];
 		}
 	}
 	
@@ -742,6 +743,9 @@
 	     		return false;
 	     	}
 	     }
+	     getObjByName('employees').removeAttribute('disabled');
+	     getObjByName('contactArchives').removeAttribute('disabled');
+	     return true;
 	}
 	
 	function setValue(){
@@ -803,11 +807,20 @@
 	<li>
         <a id="additionalInformation" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?backVisit.id=#{backVisit.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >附件资料</a>
 	</li>
+	<#--
+	<li>
+        <a id="participant" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/customerRelationship/listParticipant.html?pfFlag=pfFlag&backVisit.id=#{backVisit.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >回访人陪同者</a>
+	</li>
+	<li>
+        <a id="participant" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/customerRelationship/listParticipant.html?caFlag=caFlag&backVisit.id=#{backVisit.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >联系人陪同者</a>
+	</li>
+	-->
+	
 	<li>
 		<a id="additionalInformation" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/backvisit/listChangeStepToHistory.html?customerId.id=#{backVisit.customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >等级变更历史</a>
 	</li>
 	<li>
-		<a id="replyBackVisit" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyDailyTab.html?backVisit.id=#{backVisit.id?if_exists}' target="frame" >消息回复</a>
+		<a id="replyBackVisit" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyTab.html?backVisit.id=#{backVisit.id?if_exists}' target="frame" >消息回复</a>
 	</li>
 </ul>
 	<iframe name="frame" frameborder="0.5" src="${req.contextPath}/applicationDocManager/listApplicationDoc.html?backVisit.id=#{backVisit.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="100%"/>

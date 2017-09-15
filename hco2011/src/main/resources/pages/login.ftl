@@ -91,19 +91,13 @@ body {
                       </tr>
                     </table>
                     <table width="74%" height="20" border="0" cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td width="24%" align="right" valign="middle"><label>
-                          <input type="checkbox" name="checkbox" value="checkbox" />
-                        </label></td>
-                        <td width="76%" align="left" valign="middle">记住用户名</td>
-                      </tr>
                     </table>
                     <table width="64%" height="30" border="0" cellpadding="0" cellspacing="0">
                       <tr>
                         <td height="30" align="center" valign="middle"><label>
                           <input name="imgbtn" type="image" src="${req.contextPath}/stylesheets/images/2-1.jpg" border="0" onClick="javascript:this.form.submit()">
                         </label></td>
-                        <td align="center" valign="middle" class="f3">忘记密码</td>
+                        <td align="center" valign="middle" class="f3">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                       </tr>
                     </table></td>
             

@@ -40,6 +40,7 @@
 /*     */   private CodeValue workway;
 /*     */   private CodeValue status;
 			private PersonnelFiles superiorLeader;
+			private CodeValue businessType;
 /*     */ 
 /*     */   public boolean equals(Object arg0)
 /*     */   {
@@ -298,6 +299,13 @@
 			public void setSuperiorLeader(PersonnelFiles superiorLeader) {
 				this.superiorLeader = superiorLeader;
 			}
+			public CodeValue getBusinessType() {
+				return businessType;
+			}
+			public void setBusinessType(CodeValue businessType) {
+				this.businessType = businessType;
+			}
+			
 /*     */ }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

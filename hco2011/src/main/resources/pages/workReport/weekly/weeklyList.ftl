@@ -66,9 +66,11 @@
         </@vcolumn>
         <@vcolumn title="${action.getText('weekly.startDate')}" sortable="asc">
             ${(object.startDate?string('yyyy-MM-dd'))}
+             <@alignLeft/>
         </@vcolumn>
         <@vcolumn title="${action.getText('weekly.endDate')}"  sortable="asc">
             ${(object.endDate?string('yyyy-MM-dd'))}
+             <@alignLeft/>
         </@vcolumn>
     </@list>
 	

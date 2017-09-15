@@ -23,6 +23,7 @@
      <@ww.form action="'savePersonnelFile'" namespace="'/personnelFile'" method="'post'" >
        <@ww.token name="savePersonnelToken"/>
        <@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
+       <@ww.hidden name="'notOpen'" value="'${notOpen?if_exists}'"/>
          <#if personnelFile.id?exists>
                 <@ww.hidden name="'personnelFile.id'" value="#{personnelFile.id?if_exists}"/>
          </#if>
@@ -246,6 +247,18 @@
         	<tr>	
         		<!--工作地点-->
         		<@textfield label="${action.getText('personnel.address')}" name="personnelFile.address"  value="${personnelFile.address?if_exists}" anothername="address" maxlength="100"  />
+        	
+        	<!---->
+        	<@ww.select label="'${action.getText('员工属性')}'" 
+				name="'businessType.id'" 
+				value="'${req.getParameter('businessType.id')?if_exists}'"
+				listKey="id"
+				listValue="name"
+				list="allBusinessType"
+				required="true"
+				emptyOption="true" 
+				disabled="false">
+			</@ww.select>
         	</tr>
         	<tr>
         		<!--工作方式-->
@@ -287,7 +300,7 @@
            	 <#if !(action.isReadOnly())>
 	         	<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return validate();'"/>
 	         </#if>
-	         <@redirectButton value="${action.getText('back')}" url="listPerson.html"/>
+	         <@redirectButton value="${action.getText('back')}" url="listPerson.html?&notOpen=notOpen"/>
          </@buttonBar>	
      </@ww.form>
 
@@ -454,7 +467,7 @@
 
 <script>
 	
-	window.onload=function(){
+//	window.onload=function(){
 		<#if personnelFile.sex?exists>
 			<#if personnelFile.sex>
 				getObjByName('sex1').checked=true;
@@ -537,6 +550,14 @@
 		<#if personnelFile.education?exists>
 			getObjByName('personnelFile.education').value=${personnelFile.education.id};
 		</#if>
+		
+		 //业务属性
+		<#if personnelFile.businessType?exists>
+			getObjByName('businessType.id').value='${personnelFile.businessType.id?if_exists}';
+			<#elseif req.getParameter('businessType.id')?exists>
+			getObjByName('businessType.id').value='${req.getParameter('businessType.id')}';
+		</#if>
+		
 		<#if personnelFile.workway?exists>
 			getObjByName('personnelFile.workway').value=${personnelFile.workway.id};
 		</#if>
@@ -544,7 +565,7 @@
 			getObjByName('personnelFile.status').value=${personnelFile.status.id};
 		</#if>
 		
-	 }
+	// }
 </script>
 </@htmlPage>
 <#if !first>

@@ -2,6 +2,7 @@ package com.yongjun.tdms.service.customercontract.billingrecord;
 
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.tdms.model.customercontract.billingrecord.BillingRecord;
+
 import java.util.List;
 
 public abstract interface BillingRecordManager
@@ -27,6 +28,8 @@ public abstract interface BillingRecordManager
   public abstract void disabledAllBillingRecord(List<BillingRecord> paramList);
 
   public abstract void enabledAllBillingRecord(List<BillingRecord> paramList);
+  
+  public String getMaxCode(String code);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

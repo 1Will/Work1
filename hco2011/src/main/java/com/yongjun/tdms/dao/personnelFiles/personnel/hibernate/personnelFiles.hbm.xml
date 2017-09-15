@@ -142,7 +142,9 @@
         <many-to-one name="education" class="com.yongjun.pluto.model.codevalue.CodeValue">
 			<column name="EDUCATION_ID" not-null="false"/>
 		</many-to-one>
-        
+        <many-to-one name="businessType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="businessType" not-null="false"/>
+		</many-to-one>
         <many-to-one name="workway" class="com.yongjun.pluto.model.codevalue.CodeValue">
 			<column name="WORKWAY_ID" not-null="false"/>
 		</many-to-one>

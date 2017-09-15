@@ -168,7 +168,7 @@ public class EditWeeklyAction extends PrepareAction {
 					EventNew event = new EventNew();
 					event.setEffectflag("E");
 					event.setEventType(eventType);
-					event.setName("周计划提交");
+					event.setName(eventType.getName());
 					event.setUserId(this.userManager.getUser().getId() + "");
 					Map<String, String> map = new HashMap<String, String>();
 					// 查询领导
@@ -184,16 +184,18 @@ public class EditWeeklyAction extends PrepareAction {
 					}
 					map.put("users", ids.substring(0, ids.length() - 1));
 					map.put("weeklyId", this.weekly.getId() + "");
+					map.put("name", new SimpleDateFormat("yyyy-MM-dd").format(this.weekly.getCreatedTime())+","+this.weekly.getRapporteur().getName()+"提交了周计划");
+					map.put("url", "workReport/editWeekly.html?popWindowFlag=popWindowFlag&weekly.id="+this.weekly.getId());
 					String moreinfo = JSONObject.fromObject(map).toString();
 					event.setMoreinfo(moreinfo);
 					eventNewManager.storeEventNew(event);
-					 HashMap mapData =new HashMap();
-		              mapData.put("type", "10011");
-		              mapData.put("thisMoney", "0");
-		              mapData.put("lastMoney", "0");
-					mapData.put("submitNum", this.weekly.getSubmitNum());
-					mapData.put("date", this.weekly.getStartDate());
-					this.dataManager.storeData(personnelFiles, mapData);
+//					 HashMap mapData =new HashMap();
+//		              mapData.put("type", "10011");
+//		              mapData.put("thisMoney", "0");
+//		              mapData.put("lastMoney", "0");
+//					mapData.put("submitNum", this.weekly.getSubmitNum());
+//					mapData.put("date", this.weekly.getStartDate());
+//					this.dataManager.storeData(personnelFiles, mapData);
 					submit = "submit";
 			}
 			
@@ -337,8 +339,8 @@ public class EditWeeklyAction extends PrepareAction {
 		return dutyName;
 	}
 	public boolean hasWeekly(Long userId , Long weekId){
-		String key[] ={"rapporteur.id","week.id"};
-		Object value[]={userId,weekId};
+		String key[] ={"rapporteur.id","week.id","disabled"};
+		Object value[]={userId,weekId,0};
 		List<Weekly> weeklies =null;
 		try {
 			weeklies = weeklyManager.loadByKeyArray(key, value);

@@ -3,23 +3,28 @@ package com.yongjun.tdms.presentation.webwork.action.CustomerRelationship.contac
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.pluto.model.codevalue.CodeValue;
 import com.yongjun.pluto.model.security.User;
 import com.yongjun.pluto.service.codevalue.CodeValueManager;
+import com.yongjun.pluto.service.security.GroupManager;
 import com.yongjun.pluto.webwork.action.valuelist.ValueListAction;
 import com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives;
 import com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactToHistory;
-import com.yongjun.tdms.model.project.projectContactArchives.ProjectContactArchives;
+import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
+import com.yongjun.tdms.model.project.projectInfoContract.ProjectInfoContract;
 import com.yongjun.tdms.model.project.projectPartner.ProjectPartner;
 import com.yongjun.tdms.model.supplier.Supplier;
 import com.yongjun.tdms.service.CustomerRelationship.contactArchives.ContactArchivesManager;
 import com.yongjun.tdms.service.CustomerRelationship.contactArchives.ContactToHistoryManager;
-import com.yongjun.tdms.service.project.projectContactArchives.ProjectContactArchivesManager;
+import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
+import com.yongjun.tdms.service.project.projectInfoContract.ProjectInfoContractManager;
 import com.yongjun.tdms.service.project.projectPartner.ProjectPartnerManager;
 import com.yongjun.tdms.service.supplier.SupplierManager;
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class ListContactArchivesAction extends ValueListAction {
 	private static final long serialVersionUID = 1L;
 	private final ContactArchivesManager contactArchivesManager;
@@ -27,22 +32,30 @@ public class ListContactArchivesAction extends ValueListAction {
 	private final SupplierManager supplierManager;
 	private final ContactToHistoryManager contactToHistoryManager;
 	private final ProjectPartnerManager projectPartnerManager;
+	private final ProjectInfoContractManager projectInfoContractManager;
+	private final GroupManager groupManager;
 	private List<ContactArchives> cas;
 	private Long customerId;
 	private Long projectInfoId;
 	private Long customerTypeId;
 	private String backVistiFlag;
 	private String backVisitCheckBox;
+	private String contactArchiveIds;
 	private Supplier supplier;
+	private PersonnelFilesManager personnelFilesManager;
 
 	public ListContactArchivesAction(ContactArchivesManager contactArchivesManager, CodeValueManager codeValueManager,
 			SupplierManager supplierManager, ContactToHistoryManager contactToHistoryManager,
-			ProjectPartnerManager projectPartnerManager) {
+			ProjectPartnerManager projectPartnerManager, PersonnelFilesManager personnelFilesManager,
+			ProjectInfoContractManager projectInfoContractManager,GroupManager groupManager) {
 		this.contactArchivesManager = contactArchivesManager;
 		this.codeValueManager = codeValueManager;
 		this.supplierManager = supplierManager;
 		this.contactToHistoryManager = contactToHistoryManager;
 		this.projectPartnerManager = projectPartnerManager;
+		this.personnelFilesManager = personnelFilesManager;
+		this.projectInfoContractManager = projectInfoContractManager;
+		this.groupManager = groupManager;
 	}
 
 	public void prepare() throws Exception {
@@ -66,18 +79,22 @@ public class ListContactArchivesAction extends ValueListAction {
 			this.supplier = this.supplierManager.loadSupplier(getId("supplier.id"));
 			setFirst(false);
 		}
-		if (this.request.getParameter("backVisitFlag") != null) {
+		if (hasId("backVisitFlag")) {
 			this.backVistiFlag = this.request.getParameter("backVisitFlag");
-			if(hasId("customer.id")){
+			if (hasId("customer.id")) {
 				this.customerId = Long.valueOf(this.request.getParameter("customer.id"));
 			}
 		}
-		if (this.request.getParameter("backVisitCheckBox") != null) {
+		if (hasId("backVisitCheckBox")) {
 			this.backVisitCheckBox = this.request.getParameter("backVisitCheckBox");
 		}
 
 		if (hasIds("contactInfoIds"))
 			this.cas = this.contactArchivesManager.loadAllContactArchives(getIds("contactInfoIds"));
+
+		if (hasId("contactArchiveIds_a")) {
+			this.contactArchiveIds = request.getParameter("contactArchiveIds_a");
+		}
 	}
 
 	protected String getAdapterName() {
@@ -86,11 +103,38 @@ public class ListContactArchivesAction extends ValueListAction {
 
 	protected Map getRequestParameterMap() {
 		Map map = super.getRequestParameterMap();
+
+		PersonnelFiles personnelFiles = null;
+		try {
+			if(isCustomerGroup()){
+				List<PersonnelFiles> tempList = this.personnelFilesManager.loadByKey("code", this.userManager.getUser().getCode());
+				if (tempList != null && tempList.size() > 0) {
+					personnelFiles = tempList.get(0);
+					if (personnelFiles.getBusinessType() != null) {
+						if (personnelFiles.getBusinessType().getName().equals("军品")
+								|| personnelFiles.getBusinessType().getName().equals("民品")) {
+							map.put("businessType", "%" + personnelFiles.getBusinessType().getName() + "%");
+						}
+					}
+				}
+			}else {
+				List<PersonnelFiles> tempList = this.personnelFilesManager.loadByKey("code", this.userManager.getUser().getCode());
+				if (tempList != null && tempList.size() > 0) {
+					personnelFiles = tempList.get(0);
+					if (personnelFiles.getDept() != null) {
+						map.put("classificationId", personnelFiles.getDept().getId());
+					}
+				}
+			}
+			
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
 		if (hasId("contactArchives.creator")) {
-			User  user = this.userManager.loadUser(getId("contactArchives.creator"));
+			User user = this.userManager.loadUser(getId("contactArchives.creator"));
 			map.put("contactArchives.creator", user.getName());
 		}
-		if ((null != this.request.getParameter("sex")) && ("" != this.request.getParameter("sex"))) {
+		if (hasId("sex")) {
 			map.put("sex", Boolean.valueOf(this.request.getParameter("sex")));
 		}
 		if (hasId("customerInfo.id")) {
@@ -99,15 +143,13 @@ public class ListContactArchivesAction extends ValueListAction {
 		if (hasId("customer.id")) {
 			map.put("customerId", getId("customer.id"));
 		}
-		if (this.request.getParameter("contactArchives.createdTime") != null) {
+		if (hasId("contactArchives.createdTime")) {
 			map.put("contactArchives.createdTime", this.request.getParameter("contactArchives.createdTime") + "%");
 		}
 		if (hasId("projectInfo.id")) {
 			map.put("projectInfoId", getId("projectInfo.id"));
 		}
-		
 		if (hasId("con_Project.id")) {
-			
 			List<ProjectPartner> projectPartners = null;
 			List<Long> conIds = new ArrayList<Long>();
 			try {
@@ -115,29 +157,47 @@ public class ListContactArchivesAction extends ValueListAction {
 			} catch (DaoException e) {
 				e.printStackTrace();
 			}
- 			if(projectPartners!=null){
-				for(int i =0;i<projectPartners.size();i++){
+			if (projectPartners != null) {
+				for (int i = 0; i < projectPartners.size(); i++) {
 					conIds.add(projectPartners.get(i).getCustomerInfo().getId());
 				}
 				System.out.println(conIds.toString().replace("[", "").replace("]", ""));
-				map.put("con_projectIds",conIds);
-			}else {
-				map.put("con_projectIds","0");
+				map.put("con_projectIds", conIds);
+			} else {
+				map.put("con_projectIds", "0");
 			}
 		}
 
-		if (this.request.getParameter("projectInfoCus")!=null) {
-			String projectInfoCus=this.request.getParameter("projectInfoCus");
-			String []alStrings=projectInfoCus.split(",");
+		if (hasId("projectId")) {
+			try {
+				List<ProjectInfoContract> projectInfoContracts = this.projectInfoContractManager.loadByKey(
+						"projectInfo.id", getId("projectId"));
+				List<Long> pcIds = new ArrayList<Long>();
+				if (projectInfoContracts != null && projectInfoContracts.size() > 0) {
+					for (int i = 0; i < projectInfoContracts.size(); i++) {
+						pcIds.add(projectInfoContracts.get(i).getContactArchives().getId());
+					}
+				}
+				if (pcIds != null && pcIds.size() > 0) {
+					map.put("caIds", pcIds);
+				}
+			} catch (DaoException e) {
+				e.printStackTrace();
+			}
+
+		}
+		if (hasId("projectInfoCus")) {
+			String projectInfoCus = this.request.getParameter("projectInfoCus");
+			String[] alStrings = projectInfoCus.split(",");
 			List<Long> cList = new ArrayList<Long>();
-			if(alStrings!=null&&alStrings.length>0){
-				for(int i=0;i<alStrings.length;i++){
+			if (alStrings != null && alStrings.length > 0) {
+				for (int i = 0; i < alStrings.length; i++) {
 					cList.add(Long.parseLong(alStrings[i]));
 				}
 			}
 			map.put("projectInfoCus", cList);
 		}
-		if ((null != this.request.getParameter("supplier.id")) && ("" != this.request.getParameter("supplier.id"))) {
+		if (hasId("supplier.id")) {
 			map.put("supplierId", Long.valueOf(this.request.getParameter("supplier.id")));
 		}
 		return map;
@@ -169,8 +229,9 @@ public class ListContactArchivesAction extends ValueListAction {
 				return "success";
 			}
 			for (int i = 0; i < this.cas.size(); i++) {
-				List<ContactToHistory> contactToHistorys = this.contactToHistoryManager.loadByKey("contactArchivesId.id", this.cas.get(i).getId());
-				if(contactToHistorys!=null){
+				List<ContactToHistory> contactToHistorys = this.contactToHistoryManager.loadByKey(
+						"contactArchivesId.id", this.cas.get(i).getId());
+				if (contactToHistorys != null) {
 					this.contactToHistoryManager.deleteAllContactToHistory(contactToHistorys);
 				}
 			}
@@ -232,6 +293,19 @@ public class ListContactArchivesAction extends ValueListAction {
 			return codes;
 		}
 	}
+	
+	public boolean isCustomerGroup(){
+		boolean isCustomerGroup =false;
+		Set<User> noticePers = groupManager.getGroupByGroupName("客户管理组").getUsers();
+		User user = this.userManager.getUser();
+		for (User u : noticePers) {
+			System.out.println(u.getId()+"=="+user.getId());
+			if(user.getId().longValue() == u.getId().longValue()){
+				isCustomerGroup = true;
+			}
+		}
+		return isCustomerGroup;
+	}
 
 	public List<ContactArchives> getCas() {
 		return this.cas;
@@ -283,6 +357,14 @@ public class ListContactArchivesAction extends ValueListAction {
 
 	public void setProjectInfoId(Long projectInfoId) {
 		this.projectInfoId = projectInfoId;
+	}
+
+	public String getContactArchiveIds() {
+		return contactArchiveIds;
+	}
+
+	public void setContactArchiveIds(String contactArchiveIds) {
+		this.contactArchiveIds = contactArchiveIds;
 	}
 
 }

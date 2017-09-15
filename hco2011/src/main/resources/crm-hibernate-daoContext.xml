@@ -9,23 +9,11 @@
 			 <value>com.microsoft.sqlserver.jdbc.SQLServerDriver</value>  
 		</property>
 		<property name="url">
-			<value>jdbc:sqlserver://192.168.1.104:1433;databasename=crm;SelectMethod=Cursor</value>
+			<value>jdbc:sqlserver://192.168.1.110:1433;databasename=tektcrm_ok;SelectMethod=Cursor</value>
 		</property>
 		<property name="password">
 			<value>root</value>
 		</property>
-		
-		
-<!-- 		<property name="driverClassName">
-			 <value>com.microsoft.jdbc.sqlserver.SQLServerDriver</value>  
-		</property>
-		<property name="url">
-			<value>jdbc:microsoft:sqlserver://192.168.1.26:1433;databasename=tektcrm;SelectMethod=Cursor</value>
-		</property>
-		<property name="password">
-			<value>sa</value>
-		</property>   -->
-		
 		<property name="username">
 			<value>sa</value>
 		</property>
@@ -35,7 +23,9 @@
 		<property name="removeAbandonedTimeout">
 			<value>180</value>
 		</property>
+	
 	</bean>
+	
 
 	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
 		<property name="targetObject">
@@ -374,15 +364,15 @@
 	<!-- 日报回复信息 -->
 	<bean id="dailyReplyHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
 		<constructor-arg>
-			<value>com/yongjun/tdms/dao/workReport/daily/hibernate/replyDaily.hbm.xml</value>
+			<value>com/yongjun/tdms/dao/workReport/daily/hibernate/reply.hbm.xml</value>
 		</constructor-arg>
 	</bean>
-	<bean id="replyDailyDao" parent="abstractTrackingProxy">
+	<bean id="replyDao" parent="abstractTrackingProxy">
 		<property name="proxyInterfaces">
-			<value>com.yongjun.tdms.dao.workReport.daily.ReplyDailyDao</value>
+			<value>com.yongjun.tdms.dao.workReport.daily.ReplyDao</value>
 		</property>
 		<property name="target">
-			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.daily.hibernate.HibernateReplyDaily"></bean>
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.daily.hibernate.HibernateReply"></bean>
 		</property>		
 	</bean>
 	<!-- 下周计划信息 -->
@@ -1494,4 +1484,87 @@
 			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.week.hibernate.HibernateWeek"></bean>
 		</property>		
 	</bean>
+	
+	<bean id="groupAddDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.group.GroupAddDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.group.hibernate.HibernateGroupAdd"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 参与者 -->
+	<bean id="participantHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/CustomerRelationship/participant/hibernate/participant.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="participantDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.CustomerRelationship.participant.ParticipantDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.CustomerRelationship.participant.hibernate.HibernateParticipant"></bean>
+		</property>		
+	</bean>
+	<!-- 早会 -->
+	<bean id="meetingDayHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/meeting/hibernate/meetingDay.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="meetingDayDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.meeting.MeetingDayDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.meeting.hibernate.HibernateMeetingDay"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 周计划回复 -->
+	<bean id="replyWeeklyHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/weekly/hibernate/replyWeekly.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="replyWeeklyDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.weekly.ReplyWeeklyDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.weekly.hibernate.HibernateReplyWeekly"></bean>
+		</property>		
+	</bean>
+	
+	<bean id="meetingMonthHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/meeting/hibernate/meetingMonth.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="meetingMonthDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.meeting.MeetingMonthDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.meeting.hibernate.HibernateMeetingMonth"></bean>
+		</property>		
+	</bean>
+
+	<!-- 项目状态 -->
+	<bean id="projectStateHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/project/state/hibernate/projectState.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="projectStateDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.project.state.ProjectStateDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.project.state.hibernate.HibernateProjectState"></bean>
+		</property>		
+	</bean>
+	
 </beans>

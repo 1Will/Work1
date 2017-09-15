@@ -1,5 +1,6 @@
 package com.yongjun.tdms.presentation.webwork.action.CustomerRelationship.contactArchives;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -142,10 +143,10 @@ public class EditContactArchivesAction extends PrepareAction {
 				String bs = this.request.getParameter("contactArchives.birthplace");
 				this.contactArchives.setBirthplace(bs);
 			}
-			if (!StringUtils.isEmpty("contactArchives.mobilePhone")) {
-				String phon = this.request.getParameter("contactArchives.mobilePhone");
-				this.contactArchives.setMobilePhone(phon);
-			}
+//			if (!StringUtils.isEmpty("contactArchives.mobilePhone")) {
+//				String phon = this.request.getParameter("contactArchives.mobilePhone");
+//				this.contactArchives.setMobilePhone(phon);
+//			}
 
 			if (hasId("leader.id")) {
 				ContactArchives leader = this.contactArchivesManager.loadContactArchives(getId("leader.id"));
@@ -208,12 +209,21 @@ public class EditContactArchivesAction extends PrepareAction {
 					EventNew event = new EventNew();
 					event.setEffectflag("E");
 					event.setEventType(eventType);
-					event.setName("新增联系人");
+					event.setName(eventType.getName());
 					event.setUserId(this.userManager.getUser().getId() + "");
 					Map<String, String> map = new HashMap();
-					String pids = this.personnelFilesToUserManager.loadUserIdToStrByEnable();
+					
+					CodeValue code = this.contactArchives.getCustomerName().getBusinessType();
+					String pids = "";
+					if(code == null){
+						pids = this.personnelFilesToUserManager.loadUserIdToStrByEnable();
+					}else {
+						pids = this.personnelFilesToUserManager.loadUserIdToStrByType(code.getCode());
+					}
 					map.put("users", pids);
 					map.put("contactArchivesId", this.contactArchives.getId() + "");
+					map.put("name", new SimpleDateFormat("yyyy-MM-dd").format(this.contactArchives.getCreatedTime())+","+this.contactArchives.getCreator()+"提交了联系人:"+this.contactArchives.getName());
+					map.put("url", "customerRelationship/editContactArchives.html?popWindowFlag=popWindowFlag&contactArchives.id="+this.contactArchives.getId());
 					String moreinfo = JSONObject.fromObject(map).toString();
 					event.setMoreinfo(moreinfo);
 					eventNewManager.storeEventNew(event);

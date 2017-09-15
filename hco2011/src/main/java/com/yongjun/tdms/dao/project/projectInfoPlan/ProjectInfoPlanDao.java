@@ -4,6 +4,7 @@ import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.tdms.model.project.projectInfoPlan.ProjectInfoPlan;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 public abstract interface ProjectInfoPlanDao
@@ -25,6 +26,6 @@ public abstract interface ProjectInfoPlanDao
 
 	  public abstract List<ProjectInfoPlan> loadByKeyArray(String[] paramArrayOfString, Object[] paramArrayOfObject)
 	    throws DaoException;
-	  public abstract List loadByTeam(String code);
+	  public abstract List loadForMyTeam(HashMap map);
 }
 

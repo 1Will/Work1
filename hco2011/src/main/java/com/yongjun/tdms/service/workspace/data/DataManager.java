@@ -26,6 +26,7 @@ public abstract interface DataManager
     throws DaoException;
   public void storeData(PersonnelFiles pf, HashMap map) throws DaoException;
   public Object loadAllDataByYear(HashMap map);
+  public abstract List<Data> loadAllDataByTeam(HashMap map);
 
 
 }

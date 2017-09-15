@@ -204,7 +204,7 @@
 	    -->
 		</@inputTable>
 	<@buttonBar>
-	    <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return check();'"/>
+	    <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 	    
 	    <#if daily.isSaved?exists &&daily.isSaved=='0' >
 	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
@@ -250,25 +250,17 @@
 	     if(a=='请输入非客户拜访类的工作内容'){
 	     	getObjByName('daily.workContext').value='';
 	     }
-	     getObjByName('isSaved').value="0";
 	     return true;
 	    }
 	    
 	    function submitt(){
-	     if(!dateCheck_currentDate()){
-	     	getObjByName('daily.currentDate').focus();
-	    	return false;
-	     }
-	     var a = getObjByName('daily.workContext').value;
-	     var b = getObjByName('daily.questions').value
-		 if(b=='请输入今日收获、问题、建议'){
-			getObjByName('daily.questions').value='';
-		 }
-	     if(a=='请输入非客户拜访类的工作内容'){
-	     	getObjByName('daily.workContext').value='';
-	     }
-	     getObjByName('isSaved').value="1";
-	     return true;
+			getObjByName('isSaved').value="1";
+			return check();
+	    }
+	    
+	    function savee(){
+			getObjByName('isSaved').value="0";
+	     	return check();
 	    }
 	    
 	    document.onclick = function (){
@@ -468,13 +460,13 @@
 <#if daily.rapporteur?exists>
 <ul id="beautytab">
 	<li>
-		<a id="replyDaily" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyDailyTab.html?daily.id=#{daily.id?if_exists}' target="msgframe" >${action.getText('消息回复')}</a>
+		<a id="replyDaily" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyTab.html?daily.id=#{daily.id?if_exists}' target="msgframe" >${action.getText('消息回复')}</a>
 	</li>
 	<li>
 		<a id="backvisit" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/backvisit/listBackVisitByContact.html?employee=${daily.rapporteur.name?if_exists}&backVisitDate_start=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}&backVisitDate_end=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}' target="msgframe" >${action.getText('回访记录')}</a>
 	</li>
 </ul>
-<iframe name="msgframe" frameborder="0.5" src="${req.contextPath}/workReport/listReplyDailyTab.html?daily.id=#{daily.id?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="65%"/>
+<iframe name="msgframe" frameborder="0.5" src="${req.contextPath}/workReport/listReplyTab.html?daily.id=#{daily.id?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="65%"/>
 </#if>
 
 </@htmlPage>

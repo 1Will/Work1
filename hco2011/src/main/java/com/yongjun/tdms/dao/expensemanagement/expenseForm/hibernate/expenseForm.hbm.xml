@@ -33,9 +33,18 @@
 		
 		<property name="applyDate" column="APPLY_DATE" type="timestamp"/>
 		
+		<property name="formNum" column="FORM_NUM" type="int"/>
+		
+		<property name="attachmentNum" column="ATTACHMENT_NUM" type="int"/>
+		
 		<property name="remark" type="string">
 			<column name="REMARK" not-null="false" sql-type="NVARCHAR(100)"/>
 		</property>
+		
+		<!-- 提交判断 -->
+        <property name="isSaved" type="string">
+            <column name="isSaved" not-null="false" sql-type="NVARCHAR(1)"/>
+        </property>
 		
 		<property name="disabled" type="boolean">
             <column name="DISABLED" not-null="true"/>

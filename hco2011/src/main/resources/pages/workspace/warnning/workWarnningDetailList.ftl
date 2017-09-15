@@ -1,25 +1,9 @@
-<#--
-	Copyright (c) 2001-2009 YongJun Technology Pte.,Ltd. All
-	Rights Reserved.
-	
-	This software is the confidential and proprietary information of 
-	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
-	shall not disclose such Confidential Information and shall use it only in
-	accordance with the terms of the license agreement you entered into with
-	YongJun.
-	
-	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
-	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
-	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
-	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
-	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
- 	DERIVATIVES.
--->
 
 <#include "../../includes/hco2011.ftl" />
 
 <@htmlPage title="${action.getText('workwarndetail.search')}">
 	<@ww.form name="'listForm'" namespace="'/workspace/warnning/myWarnning'" action="'searchWorkWarnningDetail'" method="'post'">
+    <#-- 
 		<@ww.token name="searchworkWarnningDetailToken"/>
 		<@ww.hidden name="'workWarnningId'" value="${req.getParameter('workWarnningId')?if_exists}"/>
 		<@inputTable>
@@ -52,5 +36,39 @@
             <@alignRight/>
         </@vcolumn>
     </@list>
+    -->
+    
+        <@inputTable>
+            <#if workWarnning.id?exists>
+                <@ww.hidden name="'workWarnning.id'" value="#{workWarnning.id}"/>
+            </#if>
+		  <tr>
+
+		    <td align="right" valign="top">
+		       <label class="label"></label>
+		    </td>
+		    <td align="center" style="FONT－FAMILY: 宋体;font-size:20pt;font-weight:900">
+		      ${workWarnning.type?if_exists}
+		    </td>
+		  </tr>
+		  <tr>
+		  </tr>
+		  <tr>
+		  </tr>
+		  <tr>
+	       	<td align="right" valign="top">
+		       <label class="label"></label>
+		    </td>
+		    <td align="left" style="FONT－FAMILY: 宋体;font-size:10pt;font-weight:200">
+	       		<pre>${workWarnning.content?if_exists}</pre>
+	        </td>
+		  </tr>
+        </@inputTable>
+        <@ww.hidden name="'origFileName'" value=""/>
+        <@buttonBar>
+        	<@vbutton name="close" value="${action.getText('关闭')}" class="button" onclick="closeThis();"/>
+        </@buttonBar>
+        
+        
     </@ww.form>
 </@htmlPage>

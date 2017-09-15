@@ -64,6 +64,17 @@
 /*    */       }
 /*    */     });
 /*    */   }
+
+/*    */   public List<ReceviceNotice> getAllNoticByUserID(final Long userId)
+/*    */   {
+/* 60 */     return (List)getHibernateTemplate().execute(new HibernateCallback()
+/*    */     {
+/*    */       public Object doInHibernate(Session session) throws HibernateException, SQLException
+/*    */       {
+/* 64 */         return session.getNamedQuery("GetAllNoticByUserID").setParameter("userId", userId).list();
+/*    */       }
+/*    */     });
+/*    */   }
 /*    */ 
 /*    */   public List<ReceviceNotice> loadByKey(String keyName, Object keyValue)
 /*    */     throws DaoException

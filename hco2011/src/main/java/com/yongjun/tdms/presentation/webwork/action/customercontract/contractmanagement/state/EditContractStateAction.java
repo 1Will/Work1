@@ -1,6 +1,7 @@
 package com.yongjun.tdms.presentation.webwork.action.customercontract.contractmanagement.state;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.yongjun.pluto.exception.DaoException;
@@ -11,8 +12,10 @@ import com.yongjun.pluto.service.file.FileTransportManager;
 import com.yongjun.pluto.service.security.UserManager;
 import com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement;
 import com.yongjun.tdms.model.customercontract.contractmanagement.state.ContractState;
+import com.yongjun.tdms.model.project.projectInfoPlan.ProjectInfoPlan;
 import com.yongjun.tdms.service.customercontract.contractmanagement.ContractManagementManager;
 import com.yongjun.tdms.service.customercontract.contractmanagement.state.ContractStateManager;
+import com.yongjun.tdms.service.project.projectInfoPlan.ProjectInfoPlanManager;
 
 public class EditContractStateAction extends FileTransportAction{
 	private static final long serialVersionUID = 1L;
@@ -21,17 +24,20 @@ public class EditContractStateAction extends FileTransportAction{
 	private final UserManager userManager;
 	private final CodeValueManager codeValueManager;
 	private final FileTransportManager fileTransportManager;
+	private final ProjectInfoPlanManager projectInfoPlanManager;
 	
 	private ContractManagement contractManagement;
 	private ContractState contractState;
 
 	public EditContractStateAction(ContractManagementManager contractManagementManager,ContractStateManager contractStateManager,
-			UserManager userManager,CodeValueManager codeValueManager,FileTransportManager fileTransportManager) {
+			UserManager userManager,CodeValueManager codeValueManager,FileTransportManager fileTransportManager,
+			ProjectInfoPlanManager projectInfoPlanManager) {
 		this.contractManagementManager = contractManagementManager;
 		this.contractStateManager = contractStateManager;
 		this.userManager = userManager;
 		this.codeValueManager = codeValueManager;
 		this.fileTransportManager = fileTransportManager;
+		this.projectInfoPlanManager = projectInfoPlanManager;
 	}
 
 	public void prepare() throws Exception {
@@ -51,21 +57,55 @@ public class EditContractStateAction extends FileTransportAction{
 		this.contractState.setNewState(codeValueManager.loadCodeValue(getId("newStateid")));
 		this.contractState.setBeforeState(codeValueManager.loadCodeValue(getId("beforeStateid")));
 		this.contractState.setContractManagement(contractManagement);
-		if (!isNew) {
-			this.fileTransportManager.delete(this.request, this.contractState.getPosition());
-		}
 		try {
-			String location = this.fileTransportManager.upload(this.request, getFile(), "origFileName");
-			this.contractState.setPosition(location);
 			this.contractStateManager.storeContractState(this.contractState);
+			//改变合同状态
+			this.contractManagement.setState(codeValueManager.loadCodeValue(getId("newStateid")));
+			this.contractManagementManager.storeContractManagement(contractManagement);
+			
+			CodeValue codeValue = codeValueManager.loadCodeValue(getId("newStateid"));
+			List<ProjectInfoPlan> projectInfoPlans = projectInfoPlanManager.loadByKey("contractManagement.id",
+					this.contractManagement.getId());
+			ProjectInfoPlan projectInfoPlan = null;
+			// 合同状态变为异常终止
+			if (codeValue.getCode().equals("06605")) {
+				if (projectInfoPlans != null && projectInfoPlans.size() > 0) {
+					for (int i = 0; i < projectInfoPlans.size(); i++) {
+						projectInfoPlan = projectInfoPlans.get(i);
+						projectInfoPlan.setPlanState(codeValueManager.loadByKey("code", "21105").get(0));
+						projectInfoPlanManager.storeProjectInfoPlan(projectInfoPlan);
+					}
+				}
+			}
+			// 合同状态变为立项
+			if (codeValue.getCode().equals("06603")) {
+				if (projectInfoPlans != null && projectInfoPlans.size() > 0) {
+					for (int i = 0; i < projectInfoPlans.size(); i++) {
+						projectInfoPlan = projectInfoPlans.get(i);
+						if(projectInfoPlan.getPercentt()==0){
+							if(projectInfoPlan.getEndDate().after(new Date())){
+								projectInfoPlan.setPlanState(codeValueManager.loadByKey("code", "21101").get(0));
+							}else {
+								projectInfoPlan.setPlanState(codeValueManager.loadByKey("code", "21103").get(0));
+							}
+						}
+						if(projectInfoPlan.getPercentt()>0 && projectInfoPlan.getPercentt()<100){
+							if(projectInfoPlan.getEndDate().after(new Date())){
+								projectInfoPlan.setPlanState(codeValueManager.loadByKey("code", "21102").get(0));
+							}else {
+								projectInfoPlan.setPlanState(codeValueManager.loadByKey("code", "21103").get(0));
+							}
+						}
+						projectInfoPlanManager.storeProjectInfoPlan(projectInfoPlan);
+					}
+				}
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			addActionMessage(getText("contractState.update.error"));
+			return ERROR;
 		}
-		
-		this.contractManagement.setState(codeValueManager.loadCodeValue(getId("newStateid")));
-		this.contractManagementManager.storeContractManagement(contractManagement);
-		
-		
 		if (isNew) {
 			addActionMessage(getText("contractState.add.success"));
 			return "new";

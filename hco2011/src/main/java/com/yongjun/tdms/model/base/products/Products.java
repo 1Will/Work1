@@ -8,6 +8,7 @@ import com.yongjun.pluto.model.tracking.CreatedTimeTracking;
 import com.yongjun.pluto.model.tracking.CreatorTracking;
 import com.yongjun.pluto.model.tracking.LastModifiedTimeTracking;
 import com.yongjun.pluto.model.tracking.LastOperatorTracking;
+import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo;
 import com.yongjun.tdms.model.base.produttype.ProductType;
 import com.yongjun.tdms.model.supplier.Supplier;
 
@@ -26,9 +27,11 @@ public class Products extends BaseInfoEntity implements CreatedTimeTracking, Cre
 	private ProductType pt;
 	private String productSource;
 	private CodeValue product_source_ID;
-	private Supplier supplier;
+	private Supplier supplier;//之前的供应商，不用了
+	private CustomerInfo customerInfo;//新供应商
 	private boolean isNoMain = true;
 	private String isSaved;// 存在并且等于0，，方可提交
+	private CodeValue businessType;
 
 	public boolean equals(Object arg0) {
 		if (arg0 == this) {
@@ -169,4 +172,21 @@ public class Products extends BaseInfoEntity implements CreatedTimeTracking, Cre
 	public void setIsSaved(String isSaved) {
 		this.isSaved = isSaved;
 	}
+
+	public CustomerInfo getCustomerInfo() {
+		return customerInfo;
+	}
+
+	public void setCustomerInfo(CustomerInfo customerInfo) {
+		this.customerInfo = customerInfo;
+	}
+
+	public CodeValue getBusinessType() {
+		return businessType;
+	}
+
+	public void setBusinessType(CodeValue businessType) {
+		this.businessType = businessType;
+	}
+	
 }

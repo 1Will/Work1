@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.yongjun.pluto.model.BaseInfoEntity;
 import com.yongjun.pluto.model.codevalue.CodeValue;
+import com.yongjun.pluto.model.security.Department;
 import com.yongjun.tdms.model.CustomerRelationship.additionalInfo.CusAdditionalInfo;
 import com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives;
 import com.yongjun.tdms.model.advisory.Advisory;
@@ -18,9 +19,9 @@ public class CustomerInfo extends BaseInfoEntity {
 	private String name;
 	private String abbreviations;
 	private CodeValue customerType;
-	private CodeValue classification;
+	private Department classification;
 	private CodeValue businessType;
-	private String isPartner;//1 是0或者null
+	private String isPartner;//1 是供应商，0和null是客户
 	private CodeValue industry;
 	private CodeValue companyNature;
 	private String legalPerson;
@@ -447,11 +448,11 @@ public class CustomerInfo extends BaseInfoEntity {
 		this.nearestBackVisitDate = nearestBackVisitDate;
 	}
 
-	public CodeValue getClassification() {
+	public Department getClassification() {
 		return classification;
 	}
 
-	public void setClassification(CodeValue classification) {
+	public void setClassification(Department classification) {
 		this.classification = classification;
 	}
 

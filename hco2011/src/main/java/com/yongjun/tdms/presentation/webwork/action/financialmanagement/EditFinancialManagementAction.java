@@ -1,5 +1,6 @@
 package com.yongjun.tdms.presentation.webwork.action.financialmanagement;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -91,6 +92,17 @@ public class EditFinancialManagementAction extends PrepareAction {
 				this.batchs.add(c);
 		} else {
 			this.financialManagement = new FinancialManagement();
+
+			User user = this.userManager.getUser();
+
+			if (null != user.getCode()) {
+				List salemans = this.personnelFilesManager.loadByKey("code", user.getCode());
+				if (null != salemans) {
+					PersonnelFiles saleman = (PersonnelFiles) salemans.get(0);
+					this.financialManagement.setSaleman(saleman);
+					this.financialManagement.setPayee(saleman);
+				}
+			}
 		}
 
 		if (hasId("contractManagement.id")) {
@@ -108,16 +120,6 @@ public class EditFinancialManagementAction extends PrepareAction {
 			}
 		}
 
-		User user = this.userManager.getUser();
-
-		if (null != user.getCode()) {
-			List salemans = this.personnelFilesManager.loadByKey("code", user.getCode());
-			if (null != salemans) {
-				PersonnelFiles saleman = (PersonnelFiles) salemans.get(0);
-				this.financialManagement.setSaleman(saleman);
-				this.financialManagement.setPayee(saleman);
-			}
-		}
 	}
 
 	public String save() throws Exception {
@@ -209,7 +211,7 @@ public class EditFinancialManagementAction extends PrepareAction {
 				EventNew event = new EventNew();
 				event.setEffectflag("E");
 				event.setEventType(eventType);
-				event.setName("收款事件");
+				event.setName(eventType.getName());
 				event.setUserId(this.userManager.getUser().getId() + "");
 				Map<String, String> map = new HashMap();
 				String pids = this.personnelFilesToUserManager.loadUserIdToStrByProjectInfoId(this.financialManagement
@@ -217,19 +219,21 @@ public class EditFinancialManagementAction extends PrepareAction {
 						.getProject().getCreateUser());
 				map.put("users", pids);
 				map.put("financialManagementId", this.financialManagement.getId() + "");
+				map.put("name", new SimpleDateFormat("yyyy-MM-dd").format(this.financialManagement.getCreatedTime())+","+this.financialManagement.getPayee().getName()+"提交了收款单:"+this.financialManagement.getContractManagement().getContractName());
+				map.put("url", "financialManagement/editFinancialManagement.html?popWindowFlag=popWindowFlag&financialManagement.id="+this.financialManagement.getId());
 				String moreinfo = JSONObject.fromObject(map).toString();
 				event.setMoreinfo(moreinfo);
 				eventNewManager.storeEventNew(event);
 				
-				 HashMap mapData =new HashMap();
-	              mapData.put("type", "10007");
-	              mapData.put("thisMoney", financialManagement.getTrueSum());
-	              mapData.put("lastMoney",financialManagement.getLastSubmitMoney() );
-				mapData.put("submitNum", this.financialManagement.getSubmitNum());
-				mapData.put("date",financialManagement.getCollectionDate());
-				this.dataManager.storeData(getPersonnelF(), mapData);
+//				 HashMap mapData =new HashMap();
+//	              mapData.put("type", "10007");
+//	              mapData.put("thisMoney", financialManagement.getTrueSum());
+//	              mapData.put("lastMoney",financialManagement.getLastSubmitMoney() );
+//				mapData.put("submitNum", this.financialManagement.getSubmitNum());
+//				mapData.put("date",financialManagement.getCollectionDate());
+//				this.dataManager.storeData(getPersonnelF(), mapData);
 				this.financialManagement.setLastSubmitMoney(financialManagement.getTrueSum());
-				this.financialManagementManager.storeFinancialManagement(financialManagement);//更新上次金额
+//				this.financialManagementManager.storeFinancialManagement(financialManagement);//更新上次金额
 				submit = "submit";
 			} catch (Exception e) {
 				e.printStackTrace();

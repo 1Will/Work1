@@ -43,7 +43,7 @@
 				<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('leaveBill.crateDate')}" property="createDate" format="yyyy-MM-dd" sortable="desc">
-            	<@alignCenter/><#-- attributes="width:110;"-->
+            	<@alignLeft/><#-- attributes="width:110;"-->
             </@vcolumn>
             <@vcolumn title="${action.getText('leaveBill.applyPerson')}" property="applyPerson.name" sortable="desc">
      			<@alignLeft/>
@@ -52,16 +52,16 @@
      			<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('leaveBill.startTime')}" property="startTime" format="yyyy-MM-dd" sortable="desc">
-            	<@alignCenter/>
+            	<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('leaveBill.endTime')}" property="endTime" format="yyyy-MM-dd" sortable="desc">
-            	<@alignCenter/>
+            	<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('leaveBill.manHour')}" property="manHour" sortable="desc">
-            	<@alignCenter/>
+            	<@alignRight/>
             </@vcolumn>
             <@vcolumn title="${action.getText('leaveBill.type')}" property="type.name" sortable="desc">
-            	<@alignCenter/>
+            	<@alignLeft/>
             </@vcolumn>
              <@vcolumn title="${action.getText('leaveBill.status')}" property="status.name" sortable="desc">
      			<@alignLeft/>

@@ -32,7 +32,7 @@ import java.util.Date;
 /*     */ 
 /*     */   protected String getAdapterName()
 /*     */   {
-/*  77 */     return "datas";
+/*  77 */     return "myDatas";
 /*     */   }
 /*     */ 
 /*     */   protected Map getRequestParameterMap()

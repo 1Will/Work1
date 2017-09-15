@@ -75,6 +75,19 @@ import org.hibernate.Session;
 				Query query = session.createQuery(sf.toString());
 				return query.uniqueResult();
 			}
+			
+			public List<Data> loadAllDataByTeam(HashMap map){
+				StringBuffer sf = new StringBuffer();
+				sf.append(" from Data  d   where 1=1  ");
+				if (map.get("personnelFilesId")!=null&&!map.get("personnelFilesId").equals("")) {
+					sf.append(" and  d.personnelFiles.id in ("+(String)map.get("personnelFilesId")+")");
+				}
+				if (map.get("sfMonth")!=null&&!map.get("sfMonth").equals("")) {
+					sf.append(" and  d.month  = '"+(String)map.get("sfMonth")+"'");
+				}
+				sf.append(" order by d.id desc ");
+			 return 	this.getHibernateTemplate().find(sf.toString());
+			}
 		}
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

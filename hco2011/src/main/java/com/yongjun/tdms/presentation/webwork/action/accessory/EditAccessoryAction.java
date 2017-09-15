@@ -9,20 +9,32 @@ import com.yongjun.tdms.model.advisory.Advisory;
 import com.yongjun.tdms.model.backvisit.BackVisit;
 import com.yongjun.tdms.model.base.document.ApplicationDoc;
 import com.yongjun.tdms.model.base.products.Products;
+import com.yongjun.tdms.model.customercontract.billingrecord.BillingRecord;
 import com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement;
+import com.yongjun.tdms.model.expensemanagement.expenseForm.ExpenseForm;
+import com.yongjun.tdms.model.financeManagement.paymentorder.Paymentorder;
 import com.yongjun.tdms.model.financialmanagement.FinancialManagement;
 import com.yongjun.tdms.model.personnelFiles.contractadministrator.ContractAdministrator;
 import com.yongjun.tdms.model.project.ProjectInfo;
 import com.yongjun.tdms.model.supplier.Supplier;
+import com.yongjun.tdms.model.workspace.leaveBill.LeaveBill;
+import com.yongjun.tdms.model.workspace.ontheroadBill.OnTheRoadBill;
+import com.yongjun.tdms.model.workspace.overTimeBill.OverTimeBill;
 import com.yongjun.tdms.service.advisory.AdvisoryManager;
 import com.yongjun.tdms.service.backvisit.BackVisitManager;
 import com.yongjun.tdms.service.base.document.ApplicationDocManager;
 import com.yongjun.tdms.service.base.products.ProductsManager;
+import com.yongjun.tdms.service.customercontract.billingrecord.BillingRecordManager;
 import com.yongjun.tdms.service.customercontract.contractmanagement.ContractManagementManager;
+import com.yongjun.tdms.service.expensemanagement.expenseForm.ExpenseFormManager;
+import com.yongjun.tdms.service.financeManagement.paymentorder.PaymentorderManager;
 import com.yongjun.tdms.service.financialmanagement.FinancialManagementManager;
 import com.yongjun.tdms.service.personnelFiles.contractadministrator.ContractAdministratorManager;
 import com.yongjun.tdms.service.project.ProjectInfoManager;
 import com.yongjun.tdms.service.supplier.SupplierManager;
+import com.yongjun.tdms.service.workspace.leaveBill.LeaveBillManager;
+import com.yongjun.tdms.service.workspace.ontheroadBill.OnTheRoadBillManager;
+import com.yongjun.tdms.service.workspace.overTimeBill.OverTimeBillManager;
 
 public class EditAccessoryAction extends FileTransportAction {
 	private static final long serialVersionUID = -6722017437417848485L;
@@ -37,6 +49,12 @@ public class EditAccessoryAction extends FileTransportAction {
 	private final ProjectInfoManager projectInfoManager;
 	private final FinancialManagementManager financialManagementManager;
 	private final ProductsManager productsManager;
+	private final ExpenseFormManager expenseFormManager;
+	private final PaymentorderManager paymentorderManager;
+	private final OnTheRoadBillManager onTheRoadBillManager;
+	private final OverTimeBillManager overTimeBillManager;
+	private final LeaveBillManager leaveBillManager;
+	private final BillingRecordManager billingRecordManager;
 	
 	private ApplicationDoc applicationDoc;
 	private Advisory advisory;
@@ -47,12 +65,21 @@ public class EditAccessoryAction extends FileTransportAction {
 	private ContractManagement contractManagement;
 	private FinancialManagement financialManagement;
 	private Products products;
+	private ExpenseForm expenseForm;
+	private Paymentorder paymentorder;
+	private OnTheRoadBill onTheRoadBill;
+	private OverTimeBill overTimeBill;
+	private LeaveBill leaveBill;
+	private BillingRecord billingRecord;
 
 	public EditAccessoryAction(ApplicationDocManager applicationDocManager, AdvisoryManager advisoryManager,
 			FileTransportManager fileTransportManager, BackVisitManager backVisitManager,
 			SupplierManager supplierManager, ContractAdministratorManager contractAdministratorManager,
 			ProjectInfoManager projectInfoManager, ContractManagementManager contractManagementManager,
-			FinancialManagementManager financialManagementManager,ProductsManager productsManager) {
+			FinancialManagementManager financialManagementManager,ProductsManager productsManager,
+			ExpenseFormManager expenseFormManager,PaymentorderManager paymentorderManager,
+			OnTheRoadBillManager onTheRoadBillManager,OverTimeBillManager overTimeBillManager,
+			LeaveBillManager leaveBillManager,BillingRecordManager billingRecordManager) {
 		this.applicationDocManager = applicationDocManager;
 		this.advisoryManager = advisoryManager;
 		this.fileTransportManager = fileTransportManager;
@@ -63,6 +90,12 @@ public class EditAccessoryAction extends FileTransportAction {
 		this.contractManagementManager = contractManagementManager;
 		this.financialManagementManager = financialManagementManager;
 		this.productsManager = productsManager;
+		this.expenseFormManager = expenseFormManager;
+		this.paymentorderManager = paymentorderManager;
+		this.onTheRoadBillManager = onTheRoadBillManager;
+		this.overTimeBillManager = overTimeBillManager;
+		this.leaveBillManager = leaveBillManager;
+		this.billingRecordManager = billingRecordManager;
 	}
 
 	public void prepare() throws Exception {
@@ -102,6 +135,24 @@ public class EditAccessoryAction extends FileTransportAction {
 			this.products = this.productsManager
 					.loadProducts(getId("products.id"));
 		}
+		if (hasId("expenseForm.id")) {
+			this.expenseForm = this.expenseFormManager.loadExpenseForm(getId("expenseForm.id"));
+		}
+		if (hasId("paymentorder.id")) {
+			this.paymentorder = this.paymentorderManager.loadPaymentorder(getId("paymentorder.id"));
+		}
+		if (hasId("onTheRoadBill.id")) {
+			this.onTheRoadBill = this.onTheRoadBillManager.loadOnTheRoadBill(getId("onTheRoadBill.id"));
+		}
+		if (hasId("overTimeBill.id")) {
+			this.overTimeBill = this.overTimeBillManager.loadOverTimeBill(getId("overTimeBill.id"));
+		}
+		if (hasId("leaveBill.id")) {
+			this.leaveBill = this.leaveBillManager.loadLeaveBill(getId("leaveBill.id"));
+		}
+		if (hasId("billingRecord.id")) {
+			this.billingRecord = this.billingRecordManager.loadBillingRecord(getId("billingRecord.id"));
+		}
 	}
 
 	public String save() throws Exception {
@@ -114,8 +165,7 @@ public class EditAccessoryAction extends FileTransportAction {
 
 			this.applicationDoc.setPosition(location);
 			String orgFileName = this.request.getParameter("origFileName");
-			String of  = getFile().getName();
-			this.applicationDoc.setFileName(of);
+			this.applicationDoc.setFileName(orgFileName);
 			this.applicationDoc.setFileNo(location);
 		}
 		try {
@@ -142,6 +192,24 @@ public class EditAccessoryAction extends FileTransportAction {
 			}
 			if (this.products != null) {
 				this.applicationDoc.setProducts(this.products);
+			}
+			if (this.expenseForm != null) {
+				this.applicationDoc.setExpenseForm(this.expenseForm);
+			}
+			if (this.paymentorder != null) {
+				this.applicationDoc.setPaymentorder(this.paymentorder);
+			}
+			if (this.onTheRoadBill != null) {
+				this.applicationDoc.setOnTheRoadBill(this.onTheRoadBill);
+			}
+			if (this.overTimeBill != null) {
+				this.applicationDoc.setOverTimeBill(this.overTimeBill);
+			}
+			if (this.leaveBill != null) {
+				this.applicationDoc.setLeaveBill(this.leaveBill);
+			}
+			if (this.billingRecord != null) {
+				this.applicationDoc.setBillingRecord(this.billingRecord);
 			}
 			this.applicationDocManager.storeApplicationDoc(this.applicationDoc);
 		} catch (Exception e) {
@@ -230,5 +298,54 @@ public class EditAccessoryAction extends FileTransportAction {
 	public void setProducts(Products products) {
 		this.products = products;
 	}
+
+	public ExpenseForm getExpenseForm() {
+		return expenseForm;
+	}
+
+	public void setExpenseForm(ExpenseForm expenseForm) {
+		this.expenseForm = expenseForm;
+	}
+
+	public Paymentorder getPaymentorder() {
+		return paymentorder;
+	}
+
+	public void setPaymentorder(Paymentorder paymentorder) {
+		this.paymentorder = paymentorder;
+	}
+
+	public OverTimeBill getOverTimeBill() {
+		return overTimeBill;
+	}
+
+	public void setOverTimeBill(OverTimeBill overTimeBill) {
+		this.overTimeBill = overTimeBill;
+	}
+
+	public OnTheRoadBill getOnTheRoadBill() {
+		return onTheRoadBill;
+	}
+
+	public void setOnTheRoadBill(OnTheRoadBill onTheRoadBill) {
+		this.onTheRoadBill = onTheRoadBill;
+	}
+
+	public LeaveBill getLeaveBill() {
+		return leaveBill;
+	}
+
+	public void setLeaveBill(LeaveBill leaveBill) {
+		this.leaveBill = leaveBill;
+	}
+
+	public BillingRecord getBillingRecord() {
+		return billingRecord;
+	}
+
+	public void setBillingRecord(BillingRecord billingRecord) {
+		this.billingRecord = billingRecord;
+	}
+
 
 }

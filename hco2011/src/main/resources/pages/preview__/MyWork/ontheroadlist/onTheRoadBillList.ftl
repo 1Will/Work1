@@ -48,9 +48,9 @@
 				<td style="text-align:left">研发部</td>
 				<td style="text-align:left">去富银公司...</td>
 				<td style="text-align:left">通过</td>
-				<td style="text-align:center">2011-01-16 13:30</td>
-				<td style="text-align:center">2011-01-16 18:00</td>
-				<td style="text-align:center">2011-01-16 13:30</td>
+				<td style="text-align:left">2011-01-16 13:30</td>
+				<td style="text-align:left">2011-01-16 18:00</td>
+				<td style="text-align:left">2011-01-16 13:30</td>
 				<td style="text-align:left">陈晓松</td>
 			</tr>
 			<tr>
@@ -60,9 +60,9 @@
 				<td style="text-align:left">研发部</td>
 				<td style="text-align:left">去山水公司...</td>
 				<td style="text-align:left">通过</td>
-				<td style="text-align:center">2011-01-16 13:30</td>
-				<td style="text-align:center">2011-01-16 18:00</td>
-				<td style="text-align:center">2011-01-16 13:30</td>
+				<td style="text-align:left">2011-01-16 13:30</td>
+				<td style="text-align:left">2011-01-16 18:00</td>
+				<td style="text-align:left">2011-01-16 13:30</td>
 				<td style="text-align:left">陈晓松</td>
 			</tr>
 			<tr>
@@ -72,9 +72,9 @@
 				<td style="text-align:left">研发部</td>
 				<td style="text-align:left">去瑶海分局...</td>
 				<td style="text-align:left">通过</td>
-				<td style="text-align:center">2011-01-16 13:30</td>
-				<td style="text-align:center">2011-01-16 18:00</td>
-				<td style="text-align:center">2011-01-16 13:30</td>
+				<td style="text-align:left">2011-01-16 13:30</td>
+				<td style="text-align:left">2011-01-16 18:00</td>
+				<td style="text-align:left">2011-01-16 13:30</td>
 				<td style="text-align:left">陈晓松</td>
 			</tr>
         </@listTable>

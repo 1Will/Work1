@@ -22,7 +22,7 @@
 
   <@ww.form namespace="'/workspace/data'" name="'dataListFrom'" action="'searchMyData'" method="'post'">
      <@ww.token name="searchDataToken"/>
-     <#include "./dataSearcher.ftl" />
+     <#include "./myDataSearcher.ftl" />
      <@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
      
          <@buttonBar>
@@ -30,7 +30,7 @@
         </@buttonBar>
          <@list title="${action.getText('我的数据')}" includeParameters="data.year|type" fieldMap="like:data.year|type" >
          <@vcolumn title="${action.getText('data.month')}" property="month">
-              <@alignRight/>
+              <@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('data.contractManagementNum')}" property="contractManagementNum" >
                 <@alignRight/>

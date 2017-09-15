@@ -83,5 +83,15 @@ public class DefaultProjectInfoPersonnelsManager extends BaseManager implements 
 		// TODO Auto-generated method stub
 		return this.projectInfoPersonnelDao.loadPersonnelsCodeByEnable();
 	}
+	
+	public List<String> loadPersonnelsCodeByType(String code) {
+		// TODO Auto-generated method stub
+		return this.projectInfoPersonnelDao.loadPersonnelsCodeByType(code);
+	}
+
+	public List<Long> loadProjectInfoIdByPersonnel(String code) {
+		// TODO Auto-generated method stub
+		return projectInfoPersonnelDao.loadProjectInfoIdByPersonnel(code);
+	}
 
 }

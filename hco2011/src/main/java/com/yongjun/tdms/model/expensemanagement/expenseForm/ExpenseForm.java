@@ -20,6 +20,26 @@ public class ExpenseForm extends BaseInfoEntity {
 	private Double money = Double.valueOf(0.0D);// 报销金额
 	private Date applyDate;
 	private String remark;
+	private Integer formNum;//单据数量
+	private Integer attachmentNum;//附件数量
+	private String isSaved ;//提交判断
+	
+
+	public Integer getFormNum() {
+		return formNum;
+	}
+
+	public void setFormNum(Integer formNum) {
+		this.formNum = formNum;
+	}
+
+	public Integer getAttachmentNum() {
+		return attachmentNum;
+	}
+
+	public void setAttachmentNum(Integer attachmentNum) {
+		this.attachmentNum = attachmentNum;
+	}
 
 	@Override
 	public boolean equals(Object arg0) {
@@ -85,6 +105,14 @@ public class ExpenseForm extends BaseInfoEntity {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getIsSaved() {
+		return isSaved;
+	}
+
+	public void setIsSaved(String isSaved) {
+		this.isSaved = isSaved;
 	}
 
 }

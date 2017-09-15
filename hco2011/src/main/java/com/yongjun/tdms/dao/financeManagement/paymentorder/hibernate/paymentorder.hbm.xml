@@ -39,6 +39,10 @@
         <many-to-one name="supplier" class="com.yongjun.tdms.model.supplier.Supplier">
 			<column name="SUPPLIER" not-null="false"/>
 		</many-to-one>
+		<!-- 新供应商 -->
+		<many-to-one name="customerInfo" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo" lazy="false">
+        	<column name="customerInfo_id" not-null="false"></column>
+        </many-to-one>
         <many-to-one name="produceType" class="com.yongjun.pluto.model.codevalue.CodeValue">
 			<column name="PRODUCETYPE" not-null="false"/>
 		</many-to-one>
@@ -68,6 +72,26 @@
 		<property name="remark" type="string">
 			<column name="REMARK" not-null="false" sql-type="NVARCHAR(100)"/>
 		</property>
+		<!-- 币种-->
+		<many-to-one name="moneyType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="MONEYTYPE" not-null="false"/>
+		</many-to-one>
+		
+		<!-- 银行账户 -->
+		<property name="bankNum" type="string">
+            <column name="BANKNUM" not-null="false"  sql-type="NVARCHAR(50)"/>
+        </property>
+        
+		<!-- 银行名称 -->
+		<property name="bankName" type="string">
+			<column name="BANKNAME" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+        
+		<!-- 银行名称 -->
+		<many-to-one name="payType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+            <column name="PAYTYPE" not-null="false" />
+        </many-to-one>
+		
 		<!-- 是否提交 -->
 		<property name="isSaved" type="string">
 			<column name="isSaved" sql-type="NVARCHAR(1)"/>

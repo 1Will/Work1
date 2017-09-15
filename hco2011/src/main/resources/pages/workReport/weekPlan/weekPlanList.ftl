@@ -19,7 +19,7 @@
         <@vlh.attribute name="width" value="4%" />
             <a href="#" onclick="showWeekPlan('#{object.id}')">${number}</a>
             <#assign number=number+1 />
-            <@alignCenter/>
+            <@alignLeft/>
         </@vcolumn>
         
         <#if req.getParameter('weekly.id')?exists>
@@ -36,7 +36,7 @@
         
         
         <@vcolumn title="${action.getText('计划人')}" sortable="asc" property="user.name">
-            <@alignCenter attributes="width:60;"/>
+            <@alignLeft attributes="width:60;"/>
         </@vcolumn>
         
         <@vcolumn title="${action.getText('上周计划')}" sortable="asc" property="lastPlan">

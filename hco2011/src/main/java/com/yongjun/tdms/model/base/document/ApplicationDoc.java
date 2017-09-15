@@ -11,11 +11,17 @@ import com.yongjun.pluto.model.tracking.OrganizationTracking;
 import com.yongjun.tdms.model.advisory.Advisory;
 import com.yongjun.tdms.model.backvisit.BackVisit;
 import com.yongjun.tdms.model.base.products.Products;
+import com.yongjun.tdms.model.customercontract.billingrecord.BillingRecord;
 import com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement;
+import com.yongjun.tdms.model.expensemanagement.expenseForm.ExpenseForm;
+import com.yongjun.tdms.model.financeManagement.paymentorder.Paymentorder;
 import com.yongjun.tdms.model.financialmanagement.FinancialManagement;
 import com.yongjun.tdms.model.personnelFiles.contractadministrator.ContractAdministrator;
 import com.yongjun.tdms.model.project.ProjectInfo;
 import com.yongjun.tdms.model.supplier.Supplier;
+import com.yongjun.tdms.model.workspace.leaveBill.LeaveBill;
+import com.yongjun.tdms.model.workspace.ontheroadBill.OnTheRoadBill;
+import com.yongjun.tdms.model.workspace.overTimeBill.OverTimeBill;
 
 public class ApplicationDoc extends BaseInfoEntity implements CreatedTimeTracking, CreatorTracking,
 		LastOperatorTracking, LastModifiedTimeTracking, OrganizationTracking {
@@ -37,6 +43,12 @@ public class ApplicationDoc extends BaseInfoEntity implements CreatedTimeTrackin
 	private ContractManagement contractManagement;
 	private FinancialManagement financialManagement;
 	private Products products;
+	private ExpenseForm expenseForm;
+	private Paymentorder paymentorder;
+	private OnTheRoadBill onTheRoadBill;
+	private OverTimeBill overTimeBill;
+	private LeaveBill leaveBill;
+	private BillingRecord billingRecord;
 
 	public String getDescription() {
 		return this.description;
@@ -190,5 +202,55 @@ public class ApplicationDoc extends BaseInfoEntity implements CreatedTimeTrackin
 	public void setProducts(Products products) {
 		this.products = products;
 	}
+
+	public ExpenseForm getExpenseForm() {
+		return expenseForm;
+	}
+
+	public void setExpenseForm(ExpenseForm expenseForm) {
+		this.expenseForm = expenseForm;
+	}
+
+	public Paymentorder getPaymentorder() {
+		return paymentorder;
+	}
+
+	public void setPaymentorder(Paymentorder paymentorder) {
+		this.paymentorder = paymentorder;
+	}
+
+
+	public OverTimeBill getOverTimeBill() {
+		return overTimeBill;
+	}
+
+	public void setOverTimeBill(OverTimeBill overTimeBill) {
+		this.overTimeBill = overTimeBill;
+	}
+
+	public OnTheRoadBill getOnTheRoadBill() {
+		return onTheRoadBill;
+	}
+
+	public void setOnTheRoadBill(OnTheRoadBill onTheRoadBill) {
+		this.onTheRoadBill = onTheRoadBill;
+	}
+
+	public LeaveBill getLeaveBill() {
+		return leaveBill;
+	}
+
+	public void setLeaveBill(LeaveBill leaveBill) {
+		this.leaveBill = leaveBill;
+	}
+
+	public BillingRecord getBillingRecord() {
+		return billingRecord;
+	}
+
+	public void setBillingRecord(BillingRecord billingRecord) {
+		this.billingRecord = billingRecord;
+	}
+
 
 }

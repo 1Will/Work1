@@ -24,6 +24,7 @@
 <@ww.form namespace="'/leaveBill'" name="'leaveBill'" action="'saveLeaveBill'" method="'post'">
 <@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 	<@ww.token name="saveLeaveBillToken"/>
+	<@ww.hidden name="'isSaved'" value=""/>
     <@inputTable>
     	<#if leaveBill.id?exists>
     		<@ww.hidden name="'leaveBill.id'" value="#{leaveBill.id?if_exists}"/>
@@ -132,6 +133,7 @@
 				<textarea name="leaveBill.betreffzeile" rows="4" cols="150" >${leaveBill.betreffzeile?if_exists}</textarea>
 			</td>
 		</tr>
+		<#--
 		<tr>
 			<td align="right" valign="top">
 	       		<label class="label">${action.getText('leaveBill.failReason')}:</label>
@@ -140,12 +142,31 @@
 				<textarea name="leaveBill.failReason" rows="4" cols="150" readonly="true">${leaveBill.failReason?if_exists}</textarea>
 			</td>
 		</tr>
+		-->
     </@inputTable>
     <@buttonBar>
     	<#if !(action.isReadOnly())>
-		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'">
+		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'">
 		</@vsubmit>
 		</#if>
+		
+		<#if leaveBill.isSaved?exists && leaveBill.isSaved=='0' >
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+	    <#else>
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+	    </#if>
+		
+		<#-- 继续新建按钮   -->
+		<#if leaveBill.id?exists>
+			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/leaveBill/editLeaveBill.html"/>
+		<#else>
+			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/leaveBill/editLeaveBill.html"/>
+				<script language="JavaScript" type="text/JavaScript"> 
+				getObjByName("newNext").disabled="true";
+				</script>
+		</#if>
+		
+		
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/leaveBill/listLeaveBill.html"/>
     </@buttonBar>
 
@@ -170,6 +191,32 @@
 		</#if>
 	}
 	
+	function getDate(dt){
+		var tem = dt.split(" ");
+		var date = tem[0].split("-");
+		var mon = parseInt(date[1])-1;
+		
+		var time =tem[1].split(":");
+		var newDate=new Date(date[0],mon,date[2],time[0],time[1]);
+		return newDate;
+	}
+	
+	document.onclick = function (){
+		var star = getObjByName("leaveBill.startTime").value;
+		var end = getObjByName("leaveBill.endTime").value;
+		var c= getDate(end)-getDate(star);
+		getObjByName("leaveBill.manHour").value = (c/3600000).toFixed(1);
+	}
+	
+	function submitt(){
+		getObjByName('isSaved').value="1";
+		return storeValidation();
+    }
+    
+    function savee(){
+		getObjByName('isSaved').value="0";
+     	return storeValidation();
+    }
 	
 	//保存前给隐藏域赋值和验证字段
 	function storeValidation(){
@@ -264,3 +311,11 @@
 	}
 </script>
 </@htmlPage>
+<#if leaveBill.id?exists>
+<ul id="beautytab">
+	<li>
+		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?leaveBill.id=#{leaveBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
+	</li>
+</ul>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/applicationDocManager/listApplicationDoc.html?leaveBill.id=#{leaveBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="60%"/>
+</#if>

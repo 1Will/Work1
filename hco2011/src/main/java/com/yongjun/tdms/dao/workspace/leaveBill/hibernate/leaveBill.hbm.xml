@@ -48,6 +48,10 @@
 	    <property name="failReason" type="string">
             <column name="FAIL_REASON" not-null="false"  sql-type="NVARCHAR(500)"/>
         </property>
+        <!-- 提交判断 -->
+        <property name="isSaved" type="string">
+            <column name="isSaved" not-null="false" sql-type="NVARCHAR(1)"/>
+        </property>
         
         <property name="disabled" type="boolean">
             <column name="DISABLED" not-null="true"/>

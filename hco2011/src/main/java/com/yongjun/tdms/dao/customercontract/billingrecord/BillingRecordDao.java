@@ -2,6 +2,7 @@ package com.yongjun.tdms.dao.customercontract.billingrecord;
 
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.tdms.model.customercontract.billingrecord.BillingRecord;
+
 import java.util.List;
 
 public abstract interface BillingRecordDao
@@ -23,6 +24,8 @@ public abstract interface BillingRecordDao
 
   public abstract List<BillingRecord> loadByKeyArray(String[] paramArrayOfString, Object[] paramArrayOfObject)
     throws DaoException;
+  
+  public String getMaxCode(String code);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

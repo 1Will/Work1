@@ -32,6 +32,7 @@ public abstract interface ReceviceNoticeDao
     throws DaoException;
 
   public abstract Integer getAllNumberOfUnReadNoticByUserID(Long paramLong);
+  public List<ReceviceNotice> getAllNoticByUserID(Long paramLong);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

@@ -60,4 +60,20 @@
 			}
 		return true;
     }
+    
+     function contractManagement_OpenDialog(id){
+	   var url = "${req.contextPath}/contractManagement/editContractManagementAction.html?contractManagement.id="+id+"&readOnly=${req.getParameter('readOnly')?if_exists}&popWindowFlag=popWindowFlag";
+	   openNewWindow(url);
+	 }
+	 
+	  //弹出客户档案查询模态窗体
+	function customer_OpenDialog(id){
+	   var url = "${req.contextPath}/customerRelationship/editCustomerInfo.html?customerInfo.id="+id+"&popWindowFlag=popWindowFlag&notNewFlag=notNewFlag";
+	   openNewWindow(url);
+	 }
+	 
+	 function editProjectInfo_OpenDialog(id){
+	   var url= "${req.contextPath}/projectInfo/editProjectInfo.html?projectInfo.id="+id+"&readOnly=${req.getParameter('readOnly')?if_exists}&openFlag=openFlag&notNewFlag=notNewFlag";
+	   openNewWindow(url);
+	 }
 </script>

@@ -16,13 +16,14 @@ import com.yongjun.tdms.service.project.projectInfoContract.ProjectInfoContractM
 
 public class ListProjectInfoContractAction extends ValueListAction {
 	private static final long serialVersionUID = 1L;
-	private CodeValueManager codeValueManager;
-	private ProjectInfoManager projectInfoManager;
-	private List<ProjectInfoContract> ProjectInfoContract;
-	private PersonnelFilesManager personnelFilesManager;
+	private final CodeValueManager codeValueManager;
+	private final ProjectInfoManager projectInfoManager;
 	private final UserManager userManager;
-	private String contactArchivesFlag;
+	private final PersonnelFilesManager personnelFilesManager;
 	private final ProjectInfoContractManager ProjectInfoContractManager;
+	
+	private List<ProjectInfoContract> ProjectInfoContract;
+	private String contactArchivesFlag;
 	private String projectInfoId;
 	private String customerInfoId;
 	private String contactArchivesId;
@@ -44,10 +45,6 @@ public class ListProjectInfoContractAction extends ValueListAction {
 
 	public PersonnelFilesManager getPersonnelFilesManager() {
 		return this.personnelFilesManager;
-	}
-
-	public void setPersonnelFilesManager(PersonnelFilesManager personnelFilesManager) {
-		this.personnelFilesManager = personnelFilesManager;
 	}
 
 	public UserManager getUserManager() {
@@ -174,10 +171,6 @@ public class ListProjectInfoContractAction extends ValueListAction {
 		return projectInfoManager;
 	}
 
-	public void setProjectInfoManager(ProjectInfoManager projectInfoManager) {
-		this.projectInfoManager = projectInfoManager;
-	}
-
 	public String getContactArchivesFlag() {
 		return contactArchivesFlag;
 	}
@@ -208,10 +201,6 @@ public class ListProjectInfoContractAction extends ValueListAction {
 
 	public void setCustomerInfoId(String customerInfoId) {
 		this.customerInfoId = customerInfoId;
-	}
-
-	public void setCodeValueManager(CodeValueManager codeValueManager) {
-		this.codeValueManager = codeValueManager;
 	}
 
 }

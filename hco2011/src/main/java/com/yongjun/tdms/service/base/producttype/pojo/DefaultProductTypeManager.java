@@ -1,23 +1,28 @@
 /*     */ package com.yongjun.tdms.service.base.producttype.pojo;
 /*     */ 
 /*     */ import com.yongjun.pluto.exception.DaoException;
+import com.yongjun.pluto.model.codevalue.CodeValue;
 /*     */ import com.yongjun.pluto.service.impl.BaseManager;
 /*     */ import com.yongjun.tdms.dao.base.producttype.ProductTypeDao;
 /*     */ import com.yongjun.tdms.model.base.produttype.ProductType;
 /*     */ import com.yongjun.tdms.service.base.producttype.ProductTypeManager;
+
+import java.util.ArrayList;
 /*     */ import java.util.Collection;
 /*     */ import java.util.List;
 /*     */ import java.util.Set;
-/*     */ 
+
+/*     */ import com.yongjun.pluto.service.codevalue.CodeValueManager;
 /*     */ public class DefaultProductTypeManager extends BaseManager
 /*     */   implements ProductTypeManager
 /*     */ {
 /*     */   private static final long serialVersionUID = -8985256230588219583L;
 /*     */   private final ProductTypeDao productTypeDao;
-/*     */ 
-/*     */   public DefaultProductTypeManager(ProductTypeDao productTypeDao)
+/*     */   private final CodeValueManager codeValueManager;
+/*     */   public DefaultProductTypeManager(ProductTypeDao productTypeDao,CodeValueManager codeValueManager)
 /*     */   {
 /*  24 */     this.productTypeDao = productTypeDao;
+              this.codeValueManager=codeValueManager;
 /*     */   }
 /*     */ 
 /*     */   public void deleteAllProductType(Collection<ProductType> productTypes) {
@@ -137,7 +142,29 @@
 /* 148 */     list.add(0, pt);
 /* 149 */     return list;
 /*     */   }
-/*     */ }
+            public List<ProductType> loadByBtype(String btype) throws DaoException {
+            	long b=Integer.parseInt(btype);
+            	List<ProductType> productTypes=new ArrayList<ProductType>();
+            	CodeValue cv= codeValueManager.loadCodeValue(b);
+            	ProductType prarentPT=productTypeDao.loadByKey("name",cv.getName()).get(0);
+            	if(prarentPT!=null){
+            		ProductType p=new ProductType();
+            		p.setId(prarentPT.getId());
+            		p.setName(prarentPT.getName());
+            		productTypes.add(p);
+            	}
+            	List<ProductType>childPTs=productTypeDao.loadByKey("parentPT.name",cv.getName());
+            	if(childPTs!=null && childPTs.size()>0){
+            		for(int i=0;i<childPTs.size();i++){
+            			ProductType pt=new ProductType();
+            				pt.setId(childPTs.get(i).getId());
+            				pt.setName(childPTs.get(i).getName());
+            			    productTypes.add(pt);
+            		}
+            	}
+			    return productTypes;
+			  }
+			}
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\
  * Qualified Name:     com.yongjun.tdms.service.base.producttype.pojo.DefaultProductTypeManager

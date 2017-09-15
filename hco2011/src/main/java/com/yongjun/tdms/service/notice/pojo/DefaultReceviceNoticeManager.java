@@ -8,6 +8,7 @@
 /*    */ import com.yongjun.tdms.model.notice.ReadStatus;
 /*    */ import com.yongjun.tdms.model.notice.ReceviceNotice;
 /*    */ import com.yongjun.tdms.service.notice.ReceviceNoticeManager;
+
 /*    */ import java.util.Collection;
 /*    */ import java.util.Date;
 /*    */ import java.util.List;
@@ -95,7 +96,11 @@
 /*    */   public Integer getAllNumberOfUnReadNoticByUserID(Long userId) {
 /* 95 */     return this.receviceNoticeDao.getAllNumberOfUnReadNoticByUserID(userId);
 /*    */   }
-/*    */ }
+/*    */
+			public List<ReceviceNotice> getAllNoticByUserID(Long paramLong) {
+				return this.receviceNoticeDao.getAllNoticByUserID(paramLong);
+			}
+}
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\
  * Qualified Name:     com.yongjun.tdms.service.notice.pojo.DefaultReceviceNoticeManager

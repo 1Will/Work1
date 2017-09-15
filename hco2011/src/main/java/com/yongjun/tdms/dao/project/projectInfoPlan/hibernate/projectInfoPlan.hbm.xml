@@ -56,11 +56,21 @@
 		<property name="assist" type="string">
 			<column name="assist" not-null="false" sql-type="NVARCHAR(200)" />
 		</property>
+		<property name="assistIds" type="string">
+			<column name="assistIds" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
 		<property name="startDate" type="timestamp">
 			<column name="start_Date"/>
 		</property>
 		<property name="endDate" type="timestamp">
 			<column name="end_Date"/>
+		</property>
+		
+		<property name="startFactDate" type="timestamp">
+			<column name="startFact_Date"/>
+		</property>
+		<property name="endFactDate" type="timestamp">
+			<column name="endFact_Date"/>
 		</property>
 		
 		<!-- 提交判断 -->

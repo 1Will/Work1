@@ -1,5 +1,6 @@
 package com.yongjun.tdms.presentation.webwork.action.project;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -172,29 +173,30 @@ public class EditProjectInfoAction extends PrepareAction {
 				if (eventTypes != null && eventTypes.size() > 0) {
 					eventType = eventTypes.get(0);
 				} else {
-					eventType = new EventType();
-					eventType.setId(4L);
+					logger.info("eventTypes不存在！");
 				}
 				EventNew event = new EventNew();
 				event.setEffectflag("E");
 				event.setEventType(eventType);
-				event.setName("项目事件");
+				event.setName(eventType.getName());
 				event.setUserId(this.userManager.getUser().getId() + "");
 				Map<String, String> map = new HashMap();
 				String pids = this.personnelFilesToUserManager.loadUserIdToStrByProjectInfoId(this.projectInfo.getId(),
 						this.projectInfo.getCreateUser());
 				map.put("users", pids);
 				map.put("projectInfoId", this.projectInfo.getId() + "");
+				map.put("name", new SimpleDateFormat("yyyy-MM-dd").format(this.projectInfo.getCreatedTime())+","+this.projectInfo.getCreator()+"提交了项目:"+this.projectInfo.getName());
+				map.put("url", "projectInfo/editProjectInfo.html?openFlag=openFlag&projectInfo.id="+this.projectInfo.getId());
 				String moreinfo = JSONObject.fromObject(map).toString();
 				event.setMoreinfo(moreinfo);
 				eventNewManager.storeEventNew(event);
 				
-				 HashMap mapData =new HashMap();
-	              mapData.put("type", "10003");
-	              mapData.put("thisMoney", "0");
-	              mapData.put("lastMoney", "0");
-				mapData.put("submitNum", this.projectInfo.getSubmitNum());
-				this.dataManager.storeData(getPersonnelF(), mapData);
+//				 HashMap mapData =new HashMap();
+//	              mapData.put("type", "10003");
+//	              mapData.put("thisMoney", "0");
+//	              mapData.put("lastMoney", "0");
+//				mapData.put("submitNum", this.projectInfo.getSubmitNum());
+//				this.dataManager.storeData(getPersonnelF(), mapData);
 				
 				submit = "submit";
 			} catch (Exception e) {

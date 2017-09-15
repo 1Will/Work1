@@ -7,9 +7,11 @@
 /*     */ import com.yongjun.tdms.dao.personnelFiles.personnel.PersonnelFilesDao;
 /*     */ import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
 /*     */ import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
+
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.Collection;
 /*     */ import java.util.List;
+
 /*     */ import org.apache.commons.logging.Log;
 /*     */ 
 /*     */ public class DefaultPersonnelFilesManager extends BaseManager
@@ -17,6 +19,7 @@
 /*     */ {
 /*     */   private final PersonnelFilesDao personnelFilesDao;
 /*     */   private final UserDao userDao;
+            private List<PersonnelFiles> listFirstPserFiles;
 /*     */ 
 /*     */   public DefaultPersonnelFilesManager(PersonnelFilesDao personnelFilesDao, UserDao userDao)
 /*     */   {
@@ -134,7 +137,40 @@
 /* 217 */     this.logger.info("get userList sucess and return code");
 /* 218 */     return code;
 /*     */   }
-/*     */ }
+/*     */
+			public List<PersonnelFiles> loadBySuperiorLeader(String code) {
+				try {
+					listFirstPserFiles = new ArrayList<PersonnelFiles>();
+				List<PersonnelFiles> tempList =this.personnelFilesDao.loadByKey("superiorLeader.code", code);
+					if (tempList!=null&&tempList.size()>0) {
+						for (PersonnelFiles p:tempList) {
+							listFirstPserFiles.add(p);
+							loadBySencondSuperiorLeader(p.getCode());
+						}
+					}
+					
+					
+				} catch (DaoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return listFirstPserFiles;
+
+			}
+			public void loadBySencondSuperiorLeader(String code) throws DaoException{
+				List<PersonnelFiles> temFiles =this.personnelFilesDao.loadByKey("superiorLeader.code", code);
+				if(temFiles!=null&&temFiles.size()>0){
+					for(PersonnelFiles pf:temFiles){
+						listFirstPserFiles.add(pf);
+						loadBySencondSuperiorLeader(pf.getCode());
+					}
+				}
+				
+				
+				
+			}
+			
+			}
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\
  * Qualified Name:     com.yongjun.tdms.service.personnelFiles.personnel.pojo.DefaultPersonnelFilesManager

@@ -1,5 +1,6 @@
 package com.yongjun.tdms.presentation.webwork.action.customercontract.billingrecord;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -79,6 +80,13 @@ public class EditBillingRecordAction extends PrepareAction {
 				this.batchs.add(c);
 		} else {
 			this.billingRecord = new BillingRecord();
+			User user = this.userManager.getUser();
+			List list = this.personnelFilesManager.loadByKey("code", user.getCode());
+			if (null != list) {
+				PersonnelFiles payee = (PersonnelFiles) list.get(0);
+				this.billingRecord.setPayee(payee);
+			}
+
 		}
 
 		if (hasId("contractManagement.id")) {
@@ -103,13 +111,7 @@ public class EditBillingRecordAction extends PrepareAction {
 			}
 		}
 
-		User user = this.userManager.getUser();
-		List list = this.personnelFilesManager.loadByKey("code", user.getCode());
-		if (null != list) {
-			PersonnelFiles payee = (PersonnelFiles) list.get(0);
-			this.billingRecord.setPayee(payee);
-		}
-
+		
 		if (null != request.getParameter("popWindowFlag")) {
 			this.popWindowFlag = request.getParameter("popWindowFlag");
 		}
@@ -134,6 +136,7 @@ public class EditBillingRecordAction extends PrepareAction {
 		try {
 			if(isNew){
 				this.billingRecord.setSubmitNum(0l);
+				this.billingRecord.setMyCode(autoCompleteCode());
 			}else {
 				if(this.billingRecord.getIsSaved().equals("1")){
 	            	 this.billingRecord.setSubmitNum(this.billingRecord.getSubmitNum()+1);
@@ -152,7 +155,7 @@ public class EditBillingRecordAction extends PrepareAction {
 				EventNew event = new EventNew();
 				event.setEffectflag("E");
 				event.setEventType(eventType);
-				event.setName("开票事件");
+				event.setName(eventType.getName());
 				event.setUserId(this.userManager.getUser().getId() + "");
 				Map<String, String> map = new HashMap();
 				String pids = this.personnelFilesToUserManager.loadUserIdToStrByProjectInfoId(this.billingRecord
@@ -160,18 +163,20 @@ public class EditBillingRecordAction extends PrepareAction {
 						.getProject().getCreateUser());
 				map.put("users", pids);
 				map.put("billingRecordId", this.billingRecord.getId() + "");
+				map.put("name", new SimpleDateFormat("yyyy-MM-dd").format(this.billingRecord.getCreatedTime())+","+this.billingRecord.getPayee().getName()+"提交了开票记录");
+				map.put("url", "contractManagement/editBillingRecord.html?popWindowFlag=popWindowFlag&billingRecord.id="+this.billingRecord.getId());
 				String moreinfo = JSONObject.fromObject(map).toString();
 				event.setMoreinfo(moreinfo);
 				eventNewManager.storeEventNew(event);
 				
-				HashMap mapData =new HashMap();
-	              mapData.put("type", "10013");
-	              mapData.put("thisMoney", billingRecord.getSum());
-	              mapData.put("lastMoney",billingRecord.getLastSubmitMoney() );
-				mapData.put("submitNum", this.billingRecord.getSubmitNum());
-				mapData.put("date", billingRecord.getBillingTime());
-				this.dataManager.storeData(getPersonnelF(), mapData);
-				this.billingRecord.setLastSubmitMoney(billingRecord.getSum());
+//				HashMap mapData =new HashMap();
+//	              mapData.put("type", "10013");
+//	              mapData.put("thisMoney", billingRecord.getSum());
+//	              mapData.put("lastMoney",billingRecord.getLastSubmitMoney() );
+//				mapData.put("submitNum", this.billingRecord.getSubmitNum());
+//				mapData.put("date", billingRecord.getBillingTime());
+//				this.dataManager.storeData(getPersonnelF(), mapData);
+//				this.billingRecord.setLastSubmitMoney(billingRecord.getSum());
 				this.billingRecordManager.storeBillingRecord(billingRecord);
 				
 				submit = "submit";
@@ -219,6 +224,27 @@ public class EditBillingRecordAction extends PrepareAction {
 		}
 		addActionMessage(getText("billingRecord.edit.success"));
 		return SUCCESS;
+	}
+	
+	public String autoCompleteCode() {
+		String maxCode = this.billingRecordManager.getMaxCode("KP");
+		if (null != maxCode) {
+			int num = Integer.parseInt(maxCode) + 1;
+			if (num < 10)
+				return "KP-00000" + num;
+			if (num < 100)
+				return "KP-0000" + num;
+			if (num < 1000)
+				return "KP-000" + num;
+			if (num < 10000)
+				return "KP-00" + num;
+			if (num < 100000) {
+				return "KP-0" + num;
+			}
+			return "KP-" + num;
+		}
+
+		return "KP-000001";
 	}
 
 	public List<CodeValue> getAllBatchs() {

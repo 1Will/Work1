@@ -44,10 +44,10 @@
 /*     */   protected Map getRequestParameterMap()
 /*     */   {
 /*  83 */     Map map = super.getRequestParameterMap();
-/*  84 */     User u = this.userManager.getUser();
-/*  85 */     if (null != u) {
-/*  86 */       map.put("overTimeBill.applyPerson", u.getName());
-/*     */     }
+///*  84 */     User u = this.userManager.getUser();
+///*  85 */     if (null != u) {
+///*  86 */       map.put("overTimeBill.applyPerson", u.getName());
+///*     */     }
 /*  88 */     return map;
 /*     */   }
 /*     */ 

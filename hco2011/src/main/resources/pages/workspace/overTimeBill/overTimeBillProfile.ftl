@@ -24,6 +24,18 @@
 <@ww.form namespace="'/overTimeBill'" name="'overTimeBill'" action="'saveOverTimeBill'" method="'post'">
 <@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 	<@ww.token name="saveOverTimeBillToken"/>
+	<@ww.hidden name="'isSaved'" value=""/>
+	<#if overTimeBill.contractManagement?exists>
+		<@ww.hidden  name="'contractManagement.id'" value="#{overTimeBill.contractManagement.id?if_exists}"/>
+	<#else>
+		<@ww.hidden  name="'contractManagement.id'" value=""/>
+	</#if>
+	<#if overTimeBill.projectInfo?exists>
+		<@ww.hidden name="'projectInfo.id'" value="#{overTimeBill.projectInfo.id?if_exists}"/>
+	<#else>
+		<@ww.hidden  name="'projectInfo.id'" value=""/>
+	</#if>
+	
     <@inputTable>
     	<#if overTimeBill.id?exists>
     		<@ww.hidden name="'overTimeBill.id'" value="#{overTimeBill.id?if_exists}"/>
@@ -44,6 +56,37 @@
 						getObjByName("overTimeBill.createDate").value = date.format("yyyy-MM-dd");
 					}
 			</script>
+		</tr>
+		<tr>
+			<#-- 以下td为添加内容(项目名称) -->
+			<td align="right" valign="top">
+				<span class="required">*</span>
+	       		<label class="label">${action.getText('项目名称')}:</label>
+	     	</td>
+			<td>
+				<#if overTimeBill.projectInfo?exists>
+					<input type="text" id="projectName" name="projectName" class="underline"  value="${overTimeBill.projectInfo.name?if_exists}" maxlength="140" size="20" disabled="true"/>
+				<#else>
+					<input type="text" id="projectName"  name="projectName" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+				</#if>
+					<a onClick="projectName_OpenDialog();">
+							<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+					</a>
+			</td>
+	     	
+	     	<td align="right" valign="top">
+	       		<label class="label">${action.getText('合同名称')}:</label>
+	     	</td>
+	     	<td>
+	     		<#if overTimeBill.contractManagement?exists>
+		   			<input type="text" name="overTimeBill.contractManagement" class="underline"  value="${overTimeBill.contractManagement.contractName?if_exists}" maxlength="140" size="20" disabled="true"/>
+				<#else>
+					<input type="text" name="overTimeBill.contractManagement" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+				</#if>
+					<a onClick="contractManagement_OpenDialog();">
+						<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+					</a>
+			</td>
 		</tr>
 		<tr>
 			<#if overTimeBill.applyPerson?exists>
@@ -132,7 +175,9 @@
 				<textarea name="overTimeBill.betreffzeile" rows="4" cols="150">${overTimeBill.betreffzeile?if_exists}</textarea>
 			</td>
 		</tr>
-			<tr>
+		
+		<#--
+		<tr>
 			<td align="right" valign="top">
 	       		<label class="label">${action.getText('overTimeBill.failReason')}:</label>
 	     	</td>
@@ -140,18 +185,36 @@
 				<textarea name="overTimeBill.failReason" rows="4" cols="150" readonly="true">${overTimeBill.failReason?if_exists}</textarea>
 			</td>
 		</tr>
+		-->
     </@inputTable>
     <@buttonBar>
     	<#if !(action.isReadOnly())>
-		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 		</#if>
+		
+		<#if overTimeBill.isSaved?exists && overTimeBill.isSaved=='0' >
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+	    <#else>
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+	    </#if>
+		
+		<#-- 继续新建按钮   -->
+		<#if overTimeBill.id?exists>
+			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/overTimeBill/editOverTimeBill.html"/>
+		<#else>
+			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/overTimeBill/editOverTimeBill.html"/>
+				<script language="JavaScript" type="text/JavaScript"> 
+				getObjByName("newNext").disabled="true";
+				</script>
+		</#if>
+		
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/overTimeBill/listOverTimeBill.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
     </@buttonBar>
 
 </@ww.form>
 
 <script type="text/javascript">
-	window.onload=function(){
+//	window.onload=function(){
 		<#if overTimeBill.dept?exists>
 			getObjByName('dept.id').value='${overTimeBill.dept.id?if_exists}';
 		<#else>
@@ -164,8 +227,63 @@
 		<#if overTimeBill.status?exists>
 			getObjByName('status.id').value='${overTimeBill.status.id?if_exists}';
 		</#if>
+//	}
+	
+	
+	function getDate(dt){
+		var tem = dt.split(" ");
+		var date = tem[0].split("-");
+		var mon = parseInt(date[1])-1;
+		
+		var time =tem[1].split(":");
+		var newDate=new Date(date[0],mon,date[2],time[0],time[1]);
+		return newDate;
 	}
 	
+	document.onclick = function (){
+		var star = getObjByName("overTimeBill.startTime").value;
+		var end = getObjByName("overTimeBill.endTime").value;
+		var c= getDate(end)-getDate(star);
+		getObjByName("overTimeBill.manHour").value = (c/3600000).toFixed(1);
+	}
+	
+	
+			//合同管理模态窗体
+	function contractManagement_OpenDialog(){
+		var pjId = getObjByName("projectInfo.id").value;
+		var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?project.id="+pjId;
+	   	popupModalDialog(url, 800, 600, creatorSelector3Handler);
+	 }
+	 //获得模态窗体返回值
+	function creatorSelector3Handler(result) {
+		if (null != result) {
+			getObjByName("contractManagement.id").value = result[0];
+	   		getObjByName('overTimeBill.contractManagement').value=result[1];
+		}
+	}
+	 //项目名称查询模态窗体(添加)
+	function projectName_OpenDialog(){
+	   		var url = "${req.contextPath}/projectInfo/listProjectInfo.html?backVisitCheckBox=backVisitCheckBox";
+	   		popupModalDialog(url, 800, 600, creatorSelector_Handler);
+	 }
+	 //项目名称-获得模态窗体返回值
+	function creatorSelector_Handler(result) {
+		if (null != result) {
+			getObjByName("projectInfo.id").value=(result[0]);
+			getObjByName("projectName").value=(result[1]);
+		}
+	}
+	
+	
+	function submitt(){
+		getObjByName('isSaved').value="1";
+		return storeValidation();
+    }
+    
+    function savee(){
+		getObjByName('isSaved').value="0";
+     	return storeValidation();
+    }
 	
 	//保存前给隐藏域赋值和验证字段
 	function storeValidation(){
@@ -185,6 +303,11 @@
 	       		getObjByName('overTimeBill.createDate').focus();
 				return false;
 			}
+		}
+		if(getObjByName('projectName').value==''){
+			alert("${action.getText('请选择项目')}");
+			getObjByName('projectName').focus();
+			return false;
 		}
 		if(getObjByName('overTimeBill.applyPerson').value==''){
 			alert("${action.getText('overTimeBill.applyPerson.requiredstring')}");
@@ -240,3 +363,11 @@
 	}
 </script>
 </@htmlPage>
+<#if overTimeBill.id?exists>
+<ul id="beautytab">
+	<li>
+		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?overTimeBill.id=#{overTimeBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
+	</li>
+</ul>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/applicationDocManager/listApplicationDoc.html?overTimeBill.id=#{overTimeBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="60%"/>
+</#if>

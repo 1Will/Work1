@@ -32,6 +32,7 @@ public abstract interface PersonnelFilesManager
   public abstract String getMaxPFCode(String paramString, Long paramLong);
 
   public abstract boolean loginNameByCode(String paramString1, String paramString2);
+  public abstract  List<PersonnelFiles> loadBySuperiorLeader(String code);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

@@ -1,7 +1,6 @@
 
 <@inputTable>	
-    <@ww.hidden name="'onlyRead'" value=""/>
-    <@ww.hidden name="'onlyUnRead'" value="true"/>
+    <@ww.hidden name="'isRead'" value="0"/>
     <#if loginUser?exists>
       <@ww.hidden name="'loginUser.id'" value="#{loginUser.id}"/>
     </#if>
@@ -13,15 +12,21 @@
 	</tr>
 	<tr>
         <@ww.checkbox label="'${action.getText('onlyRead')}'" name="'OnlyReadFlag'" value="'false'" fieldValue="'true'"/>
+		<script>
+			var flag = "${isRead?if_exists}";
+			if(flag==1){
+				getObjByName("OnlyReadFlag").checked=true;
+			}else{
+				getObjByName("OnlyReadFlag").checked=false;
+			}
+		</script>
 	</tr>	
 	<script language="javascript">
         function checkInvalidParms() {
-          if (document.getElementById("OnlyReadFlag").checked) {
-            document.getElementById("onlyUnRead").value = "";
-            document.getElementById("onlyRead").value = "true";
+          if (getObjByName("OnlyReadFlag").checked) {
+			getObjByName("isRead").value = "1";
           } else {
-            document.getElementById("onlyUnRead").value = "true";
-            document.getElementById("onlyRead").value = "";
+            getObjByName("isRead").value = "0";
           }	
           //验证编制日期格式
 	     planCreatedMsg="${action.getText('warnning.warnningDate')}" + "${action.getText('dateFormate.error')}";

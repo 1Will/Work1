@@ -105,9 +105,20 @@
 				disabled="false">
 			</@ww.select>
 	</tr>
-	<!--片区分类 业务属性
+	<!--片区分类 业务属性--->
+	<#--	-->
 	<tr>
-		
+		<@ww.select label="'${action.getText('customerInfo.businessType')}'" 
+				name="'businessType.id'" 
+				value="'${req.getParameter('businessType.id')?if_exists}'"
+				listKey="id"
+				listValue="name"
+				list="allBusinessType"
+				required="true"
+				emptyOption="true" 
+				disabled="false"
+				onchange="'businessTypeDWR(\"businessType.id\",\"classification.id\",\"${action.getText('')}\",\"edit\")'">
+			</@ww.select>
 		<@ww.select label="'${action.getText('customerInfo.classification')}'" 
 				name="'classification.id'" 
 				value="'${req.getParameter('classification.id')?if_exists}'"
@@ -118,18 +129,9 @@
 				emptyOption="true" 
 				disabled="false">
 			</@ww.select>
-			<@ww.select label="'${action.getText('customerInfo.businessType')}'" 
-				name="'businessType.id'" 
-				value="'${req.getParameter('businessType.id')?if_exists}'"
-				listKey="id"
-				listValue="name"
-				list="allBusinessType"
-				required="true"
-				emptyOption="true" 
-				disabled="false">
-			</@ww.select>
 	</tr>
--->  
+
+
 	<tr>
 		<!--企业法人-->
 		<@ww.textfield label="'${action.getText('customerInfo.legalPerson')}'" name="'customerInfo.legalPerson'" value="'${customerInfo.legalPerson?if_exists}'" cssClass="'underline'" />
@@ -231,7 +233,7 @@
 					}
 				</#if>
 					<#if customerInfo.country?exists>
-					getObjByName('country.id').value='${customerInfo.country.code?if_exists}';
+					getObjByName('country.id').value='${customerInfo.country.id?if_exists}';
 				<#else>
 					getObjByName('country.id').value='43';
 				</#if>
@@ -431,11 +433,61 @@
   		
     </@buttonBar>
 </@ww.form>
+<script type='text/javascript' src='${req.contextPath}/dwr/interface/AllClassification.js'></script>
+
+<script language="JavaScript" type="text/JavaScript">
+	var type_msg = "";
+	var btype = "";
+	var businessType_id = "";
+	var classification_id = "";
+	function businessTypeDWR(businessTypeId,classificationId,msg,flag){
+		type_msg = msg;
+		businessType_id = businessTypeId;
+		classification_id = classificationId;
+	if(flag == "edit"){
+		btype = getObjByName(businessType_id).value;
+			if(btype == ""){
+				 getObjByName(classification_id).options.length = 0; 
+			}else{
+				AllClassification.getAllClassification(btype, classification);
+			}
+		}
+		
+		/**
+		if(flag == "search"){
+			btype = getObjByName(businessType_id).value;
+			if(btype == -1){
+				getObjByName(classification_id).options.length = 0; 
+				getObjByName(classification_id).options.add(new Option(type_msg,-1));
+			}else{
+				AllClassification.getAllClassification(btype, classification);
+			}
+		}
+		*/
+	}
+	
+	function classification(data){
+		if("" == data){
+			getObjByName(classification_id).options.length = 0; 
+			getObjByName(classification_id).options.add(new Option(type_msg,-1));
+		}else if(null != data){
+			if(data.length > 0){
+				getObjByName(classification_id).options.length = 0;
+				for(var i =0 ;i<data.length;i++){
+					if(i == 0){
+						getObjByName(classification_id).options.add(new Option(type_msg,-1));
+						getObjByName(classification_id).options[i].value = -1;
+						getObjByName(classification_id).options.add(new Option(data[i].name,data[i].id));
+					}else{
+						getObjByName(classification_id).options.add(new Option(data[i].name,data[i].id));
+					}
+				}
+			}
+		}
+	}
+</script> 
 <script language="JavaScript" type="text/JavaScript"> 
- 
-
-
-	window.onload = function () {
+//window.onload=function (){
 	<#if customerInfo.isPartner?exists>
 			<#if customerInfo.isPartner=="0">
 				getObjByName('isPartner0').checked=true;
@@ -486,18 +538,30 @@
 			<#elseif req.getParameter('companyNature.id')?exists>
 			getObjByName('companyNature.id').value='${req.getParameter('companyNature.id')}';
 		</#if>
+		 
+		 //业务属性
+		<#if customerInfo.businessType?exists>
+		    getObjByName('businessType.id').value='${customerInfo.businessType.id?if_exists}';
+	    	//设置同步
+	    	DWREngine.setAsync(false); 
+	    	businessTypeDWR("businessType.id","classification.id","${action.getText('')}","edit");
+	    	//重新设置为异步方式
+	    	DWREngine.setAsync(false);
+			<#elseif req.getParameter('businessType.id')?exists>
+			getObjByName('businessType.id').value='${req.getParameter('businessType.id')}';
+			//设置同步
+	    	DWREngine.setAsync(false); 
+	    	businessTypeDWR("businessType.id","classification.id","${action.getText('')}","edit");
+	    	//重新设置为异步方式
+	    	DWREngine.setAsync(false);
+		</#if>
 		 //片区分类
 		<#if customerInfo.classification?exists>
 			getObjByName('classification.id').value='${customerInfo.classification.id?if_exists}';
 			<#elseif req.getParameter('classification.id')?exists>
 			getObjByName('classification.id').value='${req.getParameter('classification.id')}';
 		</#if>
-		 //业务属性
-		<#if customerInfo.businessType?exists>
-			getObjByName('businessType.id').value='${customerInfo.businessType.id?if_exists}';
-			<#elseif req.getParameter('businessType.id')?exists>
-			getObjByName('businessType.id').value='${req.getParameter('businessType.id')}';
-		</#if>
+		
 	    //国家
 		<#if customerInfo.country?exists>
 			getObjByName('country.id').value='${customerInfo.country.id?if_exists}';
@@ -542,8 +606,7 @@
 			<#elseif req.getParameter('salesman.id')?exists>
 			getObjByName('salesman.id').value='${req.getParameter('salesman.id')}';
 		</#if>
- 	}
-		
+//		}
 	//弹出业务员查询模态窗体
 	function salesman_OpenDialog(){
 	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html";
@@ -574,6 +637,15 @@
 	var tORf =true;
 	//验证字段
 	function storeValidation(){
+	   if(getObjByName("businessType.id").value ==''||getObjByName("businessType.id").value=='-1'){
+	      alert('${action.getText('业务属性不能为空')}');
+	      return false;
+	    }
+	    if(getObjByName("classification.id").value ==''||getObjByName("classification.id").value=='-1'){
+	     alert('${action.getText('片区不能为空')}');
+	      return false;
+	      
+	    }
 		if(getObjByName('show').style.display == "block"){
 			return false;
 		}
@@ -921,8 +993,8 @@
 							}
 							getObjByName('show').style.display = "block";
 							var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
-							if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {		
-							 //if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {							 
+							if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1) {		
+							 //if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1) {							 
 								var textRange =getObjByName('customerInfo.name').createTextRange();//建立文本域
 								textRange.moveStart('character',getObjByName('customerInfo.name').value.length);//获取文本域右侧文本
 								textRange.collapse(true);//瓦解文本域
@@ -1046,6 +1118,9 @@
 		<a id="additionalInfo" onclick="activeTab(this);" href='${req.contextPath}/customerRelationship/editAdditionalInfo.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('customerInfo.additionalInfo')}</a>
 	</li>
 	<li>
+		<a id="replyCustomerInfo"  onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyTab.html?customerInfo.id=#{customerInfo.id?if_exists}' target="frame" >${action.getText('消息回复')}</a>
+	</li>
+	<li>
 		<a id="backvisit" onclick="activeTab(this);" href='${req.contextPath}/backvisit/listBackVisitByContact.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('customerInfo.backvisit')}</a>
 	</li>
 	<li>
@@ -1055,7 +1130,7 @@
 		<a id="contractInfo" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listContractManagementByCustomerAction.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('customerInfo.contract')}</a>
 	</li>
 	<li>
-		<a id="returnPlan" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listReturnPlanByCustomerAction.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('customerInfo.returnPlan')}</a>
+		<a id="financialManagement" onclick="activeTab(this);"  href='${req.contextPath}/financialManagement/listFinancialManagementTab.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('收款单')}</a>
 	</li>
 	<li>
 		<a id="billingRecord" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listBillingRecordByCustomerAction.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('customerInfo.billingRecord')}</a>

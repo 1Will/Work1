@@ -7,6 +7,7 @@
 /*     */ import com.yongjun.pluto.model.security.Organization;
 /*     */ import com.yongjun.pluto.model.security.User;
 /*     */ import com.yongjun.pluto.service.codevalue.CodeValueManager;
+import com.yongjun.pluto.service.security.GroupManager;
 /*     */ import com.yongjun.pluto.service.security.UserManager;
 /*     */ import com.yongjun.pluto.webwork.action.valuelist.ValueListAction;
 /*     */ import com.yongjun.tdms.model.base.duty.Duty;
@@ -35,6 +36,7 @@ import org.apache.commons.logging.Log;
 /*     */   private final InstitutionManager institutionManager;
 /*     */   private final DepartmentManager departmentManager;
 /*     */   private final CodeValueManager codeValueManager;
+			protected final GroupManager groupManager;
 /*     */   private List<Daily> dailys;
 /*     */   private Long orgId;
 /*     */   private User loginUser;
@@ -42,7 +44,7 @@ import org.apache.commons.logging.Log;
 			private Long weeklyId;
 			private Long rapporteurId;
 /*     */ 
-/*     */   public ListDailyAction(DailyManager dailyManager, UserManager userManager, PersonnelFilesManager personnelFilesManager, InstitutionManager institutionManager, DepartmentManager departmentManager, CodeValueManager codeValueManager)
+/*     */   public ListDailyAction(DailyManager dailyManager, UserManager userManager, PersonnelFilesManager personnelFilesManager, InstitutionManager institutionManager, DepartmentManager departmentManager, CodeValueManager codeValueManager,GroupManager groupManager)
 /*     */   {
 /*  98 */     this.dailyManager = dailyManager;
 /*  99 */     this.userManager = userManager;
@@ -50,38 +52,61 @@ import org.apache.commons.logging.Log;
 /* 101 */     this.institutionManager = institutionManager;
 /* 102 */     this.departmentManager = departmentManager;
 /* 103 */     this.codeValueManager = codeValueManager;
+              this.groupManager=groupManager;
 /*     */   }
 /*     */ 
 /*     */   protected String getAdapterName()
 /*     */   {
-/* 112 */     return "daily";
+/* 112 */     return "dailyHQL";
 /*     */   }
 /*     */ 
 /*     */   protected Map getRequestParameterMap()
 /*     */   {
 /* 120 */     Map map = super.getRequestParameterMap();
 /* 121 */     User user = getUser();
+				PersonnelFiles personnelFiles =null;
+              List<PersonnelFiles> list =null;
+			try {
+				list = this.personnelFilesManager.loadByKey("code", user.getCode());
+			} catch (DaoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+              if(list!=null&&list.size()>0){
+            	  personnelFiles = list.get(0);
+              }
+             
 /* 122 */     if (user.getName().trim().equals("admin")) {
 /* 123 */       return map;
 /*     */     }
+				if (isDailyGroup()) {
+					if(personnelFiles.getBusinessType()!=null&&personnelFiles.getBusinessType().getName().equals("军品")){
+						map.put("userids", getUserId("军品"));
+					}else if(personnelFiles.getBusinessType()!=null&&personnelFiles.getBusinessType().getName().equals("民品")) {
+						map.put("userids", getUserId("民品"));
+					}
+					
+				}else {
+					 map.put("user.id", user.getId());
+				}
 /*     */ 
-/* 126 */     String flag = permission();
-/*     */ 
-/* 128 */     if (flag.equals("0")) {
-/* 129 */       map.put("user.id", user.getId());
-/*     */     }
-/*     */     else
-/*     */     {
-				List deptIds = getDeptsByuserId(user);
-/* 167 */       if ((null != deptIds) && (!deptIds.isEmpty())) {
-/* 168 */         map.put("deptIds", deptIds);
-/*     */       } else {
-/* 170 */         deptIds = new ArrayList();
-/* 171 */         deptIds.add(Long.valueOf(1L));
-/* 172 */         map.put("deptIds", deptIds);
-/*     */       }
-/* 174 */       map.put("deptList", getDeptsByuserId(user));
-/*     */     }
+///* 126 */     String flag = permission();
+///*     */ 
+///* 128 */     if (flag.equals("0")) {
+///* 129 */       map.put("user.id", user.getId());
+///*     */     }
+///*     */     else
+///*     */     {
+//				List deptIds = getDeptsByuserId(user);
+///* 167 */       if ((null != deptIds) && (!deptIds.isEmpty())) {
+///* 168 */         map.put("deptIds", deptIds);
+///*     */       } else {
+///* 170 */         deptIds = new ArrayList();
+///* 171 */         deptIds.add(Long.valueOf(1L));
+///* 172 */         map.put("deptIds", deptIds);
+///*     */       }
+///* 174 */       map.put("deptList", getDeptsByuserId(user));
+///*     */     }
 ///* 133 */       List dailyIds = getPerDailyIds(user);
 ///* 134 */       if ((null != dailyIds) && (!dailyIds.isEmpty())) {
 ///* 135 */         map.put("dailyIds", dailyIds);
@@ -133,7 +158,7 @@ import org.apache.commons.logging.Log;
 /* 191 */     if ((getUser().getId().longValue() == 2L) || (null == dutyByUser(getUser())) || (dutyByUser(getUser()).isEmpty()) || (dutyByUser(getUser()).equals("公司经理")))
 /*     */     {
 /* 195 */       flag = "2";
-/* 196 */     } else if (dutyByUser(getUser()).equals("部门经理"))
+/* 196 */     } else if (dutyByUser(getUser()).equals("经理"))
 /* 197 */       flag = "1";
 /*     */     else {
 /* 199 */       flag = "0";
@@ -340,6 +365,40 @@ import org.apache.commons.logging.Log;
 			}
 			public void setRapporteurId(Long rapporteurId) {
 				this.rapporteurId = rapporteurId;
+			}
+			public boolean isDailyGroup(){
+				boolean isDailyGroup =false;
+				Set<User> noticePers = groupManager.getGroupByGroupName("微信日报通知组").getUsers();
+				User user = this.userManager.getUser();
+				for (User u : noticePers) {
+					System.out.println(u.getId()+"=="+user.getId());
+					if(user.getId().longValue() == u.getId().longValue()){
+						isDailyGroup = true;
+					}
+				}
+				
+				return isDailyGroup;
+			}
+			//根据人数档案军品民品属性code查询所有id
+			public List<Long> getUserId(String name){
+				List<Long> uList = new ArrayList<Long>();
+				try {
+					List<PersonnelFiles> personnelFiles = this.personnelFilesManager.loadByKey("businessType.name", name);
+					
+					if(personnelFiles!=null&&personnelFiles.size()>0){
+						for(PersonnelFiles p:personnelFiles){
+							List<User> users = this.userManager.loadByKey("code", p.getCode());
+							if(users!=null&&users.size()>0){
+								uList.add(users.get(0).getId());
+							}
+						}
+					}
+				} catch (DaoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				return uList;
 			}
 					
 /*     */ }

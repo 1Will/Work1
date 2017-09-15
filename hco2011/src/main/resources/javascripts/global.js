@@ -110,7 +110,7 @@ function popupModalDialog(url, width, height, eventHandler) {
         }
     }
     else {
-        ModalDialogShow(url, wd, hg, eventHandler);
+    	ModalDialogShow(url, wd, hg, eventHandler);
     }
 }
 
@@ -468,7 +468,7 @@ function isEmpty(form, elementName) {
  * 验证日期格式yyyy-MM-dd
 */
 function isDate(eId) {
-	var date = document.getElementById(eId).value;
+	var date = getObjByName(eId).value;
 	s = new String(date);
 	var regu = "(([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))-02-29)";
 	var re = new RegExp(regu);
@@ -545,7 +545,7 @@ function isDateLessThenCurrent(dateVar) {
 
 function isDateLessEqualThenCurrent(dateVar) {
 	var time = new Date();
-	var year = time.getYear();
+	var year = time.getFullYear();
 	var month = time.getMonth() + 1;
 	var day = time.getDate();
 	var hour = time.getHours();
@@ -563,6 +563,37 @@ function isDateLessEqualThenCurrent(dateVar) {
 	}else if(year == scheduleYear && month > scheduleMonth ){
 		return false;
 	}else if(year == scheduleYear && month == scheduleMonth && day > scheduleDay){
+		return false;
+	}
+	return true;
+}
+
+function isDateLessEqualOldDate(dateVar,oldDate) {
+	var time = new Date();
+	var year = time.getYear();
+	var month = time.getMonth() + 1;
+	var day = time.getDate();
+	var hour = time.getHours();
+	var second = time.getSeconds();
+	
+	var oldYear = oldDate.substr(0,4);
+	var oldMonth = oldDate.substr(5,2);
+	var oldDay = oldDate.substr(8,2);
+	var oldHour = oldDate.substr(11,2);
+	var oldSecond = oldDate.substr(14,2);
+	
+	/* yyyy-mm-dd */
+	var scheduleYear = dateVar.substr(0,4);
+	var scheduleMonth = dateVar.substr(5,2);
+	var scheduleDay = dateVar.substr(8,2);
+	var scheduleHour = dateVar.substr(11,2);
+	var scheduleSecond = dateVar.substr(14,2);
+	
+	if(oldYear > scheduleYear){
+		return false;
+	}else if(oldYear == scheduleYear && oldMonth > scheduleMonth ){
+		return false;
+	}else if(oldYear == scheduleYear && oldMonth == scheduleMonth && oldDay >= scheduleDay){
 		return false;
 	}
 	return true;

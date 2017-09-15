@@ -49,7 +49,7 @@
 				<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('onTheRoadBill.crateDate')}" property="createDate" format="yyyy-MM-dd" sortable="desc">
-            	<@alignCenter/><#-- attributes="width:110;"-->
+            	<@alignLeft/><#-- attributes="width:110;"-->
             </@vcolumn>
             <@vcolumn title="${action.getText('onTheRoadBill.applyPerson')}" property="applyPerson.name" sortable="desc">
      			<@alignLeft/>
@@ -58,10 +58,10 @@
      			<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('onTheRoadBill.startTime')}" property="startTime" format="yyyy-MM-dd HH:mm" sortable="desc">
-            	<@alignCenter/>
+            	<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('onTheRoadBill.endTime')}" property="endTime" format="yyyy-MM-dd HH:mm" sortable="desc">
-            	<@alignCenter/>
+            	<@alignLeft/>
             </@vcolumn>
              <@vcolumn title="${action.getText('onTheRoadBill.status')}" property="status.name" sortable="desc">
      			<@alignLeft/>

@@ -18,7 +18,7 @@
     <td width="30%" height="50%" VALIGN="TOP" style="border: 1 solid #D6E9F1;">
 	  <TABLE width="100%" >
 	  <tr>
-	     <td class="title">
+	     <td class="title" colspan ="3">
             <span class="STYLE1">通知、公告
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -33,8 +33,8 @@
 		   </span>
         </td>
 	  </tr>
-		  <td>
-			   <hr align="center" size="3" style="background:#D6E9F1">
+		  <td colspan = "3">
+			   <hr align="center" size="3" style="background:#D6E9F1" >
 		  </td>
 		 <#assign count=0>
 		<#if noticeList?exists>
@@ -42,25 +42,28 @@
 			<tr>
 				<td>
 				<#if urn.readStatus == "UNREAD"&&count<4>
-				   <li><a href="${req.contextPath}/notice/listReceviceNotices.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true&receviceNotice.id=${urn.id}">
+				   
+				     <li/>
+				     <a href="${req.contextPath}/notice/listReceviceNotices.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true&receviceNotice.id=${urn.id}">
 				      <span title="${urn.title?if_exists}">
 			           <script>
 			            	var s = "${urn.title?if_exists}";
-			            	document.write(s.slice(0,14)+"...");
+			            	if(s.length<15){
+			            	document.write(s.slice(0,15));
+			            	}
+			            	if(s.length>15){
+							   s = s.substring(0,15);
+							   document.write(s.slice(0,15)+"...");
+							}
 			           </script>
-	             	  </span>(${urn.receviceDate?string('yyyy-MM-dd')?if_exists})
-				      </a> 未读</li>
+	             	  </span>
+	             	  </a> 
+	             	  </td>
+	             	  <td align="left">
+	             	  (${urn.receviceDate?string('yyyy-MM-dd')?if_exists})
+	             	  </td>
+				      <td align="right">未读
 					<#assign count=count+1>
-				<#elseif count<4>
-				    <li><a href="${req.contextPath}/notice/listReceviceNotices.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true&receviceNotice.id=${urn.id}">
-					   	<span title="${urn.title?if_exists}">
-				           <script>
-				            	var s = "${urn.title?if_exists}";
-				            	document.write(s.slice(0,14)+"...");
-				           </script>
-		             	  </span>(${urn.receviceDate?string('yyyy-MM-dd')?if_exists})
-					    </a>  已读</li>
-				    <#assign count=count+1>
 				</#if>
 			    </td>
 			</tr>
@@ -74,10 +77,12 @@
 		</#if>
       <tr>
       <#if 3<count>
-        <td align="right">
-        <a href="${req.contextPath}/notice/listReceviceNotices.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true" target="_blank">
+        <td/>
+        <td/>
+        <td align="right" colspan ="3">
+        <a href="${req.contextPath}/notice/listReceviceNotices.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true" >
         &lt;&lt;更多
-        &nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </a>
         </td>
       </#if> 
       </tr>
@@ -86,7 +91,7 @@
     <td width="30%" height="50%" VALIGN="TOP" style="border: 1 solid #D6E9F1;">
 	  <TABLE width="100%">
 	  <tr>
-	     <td class="title">
+	     <td class="title" colspan ="3">
             <span class="STYLE1">我的提醒
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -101,33 +106,33 @@
 		   </span>
         </td>
 	  </tr> 
-	  <td>
-		   <hr align="center" size="3" style="background:#D6E9F1">
+	  <td colspan = "3">
+		   <hr align="center" size="3" style="background:#D6E9F1" >
 	  </td> 
 	  <#assign count=0>
 		<#if workWarnningList?exists>
 	  	<#list workWarnningList as wwl>
-			<tr>
-				<td>
-				<#if wwl.readFlag&&count<4>
-				    <li><a href="${req.contextPath}/workspace/warnning/myWarnning/listWorkWarnnings.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true&workWarnning.id=${wwl.id?if_exists}">
-					   	<span title="${wwl.content?if_exists}">
-				           <script>
-				            	var s = "${wwl.content?if_exists}";
-				            	document.write(s.slice(0,14)+"...");
-				           </script>
-		             	  </span>
-					    </a> 已读</li>
-				    <#assign count=count+1>
-				<#elseif count<4>
-				    <li><a href="${req.contextPath}/workspace/warnning/myWarnning/listWorkWarnnings.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true&workWarnning.id=${wwl.id?if_exists}">
+				<#if count<4>
+					<tr>
+					<td>
+				    <li/>
+				    <a href="${req.contextPath}/workspace/warnning/myWarnning/listWorkWarnnings.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true&workWarnning.id=#{wwl.id?if_exists}">
 				    	<span title="${wwl.content?if_exists}">
 				           <script>
-				            	var s = "${wwl.content?if_exists}";
-				            	document.write(s.slice(0,14)+"...");
+				            	var s = "${wwl.name?if_exists}"==""?"${wwl.type?if_exists}":"${wwl.name?if_exists}";
+				            	if(s.length<15){
+			            	       document.write(s.slice(0,15));
+			            	     }
+				            	if(s.length>=15){
+								   s = s.substring(0,15);
+								   document.write(s.slice(0,15)+"...");
+								}
 				           </script>
 		             	  </span>
-					    </a> 未读</li>
+		             	  </a>
+		      
+		             	  </td>
+					      <td align="right">未读
 				    <#assign count=count+1>
 				</#if>
 			    </td>
@@ -142,44 +147,55 @@
 		</#if>
 	  <tr>
 	  <#if 3<count>
-        <td align="right">
-        <a href="${req.contextPath}/workspace/warnning/myWarnning/listWorkWarnnings.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true" target="_blank">
+        <td align="right" colspan ="3">
+        <a href="${req.contextPath}/workspace/warnning/myWarnning/listWorkWarnnings.html?loginUser.id=#{loginUser.id?if_exists}&onlyUnRead=true" >
         &lt;&lt;更多
-        &nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </a>
         </td>
       </#if>
       </tr>
 	  </TABLE>
     </td>
+    
     <td width="30%" height="50%" VALIGN="TOP" style="border: 1 solid #D6E9F1;">
 	  <TABLE width="100%">
 	  <tr>
-	     <td class="title">
+	     <td class="title" colspan ="2">
          <span class="STYLE1">最新签单
 		  </span>
         </td>
 	  </tr> 
-	  <td>
+	  <td colspan ="2">
 		   <hr align="center" size="3" style="background:#D6E9F1">
 	  </td>
 	    <#assign count=0>
 		<#if newSignings?exists>
 	  	<#list newSignings as newSign>
-			<tr>
-				<td>
 				<#if count<4>
-				    <li><a href="${req.contextPath}/contractManagement/listContractManagementAction.html?loginUser.id=#{loginUser.id?if_exists}&contractManagement.id=${newSign.id?if_exists}">
-  						<span title="${newSign.contractName?if_exists}">
-				           <script>
-				            	var s = "${newSign.contractName?if_exists}";
-				            	document.write(s.slice(0,14)+"...");
-				           </script>
-		             	  </span>(${newSign.ciemdinghTime?string('yyyy-MM-dd')?if_exists})
-					    </a></li>
+				  <tr>
+				    <td>
+					   <li/>
+					    <a href="${req.contextPath}/contractManagement/listContractManagementAction.html?loginUser.id=#{loginUser.id?if_exists}&contractManagement.id=${newSign.id?if_exists}">
+	  						<span title="${newSign.contractName?if_exists}">
+	  						<script>
+			            	var s = "${newSign.contractName?if_exists}";
+			            	if(s.length<15){
+			            	document.write(s.slice(0,15));
+			            	}
+			            	if(s.length>=15){
+							   s = s.substring(0,15);
+							   document.write(s.slice(0,15)+"...");
+							}
+			               </script>
+			               </span>
+						  </a>
+						  </td>
+						 <td align="right">
+						  (${newSign.ciemdinghTime?string('yyyy-MM-dd')?if_exists})
 				    <#assign count=count+1>
+				    </td>
+			    </tr>
 			  	</#if>
-			    </td>
-			</tr>
 		</#list>
 		<#else>
 			<tr>
@@ -188,58 +204,57 @@
 			    </td>
 			</tr>
 		</#if>
-	  <tr>
+	  
 	   <#if 3<count>
-        <td align="right">
-        <a href="${req.contextPath}/contractManagement/listContractManagementAction.html?loginUser.id=#{loginUser.id?if_exists}" target="_blank">
+	   <tr>
+	   <td/>
+        <td align="right" colspan ="2">
+        <a href="${req.contextPath}/contractManagement/listContractManagementAction.html?loginUser.id=#{loginUser.id?if_exists}" >
         &lt;&lt;更多
-        &nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </a>
         </td>
-       </#if>
-      </tr>
+        </tr>
+        </#if>
+       
 	  </TABLE>
     </td>
+    
   </tr>
+  
   <tr>
     <td width="30%" height="50%" VALIGN="TOP" style="border: 1 solid #D6E9F1;">
 	  <TABLE width="100%">
 	  <tr>
-	     <td class="title">
+	     <td class="title" colspan ="3">
          <span class="STYLE1">我的团队
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           <#if (myTeamSize?exists && myTeamSize > 0) >
-		  		 有<strong>${myTeamSize?if_exists}</strong>名团队队员
-		   <#else>
-		  		 有<strong>0</strong></a>名团队队员
-		   </#if>
+		  		合同金额|收款金额|收入金额(本月)
 		  </span>
         </td>
 	  </tr> 
-	  <td>   
-		   <hr align="center" size="3" style="background:#D6E9F1">
+	  <td colspan ="2">   
+		   <hr align="center" size="3" style="background:#D6E9F1" >
 	  </td>
   	    <#assign count=0>
 	  	<#if myTeam?exists>
 	  	<#list myTeam as team>
+	  	    <#if count<4>  
 			<tr>
 				<td>
-				<#if count<4>
-				    <li><a href="">
- 						<span title="${team.pname?if_exists}">
-				            	${team.pname?if_exists}
-		             	  </span>
-					    </a>
-					    <a> 　　　　　
-					    <span >
-					    有 ${team.num?if_exists} 项任务
-		             	  </span>
-					    
-					    </a></li>
-				     <#assign count=count+1>
-				</#if>
-			    </td>
+				 <li/>
+				 <a href="${req.contextPath}/workspace/data/listData.html?personnelFiles.code=${team.personnelFiles.code?if_exists}">
+				   <span title="${team.personnelFiles.name?if_exists}">
+				        ${team.personnelFiles.name?if_exists}
+				   </span>
+				</a>
+				</td>
+				<td >
+				     ${team.contractManagementMoney?if_exists}元|${team.financialManagementMoney?if_exists}元|${team.billingRecordMoney?if_exists}元
+		        </td>
+			    <#assign count=count+1>
 			</tr>
+			</#if>
 		</#list>
 		<#else>
 			<tr>
@@ -248,21 +263,22 @@
 			    </td>
 			</tr>
 		</#if>
-	<tr>
-	 <#if 3<count>
-        <td align="right">
-          <a href="${req.contextPath}/toDoTask/listToDoTask.html?loginUser.id=#{loginUser.id?if_exists}" target="_blank">
+		<#if 3<count>
+		<tr>
+        <td align="right" colspan ="3">
+          <a href="${req.contextPath}/workspace/data/listData.html">
         &lt;&lt;更多
-        &nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </a>
         </td>
+       </tr>
        </#if>
-      </tr>
   </TABLE>
     </td>
+    
     <td width="30%" height="50%" VALIGN="TOP" style="border: 1 solid #D6E9F1;">
 	  <TABLE width="100%">
 	  <tr>
-	     <td class="title">
+	     <td class="title" colspan ="3">
             <span class="STYLE1">我的任务
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -273,35 +289,42 @@
 		   </span>
         </td>
 	  </tr> 
-	  <td>
-		   <hr align="center" size="3" style="background:#D6E9F1">
+	  <td colspan ="3">
+		   <hr align="center" size="3" style="background:#D6E9F1" >
 	  </td> 
 	 		<#assign count=0>
-			<#if myProjectInfoPlan?exists>
+	 		<#assign myPlanS='${myPlanSize?if_exists}'>
+			<#if myProjectInfoPlan?exists && myPlanS!='0'>
 		  	<#list myProjectInfoPlan as urn>
 				<tr>
 					<#if count<4>
-				<td>
-					    <li><a href="${req.contextPath}/projectInfo/listMyPlan.html?projectInfoPlan.id=#{urn.id}">
+					  <td>
+					  <li/>
+					   <a href="${req.contextPath}/projectInfo/listMyPlan.html?projectInfoPlan.id=#{urn.id}">
  						<span title="${urn.name?if_exists}">
 				           <script>
-				            	var s = "${urn.name?if_exists}";
-				            	document.write(s.slice(0,44)+"...");
-				           </script>
-		             	  </span>
-					    </a> <#if urn.planState?exists> ${urn.planState.name?if_exists}</#if></li>
+			            	var s = "${urn.name?if_exists}";
+			            	if(s.length<15){
+			            	document.write(s.slice(0,15));
+			            	}
+			            	if(s.length>=15){
+							   s = s.substring(0,15);
+							   document.write(s.slice(0,15)+"...");
+							}
+			           </script>
+			           </span>
+				      </a>
+				     </td>      
+				     <td>
+		             	${urn.endDate?string('yyyy-MM-dd')?if_exists}
+					 </td>    
+					 <td align="right">
+					    <#if urn.planState?exists> ${urn.planState.name?if_exists}</#if>
 					    <#assign count=count+1>
 				    </td>
 				    </#if>
 				</tr>
 			</#list>
-		<tr>
-        <td align="right">
-        <a href="${req.contextPath}/projectInfo/listMyPlan.html" >
-        &lt;&lt;更多
-        &nbsp;&nbsp;&nbsp;&nbsp;</a>
-        </td>
-      </tr>
 			<#else>
 				<tr>
 					<td>
@@ -309,31 +332,40 @@
 				    </td>
 				</tr>
 			</#if>
+		<tr>
+		<#if 3<count>
+	        <td align="right" colspan ="3">
+	        <a href="${req.contextPath}/projectInfo/listMyPlan.html" >
+	        &lt;&lt;更多
+	        </a>
+	        </td>
+	        </tr>
+        </#if>
 	  </TABLE>
     </td>
     <td width="30%" height="50%" VALIGN="TOP" style="border: 1 solid #D6E9F1;">
 	  <TABLE width="100%">
 	  <tr>
-	     <td class="title">
+	     <td class="title" colspan ="3">
             <span class="STYLE1">我的数据
 		   </span>
         </td>
 	  </tr> 
-	  <td>
+	  <td colspan ="3">
 		   <hr align="center" size="3" style="background:#D6E9F1">
 	  </td> 
 		<#if myDataMap?exists>
-		<tr><td>本月合同:</td><td>合同数：  ${myDataMap.monthCMCount} 个</td><td>合同金额合计： ${myDataMap.monthCMMoney} 万</td></tr>
-		<tr><td>本年合同:</td><td>合同数：  ${myDataMap.yearCMCount} 个</td><td>合同金额合计： ${myDataMap.yearCMMoney} 万</td></tr>
-		<tr><td>本月收款:</td><td>笔数：  ${myDataMap.monthFMCount} 个</td><td>收款金额合计： ${myDataMap.monthFMMoney} 万</td></tr>
-		<tr><td>本年收款:</td><td>笔数：  ${myDataMap.yearFMCount} 个</td><td>收款金额合计： ${myDataMap.yearFMMoney} 万</td></tr>
-		<tr><td>本月收入:</td><td>笔数：  ${myDataMap.monthBRCount} 个</td><td>收入金额合计： ${myDataMap.monthBRMoney} 万</td></tr>
-		<tr><td>本年收入:</td><td>笔数：  ${myDataMap.yearBRCount} 个</td><td>收入金额合计： ${myDataMap.yearBRMoney} 万</td></tr>
+		<tr><td>本月合同:</td><td align="right">合同数：<a href="${req.contextPath}/contractManagement/listContractManagementAction.html">  ${myDataMap.monthCMCount}</a> 个</td><td align="right">合同金额合计： ${myDataMap.monthCMMoney}元 </td></tr>
+		<tr><td>本年合同:</td><td align="right">合同数： <a href="${req.contextPath}/contractManagement/listContractManagementAction.html">   ${myDataMap.yearCMCount}</a> 个</td><td align="right">合同金额合计： ${myDataMap.yearCMMoney} 元</td></tr>
+		<tr><td>本月收款:</td><td align="right">笔数：  <a href="${req.contextPath}/financialManagement/listFinancialManagement.html">  ${myDataMap.monthFMCount}</a> 个</td><td align="right">收款金额合计： ${myDataMap.monthFMMoney}元 </td></tr>
+		<tr><td>本年收款:</td><td align="right">笔数： <a href="${req.contextPath}/financialManagement/listFinancialManagement.html">   ${myDataMap.yearFMCount}</a> 个</td><td align="right">收款金额合计： ${myDataMap.yearFMMoney}元 </td></tr>
+		<tr><td>本月收入:</td><td align="right">笔数：<a href="${req.contextPath}/contractManagement/listBillingRecord.html">    ${myDataMap.monthBRCount}</a> 个</td><td align="right">收入金额合计： ${myDataMap.monthBRMoney}元 </td></tr>
+		<tr><td>本年收入:</td><td align="right">笔数：<a href="${req.contextPath}/contractManagement/listBillingRecord.html">    ${myDataMap.yearBRCount}</a> 个</td><td align="right">收入金额合计： ${myDataMap.yearBRMoney} 元</td></tr>
 		 <tr>
-        <td align="right">
+        <td align="right" colspan ="3">
         <a href="${req.contextPath}/workspace/data/listMyData.html" >
         &lt;&lt;更多
-        &nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </a>
         </td>
       </tr>
 		</#if>

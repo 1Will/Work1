@@ -51,6 +51,7 @@
 	                </@vlh.checkbox>
 	            <@vcolumn title="${action.getText('send.title')}" property="title" sortable="desc">
 	                 <a href="editNotice.html?sendNotice.id=#{object.id}&sendFlag=send">${object.title}</a>
+	                 <@alignLeft/>
                 </@vcolumn>
              </#if>
              <#--
@@ -65,10 +66,10 @@
         		     <@alignLeft/>
                 </@vcolumn>
                 <@vcolumn title="${action.getText('send.sendDate')}" property="sendDate" format="yyyy-MM-dd" sortable="desc">
-        		     <@alignCenter/>
+                <@alignLeft/>
                 </@vcolumn>
                 <@vcolumn title="${action.getText('durationDate')}" property="validityDate" format="yyyy-MM-dd" sortable="desc">
-        		     <@alignCenter/>
+                <@alignLeft/>
                 </@vcolumn>
                 <#assign sendStatus = ''/>
             <#if object.sendStatus?exists>
@@ -80,7 +81,7 @@
             </#if>
            <@vcolumn title="${action.getText('Status')}" property="sendStatus" sortable="desc">
              ${sendStatus}
-             <@alignCenter/>
+             <@alignLeft/>
             </@vcolumn>
                <#-- <@vcolumn title="${action.getText('wash.planBeginDate')}" property="position" sortable="desc">
         		     <@alignCenter/>

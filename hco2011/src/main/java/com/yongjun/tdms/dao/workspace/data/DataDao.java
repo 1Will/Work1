@@ -22,6 +22,7 @@ public abstract interface DataDao
 
   public abstract List<Data> loadByKeyArray(String[] paramArrayOfString, Object[] paramArrayOfObject)
     throws DaoException;
+  public abstract List<Data> loadAllDataByTeam(HashMap map);
   public abstract void storeData(Data data);
   public Object loadAllDataByYear(HashMap map);
 

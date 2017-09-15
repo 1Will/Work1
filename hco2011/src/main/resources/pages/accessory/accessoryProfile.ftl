@@ -9,58 +9,101 @@
             <@ww.hidden name="'applicationDoc.id'" value="#{applicationDoc.id}"/>
         </#if>
         <#if advisory?exists>
-        <#if advisory.id?exists>
-        	<@ww.hidden name="'advisory.id'" value="#{advisory.id}"/>
-        	<#assign returnUrl=returnUrl + '&advisory.id=#{advisory.id}'/>
-        </#if>
+	        <#if advisory.id?exists>
+	        	<@ww.hidden name="'advisory.id'" value="#{advisory.id}"/>
+	        	<#assign returnUrl=returnUrl + '&advisory.id=#{advisory.id}'/>
+	        </#if>
         </#if>
         
         <#if backVisit?exists>
-        <#if backVisit.id?exists>
-        	<@ww.hidden name="'backVisit.id'" value="#{backVisit.id}"/>
-        	<#assign returnUrl=returnUrl + '&backVisit.id=#{backVisit.id}'/>
-        </#if>
+	        <#if backVisit.id?exists>
+	        	<@ww.hidden name="'backVisit.id'" value="#{backVisit.id}"/>
+	        	<#assign returnUrl=returnUrl + '&backVisit.id=#{backVisit.id}'/>
+	        </#if>
         </#if>
         
-         <#if projectInfo?exists>
-        <#if projectInfo.id?exists>
-        	<@ww.hidden name="'projectInfo.id'" value="#{projectInfo.id}"/>
-        	<#assign returnUrl=returnUrl + '&projectInfo.id=#{projectInfo.id}'/>
+        <#if projectInfo?exists>
+	        <#if projectInfo.id?exists>
+	        	<@ww.hidden name="'projectInfo.id'" value="#{projectInfo.id}"/>
+	        	<#assign returnUrl=returnUrl + '&projectInfo.id=#{projectInfo.id}'/>
+	        </#if>
         </#if>
+        
+        <#if expenseForm?exists>
+	        <#if expenseForm.id?exists>
+	        	<@ww.hidden name="'expenseForm.id'" value="#{expenseForm.id}"/>
+	        	<#assign returnUrl=returnUrl + '&expenseForm.id=#{expenseForm.id}'/>
+	        </#if>
+        </#if>
+        
+        <#if paymentorder?exists>
+	        <#if paymentorder.id?exists>
+	        	<@ww.hidden name="'paymentorder.id'" value="#{paymentorder.id}"/>
+	        	<#assign returnUrl=returnUrl + '&paymentorder.id=#{paymentorder.id}'/>
+	        </#if>
         </#if>
         
         <#if contractManagement?exists>
-        <#if contractManagement.id?exists>
-        	<@ww.hidden name="'contractManagement.id'" value="#{contractManagement.id}"/>
-        	<#assign returnUrl=returnUrl + '&contractManagement.id=#{contractManagement.id}'/>
-        </#if>
+	        <#if contractManagement.id?exists>
+	        	<@ww.hidden name="'contractManagement.id'" value="#{contractManagement.id}"/>
+	        	<#assign returnUrl=returnUrl + '&contractManagement.id=#{contractManagement.id}'/>
+	        </#if>
         </#if>
         
         <#if financialManagement?exists>
-        <#if financialManagement.id?exists>
-        	<@ww.hidden name="'financialManagement.id'" value="#{financialManagement.id}"/>
-        	<#assign returnUrl=returnUrl + '&financialManagement.id=#{financialManagement.id}'/>
-        </#if>
+	        <#if financialManagement.id?exists>
+	        	<@ww.hidden name="'financialManagement.id'" value="#{financialManagement.id}"/>
+	        	<#assign returnUrl=returnUrl + '&financialManagement.id=#{financialManagement.id}'/>
+	        </#if>
         </#if>
         
         <#if products?exists>
-        <#if products.id?exists>
-        	<@ww.hidden name="'products.id'" value="#{products.id}"/>
-        	<#assign returnUrl=returnUrl + '&products.id=#{products.id}'/>
-        </#if>
+	        <#if products.id?exists>
+	        	<@ww.hidden name="'products.id'" value="#{products.id}"/>
+	        	<#assign returnUrl=returnUrl + '&products.id=#{products.id}'/>
+	        </#if>
         </#if>
         
         <#if supplier?exists>
-        <#if supplier.id?exists>
-        	<@ww.hidden name="'supplier.id'" value="#{supplier.id}"/>
-        	<#assign returnUrl=returnUrl + '&supplier.id=#{supplier.id}'/>
+	        <#if supplier.id?exists>
+	        	<@ww.hidden name="'supplier.id'" value="#{supplier.id}"/>
+	        	<#assign returnUrl=returnUrl + '&supplier.id=#{supplier.id}'/>
+	        </#if>
         </#if>
+        
+        <#if contractAdministrator?exists>
+	        <#if contractAdministrator.id?exists>
+	        	<@ww.hidden name="'contractAdministrator.id'" value="#{contractAdministrator.id}"/>
+	        	<#assign returnUrl=returnUrl + '&contractAdministrator.id=#{contractAdministrator.id}'/>
+	        </#if>
         </#if>
-         <#if contractAdministrator?exists>
-        <#if contractAdministrator.id?exists>
-        	<@ww.hidden name="'contractAdministrator.id'" value="#{contractAdministrator.id}"/>
-        	<#assign returnUrl=returnUrl + '&contractAdministrator.id=#{contractAdministrator.id}'/>
+        
+        <#if overTimeBill?exists>
+	        <#if overTimeBill.id?exists>
+	        	<@ww.hidden name="'overTimeBill.id'" value="#{overTimeBill.id}"/>
+	        	<#assign returnUrl=returnUrl + '&overTimeBill.id=#{overTimeBill.id}'/>
+	        </#if>
         </#if>
+        
+        <#if onTheRoadBill?exists>
+	        <#if onTheRoadBill.id?exists>
+	        	<@ww.hidden name="'onTheRoadBill.id'" value="#{onTheRoadBill.id}"/>
+	        	<#assign returnUrl=returnUrl + '&onTheRoadBill.id=#{onTheRoadBill.id}'/>
+	        </#if>
+        </#if>
+        
+        <#if leaveBill?exists>
+	        <#if leaveBill.id?exists>
+	        	<@ww.hidden name="'leaveBill.id'" value="#{leaveBill.id}"/>
+	        	<#assign returnUrl=returnUrl + '&leaveBill.id=#{leaveBill.id}'/>
+	        </#if>
+        </#if>
+        
+        <#if billingRecord?exists>
+	        <#if billingRecord.id?exists>
+	        	<@ww.hidden name="'billingRecord.id'" value="#{billingRecord.id}"/>
+	        	<#assign returnUrl=returnUrl + '&leaveBill.id=#{billingRecord.id}'/>
+	        </#if>
         </#if>
 		<tr>
 		    <td align="right" valign="top">

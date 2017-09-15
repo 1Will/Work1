@@ -45,6 +45,10 @@
         <many-to-one name="contractManagement" class="com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement">
 			<column name="CONTRACT_MANAGEMENT_ID"/>
 		</many-to-one>
+		<!-- 开票记录编码 -->     
+        <property name="myCode" type="string">
+			<column name="MYCODE" not-null="true" sql-type="NVARCHAR(50)"/>
+		</property>
 		<!-- 发票编码 -->     
         <property name="code" type="string">
 			<column name="CODE" not-null="true" sql-type="NVARCHAR(50)"/>
@@ -78,6 +82,14 @@
          <!--金额备注 -->
         <property name="currency" type="string">
 			<column name="CURRENCY" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+         <!--是否付款 -->
+        <property name="isPay" type="string">
+			<column name="ISPAY" not-null="false" sql-type="NVARCHAR(2)"/>
+		</property>
+         <!--付款凭证号 -->
+        <property name="payCode" type="string">
+			<column name="PAYCODE" not-null="false" sql-type="NVARCHAR(50)"/>
 		</property>
 	    <!-- 相关联系人 -->
 	    <many-to-one name="contactArchives" class="com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives" lazy="false">

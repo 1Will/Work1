@@ -22,10 +22,24 @@
 	<head>
 	  <link rel="stylesheet" href="${req.contextPath}/stylesheets/css.css" type="text/css"/>
 	  <link rel="stylesheet" href="${req.contextPath}/stylesheets/button.css" type="text/css"/>
-	  <script language="javascript" src="${req.contextPath}/javascripts/global.js"></script>
-	  <script language="javascript" src="${req.contextPath}/javascripts/modalDialog.js"></script>
-	  <script language="javascript" src="${req.contextPath}/javascripts/controlType.js"></script>
-	  <script language="javascript" type="text/javascript">
+	</head>
+	<body>
+	   <@inputTable>
+	   	  <input type="hidden" id ="selectedRecevicers" name="selectedRecevicers" value=""/>
+	      <td>
+	        <textarea name="recevicers" cols="60" rows="5" id="recevicers" disabled></textarea>
+	      </td>
+        </@inputTable>
+        <@buttonBar>
+	       <@htmlButton name="choose" value="确定" onclick= "return confirmRecevicer();"/>
+	       <@htmlButton name="submit"  style="width:50px;" value="重置" class=btn1_mouseout onmouseover="this.className='btn1_mouseover'" onmouseout="this.className='btn1_mouseout'"   onclick="return resetRecevices();"/>
+	    </@buttonBar>
+	</body>
+</html>
+<script language="javascript" src="${req.contextPath}/javascripts/global.js"></script>
+<script language="javascript" src="${req.contextPath}/javascripts/modalDialog.js"></script>
+<script language="javascript" src="${req.contextPath}/javascripts/controlType.js"></script>
+<script language="javascript" type="text/javascript">
 	    //确认选择的用户组或用户
 	    function confirmRecevicer() {
 	      var selectedRecevicers = getObjByName("selectedRecevicers").value;
@@ -49,21 +63,4 @@
 		  }
 		  return true;
 		}
-	  </script>
-	</head>
-	<body>
-	   <@inputTable>
-	   	  <input type="hidden" id ="selectedRecevicers" name="selectedRecevicers" value=""/>
-	      <td>
-	        <textarea name="recevicers"
-                      cols="60"
-                      rows="5"
-                      id="recevicers" disabled></textarea>
-	      </td>
-        </@inputTable>
-        <@buttonBar>
-	       <@htmlButton name="choose" value="确定" onclick= "return confirmRecevicer();"/>
-	       <@htmlButton name="submit"  style="width:50px;" value="重置" class=btn1_mouseout onmouseover="this.className='btn1_mouseover'" onmouseout="this.className='btn1_mouseout'"   onclick="return resetRecevices();"/>
-	    </@buttonBar>
-	</body>
-</html>
+</script>

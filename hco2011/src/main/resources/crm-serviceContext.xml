@@ -26,6 +26,8 @@
 			<!-- 配置启动工作流事物  -->
 			<tx:method name="start*" propagation="REQUIRED"/>
 			<tx:method name="sav*" propagation="REQUIRED"/>
+			<tx:method name="readAll*" propagation="REQUIRED"/>
+			<tx:method name="unReadAll*" propagation="REQUIRED"/>
 			<!-- 其他操作事物 -->
 			<tx:method name="*" read-only="true"/>
 		</tx:attributes>
@@ -173,6 +175,9 @@
 				<constructor-arg index="0">
 					<ref bean="productTypeDao" />
 				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
 			</bean>
 		</property>
 	</bean>
@@ -251,6 +256,12 @@
 				</constructor-arg>
 				<constructor-arg index="3">
 					<ref bean="contactArchivesDao" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="departmentManager" />
 				</constructor-arg>
 			</bean>
 		</property>
@@ -334,12 +345,12 @@
 		</property>
 	</bean>
 	<!-- 日报回复管理 -->
-	<bean id="replyDailyManager" parent="abstractTransactionProxy">
+	<bean id="replyManager" parent="abstractTransactionProxy">
 		<property name="target">
 			<bean
-				class="com.yongjun.tdms.service.workReport.daily.pojo.DefaultReplyDailyManager">
+				class="com.yongjun.tdms.service.workReport.daily.pojo.DefaultReplyManager">
 				<constructor-arg index="0">
-					<ref bean="replyDailyDao" />
+					<ref bean="replyDao" />
 				</constructor-arg>
 			</bean>
 		</property>
@@ -1465,18 +1476,86 @@
 				<constructor-arg index="1">
 					<ref bean="projectInfoPersonnelsManager" />
 				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="personnelFilesManager" />
+				</constructor-arg>
 			</bean>
 		</property>
 	</bean>
 	
 	<!-- 周 -->
-	<bean id="weekManager"
-		parent="abstractTransactionProxy">
+	<bean id="weekManager" parent="abstractTransactionProxy">
 		<property name="target">
 			<bean
 				class="com.yongjun.tdms.service.workReport.week.pojo.DefaultWeekManager">
 				<constructor-arg index="0">
 					<ref bean="weekDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="groupAddManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.service.base.group.pojo.DefaultGroupAddManager">
+				<constructor-arg index="0">
+					<ref bean="groupAddDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+		<!-- 参与者 -->
+	<bean id="participantManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.CustomerRelationship.participant.pojo.DefaultParticipantManager">
+				<constructor-arg index="0">
+					<ref bean="participantDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	  <!-- 早会  -->
+	  <bean id="meetingDayManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.workReport.meeting.pojo.DefaultMeetingDayManager">
+				<constructor-arg index="0">
+					<ref bean="meetingDayDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="meetingMonthManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.workReport.meeting.pojo.DefaultMeetingMonthManager">
+				<constructor-arg index="0">
+					<ref bean="meetingMonthDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- 周计划回复 -->
+	<bean id="replyWeeklyManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.workReport.weekly.pojo.DefaultReplyWeeklyManager">
+				<constructor-arg index="0">
+					<ref bean="replyWeeklyDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 项目状态 -->
+	<bean id="projectStateManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.project.state.pojo.DefaultProjectStateManager">
+				<constructor-arg index="0">
+					<ref bean="projectStateDao" />
 				</constructor-arg>
 			</bean>
 		</property>

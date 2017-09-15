@@ -4,12 +4,14 @@
 <MenuConfig>
 	<Menus>
 	    <Menu name="taskManager" title="任务管理">
+	<!-- 
 			<Item name="toDoTask" title="待办任务"
 				location="toDoTask/listToDoTask.html">
 			</Item>
 	 		<Item name="historyTask" title="历史任务"
 				location="historyTask/listHistoryTask.html">
 			</Item>
+	 -->
 		</Menu>
 		<!--1-->
 		<Menu name="BaseInformationManager" title="基础信息管理">
@@ -158,6 +160,39 @@
 			<Item name="questionAndAnswer" title="QA库" location="qaStorage/listQaStorageAction.html"/>
 		-->
 		</Menu>
+		<Menu name="FinancialManagement" title="财务管理">
+		    	<Item name="financialManagementREAD" title="收款单"
+				location="financialManagement/listFinancialManagementREAD.html">
+			</Item>
+			<Item name="financialManagementWRITE" title="收款单"
+				location="financialManagement/listFinancialManagementWRITE.html">
+			</Item>
+			<Item name="billingRecordREAD" title="开票记录"
+				location="contractManagement/listBillingRecordREAD.html">
+			</Item>
+			<Item name="billingRecordWRITE" title="开票记录"
+				location="contractManagement/listBillingRecordWRITE.html">
+			</Item>
+			<Item name="paymentorderREAD" title="付款单"
+				location="paymentorder/listPaymentorderActionREAD.html" />
+			<Item name="paymentorderWRITE" title="付款单"
+				location="paymentorder/listPaymentorderActionWRITE.html" />
+			
+			<!-- 
+			<Item name="expenseapplyREAD" title="费用申请"
+				location="expenseApply/listExpenseApplyActionREAD.html" />
+			<Item name="expenseapplyWRITE" title="费用申请"
+				location="expenseApply/listExpenseApplyActionWRITE.html" />
+			<Item name="expenseUseREAD" title="费用使用"
+				location="expenseUse/listExpenseUseActionREAD.html" />
+			<Item name="expenseUseWRITE" title="费用使用"
+				location="expenseUse/listExpenseUseActionWRITE.html" />
+			<Item name="expenseFormREAD" title="报销单"
+				location="expenseUse/listExpenseFormActionREAD.html" />
+			 -->
+			<Item name="expenseFormWRITE" title="报销单"
+				location="expenseForm/listExpenseFormActionWRITE.html" />
+		</Menu>
 		<!--6-->
 		<Menu name="PersonnelFilesManager" title="人事管理">
 <!--			<Item name="baseInfo" title="薪酬标准"-->
@@ -226,39 +261,6 @@
 <!--				location="repairs/listRepairsAction.html">-->
 <!--			</Item>-->
 		</Menu>
-		<Menu name="FinancialManagement" title="财务管理">
-			<Item name="billingRecordREAD" title="开票记录"
-				location="contractManagement/listBillingRecordREAD.html">
-			</Item>
-			<Item name="billingRecordWRITE" title="开票记录"
-				location="contractManagement/listBillingRecordWRITE.html">
-			</Item>
-			<Item name="financialManagementREAD" title="收款单"
-				location="financialManagement/listFinancialManagementREAD.html">
-			</Item>
-			<Item name="financialManagementWRITE" title="收款单"
-				location="financialManagement/listFinancialManagementWRITE.html">
-			</Item>
-			<Item name="paymentorderREAD" title="付款单"
-				location="paymentorder/listPaymentorderActionREAD.html" />
-			<Item name="paymentorderWRITE" title="付款单"
-				location="paymentorder/listPaymentorderActionWRITE.html" />
-			
-			<!-- 
-			<Item name="expenseapplyREAD" title="费用申请"
-				location="expenseApply/listExpenseApplyActionREAD.html" />
-			<Item name="expenseapplyWRITE" title="费用申请"
-				location="expenseApply/listExpenseApplyActionWRITE.html" />
-			<Item name="expenseUseREAD" title="费用使用"
-				location="expenseUse/listExpenseUseActionREAD.html" />
-			<Item name="expenseUseWRITE" title="费用使用"
-				location="expenseUse/listExpenseUseActionWRITE.html" />
-			<Item name="expenseFormREAD" title="报销单"
-				location="expenseUse/listExpenseFormActionREAD.html" />
-			 -->
-			<Item name="expenseFormWRITE" title="报销单"
-				location="expenseForm/listExpenseFormActionWRITE.html" />
-		</Menu>
 		<!-- 7-->
 		<!--  
 		<Menu name="FinancialManagement" title="财务管理">
@@ -272,6 +274,8 @@
 				location="projectInfo/listMyPlan.html" />
 			<Item name="myData" title="我的数据"
 				location="workspace/data/listMyData.html" />
+			<Item name="myData" title="我的团队"
+				location="workspace/data/listData.html" />
 		    <Item name="notice" title="内部邮件">
 				<Item name="doREAD" title="发件箱" location="notice/listNotice_READ.html" />
 				<Item name="doWRITE" title="发件箱" location="notice/listNotice_WRITE.html" />
@@ -289,6 +293,8 @@
 					location="workReport/listDailyREAD.html">
 				</Item>
 			</Item>
+			<Item name="meeting" title="早会"
+				location="workReport/listMeetingMonth.html" />
 		</Menu>
 		<!--9-->
 		<!-- 

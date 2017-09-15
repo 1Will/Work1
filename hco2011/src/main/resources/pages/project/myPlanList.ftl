@@ -24,9 +24,17 @@
             <#assign itemNo=itemNo + 1/>
              <@vcolumn title="${action.getText('项目名称')}"   >
              <#if object.projectInfo?exists>
-             <a href="javascript:projectInfo_OpenDialog(#{object.projectInfo.id?if_exists})">
-             ${object.projectInfo.name}
-             </a>
+	             <a href="javascript:projectInfo_OpenDialog(#{object.projectInfo.id?if_exists})">
+	             ${object.projectInfo.name}
+	             </a>
+             <#else >
+             <#--
+	             <#if object.contractManagement?exists&&object.contractManagement.project?exists>
+	             <a href="javascript:projectInfo_OpenDialog(#{object.contractManagement.project.id?if_exists})">
+	             ${object.contractManagement.project.name}
+            	 </a>
+             	 </#if>
+             -->
              </#if>
             <@alignLeft/>
             </@vcolumn>
@@ -45,12 +53,21 @@
              <@vcolumn title="${action.getText('projectInfoPlan.assist')}" property="assist"   >
             <@alignLeft/>
             </@vcolumn>
+            
              <@vcolumn title="${action.getText('projectInfoPlan.startDate')}" property="startDate" sortable="desc"  format="yyyy-MM-dd"  >
             <@alignLeft/>
             </@vcolumn>
              <@vcolumn title="${action.getText('projectInfoPlan.endDate')}" property="endDate" sortable="desc" format="yyyy-MM-dd"  >
             <@alignLeft/>
             </@vcolumn>
+            
+             <@vcolumn title="${action.getText('projectInfoPlan.startFactDate')}" property="startFactDate" sortable="desc"  format="yyyy-MM-dd"  >
+            <@alignLeft/>
+            </@vcolumn>
+             <@vcolumn title="${action.getText('projectInfoPlan.endFactDate')}" property="endFactDate" sortable="desc" format="yyyy-MM-dd"  >
+            <@alignLeft/>
+            </@vcolumn>
+            
              <@vcolumn title="${action.getText('proPlanPercentage')}" property="percentt"   >
             <@alignRight/>
             </@vcolumn>

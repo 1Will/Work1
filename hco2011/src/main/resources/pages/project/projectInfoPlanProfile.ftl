@@ -19,19 +19,18 @@
 <#-- $Id: contactArchivesProfile.ftl 2009-12-08 14:50:35Z wliu $ -->
 
 <#include "../includes/hco2011.ftl" />
-
-<@htmlPage title="${action.getText('projectInfo.proPlan')}">
+<@htmlPage title="${title?if_exists}">
 <@ww.form namespace="'/projectInfo'" name="'projectInfo'" action="'saveProPlan'" method="'post'">
 	<@ww.token name="saveProjectInfoPlanToken"/>
 	<#assign returnUrl='${req.contextPath}/projectInfo/editProPlan.html??yesUrl=yesUrl'/>
     <@inputTable>
     	<#if projectInfoId?exists>
-    		<@ww.hidden name="'projectInfo.id'" value="'${projectInfoId}'"/>
-    		<#assign returnUrl=returnUrl + '&projectInfo.id=${projectInfoId}'/>
+    		<@ww.hidden name="'projectInfo.id'" value="'${projectInfoId?if_exists}'"/>
+    		<#assign returnUrl=returnUrl + '&projectInfo.id=${projectInfoId?if_exists}'/>
     	</#if>
-    	<#if contractManagementId?exists>
-    		<@ww.hidden name="'contractManagement.id'" value="'${contractManagementId}'"/>
-    		<#assign returnUrl=returnUrl + '&contractManagement.id=${contractManagementId}'/>
+    	<#if contractManagement?exists>
+    		<@ww.hidden name="'contractManagement.id'" value="'${contractManagement.id?if_exists}'"/>
+    		<#assign returnUrl=returnUrl + '&contractManagement.id=${contractManagement.id?if_exists}'/>
     	</#if>
     	
     	<@ww.hidden name="'editFlag'" value="'${editFlag?if_exists}'"/>
@@ -42,7 +41,7 @@
     	<@ww.hidden name="'personnelFiles.id'" value="''"/>
     	</#if>
     	
-    	<@ww.hidden name="'projectInfoPlan.assist'" value="'${projectInfoPlan.assist?if_exists}'"/>
+    	<@ww.hidden name="'assistIds'" value="'${projectInfoPlan.assistIds?if_exists}'"/>
     	<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
     	<#if projectInfoPlan.id?exists>
     		<@ww.hidden name="'projectInfoPlan.id'" value="#{projectInfoPlan.id}"/>
@@ -52,14 +51,12 @@
   <tr>
 		<!--任务名称-->
 		<td align="right" valign="top">
-	       		<!---->
 	       		<span class="required">*</span>
 	       		<label class="label">${action.getText('projectInfoPlan.name')}:</label>
 	     	</td>
 			<td>
 				<input type="text" name="projectInfoPlan.name" class="underline"  value="${projectInfoPlan.name?if_exists}" maxlength="100" size="80" />
 			</td>
-		<!---->
 		<@ww.select label="'${action.getText('计划状态')}'" 
 				name="'planState.id'" 
 				value="'${req.getParameter('planState.id')?if_exists}'"
@@ -68,6 +65,7 @@
 				list="allPlanState"
 				required="true"
 				emptyOption="false" 
+				disabled="true"
 				>
 			</@ww.select>
 	</tr>
@@ -84,16 +82,18 @@
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
 				</a>
 			</td>
-			<!--参与人-->
-			<td align="right" valign="top">
-	       		<label class="label">${action.getText('projectInfoPlan.assist')}:</label>
-	     	</td>
-	     	<td>
-		   		<input type="text" name="projectInfoPlan.assist_" class="underline"  value="<#if projectInfoPlan.assist?exists>${projectInfoPlan.assist?if_exists}</#if>" maxlength="140" size="20" disabled="true"/>
-				<a onClick="salesmans_OpenDialog();">
-					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
-				</a>
-			</td>
+			
+		<!--参与人-->
+		<td align="right" valign="top">
+       		<label class="label">${action.getText('projectInfoPlan.assist')}:</label>
+     	</td>
+     	<td>
+	   		<input type="text" name="assist" class="underline"  value="<#if projectInfoPlan.assist?exists>${projectInfoPlan.assist?if_exists}</#if>" maxlength="140" size="20" disabled="true"/>
+			<a onClick="salesmans_OpenDialog();">
+				<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+			</a>
+		</td>
+		
 		</tr>
 		<tr>
 		<!--预计开始时间-->
@@ -133,13 +133,37 @@
 				</#if>
 		   </script>
 		<tr>
+
+		<tr>
+		<!--实际开始时间-->
+			<@pp.datePicker 
+				label="'${action.getText('projectInfoPlan.startFactDate')}'" 
+				name="'projectInfoPlan.startFactDate'" 
+	   			value="'${(projectInfoPlan.startFactDate?string('yyyy-MM-dd'))?if_exists}'"
+				cssClass="'underline'" 
+				required="false"
+				dateFormat="'%Y-%m-%d'"
+				maxlength="10"/>
+		<!--实际完成时间-->
+			<@pp.datePicker 
+				label="'${action.getText('projectInfoPlan.endFactDate')}'" 
+				name="'projectInfoPlan.endFactDate'" 
+	   			value="'${(projectInfoPlan.endFactDate?string('yyyy-MM-dd'))?if_exists}'"
+				cssClass="'underline'" 
+				required="false"
+				dateFormat="'%Y-%m-%d'"
+				maxlength="10"/>
+		   </script>
+		</tr>
+		<tr>
 		<td align="right" valign="top">
 			<label class="label">完成百分比:</label>
 		</td>
 		<td>
-			<input type="text" style="width:60px" value="${projectInfoPlan.percentt?if_exists}" id="projectInfoPlan.percentt" name="projectInfoPlan.percentt" onblur="checkPercentt();">%
+			<input type="text" style="width:60px" value="#{projectInfoPlan.percentt?if_exists}" id="projectInfoPlan.percentt" name="projectInfoPlan.percentt" onblur="checkPercentt();">%
 		</td>
-		<td align="right" valign="top">
+
+     	<td align="right" valign="top">
 			<label class="label">优先级:</label>
 		</td>
 		<td>
@@ -159,8 +183,7 @@
 		<script>
 			getObjByName("projectInfoPlan.priority").value=${projectInfoPlan.priority?if_exists};
 		</script>
-		</tr>
-		</tr>
+	</tr>
 		
      <tr>
 			<!--描述-->
@@ -178,13 +201,12 @@
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 		</#if>
-		<#-- 
+		
 		<#if projectInfoPlan.isSaved?exists &&projectInfoPlan.isSaved=='0' >
 	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
 	    <#else>
 	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
 	    </#if>
-		 -->
 		
 		<#if (editFlag?exists&&editFlag=='editFlag')>
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/projectInfo/listMyPlan.html"/>
@@ -208,25 +230,38 @@
 </@ww.form>
 
 <script type="text/javascript">
-	window.onload=function(){
-		 <#if projectInfoPlan.planState?exists>
-			getObjByName('planState.id').value='${projectInfoPlan.planState.id?if_exists}';
-			<#elseif req.getParameter('planState.id')?exists>
-			getObjByName('planState.id').value='${req.getParameter('planState.id')}';
-		</#if>
+//	window.onload=function(){
+	 <#if projectInfoPlan.planState?exists>
+		getObjByName('planState.id').value='${projectInfoPlan.planState.id?if_exists}';
+		<#elseif req.getParameter('planState.id')?exists>
+		getObjByName('planState.id').value='${req.getParameter('planState.id')}';
+	</#if>
 		
-	}
+//	}
 	//弹出业务员查询模态窗体
 	function salesman_OpenDialog(){
-	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html";
+		 <#if projectInfoId?exists>
+		 	var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?onlyProject.id=${projectInfoId?if_exists}";
+    	</#if>
+    	<#if contractManagement?exists>
+    	<#if contractManagement.project?exists>
+		 	var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?onlyProject.id=${contractManagement.project.id?if_exists}";
+    	</#if>
+    	</#if>
+	
+	   
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	   //window.open(url);
 	 }
 	 //弹出业务员同行者查询模态窗体
 	 function salesmans_OpenDialog(){
-	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?backVisitCheckBox=backVisitCheckBox";
-	   popupModalDialog(url, 800, 600, creatorSelectorHandler_);
-	   //window.open(url);
+		var assistIds = getObjByName('assistIds').value;
+		if(isIE()){
+   			assistIds = encodeURI(assistIds); 
+   		}
+		var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?backVisitCheckBox=backVisitCheckBox&employeesIds_a="+assistIds;
+		popupModalDialog(url, 800, 600, creatorSelectorHandler_);
+		//window.open(url);
 	 }
 	 //获得模态窗体返回值
 	function creatorSelectorHandler(result) {
@@ -238,44 +273,45 @@
 	 //获得模态窗体返回值
 	function creatorSelectorHandler_(result) {
 		if (null != result) {
-		var tempEmployees =document.forms[0].elements["projectInfoPlan.assist"].value;
-		var tempEmployees_ =document.forms[0].elements["projectInfoPlan.assist_"].value;
-		if(tempEmployees==""){
-		tempEmployees=result[0];
-		}else{
-		
-		tempEmployees+=","+result[0];
-		}
-		
-		if(tempEmployees_==""){
-		tempEmployees_=result[0];
-		}else{
-		
-		tempEmployees_+=","+result[0];
-		}
-			document.forms[0].elements["projectInfoPlan.assist"].value = tempEmployees;
-	   		document.forms[0].elements["projectInfoPlan.assist_"].value = tempEmployees_;		 	
+			var nameAids =result[0].split(',');
+			var ids ='';
+			var names ='';
+			for(var i=0;i<nameAids.length-1;i++){
+				if(i==nameAids.length-2){
+					names+=nameAids[i].split(':')[1];
+				}else{
+					names+=nameAids[i].split(':')[1]+',';
+				}
+			}
+			document.forms[0].elements["assist"].value = names;
+		   	document.forms[0].elements["assistIds"].value = result[0];
 		}
 	}
 	
 	function checkPercentt(){
-	var  percentt =getObjByName("projectInfoPlan.percentt").value;
-	if(!isNumber("projectInfoPlan.percentt")){
-	alert("完成百分比请输入数字");
-	getObjByName("projectInfoPlan.percentt").fcous();
-	}
-	if(percentt<0||percentt>100){
-	alert("完成百分比只能是1到100之间的数字数字");
-	getObjByName("projectInfoPlan.percentt").fcous();
-	}
-	//当完成百分比为100的时候。就是自动更新状态为已完成
-	if(percentt==100){
-	getObjByName('planState.id').value="545";//已完成
-	}else if(percentt==0){
-	getObjByName('planState.id').value="542";//待执行
-	}else{
-	getObjByName('planState.id').value="543";//执行中
-	}
+		var  percentt =getObjByName("projectInfoPlan.percentt").value;
+		var endDate = getObjByName('projectInfoPlan.endDate').value;
+		if(!isNumber("projectInfoPlan.percentt")){
+			alert("完成百分比请输入数字");
+			return false;
+		}
+		if(percentt<0||percentt>100){
+			alert("完成百分比只能是1到100之间的数字数字");
+			return false;
+		}
+		//当完成百分比为100的时候。就是自动更新状态为已完成
+		if(percentt==100){
+			getObjByName('planState.id').value="545";//已完成
+		}else{
+			if(isDateLessThenCurrent(endDate)){
+				if(percentt==0){
+					getObjByName('planState.id').value="542";//待执行
+				}else{
+					getObjByName('planState.id').value="543";//执行中
+				}
+			}
+		}
+		return true;
 	}
 	
 	function savee(){
@@ -298,33 +334,84 @@
 			alert("${action.getText('personnelFiles.name.required')}");
      		return false;
 		}
-		if('' == getObjByName('projectInfoPlan.startDate').value){
+		var star = getObjByName('projectInfoPlan.startDate').value;
+		var end = getObjByName('projectInfoPlan.endDate').value;
+		if('' == star){
 			alert("${action.getText('projectInfoPlan.startDate.required')}");
      		return false;
 		}
-		if('' == getObjByName('projectInfoPlan.endDate').value){
+		if(!isDate('projectInfoPlan.startDate')){
+			alert("预计开始时间格式有误！");
+     		return false;
+		}
+		if('' == end){
 			alert("${action.getText('projectInfoPlan.endDate.required')}");
      		return false;
 		}
-		var  percentt =getObjByName("projectInfoPlan.percentt").value;
-	if(!isNumber("projectInfoPlan.percentt")){
-	alert("完成百分比请输入数字");
-	return false;
-	}
-	if(percentt<0||percentt>100){
-	alert("完成百分比只能是1到100之间的数字数字");
-	return false;
-	}
+		if(!isDate('projectInfoPlan.endDate')){
+			alert("预计完成时间格式有误！");
+     		return false;
+		}
+		if(isDateLessEqualOldDate(star,end)){
+			alert("预计完成时间须大于等于预计开始时间！");
+			getObjByName('projectInfoPlan.endDate').focus();
+     		return false;
+		}
+		
+		var startFact = getObjByName('projectInfoPlan.startFactDate').value;
+		var endFact = getObjByName('projectInfoPlan.endFactDate').value;
+		if('' != startFact){
+			if(!isDate('projectInfoPlan.startFactDate')){
+				alert("实际开始时间格式有误！");
+	     		return false;
+			}
+		}
+		
+		if('' != endFact){
+			if(!isDate('projectInfoPlan.endFactDate')){
+				alert("实际完成时间格式有误！");
+	     		return false;
+			}
+		}
+		
+		if('' != endFact && '' != startFact){
+			if(isDateLessEqualOldDate(startFact,endFact)){
+				alert("实际完成时间须大于等于实际开始时间！");
+				getObjByName('projectInfoPlan.endDate').focus();
+	     		return false;
+			}
+		}
+		
+		<#if !projectInfoPlan.id?exists>
+		if(!isDateLessEqualThenCurrent(end)){
+			alert("预计完成时间须大于等于当前时间！");
+     		return false;
+		}
+		</#if>
+		if(!checkPercentt()){
+			return false;
+		}
 		/* 验证项目概要 */
-     		if(''!= getObjByName('projectInfoPlan.outline').value&&!isValidLengthValue(getObjByName('projectInfoPlan.outline').value,0,500)){
-     			alert("${action.getText('planOutline.maxLength')}");
-     			getObjByName('projectInfoPlan.outline').value="";
-     			getObjByName('projectInfoPlan.outline').focus();
-     			return false;
-     		}
-	
+		if(''!= getObjByName('projectInfoPlan.outline').value&&!isValidLengthValue(getObjByName('projectInfoPlan.outline').value,0,500)){
+			alert("${action.getText('planOutline.maxLength')}");
+			getObjByName('projectInfoPlan.outline').value="";
+			getObjByName('projectInfoPlan.outline').focus();
+			return false;
+		}
+		getObjByName('assist').removeAttribute('disabled');
+		getObjByName('planState.id').removeAttribute('disabled');
 		return true;
-	}
+		}
 	
 </script>
 </@htmlPage>
+<#--
+<#if projectInfoPlan.id?exists>
+<ul id="beautytab">
+	<li>
+        <a id="participant" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/customerRelationship/listParticipant.html?pfFlag=pfFlag&projectInfoPlan.id=#{projectInfoPlan.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >参与者</a>
+	</li>
+</ul>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/customerRelationship/listParticipant.html?pfFlag=pfFlag&projectInfoPlan.id=#{projectInfoPlan.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="60%"/>
+</#if>
+-->

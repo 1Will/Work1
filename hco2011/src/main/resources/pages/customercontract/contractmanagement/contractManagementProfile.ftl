@@ -23,6 +23,9 @@
 <@ww.form name="'listForm'" action="'saveContractManagementAction'" method="'post'">
 	<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 	<@ww.hidden name="'contractManagement.isSaved'" value="''"/>
+	<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag' >
+    	<@ww.hidden  name="popWindowFlag"  value="${popWindowFlag}"/>
+    </#if>
 	<@ww.token name="saveContractManagementActionToken"/>
 	<#if contractManagement.id?exists>
 		<@ww.hidden name="'contractManagement.id'" value="#{contractManagement.id?if_exists}"/>
@@ -250,7 +253,7 @@
 		</#if>
 		<#-- 继续新建按钮   -->
 		<#if contractManagement.id?exists>
-			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html"/>
+			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html?popWindowFlag=${popWindowFlag?if_exists}"/>
 		<#else>
 			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html"/>
 			<script language="JavaScript" type="text/JavaScript"> 
@@ -269,7 +272,7 @@
 		
 		
 		 
-		<#if popWindowFlag?exists&&popWindowFlag==popWindowFlag>
+		<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
 		<@vbutton class="button" value="${action.getText('close')}" onclick="closeThis()"/>
 		<#else>
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/contractManagement/listContractManagementAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
@@ -457,7 +460,7 @@ function instiChange(){
 		return storeValidation();
 	}
 		
-	window.onload=function (){
+//	window.onload=function (){
 		<#if contractManagement.contractType?exists>
 			getObjByName("contractType").value=("${contractManagement.contractType.id?if_exists}");
 		</#if>
@@ -484,7 +487,7 @@ function instiChange(){
 		getObjByName("moneyType").change(function(){
 			getObjByName(getObjByName("moneyType option").get(0)).attr("selected",true);
 		});
-		}
+//		}
 </script>
 
 </@htmlPage>
@@ -508,8 +511,16 @@ function instiChange(){
 	<li>
 		<a id="financialManagement" onclick="activeTab(this);"  href='${req.contextPath}/financialManagement/listFinancialManagementTab.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('收款单')}</a>
 	</li>
+	
 	<li>
 		<a id="billingRecord" onclick="activeTab(this);"  href='${req.contextPath}/contractManagement/listBillingRecordByCustomerAction.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('开票记录')}</a>
+	</li>
+	
+	<li>
+		<a id="expenseForm" onclick="activeTab(this);" href='${req.contextPath}/expenseForm/listExpenseFormTabAction.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('报销单')}</a>
+	</li>
+	<li>
+		<a id="paymentorder" onclick="activeTab(this);" href='${req.contextPath}/paymentorder/listPaymentorderTabAction.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('付款单')}</a>
 	</li>
 	<li>
 		<a id="changeToHistory" onclick="activeTab(this);" href='${req.contextPath}/customerRelationship/listContactToHistory.html?contractManagement.id=#{contractManagement.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('变更历史')}</a>

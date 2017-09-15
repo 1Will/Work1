@@ -1,6 +1,8 @@
 package com.yongjun.tdms.service.CustomerRelationship.customerProfiles;
 
 import com.yongjun.pluto.exception.DaoException;
+import com.yongjun.pluto.model.codevalue.CodeValue;
+import com.yongjun.pluto.model.security.Department;
 import com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo;
 
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
 public abstract interface CustomerInfoManager
 {
   public abstract void storeCustomerInfo(CustomerInfo paramCustomerInfo);
-  public abstract void saveCustomerInfoByImp(List<CustomerInfo> customerInfos);
+  public abstract void saveCustomerInfoByImp(List<CustomerInfo> customerInfos)throws DaoException ;
 
   public abstract CustomerInfo loadCustomerInfo(Long paramLong);
 
@@ -36,6 +38,7 @@ public abstract interface CustomerInfoManager
   public abstract List<CustomerInfo> getOneCustomerByName(String paramString);
   
   public int loadCustomerInfoByDate(String userId,String da);
+  public List<Department> getAllClassification(String btype);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

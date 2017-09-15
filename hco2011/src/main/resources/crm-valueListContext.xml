@@ -105,8 +105,7 @@
                 /~warnningDate: AND workWarnning.warnningDate = {warnningDate} ~/
                 /~warnningDate_start: AND workWarnning.warnningDate >= {warnningDate_start} ~/
             	/~warnningDate_end: AND workWarnning.warnningDate <= {warnningDate_end} ~/
-            	/~onlyUnRead: AND workWarnning.readFlag=false ~/
-                /~onlyRead: AND workWarnning.readFlag=true ~/
+                /~isRead: AND workWarnning.readFlag = {isRead} ~/
                 /~loginUser.id: AND workWarnning.warnedPeople.id = {loginUser.id} ~/	
                 /~sortColumn: ORDER BY workWarnning.[sortColumn] [sortDirection]~/
                 ]]>
@@ -157,11 +156,12 @@
                 /~products.code: AND products.code LIKE {products.code} ~/
                 /~products.name: AND products.name LIKE {products.name} ~/
                 /~products.model: AND products.model LIKE {products.model} ~/
-                /~pt.id: AND products.pt.id = {pt.id} ~/
+                /~ptidList: AND products.pt.id in ({ptidList}) ~/
                 /~products.standard: AND products.standard LIKE {products.standard} ~/
                 /~product_source_ID.id: AND products.product_source_ID.id = {product_source_ID.id} ~/
                 /~supplier.id: AND products.supplier.id = {supplier.id} ~/
                 /~ppIds: AND products.id not in ({ppIds})~/
+                 /~businessType: AND products.businessType.name like  {businessType}~/
                 /~sortColumn: ORDER BY products.[sortColumn] [sortDirection] ~/
             </value>
         </property>
@@ -283,11 +283,14 @@
 				/~type.id: AND ca.customerType.id = {type.id}~/ 
 				/~customerId: AND ca.customerName.id = {customerId}~/ 
 				/~projectInfoCus:and ca.customerName.id in ({projectInfoCus})~/ 
+				/~caIds:and ca.id not in ({caIds})~/ 
 				/~projectInfoId: AND ca.projectInfo.id = {projectInfoId}~/ 
 				/~con_projectIds: AND ca.customerName.id in ({con_projectIds})~/ 
 				/~supplierId: AND ca.supplier.id = {supplierId} ~/
 				/~customerIsNotNull: AND ca.customerName is NOT NULL ~/
-				/~contactArchives.abbreviations: AND ca.abbreviations like {contactArchives.abbreviations} ~/				
+				/~contactArchives.abbreviations: AND ca.abbreviations like {contactArchives.abbreviations} ~/	
+				/~classificationId: AND ca.customerName.classification.id = {classificationId}~/ 
+				/~businessType: AND ca.customerName.businessType.name like  {businessType}~/			
 				/~sortColumn: ORDER BY ca.[sortColumn] [sortDirection] ~/
 				 ]]>
 			</value>
@@ -315,6 +318,9 @@
 				/~customerInfo.salesmanName: AND customer.salesman.name LIKE {customerInfo.salesmanName} ~/ 
 				/~customerInfo.abbreviations: AND customer.abbreviations LIKE {customerInfo.abbreviations} ~/ 
 				/~isPartner: AND customer.isPartner = {isPartner}~/
+				/~businessType: AND customer.businessType.name like  {businessType}~/
+				/~classificationId: AND customer.classification.id = {classificationId}~/
+				
 				/~sortColumn: ORDER BY customer.[sortColumn] [sortDirection] ~/
 			</value>
 		</property>
@@ -347,7 +353,7 @@
         </property>
     </bean>
     
-    <bean id="backvisit" parent="abstractHibernate20Adapter">
+    <bean id="backvisitHQL" parent="abstractHibernate20Adapter">
     	<property name="hql">
             <value>
             	<![CDATA[
@@ -356,6 +362,7 @@
                 	/~onlyInvalid: AND backVisit.disabled=true ~/ 							
                 	/~onlyValid: AND backVisit.disabled=false ~/
                 	/~backVisitType.id: AND backVisit.backVisitType.id = {backVisitType.id}~/
+                	/~backVisitIds: AND backVisit.id in ({backVisitIds})~/
                 	/~backVisitWay.id: AND backVisit.backVisitWay.id = {backVisitWay.id}~/
                 	/~customerInfo.id: AND backVisit.customerInfo.id = {customerInfo.id}~/
                 	/~customerInfo.state: AND backVisit.customerInfo.state.name = {customerInfo.state}~/
@@ -403,10 +410,16 @@
                 /~backVisit.id: AND applicationDoc.backVisit.id = {backVisit.id} ~/
                  /~projectInfo.id: AND applicationDoc.projectInfo.id = {projectInfo.id} ~/
                  /~products.id: AND applicationDoc.products.id = {products.id} ~/
+                 /~expenseForm.id: AND applicationDoc.expenseForm.id = {expenseForm.id} ~/
                 /~supplier.id: AND applicationDoc.supplier.id = {supplier.id} ~/
                 /~contractAdministrator.id: AND applicationDoc.contractAdministrator.id = {contractAdministrator.id} ~/
                 /~contractManagement.id: AND applicationDoc.contractManagement.id = {contractManagement.id} ~/
                 /~financialManagement.id: AND applicationDoc.financialManagement.id = {financialManagement.id} ~/
+                /~onTheRoadBill.id: AND applicationDoc.onTheRoadBill.id = {onTheRoadBill.id} ~/
+                /~overTimeBill.id: AND applicationDoc.overTimeBill.id = {overTimeBill.id} ~/
+                /~paymentorder.id: AND applicationDoc.paymentorder.id = {paymentorder.id} ~/
+                /~leaveBill.id: AND applicationDoc.leaveBill.id = {leaveBill.id} ~/
+                /~billingRecord.id: AND applicationDoc.billingRecord.id = {billingRecord.id} ~/
                 /~id: AND applicationDoc.id = {id} ~/
                 /~sortColumn: ORDER BY applicationDoc.[sortColumn] [sortDirection] ~/
                 ]]>
@@ -433,14 +446,13 @@
     </bean>
     
     	<!-- 周计划 -->
-		<bean id="weekly" parent="abstractHibernate20Adapter">
+		<bean id="weeklyHQL" parent="abstractHibernate20Adapter">
 		<property name="hql">
 			<value>
 			<![CDATA[
 				FROM Weekly AS w WHERE 1=1 
 				/~onlyInvalid: AND w.disabled=true ~/ 
 				/~onlyValid: AND w.disabled=false ~/ 
-				/~weeklyIds: AND w.id in ({weeklyIds}) ~/ 	
 				/~code: AND w.code LIKE {code} ~/ 
 				/~name: AND w.name LIKE {name}~/ 
 				/~inst.id: AND w.inst.id = {inst.id}~/ 
@@ -476,7 +488,7 @@
 	
 	
 	<!-- 日报管理 -->
-	<bean id="daily" parent="abstractHibernate20Adapter">
+	<bean id="dailyHQL" parent="abstractHibernate20Adapter">
 		<property name="hql">
 			<value>
 				<![CDATA[
@@ -492,6 +504,7 @@
 				/~deptList: AND d.dept.id IN ({deptList}) ~/ 
 				/~duty.id: AND d.duty.id={duty.id} ~/
 				/~user.id: AND d.rapporteur.id={user.id} ~/
+				/~userids: AND d.rapporteur.id in ({userids}) ~/ 	
 				/~sortColumn: ORDER BY d.[sortColumn] [sortDirection] ~/
 			 ]]>
 			</value>
@@ -502,7 +515,7 @@
 		<property name="hql">
 			<value>
 				<![CDATA[
-				FROM ReplyDaily AS rd WHERE 1=1  
+				FROM Reply AS rd WHERE 1=1  
 				/~daily.id: AND rd.daily.id={daily.id} ~/
 				/~user.id: AND rd.rapporteur.id={user.id} ~/
 				/~sortColumn: ORDER BY rd.[sortColumn] [sortDirection] ~/
@@ -515,8 +528,21 @@
 		<property name="hql">
 			<value>
 				<![CDATA[
-				FROM ReplyBackVisit AS rd WHERE 1=1  
-				/~backVisit.id: AND rd.visitId = {backVisit.id} ~/
+				FROM Reply AS rd WHERE 1=1  
+				/~backVisit.id: AND rd.backVisitId.id = {backVisit.id} ~/
+				/~user.id: AND rd.userId = {user.id} ~/
+				/~sortColumn: ORDER BY rd.[sortColumn] [sortDirection] ~/
+			 ]]>
+			</value>
+		</property>
+	</bean>
+	<!-- 回访记录回复管理 -->
+	<bean id="replyCustomerInfoHQL" parent="abstractHibernate20Adapter">
+		<property name="hql">
+			<value>
+				<![CDATA[
+				FROM Reply AS rd WHERE 1=1  
+				/~customerInfo.id: AND rd.customerInfoId.id = {customerInfo.id} ~/
 				/~user.id: AND rd.userId = {user.id} ~/
 				/~sortColumn: ORDER BY rd.[sortColumn] [sortDirection] ~/
 			 ]]>
@@ -590,7 +616,7 @@
 	</bean>
 	<!--社会关系结束-->
 	<!-- 人事关系，基础信息管理 -->
-	<bean id="personnelFiles" parent="abstractHibernate20Adapter">
+	<bean id="personnelFilesHQL" parent="abstractHibernate20Adapter">
 		<property name="hql">
 			<value>
 				<![CDATA[
@@ -604,6 +630,8 @@
 				/~dept.id: AND pf.dept.id = {dept.id}~/
 				/~duty.id: AND pf.duty.id = {duty.id}~/
 				/~validUser: AND pf.code not in ({validUser}) ~/ 
+				/~projectPer: AND pf.code in ({projectPer}) ~/ 
+				/~businessType: AND pf.businessType.name like  {businessType}~/	
 				/~sortColumn: ORDER BY pf.[sortColumn] [sortDirection] ~/
 			 ]]>
 			</value>
@@ -707,7 +735,7 @@
 	
 
     <!-- 收发通知 -->
-    <bean id="notice" parent="abstractHibernate20Adapter">
+    <bean id="noticeHQL" parent="abstractHibernate20Adapter">
 		<property name="hql">
 			<value>
 				<![CDATA[
@@ -852,7 +880,7 @@
 		</property>
 	</bean>
 	<!-- 我的数据 -->
-	<bean id="datas" parent="abstractHibernate20Adapter">
+	<bean id="myDatas" parent="abstractHibernate20Adapter">
 		<property name="hql">
 			<value>
 				<![CDATA[
@@ -860,6 +888,24 @@
                 WHERE 1=1 
             	/~personnelFiles.code: AND otrb.personnelFiles.code = {personnelFiles.code} ~/
             	/~data.year: AND otrb.year like  {data.year} ~/
+                /~sortColumn: ORDER BY otrb.[sortColumn] [sortDirection]~/
+                ]]>
+			</value>
+		</property>
+	</bean>
+	<!-- 我的团队 -->
+	<bean id="datas" parent="abstractHibernate20Adapter">
+		<property name="hql">
+			<value>
+				<![CDATA[
+                FROM Data AS otrb
+                WHERE 1=1 
+            	/~personnelFiles.name: AND otrb.personnelFiles.name like {personnelFiles.name} ~/
+            	/~personnelFiles.code: AND otrb.personnelFiles.code = {personnelFiles.code} ~/
+            	/~data.year: AND otrb.year like  {data.year} ~/
+            	/~data.month: AND otrb.month like  {data.month} ~/
+            	/~notData: AND 1=2 ~/
+            	/~personnelFilesId: AND otrb.personnelFiles.id in ({personnelFilesId}) ~/
                 /~sortColumn: ORDER BY otrb.[sortColumn] [sortDirection]~/
                 ]]>
 			</value>
@@ -1336,6 +1382,7 @@
                 /~contractManagement.customerInfo.name: AND contractManagement.customerInfo.name LIKE {contractManagement.customerInfo.name} ~/
                 /~contractManagement.linkman.name: AND contractManagement.linkman.name LIKE {contractManagement.linkman.name} ~/
                 /~contractManagement.project.name: AND contractManagement.project.name LIKE {contractManagement.project.name} ~/
+                /~project.id: AND contractManagement.project.id = {project.id} ~/
                 /~contractManagement.address: AND contractManagement.address LIKE {contractManagement.address} ~/
                 /~contractManagement.telephone: AND contractManagement.telephone LIKE {contractManagement.telephone} ~/
                 /~contractManagement.saleman.name: AND contractManagement.saleman.name LIKE {contractManagement.saleman.name} ~/
@@ -1354,8 +1401,9 @@
                 /~contractManagement.paidMoney: AND contractManagement.paidMoney = {contractManagement.paidMoney} ~/
                 /~contractManagement.contractContent: AND contractManagement.contractContent LIKE {contractManagement.contractContent} ~/
                 /~contractManagement.remark: AND contractManagement.remark LIKE {contractManagement.remark} ~/
-             
+             	/~proIds: AND contractManagement.project.id in ({proIds})~/
                 /~products.id: AND contractManagement.id in (select pl.contractManagement.id from ProductList pl where pl.product.id = {products.id}) ~/
+                 /~businessType: AND contractManagement.customerInfo.businessType.name like  {businessType}~/	
                 
                 /~sortColumn: ORDER BY contractManagement.[sortColumn] [sortDirection]~/
                 ]]>
@@ -1395,6 +1443,7 @@
                 /~contractManagement.paidMoney: AND contractManagement.paidMoney = {contractManagement.paidMoney} ~/
                 /~contractManagement.contractContent: AND contractManagement.contractContent LIKE {contractManagement.contractContent} ~/
                 /~contractManagement.remark: AND contractManagement.remark LIKE {contractManagement.remark} ~/
+                 /~businessType: AND contractManagement.customerInfo.businessType.name like  {businessType}~/	
                 /~sortColumn: ORDER BY contractManagement.[sortColumn] [sortDirection]~/
                 ]]>
 			</value>
@@ -1431,6 +1480,7 @@
                 /~contractManagement.paidMoney: AND contractManagement.paidMoney = {contractManagement.paidMoney} ~/
                 /~contractManagement.contractContent: AND contractManagement.contractContent LIKE {contractManagement.contractContent} ~/
                 /~contractManagement.remark: AND contractManagement.remark LIKE {contractManagement.remark} ~/
+                 /~businessType: AND contractManagement.customerInfo.businessType.name like  {businessType}~/
                 /~sortColumn: ORDER BY contractManagement.[sortColumn] [sortDirection]~/
                 ]]>
 			</value>
@@ -1498,6 +1548,7 @@
                 /~onlyValid: AND r.disabled=false ~/
                 /~customerInfo.id: AND r.customerInfo.id LIKE {customerInfo.id} ~/
                 /~contractManagement.id: AND r.contractManagement.id = {contractManagement.id} ~/
+                /~projectInfo.id: AND r.contractManagement.project.id = {projectInfo.id} ~/
                 /~contractManagement.code: AND r.contractManagement.code LIKE {contractManagement.code} ~/
                 /~customerInfo.code: AND r.customerInfo.code LIKE {customerInfo.code} ~/
                 /~billingRecord.customerInfo: AND r.customerInfo.name LIKE {billingRecord.customerInfo} ~/
@@ -1575,6 +1626,8 @@
                 /~financialManagement.contractManagement: AND r.contractManagement.contractName LIKE {financialManagement.contractManagement} ~/
                 /~projectInfo.name: AND r.contractManagement.project.name LIKE {projectInfo.name} ~/
                 /~contractManagement.id: AND r.contractManagement.id = {contractManagement.id} ~/
+                /~projectInfo.id: AND r.contractManagement.project.id = {projectInfo.id} ~/
+                /~customerInfo.id: AND r.contractManagement.customerInfo.id = {customerInfo.id} ~/
                 /~financialManagement.collectionDate_start: AND r.collectionDate >= {financialManagement.collectionDate_start} ~/
                 /~financialManagement.collectionDate_end: AND r.collectionDate <= {financialManagement.collectionDate_end} ~/
                 /~customerInfo.code: AND r.customerInfo.code LIKE {customerInfo.code} ~/
@@ -1663,8 +1716,9 @@
                 /~onlyValid: AND paymentorder.disabled=false ~/
                 /~paymentorder.code: AND paymentorder.code LIKE {paymentorder.code} ~/
                 /~paymentorder.supplier.name: AND paymentorder.supplier.name LIKE {paymentorder.supplier.name} ~/
+                /~projectInfo.id: AND paymentorder.projectInfo.id = {projectInfo.id} ~/
                 /~paymentorder.produceType.id: AND paymentorder.produceType.id = {paymentorder.produceType.id} ~/
-              	 /~paymentorder.totalMoney: AND paymentorder.totalMoney = {paymentorder.totalMoney} ~/
+              	/~paymentorder.totalMoney: AND paymentorder.totalMoney = {paymentorder.totalMoney} ~/
                 /~sortColumn: ORDER BY paymentorder.[sortColumn] [sortDirection]~/
                 ]]>
 			</value>
@@ -1867,6 +1921,7 @@
                 	WHERE 1=1
                 	/~onlyInvalid: AND projectInfo.disabled=true ~/
                 	/~onlyValid: AND projectInfo.disabled=false ~/ 
+                	 /~proIds: AND projectInfo.id in ({proIds})~/	
                 	 /~code: AND projectInfo.code LIKE {code} ~/
                 	 /~name: AND projectInfo.name LIKE {name} ~/
                 	 /~customer.name: AND projectInfo.customer.name LIKE {customer.name} ~/
@@ -1876,6 +1931,7 @@
                 	 /~state.id: AND projectInfo.state.id = {state.id} ~/
                 	 /~projectInfo.creator: AND projectInfo.creator LIKE {projectInfo.creator} ~/
                 	 /~projectInfo.createdTime: AND convert(varchar,projectInfo.createdTime,120) like {projectInfo.createdTime} ~/ 
+                	  /~businessType: AND projectInfo.customer.businessType.name like  {businessType}~/	
                 	  /~sortColumn: ORDER BY projectInfo.[sortColumn] [sortDirection]~/
                 	 
             	 ]]>
@@ -1962,21 +2018,21 @@
         </property>
     </bean>
       <!-- 项目任务计划  我的工作计划 -->
-    <bean id="myPlan" parent="abstractHibernate20Adapter">
+    <bean id="myPlanHQL" parent="abstractHibernate20Adapter">
     	<property name="hql">
             <value>
             	<![CDATA[
-            		FROM ProjectInfoPlan AS projectInfo
+            		FROM ProjectInfoPlan AS pp
                 	WHERE 1=1
-                	/~onlyInvalid: AND projectInfo.disabled=true ~/
-                	/~onlyValid: AND projectInfo.disabled=false ~/ 
-                	 /~projectInfoPlan.id: AND projectInfo.id = {projectInfoPlan.id} ~/
-                	 /~name: AND projectInfo.name like {name} ~/
-                	 /~personnelFiles.code: AND projectInfo.personnelFiles.code = {personnelFiles.code} ~/
-                	  /~planState.id: AND projectInfo.planState.id = {planState.id} ~/
-                	 /~projectInfo.name: AND projectInfo.projectInfo.name like {projectInfo.name} ~/
-                	 /~contractManagement.contractName: AND projectInfo.contractManagement.contractName like {contractManagement.contractName} ~/
-                	   /~sortColumn: ORDER BY projectInfo.[sortColumn] [sortDirection]~/
+                	/~onlyInvalid: AND pp.disabled=true ~/
+                	/~onlyValid: AND pp.disabled=false ~/ 
+                	 /~projectInfoPlan.id: AND pp.id = {projectInfoPlan.id} ~/
+                	 /~name: AND pp.name like {name} ~/
+                	 /~personnelFiles.code: AND pp.personnelFiles.code = {personnelFiles.code} ~/
+                	  /~planState.id: AND pp.planState.id = {planState.id} ~/
+                	 /~projectInfo.name: AND pp.projectInfo.name like {projectInfo.name} ~/
+                	 /~contractManagement.contractName: AND pp.contractManagement.contractName like {contractManagement.contractName} ~/
+                	   /~sortColumn: ORDER BY pp.[sortColumn] [sortDirection]~/
                 	 
             	 ]]>
             </value>
@@ -2072,6 +2128,7 @@
                 	/~onlyInvalid: AND ef.disabled=true ~/
                 	/~onlyValid: AND ef.disabled=false ~/ 
                 	/~projectInfo.id: AND ef.projectInfo.id ={projectInfo.id} ~/
+                	/~contractManagement.id: AND ef.contractManagement.id ={contractManagement.id} ~/
                 	/~expenseForm.code: AND ef.code like {expenseForm.code} ~/
                 	/~expenseForm.projectInfo.name: AND ef.projectInfo.name like {expenseForm.projectInfo.name} ~/
                 	/~expenseForm.applyPeople.name: AND ef.applyPeople.name like {expenseForm.applyPeople.name} ~/
@@ -2095,12 +2152,96 @@
                 	WHERE 1=1
                 	/~week.id: AND w.id ={week.id} ~/
                 	/~week.name: AND w.name LIKE {week.name} ~/
+                	/~week.startDate: AND convert(varchar,w.startDate,120) LIKE {week.startDate} ~/
                 	/~sortColumn: ORDER BY w.[sortColumn] ~/ 
             	 ]]>
             </value>
         </property>
     </bean>
+    
+    
+     <!-- 查找参与人-->
+    <bean id="participantHQL" parent="abstractHibernate20Adapter">
+    	<property name="hql">
+            <value>
+            	<![CDATA[
+            		FROM Participant AS p
+                	WHERE 1=1
+                	/~participant.id: AND p.id ={participant.id} ~/
+                	/~contactArchives.id: AND p.contactArchives.id ={contactArchives.id} ~/
+                	/~personnelFiles.id: AND p.personnelFiles.id ={personnelFiles.id} ~/
+                	/~backVisit.id: AND p.backVisit.id ={backVisit.id} ~/
+                	/~projectInfoPlan.id: AND p.projectInfoPlan.id ={projectInfoPlan.id} ~/
+                	/~pfFlag: AND p.personnelFiles is not null ~/
+                	/~caFlag: AND p.contactArchives is not null ~/
+                	/~sortColumn: ORDER BY p.[sortColumn] ~/ 
+            	 ]]>
+            </value>
+        </property>
+    </bean>
+    
+	<!-- 查找晨会 -->
+	 <bean id="meetingDayHQL" parent="abstractHibernate20Adapter">
+	    <property name="hql">
+	        <value>
+	            <![CDATA[
+	              FROM MeetingDay AS m
+	              WHERE 1=1
+	              /~meetingDay.id: AND m.id={meetingDay.id}~/
+	              /~meetingDay.date_start: AND m.date >= {meetingDay.date_start}~/
+	 			  /~meetingDay.date_end: AND m.date <= {meetingDay.date_end}~/
+	              /~meetingDay.theme: AND m.meetingMonth.theme LIKE {meetingDay.theme}~/
+	              /~meetingDay.week: AND m.week = {meetingDay.week}~/
+	              /~personnelFiles.name: AND m.hostperson.name LIKE {personnelFiles.name}~/
+	              /~meetingMonth.id: AND m.meetingMonth.id={meetingMonth.id}~/
+	              /~sortColumn: ORDER BY m.[sortColumn] ~/
+	            ]]>  
+	        </value>
+	    </property>
+	</bean> 
+	<bean id="meetingMonthHQL" parent="abstractHibernate20Adapter">
+	    <property name="hql">
+	        <value>
+	            <![CDATA[
+	              FROM MeetingMonth AS p
+	              WHERE 1=1
+	              /~meetingMonth.id: AND p.id={meetingMonth.id}~/
+	              /~meetingMonth.date: AND p.date LIKE {meetingMonth.date}~/
+	              /~meetingMonth.theme: AND p.theme LIKE {meetingMonth.theme}~/
+	              /~personnelFiles.name: AND p.publisher.name LIKE {personnelFiles.name}~/
+	              /~sortColumn: ORDER BY p.[sortColumn] [sortDirection]~/
+	            ]]>  
+	        </value>
+	    </property>
+	</bean> 
+    
+     <!-- 查找参与人-->
+    <bean id="replyWeeklyHQL" parent="abstractHibernate20Adapter">
+    	<property name="hql">
+            <value>
+            	<![CDATA[
+            		FROM Reply AS rw WHERE 1=1  
+					/~weekly.id: AND rw.weeklyId.id={weekly.id} ~/
+					/~user.id: AND rw.user.id={user.id} ~/
+					/~sortColumn: ORDER BY rw.[sortColumn] [sortDirection] ~/
+            	 ]]>
+            </value>
+        </property>
+    </bean>
 	
+	<!-- 项目状态 -->
+    <bean id="projectStateHQL" parent="abstractHibernate20Adapter">
+    	<property name="hql">
+            <value>
+            	<![CDATA[
+            		FROM ProjectState AS ps
+                	WHERE 1=1
+                	/~projectInfo.id: AND ps.projectInfo.id ={projectInfo.id} ~/
+                	/~sortColumn: ORDER BY ps.[sortColumn] [sortDirection]~/ 
+            	 ]]>
+            </value>
+        </property>
+    </bean>
 </beans>
 
 

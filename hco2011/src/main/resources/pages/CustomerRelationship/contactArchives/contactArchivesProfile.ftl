@@ -67,7 +67,7 @@
 		</td>
     </tr>
      <tr>
-      <!--所属公司-->
+      <!--客户名称-->
 	    <td align="right" valign="top">
 	       		<span class="required">*</span>
 	       		<label class="label">${action.getText('contactArchives.customerName')}:</label>
@@ -95,7 +95,15 @@
      <!--称呼-->
 	    <@ww.textfield label="'${action.getText('contactArchives.honorific')}'" name="'contactArchives.honorific'" value="'${contactArchives.honorific?if_exists}'" cssClass="'underline'"  />
 			<!--行业-->
-   		<@ww.textfield label="'${action.getText('contactArchives.industry')}'" name="'contactArchives.industry'" value="'${contactArchives.industry?if_exists}'" cssClass="'underline'" required="true" disabled="true"/>
+   		<@ww.textfield label="'${action.getText('contactArchives.industry')}'" name="'contactArchives.industry'" value="'${contactArchives.industry?if_exists}'" cssClass="'underline'" required="true" readonly="true"/>
+    	<script>
+    		<#if contactArchives.customerName?exists>
+    			var industry =getObjByName('contactArchives.industry').value;
+    			if(industry==''){
+	    			getObjByName('contactArchives.industry').value ='${contactArchives.customerName.industry.name?if_exists}'
+    			}
+    		</#if>
+    	</script>
     </tr>
      <tr>
      <!--所属项目-->
@@ -222,7 +230,7 @@
 </@ww.form>
 
 <script type="text/javascript">
-	window.onload=function(){
+//	window.onload=function(){
 		<#if contactArchives.sex==false>
 			getObjByName('man').checked=true;
 		<#else>
@@ -235,7 +243,7 @@
 			getObjByName('leader.id').value='#{contactArchives.leader.id}';
 			getObjByName('leader').value='${contactArchives.leader.name?if_exists}';
 		</#if>
-	}
+//	}
 	
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){

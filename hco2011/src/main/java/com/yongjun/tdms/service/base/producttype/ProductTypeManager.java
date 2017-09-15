@@ -2,8 +2,10 @@ package com.yongjun.tdms.service.base.producttype;
 
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.tdms.model.base.produttype.ProductType;
+
 import java.util.Collection;
 import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 public abstract interface ProductTypeManager
@@ -37,6 +39,7 @@ public abstract interface ProductTypeManager
   public abstract List<ProductType> getPT(ProductType paramProductType, List<ProductType> paramList, String paramString);
 
   public abstract List<ProductType> getAllProductTypeByNull(String paramString);
+  public List<ProductType> loadByBtype(String btype) throws DaoException ;
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

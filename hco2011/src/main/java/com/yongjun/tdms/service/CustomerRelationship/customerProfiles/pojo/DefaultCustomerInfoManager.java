@@ -3,8 +3,11 @@ package com.yongjun.tdms.service.CustomerRelationship.customerProfiles.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.yongjun.pluto.service.codevalue.CodeValueManager;
+import com.yongjun.tdms.service.base.org.DepartmentManager;
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.pluto.model.codevalue.CodeValue;
+import com.yongjun.pluto.model.security.Department;
 import com.yongjun.pluto.model.security.User;
 import com.yongjun.pluto.sequence.service.SequenceManager;
 import com.yongjun.pluto.service.impl.BaseManager;
@@ -21,13 +24,16 @@ public class DefaultCustomerInfoManager extends BaseManager implements CustomerI
 	private final SequenceManager ciSequenceManager;
 	private final UserManager userManager;
 	private ContactArchivesDao contactArchivesDao;
-
+	private final CodeValueManager codeValueManager;
+    private final DepartmentManager departmentManager;
 	public DefaultCustomerInfoManager(CustomerInfoDao customerInfoDao, SequenceManager ciSequenceManager,
-			UserManager userManager,ContactArchivesDao contactArchivesDao) {
+			UserManager userManager,ContactArchivesDao contactArchivesDao,CodeValueManager codeValueManager,DepartmentManager departmentManager) {
 		this.customerInfoDao = customerInfoDao;
 		this.ciSequenceManager = ciSequenceManager;
 		this.userManager = userManager;
 		this.contactArchivesDao = contactArchivesDao;
+		this.codeValueManager=codeValueManager;
+		this.departmentManager=departmentManager;
 	}
 
 	public void storeCustomerInfo(CustomerInfo ci) {
@@ -278,21 +284,35 @@ public class DefaultCustomerInfoManager extends BaseManager implements CustomerI
 		// }
 		// return cList;
 	}
-	public void saveCustomerInfoByImp(List<CustomerInfo> customerInfos) {
+	public void saveCustomerInfoByImp(List<CustomerInfo> customerInfos) throws DaoException {
 		
 		if(customerInfos!=null&&customerInfos.size()>0){
 			for(CustomerInfo cu:customerInfos){
-				if(cu.getCode()==null){
+				CustomerInfo cuTmep=null;
+				if(cu.getCode()==null||cu.getCode().equals("")){
 					cu.setCode((String)this.ciSequenceManager.generate("-"));
 				}
-					this.customerInfoDao.storeCustomerInfo(cu);//插入客户档案
+				   List list = this.customerInfoDao.loadByKey("name", cu.getName());
+				   if(list!=null&&list.size()>0){
+//					   cu=(CustomerInfo) list.get(0);
+					   cuTmep =(CustomerInfo) list.get(0);
+				   }else {
+					   this.customerInfoDao.storeCustomerInfo(cu);//插入客户档案
+				 }
+				   
 					ContactArchives caArchives  = new ContactArchives();
 					setInfoIntegrity(cu);
 					caArchives.setName(cu.getKeyContacter());
-					caArchives.setCustomerName(cu);
 					caArchives.setMobilePhone(cu.getMobilePhone());
-					caArchives.setCustomerInfoCode(cu.getCode());
-					caArchives.setCustName(cu.getName());
+					if(list!=null&&list.size()>0){
+					caArchives.setCustomerName(cuTmep);
+					caArchives.setCustomerInfoCode(cuTmep.getCode());
+					caArchives.setCustName(cuTmep.getName());
+					}else {
+						caArchives.setCustomerName(cu);
+						caArchives.setCustomerInfoCode(cu.getCode());
+						caArchives.setCustName(cu.getName());
+					}
 					CodeValue cd = new CodeValue();
 					cd.setId(170l);
 					caArchives.setType(cd);//熟悉程度默认为一般的
@@ -305,5 +325,33 @@ public class DefaultCustomerInfoManager extends BaseManager implements CustomerI
 		
 		
 		
-	} 
+	}
+
+	public List<Department> getAllClassification(String Btype) {
+		try {
+		List<Department>mpList = new ArrayList<Department>();
+		Long bt=Long.parseLong(Btype);
+		List<CodeValue> vs =this.codeValueManager.loadByKey("id", bt.longValue());
+		CodeValue c =vs.get(0);
+		if(c.getCode().equals("21001")){
+			mpList = departmentManager.loadByKey("parentDept.name","军品销售");
+		}
+		if(c.getCode().equals("21002")){
+			mpList = departmentManager.loadByKey("parentDept.name","民品销售");
+		}
+		 
+		 List<Department> departmentList = new ArrayList<Department>();
+		 for(Department d: mpList){
+			 Department de = new Department();
+			 de.setId(d.getId());
+			 de.setName(d.getName());
+			 departmentList.add(de);
+		 }
+		return departmentList;
+	} catch (Exception e) {
+		e.printStackTrace();
+		return new ArrayList();
+	}
 }
+	} 
+

@@ -51,6 +51,12 @@
 		<constructor-arg index="10">
 			<ref bean="dataManager" />
 		</constructor-arg>
+		<constructor-arg index="11">
+			<ref bean="projectInfoPersonnelsManager" />
+		</constructor-arg>
+		<constructor-arg index="12">
+			<ref bean="groupManager" />
+		</constructor-arg>
 	</bean>
 	<bean id="listUsersAction" parent="valueListAction"
 		class="com.yongjun.tdms.presentation.webwork.action.security.ListUsersAction"
@@ -119,6 +125,9 @@
 		scope="prototype">
 		<constructor-arg index="0">
 			<ref bean="groupManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="groupAddManager" />
 		</constructor-arg>
 	</bean>
 	<bean id="editCommunicationGroupAction"
@@ -192,6 +201,16 @@
 			<ref bean="dataManager" />
 		</constructor-arg>
 	</bean>
+	<bean id="listDataAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.workspace.data.ListDataAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="dataManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="personnelFilesManager" />
+		</constructor-arg>
+	</bean>
 	
 	
 	<!-- 提醒管理 -->
@@ -249,6 +268,12 @@
 		<constructor-arg index="4">
 			<ref bean="projectInfoProductManager" />
 		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="personnelFilesManager" />
+		</constructor-arg>
 	</bean>
 	<bean id="editProductsAction"
 		class="com.yongjun.tdms.presentation.webwork.action.base.products.EditProductsAction"
@@ -276,6 +301,9 @@
 		</constructor-arg>
 		<constructor-arg index="7">
 			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="8">
+			<ref bean="customerInfoManager" />
 		</constructor-arg>
 	</bean>
 	<bean id="listSupplierProductsAction" parent="valueListAction"
@@ -460,6 +488,15 @@
 		<constructor-arg index="4">
 			<ref bean="projectPartnerManager" />
 		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="personnelFilesManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="projectInfoContractManager" />
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="groupManager" />
+		</constructor-arg>
 	</bean>
 	<bean id="editContactArchivesAction"
 		class="com.yongjun.tdms.presentation.webwork.action.CustomerRelationship.contactArchives.EditContactArchivesAction"
@@ -514,6 +551,15 @@
 		<constructor-arg index="2">
 			<ref bean="areaManager" />
 		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="personnelFilesManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="groupManager" />
+		</constructor-arg>
 	</bean>
 	<bean id="editCustomerInfoAction"
 		class="com.yongjun.tdms.presentation.webwork.action.CustomerRelationship.customerProfiles.EditCustomerInfoAction"
@@ -545,6 +591,9 @@
 		<constructor-arg index="8">
 			<ref bean="personnelFilesToUserManager" />
 		</constructor-arg>
+		<constructor-arg index="9">
+			<ref bean="departmentManager" />
+		</constructor-arg>
 	</bean>
 	<bean id="toImportCustomerInfoAction"
 		class="com.yongjun.tdms.presentation.webwork.action.CustomerRelationship.customerProfiles.ToImportCustomerInfoAction"
@@ -567,6 +616,9 @@
 		</constructor-arg>
 		<constructor-arg index="4">
 			<ref bean="personnelFilesManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="departmentManager" />
 		</constructor-arg>
 	</bean>
 	<!-- 咨询登记管理 -->
@@ -618,6 +670,12 @@
 		</property>
 		<constructor-arg index="0">
 			<ref bean="userManager"/>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="groupManager"/>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="projectInfoPersonnelsManager"/>
 		</constructor-arg>
 	</bean>
 	
@@ -776,6 +834,24 @@
 		<constructor-arg index="9">
 			<ref bean="productsManager"/>
 		</constructor-arg>
+		<constructor-arg index="10">
+			<ref bean="expenseFormManager"/>
+		</constructor-arg>
+		<constructor-arg index="11">
+			<ref bean="paymentorderManager"/>
+		</constructor-arg>
+		<constructor-arg index="12">
+			<ref bean="onTheRoadBillManager"/>
+		</constructor-arg>
+		<constructor-arg index="13">
+			<ref bean="overTimeBillManager"/>
+		</constructor-arg>
+		<constructor-arg index="14">
+			<ref bean="leaveBillManager"/>
+		</constructor-arg>
+		<constructor-arg index="15">
+			<ref bean="billingRecordManager"/>
+		</constructor-arg>
 	</bean>
 	<bean id="editApplicationDocAction"
 		class="com.yongjun.tdms.presentation.webwork.action.accessory.EditAccessoryAction" 
@@ -809,6 +885,24 @@
 		</constructor-arg>
 		<constructor-arg index="9">
 			<ref bean="productsManager"/>
+		</constructor-arg>
+		<constructor-arg index="10">
+			<ref bean="expenseFormManager"/>
+		</constructor-arg>
+		<constructor-arg index="11">
+			<ref bean="paymentorderManager"/>
+		</constructor-arg>
+		<constructor-arg index="12">
+			<ref bean="onTheRoadBillManager"/>
+		</constructor-arg>
+		<constructor-arg index="13">
+			<ref bean="overTimeBillManager"/>
+		</constructor-arg>
+		<constructor-arg index="14">
+			<ref bean="leaveBillManager"/>
+		</constructor-arg>
+		<constructor-arg index="15">
+			<ref bean="billingRecordManager"/>
 		</constructor-arg>
 		<property name="userManager">
 			<ref bean="userManager"/>
@@ -939,6 +1033,9 @@
 	    <constructor-arg index="5">
 	        <ref bean="codeValueManager"/>
 	    </constructor-arg>
+	     <constructor-arg index="6">
+	        <ref bean="groupManager"/>
+	    </constructor-arg>
 	</bean>
 	<bean id="editDailyAction"
 		class="com.yongjun.tdms.presentation.webwork.action.workReport.daily.EditDailyAction"
@@ -982,14 +1079,17 @@
 		<constructor-arg index="12">
 			<ref bean="dataManager"/>
 		</constructor-arg>
+		<constructor-arg index="13">
+			<ref bean="personnelFilesToUserManager"/>
+		</constructor-arg>
 	</bean>
 	<!-- 日报结束 -->
 	<!-- 日报回复开始  -->
-	<bean id="editReplyDailyAction"
-		class="com.yongjun.tdms.presentation.webwork.action.workReport.daily.reply.EditReplyDailyAction"
+	<bean id="editReplyAction"
+		class="com.yongjun.tdms.presentation.webwork.action.workReport.daily.reply.EditReplyAction"
 		scope="prototype">
 		<constructor-arg index="0">
-			<ref bean="replyDailyManager" />
+			<ref bean="replyManager" />
 		</constructor-arg>
 		<constructor-arg index="1">
 			<ref bean="dailyManager" />
@@ -998,11 +1098,11 @@
 			<ref bean="userManager" />
 		</constructor-arg>
 	</bean>	
-	<bean id="listReplyDailyAction" parent="valueListAction"
-		class="com.yongjun.tdms.presentation.webwork.action.workReport.daily.reply.ListReplyDailyAction"
+	<bean id="listReplyAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.workReport.daily.reply.ListReplyAction"
 		scope="prototype">
 		<constructor-arg index="0">
-			<ref bean="replyDailyManager" />
+			<ref bean="replyManager" />
 		</constructor-arg>
 		<constructor-arg index="1">
 			<ref bean="dailyManager" />
@@ -1113,6 +1213,12 @@
 		</constructor-arg>
 		<constructor-arg index="4">
 			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="groupManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="projectInfoPersonnelsManager" />
 		</constructor-arg>
 	</bean>
 	
@@ -1294,9 +1400,6 @@
 			<ref bean="receviceNoticeManager" />
 		</constructor-arg>
 		<constructor-arg index="4">
-			<ref bean="receviceNoticeDao" />
-		</constructor-arg>
-		<constructor-arg index="5">
 			<ref bean="codeValueManager" />
 		</constructor-arg>
 	</bean>
@@ -1388,6 +1491,21 @@
 		<constructor-arg index="5">
 			<ref bean="workflowCaseManager" />
 		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="projectInfoManager" />
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="contractManagementManager" />
+		</constructor-arg>
+		<constructor-arg index="8">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="9">
+			<ref bean="eventTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="10">
+			<ref bean="groupManager" />
+		</constructor-arg>
 	</bean>
 	
 	<!-- 公司目标管理 -->
@@ -1442,6 +1560,21 @@
 		<constructor-arg index="5">
 			<ref bean="workflowCaseManager" />
 		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="projectInfoManager" />
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="contractManagementManager" />
+		</constructor-arg>
+		<constructor-arg index="8">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="9">
+			<ref bean="eventTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="10">
+			<ref bean="groupManager" />
+		</constructor-arg>
 	</bean>
 	
 	<!-- 请假/调休 gliang2011-2-21-->
@@ -1480,6 +1613,15 @@
 		</constructor-arg>
 		<constructor-arg index="6">
 			<ref bean="workingCycleManager" />
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="8">
+			<ref bean="eventTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="9">
+			<ref bean="groupManager" />
 		</constructor-arg>
 	</bean>
 	
@@ -2044,6 +2186,18 @@
 		<constructor-arg index="2">
 			<ref bean="contactToHistoryManager" />
 		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="personnelFilesManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="groupManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="projectInfoPersonnelsManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="userManager" />
+		</constructor-arg>
 	</bean>
 	<bean id="editContractManagementAction"
 		class="com.yongjun.tdms.presentation.webwork.action.customercontract.contractmanagement.EditContractManagementAction" scope="prototype">
@@ -2093,7 +2247,33 @@
 			<ref bean="dataManager"/>
 		</constructor-arg>
 	</bean>
-	
+	<!-- 导入产品 -->
+	<bean id="toImportProductAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.products.ToImportProductAction"
+		scope="prototype">
+	</bean>
+	<bean id="importProductAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.products.ImportProductAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="productsManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="areaManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="personnelFilesManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="productTypeManager" />
+		</constructor-arg>
+	</bean>
 	
 	
 	<!--产品明细 -->
@@ -2434,6 +2614,15 @@
 		<constructor-arg index="6">
 			<ref bean="contractManagementManager" />
 		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="8">
+			<ref bean="eventTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="9">
+			<ref bean="personnelFilesToUserManager" />
+		</constructor-arg>
 	</bean>
 	
 	<!-- 付款单 -->
@@ -2486,6 +2675,9 @@
 		</constructor-arg>
 		<constructor-arg index="11">
 			<ref bean="personnelFilesToUserManager" />
+		</constructor-arg>
+		<constructor-arg index="12">
+			<ref bean="customerInfoManager" />
 		</constructor-arg>
 	</bean>
 	<!-- 付款明细 -->
@@ -2695,6 +2887,12 @@
 		</constructor-arg>
 		<constructor-arg index="3">
 			<ref bean="userManager"/>
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="projectInfoPersonnelsManager"/>
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="groupManager"/>
 		</constructor-arg>
 	</bean>
 	<bean id="ListProjectByCusAction" parent="valueListAction" class="com.yongjun.tdms.presentation.webwork.action.project.ListProjectByCusAction" scope="prototype">
@@ -3008,6 +3206,15 @@
 		<constructor-arg index="4">
 			<ref bean="userManager"/>
 		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="eventNewManager"/>
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="eventTypeManager"/>
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="personnelFilesToUserManager"/>
+		</constructor-arg>
 	</bean>
 	
 	<bean id="editProductsPersonAction" class="com.yongjun.tdms.presentation.webwork.action.base.products.productsPerson.EditProductsPersonAction" scope="prototype">
@@ -3126,6 +3333,9 @@
 		<constructor-arg index="4">
 			<ref bean="fileTransportManager"/>
 		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="projectInfoPlanManager"/>
+		</constructor-arg>
 	</bean>
 	
 	<bean id="listContractStateAction" parent="valueListAction" class="com.yongjun.tdms.presentation.webwork.action.customercontract.contractmanagement.state.ListContractStateAction" scope="prototype">
@@ -3140,8 +3350,108 @@
 		</constructor-arg>
 	</bean>
 	
+		<!-- 参与人 -->
+	<bean id="editParticipantAction" class="com.yongjun.tdms.presentation.webwork.action.CustomerRelationship.participant.EditParticipantAction" scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="participantManager"/>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="contactArchivesManager"/>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="personnelFilesManager"/>
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="backVisitManager"/>
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="projectInfoPlanManager"/>
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="userManager"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listParticipantAction" parent="valueListAction" class="com.yongjun.tdms.presentation.webwork.action.CustomerRelationship.participant.ListParticipantAction" scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="participantManager"/>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="backVisitManager"/>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="projectInfoPlanManager"/>
+		</constructor-arg>
+	</bean>
 	
 	<bean id="listWeekAction" parent="valueListAction" class="com.yongjun.tdms.presentation.webwork.action.workReport.week.ListWeekAction" scope="prototype">
+	</bean>
+	
+	<!-- 早会 -->
+	<bean id="listMeetingDayAction" parent="valueListAction" class="com.yongjun.tdms.presentation.webwork.action.workReport.meeting.ListMeetingDayAction" scope="prototype">
+	</bean>
+	
+	<bean id="listMeetingMonthAction" parent="valueListAction" class="com.yongjun.tdms.presentation.webwork.action.workReport.meeting.ListMeetingMonthAction" scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="meetingMonthManager"/>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="meetingDayManager"/>
+		</constructor-arg>
+		
+	</bean>
+	
+	<bean id="editMeetingAction"  class="com.yongjun.tdms.presentation.webwork.action.workReport.meeting.EditMeetingAction" scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="personnelFilesManager"/>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="groupManager"/>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="meetingDayManager"/>
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="userManager"/>
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="meetingMonthManager"/>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 周计划回复 -->
+	<bean id="listReplyWeeklyAction" parent="valueListAction" class="com.yongjun.tdms.presentation.webwork.action.workReport.weekly.reply.ListReplyWeeklyAction" scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="replyWeeklyManager"/>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="weeklyManager"/>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 项目状态 -->
+	<bean id="listProjectStateAction" parent="valueListAction" class="com.yongjun.tdms.presentation.webwork.action.project.state.ListProjectStateAction" scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="projectStateManager"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="editProjectStateAction" class="com.yongjun.tdms.presentation.webwork.action.project.state.EditProjectStateAction" scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="projectStateManager"/>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="projectInfoManager"/>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager"/>
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="projectInfoPlanManager"/>
+		</constructor-arg>
 	</bean>
 	
 </beans>

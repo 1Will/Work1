@@ -17,6 +17,8 @@ public abstract interface BackVisitManager
   public abstract List<BackVisit> loadAllBackVisit(Long[] paramArrayOfLong);
 
   public abstract List<BackVisit> loadAllBackVisits();
+  
+  public abstract List<BackVisit> loadBackVisitByPj(String hqlWord);
 
   public abstract void deleteBackVisit(BackVisit paramBackVisit);
 

@@ -20,13 +20,16 @@
 /*     */ import com.yongjun.tdms.service.base.org.DepartmentManager;
 /*     */ import com.yongjun.tdms.service.personnelFiles.leavepersonnelfiles.LeavePersonManager;
 /*     */ import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
+
 /*     */ import java.io.PrintStream;
 /*     */ import java.text.SimpleDateFormat;
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.Arrays;
 /*     */ import java.util.Date;
 /*     */ import java.util.List;
+
 /*     */ import javax.servlet.http.HttpServletRequest;
+
 /*     */ import org.apache.commons.logging.Log;
 /*     */ 
 /*     */ public class EditPersonnelFileAction extends PrepareAction
@@ -117,6 +120,9 @@
 /*     */ 
 /* 185 */     if (hasId("personnelFile.workway")) {
 /* 186 */       this.personnelFile.setWorkway(this.codeValueManager.loadCodeValue(getId("personnelFile.workway")));
+/*     */     }
+				if (hasId("businessType.id")) {
+/* 186 */       this.personnelFile.setBusinessType(this.codeValueManager.loadCodeValue(getId("businessType.id")));
 /*     */     }
 /* 185 */     if (hasId("personnelFile.superiorLeader")) {
 /* 186 */       this.personnelFile.setSuperiorLeader(this.personnelFilesManager.loadPersonnel(getId("personnelFile.superiorLeader")));
@@ -412,6 +418,25 @@
 /*     */   public void setPersonnelFile(PersonnelFiles personnelFile) {
 /* 537 */     this.personnelFile = personnelFile;
 /*     */   }
+			public List<CodeValue> getAllBusinessType() {
+				try {
+					List companyNatures = new ArrayList();
+		String[] keys={"code","name"};
+		String[] values={"210","客户属性"};
+		List one =this.codeValueManager.loadByKeyArray(keys, values);// this.codeValueManager.loadByKey("code", Long.valueOf("210"));
+		
+		if ((null != one) && (one.size() > 0)) {
+			List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
+			if ((null != list) && (list.size() > 0)) {
+				companyNatures.addAll(list);
+			}
+		}
+		return companyNatures;
+	} catch (Exception e) {
+		e.printStackTrace();
+		return new ArrayList();
+	}
+}
 /*     */ 
 /*     */   public List<Institution> getAllInsts()
 /*     */   {

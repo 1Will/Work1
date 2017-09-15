@@ -15,6 +15,7 @@ public class BillingRecord extends BaseInfoEntity {
 	private CustomerInfo customerInfo;
 	private ContractManagement contractManagement;
 	private ContactArchives contactArchives;
+	private String myCode;
 	private String code;
 	private String invoiceTitle;
 	private Date billingTime;
@@ -28,6 +29,8 @@ public class BillingRecord extends BaseInfoEntity {
 	private long submitNum=0;
 	private double lastSubmitMoney;
 	private CodeValue batch;
+	private String isPay;
+	private String payCode;
 
 	public Date getBillingTime() {
 		return this.billingTime;
@@ -170,6 +173,30 @@ public class BillingRecord extends BaseInfoEntity {
 
 	public void setLastSubmitMoney(double lastSubmitMoney) {
 		this.lastSubmitMoney = lastSubmitMoney;
+	}
+
+	public String getIsPay() {
+		return isPay;
+	}
+
+	public void setIsPay(String isPay) {
+		this.isPay = isPay;
+	}
+
+	public String getPayCode() {
+		return payCode;
+	}
+
+	public void setPayCode(String payCode) {
+		this.payCode = payCode;
+	}
+
+	public String getMyCode() {
+		return myCode;
+	}
+
+	public void setMyCode(String myCode) {
+		this.myCode = myCode;
 	}
 	
 }

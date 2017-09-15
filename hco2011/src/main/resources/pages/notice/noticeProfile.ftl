@@ -19,6 +19,16 @@
             <td style="VERTICAL-ALIGN:top;text-align:left" colspan="4">
             	<label class="label">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp收件人:</label>
 				<select name="availableUser.id" multiple size="6" style="width:450px"></select>
+				 <#if sendNotice.users?exists>
+				 <script>
+					var obj = getObjByName("availableUser.id");
+					var users = eval("${usersJson?if_exists}");
+		            for (var i=0; i<users.length; i++) {
+		            	var opt = new Option(users[i].name, users[i].id);
+				    	eval("obj.options[obj.options.length]=opt");
+		            }
+				 </script>
+				 </#if>
 			</td>
 		  </tr>
      	<tr>
@@ -62,17 +72,18 @@
 	     <tr>
 	     <td>
 	     </td>
-	     <td style="VERTICAL-ALIGN:top;text-align:left" colspan="3">
-	     <#if (sendNotice.users.size()>0)>
-	     <select name="availableUser.id" multiple size="10" style="display:none">
-	      <#list sendNotice.users as sendUser>
-                    <option value="#{sendUser.id}">${sendUser.name}</option>
-          </#list>   
-         </select>
-         <#else>
-            <select name="availableUser.id" multiple size="5" style="display:none"> 
-           </select>
-	     </#if>
+		<td style="VERTICAL-ALIGN:top;text-align:left" colspan="3">
+			<#if (sendNotice.users.size()>0)>
+				<select name="availableUser.id" multiple size="10" style="display:none">
+					<#list sendNotice.users as sendUser>
+						<option value="#{sendUser.id}">${sendUser.name}</option>
+					</#list>   
+				</select>
+			<#else>
+				<select name="availableUser.id" multiple size="5" style="display:none"></select>
+			</#if>
+		</td>
+	      </tr>
 	      <tr>
 	      <@select 
         		label="${action.getText('sendNotice.noticeType')}" 
@@ -176,7 +187,7 @@ window.onload = function(){
   //从用户选择获得用户名和手机号码
 	function selectChooseuser(){
 		var url = '${req.contextPath}/userSelector/userBytelphoneSelector.html';
-        popupModalDialog(url, gw, gh, choose_user_information);
+        popupModalDialog(url, 800, 600, choose_user_information);
         return false;
 	}   
     function choose_user_information(reslut){
@@ -197,7 +208,7 @@ window.onload = function(){
 	//从用户组选择获得手机号码和用户名
   	function selectchooseGroup(){
 		var url = '${req.contextPath}/groupSelector/groupSelector.html';
-        popupModalDialog(url, gw, gh, choose_group_information);
+        popupModalDialog(url, 800, 600, choose_group_information);
         return false;
   	}
 	function choose_group_information(result){

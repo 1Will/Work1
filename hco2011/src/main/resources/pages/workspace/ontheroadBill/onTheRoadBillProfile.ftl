@@ -25,6 +25,19 @@
 <@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 	<@ww.token name="saveOnTheRoadBillToken"/>
 	<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
+	<@ww.hidden name="'isSaved'" value=""/>
+	
+	<#if onTheRoadBill.contractManagement?exists>
+		<@ww.hidden  name="'contractManagement.id'" value="#{onTheRoadBill.contractManagement.id?if_exists}"/>
+	<#else>
+		<@ww.hidden  name="'contractManagement.id'" value=""/>
+	</#if>
+	<#if onTheRoadBill.projectInfo?exists>
+		<@ww.hidden name="'projectInfo.id'" value="#{onTheRoadBill.projectInfo.id?if_exists}"/>
+	<#else>
+		<@ww.hidden  name="'projectInfo.id'" value=""/>
+	</#if>
+	
     <@inputTable>
     	<#if onTheRoadBill.id?exists>
     		<@ww.hidden name="'onTheRoadBill.id'" value="#{onTheRoadBill.id?if_exists}"/>
@@ -45,6 +58,37 @@
 						getObjByName("onTheRoadBill.createDate").value = date.format("yyyy-MM-dd");
 					}
 			</script>
+		</tr>
+		<tr>
+			<#-- 以下td为添加内容(项目名称) -->
+			<td align="right" valign="top">
+				<span class="required">*</span>
+	       		<label class="label">${action.getText('项目名称')}:</label>
+	     	</td>
+			<td>
+				<#if onTheRoadBill.projectInfo?exists>
+					<input type="text" id="projectName" name="projectName" class="underline"  value="${onTheRoadBill.projectInfo.name?if_exists}" maxlength="140" size="20" disabled="true"/>
+				<#else>
+					<input type="text" id="projectName"  name="projectName" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+				</#if>
+					<a onClick="projectName_OpenDialog();">
+							<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+					</a>
+			</td>
+	     	
+	     	<td align="right" valign="top">
+	       		<label class="label">${action.getText('合同名称')}:</label>
+	     	</td>
+	     	<td>
+	     		<#if onTheRoadBill.contractManagement?exists>
+		   			<input type="text" name="onTheRoadBill.contractManagement" class="underline"  value="${onTheRoadBill.contractManagement.contractName?if_exists}" maxlength="140" size="20" disabled="true"/>
+				<#else>
+					<input type="text" name="onTheRoadBill.contractManagement" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+				</#if>
+					<a onClick="contractManagement_OpenDialog();">
+						<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+					</a>
+			</td>
 		</tr>
 		<tr>
 			<#if onTheRoadBill.applyPerson?exists>
@@ -121,6 +165,7 @@
 				<textarea name="onTheRoadBill.betreffzeile" rows="4" cols="150" >${onTheRoadBill.betreffzeile?if_exists}</textarea>
 			</td>
 		</tr>
+		<#--
 		<tr>
 			<td align="right" valign="top">
 	       		<label class="label">${action.getText('onTheRoadBill.failReason')}:</label>
@@ -129,11 +174,29 @@
 				<textarea name="onTheRoadBill.failReason" rows="4" cols="150" readonly="true">${onTheRoadBill.failReason?if_exists}</textarea>
 			</td>
 		</tr>
+		-->
     </@inputTable>
     <@buttonBar>
    	    <#if !(action.isReadOnly())>
-			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 		</#if>
+	    
+	    <#if onTheRoadBill.isSaved?exists &&onTheRoadBill.isSaved=='0' >
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+	    <#else>
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+	    </#if>
+		
+				<#-- 继续新建按钮   -->
+		<#if onTheRoadBill.id?exists>
+			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/onTheRoadBill/editOnTheRoadBill.html"/>
+		<#else>
+			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/onTheRoadBill/editOnTheRoadBill.html"/>
+				<script language="JavaScript" type="text/JavaScript"> 
+				getObjByName("newNext").disabled="true";
+				</script>
+		</#if>
+		
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/onTheRoadBill/listOnTheRoadBill.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
     </@buttonBar>
 
@@ -155,6 +218,41 @@
 		</#if>
 	}
 	
+		//合同管理模态窗体
+	function contractManagement_OpenDialog(){
+		var pjId = getObjByName("projectInfo.id").value;
+		var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?project.id="+pjId;
+	   	popupModalDialog(url, 800, 600, creatorSelector3Handler);
+	 }
+	 //获得模态窗体返回值
+	function creatorSelector3Handler(result) {
+		if (null != result) {
+			getObjByName("contractManagement.id").value = result[0];
+	   		getObjByName('onTheRoadBill.contractManagement').value=result[1];
+		}
+	}
+	 //项目名称查询模态窗体(添加)
+	function projectName_OpenDialog(){
+	   		var url = "${req.contextPath}/projectInfo/listProjectInfo.html?backVisitCheckBox=backVisitCheckBox";
+	   		popupModalDialog(url, 800, 600, creatorSelector_Handler);
+	 }
+	 //项目名称-获得模态窗体返回值
+	function creatorSelector_Handler(result) {
+		if (null != result) {
+			getObjByName("projectInfo.id").value=(result[0]);
+			getObjByName("projectName").value=(result[1]);
+		}
+	}
+	
+	function submitt(){
+		getObjByName('isSaved').value="1";
+		return storeValidation();
+    }
+    
+    function savee(){
+		getObjByName('isSaved').value="0";
+     	return storeValidation();
+    }
 	
 	//保存前给隐藏域赋值和验证字段
 	function storeValidation(){
@@ -173,6 +271,12 @@
 	       		getObjByName('onTheRoadBill.createDate').focus();
 				return false;
 			}
+		}
+		
+		if(getObjByName('projectName').value==''){
+			alert("${action.getText('请选择项目')}");
+			getObjByName('projectName').focus();
+			return false;
 		}
 		if(getObjByName('onTheRoadBill.applyPerson').value==''){
 			alert("${action.getText('onTheRoadBill.applyPerson.requiredstring')}");
@@ -227,3 +331,11 @@
 	}
 </script>
 </@htmlPage>
+<#if onTheRoadBill.id?exists>
+<ul id="beautytab">
+	<li>
+		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?onTheRoadBill.id=#{onTheRoadBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
+	</li>
+</ul>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/applicationDocManager/listApplicationDoc.html?onTheRoadBill.id=#{onTheRoadBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="60%"/>
+</#if>

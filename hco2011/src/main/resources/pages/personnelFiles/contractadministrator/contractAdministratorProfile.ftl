@@ -283,7 +283,7 @@
            	 <#if !(action.isReadOnly())>
 	         	<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return validate();'"/>
 	         </#if>
-	         <@redirectButton value="${action.getText('back')}" url="listPerson.html"/>
+	         <@redirectButton value="${action.getText('back')}" url="listContractAdministrator.html"/>
          </@buttonBar>	
      </@ww.form>
 

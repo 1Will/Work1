@@ -3,20 +3,22 @@
 	<@ww.form name="'listFrom'" namespace="'/financialManagement'" action="'searchFinancialManagement'" method="'post'">
 		<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 		<@ww.token name="searchFinancialManagementToken"/>
-   <@list title="${action.getText('financialManagement.list.title')}" 
+   <@list title="" 
             includeParameters="financialManagement.saleman|financialManagement.code|projectInfo.name|financialManagement.payee|financialManagement.contractManagement|financialManagement.collectionDate_start|financialManagement.collectionDate_end
         	|customerInfo.code|financialManagement.customerInfo|readOnly|onlyInvalid|onlyValid" 
         	fieldMap="like:financialManagement.saleman|financialManagement.code|projectInfo.name|financialManagement.payee|financialManagement.contractManagement|customerInfo.code|financialManagement.customerInfo
         	,date:financialManagement.collectionDate_start|financialManagement.collectionDate_end">
             
-            <@vcolumn title="${action.getText('financialManagement.code')}" property="code" sortable="desc">
-                <a href="javascript:financialManagement_OpenDialog('#{object.id}')">${object.code}</a>
-				<@alignLeft/>
-            </@vcolumn>
      <#--
+               
             <@vcolumn title="${action.getText('financialManagement.contractManagement')}" property="contractManagement.contractName" sortable="desc">
             	<@vlh.attribute name="width" value="12%" />
             	<@alignLeft/>
+            </@vcolumn>
+            
+            <@vcolumn title="${action.getText('financialManagement.code')}" property="code" sortable="desc">
+                <a href="javascript:financialManagement_OpenDialog('#{object.id}')">${object.code}</a>
+				<@alignLeft/>
             </@vcolumn>
             
             <@vcolumn title="${action.getText('financialManagement.customerInfo')}" property="customerInfo.name" sortable="desc">
@@ -30,7 +32,8 @@
             </@vcolumn>
       -->      
             <@vcolumn title="${action.getText('financialManagement.batch')}" property="batch.name" sortable="desc">
-            	<@alignRight/>
+            	<a href="javascript:financialManagement_OpenDialog('#{object.id}')">${object.batch.name}</a>
+            	<@alignCenter/>
             </@vcolumn>
             
              <@vcolumn title="${action.getText('financialManagement.sumReceivable')}" property="sumReceivable" sortable="desc">
@@ -60,7 +63,7 @@
             </@vcolumn>
               <@vcolumn title="${action.getText('financialManagement.collectionDate')}" property="collectionDate" format="yyyy-MM-dd" sortable="desc">
               <@vlh.attribute name="width" value="9%" />
-            	<@alignCenter/><#-- attributes="width:110;"-->
+            	<@alignLeft/><#-- attributes="width:110;"-->
             </@vcolumn>
         </@list>
     </@ww.form>

@@ -28,5 +28,12 @@ public abstract interface ProjectInfoPersonnelDao
 	    throws DaoException;
 	  public List<String> loadPersonnelsCodeByProjectInfoId(Long projectInfoId);
 	  public List<String> loadPersonnelsCodeByEnable();
+	  public List<String> loadPersonnelsCodeByType(String code);
+	  /**
+	   * 根据人事档案CODE查询这个人所有的项目
+	   * @param code
+	   * @return
+	   */
+	  public List<Long> loadProjectInfoIdByPersonnel(String code);
 }
 

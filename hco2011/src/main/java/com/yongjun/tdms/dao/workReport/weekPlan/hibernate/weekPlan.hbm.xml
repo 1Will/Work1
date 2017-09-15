@@ -32,6 +32,10 @@
 			<column name="NEXTPLAN" sql-type="NVARCHAR(500)" />
 		</property>
 		
+		<property name="isSaved" type="string">
+			<column name="ISSAVED" not-null="false" sql-type="NVARCHAR(1)" />
+		</property>
+		
 		<many-to-one name="week" class="com.yongjun.tdms.model.workReport.week.Week" lazy="false">
 			<column name="WEEK_ID" not-null="false"/>
 		</many-to-one>
@@ -39,5 +43,10 @@
 		<many-to-one name="user" class="com.yongjun.pluto.model.security.User" lazy="false">
 			<column name="USER_ID" not-null="false"/>
 		</many-to-one>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
 	</class>
 </hibernate-mapping>

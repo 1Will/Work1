@@ -33,7 +33,7 @@
         <@list title="${action.getText('financialManagement.list.title')}" 
             includeParameters="financialManagement.saleman|financialManagement.code|projectInfo.name|financialManagement.payee|financialManagement.contractManagement|financialManagement.collectionDate_start|financialManagement.collectionDate_end
         	|customerInfo.code|financialManagement.customerInfo|readOnly|onlyInvalid|onlyValid" 
-        	fieldMap="like:financialManagement.saleman|financialManagement.code|projectInfo.name|financialManagement.payee|financialManagement.contractManagement|customerInfo.code|financialManagement.customerInfo
+        	fieldMap="like:financialManagement.saleman|financialManagement.code|projectInfo.name|financialManagement.payee|financialManagement.contractManagement|customerInfo.code|financialManagement.customerInfo|
         	,date:financialManagement.collectionDate_start|financialManagement.collectionDate_end">
         	<#if !(action.isReadOnly())>
 	        	<@vlh.checkbox property="id" name="financialManagementIds">
@@ -47,16 +47,19 @@
             </@vcolumn>
            
             <@vcolumn title="${action.getText('financialManagement.contractManagement')}" property="contractManagement.contractName" sortable="desc">
+            	<a href="javascript:contractManagement_OpenDialog(<#if (object.contractManagement?exists)>#{object.contractManagement.id?if_exists}</#if>)"><#if (object.contractManagement?exists)>${object.contractManagement.contractName?if_exists}</#if></a>
             	<@vlh.attribute name="width" value="12%" />
             	<@alignLeft/>
             </@vcolumn>
             
             <@vcolumn title="${action.getText('financialManagement.customerInfo')}" property="customerInfo.name" sortable="desc">
+     			<a href="javascript:customer_OpenDialog(#{object.customerInfo.id?if_exists})" title="完整度：${object.customerInfo.customerInfoIntegrity?if_exists}%; 熟悉程度：${object.customerInfo.customerType.name?if_exists}">${object.customerInfo.name?if_exists}</a>
      			<@vlh.attribute name="width" value="10%" />
      			<@alignLeft/>
             </@vcolumn>
             
             <@vcolumn title="${action.getText('financialManagement.contractManagement.projectInfo.name')}" property="contractManagement.project.name" sortable="desc">
+     			<a href="javascript:editProjectInfo_OpenDialog(<#if (object.contractManagement?exists)>#{object.contractManagement.project.id}</#if>)" ><#if (object.contractManagement?exists)>${object.contractManagement.project.name}</#if></a>
      			<@vlh.attribute name="width" value="10%" />
      			<@alignLeft/>
             </@vcolumn>
@@ -68,12 +71,15 @@
              <@vcolumn title="${action.getText('financialManagement.sumReceivable')}" property="sumReceivable" sortable="desc">
             	<@alignRight/>
             </@vcolumn>
-            <@vcolumn title="${action.getText('financialManagement.trueSum')}" property="trueSum" sortable="desc">
-            	<@alignRight/>
-            </@vcolumn>
+            
             <@vcolumn title="${action.getText('financialManagement.totalSum')}" property="totalSum" sortable="desc">
             	<@alignRight/>
             </@vcolumn>
+            
+            <@vcolumn title="${action.getText('financialManagement.trueSum')}" property="trueSum" sortable="desc">
+            	<@alignRight/>
+            </@vcolumn>
+            
             <@vcolumn title="${action.getText('financialManagement.withoutGotSum')}" property="withoutGotSum" sortable="desc">
             	<@alignRight/>
             </@vcolumn>
@@ -92,7 +98,7 @@
             </@vcolumn>
               <@vcolumn title="${action.getText('financialManagement.collectionDate')}" property="collectionDate" format="yyyy-MM-dd" sortable="desc">
               <@vlh.attribute name="width" value="9%" />
-            	<@alignCenter/><#-- attributes="width:110;"-->
+            	<@alignLeft/><#-- attributes="width:110;"-->
             </@vcolumn>
              
             <#-- 

@@ -29,12 +29,21 @@
              <@vcolumn title="${action.getText('projectInfoPlan.assist')}" property="assist"   >
             <@alignLeft/>
             </@vcolumn>
+            
              <@vcolumn title="${action.getText('projectInfoPlan.startDate')}" property="startDate" sortable="desc"  format="yyyy-MM-dd"  >
             <@alignLeft/>
             </@vcolumn>
              <@vcolumn title="${action.getText('projectInfoPlan.endDate')}" property="endDate" sortable="desc" format="yyyy-MM-dd"  >
             <@alignLeft/>
             </@vcolumn>
+            
+             <@vcolumn title="${action.getText('projectInfoPlan.startFactDate')}" property="startFactDate" sortable="desc"  format="yyyy-MM-dd"  >
+            <@alignLeft/>
+            </@vcolumn>
+             <@vcolumn title="${action.getText('projectInfoPlan.endFactDate')}" property="endFactDate" sortable="desc" format="yyyy-MM-dd"  >
+            <@alignLeft/>
+            </@vcolumn>
+            
              <@vcolumn title="${action.getText('proPlanPercentage')}" property="percentt"   >
             <@alignRight/>
             </@vcolumn>
@@ -53,7 +62,7 @@
 			<@buttonBar>
 				<#if !(action.isReadOnly())>
 					<@vbutton class="button" name="${action.getText('new')}" value="${action.getText('new')}" onclick="editProPlan_OpenDialog();"/>
-					<#assign confirmMessage = "${action.getText('delete.msg')}${action.getText('projectInfoPersonnelsIds.info')}?" />
+					<#assign confirmMessage = "${action.getText('delete.msg')}${action.getText('工作计划')}?" />
 		            <@vsubmit name="'delete'" value="'${action.getText('delete')}'">
 		                <@ww.param name="'onclick'" value="'return confirmDeletes(\"projectInfoPlanIds\", \"${confirmMessage}\");'"/>
 		                <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>

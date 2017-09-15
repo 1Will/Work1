@@ -38,7 +38,7 @@
             </@vcolumn>
            
             <@vcolumn title="${action.getText('expenseForm.applyDate')}" property="applyDate" format="yyyy-MM-dd" sortable="desc">
-     			<@alignCenter/>
+     			<@alignLeft/>
             </@vcolumn>
             
         </@list>

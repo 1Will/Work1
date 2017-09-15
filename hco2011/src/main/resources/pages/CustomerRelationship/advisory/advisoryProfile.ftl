@@ -507,7 +507,7 @@
 							//DWRUtil.selectRange("option1", 0, getObjByName('option1').value.length);
 
 							var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
-							 if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {							 
+							 if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 ) {							 
 								var textRange =getObjByName('advisory.name').createTextRange();//建立文本域
 								textRange.moveStart('character',getObjByName('advisory.name').value.length);//获取文本域右侧文本
 								textRange.collapse(true);//瓦解文本域
@@ -562,7 +562,7 @@
 	 */
 	function myMethod(event){
 		//alert(event.altKey);
-		//alert(event.keyCode);
+		alert(event.keyCode);
 		
 		if(event.keyCode==38){
 			if(getObjByName('show').style.display == "block"){
@@ -609,7 +609,7 @@
   			getObjByName('country.id').style.display="block";
 		}
 	}
-	document.onkeyup = myMethod;
+	//document.onkeyup = myMethod;
 
 	 /**
   	 * 页面点击事件源
@@ -697,7 +697,7 @@
 		getObjByName('advisory.qq').value='';
 //		getObjByName('advisory.advisoryTime').value="";
 	 }
-	window.onload = function () {
+	 //window.onload=function (){
 		//职业简介
 		<#if advisory.id?exists>
 			<#if advisory.enterpriseSynopsis?exists>
@@ -729,10 +729,6 @@
 			</#if>
 		</#if>
 	    
-		<#if advisory.id?exists>
-			document.all.frame.src='${req.contextPath}/applicationDocManager/listApplicationDoc.html?advisory.id=#{advisory.id}&readOnly=${req.getParameter('readOnly')?if_exists}';
-		</#if>
-			
 		//国家
 		<#if advisory.country?exists>
 			getObjByName('country.id').value='${advisory.country.id?if_exists}';
@@ -755,8 +751,7 @@
 		<#if advisory.city?exists>
 			getObjByName('city.id').value='${advisory.city.id?if_exists}';
 		</#if>
-	
-	}
+	//}
 	function storeValidation(){
 		if(getObjByName('show').style.display == "block"){
 			getObjByName('show').style.display="none";
@@ -1039,6 +1034,6 @@
 		<a id="additionalInformation" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?advisory.id=#{advisory.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >附件资料</a>
 	</li>
 </ul>
-<iframe name="frame" frameborder="0.5" src="" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="100%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/applicationDocManager/listApplicationDoc.html?advisory.id=#{advisory.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="40%"/>
 </#if>
 </@htmlPage>

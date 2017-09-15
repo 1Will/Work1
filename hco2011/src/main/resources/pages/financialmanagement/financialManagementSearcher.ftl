@@ -29,15 +29,18 @@
 	</tr>
 	<tr>
 		<@ww.textfield label="'${action.getText('financialManagement.customerInfo')}'" name="'financialManagement.customerInfo'" value="'${req.getParameter('financialManagement.customerInfo')?if_exists}'" cssClass="'underline'"/>
+		<#--
 		<@ww.textfield label="'${action.getText('financialManagement.saleman')}'" name="'financialManagement.saleman'" value="'${req.getParameter('financialManagement.saleman')?if_exists}'" cssClass="'underline'"/>
+		-->
+		
 		<@pp.dateRanger label="'${action.getText('financialManagement.collectionDate')}'" 
  			name="'financialManagement.collectionDate'" 
 		    value="'${req.getParameter('financialManagement.collectionDate_start')?if_exists}|${req.getParameter('financialManagement.collectionDate_end')?if_exists}'"
 			cssClass="'underline'" 
 			maxlength="10"/> 
+		<@ww.textfield label="'${action.getText('financialManagement.payee')}'" name="'financialManagement.payee'" value="'${req.getParameter('financialManagement.payee')?if_exists}'" cssClass="'underline'"/>
 	</tr>
 	<tr>
-		<@ww.textfield label="'${action.getText('financialManagement.payee')}'" name="'financialManagement.payee'" value="'${req.getParameter('financialManagement.payee')?if_exists}'" cssClass="'underline'"/>
 		<@crm_onlySearchInvalid_checkBox />
 	</tr>
 </@inputTable>
@@ -55,4 +58,20 @@
 	    }
 		return true;
     }
+    
+    function contractManagement_OpenDialog(id){
+	   var url = "${req.contextPath}/contractManagement/editContractManagementAction.html?contractManagement.id="+id+"&readOnly=${req.getParameter('readOnly')?if_exists}&popWindowFlag=popWindowFlag";
+	   openNewWindow(url);
+	 }
+	 
+	  //弹出客户档案查询模态窗体
+	function customer_OpenDialog(id){
+	   var url = "${req.contextPath}/customerRelationship/editCustomerInfo.html?customerInfo.id="+id+"&popWindowFlag=popWindowFlag&notNewFlag=notNewFlag";
+	   openNewWindow(url);
+	 }
+	 
+	 function editProjectInfo_OpenDialog(id){
+	   var url= "${req.contextPath}/projectInfo/editProjectInfo.html?projectInfo.id="+id+"&readOnly=${req.getParameter('readOnly')?if_exists}&openFlag=openFlag&notNewFlag=notNewFlag";
+	   openNewWindow(url);
+	 }
 </script>

@@ -33,11 +33,11 @@
         </property>
         
         <many-to-one name="eventType" class="com.yongjun.tdms.model.base.event.EventType" fetch="select" lazy="false">
-            <column name="EVENTTYPE_ID"  />
+            <column name="EVENTTYPE_ID" />
         </many-to-one>
         
         <property name="moreinfo" type="java.lang.String">
-            <column name="MOREINFO" />
+            <column name="MOREINFO" length="500"/>
         </property>
         
         <property name="effectflag" type="java.lang.String">
@@ -57,6 +57,9 @@
         </property>
         <property name="docType" type="java.lang.String">
             <column name="DOCTYPE" />
+        </property>
+        <property name="dealFlag" type="java.lang.String">
+            <column name="DEALFLAG" />
         </property>
 
 	</class>

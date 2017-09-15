@@ -483,8 +483,11 @@
 	</li>
 -->	
 	<li>
+		<a id="replyWeekly" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyTab.html?weekly.id=#{weekly.id?if_exists}' target="frame" >${action.getText('消息回复')}</a>
+	</li>
+	<li>
 		<a id="weekPlanInfo" onclick="activeTab(this);"  href='${req.contextPath}/workReport/listWeekPlanTab.html?weekly.id=#{weekly.id}&week.id=#{weekly.week.id}' target="frame" >${action.getText('项目周计划')}</a>
 	</li>
 </ul>
-<iframe name="frame" frameborder="0.5" src="${req.contextPath}/workReport/listWeekPlanTab.html?weekly.id=#{weekly.id}&week.id=#{weekly.week.id}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="40%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/workReport/listReplyWeekly.html?weekly.id=#{weekly.id?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="40%"/>
 </#if>

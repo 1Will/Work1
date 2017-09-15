@@ -50,26 +50,23 @@ import org.hibernate.Session;
 	 /*    */   public void storeProjectInfoPlan(ProjectInfoPlan ProjectInfoPlan) {
 	 /* 50 */     store(ProjectInfoPlan);
 	 /*    */   }
-	 			public List loadByTeam(String code) {
+	 			public List loadForMyTeam(HashMap map) {
 	 				
 		 /*  54 */     Session session = getSession();
-		 /*  55 */     String hql = "select p.personnelFiles.id ,p.personnelFiles.name ,count(*)  from ProjectInfoPlan p where p.personnelFiles.superiorLeader.code='"+code+"' group by p.personnelFiles.id,p.personnelFiles.name ";
 		 /*     */     try {
-		 /*  57 */       Query query = session.createQuery(hql);
+			           StringBuffer sb = new StringBuffer();
+			           sb.append("from ProjectInfoPlan p where 1=1 ");
+			           if(map.get("code")!=null){
+			        	   sb.append(" and p.personnelFiles.code ='"+map.get("code")+"'");
+			           }
+			           if(map.get("state")!=null){
+			        	   sb.append(" and p.planState.code in ("+map.get("state")+")");
+			           }
+			           sb.append(" order by p.endDate desc");
+		 /*  57 */       Query query = session.createQuery(sb.toString());
 		 /*  58 */       List list = query.list();
-		                 List<Map> mapList = new ArrayList<Map>();
-		                 if(list!=null&&list.size()>0){
-		                	 for(int i=0;i<list.size();i++){
-		                		 Object[] obj =( Object[])list.get(i);
-		                		 HashMap map =new HashMap();
-		                		 map.put("pid", obj[0]);
-		                		 map.put("pname", obj[1]);
-		                		 map.put("num", obj[2]);
-		                		 mapList.add(map);
-		                	 }
-		                 }
 		                
-		 /*  59 */       return mapList;
+		 /*  59 */       return list;
 		 /*     */     } finally {
 		 /*  61 */       releaseSession(session);
 		 /*     */     }

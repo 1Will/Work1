@@ -2,6 +2,7 @@ package com.yongjun.tdms.dao.backvisit;
 
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.tdms.model.backvisit.BackVisit;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -14,6 +15,8 @@ public abstract interface BackVisitDao
   public abstract List<BackVisit> loadAllBackVisit(Long[] paramArrayOfLong);
 
   public abstract List<BackVisit> loadAllBackVisits();
+  
+  public List<BackVisit> loadBackVisitByPj(String hqlWord);
 
   public abstract void deleteBackVisit(BackVisit paramBackVisit);
 

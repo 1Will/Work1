@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.pluto.model.codevalue.CodeValue;
+import com.yongjun.pluto.model.security.Department;
 import com.yongjun.pluto.service.codevalue.CodeValueManager;
 import com.yongjun.pluto.service.security.UserManager;
 import com.yongjun.pluto.webwork.action.PrepareAction;
@@ -28,6 +30,7 @@ import com.yongjun.tdms.service.CustomerRelationship.customerProfiles.CustomerIn
 import com.yongjun.tdms.service.base.area.AreaManager;
 import com.yongjun.tdms.service.base.event.EventNewManager;
 import com.yongjun.tdms.service.base.event.EventTypeManager;
+import com.yongjun.tdms.service.base.org.DepartmentManager;
 import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 import com.yongjun.tdms.util.comparator.CodeValueComparator;
 import com.yongjun.tdms.util.personnelFilesToUser.PersonnelFilesToUserManager;
@@ -56,11 +59,12 @@ public class EditCustomerInfoAction extends PrepareAction {
 	private PersonnelFiles salesman;
 	private String popWindowFlag;
 	private String notNewFlag;
+	private DepartmentManager departmentManager;
 
 	public EditCustomerInfoAction(CustomerInfoManager customerInfoManager, CodeValueManager codeValueManager,
 			AreaManager areaManager, PersonnelFilesManager personnelFilesManager,
 			ContactArchivesManager contactArchivesManager, UserManager userManager,EventNewManager eventNewManager,
-			EventTypeManager eventTypeManager,PersonnelFilesToUserManager personnelFilesToUserManager) {
+			EventTypeManager eventTypeManager,PersonnelFilesToUserManager personnelFilesToUserManager,DepartmentManager departmentManager) {
 		this.customerInfoManager = customerInfoManager;
 		this.codeValueManager = codeValueManager;
 		this.areaManager = areaManager;
@@ -77,6 +81,7 @@ public class EditCustomerInfoAction extends PrepareAction {
 		this.province = new Area();
 		this.city = new Area();
 		this.salesman = new PersonnelFiles();
+		this.departmentManager = departmentManager;
 	}
 
 	public void prepare() throws Exception {
@@ -134,7 +139,7 @@ public class EditCustomerInfoAction extends PrepareAction {
 				this.customerInfo.setFamiliarityType(familiarityType);
 			}
 			if (hasId("classification.id")) {
-				CodeValue classification = this.codeValueManager.loadCodeValue(getId("classification.id"));
+				Department classification = this.departmentManager.loadDepartment(getId("classification.id"));
 				this.customerInfo.setClassification(classification);
 			}
 			if (hasId("businessType.id")) {
@@ -224,12 +229,22 @@ public class EditCustomerInfoAction extends PrepareAction {
 					EventNew event = new EventNew();
 					event.setEffectflag("E");
 					event.setEventType(eventType);
-					event.setName("新增客户");
+					event.setName(eventType.getName());
 					event.setUserId(this.userManager.getUser().getId() + "");
 					Map<String, String> map = new HashMap();
-					String pids = this.personnelFilesToUserManager.loadUserIdToStrByEnable();
+					
+					CodeValue code = this.customerInfo.getBusinessType();
+					String pids = "";
+					if(code == null){
+						pids = this.personnelFilesToUserManager.loadUserIdToStrByEnable();
+					}else {
+						pids = this.personnelFilesToUserManager.loadUserIdToStrByType(code.getCode());
+					}
+					
 					map.put("users", pids);
 					map.put("customerInfoId", this.customerInfo.getId() + "");
+					map.put("name", new SimpleDateFormat("yyyy-MM-dd").format(this.customerInfo.getCreatedTime())+","+this.customerInfo.getSaleman()+"提交了客户:"+this.customerInfo.getName());
+					map.put("url", "customerRelationship/editCustomerInfo.html?popWindowFlag=popWindowFlag&customerInfo.id="+this.customerInfo.getId());
 					String moreinfo = JSONObject.fromObject(map).toString();
 					event.setMoreinfo(moreinfo);
 					eventNewManager.storeEventNew(event);
@@ -495,15 +510,15 @@ public class EditCustomerInfoAction extends PrepareAction {
 	}
 	public List<CodeValue> getAllClassification() {
 		try {
-			List companyNatures = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("209"));
-			if ((null != one) && (one.size() > 0)) {
-				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
-				if ((null != list) && (list.size() > 0)) {
-					companyNatures.addAll(list);
-				}
+			List jpList = new ArrayList();
+			 jpList = departmentManager.loadByKey("parentDept.name","军品销售");
+			List<Department> mpList = departmentManager.loadByKey("parentDept.name","民品销售");
+			if(mpList!=null&&mpList.size()>0){
+			for(Department d:mpList){
+				jpList.add(d);
 			}
-			return companyNatures;
+			}
+			return jpList;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ArrayList();
@@ -511,17 +526,23 @@ public class EditCustomerInfoAction extends PrepareAction {
 	}
 	public List<CodeValue> getAllBusinessType() {
 		try {
-			List companyNatures = new ArrayList();
+			List <CodeValue>companyNatures = new ArrayList<CodeValue>();
 			String[] keys={"code","name"};
 			String[] values={"210","客户属性"};
 			List one =this.codeValueManager.loadByKeyArray(keys, values);// this.codeValueManager.loadByKey("code", Long.valueOf("210"));
-			
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {
 					companyNatures.addAll(list);
 				}
 			}
+        	Iterator<CodeValue> it = companyNatures.iterator();  
+            while(it.hasNext()){        
+            	CodeValue temp = it.next();    
+                if(temp.getName().equals("军民品")){  
+                    it.remove();  
+                }   
+            }  
 			return companyNatures;
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -45,7 +45,7 @@
             </#if>
             <@vcolumn title="${action.getText('contactArchives.fileNo')}" property="itemNo">
 				<a href="###" onclick="caProfile_OpenDialog(#{object.id});">${itemNo}</a>
-				<@alignCenter/>
+				<@alignLeft/>
             </@vcolumn>
             <#assign itemNo=itemNo+1/>
             <@vcolumn title="${action.getText('contactArchives.name')}" property="name">

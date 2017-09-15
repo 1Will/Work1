@@ -64,6 +64,13 @@
                  order by receviceNotice.id desc
         ]]>
     </query>
+    <query name="GetAllNoticByUserID">
+        <![CDATA[FROM ReceviceNotice AS receviceNotice WHERE 
+                 receviceNotice.receviceUser.id = :userId 
+                 AND receviceNotice.disabled = false 
+                 order by receviceNotice.id desc
+        ]]>
+    </query>
     
     <query name="GetAllUnReadNoticByUserIDTwo">
         <![CDATA[FROM ReceviceNotice AS receviceNotice WHERE receviceNotice.readStatus='UNREAD' 

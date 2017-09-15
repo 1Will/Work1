@@ -37,6 +37,7 @@
 	        -->
             <@vcolumn title="${action.getText('codevalue.code')}" property="code" sortable="asc">
                 <a href="editCodeValue.html?type.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}">${object.code}</a>
+                <@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('code.name')}" property="name" sortable="desc">
             	<@alignLeft/>

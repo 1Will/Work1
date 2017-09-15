@@ -1,8 +1,12 @@
 <#include "../../includes/hco2011.ftl" />
 <@htmlPage title="${action.getText('expenseForm.edit')}">
 <@ww.form name="'listForm'" action="'saveExpenseFormAction'" method="'post'">
-	<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 	<@ww.token name="saveExpenseFormActionToken"/>
+	<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
+	<@ww.hidden name="'expenseForm.isSaved'" value="''"/>
+	<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag' >
+    	<@ww.hidden  name="popWindowFlag"  value="${popWindowFlag}"/>
+    </#if>
 	<#if expenseForm.id?exists>
 		<@ww.hidden name="'expenseForm.id'" value="#{expenseForm.id?if_exists}"/>
 	</#if>
@@ -32,11 +36,7 @@
 	       		<label class="label">${action.getText('expenseForm.code')}:</label>
 	     	</td>
 	     	<td>
-				<#if expenseForm.code?exists>
-					<input type="text" id="expenseForm.code" name="expenseForm.code" class="underline"  value="${expenseForm.code?if_exists}" maxlength="140" size="20"/>
-				<#else>
-					<input type="text" id="expenseForm.code" name="expenseForm.code" class="underline"  value="" maxlength="140" size="20"/>
-				</#if>
+				<input type="text" id="expenseForm.code" name="expenseForm.code" class="underline"  value="${expenseForm.code?if_exists}" maxlength="140" size="20"/>
 			</td>
 			
 			<td align="right" valign="top">
@@ -45,7 +45,8 @@
 	     	</td>
 			<td>
 				<#if expenseForm.projectInfo?exists>
-					<input type="text" id="projectInfo.name" name="projectInfo.name" class="underline"  value="${expenseForm.projectInfo.name?if_exists}" maxlength="140" size="20" disabled="true"/>
+					<input type="text" id="projectInfo.name" name="projectInfo.name
+					" class="underline"  value="${expenseForm.projectInfo.name?if_exists}" maxlength="140" size="20" disabled="true"/>
 				<#else>
 					<input type="text" id="projectInfo.name"  name="projectInfo.name" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
 				</#if>
@@ -75,16 +76,16 @@
 	     	<td>
 	     	<#if expenseForm.applyPeople?exists>
 	     		<input type="text" name="applyPeople.name" class="underline"  value="${expenseForm.applyPeople.name?if_exists}" maxlength="140" size="20" disabled="true"/>
-	     	<#else>
+			<#else>
 	     		<input type="text" name="applyPeople.name" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
-	     	</#if>
+			</#if>	
 				<a onClick="applyPeople_OpenDialog();">
 					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
 				</a>
 			</td>
 			
 			
-			<@textfield id="expenseForm.money" label="${action.getText('expenseForm.money')}" maxlength="15"  name="expenseForm.money"  value="${expenseForm.money?if_exists}"  required="false" />
+			<@textfield id="expenseForm.money" label="${action.getText('expenseForm.money')}" maxlength="15"  name="expenseForm.money"  value="#{expenseForm.money?if_exists}"  required="false" />
 			
 			<@pp.datePicker 
 				label="'${action.getText('expenseForm.applyDate')}'" 
@@ -95,16 +96,52 @@
 				readonly="true"
 				dateFormat="'%Y-%m-%d'"
 				maxlength="10"/>
-			</tr>
+		</tr>
+		<tr>
+			<td align="right" valign="top">
+	       		<label class="label">${action.getText('附单据张数')}:</label>
+	     	</td>
+			<td>
+				<input type="text" name="expenseForm.formNum" class="underline"  value="${expenseForm.formNum?if_exists}" maxlength="140" size="20"/>
+			</td>
+			<td align="right" valign="top">
+	       		<label class="label">${action.getText('附件张数')}:</label>
+	     	</td>
+			<td>
+				<input type="text" name="expenseForm.attachmentNum" class="underline"  value="${expenseForm.attachmentNum?if_exists}" maxlength="140" size="20"/>
+			</td>
+		
+		</tr>
 		<tr>
 			<@textarea name="expenseForm.remark" rows="4" cols="150" label="${action.getText('expenseForm.remark')}" anothername="remark" maxLength="500" required="false" value="${expenseForm.remark?if_exists}"/>				
 		</tr>
 	</@inputTable>
 	<@buttonBar>
 		<#if !(action.isReadOnly())>
-			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 		</#if>
-		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/expenseForm/listExpenseFormAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+		
+		<#if expenseForm.isSaved?exists &&expenseForm.isSaved=='0' >
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+	    <#else>
+	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+	    </#if>
+		
+		<#-- 继续新建按钮   -->
+		<#if expenseForm.id?exists>
+			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/expenseForm/editExpenseFormAction.html?popWindowFlag=${popWindowFlag?if_exists}"/>
+		<#else>
+			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/expenseForm/editExpenseFormAction.html"/>
+				<script language="JavaScript" type="text/JavaScript"> 
+				getObjByName("newNext").disabled="true";
+				</script>
+		</#if>
+		
+		<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
+			<@vbutton class="button" value="${action.getText('close')}" onclick="closeThis()"/>
+		<#else>
+			<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/expenseForm/listExpenseFormAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+   		</#if>
     </@buttonBar>
 </@ww.form>
 
@@ -124,8 +161,9 @@
 	
 	//合同管理模态窗体
 	function contractManagement_OpenDialog(){
-	   var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html";
-	   popupModalDialog(url, 800, 600, setContractManagement);
+		var pjId = getObjByName('projectInfo.id').value;
+		var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?project.id="+pjId;
+		popupModalDialog(url, 800, 600, setContractManagement);
 	 }
 	 //获得模态窗体返回值
 	function setContractManagement(result) {
@@ -147,6 +185,16 @@
 	   		getObjByName('applyPeople.name').value = result[2];		 	
 		}
 	}
+	
+	function savee(){
+     	getObjByName('expenseForm.isSaved').value=0;
+		return storeValidation();
+	}
+	function submitt(){
+     	getObjByName('expenseForm.isSaved').value=1;
+		return storeValidation();
+	}
+	
 
 	<#-- 提交验证-->
 	function storeValidation(){
@@ -179,8 +227,34 @@
 			alert("${action.getText('请选择申请日期！')}");
 			return false;
 		}
+		
+		var formNum =getObjByName("expenseForm.formNum");
+		if(formNum.value!=""){
+			if(isNaN(formNum.value)){
+				alert("${action.getText('附单据应该为数字！')}");
+				formNum.focus();
+				return false;
+			}
+		}
+		
+		var attachmentNum =getObjByName("expenseForm.attachmentNum");
+		if(attachmentNum.value!=""){
+			if(isNaN(attachmentNum.value)){
+				alert("${action.getText('附件张数应该为数字！')}");
+				attachmentNum.focus();
+				return false;
+			}
+		}
 		return true;
 	}
 </script>
 
 </@htmlPage>
+<#if expenseForm.id?exists>
+<ul id="beautytab">
+	<li>
+		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?expenseForm.id=#{expenseForm.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
+	</li>
+</ul>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/applicationDocManager/listApplicationDoc.html?expenseForm.id=#{expenseForm.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="50%"/>
+</#if>

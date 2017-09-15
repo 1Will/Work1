@@ -3,9 +3,11 @@ package com.yongjun.tdms.service.notice;
 import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.pluto.model.codevalue.CodeValue;
 import com.yongjun.tdms.model.notice.ReceviceNotice;
+
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(readOnly=true)
@@ -48,6 +50,7 @@ public abstract interface ReceviceNoticeManager
 
   public abstract List<ReceviceNotice> loadByKeyArray(String[] paramArrayOfString, Object[] paramArrayOfObject)
     throws DaoException;
+  public List<ReceviceNotice> getAllNoticByUserID(Long paramLong);
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

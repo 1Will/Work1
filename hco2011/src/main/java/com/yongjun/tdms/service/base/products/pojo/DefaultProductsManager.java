@@ -74,7 +74,16 @@
 /*    */   {
 /* 95 */     return this.productsDao.loadByKey(keyName, keyValue);
 /*    */   }
-/*    */ }
+/*    */
+			public void saveProductfoByImp(List<Products> products) {
+				if(products!=null&&products.size()>0){
+					for(Products p:products){
+						this.storeProducts(p);
+					}
+				}
+	
+			} 
+			}
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\
  * Qualified Name:     com.yongjun.tdms.service.base.products.pojo.DefaultProductsManager

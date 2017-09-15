@@ -24,9 +24,12 @@
 <!-- $Id: deviceCard.hbm.xml 11436 2008-03-18 14:16:50Z wzou $ -->
 <hibernate-mapping>
 	<class name="com.yongjun.tdms.model.base.log.EventLog" table="EventLog" lazy="true">
-		 <id name="id" type="java.lang.Long">
-            <column name="ID" precision="8" scale="0" />
-        </id>
+        <id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">EventLog_sequence</param>
+				<param name="parameters">START WITH 1</param>
+			</generator>
+		</id>
         <property name="name" type="java.lang.String">
             <column name="NAME" />
         </property>

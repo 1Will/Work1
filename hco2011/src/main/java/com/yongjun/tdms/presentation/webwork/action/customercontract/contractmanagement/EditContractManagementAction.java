@@ -1,6 +1,7 @@
 package com.yongjun.tdms.presentation.webwork.action.customercontract.contractmanagement;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -240,34 +241,36 @@ public class EditContractManagementAction extends PrepareAction {
 				EventNew event = new EventNew();
 				event.setEffectflag("E");
 				event.setEventType(eventType);
-				event.setName("合同事件");
+				event.setName(eventType.getName());
 				event.setUserId(this.userManager.getUser().getId() + "");
 				Map<String, String> map = new HashMap();
 				String pids = this.personnelFilesToUserManager.loadUserIdToStrByProjectInfoId(this.projectInfo.getId(),
 						this.projectInfo.getCreateUser());
 				map.put("users", pids);
 				map.put("contractManagementId", this.contractManagement.getId() + "");
+				map.put("url", "contractManagement/editContractManagementAction.html?popWindowFlag=popWindowFlag&contractManagement.id="+this.contractManagement.getId());
+				map.put("name", new SimpleDateFormat("yyyy-MM-dd").format(this.contractManagement.getCreatedTime())+","+this.contractManagement.getSaleman().getName()+"提交了合同:"+this.contractManagement.getContractName());
 				String moreinfo = JSONObject.fromObject(map).toString();
 				event.setMoreinfo(moreinfo);
 				eventNewManager.storeEventNew(event);
 				
-				 HashMap mapData =new HashMap();
-	              mapData.put("type", "10006");
-	              mapData.put("thisMoney", contractManagement.getContractMoney());
-	              mapData.put("lastMoney",contractManagement.getLastSubmitMoney() );
-				mapData.put("submitNum", this.contractManagement.getSubmitNum());
-				mapData.put("date", contractManagement.getCiemdinghTime());
-				this.dataManager.storeData(getPersonnelF(), mapData);
-				this.contractManagement.setLastSubmitMoney(contractManagement.getContractMoney());
-				this.contractManagementManager.storeContractManagement(this.contractManagement);//更新上次提交金额为本次的合同金额
+//				 HashMap mapData =new HashMap();
+//	              mapData.put("type", "10006");
+//	              mapData.put("thisMoney", contractManagement.getContractMoney());
+//	              mapData.put("lastMoney",contractManagement.getLastSubmitMoney() );
+//				mapData.put("submitNum", this.contractManagement.getSubmitNum());
+//				mapData.put("date", contractManagement.getCiemdinghTime());
+//				this.dataManager.storeData(getPersonnelF(), mapData);
+//				this.contractManagement.setLastSubmitMoney(contractManagement.getContractMoney());
+//				this.contractManagementManager.storeContractManagement(this.contractManagement);//更新上次提交金额为本次的合同金额
 				submit = "submit";
 			}
 
-			// 仅当项目状态为立项的情况下，合同保存后，项目状态改为合同
-			if ("20101".equals(projectInfo.getState().getCode())) {
-				this.projectInfo.setState(this.codeValueManager.loadByKey("code", "20102").get(0));
-				this.projectInfoManager.storeProjectInfo(projectInfo);
-			}
+// 仅当项目状态为立项的情况下，合同保存后，项目状态改为合同
+//			if ("20101".equals(projectInfo.getState().getCode())) {
+//				this.projectInfo.setState(this.codeValueManager.loadByKey("code", "20102").get(0));
+//				this.projectInfoManager.storeProjectInfo(projectInfo);
+//			}
 
 			if (isNew) {
 				ContactToHistory history = new ContactToHistory();

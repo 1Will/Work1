@@ -31,8 +31,8 @@
             includeParameters="contactArchives.name|customerIsNotNull|customer.id|contactArchives.customerName|type.id|onlyInvalid|onlyValid|customer.id|backVisitFlag" 
         	fieldMap="like:contactArchives.name|contactArchives.customerName" >
         	<#if !object.disabled>
-	        	 <@vcolumn title="${action.getText('contactArchives.name')}" property="name" sortable="asc">
-		            <a href="javascript: returnDialog(new Array(#{object.id},'${object.phone}','${object.name}','${object.phone}'));">
+	        	<@vcolumn title="${action.getText('contactArchives.name')}" property="name" sortable="asc">
+		            <a href="javascript: returnDialog(new Array(#{object.id},'<#if object.phone?exists>${object.phone}</#if>','${object.name}','<#if object.mobilePhone?exists>${object.mobilePhone}</#if>'));">
 		            	${object.name}
 		            </a>
 		            <@alignLeft/>

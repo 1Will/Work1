@@ -37,7 +37,7 @@ public class ContractManagement extends BaseInfoEntity {
 	private String contractContent;
 	private String remark;
 	private String overGet = "no";
-	private String isSaved = "0";
+	private String isSaved ;
 	private long submitNum=0;
 
 	private String overReturnPlan = "no";

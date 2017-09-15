@@ -5,6 +5,7 @@
 		<@ww.token name="seacherProductsToken"/>
 		<#include "./productSearcher.ftl" />
 		<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
+		<@ww.hidden name="'productCheckBox'" value="'${productCheckBox?if_exists}'"/>
         <@buttonBar>
          <#if productCheckBox?exists>
           <@vsubmit value="'${action.getText('search')}'" onclick="'checkInvalidParms()'" />
@@ -15,9 +16,9 @@
 			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/productsManager/editProducts.html"/>
 			</#if>
           </#if>
-			
+			<@redirectButton value="${action.getText('importProduct.button')}" url="${req.contextPath}/productsManager/toImportProduct.html"/>
         </@buttonBar>
-        <@list title="${action.getText('productsList')}" includeParameters="products.code|products.name|products.model|products.standard|pt.id|product_source_ID.id|supplier.id|onlyInvalid|onlyValid" fieldMap="like:products.code|products.name|products.model|products.standard" >
+        <@list title="${action.getText('productsList')}" includeParameters="products.code|products.name|products.model|productCheckBox|products.standard|pt.id|product_source_ID.id|supplier.id|onlyInvalid|onlyValid" fieldMap="like:products.code|products.name|products.model|products.standard" >
             <@vlh.checkbox property="id" name="productsIds">
                 <@vlh.attribute name="width" value="30" />
             </@vlh.checkbox>

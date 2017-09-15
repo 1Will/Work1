@@ -32,10 +32,10 @@
      <@list title="${action.getText('list.title')}" excel=false setupTable=false
             includeParameters="exclude_disabled|filterUserIds|loginName|name|department.id|multipleSelect|telphoneNumber|onlyInvalid|onlyValid" 
             fieldMap="like:loginName|name|telphoneNumber" >
-                <@vlh.checkbox name="userIds" property="id" >
+                <@vlh.checkbox id="userIds" name="userIds" property="id" >
 	                 <@vlh.attribute name="width" value="30"/>
                </@vlh.checkbox>
-            <input type="hidden" name="userNames" value="${object.name}"/>
+            <input type="hidden" id="userNames" name="userNames" value="${object.name}"/>
             <@vcolumn title="${action.getText('user.loginName')}">
               <#if ('${multipleSelect?if_exists}'=="T")>
                  ${object.loginName}   
@@ -52,16 +52,16 @@
                 ${object.locale.getDisplayName(action.locale)}
             </@vcolumn>
       </@list>
-     <#if (multipleSelect=="T")>
-        <#if !first>
-        <@buttonBar>
-      		<@vsubmit name="'choose'" value="'${action.getText('choose')}'">
-	                <@ww.param name="'onclick'" value="'return confirmSelects(\"userIds\");'"/>
-	                <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>	
-        	</@vsubmit>
-	   </@buttonBar>
-	   </#if>
-     </#if>
+	      <#if (multipleSelect=="T")>
+		      <#if !first>
+			      <@buttonBar>
+				      <@vsubmit name="'choose'" value="'${action.getText('choose')}'">
+						  <@ww.param name="'onclick'" value="'return confirmSelects(\"userIds\");'"/>
+						  <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>	
+				      </@vsubmit>
+				  </@buttonBar>
+			  </#if>
+	      </#if>
 </@ww.form>
  <script language="javascript">	
   function confirmSelects(boxname) {
@@ -79,7 +79,6 @@
 	    if (!selector) {
 	        return false;
 	    }
-	    
 	    var user = "";
 	    if (selector.length) {
 	        for (i = 0; i < selector.length; i++) {

@@ -122,7 +122,7 @@
         <many-to-one name="customerType" class="com.yongjun.pluto.model.codevalue.CodeValue">
 			<column name="CUSTOMER_TYPE" not-null="false"/>
 		</many-to-one>
-		<many-to-one name="classification" class="com.yongjun.pluto.model.codevalue.CodeValue">
+		<many-to-one name="classification" class="com.yongjun.pluto.model.security.Department">
 			<column name="classification" not-null="false"/>
 		</many-to-one>
 		<many-to-one name="businessType" class="com.yongjun.pluto.model.codevalue.CodeValue">

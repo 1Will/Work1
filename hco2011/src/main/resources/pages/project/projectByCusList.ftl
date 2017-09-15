@@ -56,7 +56,7 @@
             <@alignLeft />
             </@vcolumn>
             <@vcolumn title="${action.getText('state.name')}" property="state.name" sortable="desc"  >
-            <@alignCenter attributes="width:50;"/>
+            <@alignLeft attributes="width:50;"/>
             </@vcolumn>
             <@vcolumn title="${action.getText('回访次数')}" property="backVisitSum" sortable="desc">
             	<a href="javascript:visitBack_OpenDialog(#{object.customer.id?if_exists})" >${object.customer.backVisitSum?if_exists}</a>
@@ -66,7 +66,7 @@
             <@alignLeft/>
              </@vcolumn>
             <@vcolumn title="${action.getText('最后回访时间')}" property="customer.nearestBackVisitDate" sortable="desc" format="yyyy-MM-dd" >
-            <@alignCenter attributes="width:100;"/>
+            <@alignLeft attributes="width:100;"/>
              </@vcolumn>
           
         </@list>

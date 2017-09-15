@@ -8,10 +8,17 @@
 			<#if products.id?exists>
                 <@ww.hidden name="'products.id'" value="#{products.id?if_exists}"/>
             </#if>
+            <#--
             <#if products.supplier?exists>
                 <@ww.hidden id="supplier.name"  name="'supplier.id'" value="#{products.supplier.id?if_exists}"/>
             <#else>
                 <@ww.hidden id="supplier.name"  name="'supplier.id'" value=""/>
+            </#if>
+            -->
+            <#if products.customerInfo?exists>
+                <@ww.hidden id="customerInfo.id"  name="'customerInfo.id'" value="#{products.customerInfo.id?if_exists}"/>
+            <#else>
+                <@ww.hidden id="customerInfo.id"  name="'customerInfo.id'" value=""/>
             </#if>
             <@ww.hidden id="'isSaved'" name="'isSaved'" value="''"/>
             <@ww.hidden name="'products.ptId'" value="'${req.getParameter('products.ptId')?if_exists}'"/>
@@ -30,26 +37,8 @@
 			</tr>
 			
 			<tr>
-				<@ww.textfield label="'${action.getText('products.salelimit')}'" name="'products.salelimit'" value="'${products.salelimit?if_exists}'" cssClass="'underline'"/>
-			    <@ww.select label="'${action.getText('products.pt.id')}'" 
-		           name="'pt.id'" 
-			       value="'${req.getParameter('pt.id')?if_exists}'" 
-			       listKey="id" 
-			       listValue="name"
-		           list="allType" 
-		           emptyOption="false" 
-		           disabled="false"
-		           required="true">
-		           </@ww.select>
-		          <#--
-			     <script language="javascript">
-			     	<#if products.pt?exists>
-			     		getObjByName('pt.id').value = ${products.pt.id};
-			     	</#if>
-				</script>
-				-->
-				<@ww.select 
-		    		label="'${action.getText('products.productSource')}'"
+			    <@ww.select 
+	    		label="'${action.getText('products.productSource')}'"
 					required="true"
 					name="'product_source_ID.id'" 
 					value="${req.getParameter('product_source_ID.id')?if_exists}" 
@@ -58,59 +47,105 @@
 				    list="allProductSource"
 			    	emptyOption="false" 
 			    	disabled="false">
-			    	</@ww.select>
-			    <script language="javascript">
+		    	</@ww.select>
+		        <script language="javascript">
 			     	<#if products.product_source_ID?exists>
-			     		getObjByName('product_source_ID.id').value = '${products.product_source_ID.id}';
+			     		getObjByName('product_source_ID.id').value = '#{products.product_source_ID.id}';
+			     	</#if>
+			    </script>
+			    <@ww.select label="'${action.getText('产品属性')}'" 
+					name="'businessType.id'" 
+					value="'${req.getParameter('businessType.id')?if_exists}'"
+					listKey="id"
+					listValue="name"
+					list="allBusinessType"
+					required="true"
+					emptyOption="true" 
+					disabled="false"
+					onchange="'businessType_ptDWR(\"businessType.id\",\"pt.id\",\"${action.getText('')}\",\"edit\")'">
+			   </@ww.select>
+			    <@ww.select label="'${action.getText('products.pt.id')}'" 
+		           name="'pt.id'" 
+			       value="'${req.getParameter('pt.id')?if_exists}'" 
+			       listKey="id" 
+			       listValue="name"
+		           list="allType" 
+		           emptyOption="false" 
+		           disabled="false"
+		           required="true"
+		           >
+		           </@ww.select>
+		          <#--
+			     <script language="javascript">
+			     	<#if products.pt?exists>
+			     		getObjByName('pt.id').value = '${products.pt.id}';
 			     	</#if>
 				</script>
+				-->
+				
 			</tr>
 			<tr>
-			
-				<td align="right" valign="top">
-		       		<label class="label">${action.getText('供应商')}:</label>
-		     	</td>
-				<td>
-					<#if products.supplier?exists>
-						<input type="text" id="supplier.name"  name="supplier.name" class="underline"  value="${products.supplier.name}" maxlength="140" size="20" disabled="true"/>
-		            <#else>
-						<input type="text" id="supplier.name"  name="supplier.name" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
-		            </#if>
-					<a onClick="supplier_OpenDialog();">
-						<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
-					</a>
-				</td>
-					
-					<td align="right"><label for="" class="label">${action.getText('products.isNoMain')}:</label></td>
-			        <td align="left">
-			        	<input type="radio" id="products.isNoMain1" name="products.isNoMain" value=false checked>是
-			        	<input type="radio" id="products.isNoMain2" name="products.isNoMain" value=true>否
-			        	<script language="javascript">
-				     		if(${(products.isNoMain?string)?if_exists}==true){
-				     			getObjByName('products.isNoMain1').checked = true;
-				     		}else if(${(products.isNoMain?string)?if_exists}==false){
-				     			getObjByName('products.isNoMain2').checked = true;
-				     		}
-						</script>
-					</td>
-					<@pp.datePicker 
-						label="'${action.getText('products.launch')}'" 
-						name="'products.launch'" 
-			   			value="'${(products.launch?string('yyyy-MM-dd'))?if_exists}'"
-						cssClass="'underline'" 
-						required="false"
-						dateFormat="'%Y-%m-%d'"
-						maxlength="10"/>
-					<script language="javascript">
-						<#if products.id?exists>
-						<#else>
-							var date = new Date();
-							if(getObjByName("products.launch").value==''){
-								getObjByName("products.launch").value = date.format("yyyy-MM-dd");
-							}
-						</#if>
-					</script>
+			   <@ww.textfield label="'${action.getText('products.salelimit')}'" name="'products.salelimit'" value="'${products.salelimit?if_exists}'" cssClass="'underline'"/>
+			<td align="right" valign="top">
+	       		<label class="label">${action.getText('供应商')}:</label>
+	     	</td>
+			<td>
+			<#if products.customerInfo?exists>
+	     		<input type="text" name="customerInfo.name" class="underline"  value="${products.customerInfo.name?if_exists}" maxlength="140" size="20" disabled="true"/>
+	     	<#else>
+	     		<input type="text" name="customerInfo.name" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+	     	</#if>
+				<a onClick="customerInfo_OpenDialog();">
+					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+				</a>
+			</td>
+			<#--
+				<#if products.supplier?exists>
+					<input type="text" id="supplier.name"  name="supplier.name" class="underline"  value="${products.supplier.name}" maxlength="140" size="20" disabled="true"/>
+	            <#else>
+					<input type="text" id="supplier.name"  name="supplier.name" class="underline"  value="" maxlength="140" size="20" disabled="true"/>
+	            </#if>
+				<a onClick="supplier_OpenDialog();">
+					<img src="${req.contextPath}/images/icon/files.gif" align="absMiddle" border="0" style="cursor: hand"/>
+				</a>
+			-->		
+				
+
+				<@pp.datePicker 
+					label="'${action.getText('products.launch')}'" 
+					name="'products.launch'" 
+		   			value="'${(products.launch?string('yyyy-MM-dd'))?if_exists}'"
+					cssClass="'underline'" 
+					required="false"
+					dateFormat="'%Y-%m-%d'"
+					maxlength="10"/>
+				<script language="javascript">
+					<#if products.id?exists>
+					<#else>
+						var date = new Date();
+						if(getObjByName("products.launch").value==''){
+							getObjByName("products.launch").value = date.format("yyyy-MM-dd");
+						}
+					</#if>
+				</script>
 			</tr>
+			<!---->
+			<tr>	
+        <td align="right">
+			<label for="" class="label">${action.getText('products.isNoMain')}:</label>
+		</td>
+	    <td align="left">
+        	<input type="radio" id="products.isNoMain1" name="products.isNoMain" value=false checked>是
+        	<input type="radio" id="products.isNoMain2" name="products.isNoMain" value=true>否
+        	<script language="javascript">
+	     		if(${(products.isNoMain?string)?if_exists}==true){
+	     			getObjByName('products.isNoMain1').checked = true;
+	     		}else if(${(products.isNoMain?string)?if_exists}==false){
+	     			getObjByName('products.isNoMain2').checked = true;
+	     		}
+			</script>
+		</td>
+        	</tr>
 			<tr>
 		    	<td align="right" valign="top">
 		    		<label class="label">${action.getText('products.remark')}:</label>
@@ -139,7 +174,91 @@
             </#if>
 	</@buttonBar>
 	</@ww.form>
+	<script type='text/javascript' src='${req.contextPath}/dwr/interface/AllType.js'></script>
+<script language="JavaScript" type="text/JavaScript">
+	var type_msg = "";
+	var btype = "";
+	var businessType_id = "";
+	var pt_id = "";
+	function businessType_ptDWR(businessTypeId,ptId,msg,flag){
+		type_msg = msg;
+		businessType_id = businessTypeId;
+		pt_id = ptId;
+	if(flag == "edit"){
+		btype = getObjByName(businessType_id).value;
+		if(btype == ""){
+			 getObjByName(pt_id).options.length = 0; 
+		}else{
+			AllType.loadByBtype(btype, classification);
+		}
+	}
+		/**
+		if(flag == "search"){
+			btype = getObjByName(businessType_id).value;
+			if(btype == -1){
+				getObjByName(pt_id).options.length = 0; 
+				getObjByName(pt_id).options.add(new Option(type_msg,-1));
+			}else{
+				AllType.loadByBtype(btype, classification);
+			}
+		}
+		*/
+	}
+	
+	function classification(data){
+		if("" == data){
+			getObjByName(pt_id).options.length = 0; 
+			getObjByName(pt_id).options.add(new Option(type_msg,-1));
+		}else if(null != data){
+			if(data.length > 0){
+				getObjByName(pt_id).options.length = 0;
+				for(var i =0 ;i<data.length;i++){
+					if(i == 0){
+						getObjByName(pt_id).options.add(new Option(type_msg,-1));
+						getObjByName(pt_id).options[i].value = -1;
+						getObjByName(pt_id).options.add(new Option(data[i].name,data[i].id));
+					}else{
+						getObjByName(pt_id).options.add(new Option(data[i].name,data[i].id));
+					}
+				}
+			}
+		}
+	}
+</script> 
 <script language="javascript">
+//		window.onload=function(){
+		 //业务属性
+		<#if products.businessType?exists>
+		    getObjByName('businessType.id').value='#{products.businessType.id?if_exists}';
+	    	//设置同步
+	    	DWREngine.setAsync(false); 
+	    	businessType_ptDWR("businessType.id","pt.id","${action.getText('')}","edit");
+	    	//重新设置为异步方式
+	    	DWREngine.setAsync(false);
+			<#elseif req.getParameter('businessType.id')?exists>
+			getObjByName('businessType.id').value='#{req.getParameter('businessType.id')}';
+			//设置同步
+	    	DWREngine.setAsync(false); 
+	    	businessType_ptDWR("businessType.id","pt.id","${action.getText('')}","edit");
+	    	//重新设置为异步方式
+	    	DWREngine.setAsync(false);
+		</#if>
+		<#if products.pt?exists>
+ 		getObjByName('pt.id').value = '#{products.pt.id}';
+ 	    </#if>
+		 	<#if products.supplier?exists>
+		 		getObjByName('supplier.id').value = '#{products.supplier.id}';
+		 	</#if>
+			if(0 == getObjByName('pt.id').value){
+		 		getObjByName('pt.id').value = getObjByName('products.ptId').value;
+		 	}
+		 	if(-1 == getObjByName('product_source_ID.id').value){
+		 		getObjByName('product_source_ID.id').value = getObjByName('products.psId').value;
+		 	}
+		 	if(-1 == getObjByName('supplier.id').value){
+		 		getObjByName('supplier.id').value = getObjByName('products.supplierId').value;
+		 	}
+//		}
 	function supplier_OpenDialog(){
 		var url ="${req.contextPath}/supplierManager/listSupplierWindow.html";
 		popupModalDialog(url, 800, 600, setSupplier);
@@ -148,6 +267,19 @@
 	function setSupplier(data){
 		getObjByName('supplier.id').value =data[0];
 		getObjByName('supplier.name').value =data[2]
+	}
+	
+	//弹出供应商模态窗体
+	function customerInfo_OpenDialog(){
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?isPartner=1";
+	   popupModalDialog(url, 800, 600, setCustomerInfo);
+	 }
+	 //获得模态窗体返回值
+	function setCustomerInfo(result) {
+		if (null != result) {
+		 	getObjByName("customerInfo.id").value = result[0];	
+		 	getObjByName("customerInfo.name").value = result[1];
+		}
 	}
 
 
@@ -170,21 +302,7 @@
 		    return formatNumber(str+".0",exponent);
 		  }
 	}
-	<#if products.pt?exists>
- 		getObjByName('pt.id').value = ${products.pt.id};
- 	</#if>
- 	<#if products.supplier?exists>
- 		getObjByName('supplier.id').value = ${products.supplier.id};
- 	</#if>
-	if(0 == getObjByName('pt.id').value){
- 		getObjByName('pt.id').value = getObjByName('products.ptId').value;
- 	}
- 	if(-1 == getObjByName('product_source_ID.id').value){
- 		getObjByName('product_source_ID.id').value = getObjByName('products.psId').value;
- 	}
- 	if(-1 == getObjByName('supplier.id').value){
- 		getObjByName('supplier.id').value = getObjByName('products.supplierId').value;
- 	}
+	
  	
  	function savee(){
      	getObjByName('isSaved').value=0;
@@ -271,14 +389,20 @@
        		getObjByName('products.salelimit').focus();
        		return false;
 	    }
+		<#-- 产品属性-->
+		if(getObjByName('businessType.id').value==''||getObjByName('businessType.id').value==-1){
+			alert('${action.getText('请选择产品属性')}');
+			getObjByName('businessType.id').focus();
+			return false;
+		}
 		<#-- 类别 8-->
-		if(getObjByName('pt.id').value==0){
+		if(getObjByName('pt.id').value==''||getObjByName('pt.id').value==-1){
 			alert('${action.getText('pt.id.null')}');
 			getObjByName('pt.id').focus();
 			return false;
 		}
 		<#-- 来源 9-->
-		if(getObjByName('product_source_ID.id').value==-1 || getObjByName('product_source_ID.id').value==''){
+		if(getObjByName('product_source_ID.id').value=='' || getObjByName('product_source_ID.id').value==-1){
 			alert("${action.getText('products.productSource.not.null')}");
 			getObjByName('product_source_ID.id').focus();
 			return false;
@@ -317,17 +441,17 @@
 <#if products.id?exists>
 <ul id="beautytab">
 	<li>
-		<a id="project" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProPro.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('项目列表')}</a>
-	</li>
-	<li>
-		<a id="contractInfo" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listContractManagementByCustomerAction.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('合同列表')}</a>
-	</li>
-	<li>
 		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
 	</li>
 	
 	<li>
 		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/productsManager/listProductsPerson.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('开发团队')}</a>
+	</li>
+	<li>
+		<a id="project" onclick="activeTab(this);"  href='${req.contextPath}/projectInfo/listProPro.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('项目列表')}</a>
+	</li>
+	<li>
+		<a id="contractInfo" onclick="activeTab(this);" href='${req.contextPath}/contractManagement/listContractManagementByCustomerAction.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('合同列表')}</a>
 	</li>
 </ul>
 <iframe name="frame" frameborder="0.5" src="${req.contextPath}/projectInfo/listProPro.html?products.id=#{products.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="50%"/>

@@ -11,14 +11,14 @@
       <@list title="" includeParameters="cr.id" fieldMap="like:" >
 	        <@vcolumn title="${action.getText('work.no')}" >
             	#{itemNo}
-            	<@alignCenter/>
+            	<@alignLeft/>
          	</@vcolumn>
          	<#assign itemNo=itemNo + 1/>
          <@vcolumn title="${action.getText('lastOperator')}" property="lastOperator" >
             	<@alignLeft/>
          </@vcolumn>
           <@vcolumn title="${action.getText('lastModifiedTime')}"  format="yyyy-MM-dd HH:mm:ss" property="lastModifiedTime" >
-            	<@alignCenter/>
+            	<@alignLeft/>
          </@vcolumn>
          <@vcolumn title="${action.getText('conment')}" property="conment" >
          	<@alignLeft/>

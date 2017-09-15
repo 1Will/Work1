@@ -15,7 +15,7 @@
         	<#assign returnUrl=returnUrl + '&contractManagement.id=#{contractManagement.id}'/>
         </#if>
         </#if>
-        
+        <#--
 		<tr>
 		    <td align="right" valign="top">
 	    		<label class="label"><font color=red>*</font>${action.getText('上传文件')}:</label>
@@ -24,6 +24,7 @@
 				<input type="file" name="file" size="97" onchange="getName();"/>
 			</td>
 		</tr>
+		
 		<tr>
 			<#if contractState.id?exists>
 				<@ww.textfield label="'${action.getText('资料名称')}'" name="'contractState.fileName'" value="'${contractState.fileName?if_exists}'" required="true" cssClass="'underline'"/>
@@ -51,7 +52,7 @@
 			</script>
     	</tr>
    	    <tr>
-   	    
+   	    -->
     	</tr>
 	    	<@ww.select label="'${action.getText('变更前状态')}'" 
 				id="beforeStateid"
@@ -99,25 +100,17 @@
     </@inputTable>
     <@buttonBar>
           <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
-          
-          <#-- 继续新建按钮   
-			<#if applicationDoc.id?exists>
-			<@redirectButton name="newUpload" value="${action.getText('newUpload')}" 
-				url="${returnUrl}"/>
-			<#else>
-			<@redirectButton name="newUpload" value="${action.getText('newUpload')}" 
-				url="${req.contextPath}/applicationDocManager/editApplicationDoc.html"/>
-			<script language="JavaScript" type="text/JavaScript"> 
-			getObjByName("newUpload").disabled="true";
-			</script>
-			</#if>
-          -->
           <@vbutton class="button" name="${action.getText('close')}" value="${action.getText('close')}" onclick="closeThis();"/>
     </@buttonBar>
     <@ww.hidden name="'origFileName'" value=""/>
 <script language="javascript">
 
 	function storeValidation(){
+		getObjByName('beforeStateid').removeAttribute('disabled');
+		return true;
+	}
+	 	 
+	function storeValidationOld(){
 	 	  var filename = document.forms["contractState"].elements["file"].value;
 		  ary = filename.split("\\");
 		  //如果是新建，则要求上传文件必须选择

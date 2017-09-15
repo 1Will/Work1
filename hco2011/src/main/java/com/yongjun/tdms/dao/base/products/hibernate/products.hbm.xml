@@ -68,6 +68,9 @@
 		<many-to-one name="supplier" class="com.yongjun.tdms.model.supplier.Supplier" lazy="false">
         	<column name="supplier_id" not-null="false"></column>
         </many-to-one>
+		<many-to-one name="customerInfo" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo" lazy="false">
+        	<column name="customerInfo_id" not-null="false"></column>
+        </many-to-one>
 		<property name="isNoMain" type="boolean">
 			<column name="isNoMain" not-null="true"/>
 		</property>
@@ -77,6 +80,9 @@
         <many-to-one name="pt" class="com.yongjun.tdms.model.base.produttype.ProductType" lazy="false">
         	<column name="pt_id" not-null="false"></column>
         </many-to-one>
+        <many-to-one name="businessType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="businessType" not-null="false"/>
+		</many-to-one>
         <property name="disabled" type="boolean">
             <column name="DISABLED" not-null="true"/>
         </property>
