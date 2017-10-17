@@ -264,22 +264,22 @@
 	<@buttonBar>
 		<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
-		</#if>
 		
-		<#if paymentorder.isSaved?exists &&paymentorder.isSaved=='0' >
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
-	    <#else>
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
-	    </#if>
-		
-		<#-- 继续新建按钮   -->
-		<#if paymentorder.id?exists>
-			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/paymentorder/editPaymentorderAction.html?popWindowFlag=${popWindowFlag?if_exists}"/>
-		<#else>
-			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/paymentorder/editPaymentorderAction.html"/>
-				<script language="JavaScript" type="text/JavaScript"> 
-				getObjByName("newNext").disabled="true";
-				</script>
+			<#if paymentorder.isSaved?exists &&paymentorder.isSaved=='0' >
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+		    <#else>
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+		    </#if>
+			
+			<#-- 继续新建按钮   -->
+			<#if paymentorder.id?exists>
+				<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/paymentorder/editPaymentorderAction.html?readOnly=${req.getParameter('readOnly')?if_exists}&popWindowFlag=${popWindowFlag?if_exists}"/>
+			<#else>
+				<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/paymentorder/editPaymentorderAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+					<script language="JavaScript" type="text/JavaScript"> 
+					getObjByName("newNext").disabled="true";
+					</script>
+			</#if>
 		</#if>
 		
 		<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
@@ -292,7 +292,7 @@
 <script language="JavaScript" type="text/JavaScript"> 
 	//弹出业务员查询模态窗体
 	function supplier_OpenDialog(){
-	   var url = "${req.contextPath}/supplierManager/listSupplierWindow.html";
+	   var url = "${req.contextPath}/supplierManager/listSupplierWindow.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	   //window.open(url);
 	 }
@@ -305,7 +305,7 @@
 	}
 	//弹出付款人查询模态窗体
 	function paymentPersion_OpenDialog(){
-	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, paymentPersion_creatorSelectorHandler);
 	   //window.open(url);
 	 }
@@ -322,7 +322,7 @@
 	
 	//弹出供应商模态窗体
 	function customerInfo_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?isPartner=1";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}&isPartner=1";
 	   popupModalDialog(url, 800, 600, setCustomerInfo);
 	 }
 	 //获得模态窗体返回值
@@ -381,7 +381,7 @@
 	//合同管理模态窗体
 	function contractManagement_OpenDialog(){
 		var pjId = getObjByName("project.id").value;
-		var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?project.id="+pjId;
+		var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?readOnly=${req.getParameter('readOnly')?if_exists}?project.id="+pjId;
 	   	popupModalDialog(url, 800, 600, creatorSelector3Handler);
 	 }
 	 //获得模态窗体返回值
@@ -393,7 +393,7 @@
 	}
 	 //项目名称查询模态窗体(添加)
 	function projectName_OpenDialog(){
-	   		var url = "${req.contextPath}/projectInfo/listProjectInfo.html?backVisitCheckBox=backVisitCheckBox";
+	   		var url = "${req.contextPath}/projectInfo/listProjectInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisitCheckBox=backVisitCheckBox";
 	   		popupModalDialog(url, 800, 600, creatorSelector_Handler);
 	 }
 	 //项目名称-获得模态窗体返回值

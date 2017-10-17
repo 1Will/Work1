@@ -179,22 +179,22 @@
     <@buttonBar>
    	    <#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
-		</#if>
 	    
-	    <#if onTheRoadBill.isSaved?exists &&onTheRoadBill.isSaved=='0' >
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
-	    <#else>
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
-	    </#if>
-		
-				<#-- 继续新建按钮   -->
-		<#if onTheRoadBill.id?exists>
-			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/onTheRoadBill/editOnTheRoadBill.html"/>
-		<#else>
-			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/onTheRoadBill/editOnTheRoadBill.html"/>
-				<script language="JavaScript" type="text/JavaScript"> 
-				getObjByName("newNext").disabled="true";
-				</script>
+		    <#if onTheRoadBill.isSaved?exists &&onTheRoadBill.isSaved=='0' >
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+		    <#else>
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+		    </#if>
+			
+					<#-- 继续新建按钮   -->
+			<#if onTheRoadBill.id?exists>
+				<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/onTheRoadBill/editOnTheRoadBill.html"/>
+			<#else>
+				<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/onTheRoadBill/editOnTheRoadBill.html"/>
+					<script language="JavaScript" type="text/JavaScript"> 
+					getObjByName("newNext").disabled="true";
+					</script>
+			</#if>
 		</#if>
 		
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/onTheRoadBill/listOnTheRoadBill.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
@@ -221,7 +221,7 @@
 		//合同管理模态窗体
 	function contractManagement_OpenDialog(){
 		var pjId = getObjByName("projectInfo.id").value;
-		var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?project.id="+pjId;
+		var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?readOnly=${req.getParameter('readOnly')?if_exists}&project.id="+pjId;
 	   	popupModalDialog(url, 800, 600, creatorSelector3Handler);
 	 }
 	 //获得模态窗体返回值
@@ -233,7 +233,7 @@
 	}
 	 //项目名称查询模态窗体(添加)
 	function projectName_OpenDialog(){
-	   		var url = "${req.contextPath}/projectInfo/listProjectInfo.html?backVisitCheckBox=backVisitCheckBox";
+	   		var url = "${req.contextPath}/projectInfo/listProjectInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisitCheckBox=backVisitCheckBox";
 	   		popupModalDialog(url, 800, 600, creatorSelector_Handler);
 	 }
 	 //项目名称-获得模态窗体返回值

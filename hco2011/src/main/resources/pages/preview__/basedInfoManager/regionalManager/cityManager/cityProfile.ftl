@@ -47,7 +47,9 @@
 		</tr>
 	</@inputTable>
 	<@buttonBar>
+	<#if !(action.isReadOnly())>
 		<@vsubmit name="'save'" value="'${'保存'}'"/>
+	</#if>
 		<@redirectButton value="${'返回'}" url="${req.contextPath}/cityManager_/listCity_.html"/>
     </@buttonBar>
 </@ww.form>

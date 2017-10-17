@@ -159,7 +159,7 @@
       }
         //用户的选择
         function user_OpenDialog() {
-          var url = "${req.contextPath}/popup/userSelector.html?multipleSelect=T";
+          var url = "${req.contextPath}/popup/userSelector.html?multipleSelect=T&readOnly=${req.getParameter('readOnly')?if_exists}";
           var filterUserIds = document.getElementsByName("filterUserIds");
 	      var ary = new Array();
 	      for (var i=0; i<filterUserIds.length; i++) {

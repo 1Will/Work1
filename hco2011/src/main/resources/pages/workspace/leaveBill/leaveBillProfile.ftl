@@ -146,28 +146,28 @@
     </@inputTable>
     <@buttonBar>
     	<#if !(action.isReadOnly())>
-		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'">
-		</@vsubmit>
+			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'">
+			</@vsubmit>
+			
+			<#if leaveBill.isSaved?exists && leaveBill.isSaved=='0' >
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+		    <#else>
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+		    </#if>
+			
+			<#-- 继续新建按钮   -->
+			<#if leaveBill.id?exists>
+				<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/leaveBill/editLeaveBill.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+			<#else>
+				<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/leaveBill/editLeaveBill.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+					<script language="JavaScript" type="text/JavaScript"> 
+					getObjByName("newNext").disabled="true";
+					</script>
+			</#if>
 		</#if>
 		
-		<#if leaveBill.isSaved?exists && leaveBill.isSaved=='0' >
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
-	    <#else>
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
-	    </#if>
 		
-		<#-- 继续新建按钮   -->
-		<#if leaveBill.id?exists>
-			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/leaveBill/editLeaveBill.html"/>
-		<#else>
-			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/leaveBill/editLeaveBill.html"/>
-				<script language="JavaScript" type="text/JavaScript"> 
-				getObjByName("newNext").disabled="true";
-				</script>
-		</#if>
-		
-		
-		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/leaveBill/listLeaveBill.html"/>
+		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/leaveBill/listLeaveBill.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
     </@buttonBar>
 
 </@ww.form>

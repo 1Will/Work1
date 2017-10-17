@@ -47,16 +47,14 @@
 <script>
 	function editProPer_OpenDialog(){
 	   var url="";
-	   url= "${req.contextPath}/projectInfo/editProPer.html?projectInfo.id=${projectInfoId?if_exists}";
+	   url= "${req.contextPath}/projectInfo/editProPer.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${projectInfoId?if_exists}";
 	   //popupModalDialog(url, 850, 600);
 	   openNewWindow(url);
-	   if(isIE()){self.location.reload();};
 	 }
 	 function editProPer_OpenDialog_update(id){
 	   var url="";
-	   url= "${req.contextPath}/projectInfo/editProPer.html?projectInfo.id=${projectInfoId?if_exists}&projectInfoPersonnels.id="+id;
+	   url= "${req.contextPath}/projectInfo/editProPer.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${projectInfoId?if_exists}&projectInfoPersonnels.id="+id;
 	   //popupModalDialog(url, 850, 600);
 	   openNewWindow(url);
-	   if(isIE()){self.location.reload();};
 	 }
 </script>

@@ -134,22 +134,21 @@ import java.util.Map;
 /*     */   {
 /* 121 */     Map map = super.getRequestParameterMap();
 
-				PersonnelFiles personnelFiles =null;
-					try {
-						List<PersonnelFiles>  tempList=this.personnelFilesManager.loadByKey("code", this.userManager.getUser().getCode());
-						if(tempList!=null&&tempList.size()>0){
-							personnelFiles  = tempList.get(0);
-							if(personnelFiles.getBusinessType()!=null){
-								if(personnelFiles.getBusinessType().getName().equals("军品")||personnelFiles.getBusinessType().getName().equals("民品")){
-									map.put("businessType", "%"+personnelFiles.getBusinessType().getName()+"%");
-								}
-							
-							}
-						}
-					} catch (DaoException e) {
-	// TODO Auto-generated catch block
-						e.printStackTrace();
-						}
+//				PersonnelFiles personnelFiles =null;
+//					try {
+//						List<PersonnelFiles>  tempList=this.personnelFilesManager.loadByKey("code", this.userManager.getUser().getCode());
+//						if(tempList!=null&&tempList.size()>0){
+//							personnelFiles  = tempList.get(0);
+//							if(personnelFiles.getBusinessType()!=null){
+//								if(personnelFiles.getBusinessType().getName().equals("军品")||personnelFiles.getBusinessType().getName().equals("民品")){
+//									map.put("businessType", "%"+personnelFiles.getBusinessType().getName()+"%");
+//								}
+//							
+//							}
+//						}
+//					} catch (DaoException e) {
+//						e.printStackTrace();
+//					}
 			  if(hasIds("projectInfoId")){
 				 long projectInfoId =Long.parseLong(request.getParameter("projectInfoId"));
 				 List<ProjectInfoProduct> ppList =null;

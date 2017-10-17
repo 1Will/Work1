@@ -97,13 +97,13 @@
 <script>
 	function editProCon_OpenDialog(){
 	   var url="";
-	   url= "${req.contextPath}/projectInfo/editProCon.html?projectInfo.id=${projectInfoId?if_exists}&customerInfo.id=${customerInfoId?if_exists}";
+	   url= "${req.contextPath}/projectInfo/editProCon.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${projectInfoId?if_exists}&customerInfo.id=${customerInfoId?if_exists}";
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }
 	 function editProCon_OpenDialog_update(id){
 	   var url="";
-	   url= "${req.contextPath}/projectInfo/editProCon.html?projectInfo.id=${projectInfoId?if_exists}&customerInfo.id=${customerInfoId?if_exists}&projectInfoContract.id="+id;
+	   url= "${req.contextPath}/projectInfo/editProCon.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${projectInfoId?if_exists}&customerInfo.id=${customerInfoId?if_exists}&projectInfoContract.id="+id;
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }
@@ -115,7 +115,7 @@
 	 }
 	 
 	 function contactArchives_OpenDialog(){
-	  var url=url= "${req.contextPath}/customerRelationship/editContactArchives.html?projectInfo.id=${projectInfoId?if_exists}&customer.id=${customerInfoId?if_exists}&popWindowFlag=popWindowFlag";
+	  var url=url= "${req.contextPath}/customerRelationship/editContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${projectInfoId?if_exists}&customer.id=${customerInfoId?if_exists}&popWindowFlag=popWindowFlag";
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }

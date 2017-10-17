@@ -25,7 +25,9 @@
 		<#include "./contractCustomerSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/com/editContractCustomer.html"/>
+			<#if !(action.isReadOnly())>
+				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/com/editContractCustomer.html"/>
+			</#if>
         </@buttonBar>
         <@list title="${action.getText('contractCustomer.list.title')}" 
             includeParameters="contractCustomer.code|contractCustomer.name|contractCustomer.customerInfo|contractCustomer.affixTime_start|contractCustomer.affixTime_end|contractCustomer.products
@@ -65,9 +67,11 @@
             </@vcolumn>
         </@list>
          <#if !first>
+         <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('contractCustomer.info')}" boxName="contractCustomerIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
+		 </#if>
 		 </#if>
     </@ww.form>
 </@htmlPage>

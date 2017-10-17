@@ -2,7 +2,7 @@
 
 <@htmlPage title="${action.getText('合同状态变更')}">
 <@ww.form namespace="'/projectInfo'" name="'projectState'" action="'saveProjectState'" method="'post'">
-<#assign returnUrl='${req.contextPath}/applicationDocManager/editApplicationDoc.html?yesUrl=yesUrl'/>
+<#assign returnUrl="${req.contextPath}/applicationDocManager/editApplicationDoc.html?readOnly=${req.getParameter('readOnly')?if_exists}&yesUrl=yesUrl"/>
  <@ww.token name="saveContractStateToken"/>
     <@inputTable>
     	<#if projectState.id?exists>
@@ -61,7 +61,9 @@
 	   </tr>
     </@inputTable>
     <@buttonBar>
+    <#if !(action.isReadOnly())>
           <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+    </#if>
           <@vbutton class="button" name="${action.getText('close')}" value="${action.getText('close')}" onclick="closeThis();"/>
     </@buttonBar>
     <@ww.hidden name="'origFileName'" value=""/>

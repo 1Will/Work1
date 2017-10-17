@@ -26,7 +26,9 @@
 		<#include "./customerServiceSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms()'"/>
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/customerService/editCustomerServiceAction.html"/>
+			<#if !(action.isReadOnly())>
+			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/customerService/editCustomerServiceAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+			</#if>
         </@buttonBar>
         <@list title="${action.getText('客户服务列表')}" 
             includeParameters="customerService.code|customerService.serviceTitle|customerService.serviceType.id|customerService.serviceWay.id|ccustomerService.costTime|onlyInvalid|onlyValid" 
@@ -76,9 +78,11 @@
             </@vcolumn>
         </@list>
         <#if !first>
+        <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('客户服务信息')}" boxName="customerServiceIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
 		</#if>
+        </#if>
     </@ww.form>
 </@htmlPage>

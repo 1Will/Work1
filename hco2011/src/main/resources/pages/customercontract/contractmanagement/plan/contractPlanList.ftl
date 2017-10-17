@@ -56,13 +56,13 @@
 <script>
 	function editContractPlan_OpenDialog(){
 	   var url="";
-	   url= "${req.contextPath}/contractManagement/editContractPlan.html?contractManagement.id=${contractManagement.id?if_exists}";
+	   url= "${req.contextPath}/contractManagement/editContractPlan.html?readOnly=${req.getParameter('readOnly')?if_exists}&contractManagement.id=${contractManagement.id?if_exists}";
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }
 	 function editContractPlan_OpenDialog_update(id){
 	   var url="";
-	   url= "${req.contextPath}/contractManagement/editContractPlan.html?contractManagement.id=${contractManagement.id?if_exists}&contractPlan.id="+id;
+	   url= "${req.contextPath}/contractManagement/editContractPlan.html?readOnly=${req.getParameter('readOnly')?if_exists}&contractManagement.id=${contractManagement.id?if_exists}&contractPlan.id="+id;
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }

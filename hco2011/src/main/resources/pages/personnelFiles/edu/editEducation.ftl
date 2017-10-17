@@ -95,11 +95,11 @@
      </@ww.form>
 </@htmlPage>
 <script language="javascript">
-	window.onload=function(){
+	//window.onload=function(){
 		<#if education.edu?exists>
 			getObjByName('education.edu1.id').value=#{education.edu.id};
 		</#if>
-	}
+	//}
 	function checkField(){
 		if(!selectCheck_edu()){
 			getObjByName('education.edu1.id').focus();

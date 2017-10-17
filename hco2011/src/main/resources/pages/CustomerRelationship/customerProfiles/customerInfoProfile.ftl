@@ -106,7 +106,7 @@
 			</@ww.select>
 	</tr>
 	<!--片区分类 业务属性--->
-	<#--	-->
+	<#--	
 	<tr>
 		<@ww.select label="'${action.getText('customerInfo.businessType')}'" 
 				name="'businessType.id'" 
@@ -130,6 +130,7 @@
 				disabled="false">
 			</@ww.select>
 	</tr>
+	-->
 
 
 	<tr>
@@ -401,26 +402,26 @@
 	<@buttonBar>
 		<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
-		</#if>
 		
-		<#if customerInfo.isSaved?exists &&customerInfo.isSaved=='0' >
-            <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return submitt();'"  >
-            </@vsubmit>
-        <#else>
-            <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return submitt();'"  disabled="true">
-            </@vsubmit>
-        </#if>
+			<#if customerInfo.isSaved?exists &&customerInfo.isSaved=='0' >
+	            <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return submitt();'"  >
+	            </@vsubmit>
+	        <#else>
+	            <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return submitt();'"  disabled="true">
+	            </@vsubmit>
+	        </#if>
 		
-		<#if notNewFlag?exists&&notNewFlag=='notNewFlag'>
-		<#else>
-			<#-- 继续新建按钮   -->
-			<#if customerInfo.id?exists>
-			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editCustomerInfo.html"/>
+			<#if notNewFlag?exists&&notNewFlag=='notNewFlag'>
 			<#else>
-			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editCustomerInfo.html"/>
-			<script language="JavaScript" type="text/JavaScript"> 
-			getObjByName("newNext").disabled="true";
-			</script>
+				<#-- 继续新建按钮   -->
+				<#if customerInfo.id?exists>
+				<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editCustomerInfo.html"/>
+				<#else>
+				<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editCustomerInfo.html"/>
+				<script language="JavaScript" type="text/JavaScript"> 
+				getObjByName("newNext").disabled="true";
+				</script>
+				</#if>
 			</#if>
 		</#if>
 		
@@ -538,7 +539,7 @@
 			<#elseif req.getParameter('companyNature.id')?exists>
 			getObjByName('companyNature.id').value='${req.getParameter('companyNature.id')}';
 		</#if>
-		 
+	<#--
 		 //业务属性
 		<#if customerInfo.businessType?exists>
 		    getObjByName('businessType.id').value='${customerInfo.businessType.id?if_exists}';
@@ -561,6 +562,7 @@
 			<#elseif req.getParameter('classification.id')?exists>
 			getObjByName('classification.id').value='${req.getParameter('classification.id')}';
 		</#if>
+	-->	 
 		
 	    //国家
 		<#if customerInfo.country?exists>
@@ -609,7 +611,7 @@
 //		}
 	//弹出业务员查询模态窗体
 	function salesman_OpenDialog(){
-	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	   //window.open(url);
 	 }
@@ -637,6 +639,7 @@
 	var tORf =true;
 	//验证字段
 	function storeValidation(){
+	<#--
 	   if(getObjByName("businessType.id").value ==''||getObjByName("businessType.id").value=='-1'){
 	      alert('${action.getText('业务属性不能为空')}');
 	      return false;
@@ -644,8 +647,9 @@
 	    if(getObjByName("classification.id").value ==''||getObjByName("classification.id").value=='-1'){
 	     alert('${action.getText('片区不能为空')}');
 	      return false;
-	      
 	    }
+	-->
+	    
 		if(getObjByName('show').style.display == "block"){
 			return false;
 		}
@@ -1118,7 +1122,7 @@
 		<a id="additionalInfo" onclick="activeTab(this);" href='${req.contextPath}/customerRelationship/editAdditionalInfo.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('customerInfo.additionalInfo')}</a>
 	</li>
 	<li>
-		<a id="replyCustomerInfo"  onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyTab.html?customerInfo.id=#{customerInfo.id?if_exists}' target="frame" >${action.getText('消息回复')}</a>
+		<a id="replyCustomerInfo"  onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyTab.html?readOnly=${req.getParameter('readOnly')?if_exists}&customerInfo.id=#{customerInfo.id?if_exists}' target="frame" >${action.getText('消息回复')}</a>
 	</li>
 	<li>
 		<a id="backvisit" onclick="activeTab(this);" href='${req.contextPath}/backvisit/listBackVisitByContact.html?customerInfo.id=#{customerInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('customerInfo.backvisit')}</a>

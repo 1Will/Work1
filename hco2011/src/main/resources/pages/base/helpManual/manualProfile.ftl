@@ -26,7 +26,7 @@
     </@inputTable>
     <@buttonBar>
 	  <@vsubmit name="'upload'" value="'${action.getText('upload')}'" onclick="'return getFileName();'"/>
-	  <@redirectButton name="back" value="${action.getText('back')}" url="${req.contextPath}/base/manual/listManuals.html"/>
+	  <@redirectButton name="back" value="${action.getText('back')}" url="${req.contextPath}/base/manual/listManuals.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 	</@buttonBar>
 	<@ww.hidden name="'origFileName'" value=""/>
 	  <script language="javascript">

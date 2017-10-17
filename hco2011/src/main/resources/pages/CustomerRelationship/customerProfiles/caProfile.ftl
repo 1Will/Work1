@@ -141,7 +141,9 @@
 		</tr>
     </@inputTable>
     <@buttonBar>
+    <#if !(action.isReadOnly())>
 		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+    </#if>
 		<@vbutton class="button" name="${action.getText('close')}" value="${action.getText('close')}" onclick="javascript:window.close();"/>
     </@buttonBar>
 </@ww.form>

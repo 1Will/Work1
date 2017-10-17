@@ -67,15 +67,15 @@
 	function checkInvalidParms(){
 		return true;
     }
-    jgetObjByName(function(){
+    getObjByName(function(){
     	<#if req.getParameter('qaStorage.type.id')?exists>
-    		jgetObjByName("#type").val("${req.getParameter('qaStorage.type.id')?if_exists}");
+    		getObjByName("#type").value ="${req.getParameter('qaStorage.type.id')?if_exists}";
     	</#if>
     	<#if req.getParameter('qaStorage.state.id')?exists>
-    		jgetObjByName("#state").val("${req.getParameter('qaStorage.state.id')?if_exists}");
+    		getObjByName("#state").value ="${req.getParameter('qaStorage.state.id')?if_exists}";
     	</#if>
     	<#if req.getParameter('qaStorage.severityDegree.id')?exists>
-    		jgetObjByName("#severityDegree").val("${req.getParameter('qaStorage.severityDegree.id')?if_exists}");
+    		getObjByName("#severityDegree").value="${req.getParameter('qaStorage.severityDegree.id')?if_exists}";
     	</#if>
     	
     });

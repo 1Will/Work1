@@ -23,7 +23,7 @@
 <@htmlPage title="${action.getText('contactArchives.profile')}">
 <@ww.form namespace="'/customerRelationship'" name="'contactArchivesInfo'" action="'saveContactArchives'" method="'post'">
 	<@ww.token name="saveContactArchivesToken"/>
-	<#assign returnUrl='${req.contextPath}/customerRelationship/editContactArchives.html?yesUrl=yesUrl'/>
+	<#assign returnUrl="${req.contextPath}/customerRelationship/editContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&yesUrl=yesUrl"/>
     <@inputTable>
     	<@ww.hidden name="'isSaved'" value=""/>
     	<@ww.hidden name="'sex'" value="'${req.getParameter('sex')?if_exists}'"/>
@@ -192,30 +192,30 @@
     <@buttonBar>
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
-		</#if>
 		
-		<#if contactArchives.isSaved?exists &&contactArchives.isSaved=='0' >
-            <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return submitt();'"  >
-            </@vsubmit>
-            <#else>
-            <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return submitt();'"  disabled="true">
-            </@vsubmit>
-        </#if>
+			<#if contactArchives.isSaved?exists &&contactArchives.isSaved=='0' >
+	            <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return submitt();'"  >
+	            </@vsubmit>
+	            <#else>
+	            <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return submitt();'"  disabled="true">
+	            </@vsubmit>
+	        </#if>
 		
-		<#if notNewFlag?exists&&notNewFlag=='notNewFlag'>
-		<#else>
-			<#-- 继续新建按钮   -->
-			<#if contactArchives.id?exists>
-				<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
-					<@redirectButton value="${action.getText('newNext')}" url="${returnUrl}"/>
-				<#else>
-					<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html"/>
-				</#if>
+			<#if notNewFlag?exists&&notNewFlag=='notNewFlag'>
 			<#else>
-				<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html"/>
-					<script language="JavaScript" type="text/JavaScript"> 
-					getObjByName("newNext").disabled="true";
-					</script>
+				<#-- 继续新建按钮   -->
+				<#if contactArchives.id?exists>
+					<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
+						<@redirectButton value="${action.getText('newNext')}" url="${returnUrl}"/>
+					<#else>
+						<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+					</#if>
+				<#else>
+					<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/customerRelationship/editContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+						<script language="JavaScript" type="text/JavaScript"> 
+						getObjByName("newNext").disabled="true";
+						</script>
+				</#if>
 			</#if>
 		</#if>
 			
@@ -247,7 +247,7 @@
 	
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	 }
 	 //获得模态窗体返回值
@@ -337,7 +337,7 @@
 	}
 	function contactArchive_OpenDialog(){
 		if(getObjByName('customer.id').value !=''){
-			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitFlag=backVisit&customer.id="+getObjByName('customer.id').value;
+			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisitFlag=backVisit&customer.id="+getObjByName('customer.id').value;
 			popupModalDialog(url, 800, 600, creatorSelectorHandlerContactArchives);
 		}else{
 			alert('请先选择客户');
@@ -352,7 +352,7 @@
 	}
 	function projectInfo_OpenDialog(){
 		if(getObjByName('customer.id').value !=''){
-			var  url = "${req.contextPath}/projectInfo/listProjectInfo.html?contactArchivesFlag=contactArchivesFlag&customer.id="+getObjByName('customer.id').value;
+			var  url = "${req.contextPath}/projectInfo/listProjectInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}&contactArchivesFlag=contactArchivesFlag&customer.id="+getObjByName('customer.id').value;
 			popupModalDialog(url, 800, 600, creatorSelectorHandlerProjectInfo);
 		}else{
 			alert('请先选择客户');

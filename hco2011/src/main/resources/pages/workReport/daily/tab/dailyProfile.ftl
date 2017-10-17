@@ -214,9 +214,9 @@
 	    
 	    <#-- 继续新建按钮   -->
 			<#if daily.id?exists>
-			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/workReport/editDaily.html"/>
+			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/workReport/editDaily.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 			<#else>
-			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/workReport/editDaily.html"/>
+			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/workReport/editDaily.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 			<script language="JavaScript" type="text/JavaScript"> 
 			getObjByName("newNext").disabled="true";
 			</script>
@@ -412,20 +412,20 @@
 		<!-- 联系人弹窗 -->
 		function contact_OpenDialog(){
 		<#if daily.rapporteur?exists>
-			var url="${req.contextPath}/customerRelationship/listContactArchives.html?contactArchives.creator=${daily.rapporteur.id?if_exists}&contactArchives.createdTime=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}"
+			var url="${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&contactArchives.creator=${daily.rapporteur.id?if_exists}&contactArchives.createdTime=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}"
 		<#else>
 			var date =getObjByName('daily.currentDate').value;
-			var url="${req.contextPath}/customerRelationship/listContactArchives.html?contactArchives.creator=${user.id?if_exists}&contactArchives.createdTime="+date;
+			var url="${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&contactArchives.creator=${user.id?if_exists}&contactArchives.createdTime="+date;
 		</#if>	
 			openNewWindow(url);
 		}
 		<!-- 客户档案弹窗 -->
 		function customer_OpenDialog(){
 		<#if daily.rapporteur?exists>
-			var url="${req.contextPath}/customerRelationship/listCustomerInfo.html?customerInfo.salesmanName=${daily.rapporteur.id?if_exists}&customerInfo.createdTime=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}";
+			var url="${req.contextPath}/customerRelationship/listCustomerInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}&customerInfo.salesmanName=${daily.rapporteur.id?if_exists}&customerInfo.createdTime=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}";
 		<#else>
 			var date =getObjByName('daily.currentDate').value;
-			var url="${req.contextPath}/customerRelationship/listCustomerInfo.html?customerInfo.salesmanName=${user.id?if_exists}&customerInfo.createdTime="+date;
+			var url="${req.contextPath}/customerRelationship/listCustomerInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}&customerInfo.salesmanName=${user.id?if_exists}&customerInfo.createdTime="+date;
 		</#if>		
 			openNewWindow(url);
 		}
@@ -433,10 +433,10 @@
 		<!-- 项目弹窗 -->
 		function project_OpenDialog(){
 		<#if daily.rapporteur?exists>
-			var url="${req.contextPath}/projectInfo/listProjectInfo.html?projectInfo.creator=${daily.rapporteur.id?if_exists}&projectInfo.createdTime=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}";
+			var url="${req.contextPath}/projectInfo/listProjectInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.creator=${daily.rapporteur.id?if_exists}&projectInfo.createdTime=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}";
 		<#else>
 			var date =getObjByName('daily.currentDate').value;
-			var url="${req.contextPath}/projectInfo/listProjectInfo.html?projectInfo.creator=${user.id?if_exists}&projectInfo.createdTime="+date;
+			var url="${req.contextPath}/projectInfo/listProjectInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.creator=${user.id?if_exists}&projectInfo.createdTime="+date;
 		</#if>		
 			openNewWindow(url);
 		}
@@ -460,13 +460,13 @@
 <#if daily.rapporteur?exists>
 <ul id="beautytab">
 	<li>
-		<a id="replyDaily" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyTab.html?daily.id=#{daily.id?if_exists}' target="msgframe" >${action.getText('消息回复')}</a>
+		<a id="replyDaily" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyTab.html?readOnly=${req.getParameter('readOnly')?if_exists}&daily.id=#{daily.id?if_exists}' target="msgframe" >${action.getText('消息回复')}</a>
 	</li>
 	<li>
 		<a id="backvisit" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/backvisit/listBackVisitByContact.html?employee=${daily.rapporteur.name?if_exists}&backVisitDate_start=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}&backVisitDate_end=${(daily.currentDate?string('yyyy-MM-dd'))?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}' target="msgframe" >${action.getText('回访记录')}</a>
 	</li>
 </ul>
-<iframe name="msgframe" frameborder="0.5" src="${req.contextPath}/workReport/listReplyTab.html?daily.id=#{daily.id?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="65%"/>
+<iframe name="msgframe" frameborder="0.5" src="${req.contextPath}/workReport/listReplyTab.html?readOnly=${req.getParameter('readOnly')?if_exists}&daily.id=#{daily.id?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="65%"/>
 </#if>
 
 </@htmlPage>

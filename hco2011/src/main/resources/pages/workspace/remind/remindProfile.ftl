@@ -39,9 +39,10 @@
         </tr>
     </@inputTable>
      <@buttonBar>
-     
+     <#if !(action.isReadOnly())>
             <@vsubmit name="'save'" value="'${action.getText('save')}'" />
-            <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/remind/listRemind.html"/>
+     </#if>
+            <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/remind/listRemind.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
       </@buttonBar>
  </@ww.form>
 </@htmlPage>

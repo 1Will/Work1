@@ -79,6 +79,7 @@
         </@vcolumn>
     </@list>
 <@buttonBar>
+<#if !(action.isReadOnly())>
 	<#if req.getParameter('weekly.id')?exists>
 		<@vbutton class="button" value="${action.getText('new')}" onclick="weekPlan_OpenDialog(${req.getParameter('weekly.id')},${req.getParameter('week.id')})"/>
 	</#if>
@@ -91,20 +92,21 @@
 	    <@ww.param name="'onclick'" value="'return confirmDeletes(\"weekPlanIds\", \"${confirmMessage}\");'"/>
 	    <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
 	</@vsubmit>
+</#if>
 </@buttonBar>
 </@ww.form>
 	<script>
 		function weekPlan_OpenDialog(id,weekId){
 		<#if req.getParameter('weekly.id')?exists>
-			var url = "${req.contextPath}/workReport/editWeekPlan.html?weekly.id="+id+"&week.id="+weekId;
+			var url = "${req.contextPath}/workReport/editWeekPlan.html?readOnly=${req.getParameter('readOnly')?if_exists}&weekly.id="+id+"&week.id="+weekId;
 		</#if>
 		<#if req.getParameter('projectInfo.id')?exists>
-			var url = "${req.contextPath}/workReport/editWeekPlan.html?projectInfo.id="+id;
+			var url = "${req.contextPath}/workReport/editWeekPlan.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id="+id;
 		</#if>
 			openNewWindow(url);
 		}
 		function showWeekPlan(id,selectId){
-			var url = "${req.contextPath}/workReport/editWeekPlan.html?weekPlan.id="+id;
+			var url = "${req.contextPath}/workReport/editWeekPlan.html?readOnly=${req.getParameter('readOnly')?if_exists}&weekPlan.id="+id;
 			openNewWindow(url);
 		}
 	</script>

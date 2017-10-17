@@ -8,7 +8,7 @@
         <@buttonBar> 
 	 		 <@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
 	 		 <#if !(action.isReadOnly())>   
-	 		 <@redirectButton value="${action.getText('new')}" url="${req.contextPath}/base/department/editDepartment.html"/>
+	 		 <@redirectButton value="${action.getText('new')}" url="${req.contextPath}/base/department/editDepartment.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 	 		 </#if>    
         </@buttonBar>
         <@list title="${action.getText('department.list')}" includeParameters="id|name|code|leader|onlyInvalid|onlyValid" fieldMap="like:id|name|code|leader">

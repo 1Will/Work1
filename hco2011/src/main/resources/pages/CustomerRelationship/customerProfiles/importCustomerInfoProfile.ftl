@@ -9,8 +9,10 @@
       </tr>
     </@inputTable>
     <@buttonBar>
+    <#if !(action.isReadOnly())>
 	  <@vsubmit  name="'upload'" value="'${action.getText('upload')}'"  />
-	  <@redirectButton name="back" value="${action.getText('back')}" url="${req.contextPath}/customerRelationship/listCustomerInfo.html"/>
+    </#if>
+	  <@redirectButton name="back" value="${action.getText('back')}" url="${req.contextPath}/customerRelationship/listCustomerInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 	</@buttonBar>
 	  <script language="javascript">
 	    function getFileName() {

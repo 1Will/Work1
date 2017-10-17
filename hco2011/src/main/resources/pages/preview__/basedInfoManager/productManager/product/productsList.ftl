@@ -26,7 +26,9 @@
 		<#include "./productSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'checkInvalidParms()'" />
+			<#if !(action.isReadOnly())>
 			<@redirectButton value="${'新建'}" url="${req.contextPath}/productsManager/editProducts.html"/>
+			</#if>
         </@buttonBar>
         <#--  -->
         <@list title="${action.getText('productsList')}" includeParameters="products.code|products.name|products.model|products.standard|pt.id|onlyInvalid|onlyValid" fieldMap="like:products.code|products.name|products.model|products.standard" >

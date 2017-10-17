@@ -140,7 +140,9 @@
         </tr>
     </@inputTable>
     <@buttonBar>
-		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+	    <#if !(action.isReadOnly())>
+			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+	    </#if>
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/com/listRemit.html"/>
     </@buttonBar>
 

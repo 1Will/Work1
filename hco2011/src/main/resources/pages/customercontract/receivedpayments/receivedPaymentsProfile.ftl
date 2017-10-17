@@ -158,7 +158,7 @@
 </@ww.form>
 
 <script type="text/javascript">
-	window.onload=function(){
+//	window.onload=function(){
 		<#if receivedPayments.payment?exists>
 			getObjByName('payment.id').value='${receivedPayments.payment.id?if_exists}';
 		</#if>
@@ -172,11 +172,11 @@
 				getObjByName('isOrNot1').checked=true;
 			</#if>
 		</#if>
-	}
+//	}
 	
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelector1Handler);
 	 }
 	 //获得模态窗体返回值
@@ -190,7 +190,7 @@
 	
 	//弹出收款人查询模态窗体
 	function payee_OpenDialog(){
-	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorPrincipalHandler);
 	   //window.open(url);
 	 }
@@ -204,7 +204,7 @@
 	
 	//联系人查询模态窗体
 	function contactArchives_OpenDialog(){
-	   var url = "${req.contextPath}/com/listContactArchivesWindow.html";
+	   var url = "${req.contextPath}/com/listContactArchivesWindow.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelector2Handler);
 	   //window.open(url);
 	 }
@@ -218,7 +218,7 @@
 	
 		//合同管理模态窗体
 	function contractManagement_OpenDialog(){
-	   var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html";
+	   var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelector3Handler);
 	   //window.open(url);
 	 }

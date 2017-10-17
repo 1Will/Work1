@@ -84,7 +84,6 @@
     <@buttonBar>
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
-		</#if>
 		
 		<#-- 继续新建按钮   -->
 			<#if projectInfoContract.id?exists>
@@ -97,6 +96,7 @@
 			getObjByName("newNext").disabled="true";
 			</script>
 			</#if>
+		</#if>
 		
 		<input class="button" type="button" value="${action.getText('close')}"  onclick="closeThis();">
     </@buttonBar>
@@ -112,7 +112,7 @@
 	
 	
 	function contactArchive_OpenDialog(){
-			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?projectId=${projectInfoId?if_exists}&backVisitFlag=backVisit&projectInfoCus=${projectInfoCus?if_exists}";
+			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectId=${projectInfoId?if_exists}&backVisitFlag=backVisit&projectInfoCus=${projectInfoCus?if_exists}";
 			popupModalDialog(url, 800, 600, creatorSelectorHandlerContactArchives);
 	}
 	function creatorSelectorHandlerContactArchives(result) {

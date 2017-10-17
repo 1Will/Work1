@@ -46,12 +46,12 @@
 </@framePage>
 <script>
 	function editProPer_OpenDialog(){
-	   var url= "${req.contextPath}/projectInfo/editProjectContactArchives.html?projectInfo.id=${req.getParameter('projectInfo.id')?if_exists}";
+	   var url= "${req.contextPath}/projectInfo/editProjectContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${req.getParameter('projectInfo.id')?if_exists}";
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }
 	 function editProPer_OpenDialog_update(id){
-	   var url= "${req.contextPath}/projectInfo/editProjectContactArchives.html?projectInfo.id=${req.getParameter('projectInfo.id')?if_exists}&projectContactArchives.id="+id;
+	   var url= "${req.contextPath}/projectInfo/editProjectContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${req.getParameter('projectInfo.id')?if_exists}&projectContactArchives.id="+id;
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }

@@ -25,7 +25,7 @@
 	 	  <@buttonBar>
 	 		<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
 	 		<#if !(action.isReadOnly())>
-	 			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/notice/editNotice.html"/>
+	 			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/notice/editNotice.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 	 		</#if>  
           </@buttonBar>
           <#-- <@ww.hidden name="'saveOrSendFlag'" value="#{sendNotice.id}"/>-->

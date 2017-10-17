@@ -9,7 +9,7 @@
 			 <value>com.microsoft.sqlserver.jdbc.SQLServerDriver</value>  
 		</property>
 		<property name="url">
-			<value>jdbc:sqlserver://192.168.1.110:1433;databasename=tektcrm_ok;SelectMethod=Cursor</value>
+			<value>jdbc:sqlserver://192.168.1.110:1433;databasename=crm;SelectMethod=Cursor</value>
 		</property>
 		<property name="password">
 			<value>root</value>

@@ -25,7 +25,9 @@
 		<#include "./coSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/com/editCo.html"/>
+			<#if !(action.isReadOnly())>
+				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/com/editCo.html"/>
+			</#if>
         </@buttonBar>
         <@list title="${action.getText('co.list.title')}" 
             includeParameters="co.code|co.customerInfo|co.deliveryTime_start|co.deliveryTime_end|co.products|co.linkman|deliveryWay.id|type.id|co.phone||onlyInvalid|onlyValid" 
@@ -60,9 +62,11 @@
             </@vcolumn>
         </@list>
          <#if !first>
+         	<#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('co.info')}" boxName="coIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
+		 	</#if>
 		 </#if>
     </@ww.form>
 </@htmlPage>

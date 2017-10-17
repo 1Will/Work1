@@ -111,8 +111,10 @@
 			</tr>
 	</@inputTable>
 	<@buttonBar>
+	<#if !(action.isReadOnly())>
 		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
-		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/companyTarget/listCompanyTargetAction.html"/>
+	</#if>
+		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/companyTarget/listCompanyTargetAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
     </@buttonBar>
 </@ww.form>
 <script language="JavaScript" type="text/JavaScript"> 

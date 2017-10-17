@@ -89,7 +89,7 @@
     
     
     
-    jgetObjByName(function(){
+    getObjByName(function(){
     <#--	<#if req.getParameter('customerService.serviceType.id')?exists>
     		jgetObjByName("#serviceType").val("${req.getParameter('customerService.serviceType.id')?if_exists}");
     	</#if>

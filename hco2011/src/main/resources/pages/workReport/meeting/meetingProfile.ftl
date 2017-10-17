@@ -85,9 +85,9 @@
 	         <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return validate();'"/>
 		     <#-- 继续新建按钮   -->
 		     <#if meetingMonth.date?exists>
-			      <@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/workReport/editMeeting.html"/>
+			      <@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/workReport/editMeeting.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 		     <#else>
-			      <@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/workReport/editMeeting.html"/>
+			      <@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/workReport/editMeeting.html？readOnly=${req.getParameter('readOnly')?if_exists}"/>
 			 <script language="JavaScript" type="text/JavaScript"> 
 			    getObjByName("newNext").disabled="true";
 			 </script>

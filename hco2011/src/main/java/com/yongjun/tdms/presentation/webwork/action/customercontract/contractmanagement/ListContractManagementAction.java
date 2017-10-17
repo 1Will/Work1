@@ -68,35 +68,35 @@ public class ListContractManagementAction extends ValueListAction {
 
 	protected Map getRequestParameterMap() {
 		Map map = super.getRequestParameterMap();
-		PersonnelFiles personnelFiles =null;
-		try {
-			
-			if(isProjectInfoGroup()){//如果是项目管理组里的人员
-				//再次区分是军品还是民品的
-				List<PersonnelFiles>  tempList=this.personnelFilesManager.loadByKey("code", userManager.getUser().getCode());
-				if(tempList!=null&&tempList.size()>0){
-					personnelFiles  = tempList.get(0);
-					if(personnelFiles.getBusinessType()!=null){
-						//只有这个人是军品或者 民品会绑定检索条件。只能看所属权限的
-						if(personnelFiles.getBusinessType().getName().equals("军品")||personnelFiles.getBusinessType().getName().equals("民品")){
-							map.put("businessType", "%"+personnelFiles.getBusinessType().getName()+"%");
-						}
-					}
-				}
-			}else {//如果不是项目管理组的人员。就是查询这个人所在的所有项目
-				List<Long> proIdList = this.projectInfoPersonnelsManager.loadProjectInfoIdByPersonnel(userManager.getUser().getCode());
-				if(proIdList==null||proIdList.size()<1){
-					//如果查询结果为空。 即不不是任何项目组成员，默认为0
-					proIdList = new ArrayList<Long>();
-					proIdList.add(0l);
-				}
-					map.put("proIds", proIdList);
-			}
-			
-			
-		} catch (DaoException e) {
-			e.printStackTrace();
-		}
+//		PersonnelFiles personnelFiles =null;
+//		try {
+//			
+//			if(isProjectInfoGroup()){//如果是项目管理组里的人员
+//				//再次区分是军品还是民品的
+//				List<PersonnelFiles>  tempList=this.personnelFilesManager.loadByKey("code", userManager.getUser().getCode());
+//				if(tempList!=null&&tempList.size()>0){
+//					personnelFiles  = tempList.get(0);
+//					if(personnelFiles.getBusinessType()!=null){
+//						//只有这个人是军品或者 民品会绑定检索条件。只能看所属权限的
+//						if(personnelFiles.getBusinessType().getName().equals("军品")||personnelFiles.getBusinessType().getName().equals("民品")){
+//							map.put("businessType", "%"+personnelFiles.getBusinessType().getName()+"%");
+//						}
+//					}
+//				}
+//			}else {//如果不是项目管理组的人员。就是查询这个人所在的所有项目
+//				List<Long> proIdList = this.projectInfoPersonnelsManager.loadProjectInfoIdByPersonnel(userManager.getUser().getCode());
+//				if(proIdList==null||proIdList.size()<1){
+//					//如果查询结果为空。 即不不是任何项目组成员，默认为0
+//					proIdList = new ArrayList<Long>();
+//					proIdList.add(0l);
+//				}
+//					map.put("proIds", proIdList);
+//			}
+//			
+//			
+//		} catch (DaoException e) {
+//			e.printStackTrace();
+//		}
 		
 		if (this.request.getParameter("contractManagement.id") != null) {
 			int rNId = Integer.valueOf(this.request.getParameter("contractManagement.id")).intValue();

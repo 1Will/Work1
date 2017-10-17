@@ -59,7 +59,7 @@
     		<#if !(action.isReadOnly())>
             <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
             </#if>
-            <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/baseInfoManager/listInstitution.html"/>
+            <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/baseInfoManager/listInstitution.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
     </@buttonBar>
 
 </@ww.form>
@@ -71,7 +71,7 @@
 			<#if institution.parentInst?exists>
 				document.forms[0].elements["parentInsts"].value = #{institution.parentInst.id};
 			</#if>
-			document.all.frame.src='${req.contextPath}/base/department/listDept.html?institution.id=#{institution.id}';
+			document.all.frame.src='${req.contextPath}/base/department/listDept.html?institution.id=#{institution.id}&readOnly=${req.getParameter('readOnly')?if_exists}';
 		</#if>
  		
  	}
@@ -135,9 +135,9 @@
 <#if institution.id?exists>
 <ul id="beautytab">
 	<li>
-		<a id="department" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/base/department/listDept.html?institution.id=#{institution.id}' target="frame" >相关部门列表</a>
+		<a id="department" onclick="activeTab(this);" class="selectedtab" href='${req.contextPath}/base/department/listDept.html?institution.id=#{institution.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >相关部门列表</a>
 	</li>
 </ul>
-<iframe name="frame" frameborder="0.5" src="" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="100%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/base/department/listDept.html?institution.id=#{institution.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="100%"/>
 </#if>
 </@htmlPage>

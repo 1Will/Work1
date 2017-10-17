@@ -9,7 +9,7 @@
         <@buttonBar>
         	<@vsubmit value="'${action.getText('search')}'" onclick="'checkInvalidParms()'" />
         	<#if !(action.isReadOnly())>
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/productTypeManager/editProductType.html"/>
+			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/productTypeManager/editProductType.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 			</#if>
         </@buttonBar>
         

@@ -53,6 +53,7 @@
 			     		getObjByName('product_source_ID.id').value = '#{products.product_source_ID.id}';
 			     	</#if>
 			    </script>
+			    <#--
 			    <@ww.select label="'${action.getText('产品属性')}'" 
 					name="'businessType.id'" 
 					value="'${req.getParameter('businessType.id')?if_exists}'"
@@ -64,6 +65,8 @@
 					disabled="false"
 					onchange="'businessType_ptDWR(\"businessType.id\",\"pt.id\",\"${action.getText('')}\",\"edit\")'">
 			   </@ww.select>
+			    -->
+			   
 			    <@ww.select label="'${action.getText('products.pt.id')}'" 
 		           name="'pt.id'" 
 			       value="'${req.getParameter('pt.id')?if_exists}'" 
@@ -82,6 +85,20 @@
 			     	</#if>
 				</script>
 				-->
+		        <td align="right">
+					<label for="" class="label">${action.getText('products.isNoMain')}:</label>
+				</td>
+			    <td align="left">
+		        	<input type="radio" id="products.isNoMain1" name="products.isNoMain" value=false checked>是
+		        	<input type="radio" id="products.isNoMain2" name="products.isNoMain" value=true>否
+		        	<script language="javascript">
+			     		if(${(products.isNoMain?string)?if_exists}==true){
+			     			getObjByName('products.isNoMain1').checked = true;
+			     		}else if(${(products.isNoMain?string)?if_exists}==false){
+			     			getObjByName('products.isNoMain2').checked = true;
+			     		}
+					</script>
+				</td>
 				
 			</tr>
 			<tr>
@@ -130,22 +147,7 @@
 				</script>
 			</tr>
 			<!---->
-			<tr>	
-        <td align="right">
-			<label for="" class="label">${action.getText('products.isNoMain')}:</label>
-		</td>
-	    <td align="left">
-        	<input type="radio" id="products.isNoMain1" name="products.isNoMain" value=false checked>是
-        	<input type="radio" id="products.isNoMain2" name="products.isNoMain" value=true>否
-        	<script language="javascript">
-	     		if(${(products.isNoMain?string)?if_exists}==true){
-	     			getObjByName('products.isNoMain1').checked = true;
-	     		}else if(${(products.isNoMain?string)?if_exists}==false){
-	     			getObjByName('products.isNoMain2').checked = true;
-	     		}
-			</script>
-		</td>
-        	</tr>
+
 			<tr>
 		    	<td align="right" valign="top">
 		    		<label class="label">${action.getText('products.remark')}:</label>
@@ -159,18 +161,18 @@
         <#if !(action.isReadOnly())>
             <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'">
             </@vsubmit>
-        </#if>
         
-        <#if products.isSaved?exists &&products.isSaved=='0' >
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
-	    <#else>
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
-	    </#if>
+	        <#if products.isSaved?exists &&products.isSaved=='0' >
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+		    <#else>
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+		    </#if>
+        </#if>
         
         <#if backFlag?exists>
         <input type="button" value="关闭" onclick="window.close()">
             <#else>
-             <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/productsManager/listProducts.html" /> 
+             <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/productsManager/listProducts.html?readOnly=${req.getParameter('readOnly')?if_exists}" /> 
             </#if>
 	</@buttonBar>
 	</@ww.form>
@@ -227,6 +229,7 @@
 </script> 
 <script language="javascript">
 //		window.onload=function(){
+<#--
 		 //业务属性
 		<#if products.businessType?exists>
 		    getObjByName('businessType.id').value='#{products.businessType.id?if_exists}';
@@ -243,6 +246,7 @@
 	    	//重新设置为异步方式
 	    	DWREngine.setAsync(false);
 		</#if>
+-->
 		<#if products.pt?exists>
  		getObjByName('pt.id').value = '#{products.pt.id}';
  	    </#if>
@@ -260,7 +264,7 @@
 		 	}
 //		}
 	function supplier_OpenDialog(){
-		var url ="${req.contextPath}/supplierManager/listSupplierWindow.html";
+		var url ="${req.contextPath}/supplierManager/listSupplierWindow.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 		popupModalDialog(url, 800, 600, setSupplier);
 	}
 	
@@ -271,7 +275,7 @@
 	
 	//弹出供应商模态窗体
 	function customerInfo_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?isPartner=1";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?isPartner=1&readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, setCustomerInfo);
 	 }
 	 //获得模态窗体返回值
@@ -389,12 +393,13 @@
        		getObjByName('products.salelimit').focus();
        		return false;
 	    }
-		<#-- 产品属性-->
+		<#-- 产品属性
 		if(getObjByName('businessType.id').value==''||getObjByName('businessType.id').value==-1){
 			alert('${action.getText('请选择产品属性')}');
 			getObjByName('businessType.id').focus();
 			return false;
 		}
+		-->
 		<#-- 类别 8-->
 		if(getObjByName('pt.id').value==''||getObjByName('pt.id').value==-1){
 			alert('${action.getText('pt.id.null')}');

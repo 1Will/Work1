@@ -257,7 +257,7 @@
 	
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	 }
 	 //获得模态窗体返回值

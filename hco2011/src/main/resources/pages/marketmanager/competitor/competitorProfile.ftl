@@ -134,7 +134,9 @@
    		</tr>		
     </@inputTable>
     <@buttonBar>
+    <#if !(action.isReadOnly())>
 		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+    </#if>
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/competitor/listCompetitor.html"/>
     </@buttonBar>
 
@@ -154,7 +156,7 @@
 	}
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandlerCustomer);
 	 }
 	 //获得模态窗体返回值
@@ -167,7 +169,7 @@
 
 	//弹出产品查询模态窗体
 	function products_OpenDialog(){
-	   var url = "${req.contextPath}/com/listProductsWindow.html";
+	   var url = "${req.contextPath}/com/listProductsWindow.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorPrincipalHandler);
 	   //window.open(url);
 	 }

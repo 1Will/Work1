@@ -28,7 +28,7 @@
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms()'"/>
 			<#if !(action.isReadOnly())>
-				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html"/>
+				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
        		</#if>
         </@buttonBar>
         <@list title="${action.getText('contractManagementAction.list')}" 

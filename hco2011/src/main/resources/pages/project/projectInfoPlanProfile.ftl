@@ -22,7 +22,7 @@
 <@htmlPage title="${title?if_exists}">
 <@ww.form namespace="'/projectInfo'" name="'projectInfo'" action="'saveProPlan'" method="'post'">
 	<@ww.token name="saveProjectInfoPlanToken"/>
-	<#assign returnUrl='${req.contextPath}/projectInfo/editProPlan.html??yesUrl=yesUrl'/>
+	<#assign returnUrl="${req.contextPath}/projectInfo/editProPlan.html?readOnly=${req.getParameter('readOnly')?if_exists}&yesUrl=yesUrl"/>
     <@inputTable>
     	<#if projectInfoId?exists>
     		<@ww.hidden name="'projectInfo.id'" value="'${projectInfoId?if_exists}'"/>
@@ -200,18 +200,14 @@
     <@buttonBar>
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
-		</#if>
 		
-		<#if projectInfoPlan.isSaved?exists &&projectInfoPlan.isSaved=='0' >
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
-	    <#else>
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
-	    </#if>
+			<#if projectInfoPlan.isSaved?exists &&projectInfoPlan.isSaved=='0' >
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+		    <#else>
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+		    </#if>
 		
-		<#if (editFlag?exists&&editFlag=='editFlag')>
-		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/projectInfo/listMyPlan.html"/>
-		<#else>
-		<#-- 继续新建按钮   -->
+			<#-- 继续新建按钮   -->
 			<#if projectInfoPlan.id?exists>
 			<@redirectButton value="${action.getText('newNext')}" 
 				url="${returnUrl}"/>
@@ -222,7 +218,11 @@
 			getObjByName("newNext").disabled="true";
 			</script>
 			</#if>
+		</#if>
 		
+		<#if (editFlag?exists&&editFlag=='editFlag')>
+		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/projectInfo/listMyPlan.html"/>
+		<#else>
 		<input class="button" type="button" value="${action.getText('close')}"  onclick="closeThis();">
 		</#if>
     </@buttonBar>
@@ -241,11 +241,11 @@
 	//弹出业务员查询模态窗体
 	function salesman_OpenDialog(){
 		 <#if projectInfoId?exists>
-		 	var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?onlyProject.id=${projectInfoId?if_exists}";
+		 	var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}&onlyProject.id=${projectInfoId?if_exists}";
     	</#if>
     	<#if contractManagement?exists>
     	<#if contractManagement.project?exists>
-		 	var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?onlyProject.id=${contractManagement.project.id?if_exists}";
+		 	var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}&onlyProject.id=${contractManagement.project.id?if_exists}";
     	</#if>
     	</#if>
 	
@@ -259,7 +259,7 @@
 		if(isIE()){
    			assistIds = encodeURI(assistIds); 
    		}
-		var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?backVisitCheckBox=backVisitCheckBox&employeesIds_a="+assistIds;
+		var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisitCheckBox=backVisitCheckBox&employeesIds_a="+assistIds;
 		popupModalDialog(url, 800, 600, creatorSelectorHandler_);
 		//window.open(url);
 	 }

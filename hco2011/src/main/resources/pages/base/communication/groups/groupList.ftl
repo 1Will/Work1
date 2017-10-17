@@ -33,7 +33,9 @@
         </@inputTable>
          <@buttonBar>
             <@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
-            <@redirectButton value="${action.getText('new')}" url="${req.contextPath}/communication/groups/editGroup.html"/>
+            <#if !(action.isReadOnly())>
+            	<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/communication/groups/editGroup.html"/>
+        	</#if>
         </@buttonBar>
          <@list title="${action.getText('list.title')}" includeParameters="code|name|nonParentGroup|parent.group" fieldMap="like:code|name" >
             <@vcolumn title="">
@@ -42,7 +44,7 @@
             </@vcolumn>
             
             <@vcolumn title="${action.getText('group.code')}">
-                <a href="${req.contextPath}/communication/groups/editGroup.html?group.id=#{object.id}">${object.code}</a>
+                <a href="${req.contextPath}/communication/groups/editGroup.html?group.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}">${object.code}</a>
                 <@alignLeft/>
             </@vcolumn>
             
@@ -93,7 +95,7 @@
 		 <#-- var groupName=document.getElementById("name").value;-->
 		 	if(inputField.value.length >0){
 		 		createxmlhttprequest();
-		 		var url = "${req.contextPath}/security/checkGroupName.html?groupName="+(inputField.value);
+		 		var url = "${req.contextPath}/security/checkGroupName.html?readOnly=${req.getParameter('readOnly')?if_exists}&groupName="+(inputField.value);
 		 		encodeURI
 		 		xmlhttpreq.open("get",encodeURI(url),true);
 		 		xmlhttpreq.onreadystatechange = processresponse;

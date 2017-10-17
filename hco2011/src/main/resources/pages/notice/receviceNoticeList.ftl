@@ -66,6 +66,7 @@
                 </@vcolumn>
         	</@list>
         	<#if !first>
+        	  <#if !(action.isReadOnly())>
         	  <@buttonBar>
 	            <@crm_disabledOrEnabled_button message="${action.getText('notice')}" boxName="receviceNoticeIds" jsFunctionName="checkInvalidParms()"/>
                 <#assign confirmMessage = "${action.getText('confirm.unread')}?" />
@@ -75,6 +76,7 @@
                   <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
                 </@vsubmit>
 	          </@buttonBar>
+        	  </#if>
 	        </#if>
 	  
 	 </@ww.form>

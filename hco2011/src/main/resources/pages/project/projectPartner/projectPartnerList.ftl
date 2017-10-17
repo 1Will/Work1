@@ -47,13 +47,13 @@
 <script>
 	function editProPar_OpenDialog(){
 	   var url="";
-	   url= "${req.contextPath}/projectInfo/editProjectPartner.html?projectInfo.id=${req.getParameter('projectInfo.id')?if_exists}";
+	   url= "${req.contextPath}/projectInfo/editProjectPartner.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${req.getParameter('projectInfo.id')?if_exists}";
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }
 	 function editProPar_OpenDialog_update(id){
 	   var url="";
-	   url= "${req.contextPath}/projectInfo/editProjectPartner.html?projectInfo.id=${req.getParameter('projectInfo.id')?if_exists}&projectPartner.id="+id;
+	   url= "${req.contextPath}/projectInfo/editProjectPartner.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${req.getParameter('projectInfo.id')?if_exists}&projectPartner.id="+id;
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }

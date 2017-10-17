@@ -83,17 +83,17 @@
     <@buttonBar>
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
-		</#if>
 			<#if projectContactArchives.id?exists>
 			<@redirectButton value="${action.getText('newNext')}" 
-				url="${req.contextPath}/projectInfo/editProjectContactArchives.html?projectInfo.id=${projectInfo.id?if_exists}"/>
+				url="${req.contextPath}/projectInfo/editProjectContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${projectInfo.id?if_exists}"/>
 			<#else>
 			<@redirectButton name="newNext" value="${action.getText('newNext')}" 
-				url="${req.contextPath}/projectInfo/editProjectContactArchives.html?projectInfo.id=${projectInfo.id?if_exists}"/>
+				url="${req.contextPath}/projectInfo/editProjectContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${projectInfo.id?if_exists}"/>
 				<script language="JavaScript" type="text/JavaScript"> 
 					getObjByName("newNext").disabled="true";
 				</script>
 			</#if>
+		</#if>
 		
 		<input class="button" type="button" value="${action.getText('close')}"  onclick="closeThis();">
     </@buttonBar>
@@ -111,7 +111,7 @@
 	
 	
 	function contactArchive_OpenDialog(){
-		var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitFlag=backVisit&con_Project.id="+getObjByName('projectInfo.id').value;
+		var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisitFlag=backVisit&con_Project.id="+getObjByName('projectInfo.id').value;
 		popupModalDialog(url, 800, 600, setContactArchives);
 	}
 	function setContactArchives(result) {

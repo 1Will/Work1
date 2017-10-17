@@ -12,7 +12,7 @@
 				<@ww.hidden name="'customer.id'" value="'${req.getParameter('customer.id')?if_exists}'"/>
 			<#else>
 			<#if !(action.isReadOnly())>
-				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/projectInfo/editProjectInfo.html"/>
+				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/projectInfo/editProjectInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 			</#if>
 			</#if>
         </@buttonBar>

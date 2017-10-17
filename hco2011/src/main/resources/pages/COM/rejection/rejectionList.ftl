@@ -25,7 +25,9 @@
 		<#include "./rejectionSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/com/editRejection.html"/>
+			<#if !(action.isReadOnly())>
+				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/com/editRejection.html"/>
+			</#if>
         </@buttonBar>
         <@list title="${action.getText('rejection.list.title')}" 
             includeParameters="rejection.code|rejection.rejectionDate_start|rejection.rejectionDate_end|rejection.products|rejection.customerInfo|
@@ -56,9 +58,11 @@
             </@vcolumn>
         </@list>
          <#if !first>
+         <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('rejection.info')}" boxName="rejectionIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
+		 </#if>
 		 </#if>
     </@ww.form>
 </@htmlPage>

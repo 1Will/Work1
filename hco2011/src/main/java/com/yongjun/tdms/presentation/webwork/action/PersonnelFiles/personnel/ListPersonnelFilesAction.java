@@ -145,28 +145,28 @@ public class ListPersonnelFilesAction extends ValueListAction {
 	protected Map getRequestParameterMap() {
 		Map map = super.getRequestParameterMap();
 		User user = this.userManager.getUser();
-		PersonnelFiles personnelFiles = null;
+//		PersonnelFiles personnelFiles = null;
 		if (this.notOpen != null && this.notOpen.equals("notOpen")) {
 			if (!isPersonnelGroup()) {
 				map.put("code", user.getCode());
 			}
 		}
-		try {
-			List<PersonnelFiles> tempList = this.personnelFilesManager.loadByKey("code", user.getCode());
-			if (tempList != null && tempList.size() > 0) {
-				personnelFiles = tempList.get(0);
-				if (personnelFiles.getBusinessType() != null) {
-					if (personnelFiles.getBusinessType().getName().equals("军品")) {
-						map.put("businessType", "%军%");
-					} else if (personnelFiles.getBusinessType().getName().equals("民品")) {
-						map.put("businessType", "%民%");
-
-					}
-				}
-			}
-		} catch (DaoException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			List<PersonnelFiles> tempList = this.personnelFilesManager.loadByKey("code", user.getCode());
+//			if (tempList != null && tempList.size() > 0) {
+//				personnelFiles = tempList.get(0);
+//				if (personnelFiles.getBusinessType() != null) {
+//					if (personnelFiles.getBusinessType().getName().equals("军品")) {
+//						map.put("businessType", "%军%");
+//					} else if (personnelFiles.getBusinessType().getName().equals("民品")) {
+//						map.put("businessType", "%民%");
+//
+//					}
+//				}
+//			}
+//		} catch (DaoException e) {
+//			e.printStackTrace();
+//		}
 
 		if ((hasId("sysUser"))) {
 			List users = this.userManager.loadValidUsers();

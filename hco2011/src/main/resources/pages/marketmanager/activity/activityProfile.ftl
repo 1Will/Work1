@@ -152,7 +152,9 @@
 		</tr>
     </@inputTable>
     <@buttonBar>
+    <#if !(action.isReadOnly())>
 		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+    </#if>
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/activity/listActivity.html"/>
     </@buttonBar>
 
@@ -176,7 +178,7 @@
 	
 	//弹出负责人查询模态窗体
 	function persons_OpenDialog(){
-	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	   //window.open(url);
 	 }

@@ -26,7 +26,9 @@
 		<#include "./individualTargetSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms()'"/>
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/individualTarget/editIndividualTargetAction.html"/>
+		<#if !(action.isReadOnly())>
+			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/individualTarget/editIndividualTargetAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+		</#if>
         </@buttonBar>
         <@list title="${action.getText('个人目标列表')}" 
             includeParameters="individualTarget.planType|individualTarget.quarter|individualTarget.month|individualTarget.year|individualTarget.targetName|onlyInvalid|onlyValid" 
@@ -79,14 +81,17 @@
             </@vcolumn>
         </@list>
         <#if !first>
+        <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('个人目标')}" boxName="individualTargetIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
+        </#if>
 		</#if>
     </@ww.form>
 </@htmlPage>
 
 <#macro crm_disabledOrEnabled_Nodelete_button message="" boxName="" jsFunctionName="" other="test">
+<#if !(action.isReadOnly())>
   <#if (action.isOnlyInvalid())>
   	<#assign confirmMessage1 = "${action.getText('confirm.valid')}${message?if_exists}?" />
 	<@vsubmit name="'enabled'" value="'${action.getText('enabled')}'">
@@ -100,6 +105,7 @@
 	  <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
 	</@vsubmit>
   </#if>
+</#if>
   <script language="javascript">
 	function validateInvalid(delFun, checkFun) {
       if (delFun) {

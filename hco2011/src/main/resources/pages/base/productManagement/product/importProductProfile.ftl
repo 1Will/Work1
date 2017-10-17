@@ -10,7 +10,7 @@
     </@inputTable>
     <@buttonBar>
 	  <@vsubmit  name="'upload'" value="'${action.getText('upload')}'"  />
-	  <@redirectButton name="back" value="${action.getText('back')}" url="${req.contextPath}/customerRelationship/listProducts.html"/>
+	  <@redirectButton name="back" value="${action.getText('back')}" url="${req.contextPath}/customerRelationship/listProducts.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 	</@buttonBar>
 	  <script language="javascript">
 	    function getFileName() {

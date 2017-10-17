@@ -107,7 +107,7 @@
 	
 	//弹出业务员查询模态窗体
 	function salesman_OpenDialog(){
-	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	   //window.open(url);
 	 }

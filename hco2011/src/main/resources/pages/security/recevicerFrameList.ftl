@@ -30,10 +30,12 @@
 	        <textarea name="recevicers" cols="60" rows="5" id="recevicers" disabled></textarea>
 	      </td>
         </@inputTable>
+        <#if !(action.isReadOnly())>
         <@buttonBar>
 	       <@htmlButton name="choose" value="确定" onclick= "return confirmRecevicer();"/>
 	       <@htmlButton name="submit"  style="width:50px;" value="重置" class=btn1_mouseout onmouseover="this.className='btn1_mouseover'" onmouseout="this.className='btn1_mouseout'"   onclick="return resetRecevices();"/>
 	    </@buttonBar>
+        </#if>
 	</body>
 </html>
 <script language="javascript" src="${req.contextPath}/javascripts/global.js"></script>

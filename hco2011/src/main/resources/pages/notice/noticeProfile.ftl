@@ -104,11 +104,13 @@
         </@inputTable>
         <@ww.hidden name="'origFileName'" value=""/>
         <@buttonBar>
+        <#if !(action.isReadOnly())>
             <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick= "'return selectAvailableUser();'"/>
             <@vsubmit name="'send'" value="'${action.getText('send')}'" onclick= "'return selectAvailableUser();'"/>
             <#if sendNotice.id?exists>
               <@vsubmit name="'cancel'" value="'${action.getText('取消发送')}'"/>
             </#if>
+        </#if>
             <@redirectButton name="back" value="${action.getText('back')}" url="${req.contextPath}/notice/listNotice.html"/>
         </@buttonBar>
     </@ww.form>
@@ -186,7 +188,7 @@ window.onload = function(){
   }
   //从用户选择获得用户名和手机号码
 	function selectChooseuser(){
-		var url = '${req.contextPath}/userSelector/userBytelphoneSelector.html';
+		var url = "${req.contextPath}/userSelector/userBytelphoneSelector.html?readOnly=${req.getParameter('readOnly')?if_exists}";
         popupModalDialog(url, 800, 600, choose_user_information);
         return false;
 	}   
@@ -207,7 +209,7 @@ window.onload = function(){
 	
 	//从用户组选择获得手机号码和用户名
   	function selectchooseGroup(){
-		var url = '${req.contextPath}/groupSelector/groupSelector.html';
+		var url = "${req.contextPath}/groupSelector/groupSelector.html?readOnly=${req.getParameter('readOnly')?if_exists}";
         popupModalDialog(url, 800, 600, choose_group_information);
         return false;
   	}
@@ -274,7 +276,7 @@ window.onload = function(){
   	 //用户的选择
 
         function user_OpenDialog() {
-          var url = "${req.contextPath}/popup/userSelector.html?multipleSelect=T";
+          var url = "${req.contextPath}/popup/userSelector.html?readOnly=${req.getParameter('readOnly')?if_exists}&multipleSelect=T";
 	      popupModalDialog(url, 800, 600, userSelectorHandler);
         }
         

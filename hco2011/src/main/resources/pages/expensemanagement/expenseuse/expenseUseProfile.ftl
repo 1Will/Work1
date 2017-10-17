@@ -88,7 +88,7 @@
 				       required="false">
 				    </@select>
 				     <script>
-				    	jgetObjByName("#department").val('${expenseUse.expenseApply.deparment.id?if_exists}');
+				    	getObjByName("#department").value='${expenseUse.expenseApply.deparment.id?if_exists}');
 				    </script>
 				<#else>
 					<@select label="${action.getText('expenseUse.expenseApply.deparment.name')}" 
@@ -118,7 +118,7 @@
 				       required="false">
 				    </@select>
 				     <script>
-				    	jgetObjByName("#expenseType").val('${expenseUse.expenseApply.expenseType.id?if_exists}');
+				    	getObjByName("#expenseType").value='${expenseUse.expenseApply.expenseType.id?if_exists}');
 				    </script>
 				<#else>
 					<@select label="${action.getText('expenseUse.expenseApply.expenseType')}" 
@@ -253,32 +253,32 @@
 	 //获得模态窗体返回值
 	function creatorSelectorExpenseApplyHandler(result) {
 		if (null != result) {
-			jgetObjByName("#expenseApplyid").val(result[0]);
-			jgetObjByName("#expenseApplyCode").val(result[1]);
-			jgetObjByName('#expenseName').val(result[2]);
-	   		jgetObjByName('#applyPerson').val(result[3]);
-	   		jgetObjByName('#department').val(result[4]);
-	   		jgetObjByName('#expenseType').val(result[5]);
+			getObjByName("expenseApplyid").value=result[0];
+			getObjByName("expenseApplyCode").value=result[1];
+			getObjByName('expenseName').value=result[2];
+	   		getObjByName('applyPerson').value=result[3];
+	   		getObjByName('department').value=result[4];
+	   		getObjByName('expenseType').value=result[5];
 		}
 	}
 
 
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelector1Handler);
 	 }
 	 //获得模态窗体返回值
 	function creatorSelector1Handler(result) {
 		if (null != result) {
-			jgetObjByName("#customerInfoid").val(result[0]);
-			jgetObjByName("#customerInfoName").val(result[1]);
+			getObjByName("customerInfoid").value=result[0];
+			getObjByName("customerInfoName").value=result[1];
 		}
 	}
 	//联系人查询模态窗体
 	function linkman_OpenDialog(){
 		if(getObjByName('customerInfo.id').value !=''){
-			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitFlag=backVisit&customer.id="+getObjByName('customerInfo.id').value;
+			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisitFlag=backVisit&customer.id="+getObjByName('customerInfo.id').value;
 			popupModalDialog(url, 800, 600, creatorSelector2Handler);
 		}else{
 			alert('请先选择客户');
@@ -287,54 +287,54 @@
 	 //获得模态窗体返回值
 	function creatorSelector2Handler(result) {
 		if (null != result) {
-			jgetObjByName("#linkmanid").val(result[0]);
-			jgetObjByName("#linkmanName").val(result[1]);
+			getObjByName("#linkmanid").value=result[0]);
+			getObjByName("#linkmanName").value=result[1]);
 		}
 	}
 		//合同管理模态窗体
 	function contractManagement_OpenDialog(){
-	   var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html";
+	   var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelector3Handler);
 	   //window.open(url);
 	 }
 	 //获得模态窗体返回值
 	function creatorSelector3Handler(result) {
 		if (null != result) {
-			jgetObjByName('#contractManagementid').val(result[0]);
-	   		jgetObjByName('#contractManagementName').val(result[1]);
+			getObjByName('contractManagementid').value=result[0];
+	   		getObjByName('contractManagementName').value=result[1];
 		}
 	}
 		<#-- 提交验证-->
 		function storeValidation(){
-			if(jgetObjByName("#expenseApplyid").val()==""){
+			if(getObjByName("expenseApplyid").value==""){
 				alert("${action.getText('validation.expenseApplyid')}");
 				return false;
 			}
 			
 			if(!textfieldCheck_checkusedMoney()){
-				jgetObjByName("#usedMoney").focus();
+				getObjByName("#usedMoney").focus();
 				return false;
 			}
-			if(isNaN(jgetObjByName("#usedMoney").val())){
+			if(isNaN(getObjByName("usedMoney").value)){
 				alert("${action.getText('validation.usedMoney')}");
-				jgetObjByName("#usedMoney").focus();
+				getObjByName("usedMoney").focus();
 				return false;
 			}
-			if(jgetObjByName("#customerInfoid").val()==""){
+			if(getObjByName("customerInfoid").value==""){
 				alert("${action.getText('validation.customerInfoid')}");
 				return false;
 			}
-			if(jgetObjByName("#linkmanid").val()==""){
+			if(getObjByName("linkmanid").value==""){
 				alert("${action.getText('validation.linkmanid')}");
 				return false;
 			}
-			if(jgetObjByName("#contractManagementid").val()==""){
+			if(getObjByName("contractManagementid").value==""){
 				alert("${action.getText('validation.contractManagementid')}");
 				return false;
 			}
 			return true;
 		}
-	jgetObjByName(function(){
+	getObjByName(function(){
 	});
 </script>
 

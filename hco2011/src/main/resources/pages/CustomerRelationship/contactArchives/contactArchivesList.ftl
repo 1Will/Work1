@@ -46,7 +46,7 @@
 			<#if !(action.isReadOnly())>
 				<#if backVistiFlag?exists>
 				<#else>
-					<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/customerRelationship/editContactArchives.html"/>
+					<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/customerRelationship/editContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 				</#if>
 				
 				<#if backVisitCheckBox?exists>

@@ -79,6 +79,7 @@
 			</@vcolumn>
     	</@list>  
         <#if !first>
+        <#if !(action.isReadOnly())>
         <@buttonBar>  
 	        <@blurbutton name="batchPrinting" class="button" value="${action.getText('batchPrinting')}" onclick="showPrint()" onblur="onBlur('bp')"/>
 	   		<div id="bp" style="display:none;position:relative;left:0px;top:0px;width:20px;">
@@ -86,6 +87,7 @@
 				<@vbutton name="printXls" class="button" value="${action.getText('xlsPrint')}" onclick="return open_Xls()"/>
 	   		</div>
    		</@buttonBar>
+        </#if>
 		</#if>
     </@ww.form>
 <script language="javascript">

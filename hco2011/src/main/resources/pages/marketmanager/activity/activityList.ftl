@@ -25,7 +25,7 @@
 		<#include "./activitySearcher.ftl" />
         <@buttonBar>
 			<@vsubmit name="'search'" cssClass="'button'" value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/activity/editActivity.html"/>
+			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/activity/editActivity.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
         </@buttonBar>
         <@list title="${action.getText('list.title')}" 
             includeParameters="activity.theme|activityType.id|progress.id|priority.id|activity.beginTime|activity.beginTime_start|activity.beginTime_end|activity.endTime|activity.endTime_start|activity.endTime_end|activity.place|status.id|onlyInvalid|onlyValid" 
@@ -70,9 +70,11 @@
             </@vcolumn>
         </@list>
          <#if !first>
+         <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('activity.info')}" boxName="activityIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
+         </#if>
 		 </#if>
     </@ww.form>
 </@htmlPage>

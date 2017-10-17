@@ -218,22 +218,22 @@
     <@buttonBar>
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
-		</#if>
 		
-		<#if billingRecord.isSaved?exists &&billingRecord.isSaved=='0' >
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
-	    <#else>
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
-	    </#if>
-		
-		<#-- 继续新建按钮   -->
-		<#if billingRecord.id?exists>
-		<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editBillingRecord.html"/>
-		<#else>
-		<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editBillingRecord.html"/>
-		<script language="JavaScript" type="text/JavaScript"> 
-		getObjByName("newNext").disabled="true";
-		</script>
+			<#if billingRecord.isSaved?exists &&billingRecord.isSaved=='0' >
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+		    <#else>
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+		    </#if>
+			
+			<#-- 继续新建按钮   -->
+			<#if billingRecord.id?exists>
+			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editBillingRecord.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+			<#else>
+			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editBillingRecord.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+			<script language="JavaScript" type="text/JavaScript"> 
+			getObjByName("newNext").disabled="true";
+			</script>
+			</#if>
 		</#if>
 		
 		<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
@@ -306,7 +306,7 @@
 	}
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelector1Handler);
 	 }
 	 //获得模态窗体返回值
@@ -334,7 +334,7 @@
 	
 	//合同管理模态窗体
 	function contractManagement_OpenDialog(){
-	   var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html";
+	   var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelector2Handler);
 	   //window.open(url);
 	 }
@@ -355,7 +355,7 @@
 	
 		//联系人查询模态窗体
 	function contactArchives_OpenDialog(){
-	   var url = "${req.contextPath}/com/listContactArchivesWindow.html";
+	   var url = "${req.contextPath}/com/listContactArchivesWindow.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorContactArchivesHandler);
 	   //window.open(url);
 	 }

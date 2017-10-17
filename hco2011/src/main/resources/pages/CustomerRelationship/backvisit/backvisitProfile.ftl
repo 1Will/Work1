@@ -433,7 +433,6 @@
             <@vsubmit name="'save'" value="'${action.getText('refer')}'" onclick="'return storeValidationTj();'"  disabled="true">
             </@vsubmit>
              </#if>
-        </#if>
         
         <#-- 继续新建按钮   -->
 			<#if backVisit.id?exists>
@@ -444,6 +443,7 @@
 			getObjByName("newNext").disabled="true";
 			</script>
 			</#if>
+        </#if>
         
 	    <#if req.getParameter('fromType')?exists && req.getParameter('fromType') == 'h'>
 	    <a href='${req.contextPath}/backvisit/listBackVisitTab.html?customerInfo.id=#{backVisit.customerInfo.id?if_exists}' name="alink" id="alink" style="display:none">
@@ -458,10 +458,12 @@
         <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/backvisit/listBackVisit.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
        </#if>
         </#if>
-        <#if backVisit.id?exists>
-        <input class="button" type="button" value="等级变更" onclick="backvistStep_OpenDialog()"/>
-        <input class="button" type="button" value="风险预警" onclick="backvistState_OpenDialog()"/>
-        <input class="button" type="button" value="项目失败" onclick=""/>
+        <#if !(action.isReadOnly())>
+	        <#if backVisit.id?exists>
+	        <input class="button" type="button" value="等级变更" onclick="backvistStep_OpenDialog()"/>
+	        <input class="button" type="button" value="风险预警" onclick="backvistState_OpenDialog()"/>
+	        <input class="button" type="button" value="项目失败" onclick=""/>
+	        </#if>
         </#if>
 	</@buttonBar>
 </@ww.form>
@@ -498,7 +500,7 @@
 		}
 		function projectInfo_OpenDialog(){
 		if(getObjByName('customer.id').value !=''){
-			var  url = "${req.contextPath}/projectInfo/listProjectInfo.html?contactArchivesFlag=contactArchivesFlag&customer.id="+getObjByName('customer.id').value;
+			var  url = "${req.contextPath}/projectInfo/listProjectInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}&contactArchivesFlag=contactArchivesFlag&customer.id="+getObjByName('customer.id').value;
 			popupModalDialog(url, 800, 600, creatorSelectorHandlerProjectInfo);
 		}else{
 			alert('请先选择客户');
@@ -516,7 +518,7 @@
 		
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandlerCustomer);
 	 }
 	 //获得模态窗体返回值
@@ -532,7 +534,7 @@
 	function contactArchive_OpenDialog(){
 		var customerId = getObjByName('customer.id').value;
 		if(customerId !=''){
-			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitFlag=backVisit&customer.id="+ customerId ;
+			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisitFlag=backVisit&customer.id="+ customerId ;
 			popupModalDialog(url, 800, 600, creatorSelectorHandlerContactArchives);
 		}else{
 			alert('请先选择客户');
@@ -545,7 +547,7 @@
 			if(isIE()){
 	   			contactArchiveIds = encodeURI(contactArchiveIds); 
 	   		}
-			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitCheckBox=backVisitCheckBox&backVisitFlag=backVisit&customer.id="+customerId+"&contactArchiveIds="+contactArchiveIds;
+			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisitCheckBox=backVisitCheckBox&backVisitFlag=backVisit&customer.id="+customerId+"&contactArchiveIds="+contactArchiveIds;
 			popupModalDialog(url, 800, 600, creatorSelectorHandlerContactArchivess);
 		}else{
 			alert('请先选择客户');
@@ -589,7 +591,7 @@
 	
 	//弹出业务员查询模态窗体
 	function salesman_OpenDialog(){
-	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	   //window.open(url);
 	 }
@@ -599,7 +601,7 @@
 	   if(isIE()){
 	   		employeesIds = encodeURI(employeesIds); 
 	   }
-	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?backVisitCheckBox=backVisitCheckBox&employeesIds_a="+employeesIds;
+	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisitCheckBox=backVisitCheckBox&employeesIds_a="+employeesIds;
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler_);
 	   //window.open(url);
 	 }

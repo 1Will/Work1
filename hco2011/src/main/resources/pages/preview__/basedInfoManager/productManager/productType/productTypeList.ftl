@@ -26,7 +26,9 @@
 		<#include "./productTypeSearcher.ftl" />
         <@buttonBar>
         	<@vsubmit value="'${action.getText('search')}'" onclick="'checkInvalidParms()'" />
+        	<#if !(action.isReadOnly())>
 			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/productTypeManager/editProductType.html"/>
+        	</#if>
         </@buttonBar>
         
         <@list title="${action.getText('productTypeList')}" includeParameters="id|code|name|productType.id|nonParentPT|onlyInvalid|onlyValid" fieldMap="like:code|name|nonParentPT">

@@ -37,7 +37,7 @@
          	<#if !(action.isReadOnly())>
 	         <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return validate()'"/>
 	        </#if>	          
-	         <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/codevalue/listCodeValue.html"/>
+	         <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/codevalue/listCodeValue.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
          </@buttonBar>
          <#if type.id?exists>
          <@titleBar title="${action.getText('childcode.list')}"/>
@@ -75,7 +75,7 @@
      </@ww.form>
      <script language="javascript">
      	function openDetail(codeValueId) {
-     		var url = '${req.contextPath}/codevalue/editCodeValueDetail.html?type.id='+codeValueId;
+     		var url = '${req.contextPath}/codevalue/editCodeValueDetail.html?readOnly=${req.getParameter('readOnly')?if_exists}&type.id='+codeValueId;
      		popupModalDialog(url,650,300);
      		if(isIE()){self.location.reload();};
      	}

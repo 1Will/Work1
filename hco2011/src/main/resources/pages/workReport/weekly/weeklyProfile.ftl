@@ -167,7 +167,7 @@
 <script type="text/javascript">
 		//弹出人事档案
 		function user_OpenDialog(){
-		   var url = "${req.contextPath}/personnelFile/listPersonByUser.html";
+		   var url = "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 		   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 		 }
 		//获得模态窗体返回值
@@ -179,7 +179,7 @@
 		}
 		
 		function week_OpenDialog(){
-			 var url = "${req.contextPath}/workReport/listWeek.html";
+			 var url = "${req.contextPath}/workReport/listWeek.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 			 popupModalDialog(url, 800, 600, setDate);
 		}
 		
@@ -483,11 +483,11 @@
 	</li>
 -->	
 	<li>
-		<a id="replyWeekly" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyTab.html?weekly.id=#{weekly.id?if_exists}' target="frame" >${action.getText('消息回复')}</a>
+		<a id="replyWeekly" class="selectedtab" onclick="activeTab(this);" href='${req.contextPath}/workReport/listReplyTab.html?readOnly=${req.getParameter('readOnly')?if_exists}&weekly.id=#{weekly.id?if_exists}' target="frame" >${action.getText('消息回复')}</a>
 	</li>
 	<li>
-		<a id="weekPlanInfo" onclick="activeTab(this);"  href='${req.contextPath}/workReport/listWeekPlanTab.html?weekly.id=#{weekly.id}&week.id=#{weekly.week.id}' target="frame" >${action.getText('项目周计划')}</a>
+		<a id="weekPlanInfo" onclick="activeTab(this);"  href='${req.contextPath}/workReport/listWeekPlanTab.html?readOnly=${req.getParameter('readOnly')?if_exists}&weekly.id=#{weekly.id}&week.id=#{weekly.week.id}' target="frame" >${action.getText('项目周计划')}</a>
 	</li>
 </ul>
-<iframe name="frame" frameborder="0.5" src="${req.contextPath}/workReport/listReplyWeekly.html?weekly.id=#{weekly.id?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="40%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/workReport/listReplyWeekly.html?readOnly=${req.getParameter('readOnly')?if_exists}&weekly.id=#{weekly.id?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="40%"/>
 </#if>

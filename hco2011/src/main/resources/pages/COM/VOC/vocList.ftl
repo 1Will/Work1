@@ -25,7 +25,9 @@
 		<#include "./vocSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
+			<#if !(action.isReadOnly())>
 			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/com/editVoc.html"/>
+			</#if>
         </@buttonBar>
         <@list title="${action.getText('voc.list.title')}" 
             includeParameters="voc.code|voc.connectDate_start|voc.connectDate_end|voc.title|voc.customerInfo|voc.supplier|importance.id|type.id|voc.salesman|voc.principal
@@ -74,9 +76,11 @@
             </@vcolumn>
         </@list>
          <#if !first>
+         <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('voc.info')}" boxName="vocIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
 		 </#if>
+         </#if>
     </@ww.form>
 </@htmlPage>

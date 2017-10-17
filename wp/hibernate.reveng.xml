@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-schema="CRM2016" match-name="T_DEPARTMENT"/>
+  <table-filter match-schema="CRM2016" match-name="T_INSTITUTION"/>
+  <table-filter match-schema="CRM2016" match-name="B_CONTACTARCHIVES"/>
+  <table-filter match-schema="CRM2016" match-name="B_CUSTOMERINFO"/>
+  <table-filter match-schema="CRM2016" match-name="B_PROJECTADVANCE"/>
+  <table-filter match-schema="CRM2016" match-name="B_PROJECTINFO"/>
+  <table-filter match-schema="CRM2016" match-name="T_AREA"/>
+  
+  <table-filter match-schema="CRM2016" match-name="H_BILLINGRECORD"/>
+  <table-filter match-schema="CRM2016" match-name="H_CONTRACTMANAGEMENT"/>
+  <table-filter match-schema="CRM2016" match-name="H_RETURN_PLAN"/>
+  
+  <table-filter match-schema="CRM2016" match-name="C_EXPENSEAPPLY"/>
+  <table-filter match-schema="CRM2016" match-name="C_EXPENSEUSE"/>
+</hibernate-reverse-engineering>

@@ -197,43 +197,43 @@ public class FramesetAction extends BaseAction {
 
 	public List<ContractManagement> getNewSignings() {
 		List conMList = new ArrayList();
-		try {
-			if (isProjectInfoGroup()) {
-				// 再次区分是军品还是民品的
-				List<PersonnelFiles> tempList = this.personnelFilesManager.loadByKey("code", userManager.getUser().getCode());
-				if (tempList != null && tempList.size() > 0) {
-					PersonnelFiles personnelFiles = tempList.get(0);
-					if (personnelFiles.getBusinessType() != null) {
-						// 只有这个人是军品或者 民品会绑定检索条件。只能看所属权限的
-						if (personnelFiles.getBusinessType().getName().equals("军品")|| personnelFiles.getBusinessType().getName().equals("民品")) {
-							conMList = this.contractManagementManager.loadContractManagementByBType("%"+ personnelFiles.getBusinessType().getName() + "%");
-						}else {
-							//军民品，查看所有
-							conMList = this.contractManagementManager.loadContractManagement();
-						}
-					}else {
-						//适配永君服务，查看所有
-						conMList = this.contractManagementManager.loadContractManagement();
-					}
-				}else {
-					//适配admin，查看所有
-					conMList = this.contractManagementManager.loadContractManagement();
-				}
-
-			} else {
-				List<Long> proIdList = this.projectInfoPersonnelsManager.loadProjectInfoIdByPersonnel(userManager
-						.getUser().getCode());
-				if (proIdList == null || proIdList.size() > 1) {
-					String pjIds = "0";
-					for (int i = 0; i < proIdList.size(); i++) {
-						pjIds += "," + proIdList.get(i);
-					}
-					conMList = this.contractManagementManager.loadContractManagementByPj(pjIds);
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			if (isProjectInfoGroup()) {
+//				// 再次区分是军品还是民品的
+//				List<PersonnelFiles> tempList = this.personnelFilesManager.loadByKey("code", userManager.getUser().getCode());
+//				if (tempList != null && tempList.size() > 0) {
+//					PersonnelFiles personnelFiles = tempList.get(0);
+//					if (personnelFiles.getBusinessType() != null) {
+//						// 只有这个人是军品或者 民品会绑定检索条件。只能看所属权限的
+//						if (personnelFiles.getBusinessType().getName().equals("军品")|| personnelFiles.getBusinessType().getName().equals("民品")) {
+//							conMList = this.contractManagementManager.loadContractManagementByBType("%"+ personnelFiles.getBusinessType().getName() + "%");
+//						}else {
+//							//军民品，查看所有
+//							conMList = this.contractManagementManager.loadContractManagement();
+//						}
+//					}else {
+//						//适配永君服务，查看所有
+//						conMList = this.contractManagementManager.loadContractManagement();
+//					}
+//				}else {
+//					//适配admin，查看所有
+//					conMList = this.contractManagementManager.loadContractManagement();
+//				}
+//
+//			} else {
+//				List<Long> proIdList = this.projectInfoPersonnelsManager.loadProjectInfoIdByPersonnel(userManager
+//						.getUser().getCode());
+//				if (proIdList == null || proIdList.size() > 1) {
+//					String pjIds = "0";
+//					for (int i = 0; i < proIdList.size(); i++) {
+//						pjIds += "," + proIdList.get(i);
+//					}
+//					conMList = this.contractManagementManager.loadContractManagementByPj(pjIds);
+//				}
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		return conMList;
 	}
 

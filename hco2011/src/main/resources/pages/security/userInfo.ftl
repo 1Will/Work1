@@ -126,6 +126,7 @@
 		 </tr>  
     </@inputTable>
     <@buttonBar>
+    <#if !(action.isReadOnly())>
 		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return validate();'"/>
         <#if (user.enabled)>
             <#assign confirmMessage = "${action.getText('confirm.disable')}[${user.name?if_exists}]?" />
@@ -135,6 +136,8 @@
 	     <#else>
         	<@vsubmit name="'enabled'" value="'${action.getText('enabled')}'" onclick="'return aa();'"/>
          </#if>
+    </#if>
+         
             <@redirectButton name="back" value="${action.getText('back')}" url="${req.contextPath}/security/listUsers.html"/>
     </@buttonBar>
     <script type="text/javascript">

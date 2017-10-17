@@ -55,7 +55,7 @@
 	  }
 	 //打开新建工作简历模态窗口
 	 function newContactsJobResume(){
-		var url='${req.contextPath}/customerRelationship/editContactsJobResume.html?cr.id=${req.getParameter('cr.id')?if_exists}';
+		var url="${req.contextPath}/customerRelationship/editContactsJobResume.html?cr.id=${req.getParameter('cr.id')?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}";
 		popupModalDialog(url,800,600);
 		if(isIE()){self.location.reload();};
 	  }

@@ -23,7 +23,7 @@
 <table class="defaultLook">
 <input type="hidden" id="userId" name="userId" value="#{user.id}"/>
 <input type="hidden" id="ids" name="ids" value=""/>
-<a id="reload" href="${req.contextPath}/organizationRegional/orSelector.html?userId=#{user.id}" style="display:none"></a>
+<a id="reload" href="${req.contextPath}/organizationRegional/orSelector.html?userId=#{user.id}&readOnly=${req.getParameter('readOnly')?if_exists}" style="display:none"></a>
   <tr width="100%">
 	<td style="text-align:center" width="40%"><b>可选组织区域<b></td>
 	<td width="20%"></td>

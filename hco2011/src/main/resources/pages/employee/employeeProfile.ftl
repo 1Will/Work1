@@ -231,7 +231,7 @@
          	<#if !(action.isReadOnly())>
 	         <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return validate();'"/>
 	        </#if>	          
-	         <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/employees/listEmployees.html"/>
+	         <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/employees/listEmployees.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
          </@buttonBar>	
      </@ww.form>
      <script language="javascript">

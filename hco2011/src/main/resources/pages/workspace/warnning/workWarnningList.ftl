@@ -114,7 +114,7 @@
 			Read.setRead(id);
 			DWREngine.setAsync(true); 
 			if(u==''||u=='null'){
-				var url = '${req.contextPath}/workspace/warnning/myWarnning/listWorkWarnningDetail.html?workWarnningId='+id;
+				var url = '${req.contextPath}/workspace/warnning/myWarnning/listWorkWarnningDetail.html?readOnly=${req.getParameter('readOnly')?if_exists}&workWarnningId='+id;
 			}else{
 				var url = '${req.contextPath}/'+u;
 			}

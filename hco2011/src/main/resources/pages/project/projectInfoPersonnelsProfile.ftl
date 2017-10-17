@@ -25,7 +25,7 @@
 	<@ww.token name="saveProjectInfoToken"/>
     <@inputTable>
     	<@ww.hidden name="'businessTypeId'" value="''"/>
-    	<@ww.hidden name="'projectInfo.id'" value="'${projectInfoId?if_exists}'"/>
+    	<@ww.hidden name="'projectInfo.id'" value="'${projectInfo.id?if_exists}'"/>
     	<@ww.hidden name="'proPerson.id'" value="''"/>
     	<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
     	<#if projectInfoPersonnels.id?exists>
@@ -84,19 +84,19 @@
     <@buttonBar>
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
-		</#if>
 		
 		<#-- 继续新建按钮   -->
 			<#if projectInfoPersonnels.id?exists>
 			<@redirectButton value="${action.getText('newNext')}" 
-				url="${req.contextPath}/projectInfo/editProPer.html?projectInfo.id=${projectInfoId?if_exists}"/>
+				url="${req.contextPath}/projectInfo/editProPer.html?projectInfo.id=${projectInfo.id?if_exists}"/>
 			<#else>
 			<@redirectButton name="newNext" value="${action.getText('newNext')}" 
-				url="${req.contextPath}/projectInfo/editProPer.html?projectInfo.id=${projectInfoId?if_exists}"/>
+				url="${req.contextPath}/projectInfo/editProPer.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${projectInfo.id?if_exists}"/>
 			<script language="JavaScript" type="text/JavaScript"> 
 			getObjByName("newNext").disabled="true";
 			</script>
 			</#if>
+		</#if>
 		
 		<input class="button" type="button" value="${action.getText('close')}"  onclick="closeThis();">
     </@buttonBar>
@@ -115,7 +115,7 @@
 	
 	//弹出业务员查询模态窗体
 	function salesman_OpenDialog(){
-	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?projectInfo.id=${projectInfoId?if_exists}";
+	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${projectInfo.id?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	   //window.open(url);
 	 }

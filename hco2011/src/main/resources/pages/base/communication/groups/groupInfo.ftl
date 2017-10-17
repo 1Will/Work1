@@ -51,12 +51,14 @@
         </tr>
     </@inputTable>
      <@buttonBar>
+     <#if !(action.isReadOnly())>
             <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return validate();'"/>
             <#assign confirmMessage = "${action.getText('confirm.delete')}${action.getText('group')}[${group.name?if_exists}]?" />
             <@vsubmit name="'delete'" value="'${action.getText('delete')}'">
 	                <@ww.param name="'onclick'" value="'return confirmDelete(\"${confirmMessage}\");'"/>
 	                <@ww.param name="'disabled'" value="${(!group.id?exists)?string}"/>	
             </@vsubmit>
+      </#if>
             <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/communication/groups/listGroups.html"/>
       </@buttonBar>
 

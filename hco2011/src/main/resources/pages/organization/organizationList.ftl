@@ -27,7 +27,9 @@
         <@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
         <@buttonBar>
             <@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'" />
-            <@redirectButton value="${action.getText('new')}" url="${req.contextPath}/organizationOperate/editOrg.html"/>
+            <#if !(action.isReadOnly())>
+            	<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/organizationOperate/editOrg.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+            </#if>
         </@buttonBar>
         <@list title="${action.getText('organization.list')}" includeParameters="code|name|onlyInvalid|onlyValid" fieldMap="like:code|name" >
 	        <@vlh.checkbox property="id" name="orgIds">

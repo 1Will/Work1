@@ -43,7 +43,7 @@
                 	<@ww.param name="'onclick'" value="'return confirmDeletes(\"workExperienceIds\", \"${confirmMessage}\");'"/>
             		<@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
             	</@vsubmit>
-            	</#if>
+         </#if>
 		</@buttonBar>
 	 </@ww.form>
 	 <script language="javascript">
@@ -55,7 +55,7 @@
 	  }
 	 //打开新建工作简历模态窗口
 	 function newWorkExperience(){
-		var url='${req.contextPath}/personnelFile/editWorkExperience.html?pf.id=${req.getParameter('pf.id')?if_exists}';
+		var url='${req.contextPath}/personnelFile/editWorkExperience.html?readOnly=${req.getParameter('readOnly')?if_exists}&pf.id=${req.getParameter('pf.id')?if_exists}';
 		popupModalDialog(url,800,600);
 		if(isIE()){self.location.reload();};
 	  }

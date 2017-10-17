@@ -47,20 +47,20 @@
 <script language="javascript">
      //弹出客户档案查询模态窗体
 	function customer_OpenDialog(id){
-	   var url = "${req.contextPath}/customerRelationship/editCustomerInfo.html?customerInfo.id="+id+"&popWindowFlag=popWindowFlag&notNewFlag=notNewFlag";
+	   var url = "${req.contextPath}/customerRelationship/editCustomerInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}&customerInfo.id="+id+"&popWindowFlag=popWindowFlag&notNewFlag=notNewFlag";
 	   //popupModalDialog(url, 800, 600, SelectorHandlerCustomerInfo);
 	   openNewWindow(url);
 	 }
 	 
 	       //弹出联系人模态窗体
 	function contactArchives_OpenDialog(id){
-	   var url = "${req.contextPath}/customerRelationship/editContactArchives.html?contactArchives.id="+id+"&popWindowFlag=popWindowFlag&notNewFlag=notNewFlag";
+	   var url = "${req.contextPath}/customerRelationship/editContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&contactArchives.id="+id+"&popWindowFlag=popWindowFlag&notNewFlag=notNewFlag";
 	   //popupModalDialog(url, 800, 600, SelectorHandlerContactArchives);
 	   openNewWindow(url);
 	 }
 	//弹出回访模态窗体
 	function visitBack_OpenDialog(id){
-	   var url = "${req.contextPath}/backvisit/listBackVisitTab.html?customerInfo.id="+id;
+	   var url = "${req.contextPath}/backvisit/listBackVisitTab.html?readOnly=${req.getParameter('readOnly')?if_exists}&customerInfo.id="+id;
 	   //popupModalDialog(url, 900,700, SelectorHandlerVisitBack);
 	   openNewWindow(url);
 	 }

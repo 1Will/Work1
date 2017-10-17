@@ -28,7 +28,7 @@ public class EditProjectInfoPersonnelsAction extends PrepareAction {
 	private final ContactArchivesManager contactArchivesManager;
 	private final ProjectInfoPersonnelsManager projectInfoPersonnelsManager;
 	private final UserManager userManager;
-	private String projectInfoId;
+	private ProjectInfo projectInfo;
 	private ProjectInfoPersonnels projectInfoPersonnels;
 
 	private PersonnelFiles personnelFiles;
@@ -48,7 +48,7 @@ public class EditProjectInfoPersonnelsAction extends PrepareAction {
 
 	public void prepare() throws Exception {
 		if (hasId("projectInfo.id")) {
-			this.projectInfoId = getId("projectInfo.id") + "";
+			projectInfo = this.projectInfoManager.loadProjectInfo(getId("projectInfo.id"));
 		}
 
 		if (this.projectInfoPersonnels == null)
@@ -64,7 +64,6 @@ public class EditProjectInfoPersonnelsAction extends PrepareAction {
 		boolean isNew = this.projectInfoPersonnels.isNew();
 
 		if (hasId("projectInfo.id")) {
-			ProjectInfo projectInfo = this.projectInfoManager.loadProjectInfo(getId("projectInfo.id"));
 			this.projectInfoPersonnels.setProjectInfo(projectInfo);
 		}
 
@@ -128,12 +127,12 @@ public class EditProjectInfoPersonnelsAction extends PrepareAction {
 		this.projectInfoPersonnels = projectInfoPersonnels;
 	}
 
-	public String getProjectInfoId() {
-		return projectInfoId;
+	public ProjectInfo getProjectInfo() {
+		return projectInfo;
 	}
 
-	public void setProjectInfoId(String projectInfoId) {
-		this.projectInfoId = projectInfoId;
+	public void setProjectInfo(ProjectInfo projectInfo) {
+		this.projectInfo = projectInfo;
 	}
 
 	// public CodeValue getCustomerSteped()

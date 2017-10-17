@@ -27,7 +27,7 @@
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
 			<#if !(action.isReadOnly())>
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/contractManagement/editBillingRecord.html"/>
+				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/contractManagement/editBillingRecord.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
         	</#if>
         </@buttonBar>
         <@list title="${action.getText('billingRecord.list.title')}" 
@@ -106,7 +106,7 @@
          <#if !first>
          	<#if !(action.isReadOnly())>
 	        <@buttonBar>
-	          <@crm_disabledOrEnabled_button message="${action.getText('billingRecord.info')}" boxName="billingRecordIds" jsFunctionName="checkInvalidParms()"/>
+				<@crm_disabledOrEnabled_button message="${action.getText('billingRecord.info')}" boxName="billingRecordIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
 			</#if>
 		 </#if>

@@ -35,7 +35,7 @@
 	
 	//弹出付款单窗体
 	function expenseForm_OpenDialog(id){
-	   var url = "${req.contextPath}/expenseForm/editExpenseFormAction.html?expenseForm.id="+id+"&readOnly=${req.getParameter('readOnly')?if_exists}&popWindowFlag=popWindowFlag";
+	   var url = "${req.contextPath}/expenseForm/editExpenseFormAction.html?readOnly=${req.getParameter('readOnly')?if_exists}&popWindowFlag=popWindowFlag&expenseForm.id="+id;
 	   openNewWindow(url);
 	 }	 
 </script>

@@ -28,7 +28,7 @@
         <@buttonBar>
 				<@vsubmit value="'${action.getText('search')}'" onclick="'checkInvalidParms()'"/>
 			<#if !(action.isReadOnly())>
-				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/customerRelationship/editCustomerInfo.html"/>
+				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/customerRelationship/editCustomerInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
        		</#if>
        		<#--
        		<@redirectButton value="${action.getText('importCustomer.button')}" url="${req.contextPath}/customerRelationship/toImportCustomerInfo.html"/>

@@ -29,7 +29,9 @@
     </@inputTable>
     <@buttonBar>        
       <@vsubmit value="'${action.getText('search')}'"/>
-	  <input type="button" value="${action.getText('upload')}" class="button" onclick="location='${req.contextPath}/base/manual/editManual.html';" <#if mostNumberForTheManualDoc>disabled="disabled"</#if>/>
+	<#if !(action.isReadOnly())>
+		<input type="button" value="${action.getText('upload')}" class="button" onclick="location='${req.contextPath}/base/manual/editManual.html?readOnly=${req.getParameter('readOnly')?if_exists}';" <#if mostNumberForTheManualDoc>disabled="disabled"</#if>/>
+	</#if>
     </@buttonBar>
     <@list title="${action.getText('helpManual.list')}" 
         	includeParameters="id|name|manualVersion" 

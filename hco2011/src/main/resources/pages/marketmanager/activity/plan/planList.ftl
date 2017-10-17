@@ -25,7 +25,9 @@
 		<#include "./planSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit name="'search'" cssClass="'button'" value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
+			<#if !(action.isReadOnly())>
 			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/plan/editPlan.html"/>
+			</#if>
         </@buttonBar>
         <@list title="${action.getText('list.title')}" 
             includeParameters="plan.code|plan.planTime|plan.planTime_start|plan.planTime_end|plan.persons|onlyInvalid|onlyValid" 
@@ -48,9 +50,11 @@
             </@vcolumn>
         </@list>
          <#if !first>
+         <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('plan.info')}" boxName="planIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
+         </#if>
 		 </#if>
     </@ww.form>
 </@htmlPage>

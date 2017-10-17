@@ -134,8 +134,10 @@
    		</tr>
     </@inputTable>
     <@buttonBar>
+    <#if !(action.isReadOnly())>
 		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
-		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/intelligence/listIntelligence.html"/>
+    </#if>
+		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/intelligence/listIntelligence.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
     </@buttonBar>
 
 </@ww.form>
@@ -148,7 +150,7 @@
 	}
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandlerCustomer);
 	 }
 	 //获得模态窗体返回值
@@ -165,7 +167,7 @@
 
 	function contactArchive_OpenDialog(){
 		if(getObjByName('customerInfo.id').value !=''){
-			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitFlag=backVisit&customer.id="+getObjByName('customerInfo.id').value;
+			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisitFlag=backVisit&customer.id="+getObjByName('customerInfo.id').value;
 			popupModalDialog(url, 800, 600, creatorSelectorHandlerContactArchives);
 		}else{
 			alert('请先选择客户');
@@ -183,7 +185,7 @@
 
 	//弹出负责人查询模态窗体
 	function persons_OpenDialog(){
-	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	   //window.open(url);
 	 }

@@ -183,7 +183,7 @@
 	
 	      //弹出回访模态窗体
 	function visitBack_OpenDialog(id){
-	   var url = "${req.contextPath}/backvisit/listBackVisitTab.html?customerInfo.id="+id;
+	   var url = "${req.contextPath}/backvisit/listBackVisitTab.html?readOnly=${req.getParameter('readOnly')?if_exists}&customerInfo.id="+id;
 	   //popupModalDialog(url, 900,700, SelectorHandlerVisitBack);
 	   openNewWindow(url);
 	 }
@@ -201,7 +201,7 @@
 	 }
 	 
 	 function reply_OpenDialog(id){
-	 	var url = "${req.contextPath}/workReport/listReplyDailyTab.html?backVisit.id="+id;
+	 	var url = "${req.contextPath}/workReport/listReplyTab.html?backVisit.id="+id;
 	 	openNewWindow(url);
 	 }
 	 

@@ -26,7 +26,9 @@
 		<#include "./nationalSearcher.ftl" />
         <@buttonBar>
 			<@vbutton name="'search'" class="button" value="${'查询'}" onclick=""/>
+			<#if !(action.isReadOnly())>
 			<@redirectButton value="${'新建'}" url="${req.contextPath}/nationalManager_/saveNational_.html"/>
+			</#if>
         </@buttonBar>
         <@listTable>
         	<tr>
@@ -60,9 +62,11 @@
 				<td style="text-align:left">法国</td>
 			</tr>
         </@listTable>
+        <#if !(action.isReadOnly())>
 	    <@buttonBar>
 	        <#assign confirmMessage = "${'您确定删除吗？'}" />
 	        <@vsubmit name="'delete'" value="'${'删除'}'"/>
 	    </@buttonBar>
+        </#if>
     </@ww.form>
 </@htmlPage>

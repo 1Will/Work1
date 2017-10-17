@@ -52,14 +52,14 @@
          	</@vcolumn>
         </@list>
         <#if !(action.isReadOnly())>
-        <@buttonBar>
-		  <@vbutton class="button" value="${action.getText('new')}" onclick="newProductList()"/>
-		  	<#assign confirmMessage = "${action.getText('confirm.delete')}${action.getText('paymentDetails.confirmMessage')}?" />	 
-	            <@vsubmit name="'delete'" value="'${action.getText('delete')}'">
-	               <@ww.param name="'onclick'" value="'return confirmDeletes(\"paymentDetailsIds\", \"${confirmMessage}\");'"/>
-	                <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
-	            </@vsubmit>
-		</@buttonBar>	
+	        <@buttonBar>
+				  <@vbutton class="button" value="${action.getText('new')}" onclick="newProductList()"/>
+				  <#assign confirmMessage = "${action.getText('confirm.delete')}${action.getText('paymentDetails.confirmMessage')}?" />	 
+		            <@vsubmit name="'delete'" value="'${action.getText('delete')}'">
+		               <@ww.param name="'onclick'" value="'return confirmDeletes(\"paymentDetailsIds\", \"${confirmMessage}\");'"/>
+		                <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
+		            </@vsubmit>
+			</@buttonBar>	
 		</#if>
    </@ww.form>
 </@framePage>
@@ -70,7 +70,7 @@
       if(isIE()){self.location.reload();};
 	}
 	function newProductList(){
-      var url='${req.contextPath}/paymentDetails/editPaymentDetailsAction.html?paymentorderid='+'${req.getParameter('paymentorder.id')?if_exists}';
+      var url='${req.contextPath}/paymentDetails/editPaymentDetailsAction.html?readOnly=${req.getParameter('readOnly')?if_exists}&paymentorderid='+'${req.getParameter('paymentorder.id')?if_exists}';
       popupModalDialog(url,800,600);
       if(isIE()){self.location.reload();};
 	}

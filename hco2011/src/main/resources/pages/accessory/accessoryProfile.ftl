@@ -144,8 +144,8 @@
 	   </tr>
     </@inputTable>
     <@buttonBar>
+    <#if !(action.isReadOnly())>
           <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
-          
           <#-- 继续新建按钮   -->
 			<#if applicationDoc.id?exists>
 			<@redirectButton name="newUpload" value="${action.getText('newUpload')}" 
@@ -157,6 +157,7 @@
 			getObjByName("newUpload").disabled="true";
 			</script>
 			</#if>
+    </#if>
           
           <@vbutton class="button" name="${action.getText('close')}" value="${action.getText('close')}" onclick="closeThis();"/>
     </@buttonBar>

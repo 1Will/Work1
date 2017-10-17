@@ -25,7 +25,9 @@
 		<#include "./intelligenceSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit name="'search'" cssClass="'button'" value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
+			<#if !(action.isReadOnly())>
 			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/intelligence/editIntelligence.html"/>
+			</#if>
         </@buttonBar>
         <@list title="${action.getText('list.title')}" 
             includeParameters="intelligence.code|intelligence.theme|intelligence.customerInfo|intelligence.persons|intelligence.contactArchives|intelligence.analysisTime|intelligence.analysisTime_start|intelligence.analysisTime_end|important.id|onlyInvalid|onlyValid" 
@@ -57,9 +59,11 @@
             </@vcolumn>
         </@list>
          <#if !first>
+         <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('intelligence.info')}" boxName="intelligenceIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
+         </#if>
 		 </#if>
     </@ww.form>
 </@htmlPage>

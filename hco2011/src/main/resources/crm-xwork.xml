@@ -302,6 +302,16 @@
 	</package>
 	<package name="myWarnning" namespace="/workspace/warnning/myWarnning"
 		extends="pluto">
+		<action name="listWorkWarnningsREAD" class="nullAction">
+			<result name="success" type="redirect">
+				listWorkWarnnings.html?readOnly=true
+			</result>
+		</action>
+		<action name="listWorkWarnningsWRITE" class="nullAction">
+			<result name="success" type="redirect">
+				listWorkWarnnings.html?readOnly=false
+			</result>
+		</action>
 		<action name="listWorkWarnnings" class="listWorkWarnningAction"
 			method="list">
 			<result name="success" type="freemarker">
@@ -348,6 +358,16 @@
 	<!-- 我的数据 -->
 	<package name="data" namespace="/workspace/data"
 		extends="pluto">
+		<action name="listMyDataREAD" class="nullAction">
+			<result name="success" type="redirect">
+				listMyData.html?readOnly=true
+			</result>
+		</action>
+		<action name="listMyDataWRITE" class="nullAction">
+			<result name="success" type="redirect">
+				listMyData.html?readOnly=false
+			</result>
+		</action>
 		<action name="listMyData" class="listMyDataAction"
 			method="list">
 			<result name="success" type="freemarker">
@@ -369,6 +389,16 @@
 			<interceptor-ref name="parameterSenderStack" />
 		</action>
 		<!-- w我的团队 -->
+		<action name="listDataREAD" class="nullAction">
+			<result name="success" type="redirect">
+				listData.html?readOnly=true
+			</result>
+		</action>
+		<action name="listDataWRITE" class="nullAction">
+			<result name="success" type="redirect">
+				listData.html?readOnly=false
+			</result>
+		</action>
 		<action name="listData" class="listDataAction"
 			method="list">
 			<result name="success" type="freemarker">
@@ -2163,6 +2193,16 @@
             </result>
             <interceptor-ref name="parameterSenderStack" />
         </action>
+        <action name="listMeetingMonthREAD" class="nullAction">
+			<result name="success" type="redirect">
+				listMeetingMonth.html?readOnly=true
+			</result>
+		</action>
+		<action name="listMeetingMonthWRITE" class="nullAction">
+			<result name="success" type="redirect">
+				listMeetingMonth.html?readOnly=false
+			</result>
+		</action>
         <action name="listMeetingMonth" class="listMeetingMonthAction" method="list">
             <result name="success" type="freemarker">
                 /pages/workReport/meeting/meetingMonthList.ftl              
@@ -2879,6 +2919,16 @@
 				<param name="propertyNames">sendNotice</param>
 			</interceptor-ref>
 			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="listReceviceNoticesREAD" class="nullAction">
+			<result name="success" type="redirect">
+				listReceviceNotices.html?readOnly=true
+			</result>
+		</action>
+		<action name="listReceviceNoticesWRITE" class="nullAction">
+			<result name="success" type="redirect">
+				listReceviceNotices.html?readOnly=false
+			</result>
 		</action>
 		<action name="listReceviceNotices" class="listReceviceNoticeAction"
 			method="list">
@@ -5653,10 +5703,10 @@
 		<action name="saveProPer" class="editProjectInfoPersonnelsAction"
 			method="save">
 			<result name="success" type="redirect">
-				editProPer.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;projectInfoPersonnels.id=${projectInfoPersonnels.id}
+				editProPer.html?projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;projectInfoPersonnels.id=${projectInfoPersonnels.id}
 			</result>
 			<result name="error" type="dispatcher">
-				editProPer.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;projectInfoPersonnels.id=${projectInfoPersonnels.id}
+				editProPer.html?projectInfo.id=${projectInfo.id}&amp;readOnly=${readOnly}&amp;projectInfoPersonnels.id=${projectInfoPersonnels.id}
 			</result>
 			<result name="invalid.token" type="redirect">
 				editProPer.html?readOnly=${readOnly}
@@ -5742,6 +5792,16 @@
 				listProPlan.html?projectInfo.id=${projectInfoId}&amp;readOnly=${readOnly}&amp;contractManagementId=${contractManagementId}
 			</result>
 			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<action name="listMyPlanREAD" class="nullAction">
+			<result name="success" type="redirect">
+				listMyPlan.html?readOnly=true
+			</result>
+		</action>
+		<action name="listMyPlanWRITE" class="nullAction">
+			<result name="success" type="redirect">
+				listMyPlan.html?readOnly=false
+			</result>
 		</action>
 		<action name="listMyPlan" class="listMyPlanAction"
 			method="list">

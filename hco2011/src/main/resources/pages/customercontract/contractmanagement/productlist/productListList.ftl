@@ -60,12 +60,12 @@
         </@list>
         <#if !(action.isReadOnly())>
         <@buttonBar>
-		  <@vbutton class="button" value="${action.getText('new')}" onclick="newProductList()"/>
-		  	<#assign confirmMessage = "${action.getText('confirm.delete')}${action.getText('productList.confirmMessage')}?" />	 
-	            <@vsubmit name="'delete'" value="'${action.getText('delete')}'">
-	               <@ww.param name="'onclick'" value="'return confirmDeletes(\"productListIds\", \"${confirmMessage}\");'"/>
-	                <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
-	            </@vsubmit>
+		  	<@vbutton class="button" value="${action.getText('new')}" onclick="newProductList()"/>
+	  		<#assign confirmMessage = "${action.getText('confirm.delete')}${action.getText('productList.confirmMessage')}?" />	 
+            <@vsubmit name="'delete'" value="'${action.getText('delete')}'">
+               <@ww.param name="'onclick'" value="'return confirmDeletes(\"productListIds\", \"${confirmMessage}\");'"/>
+                <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
+            </@vsubmit>
 		</@buttonBar>	
 		</#if>
    </@ww.form>
@@ -79,7 +79,7 @@
 	}
 	 //获得模态窗体返回值
 	function newProductList(){
-      var url='${req.contextPath}/productList/editProductList.html?contractManagementid='+${req.getParameter('contractManagement.id')?if_exists};
+      var url='${req.contextPath}/productList/editProductList.html?readOnly=${req.getParameter('readOnly')?if_exists}&contractManagementid='+${req.getParameter('contractManagement.id')?if_exists};
       //popupModalDialog(url,800,600);
       openNewWindow(url);
       if(isIE()){self.location.reload();};

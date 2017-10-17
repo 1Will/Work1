@@ -57,7 +57,7 @@
   jgetObjByName(function(){
   
    	<#if req.getParameter('expenseUse.expenseApply.expenseType.id')?exists>
-    		jgetObjByName("#expenseType").val("${req.getParameter('expenseUse.expenseApply.expenseType.id')?if_exists}");
+    		getObjByName("expenseType").value ="${req.getParameter('expenseUse.expenseApply.expenseType.id')?if_exists}";
     	</#if>
   });
 </script>

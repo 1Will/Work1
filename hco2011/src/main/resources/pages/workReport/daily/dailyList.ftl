@@ -26,7 +26,9 @@
 	 <#include "dailySearch.ftl"/>
      <@buttonBar>
 		<@vsubmit name="'search'" cssClass="'button'" value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
-     	<@redirectButton class="button" value="${action.getText('new')}" url="${req.contextPath}/workReport/editDaily.html"/>
+		<#if !(action.isReadOnly())>
+     		<@redirectButton class="button" value="${action.getText('new')}" url="${req.contextPath}/workReport/editDaily.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+		</#if>
      </@buttonBar>
 	 <@list title="${action.getText('daily.list')}" includeParameters="currentDate|rapporteur.name|inst.id|dept.id|duty.id" fieldMap="" >
 	        

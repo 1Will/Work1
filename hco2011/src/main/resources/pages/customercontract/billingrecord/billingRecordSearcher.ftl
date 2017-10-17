@@ -68,7 +68,7 @@
 	 
 	  //弹出客户档案查询模态窗体
 	function customer_OpenDialog(id){
-	   var url = "${req.contextPath}/customerRelationship/editCustomerInfo.html?customerInfo.id="+id+"&popWindowFlag=popWindowFlag&notNewFlag=notNewFlag";
+	   var url = "${req.contextPath}/customerRelationship/editCustomerInfo.html?customerInfo.id="+id+"&popWindowFlag=popWindowFlag&notNewFlag=notNewFlag&readOnly=${req.getParameter('readOnly')?if_exists}";
 	   openNewWindow(url);
 	 }
 	 

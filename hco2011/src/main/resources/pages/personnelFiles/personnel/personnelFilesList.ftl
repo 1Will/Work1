@@ -28,12 +28,14 @@
         </#if>
         <@buttonBar>
 			<@vsubmit name="'search'" cssClass="'button'" value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
+			<#if !(action.isReadOnly())>
 			<#if popWindowFlag?exists&&popWindowFlag==popWindowFlag>
 			<#else>
 				<#if !(action.isReadOnly())>
-					<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/personnelFile/editPersonnelFile.html"/>
+					<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/personnelFile/editPersonnelFile.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 	       		</#if>
        		</#if>
+			</#if>
         </@buttonBar>
 	<@list title="${action.getText('personnelFilesList')}" includeParameters="code|name|fileNo|inst.id|dept.id|duty.id|readOnly|onlyInvalid|onlyValid|popWindowFlag|" fieldMap="like:code|name|fileNo" >
 		<#if popWindowFlag?exists && popWindowFlag==popWindowFlag>

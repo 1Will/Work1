@@ -74,61 +74,61 @@ public class ListBackVisitAction extends ValueListAction {
 
 	protected Map getRequestParameterMap() {
 		Map map = super.getRequestParameterMap();
-		PersonnelFiles personnelFiles = null;
-		List<Long> backVisitIds = new ArrayList<Long>();
-		List<BackVisit> backVisitList = new ArrayList<BackVisit>();
-		BackVisit b = new BackVisit();
-		b.setId(0L);
-		//防止空报错
-		backVisitList.add(b);
-		try {
-			List<PersonnelFiles> tempList = this.personnelFilesManager.loadByKey("code", this.userManager.getUser().getCode());
-			//除了admin，其他的都有访问限制
-			if (tempList != null && tempList.size() > 0) {
-				personnelFiles = tempList.get(0);
-				//访问人是自己的，肯定能看到
-				List<BackVisit> bvts1 = backVisitManager.loadByKey("employee.id", personnelFiles.getId());
-				if(bvts1!=null && bvts1.size()>0){
-					backVisitList = bvts1;
-				}
-				//是否在项目管理组里
-				if (isProjectInfoGroup()) {
-					if (personnelFiles.getBusinessType() != null) {
-						if (personnelFiles.getBusinessType().getName().equals("军品")|| personnelFiles.getBusinessType().getName().equals("民品")) {
-							List<BackVisit> bvts2 = backVisitManager.loadByKey("projectInfo.customer.businessType.id",personnelFiles.getBusinessType().getId());
-							if(bvts2!=null && bvts2.size()>0){
-								backVisitList.addAll(bvts2);
-							}
-						} else {
-							List<BackVisit> bvts3 = backVisitManager.loadBackVisitByPj(" is not null");
-							if(bvts3!=null && bvts3.size()>0){
-								backVisitList.addAll(bvts3);
-							}
-						}
-						for(int i =0;i<backVisitList.size();i++){
-							backVisitIds.add(backVisitList.get(i).getId());
-						}
-						
-						map.put("backVisitIds", backVisitIds);
-					}
-				} else {
-					List<Long> proIdList = this.projectInfoPersonnelsManager.loadProjectInfoIdByPersonnel(this.userManager.getUser().getCode());
-					if(proIdList!=null && proIdList.size()>0){
-						List<BackVisit> bvts4 = backVisitManager.loadBackVisitByPj(".id in "+ proIdList.toString().replace("[", "(").replace("]", ")"));
-						if(bvts4!=null && bvts4.size()>0){
-							backVisitList.addAll(bvts4);
-						}
-					}
-					for(int i =0;i<backVisitList.size();i++){
-						backVisitIds.add(backVisitList.get(i).getId());
-					}
-					map.put("backVisitIds", backVisitIds);
-				}
-			}
-
-		} catch (DaoException e) {
-			e.printStackTrace();
-		}
+//		PersonnelFiles personnelFiles = null;
+//		List<Long> backVisitIds = new ArrayList<Long>();
+//		List<BackVisit> backVisitList = new ArrayList<BackVisit>();
+//		BackVisit b = new BackVisit();
+//		b.setId(0L);
+//		//防止空报错
+//		backVisitList.add(b);
+//		try {
+//			List<PersonnelFiles> tempList = this.personnelFilesManager.loadByKey("code", this.userManager.getUser().getCode());
+//			//除了admin，其他的都有访问限制
+//			if (tempList != null && tempList.size() > 0) {
+//				personnelFiles = tempList.get(0);
+//				//访问人是自己的，肯定能看到
+//				List<BackVisit> bvts1 = backVisitManager.loadByKey("employee.id", personnelFiles.getId());
+//				if(bvts1!=null && bvts1.size()>0){
+//					backVisitList = bvts1;
+//				}
+//				//是否在项目管理组里
+//				if (isProjectInfoGroup()) {
+//					if (personnelFiles.getBusinessType() != null) {
+//						if (personnelFiles.getBusinessType().getName().equals("军品")|| personnelFiles.getBusinessType().getName().equals("民品")) {
+//							List<BackVisit> bvts2 = backVisitManager.loadByKey("projectInfo.customer.businessType.id",personnelFiles.getBusinessType().getId());
+//							if(bvts2!=null && bvts2.size()>0){
+//								backVisitList.addAll(bvts2);
+//							}
+//						} else {
+//							List<BackVisit> bvts3 = backVisitManager.loadBackVisitByPj(" is not null");
+//							if(bvts3!=null && bvts3.size()>0){
+//								backVisitList.addAll(bvts3);
+//							}
+//						}
+//						for(int i =0;i<backVisitList.size();i++){
+//							backVisitIds.add(backVisitList.get(i).getId());
+//						}
+//						
+//						map.put("backVisitIds", backVisitIds);
+//					}
+//				} else {
+//					List<Long> proIdList = this.projectInfoPersonnelsManager.loadProjectInfoIdByPersonnel(this.userManager.getUser().getCode());
+//					if(proIdList!=null && proIdList.size()>0){
+//						List<BackVisit> bvts4 = backVisitManager.loadBackVisitByPj(".id in "+ proIdList.toString().replace("[", "(").replace("]", ")"));
+//						if(bvts4!=null && bvts4.size()>0){
+//							backVisitList.addAll(bvts4);
+//						}
+//					}
+//					for(int i =0;i<backVisitList.size();i++){
+//						backVisitIds.add(backVisitList.get(i).getId());
+//					}
+//					map.put("backVisitIds", backVisitIds);
+//				}
+//			}
+//
+//		} catch (DaoException e) {
+//			e.printStackTrace();
+//		}
 		if (hasId("continueBackVisit")) {
 			if (getId("continueBackVisit").equals(Long.valueOf("2")))
 				map.put("cbv", null);

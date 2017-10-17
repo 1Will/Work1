@@ -46,13 +46,13 @@
 <script>
 	function editProCus_OpenDialog(){
 	   var url="";
-	   url= "${req.contextPath}/projectInfo/editProCus.html?projectInfo.id=${projectInfoId?if_exists}";
+	   url= "${req.contextPath}/projectInfo/editProCus.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${projectInfoId?if_exists}";
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }
 	 function editProCus_OpenDialog_update(id){
 	   var url="";
-	   url= "${req.contextPath}/projectInfo/editProCus.html?projectInfo.id=${projectInfoId?if_exists}&projectInfoCustomer.id="+id;
+	   url= "${req.contextPath}/projectInfo/editProCus.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${projectInfoId?if_exists}&projectInfoCustomer.id="+id;
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }

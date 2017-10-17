@@ -50,12 +50,14 @@
          </@list>
         <#if !first>
         <@buttonBar>
+        <#if !(action.isReadOnly())>
         	<#if onlyValid >
 	          <@vsubmit name="'disable'"  value="'${action.getText('disabled')}'">
 		                <@ww.param name="'onclick'" value="'return validateDelete(confirmInvalids(\"userIds\", \"${action.getText('confirm.disable')}\"), checkInvalidParms());'"/>
 		                <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>	
 		      </@vsubmit> 
 		    </#if>        
+        </#if>
         </@buttonBar>
       </#if>
     </@ww.form>

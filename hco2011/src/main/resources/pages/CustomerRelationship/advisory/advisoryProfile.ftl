@@ -426,8 +426,9 @@
             </@vsubmit>
             &nbsp;
         </div>
-          </#if>
+     </#if>
         <div style="float:left">
+        <#if !(action.isReadOnly())>
         	<#-- 继续新建按钮   -->
 			<#if advisory.id?exists>
 			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/advisoryManager/editAdvisory.html"/>
@@ -437,6 +438,7 @@
 			getObjByName("newNext").disabled="true";
 			</script>
 			</#if>
+        </#if>
         
             <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/advisoryManager/listAdvisory.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
         </div>
@@ -1015,7 +1017,7 @@
    
    	//弹出业务员查询模态窗体
 	function salesman_OpenDialog(){
-	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	 }
 	 //获得模态窗体返回值

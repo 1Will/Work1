@@ -63,19 +63,19 @@
     <@buttonBar>
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
-		</#if>
 		
 		<#-- 继续新建按钮   -->
 			<#if projectInfoCustomer.id?exists>
 			<@redirectButton value="${action.getText('newNext')}" 
-				url="${req.contextPath}/projectInfo/editProCus.html?projectInfo.id=${projectInfoId?if_exists}"/>
+				url="${req.contextPath}/projectInfo/editProCus.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${projectInfoId?if_exists}"/>
 			<#else>
 			<@redirectButton name="newNext" value="${action.getText('newNext')}" 
-				url="${req.contextPath}/projectInfo/editProCon.html"/>
+				url="${req.contextPath}/projectInfo/editProCon.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 			<script language="JavaScript" type="text/JavaScript"> 
 			getObjByName("newNext").disabled="true";
 			</script>
 			</#if>
+		</#if>
 		
 		<input class="button" type="button" value="${action.getText('close')}"  onclick="closeThis();">
     </@buttonBar>
@@ -86,7 +86,7 @@
 	
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandlerCustomer);
 	 }
 	 //获得模态窗体返回值

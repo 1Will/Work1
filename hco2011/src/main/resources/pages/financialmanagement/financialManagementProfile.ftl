@@ -248,13 +248,13 @@
     </@inputTable>
     <@buttonBar>
     	<#if !(action.isReadOnly())>
-		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
+			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
+			<#if financialManagement.isSaved?exists &&financialManagement.isSaved=='0' >
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+		    <#else>
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+		    </#if>
 		</#if>
-		<#if financialManagement.isSaved?exists &&financialManagement.isSaved=='0' >
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
-	    <#else>
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
-	    </#if>
 	    
 		<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
 		<!-- 关闭按钮 -->
@@ -408,7 +408,7 @@
     }
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelector1Handler);
 	 }
 	 //获得模态窗体返回值
@@ -422,7 +422,7 @@
 	
 	//弹出收款人查询模态窗体
 	function payee_OpenDialog(){
-	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorPrincipalHandler);
 	   //window.open(url);
 	 }
@@ -438,7 +438,7 @@
 	
 		//业务员模态窗体弹出框
 	function saleman_OpenDialog(){
-	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSalemanHandler);
 	   //window.open(url);
 	 }
@@ -453,8 +453,8 @@
 		//合同管理模态窗体
 	function contractManagement_OpenDialog(){
 		var over ="no";
-	   var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html";
-//	   var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?flag="+over;
+	   var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?readOnly=${req.getParameter('readOnly')?if_exists}";
+//	   var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?readOnly=${req.getParameter('readOnly')?if_exists}&flag="+over;
 	   popupModalDialog(url, 800, 600, creatorSelector3Handler);
 	   //window.open(url);
 	 }

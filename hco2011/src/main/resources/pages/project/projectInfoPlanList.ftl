@@ -76,9 +76,9 @@
 	function editProPlan_OpenDialog(){
 	   var url="";
 	   <#if projectInfoId?exists>
-	   url= "${req.contextPath}/projectInfo/editProPlan.html?projectInfo.id=${projectInfoId?if_exists}";
+	   url= "${req.contextPath}/projectInfo/editProPlan.html?projectInfo.id=${projectInfoId?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}";
 	   <#elseif contractManagementId?exists>
-	   url= "${req.contextPath}/projectInfo/editProPlan.html?contractManagement.id=${contractManagementId?if_exists}";
+	   url= "${req.contextPath}/projectInfo/editProPlan.html?contractManagement.id=${contractManagementId?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}";
 	   </#if>
 	   //popupModalDialog(url, 850, 600);
 	   openNewWindow(url);
@@ -86,7 +86,7 @@
 	 }
 	 function editProPlan_OpenDialog_update(id){
 	   var url="";
-	   url= "${req.contextPath}/projectInfo/editProPlan.html?projectInfo.id=${projectInfoId?if_exists}&projectInfoPlan.id="+id;
+	   url= "${req.contextPath}/projectInfo/editProPlan.html?projectInfo.id=${projectInfoId?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}&projectInfoPlan.id="+id;
 	   //popupModalDialog(url, 850, 600);
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};

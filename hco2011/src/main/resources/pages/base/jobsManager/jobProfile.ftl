@@ -48,7 +48,9 @@
 			</tr>
 		</@inputTable>
 		<@buttonBar>
-		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick ="'return checkField()'" />
+		<#if !(action.isReadOnly())>
+			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick ="'return checkField()'" />
+		</#if>
 		<#if !jobsType?exists>
 			<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/jobs/listAllJob.html"/>
 		<#else>

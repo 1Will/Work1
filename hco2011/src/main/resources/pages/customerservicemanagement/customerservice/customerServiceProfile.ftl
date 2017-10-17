@@ -195,7 +195,9 @@
 		
 	</@inputTable>
 	<@buttonBar>
+	<#if !(action.isReadOnly())>
 		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+	</#if>
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/customerService/listCustomerServiceAction.html"/>
     </@buttonBar>
 </@ww.form>
@@ -251,7 +253,7 @@
 	
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelector1Handler);
 	 }
 	 //获得模态窗体返回值
@@ -265,7 +267,7 @@
 	
 	//弹出业务员查询模态窗体
 	function salesman_OpenDialog(){
-	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	   //window.open(url);
 	 }
@@ -279,27 +281,27 @@
 	
 	//联系人查询模态窗体
 	function linkman_OpenDialog(){
-	   var url = "${req.contextPath}/com/listContactArchivesWindow.html";
+	   var url = "${req.contextPath}/com/listContactArchivesWindow.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelector2Handler);
 	   //window.open(url);
 	 }
 	 //获得模态窗体返回值
 	function creatorSelector2Handler(result) {
 		if (null != result) {
-			jgetObjByName("#linkman\\.id").val(result[0]);
-			jgetObjByName("#linkmanName").val(result[2]);
+			getObjByName("linkman.id").value =result[0];
+			getObjByName("linkmanName").value =result[2];
 		}
 	}
 	
 	jgetObjByName(function(){
 		<#if customerService.serviceType?exists>
-			jgetObjByName("#serviceType").val("${customerService.serviceType.id?if_exists}");
+			getObjByName("serviceType").value ="${customerService.serviceType.id?if_exists}";
 		</#if>
 		<#if customerService.serviceWay?exists>
-			jgetObjByName("#serviceWay").val("${customerService.serviceWay.id?if_exists}");
+			getObjByName("serviceWay").value ="${customerService.serviceWay.id?if_exists}";
 		</#if>
 		<#if customerService.state?exists>
-			jgetObjByName("#state").val("${customerService.state.id?if_exists}");
+			getObjByName("state").value ="${customerService.state.id?if_exists}";
 		</#if>
 		
 	});

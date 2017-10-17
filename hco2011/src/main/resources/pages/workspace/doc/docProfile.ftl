@@ -61,8 +61,10 @@
 	 	  	  </tr>
 		</@inputTable>
 		<@buttonBar>
+		<#if !(action.isReadOnly())>
 			<@vsubmit value="'${action.getText('submit')}'" onclick="'return getApprovedResult();'"/>  
 	        <@vbutton class="button" value="${action.getText('doc.viewDetail')}" onclick="open_viewDetailDialog(#{job.docType.id});"/>
+		</#if>
 	        <@redirectButton name="back" value="${action.getText('back')}" url="${req.contextPath}/workspace/listDocs.html"/>	
 	     </@buttonBar>
 	     

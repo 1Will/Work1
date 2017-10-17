@@ -31,8 +31,10 @@
 			<Item name="dutyWRITE" title="职位管理"
 				location="duty/dutyManagerWRITE.html">
 			</Item>
+			<!-- 
 			<Item name="supplier_READ" title="供应商管理" location="supplierManager/listSupplierREAD.html"/>
 			<Item name="supplier_WRITE" title="供应商管理" location="supplierManager/listSupplierWRITE.html"/>
+			 -->
 			<Item name="product" title="产品管理">
 				<Item  name="product_1_READ" title="产品类别" location="productTypeManager/listProductTypeREAD.html"/>
 				<Item  name="product_1_WRITE" title="产品类别" location="productTypeManager/listProductTypeWRITE.html"/>
@@ -95,8 +97,11 @@
 		</Menu> 
 		<Menu name="project" title="项目管理">
 			
-			<Item name="project_3READ" title="项目管理"
-				location="projectInfo/listProjectInfo.html">
+			<Item name="projectInfoREAD" title="项目管理"
+				location="projectInfo/listProjectInfoREAD.html">
+			</Item>
+			<Item name="projectInfoWRITE" title="项目管理"
+				location="projectInfo/listProjectInfoWRITE.html">
 			</Item>
 			<!-- 
 			<Item name="project_3WRITE" title="项目管理"
@@ -192,6 +197,8 @@
 			 -->
 			<Item name="expenseFormWRITE" title="报销单"
 				location="expenseForm/listExpenseFormActionWRITE.html" />
+			<Item name="expenseFormREAD" title="报销单"
+				location="expenseForm/listExpenseFormActionREAD.html" />
 		</Menu>
 		<!--6-->
 		<Menu name="PersonnelFilesManager" title="人事管理">
@@ -269,17 +276,26 @@
 		<!--8-->
 		<Menu name="Office" title="日常办公">
 			<Item name="do" title="我的提醒"
-				location="workspace/warnning/myWarnning/listWorkWarnnings.html" />
+				location="workspace/warnning/myWarnning/listWorkWarnningsREAD.html" />
+			<Item name="do" title="我的提醒"
+				location="workspace/warnning/myWarnning/listWorkWarnningsWRITE.html" />
 			<Item name="plan" title="我的任务"
-				location="projectInfo/listMyPlan.html" />
+				location="projectInfo/listMyPlanREAD.html" />
+			<Item name="plan" title="我的任务"
+				location="projectInfo/listMyPlanWRITE.html" />
 			<Item name="myData" title="我的数据"
-				location="workspace/data/listMyData.html" />
+				location="workspace/data/listMyDataREAD.html" />
+			<Item name="myData" title="我的数据"
+				location="workspace/data/listMyDataWRITE.html" />
 			<Item name="myData" title="我的团队"
-				location="workspace/data/listData.html" />
+				location="workspace/data/listDataREAD.html" />
+			<Item name="myData" title="我的团队"
+				location="workspace/data/listDataWRITE.html" />
 		    <Item name="notice" title="内部邮件">
 				<Item name="doREAD" title="发件箱" location="notice/listNotice_READ.html" />
 				<Item name="doWRITE" title="发件箱" location="notice/listNotice_WRITE.html" />
-				<Item name="" title="收件箱"   location="notice/listReceviceNotices.html" />
+				<Item name="" title="收件箱"   location="notice/listReceviceNoticesREAD.html" />
+				<Item name="" title="收件箱"   location="notice/listReceviceNoticesWRITE.html" />
 				<Item name="" title="通讯组"   location="communication/groups/listGroups.html" />
 		    </Item>
 			<Item name="workArrange" title="工作安排">
@@ -289,12 +305,19 @@
 				<Item name="weeklyWRITE" title="周计划管理"
 					location="workReport/listWeeklyWRITE.html">
 				</Item>
+				<Item name="dailyWRITE" title="日报管理"
+					location="workReport/listDailyWRITE.html">
+				</Item>
 				<Item name="dailyREAD" title="日报管理"
 					location="workReport/listDailyREAD.html">
 				</Item>
 			</Item>
+			<!-- 
 			<Item name="meeting" title="早会"
-				location="workReport/listMeetingMonth.html" />
+				location="workReport/listMeetingMonthREAD.html" />
+			<Item name="meeting" title="早会"
+				location="workReport/listMeetingMonthWRITE.html" />
+			 -->
 		</Menu>
 		<!--9-->
 		<!-- 

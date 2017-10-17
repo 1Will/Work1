@@ -26,7 +26,9 @@
 		<#include "./companyTargetSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms()'"/>
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/companyTarget/editCompanyTargetAction.html"/>
+			<#if !(action.isReadOnly())>
+			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/companyTarget/editCompanyTargetAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+			</#if>
         </@buttonBar>
         <@list title="${action.getText('公司目标列表')}" 
             includeParameters="companyTarget.planType|companyTarget.quarter|companyTarget.month|companyTarget.year|companyTarget.targetName|onlyInvalid|onlyValid" 
@@ -88,9 +90,11 @@
             </@vcolumn>
         </@list>
         <#if !first>
+        <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('公司目标')}" boxName="targetManagementIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
+        </#if>
 		</#if>
     </@ww.form>
 </@htmlPage>

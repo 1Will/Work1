@@ -26,7 +26,9 @@
         <#include "./dutySearcher.ftl" />
         <@buttonBar>
             <@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'" />
-            <@redirectButton value="${action.getText('new')}" url="${req.contextPath}/duty/editDuty.html?dept.id=${departmentId?if_exists}"/>
+            <#if !(action.isReadOnly())>
+            	<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/duty/editDuty.html?dept.id=${departmentId?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}"/>
+        	</#if>
         </@buttonBar>
         <@list title="${action.getText('duty.list')}" includeParameters="code|name|jobName.id|dept.id|onlyInvalid|onlyValid" fieldMap="like:code|name" >
 	        <@vlh.checkbox property="id" name="dutyIds">
@@ -34,7 +36,7 @@
 	        </@vlh.checkbox>
 	         <#if !object.disabled>
 	        <@vcolumn title="${action.getText('duty.code')}" property="code" sortable="desc">
-            	<a href="editDuty.html?duty.id=#{object.id}&amp;dept.id=${departmentId?if_exists}">${object.code}</a>
+            	<a href="editDuty.html?duty.id=#{object.id}&readOnly=${req.getParameter('readOnly')?if_exists}&dept.id=${departmentId?if_exists}">${object.code}</a>
             	<@alignLeft/>
          	</@vcolumn>
          	<#else>

@@ -50,12 +50,12 @@
 </@framePage>
 <script>
 	function editNewProductsPerson_OpenDialog(){
-	   var url= "${req.contextPath}/productsManager/editProductsPerson.html?products.id=${req.getParameter('products.id')?if_exists}";
+	   var url= "${req.contextPath}/productsManager/editProductsPerson.html?products.id=${req.getParameter('products.id')?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}";
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }
 	function editProductsPerson_OpenDialog(id){
-	   var url= "${req.contextPath}/productsManager/editProductsPerson.html?products.id=${req.getParameter('products.id')?if_exists}&productsPerson.id="+id;
+	   var url= "${req.contextPath}/productsManager/editProductsPerson.html?products.id=${req.getParameter('products.id')?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}&productsPerson.id="+id;
 	   openNewWindow(url);
 	   if(isIE()){self.location.reload();};
 	 }

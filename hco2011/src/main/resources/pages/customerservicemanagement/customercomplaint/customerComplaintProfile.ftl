@@ -210,8 +210,10 @@
 		
 	</@inputTable>
 	<@buttonBar>
+	<#if !(action.isReadOnly())>
 		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
-		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/customerComplaint/listCustomerComplaintAction.html"/>
+	</#if>
+		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/customerComplaint/listCustomerComplaintAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
     </@buttonBar>
 </@ww.form>
 <script language="JavaScript" type="text/JavaScript"> 
@@ -295,7 +297,7 @@
 	
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelector1Handler);
 	 }
 	 //获得模态窗体返回值
@@ -309,7 +311,7 @@
 	
 	//弹出业务员查询模态窗体
 	function salesman_OpenDialog(){
-	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	   //window.open(url);
 	 }
@@ -323,7 +325,7 @@
 	
 	//联系人查询模态窗体
 	function linkman_OpenDialog(){
-	   var url = "${req.contextPath}/com/listContactArchivesWindow.html";
+	   var url = "${req.contextPath}/com/listContactArchivesWindow.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelector2Handler);
 	   //window.open(url);
 	 }

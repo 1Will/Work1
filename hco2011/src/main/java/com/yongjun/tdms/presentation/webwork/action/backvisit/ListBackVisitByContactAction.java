@@ -65,7 +65,7 @@
 /*     */ 
 /*     */   protected String getAdapterName()
 /*     */   {
-/*  76 */     return "backvisit";
+/*  76 */     return "backvisitHQL";
 /*     */   }
 /*     */ 
 /*     */   protected Map getRequestParameterMap()

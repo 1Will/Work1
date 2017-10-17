@@ -128,16 +128,16 @@
 	                <@ww.param name="'onclick'" value="'return confirmDelete(\"${confirmMessage}\");'"/>
 	                <#--<@ww.param name="'disabled'" value="${isParent?if_exists}"/>-->
 	             </@vsubmit>
-            	<@redirectButton value="${action.getText('添加子单位')}" url="editInstitution.html?parentid=#{institution.id}"/>
-            	<@redirectButton value="${action.getText('添加下属部门')}" url="editDepartment.html?institution.id=#{institution.id}"/>
+            	<@redirectButton value="${action.getText('添加子单位')}" url="editInstitution.html?parentid=#{institution.id}&readOnly=${req.getParameter('readOnly')?if_exists}"/>
+            	<@redirectButton value="${action.getText('添加下属部门')}" url="editDepartment.html?institution.id=#{institution.id}&readOnly=${req.getParameter('readOnly')?if_exists}"/>
             <#else>
             	<#--如果建立的是根级别的目录，则不显示添加子单位-->
             	<#if root?exists>
         		<#elseif parentId?exists>
         		<#else>
         		<@vsubmit name="'delete'" value="'${action.getText('delete')}'"/>
-            	<@redirectButton value="${action.getText('添加子单位')}" url="editInstitution.html?parentid=${parentId?if_exists}"/>
-            	<@redirectButton value="${action.getText('添加下属部门')}" url="editDepartment.html?institution.id=${parentId?if_exists}"/>
+            	<@redirectButton value="${action.getText('添加子单位')}" url="editInstitution.html?parentid=${parentId?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}"/>
+            	<@redirectButton value="${action.getText('添加下属部门')}" url="editDepartment.html?institution.id=${parentId?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}"/>
             	</#if>
             </#if>
             </#if>

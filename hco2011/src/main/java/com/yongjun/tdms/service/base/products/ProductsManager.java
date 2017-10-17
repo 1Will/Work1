@@ -27,7 +27,7 @@ public abstract interface ProductsManager
 
   public abstract List<Products> loadByKey(String paramString, Object paramObject)
     throws DaoException;
-  public abstract void saveProductfoByImp(List<Products> products);
+  public abstract String saveProductfoByImp(List<Products> products)throws DaoException;
 }
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

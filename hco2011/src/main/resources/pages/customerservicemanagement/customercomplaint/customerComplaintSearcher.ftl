@@ -78,12 +78,12 @@
 		}
 		return true;
     }
-    jgetObjByName(function(){
+    getObjByName(function(){
     	<#if req.getParameter('customerComplaint.complaintType.id')?exists>
-    		jgetObjByName("#complaintType").val("${req.getParameter('customerComplaint.complaintType.id')?if_exists}");
+    		getObjByName("complaintType").value ="${req.getParameter('customerComplaint.complaintType.id')?if_exists}";
     	</#if>
     	<#if req.getParameter('customerComplaint.urgencyDegree.id')?exists>
-    		jgetObjByName("#urgencyDegree").val("${req.getParameter('customerComplaint.urgencyDegree.id')?if_exists}");
+    		getObjByName("urgencyDegree").value ="${req.getParameter('customerComplaint.urgencyDegree.id')?if_exists}";
     	</#if>
     	
     });

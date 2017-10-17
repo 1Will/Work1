@@ -75,14 +75,45 @@
 /* 95 */     return this.productsDao.loadByKey(keyName, keyValue);
 /*    */   }
 /*    */
-			public void saveProductfoByImp(List<Products> products) {
+			public String saveProductfoByImp(List<Products> products) throws DaoException {
+				String resultString ="";//返回结果
+				int size=0;//用于存放每次根据型号查询的结果数
+				int num =0;//表示成功更新或者插入的条数
 				if(products!=null&&products.size()>0){
 					for(Products p:products){
-						this.storeProducts(p);
+						// 第一步：根据产品型号查询共有多少个。
+						List<Products> list = this.productsDao.loadByKey("model",p.getModel());
+						if(list!=null){
+							size = list.size();
+						}
+						// 第二步：根据查询得到的个数进行判断，不同结果不同处理
+						// 第三步：如果个数大于1，则不处理。
+						
+						//第四步：如果等于1，则做更新操作，即update
+						
+						//第五步：如果小于1，则做插入操作，即insert
+						if(size>1){
+							resultString+="型号为："+p.getModel()+"的产品存在多条记录，无法插入或者更新操作<br>";
+							
+						}else if(size==1) {
+							Products pt = list.get(0);
+							// 将 p的所有的属性赋值给pt
+							pt.setName(p.getName());
+							this.storeProducts(pt);
+							num++;
+							
+						}else{
+							this.storeProducts(p);
+							num++;
+						}
+						
+						
 					}
 				}
-	
+				resultString +="已成功导入"+num+"条产品信息";
+				return resultString;
 			} 
+			
 			}
 
 /* Location:           E:\crm2010\110\crm2009\WEB-INF\classes\

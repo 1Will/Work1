@@ -61,6 +61,7 @@
 					<!-- 工作安排 -->
 					/workReport/listWeeklyREAD.html*=ROLE_WEEKLY_READ
 					/workReport/listWeeklyWRITE.html*=ROLE_WEEKLY_WRITE
+					/workReport/listDailyWRITE.html*=ROLE_DAILY_WRITE
 					/workReport/listDailyREAD.html*=ROLE_DAILY_READ
 					<!-- 组织管理 -->
 					/organizationOperate/listOrgREAD.html*=ROLE_ORGADMIN_READ
@@ -130,6 +131,9 @@
 					<!-- 收款单 -->
 					/financialManagement/listFinancialManagementREAD.html*=ROLE_FINANCIALMANAGE_READ
 					/financialManagement/listFinancialManagementWRITE.html*=ROLE_FINANCIALMANAGE_WRITE
+					<!-- 报销单 -->
+					/expenseForm/listExpenseFormActionREAD.html*=ROLE_EXPENSEFORM_READ
+					/expenseForm/listExpenseFormActionWRITE.html*=ROLE_EXPENSEFORM_WRITE
 					
 					<!-- 费用使用 -->
 					/expenseUse/listExpenseUseActionREAD.html*=ROLE_EXPENSEUSE_READ
@@ -141,6 +145,29 @@
 					<!-- 工作流管理 -->
 					/workflow/listWorkflow_READ.html*=ROLE_WORKFLOW_READ
 					/workflow/listWorkflow_WRITE.html*=ROLE_WORKFLOW_WRITE      	
+		             <!-- 我的提醒 -->   
+		             /workspace/warnning/myWarnning/listWorkWarnningsREAD.html*=ROLE_WORKWARNNING_READ
+		             /workspace/warnning/myWarnning/listWorkWarnningsWRITE.html*=ROLE_WORKWARNNING_WRITE	
+		             <!-- 我的任务 -->
+		              /projectInfo/listMyPlanREAD.html*=ROLE_MYPLAN_READ
+		             /projectInfo/listMyPlanWRITE.html*=ROLE_MYPLAN_WRITE
+		             <!--我的数据 -->
+		             /workspace/data/listMyDataREAD.html*=ROLE_MYDATA_READ
+		             /workspace/data/listMyDataWRITE.html*=ROLE_MYDATA_WRITE 
+		             <!-- 我的团队 -->
+		             /workspace/data/listDataREAD.html*=ROLE_DATA_READ
+		             /workspace/data/listDataWRITE.html*=ROLE_DATA_WRITE
+		             <!--收件箱 -->
+		              /notice/listReceviceNoticesREAD.html*=ROLE_RECEVICENOTICES_READ
+		             /notice/listReceviceNoticesWRITE.html*=ROLE_RECEVICENOTICES_WRITE 
+		             
+		               <!--收件箱 -->
+		              /notice/listReceviceNoticesREAD.html*=ROLE_RECEVICENOTICES_READ
+		             /notice/listReceviceNoticesWRITE.html*=ROLE_RECEVICENOTICES_WRITE
+		             <!-- 早会 --> 
+		             /workReport/listMeetingMonthREAD.html*=ROLE_MEETINGMONTH_READ
+		             /workReport/listMeetingMonthWRITE.html*=ROLE_MEETINGMONTH_WRITE
+		                	
 		                	
 		                	
 	                /security/*=ROLE_ADMIN

@@ -26,7 +26,9 @@
 		<#include "./citySearcher.ftl" />
         <@buttonBar>
 			<@vbutton name="'search'" class="button" value="${'查询'}" onclick=""/>
+			<#if !(action.isReadOnly())>
 			<@redirectButton value="${'新建'}" url="${req.contextPath}/cityManager_/saveCity_.html"/>
+			</#if>
         </@buttonBar>
         <@listTable>
         	<tr>
@@ -67,8 +69,10 @@
 			</tr>
         </@listTable>
 	    <@buttonBar>
+	    <#if !(action.isReadOnly())>
 	        <#assign confirmMessage = "${'您确定删除吗？'}" />
 	        <@vsubmit name="'delete'" value="'${'删除'}'"/>
+	    </#if>
 	    </@buttonBar>
     </@ww.form>
 </@htmlPage>

@@ -65,41 +65,38 @@ public class ListProjectInfoAction extends ValueListAction {
 
 	protected Map getRequestParameterMap() {
 		Map map = super.getRequestParameterMap();
-		PersonnelFiles personnelFiles =null;
+//		PersonnelFiles personnelFiles =null;
 		User thisUser = this.userManager.getUser();
 		if(thisUser.getName().equals("admin")){
 			return map;
 		}
-		try {
-			if(isProjectInfoGroup()){//如果是项目管理组里的人员
-				//再次区分是军品还是民品的
-				List<PersonnelFiles>  tempList=this.personnelFilesManager.loadByKey("code", thisUser.getCode());
-				if(tempList!=null&&tempList.size()>0){
-					personnelFiles  = tempList.get(0);
-					if(personnelFiles.getBusinessType()!=null){
-						//只有这个人是军品或者 民品会绑定检索条件。只能看所属权限的
-						if(personnelFiles.getBusinessType().getName().equals("军品")||personnelFiles.getBusinessType().getName().equals("民品")){
-							map.put("businessType", "%"+personnelFiles.getBusinessType().getName()+"%");
-						}
-					
-					}
-				}
-			}else {//如果不是项目管理组的人员。就是查询这个人所在的所有项目
-				List<Long> proIdList = this.projectInfoPersonnelsManager.loadProjectInfoIdByPersonnel(thisUser.getCode());
-				if(proIdList==null||proIdList.size()<1){
-					//如果查询结果为空。 即不不是任何项目组成员，默认为0
-					proIdList = new ArrayList<Long>();
-					proIdList.add(0l);
-				}
-					map.put("proIds", proIdList);
-			}
-			
-			
-			
-		} catch (DaoException e) {
-		//TODO Auto-generated catch block
-			e.printStackTrace();
-			}
+//		try {
+//			if(isProjectInfoGroup()){//如果是项目管理组里的人员
+//				//再次区分是军品还是民品的
+//				List<PersonnelFiles>  tempList=this.personnelFilesManager.loadByKey("code", thisUser.getCode());
+//				if(tempList!=null&&tempList.size()>0){
+//					personnelFiles  = tempList.get(0);
+//					if(personnelFiles.getBusinessType()!=null){
+//						//只有这个人是军品或者 民品会绑定检索条件。只能看所属权限的
+//						if(personnelFiles.getBusinessType().getName().equals("军品")||personnelFiles.getBusinessType().getName().equals("民品")){
+//							map.put("businessType", "%"+personnelFiles.getBusinessType().getName()+"%");
+//						}
+//					
+//					}
+//				}
+//			}else {//如果不是项目管理组的人员。就是查询这个人所在的所有项目
+//				List<Long> proIdList = this.projectInfoPersonnelsManager.loadProjectInfoIdByPersonnel(thisUser.getCode());
+//				if(proIdList==null||proIdList.size()<1){
+//					//如果查询结果为空。 即不不是任何项目组成员，默认为0
+//					proIdList = new ArrayList<Long>();
+//					proIdList.add(0l);
+//				}
+//					map.put("proIds", proIdList);
+//			}
+//		} catch (DaoException e) {
+//		//TODO Auto-generated catch block
+//			e.printStackTrace();
+//			}
 		
 		if (hasId("projectInfo.creator")) {
 			User  user = this.userManager.loadUser(getId("projectInfo.creator"));

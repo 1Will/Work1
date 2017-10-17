@@ -13,10 +13,12 @@
          <#else>
            <@vsubmit value="'${action.getText('search')}'" onclick="'checkInvalidParms()'" />
 			<#if !(action.isReadOnly())>
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/productsManager/editProducts.html"/>
+			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/productsManager/editProducts.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 			</#if>
           </#if>
+          <#--
 			<@redirectButton value="${action.getText('importProduct.button')}" url="${req.contextPath}/productsManager/toImportProduct.html"/>
+          -->
         </@buttonBar>
         <@list title="${action.getText('productsList')}" includeParameters="products.code|products.name|products.model|productCheckBox|products.standard|pt.id|product_source_ID.id|supplier.id|onlyInvalid|onlyValid" fieldMap="like:products.code|products.name|products.model|products.standard" >
             <@vlh.checkbox property="id" name="productsIds">

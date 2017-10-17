@@ -25,7 +25,9 @@
 		<#include "./surveySearcher.ftl" />
         <@buttonBar>
 			<@vsubmit name="'search'" cssClass="'button'" value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
+			<#if !(action.isReadOnly())>
 			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/survey/editSurvey.html"/>
+			</#if>
         </@buttonBar>
         <@list title="${action.getText('list.title')}" 
             includeParameters="survey.code|survey.surveyTime|survey.surveyTime_start|survey.surveyTime_end|survey.surveyTarget|survey.persons|onlyInvalid|onlyValid" 
@@ -48,9 +50,11 @@
             </@vcolumn>
         </@list>
          <#if !first>
+         <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('survey.info')}" boxName="surveyIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
+         </#if>
 		 </#if>
     </@ww.form>
 </@htmlPage>

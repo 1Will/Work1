@@ -41,7 +41,7 @@
             <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'">
             </@vsubmit>
         </#if>
-            <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/productTypeManager/listProductType.html"/>
+            <@redirectButton value="${action.getText('back')}" url="${req.contextPath}/productTypeManager/listProductType.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 	</@buttonBar>
 </@ww.form>
 </@htmlPage>

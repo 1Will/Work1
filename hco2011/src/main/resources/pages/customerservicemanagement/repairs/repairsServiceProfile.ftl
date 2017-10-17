@@ -173,8 +173,10 @@
 		</tr>
 	</@inputTable>
 	<@buttonBar>
+	<#if !(action.isReadOnly())>
 		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
-		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/repairs/listRepairsAction.html"/>
+	</#if>
+		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/repairs/listRepairsAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
     </@buttonBar>
 </@ww.form>
 <script language="JavaScript" type="text/JavaScript"> 
@@ -234,7 +236,7 @@
 	
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelector1Handler);
 	 }
 	 //获得模态窗体返回值
@@ -246,15 +248,15 @@
 		}
 	}
 	
-	jgetObjByName(function(){
+	getObjByName(function(){
 		<#if repairs.applyMode?exists>
-			jgetObjByName("#applyMode").val("${repairs.applyMode.id?if_exists}");
+			getObjByName("applyMode").value="${repairs.applyMode.id?if_exists}";
 		</#if>
 		<#if repairs.callbackValidate?exists>
-			jgetObjByName("#callbackValidate").val("${repairs.callbackValidate.id?if_exists}");
+			getObjByName("callbackValidate").value="${repairs.callbackValidate.id?if_exists}";
 		</#if>
 		<#if repairs.disposalState?exists>
-			jgetObjByName("#disposalState").val("${repairs.disposalState.id?if_exists}");
+			getObjByName("disposalState").value="${repairs.disposalState.id?if_exists}";
 		</#if>
 	});
 </script>

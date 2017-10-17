@@ -45,24 +45,24 @@
         </@vcolumn>
 	</@list>
     <@buttonBar>
+    <#if !(action.isReadOnly())>
     	<@vsubmit value="'${action.getText('new')}'" onclick="'return newNextWeeklyPlan(\"${weekly.id}\")'"/>
 	  	<#assign confirmMessage = "${action.getText('confirm.delete')}${action.getText('nextWeekPlan.info')}?" />	 
             <@vsubmit name="'delete'" value="'${action.getText('delete')}'">
                <@ww.param name="'onclick'" value="'return confirmDeletes(\"nextWeekPlanIds\", \"${confirmMessage}\");'"/>
                 <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
             </@vsubmit>
+    </#if>
    </@buttonBar>
 	</@ww.form>
 	<script language="javascript">
 	function showNextWeeklyPlan(id){
-    	var url ='${req.contextPath}/workReport/editNextWeekPlan.html?weekly.id=${weekly.id}&nextWeekPlan.id='+id;
+    	var url ="${req.contextPath}/workReport/editNextWeekPlan.html?readOnly=${req.getParameter('readOnly')?if_exists}&weekly.id=${weekly.id}&nextWeekPlan.id="+id;
     	popupModalDialog(url,800,600);
-//		window.open(url);  	
 		if(isIE()){self.location.reload();};
     }
     function newNextWeeklyPlan(id){
-     	var url = '${req.contextPath}/workReport/editNextWeekPlan.html?weekly.id='+id;
-     //	window.open(url);
+     	var url = "${req.contextPath}/workReport/editNextWeekPlan.html?readOnly=${req.getParameter('readOnly')?if_exists}&weekly.id="+id;
      	popupModalDialog(url,800,600);
         if(isIE()){self.location.reload();};
     }

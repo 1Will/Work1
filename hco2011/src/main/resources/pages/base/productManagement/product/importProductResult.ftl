@@ -9,7 +9,7 @@
       </tr>
     </@inputTable>
     <@buttonBar>
-	  <@redirectButton name="back" value="${action.getText('back')}" url="${req.contextPath}/productsManager/toImportProduct.html"/>
+	  <@redirectButton name="back" value="${action.getText('back')}" url="${req.contextPath}/productsManager/toImportProduct.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 	</@buttonBar>
   </@ww.form>
 </@htmlPage>

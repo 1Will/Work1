@@ -37,10 +37,12 @@
 		
         <@buttonBar>
 			<@vsubmit name="'search'" cssClass="'button'" value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
+          <#if !(action.isReadOnly())>
           <#if backVisitCheckBox?exists>
           <@ww.hidden name="'backVisitCheckBox'" value="'${backVisitCheckBox?if_exists}'"/>
 				 <input class="button" type="button" value="保存参与者" onclick="return_employeess()"/>
-				</#if>
+		  </#if>
+          </#if>
         </@buttonBar>
 	<@list title="${action.getText('personnelFilesList')}" includeParameters="code|backVisitCheckBox|name|employeesIds_a|projectInfo.id|fileNo|inst.id|dept.id|duty.id|sysUser" fieldMap="like:code|name|fileNo" >
 		<#if !object.disabled>

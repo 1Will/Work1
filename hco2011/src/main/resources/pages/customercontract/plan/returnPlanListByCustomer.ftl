@@ -108,9 +108,11 @@
             </@vcolumn>
         </@list>
         <#if req.getParameter('contractManagement.id')?exists>
+        <#if !(action.isReadOnly())>
 		    <@buttonBar>
 		    <@vbutton class="button" value="${action.getText('new')}" onclick="openReturnPlan()"/>
 			</@buttonBar>
+        </#if>
 	 	</#if>
     </@ww.form>
 </@framePage>

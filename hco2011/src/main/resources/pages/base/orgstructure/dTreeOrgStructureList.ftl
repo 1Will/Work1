@@ -30,7 +30,9 @@
 				    </#list>
 				<#else>
 				    <#list deptList as dept>
+				    <#if dept.parentDept?exists>
 				      	dt.add(#{dept.id}+nodeId,#{dept.parentDept.id}+nodeId,'${dept.name}(部门)',#{dept.id},'dept','editDepartment.html?department.id=#{dept.id}&readOnly=${req.getParameter('readOnly')?if_exists}','','DmainFrame');
+				  	</#if>
 				    </#list>
 			  	</#if>
 				<#assign deptStep=deptStep+1/>

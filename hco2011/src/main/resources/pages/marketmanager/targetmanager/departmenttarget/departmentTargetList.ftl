@@ -26,7 +26,9 @@
 		<#include "./departmentTargetSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms()'"/>
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/departmentTarget/editDepartmentTargetAction.html"/>
+			<#if !(action.isReadOnly())>
+			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/departmentTarget/editDepartmentTargetAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+			</#if>
         </@buttonBar>
         <@list title="${action.getText('部门目标列表')}" 
             includeParameters="deparmentTarget.planType|deparmentTarget.quarter|deparmentTarget.month|deparmentTarget.year|deparmentTarget.targetName|onlyInvalid|onlyValid" 
@@ -79,9 +81,11 @@
             </@vcolumn>
         </@list>
         <#if !first>
+        <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('部门目标')}" boxName="departmentTargetIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
+        </#if>
 		</#if>
     </@ww.form>
 </@htmlPage>

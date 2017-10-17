@@ -75,7 +75,9 @@
 			</tr>
 			</@inputTable>
 		<@buttonBar>
+		<#if !(action.isReadOnly())>
 	         <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return validate();'"/>
+		</#if>
 	         <@vsubmit  value="'${action.getText('close')}'" onclick="'return closePage()'"/>
          </@buttonBar>	
 		</@ww.form>

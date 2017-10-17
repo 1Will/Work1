@@ -26,7 +26,9 @@
 		<#include "./qaStorageSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'checkInvalidParms()'"/>
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/qaStorage/editQaStorageAction.html"/>
+			<#if !(action.isReadOnly())>
+			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/qaStorage/editQaStorageAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+			</#if>
         </@buttonBar>
         <@list title="${action.getText('QA库列表')}" 
             includeParameters="qaStorage.code|qaStorage.applyProduc|qaStorage.type.id|qaStorage.state.id|qaStorage.severityDegree.id|qaStorage.question|qaStorage.resolveProject|qaStorage.innerPrompt|qaStorage.remark|onlyInvalid|onlyValid" 
@@ -73,9 +75,11 @@
             
         </@list>
         <#if !first>
+        <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('QA信息')}" boxName="qaStorageIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
+        </#if>
 		</#if>
     </@ww.form>
 </@htmlPage>

@@ -57,15 +57,17 @@
 			<@textarea label="${action.getText('备注')}" name="contractAdditionalInfo.comment" value="${contractAdditionalInfo.comment?if_exists}" rows="4" cols="150"/>
 		</tr>
 		</@inputTable>
+		<#if !(action.isReadOnly())>
 		<@buttonBar>
             <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation()'"/>
         </@buttonBar>
+		</#if>
     </@ww.form>
 </@framePage>
 <script>
 	//弹出财务联系人查询模态窗体
 	function financialPer_OpenDialog(){
-		var url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitFlag=backVisit&customer.id=#{contractManagement.customerInfo.id}";
+		var url = "${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisitFlag=backVisit&customer.id=#{contractManagement.customerInfo.id}";
 	  	popupModalDialog(url, 800, 600, setPerson);
 	 }
 	 //获得模态窗体返回值

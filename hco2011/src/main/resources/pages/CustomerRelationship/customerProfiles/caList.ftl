@@ -95,11 +95,11 @@
 	function contactArchives_OpenDialog(){
 	  var url="";
 	<#if customerId?exists>
-	url= "${req.contextPath}/customerRelationship/editContactArchives.html?customer.id=#{customerId?if_exists}&customerType.id=${customerTypeId?if_exists}&popWindowFlag=popWindowFlag";
+	url= "${req.contextPath}/customerRelationship/editContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&customer.id=#{customerId?if_exists}&customerType.id=${customerTypeId?if_exists}&popWindowFlag=popWindowFlag";
 	 </#if>
 	 
 	 <#if projectInfoId?exists>
-	url= "${req.contextPath}/customerRelationship/editContactArchives.html?projectInfo.id=${projectInfoId?if_exists}&customer.id=${customerId?if_exists}&customerType.id=${customerTypeId?if_exists}";
+	url= "${req.contextPath}/customerRelationship/editContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=${projectInfoId?if_exists}&customer.id=${customerId?if_exists}&customerType.id=${customerTypeId?if_exists}";
 	 </#if>
 	   //popupModalDialog(url, 850, 600);
 	   //window.open(url);

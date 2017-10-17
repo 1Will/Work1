@@ -119,22 +119,22 @@
 	<@buttonBar>
 		<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
-		</#if>
 		
-		<#if expenseForm.isSaved?exists &&expenseForm.isSaved=='0' >
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
-	    <#else>
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
-	    </#if>
+			<#if expenseForm.isSaved?exists &&expenseForm.isSaved=='0' >
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+		    <#else>
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+		    </#if>
 		
-		<#-- 继续新建按钮   -->
-		<#if expenseForm.id?exists>
-			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/expenseForm/editExpenseFormAction.html?popWindowFlag=${popWindowFlag?if_exists}"/>
-		<#else>
-			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/expenseForm/editExpenseFormAction.html"/>
-				<script language="JavaScript" type="text/JavaScript"> 
-				getObjByName("newNext").disabled="true";
-				</script>
+			<#-- 继续新建按钮   -->
+			<#if expenseForm.id?exists>
+				<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/expenseForm/editExpenseFormAction.html?readOnly=${req.getParameter('readOnly')?if_exists}&popWindowFlag=${popWindowFlag?if_exists}"/>
+			<#else>
+				<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/expenseForm/editExpenseFormAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+					<script language="JavaScript" type="text/JavaScript"> 
+					getObjByName("newNext").disabled="true";
+					</script>
+			</#if>
 		</#if>
 		
 		<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
@@ -148,7 +148,7 @@
 <script language="JavaScript" type="text/JavaScript"> 
 	 //项目名称查询模态窗体(添加)
 	function projectName_OpenDialog(){
-   		var url = "${req.contextPath}/projectInfo/listProjectInfo.html?backVisitCheckBox=backVisitCheckBox";
+   		var url = "${req.contextPath}/projectInfo/listProjectInfo.html?backVisitCheckBox=backVisitCheckBox&readOnly=${req.getParameter('readOnly')?if_exists}";
    		popupModalDialog(url, 800, 600, setProject);
 	 }
 	 //项目名称-获得模态窗体返回值
@@ -162,7 +162,7 @@
 	//合同管理模态窗体
 	function contractManagement_OpenDialog(){
 		var pjId = getObjByName('projectInfo.id').value;
-		var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?project.id="+pjId;
+		var url = "${req.contextPath}/contractManagement/listContractManagementWindowAction.html?readOnly=${req.getParameter('readOnly')?if_exists}&project.id="+pjId;
 		popupModalDialog(url, 800, 600, setContractManagement);
 	 }
 	 //获得模态窗体返回值
@@ -175,7 +175,7 @@
 
 	//弹出业务员查询模态窗体
 	function applyPeople_OpenDialog(){
-	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, setApplyPeople);
 	 }
 	 //获得模态窗体返回值

@@ -25,7 +25,9 @@
 		<#include "./remitSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
+			<#if !(action.isReadOnly())>
 			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/com/editRemit.html"/>
+			</#if>
         </@buttonBar>
         <@list title="${action.getText('remit.list.title')}" 
             includeParameters="remit.code|remit.remitDate_start|remit.remitDate_end|billing.id|type.id|remit.customerInfo|onlyInvalid|onlyValid" 
@@ -58,9 +60,11 @@
             </@vcolumn>
         </@list>
          <#if !first>
+         <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('remit.info')}" boxName="remitIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
 		 </#if>
+         </#if>
     </@ww.form>
 </@htmlPage>

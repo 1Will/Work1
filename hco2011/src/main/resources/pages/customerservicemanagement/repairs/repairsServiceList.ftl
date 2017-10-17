@@ -26,7 +26,9 @@
 		<#include "./repairsServiceSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms()'"/>
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/repairs/editRepairsAction.html"/>
+			<#if !(action.isReadOnly())>
+			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/repairs/editRepairsAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+			</#if>
         </@buttonBar>
         <@list title="${action.getText('repairs.list')}" 
             includeParameters="repairs.code|repairs.customerInfo.name|repairs.repairsTime|onlyInvalid|onlyValid" 
@@ -76,9 +78,11 @@
             -->
         </@list>
         <#if !first>
+        <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('repairs')}" boxName="repairsIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
+        </#if>
 		</#if>
     </@ww.form>
 </@htmlPage>

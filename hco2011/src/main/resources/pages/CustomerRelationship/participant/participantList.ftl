@@ -59,16 +59,16 @@
 	   <#if backVisit?exists>
 	   <#if backVisit.id?exists>
 		   <#if caFlag?exists && caFlag=='caFlag'>
-		   		url= "${req.contextPath}/customerRelationship/editParticipant.html?caFlag=caFlag&backVisit.id=#{backVisit.id?if_exists}";
+		   		url= "${req.contextPath}/customerRelationship/editParticipant.html?readOnly=${req.getParameter('readOnly')?if_exists}&caFlag=caFlag&backVisit.id=#{backVisit.id?if_exists}";
 		   <#else>
-		   		url= "${req.contextPath}/customerRelationship/editParticipant.html?backVisit.id=#{backVisit.id?if_exists}";
+		   		url= "${req.contextPath}/customerRelationship/editParticipant.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisit.id=#{backVisit.id?if_exists}";
 		   </#if>
 	   </#if>
 	   </#if>
 	   
 		<#if projectInfoPlan?exists>
 		<#if projectInfoPlan.id?exists>
-	   		url= "${req.contextPath}/customerRelationship/editParticipant.html?projectInfoPlan.id=#{projectInfoPlan.id}";
+	   		url= "${req.contextPath}/customerRelationship/editParticipant.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfoPlan.id=#{projectInfoPlan.id}";
 	   </#if>
 	   </#if>
 	   openNewWindow(url);
@@ -79,16 +79,16 @@
 		<#if backVisit?exists>
 		<#if backVisit.id?exists>
 			<#if caFlag?exists && caFlag=='caFlag'>
-	   			url= "${req.contextPath}/customerRelationship/editParticipant.html?caFlag=caFlag&backVisit.id=#{backVisit.id?if_exists}&participant.id="+id;
+	   			url= "${req.contextPath}/customerRelationship/editParticipant.html?readOnly=${req.getParameter('readOnly')?if_exists}&caFlag=caFlag&backVisit.id=#{backVisit.id?if_exists}&participant.id="+id;
 			<#else>
-		   		url= "${req.contextPath}/customerRelationship/editParticipant.html?backVisit.id=#{backVisit.id?if_exists}&participant.id="+id;
+		   		url= "${req.contextPath}/customerRelationship/editParticipant.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisit.id=#{backVisit.id?if_exists}&participant.id="+id;
 			</#if>
 	   </#if>
 	   </#if>
 			
 		<#if projectInfoPlan?exists>
 		<#if projectInfoPlan.id?exists>
-	   		url= "${req.contextPath}/customerRelationship/editParticipant.html?projectInfoPlan.id=#{projectInfoPlan.id}&participant.id="+id;
+	   		url= "${req.contextPath}/customerRelationship/editParticipant.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfoPlan.id=#{projectInfoPlan.id}&participant.id="+id;
 	   </#if>
 	   </#if>
 	   openNewWindow(url);

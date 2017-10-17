@@ -71,7 +71,7 @@
                <@ww.param name="'onclick'" value="'return confirmDeletes(\"educationIds\", \"${confirmMessage}\");'"/>
                 <@ww.param name="'disabled'" value="${valueListNoRecords?string}"/>
             </@vsubmit>
-            </#if>
+    </#if>
    </@buttonBar>
 </@ww.form>
 </@framePage >
@@ -85,9 +85,9 @@
     function newEducation(id){
     var url ="";
     <#if personnelFiles?exists>
-    url = '${req.contextPath}/personnelFile/editEdication.html?personnelFiles.id=#{personnelFiles.id}';
+    url = '${req.contextPath}/personnelFile/editEdication.html?readOnly=${req.getParameter('readOnly')?if_exists}&personnelFiles.id=#{personnelFiles.id}';
     <#else>
-    url = '${req.contextPath}/personnelFile/editEdication.html?contactArchives.id=#{contactArchives.id}';
+    url = '${req.contextPath}/personnelFile/editEdication.html?readOnly=${req.getParameter('readOnly')?if_exists}&contactArchives.id=#{contactArchives.id}';
 	</#if>
      	popupModalDialog(url,800,600);
      	//window.open(url);

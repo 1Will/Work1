@@ -156,27 +156,26 @@
     <@buttonBar>
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
-		</#if>
-		
-		<#if projectInfo.isSaved?exists &&projectInfo.isSaved=='0' >
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
-	    <#else>
-	    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
-	    </#if>
+			<#if projectInfo.isSaved?exists &&projectInfo.isSaved=='0' >
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
+		    <#else>
+		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
+		    </#if>
 	
-	<#if notNewFlag?exists&&notNewFlag==notNewFlag>
-	<#else>
-		<#-- 继续新建按钮   -->
-		<#if projectInfo.id?exists>
-			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/projectInfo/editProjectInfo.html"/>
-			<@vbutton value="${action.getText('状态变更')}" class="button" onclick ="changeState()"/>
-		<#else>
-			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/projectInfo/editProjectInfo.html"/>
-				<script language="JavaScript" type="text/JavaScript"> 
-				getObjByName("newNext").disabled="true";
-				</script>
+			<#if notNewFlag?exists&&notNewFlag==notNewFlag>
+			<#else>
+				<#-- 继续新建按钮   -->
+				<#if projectInfo.id?exists>
+					<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/projectInfo/editProjectInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+					<@vbutton value="${action.getText('状态变更')}" class="button" onclick ="changeState()"/>
+				<#else>
+					<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/projectInfo/editProjectInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+						<script language="JavaScript" type="text/JavaScript"> 
+						getObjByName("newNext").disabled="true";
+						</script>
+				</#if>
+			</#if>
 		</#if>
-	</#if>
 		 
 		 
 		<#if openFlag?exists>
@@ -208,7 +207,7 @@
 	
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandlerCustomer);
 	 }
 	 //获得模态窗体返回值
@@ -221,7 +220,7 @@
 	
 	//弹出业务员查询模态窗体
 	function salesman_OpenDialog(){
-	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	   //window.open(url);
 	 }
@@ -235,7 +234,7 @@
 	
 	function contactArchive_OpenDialog(){
 		if(getObjByName('customer.id').value !=''){
-			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitFlag=backVisit&customer.id="+getObjByName('customer.id').value;
+			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisitFlag=backVisit&customer.id="+getObjByName('customer.id').value;
 			popupModalDialog(url, 800, 600, creatorSelectorHandlerContactArchives);
 		}else{
 			alert('请先选择客户');
@@ -312,7 +311,7 @@
 		<a id="plan" onclick="activeTab(this);" href='${req.contextPath}/projectInfo/listProPlan.html?projectInfo.id=#{projectInfo.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >项目总计划</a>
 	</li>
 	<li>
-		<a id="weekPlanInfo" onclick="activeTab(this);"  href='${req.contextPath}/workReport/listWeekPlanTab.html?projectInfo.id=#{projectInfo.id}' target="frame" >${action.getText('项目周计划')}</a>
+		<a id="weekPlanInfo" onclick="activeTab(this);"  href='${req.contextPath}/workReport/listWeekPlanTab.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectInfo.id=#{projectInfo.id}' target="frame" >${action.getText('项目周计划')}</a>
 	</li>
 	
 	<li>

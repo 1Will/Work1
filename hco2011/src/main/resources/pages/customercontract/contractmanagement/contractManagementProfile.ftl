@@ -250,27 +250,24 @@
 		    <#else>
 		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
 		    </#if>
-		</#if>
-		<#-- 继续新建按钮   -->
-		<#if contractManagement.id?exists>
-			<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html?popWindowFlag=${popWindowFlag?if_exists}"/>
-		<#else>
-			<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html"/>
-			<script language="JavaScript" type="text/JavaScript"> 
-			getObjByName("newNext").disabled="true";
-			</script>
-		</#if>
-		<#if contractManagement.id?exists>
-		<#-- 添加收款单   -->
-			<#if !(action.isReadOnly())>
-				<@vbutton value="${action.getText('新建收款单')}" class="button" onclick ="newFinancialManagement_OpenDialog()"/>
-				<@vbutton value="${action.getText('新建开票记录')}" class="button" onclick ="newBillingRecord_OpenDialog()"/>
-				<@vbutton value="${action.getText('状态变更')}" class="button" onclick ="changeState()"/>
+			<#-- 继续新建按钮   -->
+			<#if contractManagement.id?exists>
+				<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html?popWindowFlag=${popWindowFlag?if_exists}&readOnly=${req.getParameter('readOnly')?if_exists}"/>
+			<#else>
+				<@redirectButton name="newNext" value="${action.getText('newNext')}" url="${req.contextPath}/contractManagement/editContractManagementAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+				<script language="JavaScript" type="text/JavaScript"> 
+				getObjByName("newNext").disabled="true";
+				</script>
+			</#if>
+			<#if contractManagement.id?exists>
+			<#-- 添加收款单   -->
+				<#if !(action.isReadOnly())>
+					<@vbutton value="${action.getText('新建收款单')}" class="button" onclick ="newFinancialManagement_OpenDialog()"/>
+					<@vbutton value="${action.getText('新建开票记录')}" class="button" onclick ="newBillingRecord_OpenDialog()"/>
+					<@vbutton value="${action.getText('状态变更')}" class="button" onclick ="changeState()"/>
+		   		</#if>
 	   		</#if>
-   		</#if>
-		
-		
-		
+		</#if>
 		 
 		<#if popWindowFlag?exists&&popWindowFlag=='popWindowFlag'>
 		<@vbutton class="button" value="${action.getText('close')}" onclick="closeThis()"/>
@@ -304,7 +301,7 @@ function instiChange(){
 	}
 	//弹出客户档案查询模态窗体
 	function customer_OpenDialog(){
-	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html";
+	   var url = "${req.contextPath}/customerRelationship/listCustInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelector1Handler);
 	 }
 	 //获得模态窗体返回值
@@ -318,7 +315,7 @@ function instiChange(){
 	//联系人查询模态窗体
 	function linkman_OpenDialog(){
 		if(getObjByName('customerInfo.id').value !=''){
-			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitFlag=backVisit&customer.id="+getObjByName('customerInfo.id').value;
+			var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisitFlag=backVisit&customer.id="+getObjByName('customerInfo.id').value;
 			popupModalDialog(url, 800, 600, creatorSelector2Handler);
 		}else{
 			alert('请先选择客户');
@@ -327,7 +324,7 @@ function instiChange(){
 	 //项目名称查询模态窗体(添加)
 	function projectName_OpenDialog(){
 		if(getObjByName('customerInfo.id').value !=''){
-	   		var url = "${req.contextPath}/projectInfo/listProjectInfo.html?backVisitCheckBox=backVisitCheckBox&customer.id="+getObjByName('customerInfo.id').value;
+	   		var url = "${req.contextPath}/projectInfo/listProjectInfo.html?backVisitCheckBox=backVisitCheckBox&readOnly=${req.getParameter('readOnly')?if_exists}&customer.id="+getObjByName('customerInfo.id').value;
 	   		popupModalDialog(url, 800, 600, creatorSelector_Handler);
 	   }else{
 	   		alert('请先选择客户');
@@ -355,7 +352,7 @@ function instiChange(){
 	}
 	//弹出业务员查询模态窗体
 	function salesman_OpenDialog(){
-	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url = "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, creatorSelectorHandler);
 	   //window.open(url);
 	 }

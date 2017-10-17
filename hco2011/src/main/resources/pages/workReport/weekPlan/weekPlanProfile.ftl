@@ -114,6 +114,7 @@
      	  </@inputTable>
      	  
      	  <@buttonBar>
+     	  <#if !(action.isReadOnly())>
 	         <@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 	         
 		    <#if weekPlan.isSaved?exists &&weekPlan.isSaved=='0' >
@@ -121,6 +122,7 @@
 		    <#else>
 		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
 		    </#if>
+     	  </#if>
 	         
 	         <@vbutton class="button" value="${action.getText('close')}" onclick="closeThis()"/>
          </@buttonBar>	
@@ -130,7 +132,7 @@
 <script>
 		//弹出项目选择
 		function pj_OpenDialog(){
-			var  url = "${req.contextPath}/projectInfo/listProjectInfo.html?contactArchivesFlag=contactArchivesFlag";
+			var  url = "${req.contextPath}/projectInfo/listProjectInfo.html?readOnly=${req.getParameter('readOnly')?if_exists}&contactArchivesFlag=contactArchivesFlag";
 			popupModalDialog(url, 900, 600, setProjectInfo);
 		}
 		var flag = true;
@@ -150,7 +152,7 @@
 		
 		//弹出周选择
 		function week_OpenDialog(){
-			 var url = "${req.contextPath}/workReport/listWeek.html";
+			 var url = "${req.contextPath}/workReport/listWeek.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 			 popupModalDialog(url, 800, 600, setDate);
 		}
 		function setDate(data){
@@ -183,7 +185,7 @@
 		
 		//弹出周计划选择
 		function weekly_OpenDialog(){
-			var  url = "${req.contextPath}/workReport/listWeekly.html?projectFlag=projectFlag";
+			var  url = "${req.contextPath}/workReport/listWeekly.html?readOnly=${req.getParameter('readOnly')?if_exists}&projectFlag=projectFlag";
 			popupModalDialog(url, 900, 600, setWeekly);
 		}
 		

@@ -67,7 +67,9 @@
   		</tr>
     </@inputTable>
     <@buttonBar>
+    <#if !(action.isReadOnly())>
 		<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return storeValidation();'"/>
+    </#if>
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/plan/listPlan.html"/>
     </@buttonBar>
 

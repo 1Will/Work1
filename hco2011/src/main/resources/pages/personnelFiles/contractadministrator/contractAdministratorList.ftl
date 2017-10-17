@@ -26,7 +26,7 @@
         <@buttonBar>
 			<@vsubmit name="'search'" cssClass="'button'" value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
 			<#if !(action.isReadOnly())>
-				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/personnelFile/editContractAdministrator.html"/>
+				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/personnelFile/editContractAdministrator.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
        		</#if>
         </@buttonBar>
 	<@list title="${action.getText('contractAdministratorList')}" includeParameters="personnelCode|personnelName|contractCode|contractType.id|becomes.id|contractAdministrator.signingDate_start|contractAdministrator.signingDate_end

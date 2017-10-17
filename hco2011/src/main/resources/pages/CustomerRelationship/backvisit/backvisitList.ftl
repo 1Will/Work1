@@ -8,7 +8,7 @@
 		<@buttonBar>
 			<@vsubmit value="'${action.getText('search')}'" onclick="'return checkInvalidParms()'" />
 			<#if !(action.isReadOnly())>
-				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/backvisit/editBackVisit.html"/>
+				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/backvisit/editBackVisit.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
 			</#if>
         </@buttonBar>
         <#assign returnName='replaceWord'>
@@ -112,11 +112,11 @@
             <@vcolumn title="${action.getText('nextBackVisitDate')}" property="nextBackVisitDate" format="yyyy-MM-dd" sortable="desc">
             <@alignLeft />
             </@vcolumn>
-            <@vcolumn title="${action.getText('backVisitSum')}" property="backVisitSum" sortable="desc">
+            <@vcolumn title="${action.getText('backVisitSum')}" property="customerInfo.backVisitSum" sortable="desc">
             	<a href="javascript:visitBack_OpenDialog(#{object.customerInfo.id?if_exists})" >${object.customerInfo.backVisitSum?if_exists}</a>
             <@alignRight/>
              </@vcolumn>
-            <@vcolumn title="反馈次数" property="backVisitSum" sortable="desc">
+            <@vcolumn title="${action.getText('反馈次数')}" property="replyTime" sortable="desc">
             	<a href="javascript:reply_OpenDialog(#{object.id?if_exists})" >${object.replyTime?if_exists}</a>
             <@alignRight/>
              </@vcolumn>

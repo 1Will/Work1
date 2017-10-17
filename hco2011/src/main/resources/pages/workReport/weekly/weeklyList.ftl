@@ -24,7 +24,9 @@
 		<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
         <@buttonBar>
 			<@vsubmit name="'search'" value="'${action.getText('search')}'" onclick="'checkInvalidParms()'" />
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/workReport/editWeekly.html"/>
+			<#if !(action.isReadOnly())>
+				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/workReport/editWeekly.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+			</#if>
         </@buttonBar>
    	<@list title="${action.getText('weekly.List')}" includeParameters="code|name|rapporteur|inst.id|dept.id|duty.id|startDate|endDate|onlyInvalid|onlyValid" fieldMap="like:code|name|rapporteur" >
     	
@@ -40,7 +42,7 @@
         </@vlh.checkbox>
     	<@vcolumn title="${action.getText('weekly.code')}" property="code" sortable="asc">
 	     <#if !object.disabled>
-            <a href="${req.contextPath}/workReport/editWeekly.html?weekly.id=#{object.id}">${object.code}</a>
+            <a href="${req.contextPath}/workReport/editWeekly.html?readOnly=${req.getParameter('readOnly')?if_exists}&weekly.id=#{object.id}">${object.code}</a>
             <#else>
             ${object.code}
          </#if>

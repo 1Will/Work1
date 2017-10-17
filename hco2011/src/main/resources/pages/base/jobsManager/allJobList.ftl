@@ -6,10 +6,12 @@
 			<@ww.hidden name="'readOnly'" value="'${req.getParameter('readOnly')?if_exists}'"/>
 			<@buttonBar>
 				<@vsubmit name="'search'" value="'${action.getText('search')}'"/>
+			<#if !(action.isReadOnly())>
 			<#if jobsType?exists>
        			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/jobs/editJob.html?jobType=${jobsType.id}"/>
        			<#else>
 				<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/jobs/editJob.html"/>
+      		</#if>
       		</#if>
 			</@buttonBar>
 		<#if jobsType?exists>

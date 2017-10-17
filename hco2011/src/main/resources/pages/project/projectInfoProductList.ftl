@@ -102,7 +102,7 @@
 </@framePage>
 <script>
 function product_OpenDialog(){
-		var  url = "${req.contextPath}/productsManager/listProducts.html?productCheckBox=productCheckBox&projectInfoId=${req.getParameter('projectInfo.id')?if_exists}";
+		var  url = "${req.contextPath}/productsManager/listProducts.html?readOnly=${req.getParameter('readOnly')?if_exists}&productCheckBox=productCheckBox&projectInfoId=${req.getParameter('projectInfo.id')?if_exists}";
 		popupModalDialog(url, 1000, 600, creatorSelectorHandlerProduct);
 	}
 	function creatorSelectorHandlerProduct(result) {
@@ -114,7 +114,7 @@ function product_OpenDialog(){
 		}
 	}
 	function editProduct(id){
-	var  url = "${req.contextPath}/productsManager/editProducts.html?backFlag=backFlag&products.id="+id+"&&readOnly=${req.getParameter('readOnly')?if_exists}";
+	var  url = "${req.contextPath}/productsManager/editProducts.html?backFlag=backFlag&products.id="+id+"&readOnly=${req.getParameter('readOnly')?if_exists}";
 		popupModalDialog(url, 800, 600);
 	
 	}

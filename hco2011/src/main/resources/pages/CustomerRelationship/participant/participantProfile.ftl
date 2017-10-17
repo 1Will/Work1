@@ -102,7 +102,7 @@
 	
 	//弹出业务员查询模态窗体
 	function salesman_OpenDialog(){
-	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html";
+	   var url =  "${req.contextPath}/personnelFile/listPersonByUser.html?readOnly=${req.getParameter('readOnly')?if_exists}";
 	   popupModalDialog(url, 800, 600, setSalesman);
 	   //window.open(url);
 	 }
@@ -117,7 +117,7 @@
 	<#if backVisit?exists>
 	<#if backVisit.customerInfo?exists>
 	function contactArchives_OpenDialog(){
-		var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?backVisitFlag=backVisit&customer.id=#{backVisit.customerInfo.id}";
+		var  url = "${req.contextPath}/customerRelationship/listContactArchives.html?readOnly=${req.getParameter('readOnly')?if_exists}&backVisitFlag=backVisit&customer.id=#{backVisit.customerInfo.id}";
 		popupModalDialog(url, 800, 600, setContactArchives);
 	}
 	function setContactArchives(result) {

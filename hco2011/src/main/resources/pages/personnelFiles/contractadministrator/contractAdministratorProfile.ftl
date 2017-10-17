@@ -288,7 +288,7 @@
      </@ww.form>
 
 <script>
-		window.onload=function(){
+//		window.onload=function(){
 		<#if contractAdministrator.id?exists>
 			document.all.frame.src='${req.contextPath}/applicationDocManager/listApplicationDoc.html?contractAdministrator.id=#{contractAdministrator.id}&readOnly=${req.getParameter('readOnly')?if_exists}';
 		</#if>
@@ -327,7 +327,7 @@
 			getObjByName('job.id').value=${contractAdministrator.job.id};
 		</#if>
 		-->
-	 }
+//	 }
 	 
 	function principalName_OpenDialog(){
 	 var url = "${req.contextPath}/personnelFile/listPersonByUser.html";

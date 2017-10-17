@@ -25,7 +25,9 @@
 		<#include "./competitorSearcher.ftl" />
         <@buttonBar>
 			<@vsubmit name="'search'" cssClass="'button'" value="'${action.getText('search')}'" onclick="'return checkInvalidParms();'"/>
-			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/competitor/editCompetitor.html"/>
+			<#if !(action.isReadOnly())>
+			<@redirectButton value="${action.getText('new')}" url="${req.contextPath}/competitor/editCompetitor.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+			</#if>
         </@buttonBar>
         <@list title="${action.getText('list.title')}" 
             includeParameters="competitor.code|competitor.companyName|industry.id|nature.id|ompetitor.business|competitor.targetMarket|competitor.customerInfo|competitor.products|onlyInvalid|onlyValid" 
@@ -60,9 +62,11 @@
             </@vcolumn>
         </@list>
          <#if !first>
+         <#if !(action.isReadOnly())>
 	        <@buttonBar>
 	          <@crm_disabledOrEnabled_button message="${action.getText('competitor.info')}" boxName="competitorIds" jsFunctionName="checkInvalidParms()"/>
 			</@buttonBar>
+         </#if>
 		 </#if>
     </@ww.form>
 </@htmlPage>

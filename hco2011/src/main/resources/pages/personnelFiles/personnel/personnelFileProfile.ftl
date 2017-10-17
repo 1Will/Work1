@@ -165,6 +165,7 @@
 				anothername="selectCheckDept"
         		label="${action.getText('personnel.dept')}" 
 				name="dept.id" 
+				id="dept.id" 
 				value="${req.getParameter('dept.id')?if_exists}"
 				listKey="id"
 				listValue="name"
@@ -181,6 +182,7 @@
 					anothername="selectCheckDuty"
 	        		label="${action.getText('personnel.duty')}" 
 					name="duty.id" 
+					id="duty.id" 
 					value="${req.getParameter('duty.id')?if_exists}"
 					listKey="id"
 					listValue="name"
@@ -248,7 +250,7 @@
         		<!--工作地点-->
         		<@textfield label="${action.getText('personnel.address')}" name="personnelFile.address"  value="${personnelFile.address?if_exists}" anothername="address" maxlength="100"  />
         	
-        	<!---->
+        	<#--
         	<@ww.select label="'${action.getText('员工属性')}'" 
 				name="'businessType.id'" 
 				value="'${req.getParameter('businessType.id')?if_exists}'"
@@ -259,8 +261,7 @@
 				emptyOption="true" 
 				disabled="false">
 			</@ww.select>
-        	</tr>
-        	<tr>
+        	-->
         		<!--工作方式-->
         		<@select 
 					label="${action.getText('personnel.workway')}"
@@ -270,6 +271,8 @@
 					listValue="name"
 					list="allWorkway"
 					emptyOption="true"/>
+        	</tr>
+        	<tr>
         		
         		<!--状态-->
         		<@select 

@@ -325,8 +325,8 @@ import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
         		  }
 		          pros.add(cInfo);
 		      }
-		      this.productsManager.saveProductfoByImp(pros);
-		      this.message="已经成功导入"+pros.size()+"条产品信息";
+		      this.message =  this.productsManager.saveProductfoByImp(pros);
+		     
 			
 		}
 		
