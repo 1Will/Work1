@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.expensemanagement.waterFee.WaterFee" table="t_waterFee" lazy="false">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_waterFee_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+
+		<version name="version" column="VERSION" type="long" />
+
+		<property name="code" column="code" type="string" />
+        <property name="waterFeeName" column="WATERFEENAME" type="string"
+			length="40" />
+		<property name="isAllBuilding" column="isAllBuilding" type="boolean" />
+
+		<many-to-one name="building" class="com.yongjun.tdms.model.base.house.Building" lazy="false">
+			<column name="building_id" not-null="false" />
+		</many-to-one>
+
+		<property name="lastWater" type="double">
+			<column name="lastWater" not-null="true" />
+		</property>
+
+		<property name="thisWater" type="double">
+			<column name="thisWater" not-null="true" />
+		</property>
+
+		<property name="shareWater" type="double">
+			<column name="shareWater" not-null="true" />
+		</property>
+
+		<property name="sumWater" type="double">
+			<column name="sumWater" not-null="true" />
+		</property>
+
+		<property name="sumFee" type="double">
+			<column name="sumFee" not-null="true" />
+		</property>
+
+		<property name="month" column="month" type="int"/>
+
+		<property name="starTime" column="starTime" type="timestamp" />
+
+		<property name="endTime" column="endTime" type="timestamp" />
+		
+		<!-- 提交判断 -->
+		<property name="isSaved" type="string">
+			<column name="isSaved" not-null="false" sql-type="NVARCHAR(1)"/>
+		</property>
+
+		<property name="createdTime" column="CREATED_TIME" type="timestamp" />
+		<property name="creator" column="CREATOR" type="string"
+			length="40" />
+		<property name="lastModifiedTime" column="LAST_MODIFIED_TIME"
+			type="timestamp" />
+		<property name="lastOperator" column="LAST_OPERATOR" type="string"
+			length="40" />
+	</class>
+</hibernate-mapping>

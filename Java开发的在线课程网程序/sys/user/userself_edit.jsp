@@ -1,0 +1,416 @@
+<%@page import="com.util.string.encode.Encode"%>
+<%@ page contentType="text/html;charset=utf-8"%>
+<%@page import="java.util.List"%>
+<%@page import="com.bzt.sys.bo.SysUserInfo"%>
+<%@page import="com.bzt.gpw.bo.GpwAreaInfo"%>
+<%@page import="com.bzt.vod.bo.VodFilmType"%>
+<%@ include file="../../public/jsp/taglibs.jsp"%>
+<html:html>
+<HEAD>
+<TITLE>用户管理</TITLE>
+<%@ include file="../../public/jsp/style.jsp"%>
+<%@ include file="../../public/jsp/meta.jsp"%>
+<SCRIPT language=javascript src="/public/js/checkform.js"></SCRIPT>
+<Script language="JavaScript"  src="/public/js/autocheckform.js"></Script>
+<Script language="JavaScript"  src="/public/DatePicker/WdatePicker.js"></Script>
+<Script language="JavaScript"  src="/public/js/prototype.js"></Script>
+<SCRIPT language=javascript>
+var reFlag = false;
+function saveRecord(){
+  obj = document.all("sysUserInfoActionForm");
+  if(autoCheckForm(obj)==false){
+    return false;
+  }
+
+var area1_obj=document.getElementById("areano1");
+var index1 = area1_obj.selectedIndex;
+var value1 = area1_obj.options[index1].value;
+
+var area2_obj=document.getElementById("areano2");
+if(area2_obj =="" || typeof(area2_obj) == "undefined" || area2_obj == null){
+    value2="";
+}else {
+    var index2 = area2_obj.selectedIndex;
+    var value2 = area2_obj.options[index2].value;
+}
+var area3_obj=document.getElementById("areano3");
+if(area3_obj =="" || typeof(area3_obj) == "undefined" || area3_obj == null){
+    value3="";
+}else {
+    var index3 = area3_obj.selectedIndex;
+    var value3 = area3_obj.options[index3].value;
+}
+
+
+if(value3.length != 0){
+    document.getElementById("sysUserInfo.nativeplace1").value=value3;
+}else {
+    if(value2.length != 0){
+        document.getElementById("sysUserInfo.nativeplace1").value=value2;
+    }else {
+        document.getElementById("sysUserInfo.nativeplace1").value=value1;
+    }
+}
+
+  
+  document.getElementById("btnsave").disabled = true;
+  document.getElementById("sysUserInfo.htmlcontent").value = document.getElementById("editor0").contentWindow.getHTML();
+  obj.action="sysUserInfoAction.do?method=updateSaveSelf";
+  obj.submit();
+}
+
+function uploadPhoto(){
+	var diag = new top.Dialog();
+	diag.Title = "上传图片";
+	diag.URL = '/sysImageUploadAction.do?method=uploadimageframe&savepath=user&pathtype=ID';
+	diag.Width = 350;
+	diag.Height = 180;
+	diag.CancelEvent = function(){
+		if(diag.innerFrame.contentWindow.document.getElementById('uploadimageurl')){
+			var uploadtip = diag.innerFrame.contentWindow.document.getElementById('uploadtip').value;
+			if(uploadtip != ''){
+		  	 	alert(uploadtip);
+		  		return false;
+		  	}else{
+		  		var uploadimageurl = diag.innerFrame.contentWindow.document.getElementById('uploadimageurl').value;
+				document.sysUserInfoActionForm.topreview.src="/upload_dir/"+uploadimageurl;
+			    document.getElementById('sysUserInfo.photo').value="/upload_dir/"+uploadimageurl;
+		  	}
+		}
+		diag.close();
+	};
+	diag.show();
+}
+function selectArea(areano, tag){
+  if(areano != ''){
+  new Ajax.Request(
+	"/sysUserInfoAction.do?method=selectArea&areano=" + areano + "&tag=" + tag + "&ram=" + Math.random(),
+	{
+	method:"get",
+	asynchronous:false,//true为异步请求
+	onComplete:function(xhr){
+		var responseObj = xhr.responseText;
+		if(tag == '0'){
+			var str = responseObj.split(";");
+			document.getElementById('sysUserInfo.areano2').innerHTML = str[0];
+			document.getElementById('sysUserInfo.areano3').innerHTML = str[1];
+		}else{
+			document.getElementById('sysUserInfo.areano3').innerHTML = responseObj;
+		}
+	}
+	}
+  );
+  }
+}
+function applyVip(userid){
+	window.location.href = "/sysVipCardAction.do?method=applyVip&userid="+userid;
+}
+
+function addRow(obj){
+	var rowcount = document.getElementById('rowcount');
+	if(rowcount.value == '10'){
+		alert('选择学科年级版本不能超过10个!');
+		return false;
+	}
+	var currowcount = parseInt(rowcount.value);
+	if(currowcount == 0){
+		currowcount = 1;
+	}
+	var newrowcount = currowcount+1;
+	document.getElementById('rowcount').value = newrowcount;
+	
+	var table = document.getElementById("t_table");
+    var row = table.insertRow(table.rows.length);
+  	row.insertCell(row.cells.length).innerHTML='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学科：&nbsp;<input name="subjectname'+newrowcount+'" id="subjectname'+newrowcount+'" readonly="readonly" onclick="selectUserSubject('+newrowcount+')" type="text" value="" class=input style="width:70px;"/>&nbsp;&nbsp;年级：&nbsp;<input name="gradename'+newrowcount+'" id="gradename'+newrowcount+'" readonly="readonly" onclick="selectUserGrade('+newrowcount+')" type="text" value="" class=input style="width:80px;"/>&nbsp;&nbsp;版本：&nbsp;<input name="versionname'+newrowcount+'" id="versionname'+newrowcount+'" readonly="readonly" onclick="selectUserVersion('+newrowcount+')" type="text" value="" class=input style="width:100px;"/>';
+    row.insertCell(row.cells.length).innerHTML='<INPUT onClick="delRow(this)" readonly type="button" value="删除" name="btnselect">';
+	row.cells[0].style.width="450";
+	row.cells[0].style.color="#000";
+	//row.cells[0].style["padding-left"]="42px";
+}
+function delRow(obj, currowcount){
+	var row = obj.parentNode.parentNode;
+	row.parentNode.removeChild(row);
+	document.getElementById('rowcount').value = parseInt(document.getElementById('rowcount').value)-1
+	document.getElementById('subjectid'+currowcount).value = '';
+	document.getElementById('gradeid'+currowcount).value = '';
+	document.getElementById('versionid'+currowcount).value = '';
+}
+function delData(){
+	document.getElementById('subjectid1').value = "";
+	document.getElementById('subjectname1').value = "";
+	document.getElementById('gradeid1').value = "";
+	document.getElementById('gradename1').value = "";
+	document.getElementById('versionid1').value = "";
+	document.getElementById('versionname1').value = "";
+}
+</SCRIPT>
+<%@ include file="/edu/select/select_js.jsp"%>
+</HEAD>
+<BODY leftMargin=0 topMargin=0 scroll=auto>
+<%SysUserInfo model = (SysUserInfo)request.getAttribute("model"); %>
+<TABLE class="page_maintable" width="100%">
+  <TR>
+    <TD class="page_title">个人信息</TD>
+  </TR>
+  <TR>
+    <TD vAlign=top align="center">
+      <html:form action="/sysUserInfoAction.do" method="post" >
+       <TABLE width="650" align=center border="0">
+       	  <tr id="trid" style="display:none;">
+          	<td class="table_edit_right" width="80"></td>
+          	<td class="table_edit_left" colspan="2" style="color:red;">此登录名已被其他用户注册!</td>
+          </tr>
+          <tr>
+            <td class="table_edit_right" width="80">登录名：</td>
+            <td class="table_edit_left">
+            <bean:write property="loginname"  name="model"/><input type="hidden" name="sysUserInfo.loginname" value="<bean:write property="loginname"  name="model"/>"/>
+            <%--
+            String vipno = (String)request.getAttribute("vipno"); 
+            if(!"0".equals(model.getTemppass()) && "1".equals(vipno)){
+            %>
+            &nbsp;&nbsp;<INPUT class="btn_recommend" style="font-weight:bold;" type="button" value="VIP" name="btndel">
+            <%}else{ %>
+            &nbsp;&nbsp;<INPUT class="btn_allrevocation" onclick="applyVip('<bean:write property="userid" name="model"/>')" type="button" value="申请VIP" name="btndel">
+            <%} --%>
+            </td>
+            <td class="table_edit_left" width="200" rowspan="5" >
+              <img src="<bean:write property="photo"  name="model"/>" alt="点击修改照片" width="200" height="128" border="1" id=topreview onclick="uploadPhoto()">
+              <input type="hidden" name="sysUserInfo.photo" id="sysUserInfo.photo" value="<bean:write property="photo"  name="model"/>">
+            </td>
+           </tr>
+           <tr>
+            <td class="table_edit_right" width="80">真实姓名：</td>
+            <td class="table_edit_left"><bean:write property="username"  name="model"/></td>
+            <input type="hidden" name="sysUserInfo.username" value="<bean:write property="username"  name="model"/>"/>
+          </tr>
+           <tr>
+            <td class="table_edit_right" width="80">性别：</td>
+            <td class="table_edit_left">
+               <java2code:option  name="sysUserInfo.sex" codetype="sex" property="sex"/>
+            </td>
+          </tr>
+          <tr>
+            <td class="table_edit_right">出生日期：</td>
+            <td class="table_edit_left">
+                <input id="sysUserInfo.birthday" name="sysUserInfo.birthday"  readonly="readonly" type="text" size="10" class=input value="<bean:write property="birthday"  name="model"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true})">&nbsp;
+            </td>
+          </tr>
+          <tr>
+            <td class="table_edit_right">职务：</td>
+            <td class="table_edit_left"><input type="text" name="sysUserInfo.job" size="25" lenght="25" class=input value="<bean:write property="job"  name="model"/>"></td>
+          </tr>
+           <tr>
+            <td class="table_edit_right">邮件地址：</td>
+            <td class="table_edit_left" colspan="2"><input id="sysUserInfo.email" name="sysUserInfo.email" CK_NAME="邮件地址" CK_TYPE="EMail" type="text" size="25" class=input value="<bean:write property="email"  name="model"/>"></td>
+          </tr>
+          <tr>
+            <td class="table_edit_right" width="80">QQ：</td>
+            <td class="table_edit_left" colspan="2"><input id="sysUserInfo.qq" name="sysUserInfo.qq" type="text" size="25" class=input value='<bean:write property="qq"  name="model"/>'></td>
+          </tr>
+          <tr>
+            <td class="table_edit_right">MSN：</td>
+            <td class="table_edit_left" colspan="2"><input id="sysUserInfo.msn" name="sysUserInfo.msn" type="text" size="25" class=input value='<bean:write property="msn"  name="model"/>'></td>
+          </tr>
+           <tr>
+            <td class="table_edit_right">联系电话：</td>
+            <td class="table_edit_left" colspan="2"><input id="sysUserInfo.telephone" name="sysUserInfo.telephone" type="text" size="25" class=input value="<bean:write property="telephone"  name="model"/>"></td>
+          </tr>
+          <tr>
+            <td class="table_edit_right">手机号：</td>
+            <td class="table_edit_left" colspan="2"><input id="sysUserInfo.mobile" name="sysUserInfo.mobile" type="text" size="25" class=input value='<bean:write property="mobile"  name="model"/>'></td>
+          </tr>
+          <tr>
+            <td class="table_edit_right">民族：</td>
+            <td class="table_edit_left" colspan="2"><java2code:option name="sysUserInfo.nation" codetype="nation" property="nation"></java2code:option></td>
+          </tr>
+          <tr>
+            <td class="table_edit_right">籍贯：</td>
+            <td class="table_edit_left" colspan="2">
+            <span id="sysUserInfo.areano1" style="float:left;">
+				<select id="areano1" name="areano1" onchange="selectArea(this.value, '0')" style="padding:3px;">
+				  <%
+                    
+				  	String areano = "";
+				  	if(model.getNativeplace1() != null) areano = model.getNativeplace1();
+				  	List arealist1 = (List)request.getAttribute("arealist1");
+				    GpwAreaInfo areaInfo = null;
+				  	for(int i=0; i<arealist1.size(); i++){
+				  		areaInfo = (GpwAreaInfo)arealist1.get(i);
+				  %>
+				  	<option value="<%=areaInfo.getRgno() %>" <%if(areano.substring(0, 2).equals(areaInfo.getRgno().substring(0, 2))){ %>selected="selected"<%} %>><%=areaInfo.getAreaname() %></option>
+				  <%} %>
+				  </select>
+				  </span>
+				  <span id="sysUserInfo.areano2" style="float:left;margin-left:8px;">
+					  <select id="areano2" name="areano2" onchange="selectArea(this.value, '1')" style="padding:3px;">
+						  <%
+						  	List arealist2 = (List)request.getAttribute("arealist2");
+						    List arealist3 = (List)request.getAttribute("arealist3");
+						  	for(int i=0; i<arealist2.size(); i++){
+						  		areaInfo = (GpwAreaInfo)arealist2.get(i);
+						  %>
+						    <%if(arealist3 != null && arealist3.size() > 0){ %>
+						  	<option value="<%=areaInfo.getRgno() %>" <%if(areano.substring(0, 4).equals(areaInfo.getRgno().substring(0, 4))){ %>selected="selected"<%} %>><%=areaInfo.getAreaname() %></option>
+						  	<%}else{ %>
+						  	<option value="<%=areaInfo.getRgno() %>" <%if(areano.equals(areaInfo.getRgno())){ %>selected="selected"<%} %>><%=areaInfo.getAreaname() %></option>
+						  	<%} %>
+						  <%} %>
+					  </select>
+				  </span>
+				  <span id="sysUserInfo.areano3" style="float:left;margin-left:8px;">
+					  <%
+				  	  if(arealist3 != null && arealist3.size() > 0){
+				  	  %>
+					  <select id="areano3" name="areano3" style="padding:3px;">
+		         	 	 <%
+						  	for(int i=0; i<arealist3.size(); i++){
+						  		areaInfo = (GpwAreaInfo)arealist3.get(i);
+						  %>
+						  	<option value="<%=areaInfo.getRgno() %>" <%if(areano.equals(areaInfo.getRgno())){ %>selected="selected"<%} %>><%=areaInfo.getAreaname() %></option>
+						  <%} %>
+		         	  </select>
+		         	  <%} %>
+				</span>
+            </td>
+          </tr>
+          <logic:equal value="2010" name="unitInfo" property="type">
+          	<!-- 隐藏域供调用 -->
+			<input type="hidden" name="subjectid1" id="subjectid1" value=""/>
+		  	<input type="hidden" name="gradeid1" id="gradeid1" value=""/>
+		  	<input type="hidden" name="versionid1" id="versionid1" value=""/>
+		  	<input type="hidden" name="subjectid2" id="subjectid2" value=""/>
+		  	<input type="hidden" name="gradeid2" id="gradeid2" value=""/>
+		  	<input type="hidden" name="versionid2" id="versionid2" value=""/>
+		  	<input type="hidden" name="subjectid3" id="subjectid3" value=""/>
+		  	<input type="hidden" name="gradeid3" id="gradeid3" value=""/>
+		  	<input type="hidden" name="versionid3" id="versionid3" value=""/>
+		  	<input type="hidden" name="subjectid4" id="subjectid4" value=""/>
+		  	<input type="hidden" name="gradeid4" id="gradeid4" value=""/>
+		  	<input type="hidden" name="versionid4" id="versionid4" value=""/>
+		  	<input type="hidden" name="subjectid5" id="subjectid5" value=""/>
+		  	<input type="hidden" name="gradeid5" id="gradeid5" value=""/>
+		  	<input type="hidden" name="versionid5" id="versionid5" value=""/>
+		  	<input type="hidden" name="subjectid6" id="subjectid6" value=""/>
+		  	<input type="hidden" name="gradeid6" id="gradeid6" value=""/>
+		  	<input type="hidden" name="versionid6" id="versionid6" value=""/>
+		  	<input type="hidden" name="subjectid7" id="subjectid7" value=""/>
+		  	<input type="hidden" name="gradeid7" id="gradeid7" value=""/>
+		  	<input type="hidden" name="versionid7" id="versionid7" value=""/>
+		  	<input type="hidden" name="subjectid8" id="subjectid8" value=""/>
+		  	<input type="hidden" name="gradeid8" id="gradeid8" value=""/>
+		  	<input type="hidden" name="versionid8" id="versionid8" value=""/>
+		  	<input type="hidden" name="subjectid9" id="subjectid9" value=""/>
+		  	<input type="hidden" name="gradeid9" id="gradeid9" value=""/>
+		  	<input type="hidden" name="versionid9" id="versionid9" value=""/>
+		  	<input type="hidden" name="subjectid10" id="subjectid10" value=""/>
+		  	<input type="hidden" name="gradeid10" id="gradeid10" value=""/>
+		  	<input type="hidden" name="versionid10" id="versionid10" value=""/>
+			<input type="hidden" name="rowcount" id="rowcount" value="${rowcount }"/>
+          <tr>
+            <td colspan="3">
+			<table width="100%" id="t_table">
+			<%
+			  List teachinglist = (List)request.getAttribute("teachinglist");
+			  if(teachinglist != null && teachinglist.size() > 0){
+			  %>
+			  <logic:iterate id="teaching" name="teachinglist" scope="request" indexId="ii">
+			  <tr>
+			    <td style="width:450px;color:#000;">
+			      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学科：&nbsp;<input name="subjectname<%=ii+1 %>" id="subjectname<%=ii+1 %>" readonly="readonly" onclick="selectUserSubject(<%=ii+1 %>)" type="text" value='<bean:write name="teaching" property="flags"/>' class=input style="width:70px;"/>
+				  &nbsp;年级：&nbsp;<input name="gradename<%=ii+1 %>" id="gradename<%=ii+1 %>" readonly="readonly" onclick="selectUserGrade(<%=ii+1 %>)" type="text" value='<bean:write name="teaching" property="flago"/>' class=input style="width:80px;"/>
+				  &nbsp;版本：&nbsp;<input name="versionname<%=ii+1 %>" id="versionname<%=ii+1 %>" readonly="readonly" onclick="selectUserVersion(<%=ii+1 %>)" type="text" value='<bean:write name="teaching" property="flag"/>' class=input style="width:100px;"/>
+			    </td>
+			    <td><%if(ii == 0){ %><INPUT onClick="addRow(this)" readonly type="button" value="添加" name="btnselect"><INPUT onClick="delData()" readonly type="button" value="清空" name="btnselect"><%}else{ %><INPUT onClick="delRow(this, <%=ii+1 %>)" readonly type="button" value="删除" name="btnselect"><%} %></td>
+			  </tr>
+			  <script language=javascript>
+			  	document.getElementById('subjectid<%=ii+1 %>').value = '<bean:write name="teaching" property="subjectid"/>';
+			  	document.getElementById('gradeid<%=ii+1 %>').value = '<bean:write name="teaching" property="gradeid"/>';
+			  	document.getElementById('versionid<%=ii+1 %>').value = '<bean:write name="teaching" property="versionid"/>';
+			  </script>
+			  </logic:iterate>
+			  <%}else{ %>
+			  <tr>
+			    <td style="width:450px;color:#000;">
+			      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学科：&nbsp;<input name="subjectname1" id="subjectname1" readonly="readonly" onclick="selectUserSubject(1)" type="text" value="" class=input style="width:70px;"/>
+				  &nbsp;年级：&nbsp;<input name="gradename1" id="gradename1" readonly="readonly" onclick="selectUserGrade(1)" type="text" value="" class=input style="width:80px;"/>
+				  &nbsp;版本：&nbsp;<input name="versionname1" id="versionname1" readonly="readonly" onclick="selectUserVersion(1)" type="text" value="" class=input style="width:100px;"/>
+			    </td>
+			    <td><INPUT onClick="addRow(this)" readonly type="button" value="添加" name="btnselect"><INPUT onClick="delData()" readonly type="button" value="清空" name="btnselect"></td>
+			  </tr>
+			  <%} %>
+			</table>
+			</td>
+		  </tr>
+		  <tr>
+		    <td colspan="3" style="padding-left:42px;color:green;">说明：在‘上传微课’和‘上传文档’选择教材目录时，将会根据个人设置的教学设置（学科-年级-版本）自动关联，如果没有设置则显示当前单位所有学科年级版本。</td>
+		  </tr>
+		  </logic:equal>
+          <tr>
+            <td class="table_edit_right">邮编：</td>
+            <td class="table_edit_left" colspan="2"><input id="sysUserInfo.postcode" name="sysUserInfo.postcode" CK_NAME="邮编" CK_TYPE="Postcode" type="text" size="6" class="input" value="<bean:write property="postcode"  name="model"/>"></td>
+          </tr>
+           <tr>
+            <td class="table_edit_right">联系地址：</td>
+            <td class="table_edit_left" colspan="2"><input id="sysUserInfo.address" name="sysUserInfo.address" type="text" size="50" class="input" value="<bean:write property="address"  name="model"/>"></td>
+          </tr>
+           <tr>
+            <td class="table_edit_right">外部链接：</td>
+            <td class="table_edit_left" colspan="2">
+            	<input type="text" name="sysUserInfo.linkurl" size="50" class=input value="<bean:write property="linkurl"  name="model"/>">
+            </td>
+          </tr>
+          <tr>
+            <td class="table_edit_right">&nbsp;</td>
+            <td class="table_edit_left" style="color:green;" colspan="2">
+            	说明："外部链接"可以输入个人的博客、微课或个人主页等地址的任何一种。
+            </td>
+          </tr>
+          <tr>
+            <td class="table_edit_right">个人简介：</td>
+            <td class="table_edit_left" colspan="2">
+              <textarea style="width:550px;height:80px;" id="sysUserInfo.descript" name="sysUserInfo.descript" class="inputtextarea" cols="50" wrap="physical"><bean:write property="descript"  name="model"/></textarea></td>
+           </tr>
+           <tr>
+            <td class="table_edit_right">详细描述：</td>
+            <td class="table_edit_left" colspan="2">
+               <IFRAME ID="editor0" src="/ewebeditor/ewebeditor.htm?id=sysUserInfo.htmlcontent&style=blue&cusdir=<%=Encode.nullToBlank(session.getAttribute("cusdir")) %>" frameborder="0" scrolling="no" width="550" height="300"></IFRAME>
+               <input type="hidden" name="sysUserInfo.htmlcontent" id="sysUserInfo.htmlcontent" value="<%=Encode.convertQuot(Encode.nullToBlank(model.getHtmlcontent()))%>"/>
+            </td>
+          </tr>
+          <tr>
+                <td colspan="3" align="center">
+                  <input type="button" value="保存" id="btnsave" name="btnsave" class="btn_save" onClick="javascript:saveRecord()">
+                </td>
+           </tr>
+       </TABLE>
+       <input type="hidden" name="sysUserInfo.userid" value="<bean:write property="userid"  name="model"/>"/>
+       <input type="hidden" name="sysUserInfo.stno" value='<bean:write property="stno"  name="model"/>'/>
+       <input type="hidden" name="sysUserInfo.password" value="<bean:write property="password"  name="model"/>"/>
+       <input type="hidden" name="sysUserInfo.state" value="<bean:write property="state"  name="model"/>"/>
+       <input type="hidden" name="sysUserInfo.createdate" value="<bean:write property="createdate"  name="model"/>"/>
+       <input type="hidden" name="sysUserInfo.unitid" id="sysUserInfo.unitid" value="<bean:write property="unitid"  name="model"/>"/>
+       <input type="hidden" name="sysUserInfo.flag" value="<bean:write property="flag"  name="model"/>"/>
+       <input type="hidden" name="sysUserInfo.orderindex" value="<bean:write property="orderindex"  name="model"/>"/>
+       <input type="hidden" name="sysUserInfo.recommand" value="<bean:write property="recommand"  name="model"/>"/>
+       <input type="hidden" name="sysUserInfo.recommandno" value="<bean:write property="recommandno"  name="model"/>"/>
+       <input type="hidden" name="sysUserInfo.leader" value="<bean:write property="leader"  name="model"/>"/>
+       
+       <input type="hidden" name="sysUserInfo.identitycard" value='<bean:write property="identitycard"  name="model"/>' />
+       <input type="hidden" name="sysUserInfo.nickname" value='<bean:write property="nickname"  name="model"/>' />
+       <input type="hidden" name="sysUserInfo.temppass" value='<bean:write property="temppass"  name="model"/>' />
+       <input type="hidden" name="sysUserInfo.uuid" value='<bean:write property="uuid"  name="model"/>' />
+       <input type="hidden" name="sysUserInfo.networkDiskSize" value='<bean:write property="networkDiskSize"  name="model"/>' />
+       <input type="hidden" name="sysUserInfo.usertype" value='<bean:write property="usertype"  name="model"/>' />
+       <input type="hidden" name="sysUserInfo.pwdquestion" value='<bean:write property="pwdquestion"  name="model"/>' />
+       <input type="hidden" name="sysUserInfo.pwdanswer" value='<bean:write property="pwdanswer"  name="model"/>' />
+       <input type="hidden" name="sysUserInfo.penid" value='<bean:write property="penid"  name="model"/>' />
+       <input type="hidden" name="sysUserInfo.penname" value='<bean:write property="penname"  name="model"/>' />
+       <input type="hidden" id="sysUserInfo.nativeplace1" name="sysUserInfo.nativeplace1" value='<bean:write property="nativeplace1"  name="model"/>' />
+       <input type="hidden" id="sysUserInfo.nativeplace2" name="sysUserInfo.nativeplace2" value='<bean:write property="nativeplace2"  name="model"/>' />
+       <input type="hidden" id="sysUserInfo.nativeplace3" name="sysUserInfo.nativeplace3" value='<bean:write property="nativeplace3"  name="model"/>' />
+      </html:form>
+    </TD>
+    </TR>
+</TABLE>
+</BODY>
+</html:html>

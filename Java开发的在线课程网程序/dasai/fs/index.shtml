@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>江苏省盐城市微课大赛（第一届）</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link href="/dasai/fs/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+function mobile_device_detect(url) {
+    var thisOS = navigator.platform;
+    var os = new Array("iPhone", "iPod", "iPad", "android", "Nokia", "SymbianOS", "Symbian", "Windows Phone", "Phone", "Linux armv71", "MAUI", "UNTRUSTED/1.0", "Windows CE", "BlackBerry", "IEMobile");
+    for (var i = 0; i < os.length; i++) {
+        if (thisOS.match(os[i])) {
+            document.write("<style>.banner{width:1200px;height:460px;background-image:url(/dasai/fs/images/banner.jpg);background-repeat:no-repeat;background-position:center top;}</style>");
+            return;
+        }
+    }
+    //因为相当部分的手机系统不知道信息,这里是做临时性特殊辨认
+    if (navigator.platform.indexOf('iPad') != -1) {
+    	document.write("<style>.banner{width:1200px;height:460px;background-image:url(/dasai/fs/images/banner.jpg);background-repeat:no-repeat;background-position:center top;}</style>");
+        return;
+    }
+    //做这一部分是因为Android手机的内核也是Linux
+    //但是navigator.platform显示信息不尽相同情况繁多,因此从浏览器下手，即用navigator.appVersion信息做判断
+    var check = navigator.appVersion;
+    if (check.match(/linux/i)) {
+        //X11是UC浏览器的平台 ，如果有其他特殊浏览器也可以附加上条件
+        if (check.match(/mobile/i) || check.match(/X11/i)) {
+        	document.write("<style>.banner{width:1200px;height:460px;background-image:url(/dasai/fs/images/banner.jpg);background-repeat:no-repeat;background-position:center top;}</style>");
+            return;
+        }
+    }
+    //类in_array函数
+    Array.prototype.in_array = function (e) {
+        for (i = 0; i < this.length; i++) {
+            if (this[i] == e)
+                return true;
+        }
+        return false;
+    }
+}
+mobile_device_detect("");
+</script>
+<script type="text/javascript">
+	function tclick(parem) {
+		var item;
+		for ( var loop = 1; loop <=3; loop++) {
+			item = document.getElementById("container"+loop);
+			if (loop == parem){
+				item.style.visibility = "visible";
+				item.style.display="";
+				document.getElementById("btn"+loop).className = "hover";
+			}else{
+				item.style.visibility = "hidden";
+				item.style.display="none";
+				document.getElementById("btn"+loop).className = "";
+			}
+		}
+	}
+</script>
+
+ <script type="text/javascript">
+	function hidetext()  
+		{  
+		var mychar = document.getElementById("con");
+            mychar.style.display="none"
+        
+		}  
+		function showtext()  
+		{  
+		var mychar = document.getElementById("con");
+            mychar.style.display="block"
+		}
+</script>
+<style>
+
+.tanchu{
+	width:608px;
+	height:680px;
+	position:absolute;
+	left:50%;
+	margin-left:-325px;
+	top:50%;
+	margin-top:-335px;
+}
+.tanchu a{
+	display:inline-block;
+	height:33px;
+	width:33px;
+	background-image:url(/dasai/fs/images/fade.png);
+	position:absolute;
+	right:18px;
+	top:78px;
+}
+.tanchu img{
+	display:inline-block;
+}
+.fade{
+	height:100%;
+	width:100%;
+	position:fixed;
+	background-image:url(/dasai/fs/images/bjtc.png);
+	z-index:9999;
+	display:none;
+}
+</style>
+
+</head>
+
+<body>
+<div class="fade" id="con">
+    	<div class="tanchu" >
+        	<a href="#" onClick="hidetext()"></a>
+			<img src="/dasai/fs/images/notice.png" />      
+        </div>
+</div>
+
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div class="banner">
+</div>
+
+	<div class="tabbox">
+			<div class="tab_bg">
+				<div class="tab">
+					<a href="javascript:;" id="btn1" onMouseOver="tclick(1)">大赛首页</a> 
+					<a href="javascript:;" id="btn2" onMouseOver="tclick(2)">奖项设置</a> 
+					<a href="javascript:;" id="btn3" onMouseOver="tclick(3)">其他事宜</a>
+					<a href="/v-contest-12-37.htm" target="_blank">大赛微课</a>
+				</div>
+			</div>
+			
+			<div class="content">
+				<a href="/v.bo?method=register" target="_blank" style="cursor:hand"><div class="label"></div></a>
+				<div class="card" id="container1" >
+					<div class="notice">
+                    	<img src="/dasai/fs/images/icon.png" />
+                        <a href="#" onClick="showtext()"><p>关于举办佛山市第一届职业院校微课教学大赛的通知</p></a>
+                    </div>
+                    <div class="submenu1">
+                    	<h3>大赛流程</h3>
+                        <div class="submenu1_box">
+                        	<div class="submenu1_box_main" >
+                            	<p class="submenu1_box_main_p1">作品征集</p>
+                                <p class="submenu1_box_main_p2">2015/11/20-2016/3/20</p>
+                            </div>
+                            <img src="/dasai/fs/images/icon2.png" />
+                            <div class="submenu1_box_main" >
+                            	<p class="submenu1_box_main_p1">初赛作品评选</p>
+                                <p class="submenu1_box_main_p2">2016/3/21-2016/3/31</p>
+                            </div>
+                            <img src="/dasai/fs/images/icon2.png" />
+                            <div class="submenu1_box_main" >
+                            	<p class="submenu1_box_main_p1">公布初赛名单</p>
+                                <p class="submenu1_box_main_p2">2016/03/31</p>
+                            </div>
+                            <img src="/dasai/fs/images/icon2.png" />
+                            <div class="submenu1_box_main" >
+                            	<p class="submenu1_box_main_p1">复赛评选</p>
+                                <p class="submenu1_box_main_p2">2016/4/1-2016/4/30</p>
+                            </div>
+                            <img src="/dasai/fs/images/icon2.png" />
+                            <div class="submenu1_box_main" >
+                            	<p class="submenu1_box_main_p1">决赛评选</p>
+                                <p class="submenu1_box_main_p2">2016/5/1-2016/5/31</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                   <div class="submenu2">
+                   		<h3>网站支持</h3>
+                        <div class="submenu2_font">
+                        	<p class="submenu2_font_p">本次大赛指定官方技术支持平台：微课慕课网 <a href="#">http://www.wkmk.com</a></p>
+                            <p>参赛选手报名及参赛作品提交均在“微课慕课网”网站进行，大赛通知、公告、流程、评审规则等均在该网站予以公布，同时公布在：</p>
+                            <p>佛山市职业技术教育学会网：<a href="#">http：//zjxh.fspt.net</a></p>
+                            <p>参赛作品具体技术规范和操作步骤参见官方网站大赛专题栏目的使用说明和帮助文档。</p>
+                        </div>
+                   </div>
+                   <div class="submenu3">
+                   		<h3>参赛对象</h3>
+                        <div class="submenu3_font">
+                        	<p>佛山市范围内的中等职业院校、高等职业院校。</p>
+                        </div>
+                   </div>
+                   <div class="submenu4">
+                   		<h3>参赛方式</h3>
+                        <div class="submenu4_main submenu4_main_top">
+                        	<div class="submenu4_main_left">
+                            	<p class="submenu4_main_left_p">登录</p>
+                            </div>
+                            <div class="submenu4_main_p">
+                            	<p>登录大赛官方指定网站“微课慕课网-佛山市职业院校微课教学大赛（第一届）”（http://www.wkmk.com）首页，在首页右上角点击“注册”（如已在“微课慕课网”注册过的教师用户，
+无须重新注册），输入您的个人注册信息，并选择您所在“学校”，如实填写您的手机和邮箱地址，以便获奖后能联系上您，提交信息并完成注册。</p>
+							</div>
+                        </div>
+                        <img src="/dasai/fs/images/submenu4_main_left_icon.png" />
+                        <div class="submenu4_main">
+                        	<div class="submenu4_main_left">
+                            	<p class="submenu4_main_left_p">上传作品</p>
+                            </div>
+                            <div class="submenu4_main_p">
+                            	<p>参赛教师在大赛官方平台登录后即可上传大赛微课作品，须在大赛作品上传开放时间内上传作品，上传参赛作品详细操作步骤和注意事项请看大赛平
+台底部“上传参赛作品须知”。也可以加入“微课慕课网”官方交流QQ群：282673318。</p>
+							</div>
+                        </div>
+                   </div>
+                   
+                   <div class="submenu5">
+                   		<h3>大赛要求</h3>
+                        <div class="submenu5_box1">
+                        	<p class="submenu5_box1_title">教学视频要求</p>
+                            <div class="submenu5_box1_p submenu5_font">
+                            	<p>图像清晰稳定、构图合理、声音清楚，能较全面真实反映教学情境，能充分展示教师良好教学风貌。视频片头应显示“课程名称—微课（知识点或技能点等）标题、作者和单位”，主要教学环节有字幕
+提示。视频格式及上传要求详见官方网站平台中作品提交要求。</p>
+                            </div>
+                        </div>
+                        <div class="submenu5_box1">
+                        	<p class="submenu5_box1_title">演示文稿要求</p>
+                            <div class="submenu5_box1_p submenu5_font">
+                            	<p> 演示文稿限定为PPT格式。要求围绕教学目标，反映主要教学内容，与教学视频合理搭配；其他与教学内容相关辅助材料，如练习测试、教学评价、多媒体素材（视频、动画、图片等材料）也在大赛平
+台中以微课配套的微资源的方式上传，格式符合大赛平台上传要求。</p>
+                            </div>
+                        </div>
+                        <div class="submenu5_box1">
+                        	<p class="submenu5_box1_title">教学设计要求</p>
+                            <div class="submenu5_box1_p">
+                            	<p>教学设计应反映教师教学思想、课程设计思路和教学特色，包括教学背景、教学目标、教学方法和教学总结等方面内容，并在开头注明讲课内容所属大类专业（2位代码）、专业（4位代码）、课程名称、
+知识点（技能点）名称及适用对象等信息。文件格式：doc或者docx，在大赛平台中以微课配套的微资源的方式上传。</p>
+                            </div>
+                        </div>
+                   </div>
+                   
+				</div>
+
+				<div class="card" id="container2" style="display:none">
+					<div class="prize">
+                    	<p class="prize_p">个人奖</p>
+                        <p class="prize_font">大赛设一、二、三等奖及优秀奖，分别予以奖励。</p>
+                    </div>
+                    <div class="prize1">
+                    	<p class="prize_p1">优秀组织奖</p>
+                        <p class="prize_font">面向各参赛单位（职业院校）和各区赛事组织单位，根据赛事组织情况，评选优秀组织奖，分别予以奖励。</p>
+                    </div>
+                    <div class="score">
+                    	<div class="score_title">
+                        	<p>评分标准</p>
+                        </div>
+                        <div class="score_main">
+                        	<div class="score_main_p">
+                            	<p>选题简明（6分）</p>
+                                <p>系列规划（4分）</p>
+                                <p>（还单独设立奖项）</p>
+                            </div>
+                            <div class="score_main_p1">
+                            	<p>结构完整（5分）</p>
+                                <p>技术规范（5分）</p>
+                                <p>语言规范（5分）</p>
+                            </div>
+                            <div class="score_main_p2">
+                                <p>网上评审（10分）</p>
+                                <p>（此项不参与复赛评审）</p>
+                            </div>
+                            <div class="score_main_p3">
+                            	<p>选题设计</p>
+                                <p>（10分）</p>
+                            </div>
+                             <div class="score_main_p4">
+                            	<p>作品规范</p>
+                                <p>（15分）</p>
+                            </div>
+                             <div class="score_main_p5">
+                            	<p>网络评价</p>
+                                <p>（10分）</p>
+                            </div>
+                             <div class="score_main_p6">
+                            	<p>教学内容</p>
+                                <p>（25分）</p>
+                            </div>
+                             <div class="score_main_p7">
+                            	<p>教学效果</p>
+                                <p>（40分）</p>
+                            </div>
+                            <div class="score_main_p8">
+                            	<p>结构完整（5分）</p>
+                                <p>技术规范（5分）</p>
+                                <p>语言规范（5分）</p>
+                            </div>
+                            <div class="score_main_p9">
+                            	<p>理实一体（10分）</p>
+                                <p>形式新颖（10分）</p>
+                                <p>趣味性强（10分）</p>
+                                <p>目标达成（10分）</p>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+
+				<div class="card" id="container3" style="display:none">
+					<div class="other">
+                    	<div class="other_1">
+                        	<div class="other_1_left">
+                            	<p>事项一</p>
+                            </div> 
+                            <div class="other_1_right">
+                            	<p>参赛者享有作品的著作权，参赛者须同意授权赛事主办方与微课慕课网享有网络传播权。所有参赛作品向社会免费开放，主办方授权相关单位享有专属出版权，出版后，原创者有署名权及获得报酬权。</p> 
+                            </div>
+                        </div>
+                        <div class="other_2">
+                        	<div class="other_2_left">
+                            	<p>事项二</p>
+                            </div> 
+                            <div class="other_2_right">
+                            	<p>参赛作品及材料需为本人原创，不得抄袭他人作品，侵害他人版权，若发现参赛作品侵犯他人著作权，或有任何不良信息内容，则一律取消参赛资格。</p> 
+                            </div>
+                        </div>
+                        <div class="other_3">
+                        	<div class="other_3_left">
+                            	<p>事项三</p>
+                            </div> 
+                            <div class="other_3_right">
+                            	<p>赛事主办单位不向参赛教师或学校收取决赛评审费用。</p> 
+                            </div>
+                        </div>
+                        <div class="other_4">
+                        	<div class="other_4_left">
+                            	<p>事项四</p>
+                            </div> 
+                            <div class="other_4_right">
+                            	<p>赛事联系人：</p> 
+                                <p class="other_4_right_p1">电话：</p>
+                                <p class="other_4_right_p2">邮箱：</p>
+                                <p class="other_4_right_p1">邮编：</p>
+                                <p class="other_4_right_p2">地址：</p>
+                            </div>
+                        </div>
+                        <div  class="other_5">
+                        	<p>各区赛事组织单位联系人及联系方式将在“佛山市职业院校微课教学大赛”官方平台网站公布。</p>
+                        </div>
+                    </div>
+                    <div class="summary">
+                    	<p>* 本届大赛发布参赛参考专业课程目录（参见大赛官方网站公告），参赛人员可根据课程目录内容选取，也可在课程目录外制作微课。</p>
+                    </div>   
+				</div>
+				
+			</div>
+	</div>
+
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

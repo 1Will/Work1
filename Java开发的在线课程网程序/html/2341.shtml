@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-北京市龙潭中学</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/banner.gif" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="" target="_blank"><img src="/upload_dir/logo.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">31</font></dd>
+        <dd>微课数量：<font id="s_wk">36</font></dd>
+        <dd>文档数量：<font id="s_doc">3</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">7</a>
+      </dl>
+      <p class="p_dl">    北京市龙潭中学是新东城区域内的一所普通公办完全中学，1969年建校，现有22
+个教学班，高中12个，学生516人、初中10个，学生258人。教职员工100人，其中一线
+教师71名，学历状况为：研究生学历8人，占任课教师的11%，本科学历63人，占任课
+教师的89%，大专学历1人，占1%，<a href="/v-sinfo-2341-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-2341-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2341-17328.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2341/vod/2015/06/04/7e68364cc69de1396c777fbbab933cea.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《林黛玉进贾府》人物分析之林黛玉" class="mod-course-card__name" target="_blank" href="/v-play-2341-17328.htm">《林黛玉进贾府》人物分析之林黛玉</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="宋晶 " target="_blank" href="/v.bo?method=actors&filmid=17328&actors=%E5%AE%8B%E6%99%B6" class="mod-course-card__price mod-course-card__price_free">宋晶 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">93</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2341-18810.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2341/vod/201506/vod_fa59fe00f20f06282279d86f05d645ce.JPG" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="第15课 理性之光——伏尔泰" class="mod-course-card__name" target="_blank" href="/v-play-2341-18810.htm">第15课 理性之光——伏尔泰</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="陈素芳 " target="_blank" href="/v.bo?method=actors&filmid=18810&actors=%E9%99%88%E7%B4%A0%E8%8A%B3" class="mod-course-card__price mod-course-card__price_free">陈素芳 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">83</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2341-17243.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2341/vod/201506/vod_1fc2fcac1c20647791eb3e06b7d7cc1d.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《林黛玉进贾府》人物分析——贾宝玉" class="mod-course-card__name" target="_blank" href="/v-play-2341-17243.htm">《林黛玉进贾府》人物分析——贾宝玉</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李燕 " target="_blank" href="/v.bo?method=actors&filmid=17243&actors=%E6%9D%8E%E7%87%95" class="mod-course-card__price mod-course-card__price_free">李燕 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">72</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-2341-18060.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2341/vod/201506/vod_9baf1cd6eafedf9d8cb11e884f99c6e4.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="复数方程数系的扩充与复数的引入" class="mod-course-card__name" target="_blank" href="/v-play-2341-18060.htm">复数方程数系的扩充与复数的引入</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="雷海生 " target="_blank" href="/v.bo?method=actors&filmid=18060&actors=%E9%9B%B7%E6%B5%B7%E7%94%9F" class="mod-course-card__price mod-course-card__price_free">雷海生 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">68</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2341-17845.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2341/vod/201506/vod_fe47b1d7a622032b3c046a2efc29fb25.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《林黛玉进贾府》人物分析 体系化" class="mod-course-card__name" target="_blank" href="/v-play-2341-17845.htm">《林黛玉进贾府》人物分析 体系化</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李燕 " target="_blank" href="/v.bo?method=actors&filmid=17845&actors=%E6%9D%8E%E7%87%95" class="mod-course-card__price mod-course-card__price_free">李燕 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">65</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2341-17206.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2341/vod/201506/vod_c333542274d10be4606fb00a732585bf.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="高中英语学习策略 -猜测词义" class="mod-course-card__name" target="_blank" href="/v-play-2341-17206.htm">高中英语学习策略 -猜测词义</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="徐刚 " target="_blank" href="/v.bo?method=actors&filmid=17206&actors=%E5%BE%90%E5%88%9A" class="mod-course-card__price mod-course-card__price_free">徐刚 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">4</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">63</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2341-18188.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2341/vod/201506/vod_a2a12ee479fc4b6adc31f6b6a5c39bea.GIF" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="等比数列" class="mod-course-card__name" target="_blank" href="/v-play-2341-18188.htm">等比数列</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="马玉倩 " target="_blank" href="/v.bo?method=actors&filmid=18188&actors=%E9%A9%AC%E7%8E%89%E5%80%A9" class="mod-course-card__price mod-course-card__price_free">马玉倩 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">63</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-2341-18326.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2341/vod/2015/06/18/da0b2375dbaa1667499de0540ce605d3.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="第15课 理性之光——孟德斯鸠：三权分立" class="mod-course-card__name" target="_blank" href="/v-play-2341-18326.htm">第15课 理性之光——孟德斯鸠：三权分立</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="陈忠  " target="_blank" href="/v.bo?method=actors&filmid=18326&actors=%E9%99%88%E5%BF%A0" class="mod-course-card__price mod-course-card__price_free">陈忠  </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">62</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-2341-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2341-99201.htm" target="_blank"><img src="/upload_dir/2341/doc/2015/06/17/e23197d1e7249aa937c969f8ae3fe2ab.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-2341-99201.htm" target="_blank" style="font-size:14px;">北京市龙潭中学马玉倩数学高一《类比..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2341-6369.htm" target="_blank" class="color_2">马玉倩</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">16</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">70</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2341-532.htm" target="_blank"><img src="/upload_dir/doc/2341/2015/06/11/39360fdb8c564ab87d22a4bb1504195f.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-2341-532.htm" target="_blank" style="font-size:14px;">猜词技巧</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2341-5241.htm" target="_blank" class="color_2">徐刚</a> | <span>评分<span class="color_5">4</span></span><span>共<font class="color_5">22</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">59</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-2341-99200.htm" target="_blank"><img src="/upload_dir/2341/doc/2015/06/17/42a077971429bf2e83f91dbb3a013028.png" /></a></dt>
+            <dd class="ico_doc"><a href="/v003-doc-2341-99200.htm" target="_blank" style="font-size:14px;">北京市龙潭中学马玉倩数学高一《类比..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2341-6369.htm" target="_blank" class="color_2">马玉倩</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">3</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">53</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-3731-104756.htm" target="_blank"><img src="/upload_dir/xueda/ppt/upload/70f2e95d-5e95-41d2-ae24-679887aef83d/eilQUY26JNRs.png" /></a></dt>
+            <dd class="ico_pptx"><a href="/v003-doc-3731-104756.htm" target="_blank" style="font-size:14px;">辛弃疾</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3731-9819.htm" target="_blank" class="color_2">师科学苑</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">8</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">27</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-3731-104757.htm" target="_blank"><img src="/upload_dir/xueda/ppt/upload/741d5421-2347-4010-9239-526358814755/aOSVZ3yCGKOn.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-3731-104757.htm" target="_blank" style="font-size:14px;">辛弃疾</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3731-9819.htm" target="_blank" class="color_2">师科学苑</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">15</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">24</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-3731-118875.htm" target="_blank"><img src="/upload_dir/xueda/ppt/upload/weikeppt/20131227224759QCKM.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-3731-118875.htm" target="_blank" style="font-size:14px;">图画作文</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3731-9819.htm" target="_blank" class="color_2">师科学苑</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">18</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">24</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-2341-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-2341-7457.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-2341-7457.htm" class="color_2">何映</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">2</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2341-7611.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-2341-7611.htm" class="color_2">何雪梅</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2341-7071.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-2341-7071.htm" class="color_2">史丽翠</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2341-8078.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-2341-8078.htm" class="color_2">吴雪</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-2341-6973.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-2341-6973.htm" class="color_2">孙海燕</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2341-5904.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-2341-5904.htm" class="color_2">宋晶</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2341-5241.htm"><img src="/upload_dir/2341/user/201506/621f21c816496fb4bd84395b29d11b28.JPG" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-2341-5241.htm" class="color_2">徐刚</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">1</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2341-7070.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-2341-7070.htm" class="color_2">徐海峰</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=2341&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=2341&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-分享微课 分享价值！  来吧，和笔创新！助你成为录课专家</title>
+<link href="/skin/huodong/css/style1.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<style>
+.tanchu{
+	width:790px;
+	height:671px;
+	position:absolute;
+	left:50%;
+	margin-left:-395px;
+	top:50%;
+	margin-top:-335px;
+}
+.tanchu a{
+	display:inline-block;
+	height:33px;
+	width:33px;
+	background-image:url(/skin/huodong/images/fade.png);
+	position:absolute;
+	right:3px;
+	top:3px;
+}
+.tanchu img{
+	display:inline-block;
+}
+.fade{
+	height:100%;
+	width:100%;
+	position:fixed;
+	background-image:url(/skin/huodong/images/bjtc.png);
+	z-index:9999;
+	display:none;
+}
+</style>
+<script type="text/javascript">
+function hidetext(){  
+	var mychar = document.getElementById("con");
+	mychar.style.display="none"
+}  
+function showtext(){  
+	var mychar = document.getElementById("con");
+	mychar.style.display="block"
+}
+</script>
+</head>
+
+<body>
+<div class="fade" id="con">
+	<div class="tanchu" >
+       	<a href="javascript:hidetext()"></a>       	
+		<img src="/skin/huodong/images/bi.jpg" />      
+     </div>
+</div>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="banner">
+</div>
+<div id="container">
+	<div id="container_main">
+		<div id="container_main_left">
+			<p class="container_main_left_p1">时间</p>
+			<p class="container_main_left_p2">对象</p>
+			<p class="container_main_left_p3">奖励</p>
+			<p class="container_main_left_p4">申请奖励条件</p>
+			<p class="container_main_left_p5">额外奖励</p>
+      </div>
+		<div id="container_main_middle">
+			<img src="/skin/huodong/images/line.png" />		
+		</div>
+		<div id="container_main_right">
+			<div class="container_main_right_module1">
+				<p>2015年10月16日-2015年11月15日</p>
+			</div>
+			<div class="container_main_right_module2">
+				<p class="container_main_right_module_p1">1、微课慕课网注册用户</p>
+				<p>2、初中和高中数学学科录课教师（其他学科的赠送活动将在未来陆续推出）</p>
+				<p>3、有能力使用“点阵数码笔”进一步提升自己的录课效果和质量的教师</p>
+			</div>
+			<div class="container_main_right_module3">
+				<p class="container_main_right_module_p2">1、免费获得 有线“点阵数码笔”101型号 一套 （详细介绍：<a  href="javascript:showtext()">点击进入</a>     市场价：1480元）</p>
+				<p>2、微课慕课网 数学微课组（初中组、高中组） 微课大使称号</p>
+				<p>3、进入 微课慕课网 数学学科 全国微课大赛 初评评审组</p>
+				<strong><p class="container_main_right_module_p_2">请将您的微课慕课网的个人页面链接发送至 baoming@wkmk.com，我们将在2015年11月15日截至提交，并同时公布获得奖品的教师名单</p></strong>
+			</div>
+			<div class="container_main_right_module4">
+				<p class="container_main_right_module_p1">在活动时间内，达到以下条件：</p>
+				<p>1、在微课慕课网上，注册并提交至少6个原创的解题微课 或 提交自己的3个教学知识点微课及配套的教学文件</p>
+				<p class="container_main_right_module4_a">如：<a target="_blank" href="http://t.im/u5a0">http://t.im/u5a0</a> 或 <a target="_blank" href="http://t.im/u5a6 ">http://t.im/u5a6 </a> </p>
+				<p>2、教师上传的微课能够体现出日常有使用笔进行微课讲解和录制的习惯</p>
+			</div>
+			<div class="container_main_right_module5">
+				<p class="container_main_right_module_p3">1、如获得“点阵数码笔”奖品的教师在收到奖品之后的一个月内，即2015年12月15日之前，使用 数字录课笔 将自己的微课重新录制并上传替换，那么：</p>
+  				<p class="container_main_right_module5_a"> a、教师您还可以进入“全国微课程大赛”“数学学科”初评评审组，获得明年的微课初评评审资格</p>
+  				<p class="container_main_right_module5_a"> b、对于重新录课质量较高的教师，并不断使用“点阵数码笔”录课的教师，微课慕课网将为您更换升级一套最新的 无线“点阵数码笔”</p>
+				<p class="container_main_right_module5_a">（详细介绍：<a target="_blank" href="http://t.im/u5ak">http://t.im/u5ak</a>   全套产品市场价：2480元）</p>
+				<p>2、对于优秀的“点阵数码笔”使用教师，也将成为拓思德数字“点阵数码笔”应用专家称号，并有机会受邀参加微课慕课网以及拓思德公司组织的各种活动</p>
+			</div>
+		</div>
+		<div id="container_main_footer_module">
+		    <h3>活动解释</h3>
+			<div class="container_main_footer_module_hr1"></div>
+			<div class="container_main_footer_module_hr2"></div>
+			<p  class="container_main_footer_module_p1">1、此次活动，微课慕课网一共准备了10套101型号“点阵数码笔”作为奖品，我们将为前十位提交微课作品并达到获取奖品条件的教师提供奖品“点阵数码笔”，同时终止本活动，并集中展示教师的作品。
+			<p>2、获得奖品的教师应用成果会在微课慕课网上设专区进行展示和宣传，欢迎教师踊跃报名参加。</p>
+			<p>3、本活动的解释权归“微课慕课网”所有。</p>
+		</div>
+	</div>
+</div>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

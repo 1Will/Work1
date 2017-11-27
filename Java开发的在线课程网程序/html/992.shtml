@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-江西科技师范大学</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/banner.gif" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="" target="_blank"><img src="/upload_dir/logo.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">20</font></dd>
+        <dd>微课数量：<font id="s_wk">10</font></dd>
+        <dd>文档数量：<font id="s_doc">3</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">1</a>
+      </dl>
+      <p class="p_dl">江西科技师范大学坐落于具有"物华天宝、人杰地灵"盛誉的历史文化名城--南昌，是我国
+首批建立的高等职业技术师范院校，是教育部重点建设的培养职业教育师资的高等院校，
+也是江西省唯一一所培养职业教育师资的多科性本科院校，主要培养职教师资、普教师资
+和应用型专门人才。经过61年的建设与发展，学校形成了<a href="/v-sinfo-992-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-992-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-992-4570.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/992/vod/2015/01/06/4e962488bbe5a6c6b4773fb256283254.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="抠像" class="mod-course-card__name" target="_blank" href="/v-play-992-4570.htm">抠像</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="况扬" target="_blank" href="/v.bo?method=actors&filmid=4570&actors=%E5%86%B5%E6%89%AC" class="mod-course-card__price mod-course-card__price_free">况扬</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">144</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-992-21780.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/992/vod/201507/vod_5d94ddd0d3b114aa2e71ee64d27f208c.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="巧克力是否会引起龋齿？" class="mod-course-card__name" target="_blank" href="/v-play-992-21780.htm">巧克力是否会引起龋齿？</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="黄永静 " target="_blank" href="/v.bo?method=actors&filmid=21780&actors=%E9%BB%84%E6%B0%B8%E9%9D%99" class="mod-course-card__price mod-course-card__price_free">黄永静 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">137</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">2</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-992-22194.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/992/vod/2015/07/09/270bcc345a8df039afa27948363070a4.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="植物芳香油提取系列" class="mod-course-card__name" target="_blank" href="/v-play-992-22194.htm">植物芳香油提取系列</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="郭玉 " target="_blank" href="/v.bo?method=actors&filmid=22194&actors=%E9%83%AD%E7%8E%89" class="mod-course-card__price mod-course-card__price_free">郭玉 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">111</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-992-22202.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/992/vod/2015/07/09/048b7b60674f649b8f0ee332b1fdb256.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="卷发（烫发）的生物化学基础——蛋白质的结构" class="mod-course-card__name" target="_blank" href="/v-play-992-22202.htm">卷发（烫发）的生物化学基础——蛋白质的结构</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="陈雅 " target="_blank" href="/v.bo?method=actors&filmid=22202&actors=%E9%99%88%E9%9B%85" class="mod-course-card__price mod-course-card__price_free">陈雅 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">2</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">101</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-992-22159.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/992/vod/201507/vod_aba5cae732277cf8c86068da2717f343.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="生物化学与生活系列微课程（七）--为什么我吃的那么素还会这么胖？" class="mod-course-card__name" target="_blank" href="/v-play-992-22159.htm">生物化学与生活系列微课程（七）--为什么我吃的那么素还会这么胖？</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="叶卫东 " target="_blank" href="/v.bo?method=actors&filmid=22159&actors=%E5%8F%B6%E5%8D%AB%E4%B8%9C" class="mod-course-card__price mod-course-card__price_free">叶卫东 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">95</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-992-21863.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/992/vod/2015/07/05/0b730e06646571cfc966f1b24ec092f5.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="加酶洗衣粉" class="mod-course-card__name" target="_blank" href="/v-play-992-21863.htm">加酶洗衣粉</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="王志鑫 " target="_blank" href="/v.bo?method=actors&filmid=21863&actors=%E7%8E%8B%E5%BF%97%E9%91%AB" class="mod-course-card__price mod-course-card__price_free">王志鑫 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">4</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">95</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-992-18733.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/992/vod/2015/06/23/f84c4d6a3a6b77e6e3d9ec1ae817a49c.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="无糖口香糖为什么是甜味的" class="mod-course-card__name" target="_blank" href="/v-play-992-18733.htm">无糖口香糖为什么是甜味的</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="徐玲 " target="_blank" href="/v.bo?method=actors&filmid=18733&actors=%E5%BE%90%E7%8E%B2" class="mod-course-card__price mod-course-card__price_free">徐玲 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">4</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">93</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-992-22161.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/992/vod/201507/vod_7710703323b3a1c81753650fb82df127.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="生化微课之氨基酸专题习题精讲" class="mod-course-card__name" target="_blank" href="/v-play-992-22161.htm">生化微课之氨基酸专题习题精讲</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="叶卫东 " target="_blank" href="/v.bo?method=actors&filmid=22161&actors=%E5%8F%B6%E5%8D%AB%E4%B8%9C" class="mod-course-card__price mod-course-card__price_free">叶卫东 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">4</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">82</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-992-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-992-99341.htm" target="_blank"><img src="/upload_dir/992/doc/2015/06/24/eba3f739dc7300799484fa6e05f955ee.png" /></a></dt>
+            <dd class="ico_doc"><a href="/v003-doc-992-99341.htm" target="_blank" style="font-size:14px;">《Authorware的简单制作》..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-992-7267.htm" target="_blank" class="color_2">单朱华</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">1</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">34</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-992-99340.htm" target="_blank"><img src="/upload_dir/992/doc/2015/06/24/9acc727ee527f2883fbdb14d4e5647eb.png" /></a></dt>
+            <dd class="ico_doc"><a href="/v003-doc-992-99340.htm" target="_blank" style="font-size:14px;">《Authorware的简单制作》..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-992-7267.htm" target="_blank" class="color_2">单朱华</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">1</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">34</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-992-99339.htm" target="_blank"><img src="/upload_dir/992/doc/2015/06/24/df246e90352ccae9acdcc1bac53bdb49.png" /></a></dt>
+            <dd class="ico_doc"><a href="/v003-doc-992-99339.htm" target="_blank" style="font-size:14px;">《Authorware的简单制作》..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-992-7267.htm" target="_blank" class="color_2">单朱华</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">2</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">31</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-992-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-992-4355.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-992-4355.htm" class="color_2">黄乐辉</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-992-7357.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-992-7357.htm" class="color_2">俞颖超</a>&nbsp;&nbsp;<span class="color_3">学生</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-992-9422.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-992-9422.htm" class="color_2">况扬</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-992-7267.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-992-7267.htm" class="color_2">单朱华</a>&nbsp;&nbsp;<span class="color_3">学生</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">3</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-992-9803.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-992-9803.htm" class="color_2">叶卫东</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">2</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-992-9301.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-992-9301.htm" class="color_2">周慧敏</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-992-9300.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-992-9300.htm" class="color_2">张宇</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-992-6617.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-992-6617.htm" class="color_2">张少智</a>&nbsp;&nbsp;<span class="color_3">学生</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=992&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=992&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

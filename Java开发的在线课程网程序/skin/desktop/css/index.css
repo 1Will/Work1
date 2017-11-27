@@ -1,0 +1,40 @@
+@charset "utf-8";
+/*-------甯歌镙峰纺----------*/
+
+.list li{ background:url(../images/icon_02.gif) no-repeat left center; padding-left:10px; height:23px;line-height:23px;}
+/*娓呮娴姩绫?/
+.high01{font-size:1px; line-height:1px;  clear:both; padding:0px; margin:0px; border:0px;height:1px;}
+
+
+
+/*鏁椤笀椋庨噰*/
+#B7{ float:left; padding-top:10px; width:250px;}
+#B7 .more{ line-height:30px;}
+#B7 .ybbox{ background:url(../images/title_bg_04.gif) no-repeat;  width:248px; float:left; height:37px; margin-left:0px; border:1px solid #c5e977; background:url(../images/z12.gif) repeat-x left top; border-bottom:none;}
+#B7 .ybbox li{width:87px; margin-right:2px; float:left; text-align:center;line-height:36px; font-size:14px; font-weight:bold;  color:#fff; height:24px; }
+#B7 .ybbox .hover{background:url(../images/tab_hover_bg.gif) no-repeat left top;  text-align:center; width:87px; font-size:14px; color:#588a01; height:37px;}/*鍗曞向阃夐」鍗?/
+#B7 .conbox{ border:1px solid #c5e977; float:left; border-top:0px;  width:248px;}
+#B7 .conbox .rollBox{width:248px;overflow:hidden; padding-top:15px; padding-bottom:10px; }
+#B7 .conbox .rollBox .LeftBotton{height:31px;width:18px;background:url(../images/jsfc_icon.gif) no-repeat -24px -2px;overflow:hidden;float:left;display:inline;margin:40px 5px 0 5px;cursor:pointer;}
+#B7 .conbox .rollBox .LeftBotton:hover{background:url(../images/jsfc_icon.gif) no-repeat -24px -36px;}
+#B7 .conbox .rollBox .RightBotton{height:31px;width:18px;background:url(../images/jsfc_icon.gif) no-repeat -3px -2px;overflow:hidden;float:left;display:inline;margin:40px 0px 0 5px;cursor:pointer;}
+#B7 .conbox .rollBox .RightBotton:hover{background:url(../images/jsfc_icon.gif) no-repeat -3px -36px;}
+#B7 .conbox .rollBox .Cont{width:197px;overflow:hidden;float:left; }
+#B7 .conbox .rollBox .ScrCont{width:10000000px;}
+#B7 .conbox .rollBox .Cont .pic{float:left;text-align:center; width:89px;  margin-right:17px; }
+#B7 .conbox .rollBox .Cont .pic img{ width:86px; height:120px; padding:1px; border:#CCCCCC 1px solid; }
+#B7 .conbox .rollBox .Cont .pic span{ padding-top:5px;  line-height:22px; width:89px; text-align:center; display:block;}
+#B7 .conbox .rollBox #List1,#B7 .conbox .rollBox #List2,#B7 .conbox .rollBox #List3,#B7 .conbox .rollBox #List4,#B7 .conbox .rollBox #List5,#B7 .conbox .rollBox #List6{float:left;}
+
+
+
+
+
+
+
+
+
+
+
+
+

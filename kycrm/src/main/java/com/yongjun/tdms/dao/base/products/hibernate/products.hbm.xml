@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: $ -->
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.base.products.Products" table="t_products">
+		<id name="id" column="id" type="long">
+			<generator class="native">
+				<param name="sequence">t_products_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		
+		<property name="code" type="string">
+            <column name="code" not-null="true" length="40" unique-key="UK_PRODUCTS"/>
+        </property>
+        
+        <property name="name" type="string">
+			<column name="name" not-null="true" length="40" />
+		</property>
+		<property name="model" type="string">
+			<column name="model" not-null="true" length="40" />
+		</property>
+		<property name="standard" type="string">
+			<column name="standard" not-null="true" length="40" />
+		</property>
+		<property name="etcPrice" type="double">
+			<column name="etcPrice" />
+		</property>
+		
+	    <property name="salePrice" type="double">
+			<column name="salePrice" />
+		</property>
+		<property name="salelimit" type="string">
+			<column name="salelimit" />
+		</property>
+		<property name="launch" type="timestamp">
+			<column name="launch" />
+		</property>
+		<property name="remark" type="string">
+			<column name="remark" length="500"/>
+		</property>
+		<property name="productSource" type="string">
+			<column name="productSource" not-null="false" length="40"/>
+		</property>
+		<many-to-one name="supplier" class="com.yongjun.tdms.model.supplier.Supplier" lazy="false">
+        	<column name="supplier_id" not-null="false"></column>
+        </many-to-one>
+		<many-to-one name="customerInfo" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo" lazy="false">
+        	<column name="customerInfo_id" not-null="false"></column>
+        </many-to-one>
+		<property name="isNoMain" type="boolean">
+			<column name="isNoMain" not-null="true"/>
+		</property>
+		<many-to-one name="product_source_ID" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+        	<column name="product_source_ID" not-null="true"></column>
+        </many-to-one>
+        <many-to-one name="pt" class="com.yongjun.tdms.model.base.produttype.ProductType" lazy="false">
+        	<column name="pt_id" not-null="false"></column>
+        </many-to-one>
+        <many-to-one name="businessType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="businessType" not-null="false"/>
+		</many-to-one>
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+        <!-- 是否提交 -->
+		<property name="isSaved" type="string">
+			<column name="isSaved" sql-type="NVARCHAR(1)"/>
+		</property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR"   type="string" length="20"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator"  column="LAST_OPERATOR"   type="string" length="20"/>
+	</class>
+</hibernate-mapping>

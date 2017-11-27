@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-海南省海南师范大学</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/banner.jpg" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="http://www.hainnu.edu.cn/" target="_blank"><img src="/upload_dir/logo.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">12</font></dd>
+        <dd>微课数量：<font id="s_wk">11</font></dd>
+        <dd>文档数量：<font id="s_doc">0</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">1</a>
+      </dl>
+      <p class="p_dl"><a href="/v-sinfo-262-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-262-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-262-2200.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/262/vod/2014/09/23/49654d22c1dcad4411265db8b6716545.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《卖火柴的小女孩》故事教育" class="mod-course-card__name" target="_blank" href="/v-play-262-2200.htm">《卖火柴的小女孩》故事教育</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="马春斌" target="_blank" href="/v.bo?method=actors&filmid=2200&actors=%E9%A9%AC%E6%98%A5%E6%96%8C" class="mod-course-card__price mod-course-card__price_free">马春斌</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">140</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-262-2193.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/262/vod/2014/09/23/6aed3c93fe7a89dfbbab809ff2524fc6.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="形容词和副词的等级用法" class="mod-course-card__name" target="_blank" href="/v-play-262-2193.htm">形容词和副词的等级用法</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="曹盛华" target="_blank" href="/v.bo?method=actors&filmid=2193&actors=%E6%9B%B9%E7%9B%9B%E5%8D%8E" class="mod-course-card__price mod-course-card__price_free">曹盛华</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">133</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-262-2195.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/262/vod/2014/09/23/7d519f60cf86732498d692aa35e803d1.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="2单元单词预习" class="mod-course-card__name" target="_blank" href="/v-play-262-2195.htm">2单元单词预习</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李松莹" target="_blank" href="/v.bo?method=actors&filmid=2195&actors=%E6%9D%8E%E6%9D%BE%E8%8E%B9" class="mod-course-card__price mod-course-card__price_free">李松莹</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">128</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-262-2199.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/262/vod/2014/09/23/26f11933d3ce086489653e59d115732b.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="形容词比较级的变化规则" class="mod-course-card__name" target="_blank" href="/v-play-262-2199.htm">形容词比较级的变化规则</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="叶佳慧" target="_blank" href="/v.bo?method=actors&filmid=2199&actors=%E5%8F%B6%E4%BD%B3%E6%85%A7" class="mod-course-card__price mod-course-card__price_free">叶佳慧</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">125</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-262-2191.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/262/vod/2014/09/23/e3ebb4152bf3962e0b6fc1b35a6e8ba2.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《除法的初步认识》" class="mod-course-card__name" target="_blank" href="/v-play-262-2191.htm">《除法的初步认识》</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="符菊 " target="_blank" href="/v.bo?method=actors&filmid=2191&actors=%E7%AC%A6%E8%8F%8A" class="mod-course-card__price mod-course-card__price_free">符菊 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">124</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-262-2197.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/262/vod/2014/09/23/4d9e05cfb701be1d011284775574b224.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="HELLO" class="mod-course-card__name" target="_blank" href="/v-play-262-2197.htm">HELLO</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="徐娜 " target="_blank" href="/v.bo?method=actors&filmid=2197&actors=%E5%BE%90%E5%A8%9C" class="mod-course-card__price mod-course-card__price_free">徐娜 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">123</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-262-2192.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/262/vod/2014/09/23/56a31224639cd63ea489c5320082aefc.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="找规律" class="mod-course-card__name" target="_blank" href="/v-play-262-2192.htm">找规律</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="郑鸿琴 " target="_blank" href="/v.bo?method=actors&filmid=2192&actors=%E9%83%91%E9%B8%BF%E7%90%B4" class="mod-course-card__price mod-course-card__price_free">郑鸿琴 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">121</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-262-2196.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/262/vod/2014/09/23/0323b9c6bdf008f7defaf315f81678eb.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="cost pay spend的区别" class="mod-course-card__name" target="_blank" href="/v-play-262-2196.htm">cost pay spend的区别</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="徐昊妍" target="_blank" href="/v.bo?method=actors&filmid=2196&actors=%E5%BE%90%E6%98%8A%E5%A6%8D" class="mod-course-card__price mod-course-card__price_free">徐昊妍</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">114</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-262-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-262-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-262-8388.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-262-8388.htm" class="color_2">李松莹</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-262-11583.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-262-11583.htm" class="color_2">叶佳慧</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-262-283.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-262-283.htm" class="color_2">师范大学</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">8</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-262-7532.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-262-7532.htm" class="color_2">张蕾</a>&nbsp;&nbsp;<span class="color_3">学生</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-262-11581.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-262-11581.htm" class="color_2">徐娜</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-262-11580.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-262-11580.htm" class="color_2">徐昊妍</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-262-11578.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-262-11578.htm" class="color_2">曹盛华</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-262-8103.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-262-8103.htm" class="color_2">白雪</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=262&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=262&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

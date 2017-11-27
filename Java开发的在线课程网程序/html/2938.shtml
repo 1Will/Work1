@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-长沙民政职业技术学院</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/banner.gif" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="http://www.csmzxy.com/" target="_blank"><img src="/upload_dir/logo.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">4</font></dd>
+        <dd>微课数量：<font id="s_wk">24</font></dd>
+        <dd>文档数量：<font id="s_doc">0</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">0</a>
+      </dl>
+      <p class="p_dl">长沙民政职业技术学院<a href="/v-sinfo-2938-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-2938-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2938-20893.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2938/vod/201507/vod_9cf10fc951b496d6ed4dae4f104ffa5a.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="  湖南省长沙市长沙民政职业技术学院计算机类一年级VPN技术" class="mod-course-card__name" target="_blank" href="/v-play-2938-20893.htm">  湖南省长沙市长沙民政职业技术学院计算机类一年级VPN技术</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="易月娥 邓文达 付朝晖 邱春荣 " target="_blank" href="/v.bo?method=actors&filmid=20893&actors=%E6%98%93%E6%9C%88%E5%A8%A5+%E9%82%93%E6%96%87%E8%BE%BE+%E4%BB%98%E6%9C%9D%E6%99%96+%E9%82%B1%E6%98%A5%E8%8D%A3" class="mod-course-card__price mod-course-card__price_free">易月娥 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">51</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2938-20716.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2938/vod/201506/vod_dd042ebbe83cc3920d28aa8b16bc21d1.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="计算机网络TCP/IP模型" class="mod-course-card__name" target="_blank" href="/v-play-2938-20716.htm">计算机网络TCP/IP模型</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="邱春荣 邓文达 付朝晖 易月娥 " target="_blank" href="/v.bo?method=actors&filmid=20716&actors=%E9%82%B1%E6%98%A5%E8%8D%A3+%E9%82%93%E6%96%87%E8%BE%BE+%E4%BB%98%E6%9C%9D%E6%99%96+%E6%98%93%E6%9C%88%E5%A8%A5" class="mod-course-card__price mod-course-card__price_free">邱春荣 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">46</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2938-20976.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2938/vod/201507/vod_a06a1d054981fbff47ceb6adafbca93c.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="计算机网络故障排除基础" class="mod-course-card__name" target="_blank" href="/v-play-2938-20976.htm">计算机网络故障排除基础</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="邱春荣 邓文达 付朝晖 易月娥 " target="_blank" href="/v.bo?method=actors&filmid=20976&actors=%E9%82%B1%E6%98%A5%E8%8D%A3+%E9%82%93%E6%96%87%E8%BE%BE+%E4%BB%98%E6%9C%9D%E6%99%96+%E6%98%93%E6%9C%88%E5%A8%A5" class="mod-course-card__price mod-course-card__price_free">邱春荣 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">43</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-2938-20693.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2938/vod/201506/vod_0420a8a8d9ab23bec0605eac376280f1.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="信息模块制作" class="mod-course-card__name" target="_blank" href="/v-play-2938-20693.htm">信息模块制作</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="付朝晖 邓文达 邱春荣 易月娥 " target="_blank" href="/v.bo?method=actors&filmid=20693&actors=%E4%BB%98%E6%9C%9D%E6%99%96+%E9%82%93%E6%96%87%E8%BE%BE+%E9%82%B1%E6%98%A5%E8%8D%A3+%E6%98%93%E6%9C%88%E5%A8%A5" class="mod-course-card__price mod-course-card__price_free">付朝晖 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">41</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2938-20687.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2938/vod/201506/vod_bf59e43d852034df250ad0c106cfd147.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="GRE" class="mod-course-card__name" target="_blank" href="/v-play-2938-20687.htm">GRE</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="邓文达 付朝晖 邱春荣 易月娥 " target="_blank" href="/v.bo?method=actors&filmid=20687&actors=%E9%82%93%E6%96%87%E8%BE%BE+%E4%BB%98%E6%9C%9D%E6%99%96+%E9%82%B1%E6%98%A5%E8%8D%A3+%E6%98%93%E6%9C%88%E5%A8%A5" class="mod-course-card__price mod-course-card__price_free">邓文达 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">39</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2938-20724.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2938/vod/201506/vod_0b185c148407a4b9e3804969b0ff71eb.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="湖南省长沙民政职业技术学院易月娥计算机类一年级DNS服务" class="mod-course-card__name" target="_blank" href="/v-play-2938-20724.htm">湖南省长沙民政职业技术学院易月娥计算机类一年级DNS服务</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="易月娥 邓文达 付朝晖 邱春荣 " target="_blank" href="/v.bo?method=actors&filmid=20724&actors=%E6%98%93%E6%9C%88%E5%A8%A5+%E9%82%93%E6%96%87%E8%BE%BE+%E4%BB%98%E6%9C%9D%E6%99%96+%E9%82%B1%E6%98%A5%E8%8D%A3" class="mod-course-card__price mod-course-card__price_free">易月娥 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">39</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2938-20736.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2938/vod/201506/vod_9d20e5818b3eb0706a4515930a617a15.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="搭建计算机网络基础通信平台" class="mod-course-card__name" target="_blank" href="/v-play-2938-20736.htm">搭建计算机网络基础通信平台</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="邱春荣 邓文达 付朝晖 易月娥 " target="_blank" href="/v.bo?method=actors&filmid=20736&actors=%E9%82%B1%E6%98%A5%E8%8D%A3+%E9%82%93%E6%96%87%E8%BE%BE+%E4%BB%98%E6%9C%9D%E6%99%96+%E6%98%93%E6%9C%88%E5%A8%A5" class="mod-course-card__price mod-course-card__price_free">邱春荣 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">37</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-2938-20901.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2938/vod/201507/vod_1192f92bfe06941274ea0cfbe1a91a1b.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title=" 湖南省长沙市长沙民政职业技术学院计算机类一年级Web Farm网络负载均衡服务" class="mod-course-card__name" target="_blank" href="/v-play-2938-20901.htm"> 湖南省长沙市长沙民政职业技术学院计算机类一年级Web Farm网络负载均衡服务</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="易月娥 邓文达 付朝晖 邱春荣 " target="_blank" href="/v.bo?method=actors&filmid=20901&actors=%E6%98%93%E6%9C%88%E5%A8%A5+%E9%82%93%E6%96%87%E8%BE%BE+%E4%BB%98%E6%9C%9D%E6%99%96+%E9%82%B1%E6%98%A5%E8%8D%A3" class="mod-course-card__price mod-course-card__price_free">易月娥 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">33</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-2938-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-2938-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-2938-7025.htm"><img src="/upload_dir/2938/user/201506/a11a45e2fba1b83496e95eed74c19df6.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-2938-7025.htm" class="color_2">付朝晖</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">6</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2938-8616.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-2938-8616.htm" class="color_2">易月娥</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">5</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2938-7045.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-2938-7045.htm" class="color_2">邓文达</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">6</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2938-8614.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-2938-8614.htm" class="color_2">邱春荣</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">7</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=2938&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=2938&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

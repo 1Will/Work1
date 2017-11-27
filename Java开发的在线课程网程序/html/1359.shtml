@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-广东省江门市新会东方红中学</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/banner.gif" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="http://www.xhdfhzx.cn" target="_blank"><img src="/upload_dir/logo.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">5</font></dd>
+        <dd>微课数量：<font id="s_wk">14</font></dd>
+        <dd>文档数量：<font id="s_doc">7</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">5</a>
+      </dl>
+      <p class="p_dl">广东省江门市新会东方红中学<a href="/v-sinfo-1359-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-1359-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-1359-13668.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/1359/vod/201505/vod_fbab89251c217826775239172dc6804a.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="氧化钠与过氧化钠" class="mod-course-card__name" target="_blank" href="/v-play-1359-13668.htm">氧化钠与过氧化钠</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李君生 " target="_blank" href="/v.bo?method=actors&filmid=13668&actors=%E6%9D%8E%E5%90%9B%E7%94%9F" class="mod-course-card__price mod-course-card__price_free">李君生 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">3</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">284</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-1359-13695.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/1359/vod/201505/vod_08d541784f7e7f2eee029d0d353059b8.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="铝的重要化合物" class="mod-course-card__name" target="_blank" href="/v-play-1359-13695.htm">铝的重要化合物</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="陈秉谦 " target="_blank" href="/v.bo?method=actors&filmid=13695&actors=%E9%99%88%E7%A7%89%E8%B0%A6" class="mod-course-card__price mod-course-card__price_free">陈秉谦 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">94</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-1359-17419.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/1359/vod/2015/06/07/3ff6bbd74f1aa02b1b43becd3901cedc.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="高一化学必修I第三章第二节 氢氧化亚铁的制备实验探究" class="mod-course-card__name" target="_blank" href="/v-play-1359-17419.htm">高一化学必修I第三章第二节 氢氧化亚铁的制备实验探究</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李君生 " target="_blank" href="/v.bo?method=actors&filmid=17419&actors=%E6%9D%8E%E5%90%9B%E7%94%9F" class="mod-course-card__price mod-course-card__price_free">李君生 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">72</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-1359-13893.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/1359/vod/201505/vod_d8b8cec062884cf1dbc12523b9b42e76.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="氧化还原反应的实质" class="mod-course-card__name" target="_blank" href="/v-play-1359-13893.htm">氧化还原反应的实质</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李君生 " target="_blank" href="/v.bo?method=actors&filmid=13893&actors=%E6%9D%8E%E5%90%9B%E7%94%9F" class="mod-course-card__price mod-course-card__price_free">李君生 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">72</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-1359-13676.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/1359/vod/201505/vod_1cb9c9cda9d616410a5446360086f908.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="化工流程题解题策略之控温的目的" class="mod-course-card__name" target="_blank" href="/v-play-1359-13676.htm">化工流程题解题策略之控温的目的</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李君生 " target="_blank" href="/v.bo?method=actors&filmid=13676&actors=%E6%9D%8E%E5%90%9B%E7%94%9F" class="mod-course-card__price mod-course-card__price_free">李君生 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">68</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-1359-13436.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/1359/vod/2015/05/08/20648865d3ff317a3f0e72ea2995acf9.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="金属钠的化合物" class="mod-course-card__name" target="_blank" href="/v-play-1359-13436.htm">金属钠的化合物</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="梁秀琼 " target="_blank" href="/v.bo?method=actors&filmid=13436&actors=%E6%A2%81%E7%A7%80%E7%90%BC" class="mod-course-card__price mod-course-card__price_free">梁秀琼 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">63</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-1359-13560.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/1359/vod/2015/05/09/db831f535da528ce12e462e131b12000.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="卤代烃的化学性质" class="mod-course-card__name" target="_blank" href="/v-play-1359-13560.htm">卤代烃的化学性质</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="刘荣辉 " target="_blank" href="/v.bo?method=actors&filmid=13560&actors=%E5%88%98%E8%8D%A3%E8%BE%89" class="mod-course-card__price mod-course-card__price_free">刘荣辉 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">56</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-1359-13672.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/1359/vod/201505/vod_81daa62f3de0f8decf9421e30d7b4824.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="碳酸钠与碳酸氢钠" class="mod-course-card__name" target="_blank" href="/v-play-1359-13672.htm">碳酸钠与碳酸氢钠</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李君生 " target="_blank" href="/v.bo?method=actors&filmid=13672&actors=%E6%9D%8E%E5%90%9B%E7%94%9F" class="mod-course-card__price mod-course-card__price_free">李君生 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">55</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-1359-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-1359-527.htm" target="_blank"><img src="/upload_dir/doc/1359/2015/06/11/3c8de779e0f8f6396b1f210da625f4a3.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-1359-527.htm" target="_blank" style="font-size:14px;">化工流程题型的解答</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-1359-3229.htm" target="_blank" class="color_2">李君生</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">17</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">15</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-1359-524.htm" target="_blank"><img src="/upload_dir/doc/1359/2015/06/11/4c163934b0fc6fb040c856feb98977f4.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-1359-524.htm" target="_blank" style="font-size:14px;">氧化还原-电子转移</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-1359-3229.htm" target="_blank" class="color_2">李君生</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">9</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">14</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-1359-525.htm" target="_blank"><img src="/upload_dir/doc/1359/2015/06/11/7be3b97d1d52238fd6496ce831edfe00.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-1359-525.htm" target="_blank" style="font-size:14px;">第二节 几种重要的金属化合物-碳酸..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-1359-3229.htm" target="_blank" class="color_2">李君生</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">11</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">14</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-1359-526.htm" target="_blank"><img src="/upload_dir/doc/1359/2015/06/11/7ca513212ee09746386c64305f3000f5.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-1359-526.htm" target="_blank" style="font-size:14px;">第二节 几种重要的金属化合物-氧化..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-1359-3229.htm" target="_blank" class="color_2">李君生</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">14</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">14</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-1359-528.htm" target="_blank"><img src="/upload_dir/doc/1359/2015/06/11/a4d63b583cc021092193571cc7747347.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-1359-528.htm" target="_blank" style="font-size:14px;">二价铁与三价铁</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-1359-3229.htm" target="_blank" class="color_2">李君生</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">18</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">14</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-1359-523.htm" target="_blank"><img src="/upload_dir/doc/1359/2015/06/11/b32e784e4776e97738ffd7b95c965478.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-1359-523.htm" target="_blank" style="font-size:14px;">第二节 几种重要的金属化合物-过氧..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-1359-3229.htm" target="_blank" class="color_2">李君生</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">11</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">13</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-1359-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-1359-3717.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-1359-3717.htm" class="color_2">刘荣辉</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">2</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-1359-3229.htm"><img src="/upload_dir/1359/user/201506/5f4d9d6d191f4ac54171b2246ac451a8.JPG" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-1359-3229.htm" class="color_2">李君生</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">9</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">7</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-1359-2992.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-1359-2992.htm" class="color_2">梁秀琼</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-1359-2993.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-1359-2993.htm" class="color_2">梁秀琼</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-1359-2976.htm"><img src="/upload_dir/1359/user/201506/95fc36d57eea3386cbb5b8a17bf0b7d8.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-1359-2976.htm" class="color_2">陈秉谦</a>&nbsp;&nbsp;<span class="color_3">科长</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">2</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="17%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="14%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="10%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=1359&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=1359&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

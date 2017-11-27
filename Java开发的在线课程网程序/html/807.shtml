@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-北京市昌平区机关幼儿园</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/807/unit/201507/6bb4d019b485fb3f0969876042db5d8f.jpg" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="" target="_blank"><img src="/upload_dir/807/unit/201507/b5ec03a8317f1ca86720dee042a2c7ba.jpg"/></a></dt>
+        <dd>教师数量：<font id="s_js">41</font></dd>
+        <dd>微课数量：<font id="s_wk">32</font></dd>
+        <dd>文档数量：<font id="s_doc">0</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">0</a>
+      </dl>
+      <p class="p_dl">昌平区机关幼儿园为北京市示范幼儿园，为日托制。占地面积8472平方米，校舍建筑面积
+7543平方米。拥有玩具图书馆、美术教室、电脑教室、音乐教师、幼儿图书室等专用教室
+。教室专科以上学历92人，中级职称以上52人，保健员3人。<a href="/v-sinfo-807-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-807-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-807-21522.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/807/vod/2015/07/02/9db38555ceb21bdec05dd9b7110ec145.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="立体纸球" class="mod-course-card__name" target="_blank" href="/v-play-807-21522.htm">立体纸球</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李晶 " target="_blank" href="/v.bo?method=actors&filmid=21522&actors=%E6%9D%8E%E6%99%B6" class="mod-course-card__price mod-course-card__price_free">李晶 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">37</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-807-21520.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/807/vod/2015/07/02/091be7f89cb0d964051f8b67feae4f5b.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="海洋动物" class="mod-course-card__name" target="_blank" href="/v-play-807-21520.htm">海洋动物</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李晶 " target="_blank" href="/v.bo?method=actors&filmid=21520&actors=%E6%9D%8E%E6%99%B6" class="mod-course-card__price mod-course-card__price_free">李晶 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">33</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-807-21540.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/807/vod/2015/07/02/ce0f8457f97f7eb7f032bf6e75c28ccd.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="手工折纸七彩花" class="mod-course-card__name" target="_blank" href="/v-play-807-21540.htm">手工折纸七彩花</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="马林涛 李卫华 " target="_blank" href="/v.bo?method=actors&filmid=21540&actors=%E9%A9%AC%E6%9E%97%E6%B6%9B+%E6%9D%8E%E5%8D%AB%E5%8D%8E" class="mod-course-card__price mod-course-card__price_free">马林涛 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">27</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-807-21609.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/807/vod/2015/07/03/30f2486a4d7cb28ded40ee54896c18e4.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="好玩的翻绳" class="mod-course-card__name" target="_blank" href="/v-play-807-21609.htm">好玩的翻绳</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李米双 " target="_blank" href="/v.bo?method=actors&filmid=21609&actors=%E6%9D%8E%E7%B1%B3%E5%8F%8C" class="mod-course-card__price mod-course-card__price_free">李米双 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">26</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-807-21541.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/807/vod/2015/07/02/131d47c5b9104b8c0c287680c86dcf35.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="泥工--玫瑰花" class="mod-course-card__name" target="_blank" href="/v-play-807-21541.htm">泥工--玫瑰花</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="王冰洁 " target="_blank" href="/v.bo?method=actors&filmid=21541&actors=%E7%8E%8B%E5%86%B0%E6%B4%81" class="mod-course-card__price mod-course-card__price_free">王冰洁 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">24</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-807-21526.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/807/vod/2015/07/02/30d97e6223a5a126bf6dd635274ecf1e.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="多玩手纸画" class="mod-course-card__name" target="_blank" href="/v-play-807-21526.htm">多玩手纸画</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="刘淑新 孙婷婷 " target="_blank" href="/v.bo?method=actors&filmid=21526&actors=%E5%88%98%E6%B7%91%E6%96%B0+%E5%AD%99%E5%A9%B7%E5%A9%B7" class="mod-course-card__price mod-course-card__price_free">刘淑新 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">21</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-807-21556.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/807/vod/2015/07/02/7669de2bb1dc834fa79996be264d71a7.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="废旧物制作汽车" class="mod-course-card__name" target="_blank" href="/v-play-807-21556.htm">废旧物制作汽车</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="贾圆圆 " target="_blank" href="/v.bo?method=actors&filmid=21556&actors=%E8%B4%BE%E5%9C%86%E5%9C%86" class="mod-course-card__price mod-course-card__price_free">贾圆圆 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">18</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-807-21534.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/807/vod/2015/07/02/4c27fe4f27709fd17ef89390c3d64d08.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="压力小实验" class="mod-course-card__name" target="_blank" href="/v-play-807-21534.htm">压力小实验</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="郭晶晶 " target="_blank" href="/v.bo?method=actors&filmid=21534&actors=%E9%83%AD%E6%99%B6%E6%99%B6" class="mod-course-card__price mod-course-card__price_free">郭晶晶 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">17</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-807-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-807-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-807-9069.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-807-9069.htm" class="color_2">国节</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-807-8983.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-807-8983.htm" class="color_2">刘文明</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">32</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-807-9007.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-807-9007.htm" class="color_2">刘昆</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-807-9029.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-807-9029.htm" class="color_2">刘明霞</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-807-9036.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-807-9036.htm" class="color_2">刘晗</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-807-9035.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-807-9035.htm" class="color_2">刘晶晶</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-807-9033.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-807-9033.htm" class="color_2">刘淑新</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-807-832.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-807-832.htm" class="color_2">北京市昌平区机关幼儿园</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=807&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=807&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

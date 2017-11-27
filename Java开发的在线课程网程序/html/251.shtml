@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-内蒙古师范大学</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/banner.jpg" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="http://www.imnu.edu.cn" target="_blank"><img src="/upload_dir/logo.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">31</font></dd>
+        <dd>微课数量：<font id="s_wk">19</font></dd>
+        <dd>文档数量：<font id="s_doc">0</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">4</a>
+      </dl>
+      <p class="p_dl">内蒙古师范大学创建于1952年，是新中国成立后党和国家在边疆少数民族地区最早建立的
+高等学校之一，自治区重点大学，是具有鲜明教师教育和民族教育特色的综合性师范大学
+, 被社会誉为“民族教育的摇篮” 。<a href="/v-sinfo-251-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-251-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-251-2150.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/251/vod/2014/09/23/d762cc7a15bb0d359016dcddf046c30e.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="感受景物魅力—写景作文指导" class="mod-course-card__name" target="_blank" href="/v-play-251-2150.htm">感受景物魅力—写景作文指导</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="王靖茹" target="_blank" href="/v.bo?method=actors&filmid=2150&actors=%E7%8E%8B%E9%9D%96%E8%8C%B9" class="mod-course-card__price mod-course-card__price_free">王靖茹</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">241</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-251-2151.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/251/vod/2014/09/23/00b00913590c1e0c7581ac066bf05e48.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《师说》中对比论证方法分析" class="mod-course-card__name" target="_blank" href="/v-play-251-2151.htm">《师说》中对比论证方法分析</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="王园园 " target="_blank" href="/v.bo?method=actors&filmid=2151&actors=%E7%8E%8B%E5%9B%AD%E5%9B%AD" class="mod-course-card__price mod-course-card__price_free">王园园 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">232</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-251-21382.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/251/vod/201507/vod_7d7a12f3c713fd2a1c902fec530e1d9a.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="小数基础系列微课" class="mod-course-card__name" target="_blank" href="/v-play-251-21382.htm">小数基础系列微课</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="范国锦 陈梅 蒋艳双 李嘉峪 孙慧君 李楠楠 张渝鑫 " target="_blank" href="/v.bo?method=actors&filmid=21382&actors=%E8%8C%83%E5%9B%BD%E9%94%A6+%E9%99%88%E6%A2%85+%E8%92%8B%E8%89%B3%E5%8F%8C+%E6%9D%8E%E5%98%89%E5%B3%AA+%E5%AD%99%E6%85%A7%E5%90%9B+%E6%9D%8E%E6%A5%A0%E6%A5%A0+%E5%BC%A0%E6%B8%9D%E9%91%AB" class="mod-course-card__price mod-course-card__price_free">范国锦 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">198</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">2</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-251-2153.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/251/vod/2014/09/23/3b1bbd3a2033670da28df88eb2b23b9c.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="以小见大的写作手法" class="mod-course-card__name" target="_blank" href="/v-play-251-2153.htm">以小见大的写作手法</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="张玲月" target="_blank" href="/v.bo?method=actors&filmid=2153&actors=%E5%BC%A0%E7%8E%B2%E6%9C%88" class="mod-course-card__price mod-course-card__price_free">张玲月</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">153</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-251-2146.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/251/vod/2014/09/23/cbcb15a46e8c5a035ebb93fd3eff0e06.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="怎样按顺序写景物" class="mod-course-card__name" target="_blank" href="/v-play-251-2146.htm">怎样按顺序写景物</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="白淑艳 " target="_blank" href="/v.bo?method=actors&filmid=2146&actors=%E7%99%BD%E6%B7%91%E8%89%B3" class="mod-course-card__price mod-course-card__price_free">白淑艳 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">139</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-251-2148.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/251/vod/2014/09/23/91caa67158ed1f526fc9472239e801fc.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="辞格—双关" class="mod-course-card__name" target="_blank" href="/v-play-251-2148.htm">辞格—双关</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="史艳丽" target="_blank" href="/v.bo?method=actors&filmid=2148&actors=%E5%8F%B2%E8%89%B3%E4%B8%BD" class="mod-course-card__price mod-course-card__price_free">史艳丽</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">135</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-251-2147.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/251/vod/2014/09/23/fe89e7053063826829b4054381b34f4f.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="好孩子是夸出来的" class="mod-course-card__name" target="_blank" href="/v-play-251-2147.htm">好孩子是夸出来的</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李敏雪 " target="_blank" href="/v.bo?method=actors&filmid=2147&actors=%E6%9D%8E%E6%95%8F%E9%9B%AA" class="mod-course-card__price mod-course-card__price_free">李敏雪 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">3</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">134</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-251-2145.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/251/vod/2014/09/23/3262f0e192c0b6fc363c5cdd81a3bfeb.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="我们能做点什么" class="mod-course-card__name" target="_blank" href="/v-play-251-2145.htm">我们能做点什么</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="白石" target="_blank" href="/v.bo?method=actors&filmid=2145&actors=%E7%99%BD%E7%9F%B3" class="mod-course-card__price mod-course-card__price_free">白石</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">134</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-251-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-251-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-251-8964.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-251-8964.htm" class="color_2">孙慧君</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-251-11549.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-251-11549.htm" class="color_2">史艳丽</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-251-9259.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-251-9259.htm" class="color_2">吕宝华</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-251-6649.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-251-6649.htm" class="color_2">吴亚南</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-251-9248.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-251-9248.htm" class="color_2">周旸</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-251-11550.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-251-11550.htm" class="color_2">宋丽媛</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-251-272.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-251-272.htm" class="color_2">师范大学</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">10</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-251-9207.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-251-9207.htm" class="color_2">张丽莹</a>&nbsp;&nbsp;<span class="color_3">学生</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=251&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=251&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

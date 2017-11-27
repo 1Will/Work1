@@ -1,0 +1,130 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*2个字的按钮通用样式*/
+.btn_all, .btn_add, .btn_del, .btn_search, .btn_save, .btn_cancel, .btn_upload, .btn_backup, .btn_enable, .btn_recommend, .btn_goback, .btn_recover, .btn_authorize, .btn_revocation {
+    border: 0 none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    height: 23px;
+    text-align:center;
+    width: 69px;
+	margin:0px;
+	padding:0px;
+}
+
+/*3个字的按钮通用样式*/
+.btn_none,.btn_allenable,.btn_alldel{border: 0 none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    height: 23px;
+    text-align:center;
+    width: 69px;
+	margin:0px;
+	padding:0px;}
+/*4个字的按钮通用样式*/
+.btn_check,.btn_fordel,.btn_download,.btn_html,.btn_batchadd,.btn_allauthorize,.btn_allrevocation,.btn_batchdown{border: 0 none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    height: 23px;
+    text-align:center;
+    width: 69px;
+	margin:0px;
+	padding:0px;}
+/*5个字的按钮通用样式*/
+.btn_static{border: 0 none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    height: 23px;
+    text-align:center;
+    width: 69px;
+	margin:0px;
+	padding:0px;}
+
+/*空按钮通用样式*/
+.btn_blank{border: 0 none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    height: 23px;
+    text-align:center;
+    width: 69px;
+	margin:0px;
+	padding:0px;}
+
+
+
+
+/*全选*/
+.btn_all{background:#83CDFF;}
+/*全不选*/
+.btn_none{background:#83CDFF;}
+/*新增*/
+.btn_add{background:#83CDFF;}
+/*批量新增*/
+.btn_batchadd{background:#83CDFF;}
+/*删除*/
+.btn_del{background:#83CDFF;}
+/*全删除【新增的类】*/
+.btn_alldel{background:#83CDFF;}
+/*彻底删除【新增的类】*/
+.btn_fordel{background:#83CDFF;}
+/*批量静态化【新增的类】*/
+.btn_static{background:#83CDFF;}
+/*搜索*/
+.btn_search{background:#00a9ff;}
+/*保存*/
+.btn_save{background:#83CDFF;}
+/*返回*/
+.btn_cancel{background:#83CDFF;}
+/*上传【新增的类】*/
+.btn_upload{background:#83CDFF;}
+/*审核*/
+.btn_enable{background:#83CDFF;}
+/*全审核*/
+.btn_allenable{background:#83CDFF;}
+/*批量审核*/
+.btn_check{background:#83CDFF;}
+/*推荐【新增的类】*/
+.btn_recommend{background:#83CDFF;}
+/*转移*/
+.btn_backup{background:#83CDFF;}
+/*退回【新增的类】*/
+.btn_goback{background:#83CDFF;}
+/*恢复【新增的类】*/
+.btn_recover{background:#83CDFF;}
+/*导出数据*/
+.btn_download{background:#83CDFF;}
+/*重新统计*/
+.btn_html{background:#83CDFF;}
+/*空按钮通用样式*/
+.btn_blank{background:#83CDFF;}
+/*授权*/
+.btn_authorize{background:#83CDFF;}
+/*全部授权*/
+.btn_allauthorize{background:#83CDFF;}
+/*撤销*/
+.btn_revocation{background:#83CDFF;}
+/*全部撤销*/
+.btn_allrevocation{background:#83CDFF;}
+/*批量下载*/
+.btn_batchdown{background:#83CDFF;}
+
+.btn_check_css{border:0;
+	 background:#83CDFF; width:58px; height:24px;
+	 font-size:12px; color:#fff;
+	 text-align:center;
+   	 cursor:pointer;
+}
+	 
+	 
+.btn_no{border:0;
+	 background:#83CDFF; width:58px; height:24px;
+	 font-size:12px; color:#fff;
+	 text-align:center;
+   	cursor:pointer;
+}

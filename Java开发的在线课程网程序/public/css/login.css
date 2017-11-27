@@ -1,0 +1,21 @@
+@charset "utf-8";
+/*-------甯歌镙峰纺----------*/
+*{padding:0px; margin:0px;}
+body{font-size:12px; color:#000; background-color:#fff;}
+img {border:0px;}
+table{border:0px;}
+ul,li{list-style:none;}
+/*login*/
+#login{ width:408px; height:238px;border:1px solid #464646; background:#f3f3f3; margin:auto auto; position:absolute; top:50%; left:50%; margin-left:-205px;margin-top:-119px;}
+.title{ height:43px; line-height:43px; background:url(/public/images/login/title_bg.gif) repeat-x left top;}
+.title_cont{ float:left; margin-left:20px;_margin-left:10px; background:url(/public/images/login/icon_01.gif) no-repeat left center; padding-left:35px; color:#000; font-size:14px; font-weight:bold;}
+.close{ float:right; margin-top:15px; margin-right:15px;_margin-right:7px;}
+.content{ width:371px; margin:0px 19px 20px 18px;}
+.mid_cont{border:1px solid #c6cbcf; border-top:0px none; border-bottom:0px none; background:#fff url(/public/images/login/logo_bg.jpg) no-repeat 25px 10px; padding-left:140px; width:229px; padding-top:25px; height:140px; }
+.mid_cont tr{ height:32px;}
+.login_text1,.login_text2{ height:22px; line-height:22px; border:1px solid #acacac;}
+.login_text1{ width:142px;}
+.login_text2{ width:62px;}
+.login_button{ width:194px; margin-top:16px; text-align:center;}
+.button1{ background:url(/public/images/login/denglu.jpg) no-repeat left top; width:64px; height:20px; border:0px;cursor:pointer;}
+.button2{ background:url(/public/images/login/tuichu.jpg) no-repeat left top; width:64px; height:20px; margin-left:18px;border:0px; cursor:pointer;}

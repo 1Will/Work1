@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.base.house.Floor" table="t_floor" lazy="false">
+		<id name="id" column="id" type="long">
+			<generator class="native">
+				<param name="sequence">t_floor_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		
+		<property name="code" type="string">
+            <column name="code" not-null="false" length="20" />
+        </property>
+        
+        <property name="name" type="string">
+			<column name="name" not-null="false" length="40" />
+		</property>
+		
+		<property name="hasWaterMeter" type="boolean">
+		    <column name="hasWaterMeter" ></column>
+		</property>
+		
+		<property name="hasElectricMeter" type="boolean">
+		    <column name="hasElectricMeter" ></column>
+		</property>
+		
+		<property name="hasAirMeter" type="boolean">
+		    <column name="hasAirMeter" ></column>
+		</property>
+		
+		<property name="hasNetMeter" type="boolean">
+		    <column name="hasNetMeter" ></column>
+		</property>
+		
+		<property name="waterMeterNum" type="float">
+		    <column name="waterMeterNum" ></column>
+		</property>
+		
+		<property name="electricMeterNum" type="float">
+		    <column name="electricMeterNum" ></column>
+		</property>
+		
+		<property name="airMeterNum" type="float">
+		    <column name="airMeterNum" ></column>
+		</property>
+				
+		<property name="waterdisplay" type="double">
+		    <column name="waterdisplay" ></column>
+		</property>
+		
+		<property name="aedisplay" type="double">
+		    <column name="aedisplay" ></column>
+		</property>
+		
+		<property name="bedisplay" type="double">
+		    <column name="bedisplay" ></column>
+		</property>
+		
+		<many-to-one name="building" class="com.yongjun.tdms.model.base.house.Building" lazy="false">
+			<column name="building_id" not-null="true"/>
+		</many-to-one>
+				
+		<many-to-one name="aeMeter" class="com.yongjun.tdms.model.base.meter.ElectricMeter" lazy="false">
+			<column name="aeMeter" not-null="false"></column>
+        </many-to-one>
+		
+		<many-to-one name="beMeter" class="com.yongjun.tdms.model.base.meter.ElectricMeter" lazy="false">
+			<column name="beMeter" not-null="false"></column>
+        </many-to-one>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR"   type="string" length="20"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator"  column="LAST_OPERATOR"   type="string" length="20"/>
+	</class>
+</hibernate-mapping>

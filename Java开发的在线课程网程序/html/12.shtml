@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-微课慕课网</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/12/unit/201407/6a8cea3b0fa8d0f1f78bddd2f86bc161.png" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="http://www.wkmk.com" target="_blank"><img src="/upload_dir/12/unit/201407/64c36de1ea7a282f353bc7650c8ead57.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">129</font></dd>
+        <dd>微课数量：<font id="s_wk">128</font></dd>
+        <dd>文档数量：<font id="s_doc">582</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">7</a>
+      </dl>
+      <p class="p_dl">中国微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频<a href="/v-sinfo-12-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-12-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-12-4390.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/12/vod/2014/11/21/4f229a8d0f6b4fc5d41588bf250977c7.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="高三数学 立体几何与解析几何（理）" class="mod-course-card__name" target="_blank" href="/v-play-12-4390.htm">高三数学 立体几何与解析几何（理）</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="金榜苑" target="_blank" href="/v.bo?method=actors&filmid=4390&actors=%E9%87%91%E6%A6%9C%E8%8B%91" class="mod-course-card__price mod-course-card__price_free">金榜苑</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">3186</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-12-4391.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/12/vod/2014/11/23/46685df797d5547feed1fd505dad8a0a.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="高三数学 函数、导数_微课程样例" class="mod-course-card__name" target="_blank" href="/v-play-12-4391.htm">高三数学 函数、导数_微课程样例</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="金榜苑" target="_blank" href="/v.bo?method=actors&filmid=4391&actors=%E9%87%91%E6%A6%9C%E8%8B%91" class="mod-course-card__price mod-course-card__price_free">金榜苑</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">1451</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-12-4321.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/12/vod/2014/10/16/484e47eb96cb512673822488599de9c5.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="2014.8.1.2 第二届全国微课大赛拍摄" class="mod-course-card__name" target="_blank" href="/v-play-12-4321.htm">2014.8.1.2 第二届全国微课大赛拍摄</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="管理员 " target="_blank" href="/v.bo?method=actors&filmid=4321&actors=%E7%AE%A1%E7%90%86%E5%91%98" class="mod-course-card__price mod-course-card__price_free">管理员 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">980</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-12-783.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/12/vod/2014/07/07/cb6c5c6ef11f9c714019a2fed0a218cd.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="胡铁生微课分享" class="mod-course-card__name" target="_blank" href="/v-play-12-783.htm">胡铁生微课分享</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="胡铁生 " target="_blank" href="/v.bo?method=actors&filmid=783&actors=%E8%83%A1%E9%93%81%E7%94%9F" class="mod-course-card__price mod-course-card__price_free">胡铁生 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">906</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-12-4315.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/12/vod/2014/10/16/43b57068f0f7a81c52c002956f7bbc6f.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="2014.7.31第二届全国微课大赛拍摄" class="mod-course-card__name" target="_blank" href="/v-play-12-4315.htm">2014.7.31第二届全国微课大赛拍摄</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="管理员 " target="_blank" href="/v.bo?method=actors&filmid=4315&actors=%E7%AE%A1%E7%90%86%E5%91%98" class="mod-course-card__price mod-course-card__price_free">管理员 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">751</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-12-17196.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/12/vod/2015/06/01/e99faa0d0a9cbf38bc4029f23e16ecc1.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="中国微课慕课网&微课程联盟-上传微课及相关事项" class="mod-course-card__name" target="_blank" href="/v-play-12-17196.htm">中国微课慕课网&微课程联盟-上传微课及相关事项</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="管理员 " target="_blank" href="/v.bo?method=actors&filmid=17196&actors=%E7%AE%A1%E7%90%86%E5%91%98" class="mod-course-card__price mod-course-card__price_free">管理员 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">746</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-12-1463.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/12/vod/2014/07/24/9a4477f3b4b201e7eebc8d64ba609f74.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="李书昱 微课 切线专题 证明圆的切线的两种方法6讲" class="mod-course-card__name" target="_blank" href="/v-play-12-1463.htm">李书昱 微课 切线专题 证明圆的切线的两种方法6讲</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李书昱 " target="_blank" href="/v.bo?method=actors&filmid=1463&actors=%E6%9D%8E%E4%B9%A6%E6%98%B1" class="mod-course-card__price mod-course-card__price_free">李书昱 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">3</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">734</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-12-4316.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/12/vod/2014/10/16/afc6cff32ad04ee3d67b17f6fddb86bb.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="2014.8.1 海南厅 第二届全国微课大赛拍摄" class="mod-course-card__name" target="_blank" href="/v-play-12-4316.htm">2014.8.1 海南厅 第二届全国微课大赛拍摄</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="管理员 " target="_blank" href="/v.bo?method=actors&filmid=4316&actors=%E7%AE%A1%E7%90%86%E5%91%98" class="mod-course-card__price mod-course-card__price_free">管理员 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">638</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-12-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-12-94.htm" target="_blank"><img src="/upload_dir/doc/12/2015/06/11/a93ffdf6d2a65e3dc60a15753acf5ef8.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-12-94.htm" target="_blank" style="font-size:14px;">从展示性应用到常规应用一微课程在数..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-12-72.htm" target="_blank" class="color_2">余贵泉</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">53</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">1377</span></span>
+              <span>下载量<span class="color_5">1</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-12-89.htm" target="_blank"><img src="/upload_dir/doc/12/2015/06/11/c83d66a80925a8de717e1f609942104a.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-12-89.htm" target="_blank" style="font-size:14px;">微课，着力于学习方式的改变</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-12-72.htm" target="_blank" class="color_2">余贵泉</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">16</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">1359</span></span>
+              <span>下载量<span class="color_5">2</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-12-87.htm" target="_blank"><img src="/upload_dir/doc/12/2015/06/11/11d39678a0dc5b5aaa0f6d76c7fe863a.png" /></a></dt>
+            <dd class="ico_pptx"><a href="/v003-doc-12-87.htm" target="_blank" style="font-size:14px;">翻转课堂与微课程开发方法(姑苏区)</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-12-73.htm" target="_blank" class="color_2">张学栋</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">72</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">1357</span></span>
+              <span>下载量<span class="color_5">3</span></span>
+            </dd>
+          </dl>
+      </div>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-12-86.htm" target="_blank"><img src="/upload_dir/doc/12/2015/06/11/8e19009312eb924540d91b9c84d9780f.png" /></a></dt>
+            <dd class="ico_pptx"><a href="/v003-doc-12-86.htm" target="_blank" style="font-size:14px;">微课程开发使用心得</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-12-72.htm" target="_blank" class="color_2">余贵泉</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">21</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">1354</span></span>
+              <span>下载量<span class="color_5">1</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-12-38.htm" target="_blank"><img src="/upload_dir/12/doc/2015/06/09/4e82b109066bed4b1732e197d11dec2a.png" /></a></dt>
+            <dd class="ico_docx"><a href="/v003-doc-12-38.htm" target="_blank" style="font-size:14px;">15、王开岭：每个故乡都在消逝</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-12-14.htm" target="_blank" class="color_2">师科阳光</a> | <span>评分<span class="color_5">3</span></span><span>共<font class="color_5">4</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">147</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-12-99115.htm" target="_blank"><img src="/upload_dir/12/doc/2015/06/13/ddbb89323e193ca77bc1e2cf9a04c4d3.png" /></a></dt>
+            <dd class="ico_pptx"><a href="/v003-doc-12-99115.htm" target="_blank" style="font-size:14px;">跟谁学陈向东：移动互联网教育的发展..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-12-14.htm" target="_blank" class="color_2">师科阳光</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">42</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">144</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-12-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-12-111.htm"><img src="/upload_dir/12/user/201407/8e241bb9e182fdd1283178468db2a3f1.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-12-111.htm" class="color_2">俞红</a>&nbsp;&nbsp;<span class="color_3">教科室主任</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">2</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-12-113.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-12-113.htm" class="color_2">庞西宏</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-12-74.htm"><img src="/upload_dir/12/user/201407/28764184bade93d51192e9a00a6ccd28.gif" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-12-74.htm" class="color_2">李书昱</a>&nbsp;&nbsp;<span class="color_3">数学教研组长、微课教研负责人</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">2</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-12-109.htm"><img src="/upload_dir/user/201407/vod_8b31543872d76097f97d329b6460e8f6.png" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-12-109.htm" class="color_2">金晓芳</a>&nbsp;&nbsp;<span class="color_3">南昌师院等特聘国培专家</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">4</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-12-64.htm"><img src="/upload_dir/12/user/201407/0e6cf8417050d6066a4b468552342de7.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-12-64.htm" class="color_2">汪晓东</a>&nbsp;&nbsp;<span class="color_3">教授</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-12-103.htm"><img src="/upload_dir/user/201407/vod_862fce932d6a3db2f67f15743424a249.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-12-103.htm" class="color_2">卢伟中</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">4</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-12-77.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-12-77.htm" class="color_2">张伟</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-12-116.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-12-116.htm" class="color_2">殷汝军</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=12&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=12&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

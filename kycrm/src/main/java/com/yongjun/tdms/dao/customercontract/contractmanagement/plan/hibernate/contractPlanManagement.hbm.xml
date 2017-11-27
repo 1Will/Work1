@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.customercontract.contractmanagement.plan.ContractPlan" table="t_contractPlan">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_contractPlan_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<property name="startTime" column="STARTTIME" type="timestamp"/>
+		<property name="endTime" column="ENDTIME" type="timestamp"/>
+		<many-to-one name="contractManagement" class="com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement">
+			<column name="CONTRACTMANAGEMENT_ID" not-null="true"></column>
+		</many-to-one>
+		
+		<property name="content" type="string">
+			<column name="CONTENT" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+		
+		<many-to-one name="executor" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+			<column name="EXECUTOR_ID" not-null="true"></column>
+		</many-to-one>
+        
+       	<property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

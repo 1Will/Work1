@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-江苏省扬州大学</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/banner.gif" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="http://www.yzu.edu.cn" target="_blank"><img src="/upload_dir/logo.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">7</font></dd>
+        <dd>微课数量：<font id="s_wk">7</font></dd>
+        <dd>文档数量：<font id="s_doc">3</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">0</a>
+      </dl>
+      <p class="p_dl">扬州大学是江苏省属重点综合性大学，是全国率先进行合并办学的高校，1992年由扬州师
+范学院、江苏农学院、扬州工学院、扬州医学院、江苏水利工程专科学校、江苏商业专科
+学校等6所高校合并组建而成。扬州大学的办学历史最早可以追溯到1902年由近代著名实
+业家、教育家张謇先生创建的通州师范学校和通海农学<a href="/v-sinfo-951-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-951-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-951-22220.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/951/vod/201507/vod_eb8fec78a0e4873a8e49d269e8e966a7.JPG" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="探秘ABO血型" class="mod-course-card__name" target="_blank" href="/v-play-951-22220.htm">探秘ABO血型</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="房晓 " target="_blank" href="/v.bo?method=actors&filmid=22220&actors=%E6%88%BF%E6%99%93" class="mod-course-card__price mod-course-card__price_free">房晓 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">3</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">94</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-951-4479.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/951/vod/2015/01/06/30433af720d2904e2fad2f9e868da1f7.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="快门与光圈" class="mod-course-card__name" target="_blank" href="/v-play-951-4479.htm">快门与光圈</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="郝松" target="_blank" href="/v.bo?method=actors&filmid=4479&actors=%E9%83%9D%E6%9D%BE" class="mod-course-card__price mod-course-card__price_free">郝松</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">79</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-951-22065.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/951/vod/201507/vod_c9144373c24b11f5f15464226b794d2b.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="如何降低汽车行驶时的空气阻力" class="mod-course-card__name" target="_blank" href="/v-play-951-22065.htm">如何降低汽车行驶时的空气阻力</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="沈辉 " target="_blank" href="/v.bo?method=actors&filmid=22065&actors=%E6%B2%88%E8%BE%89" class="mod-course-card__price mod-course-card__price_free">沈辉 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">54</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-951-22218.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/951/vod/2015/07/10/35fd7846542bd7c46ff9163ceb6a842c.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="学前儿童保育之晨检要点" class="mod-course-card__name" target="_blank" href="/v-play-951-22218.htm">学前儿童保育之晨检要点</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="严晓霞 " target="_blank" href="/v.bo?method=actors&filmid=22218&actors=%E4%B8%A5%E6%99%93%E9%9C%9E" class="mod-course-card__price mod-course-card__price_free">严晓霞 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">43</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-951-22197.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/951/vod/2015/07/09/c9c10cb1bb0dee2863570ccc0d895339.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="肾主生长、发育、生殖---为什么女子比男子容易衰老" class="mod-course-card__name" target="_blank" href="/v-play-951-22197.htm">肾主生长、发育、生殖---为什么女子比男子容易衰老</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="郑新梅 " target="_blank" href="/v.bo?method=actors&filmid=22197&actors=%E9%83%91%E6%96%B0%E6%A2%85" class="mod-course-card__price mod-course-card__price_free">郑新梅 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">43</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-951-22088.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/951/vod/201507/vod_2bd71275500c64b8b7772ce0b3ba229d.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="如何降低汽车行驶时的空气阻力" class="mod-course-card__name" target="_blank" href="/v-play-951-22088.htm">如何降低汽车行驶时的空气阻力</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="沈辉 " target="_blank" href="/v.bo?method=actors&filmid=22088&actors=%E6%B2%88%E8%BE%89" class="mod-course-card__price mod-course-card__price_free">沈辉 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">38</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-951-22120.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/951/vod/201507/vod_908cb85a252030107e3bb9ec8166553b.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="编曲中低音层的编配" class="mod-course-card__name" target="_blank" href="/v-play-951-22120.htm">编曲中低音层的编配</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="蔡曌 " target="_blank" href="/v.bo?method=actors&filmid=22120&actors=%E8%94%A1%E6%9B%8C" class="mod-course-card__price mod-course-card__price_free">蔡曌 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">32</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-951-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-951-99856.htm" target="_blank"><img src="/upload_dir/951/doc/2015/07/10/f0183ec3b6aad962e870dae6ae2da91d.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-951-99856.htm" target="_blank" style="font-size:14px;">滴血验亲与ABO血型</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-951-9798.htm" target="_blank" class="color_2">房晓</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">24</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">41</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-951-99819.htm" target="_blank"><img src="/upload_dir/951/doc/2015/07/07/832690fa5b26db88c0ba09ee39990505.png" /></a></dt>
+            <dd class="ico_doc"><a href="/v003-doc-951-99819.htm" target="_blank" style="font-size:14px;">如何降低汽车空气阻力微课教学设计</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-951-9445.htm" target="_blank" class="color_2">沈辉</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">2</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">12</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-951-99806.htm" target="_blank"><img src="/upload_dir/951/doc/2015/07/06/d221cc76e4b88e75105974b007843e07.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-951-99806.htm" target="_blank" style="font-size:14px;">如何降低汽车空气阻力微课</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-951-9445.htm" target="_blank" class="color_2">沈辉</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">23</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">12</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-951-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-951-9885.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-951-9885.htm" class="color_2">严晓霞</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-951-9798.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-951-9798.htm" class="color_2">房晓</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">1</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-951-1163.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-951-1163.htm" class="color_2">江苏扬州大学</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-951-9445.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-951-9445.htm" class="color_2">沈辉</a>&nbsp;&nbsp;<span class="color_3">扬州大学机械学院汽车系主任</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">2</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">2</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-951-9449.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-951-9449.htm" class="color_2">蔡曌</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-951-9849.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-951-9849.htm" class="color_2">郑新梅</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-951-13263.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-951-13263.htm" class="color_2">郝松</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="10%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=951&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=951&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.workReport.week.Week" table="t_week">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_week_sequence</param>
+				<param name="parameters">START WITH 1</param>
+			</generator>
+		</id>
+		
+		<property name="name" type="string">
+            <column name="NAME" not-null="true" sql-type="NVARCHAR(20)" />
+        </property>
+		
+		<property name="startDate" type="timestamp">
+            <column name="STARTDATE" not-null="true" />
+        </property>
+        
+		<property name="endDate" type="timestamp">
+            <column name="ENDDATE" not-null="true" />
+        </property>
+        
+	</class>
+</hibernate-mapping>

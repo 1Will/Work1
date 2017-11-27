@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.project.state.ProjectState" table="t_projectState">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_projectState_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<!--项目 -->
+		<many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
+			<column name="projectInfo" not-null="false" />
+		</many-to-one>
+		
+		<!--变更前状态 -->
+		<many-to-one name="beforeState" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+			<column name="beforeState" not-null="false" />
+		</many-to-one>
+		
+		<!--变更后状态 -->
+		<many-to-one name="newState" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+			<column name="newState" not-null="false" />
+		</many-to-one>
+				
+        <property name="explain" type="string">
+			<column name="EXPLAIN" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

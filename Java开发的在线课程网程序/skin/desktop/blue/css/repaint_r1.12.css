@@ -1,0 +1,94 @@
+/* CSS Document */
+.dtk-carousel {border:#E3E3E3 1px solid;
+WIDTH: 738px;
+ margin-top:10px;
+	 POSITION: relative; overflow:hidden;BACKGROUND: #fafcff; float:left;
+}
+.dtk-carousel H2 {
+	FONT-WEIGHT:bold; FONT-SIZE: 14px; COLOR: #000; border-bottom:1px solid #E3E3E3; height:35px; line-height:35px; padding:0 15px;
+}
+.dtk-carousel H2 A {
+	FONT-SIZE: 14px; COLOR: #244075
+}
+.dtk-carousel H2 A:visited {
+	FONT-SIZE: 14px; COLOR: #244075
+}
+.dtk-carousel H2 A:hover {
+	FONT-SIZE: 14px; COLOR: #244075
+}
+.dtk-carousel A.prev SPAN {
+	DISPLAY: none
+}
+.dtk-carousel A.next SPAN {
+	DISPLAY: none
+}
+.dtk-carousel A.prev {
+	DISPLAY: inline; RIGHT: 50px; BACKGROUND: url(../images/movcar_nav.gif) no-repeat; OVERFLOW: hidden; WIDTH: 31px; CURSOR: pointer; POSITION: absolute; TOP: 5px; HEIGHT: 22px;
+}
+.dtk-carousel A.next {
+	DISPLAY: inline; RIGHT: 20px; BACKGROUND: url(../images/movcar_nav.gif) no-repeat; OVERFLOW: hidden; WIDTH: 31px; CURSOR: pointer; POSITION: absolute; TOP: 5px; HEIGHT: 22px
+}
+.dtk-carousel A.next {
+	BACKGROUND-POSITION: -30px 0px; RIGHT: 20px; WIDTH: 30px
+}
+A.off {
+	CURSOR: default! important
+}
+.dtk-carousel .scrollnav {
+	RIGHT: 95px; LIST-STYLE-TYPE: none; POSITION: absolute; TOP: 12px;
+}
+.dtk-carousel .scrollnav A {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 0px; BACKGROUND: url(../images/movcar_nav2.gif) no-repeat -11px -23px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px 1px; OVERFLOW: hidden; WIDTH: 9px; TEXT-INDENT: -100px; PADDING-TOP: 0px; HEIGHT: 9px
+}
+.dtk-carousel .scrollnav A.current {
+	BACKGROUND-POSITION: 0px -23px; CURSOR: default
+}
+.dtk-carousel .ft A {
+	PADDING-RIGHT: 5px; DISPLAY: block; PADDING-LEFT: 5px; FLOAT: right; PADDING-BOTTOM: 5px; FONT: bold 85% arial; COLOR: #009dd9; PADDING-TOP: 5px; BACKGROUND-COLOR: #eaeaea; TEXT-DECORATION: none
+}
+.dtk-carousel DIV.scrollbody {
+	DISPLAY: inline; FLOAT: left; OVERFLOW: hidden; margin:0 12px; width:714px; padding:12px 0px;
+}
+.dtk-carousel DIV.scrollpages {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 1000em; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+UL.dtk-list {
+	DISPLAY: inline; FLOAT: left; WIDTH: 714px
+}
+.scrollpage {
+	DISPLAY: inline; FLOAT: left; WIDTH: 714px; overflow:hidden;
+}
+UL.dtk-list LI.dtk-item {
+	DISPLAY: inline; FLOAT: left
+}
+.dtk-carousel:unknown {
+	CLEAR: both; DISPLAY: block; VISIBILITY: hidden; HEIGHT: 0px; content: "."
+}
+.dtk-carousel .scrollpages:unknown {
+	CLEAR: both; DISPLAY: block; VISIBILITY: hidden; HEIGHT: 0px; content: "."
+}
+.dtk-carousel H2:unknown {
+	CLEAR: both; DISPLAY: block; VISIBILITY: hidden; HEIGHT: 0px; content: "."
+}
+.dtk-carousel UL.scrollnav:unknown {
+	CLEAR: both; DISPLAY: block; VISIBILITY: hidden; HEIGHT: 0px; content: "."
+}
+.dtk-carousel {
+	ZOOM: 1
+}
+.dtk-carousel .scrollpages {
+	ZOOM: 1
+}
+.dtk-carousel H2 {
+	ZOOM: 1
+}
+.dtk-carousel UL.scrollnav {
+	ZOOM: 1
+}
+
+.quadruple IMG {
+	OVERFLOW: hidden; WIDTH: 82px; HEIGHT: 81px
+}
+.quadruple UL.dtk-list LI.dtk-item {
+	WIDTH:82px; height:81px; padding:10px;
+}

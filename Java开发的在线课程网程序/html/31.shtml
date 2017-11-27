@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-华中科技大学远程与继续教育学院</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/12/unit/201407/715887db9226b25eec4fcc9669a68320.jpg" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="http://www.hust-snde.com/cms/" target="_blank"><img src="/upload_dir/12/unit/201407/39520cd456d9c53230da4fcefa96d6c1.jpg"/></a></dt>
+        <dd>教师数量：<font id="s_js">5</font></dd>
+        <dd>微课数量：<font id="s_wk">20</font></dd>
+        <dd>文档数量：<font id="s_doc">0</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">3</a>
+      </dl>
+      <p class="p_dl">华中科技大学是国家教育部直属的全国重点大学，由原华中理工大学、同济医科大学
+、武汉城市建设学院于2000年5月26日合并成立，是首批列入国家“211工程”重点建
+设和国家“985工程”建设高校之一。学校校园占地7000余亩，园内树木葱茏，碧草如
+茵，环境优雅，景色秀丽，绿化覆盖率72%，被誉为“<a href="/v-sinfo-31-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-31-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-31-279.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/31/vod/2014/07/03/a3b3ed3b779eda9fd549e7bdd0a63041.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="糖尿病病人的日常护理" class="mod-course-card__name" target="_blank" href="/v-play-31-279.htm">糖尿病病人的日常护理</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="胡翠环" target="_blank" href="/v.bo?method=actors&filmid=279&actors=%E8%83%A1%E7%BF%A0%E7%8E%AF" class="mod-course-card__price mod-course-card__price_free">胡翠环</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">596</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-31-275.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/31/vod/2014/07/01/64b6e0a780e6ef941ab5d1bbba0a9766.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="如何测量血压" class="mod-course-card__name" target="_blank" href="/v-play-31-275.htm">如何测量血压</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="胡翠环" target="_blank" href="/v.bo?method=actors&filmid=275&actors=%E8%83%A1%E7%BF%A0%E7%8E%AF" class="mod-course-card__price mod-course-card__price_free">胡翠环</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">3</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">556</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-31-294.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/31/vod/2014/07/01/a003f168353e178b04e17711f973765b.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="遇毒蛇咬伤如何急救" class="mod-course-card__name" target="_blank" href="/v-play-31-294.htm">遇毒蛇咬伤如何急救</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="倪平" target="_blank" href="/v.bo?method=actors&filmid=294&actors=%E5%80%AA%E5%B9%B3" class="mod-course-card__price mod-course-card__price_free">倪平</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">496</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-31-291.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/31/vod/2014/07/01/2a147725f746f6efe4b7b269655e34d0.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="如何进行鼻出血的急救" class="mod-course-card__name" target="_blank" href="/v-play-31-291.htm">如何进行鼻出血的急救</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="倪平" target="_blank" href="/v.bo?method=actors&filmid=291&actors=%E5%80%AA%E5%B9%B3" class="mod-course-card__price mod-course-card__price_free">倪平</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">412</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-31-270.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/31/vod/2014/07/01/8d78fb57a537a9be8aee163b61ccc517.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="艾滋病和HIV感染是什么关系" class="mod-course-card__name" target="_blank" href="/v-play-31-270.htm">艾滋病和HIV感染是什么关系</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="胡翠环" target="_blank" href="/v.bo?method=actors&filmid=270&actors=%E8%83%A1%E7%BF%A0%E7%8E%AF" class="mod-course-card__price mod-course-card__price_free">胡翠环</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">408</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-31-287.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/31/vod/2014/07/01/7c5fb1b621a32535dae5a23d5ac4d0ec.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="准妈妈如何进行产前检查" class="mod-course-card__name" target="_blank" href="/v-play-31-287.htm">准妈妈如何进行产前检查</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李节" target="_blank" href="/v.bo?method=actors&filmid=287&actors=%E6%9D%8E%E8%8A%82" class="mod-course-card__price mod-course-card__price_free">李节</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">391</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-31-277.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/31/vod/2014/07/01/03ca280216f76b1cafd15361ea338d57.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="食物中毒有哪些临床表现" class="mod-course-card__name" target="_blank" href="/v-play-31-277.htm">食物中毒有哪些临床表现</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="胡翠环" target="_blank" href="/v.bo?method=actors&filmid=277&actors=%E8%83%A1%E7%BF%A0%E7%8E%AF" class="mod-course-card__price mod-course-card__price_free">胡翠环</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">4</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">376</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-31-282.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/31/vod/2014/07/01/2378f74f890efa412b6e4f535460c942.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="关节炎的自我管理" class="mod-course-card__name" target="_blank" href="/v-play-31-282.htm">关节炎的自我管理</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李节" target="_blank" href="/v.bo?method=actors&filmid=282&actors=%E6%9D%8E%E8%8A%82" class="mod-course-card__price mod-course-card__price_free">李节</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">316</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-31-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-31-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-31-10270.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-31-10270.htm" class="color_2">倪平</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-31-8607.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-31-8607.htm" class="color_2">华中科技大学远程与继续教育学院</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">9</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-31-10263.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-31-10263.htm" class="color_2">李节</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-31-10251.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-31-10251.htm" class="color_2">胡翠环</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-31-35.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-31-35.htm" class="color_2">贺晓敏</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">11</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="17%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="14%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="10%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=31&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=31&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

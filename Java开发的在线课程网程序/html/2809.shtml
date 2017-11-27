@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-江西科技学院</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/2809/unit/201506/a407dec51cbba11783b438d31c79783f.jpg" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="http://www.jxut.edu.cn/" target="_blank"><img src="/upload_dir/2809/unit/201506/0cf9ae6c7788e9b24e2ff69ade37f5c8.png"/></a></dt>
+        <dd>教师数量：<font id="s_js">170</font></dd>
+        <dd>微课数量：<font id="s_wk">28</font></dd>
+        <dd>文档数量：<font id="s_doc">13</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">11</a>
+      </dl>
+      <p class="p_dl">　　江西科技学院是经国家教育部批准成立的一所普通本科高校，具有颁发国家承认的统招本、专科学历资格，并具有学士学位授予权。
+　　学校前身为江西蓝天学院，成立于1994年。建校以来，学校秉承“以科教兴国为己任，为振兴中华而办学”的宗旨，坚持公益性办学方向，以市场需求为导向，走“精品+特色”的办学之路，为<a href="/v-sinfo-2809-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-2809-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2809-19702.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2809/vod/2015/06/29/f781c45fdf92f3c4733f2caa14c74f28.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="中外服装史－－秦汉服装" class="mod-course-card__name" target="_blank" href="/v-play-2809-19702.htm">中外服装史－－秦汉服装</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="胡月琴 王涛涛 边晓芳 " target="_blank" href="/v.bo?method=actors&filmid=19702&actors=%E8%83%A1%E6%9C%88%E7%90%B4+%E7%8E%8B%E6%B6%9B%E6%B6%9B+%E8%BE%B9%E6%99%93%E8%8A%B3" class="mod-course-card__price mod-course-card__price_free">胡月琴 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">2055</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">9</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2809-21963.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2809/vod/201507/vod_391a69e908feef0fce7084eb93bc9aec.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="平面图形图像处理" class="mod-course-card__name" target="_blank" href="/v-play-2809-21963.htm">平面图形图像处理</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="占清华 贾翔羽 李旭峰 秦琛 谢精忠  " target="_blank" href="/v.bo?method=actors&filmid=21963&actors=%E5%8D%A0%E6%B8%85%E5%8D%8E+%E8%B4%BE%E7%BF%94%E7%BE%BD+%E6%9D%8E%E6%97%AD%E5%B3%B0+%E7%A7%A6%E7%90%9B+%E8%B0%A2%E7%B2%BE%E5%BF%A0" class="mod-course-card__price mod-course-card__price_free">占清华 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">1867</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">6</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2809-19697.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2809/vod/2015/06/29/2e7aca79cec79c3f6d0792006a154c51.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="英语修辞系列" class="mod-course-card__name" target="_blank" href="/v-play-2809-19697.htm">英语修辞系列</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="熊燕 游娟 付慧 李翠玲 谭淑林 吴斯璐 " target="_blank" href="/v.bo?method=actors&filmid=19697&actors=%E7%86%8A%E7%87%95+%E6%B8%B8%E5%A8%9F+%E4%BB%98%E6%85%A7+%E6%9D%8E%E7%BF%A0%E7%8E%B2+%E8%B0%AD%E6%B7%91%E6%9E%97+%E5%90%B4%E6%96%AF%E7%92%90" class="mod-course-card__price mod-course-card__price_free">熊燕 游</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">4</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">1787</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">103</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-2809-20381.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2809/vod/2015/06/30/5838a22c68b740bb0012f496b0562d84.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="建筑风水学" class="mod-course-card__name" target="_blank" href="/v-play-2809-20381.htm">建筑风水学</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="佟婧博 万芳芳 阳丹 梁艳晨 郭慧 " target="_blank" href="/v.bo?method=actors&filmid=20381&actors=%E4%BD%9F%E5%A9%A7%E5%8D%9A+%E4%B8%87%E8%8A%B3%E8%8A%B3+%E9%98%B3%E4%B8%B9+%E6%A2%81%E8%89%B3%E6%99%A8+%E9%83%AD%E6%85%A7" class="mod-course-card__price mod-course-card__price_free">佟婧博 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">1214</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">4</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2809-20442.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2809/vod/2015/06/30/12311fe55ed7bdd0338da60c9553d500.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="大话西游" class="mod-course-card__name" target="_blank" href="/v-play-2809-20442.htm">大话西游</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李玮 毛振东 刘美玲 " target="_blank" href="/v.bo?method=actors&filmid=20442&actors=%E6%9D%8E%E7%8E%AE+%E6%AF%9B%E6%8C%AF%E4%B8%9C+%E5%88%98%E7%BE%8E%E7%8E%B2" class="mod-course-card__price mod-course-card__price_free">李玮 毛</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">945</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">22</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2809-19259.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2809/vod/201506/vod_a42d858382aa2b54c7cbd9aaa3661bc8.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="情商修炼系列（共20个）" class="mod-course-card__name" target="_blank" href="/v-play-2809-19259.htm">情商修炼系列（共20个）</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="胡建宏 " target="_blank" href="/v.bo?method=actors&filmid=19259&actors=%E8%83%A1%E5%BB%BA%E5%AE%8F" class="mod-course-card__price mod-course-card__price_free">胡建宏 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">731</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">3</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2809-19680.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2809/vod/201506/vod_5874a0336751a703e947a03f592aa685.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="电路" class="mod-course-card__name" target="_blank" href="/v-play-2809-19680.htm">电路</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="邱岚、周菁菁、吴燕、李俊" target="_blank" href="/v.bo?method=actors&filmid=19680&actors=%E9%82%B1%E5%B2%9A%E3%80%81%E5%91%A8%E8%8F%81%E8%8F%81%E3%80%81%E5%90%B4%E7%87%95%E3%80%81%E6%9D%8E%E4%BF%8A" class="mod-course-card__price mod-course-card__price_free">邱岚、周</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">548</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-2809-20823.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2809/vod/201507/vod_4b3b3cbb99ed4f2a60cbbb7fdb4193d7.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="基本绘图命令系列" class="mod-course-card__name" target="_blank" href="/v-play-2809-20823.htm">基本绘图命令系列</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="陶秀峰 " target="_blank" href="/v.bo?method=actors&filmid=20823&actors=%E9%99%B6%E7%A7%80%E5%B3%B0" class="mod-course-card__price mod-course-card__price_free">陶秀峰 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">451</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-2809-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2809-99771.htm" target="_blank"><img src="/upload_dir/2809/doc/2015/07/05/dea23e7c179e910d5e4a0e847073c46e.png" /></a></dt>
+            <dd class="ico_doc"><a href="/v003-doc-2809-99771.htm" target="_blank" style="font-size:14px;">PS教学进度表</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2809-6986.htm" target="_blank" class="color_2">占清华</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">1</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">1</span></span>
+              <span>浏览<span class="color_5">82</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2809-99778.htm" target="_blank"><img src="/upload_dir/2809/doc/2015/07/05/d76f5fef7b3acad4201e4f073dd514a8.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-2809-99778.htm" target="_blank" style="font-size:14px;">第六章 绘制图形及路径_课件</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2809-6986.htm" target="_blank" class="color_2">占清华</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">66</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">81</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-2809-99780.htm" target="_blank"><img src="/upload_dir/2809/doc/2015/07/05/3243193fcaff09d4c5e3b827bb63d631.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-2809-99780.htm" target="_blank" style="font-size:14px;">第三章 色彩的基本知识 </a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2809-6986.htm" target="_blank" class="color_2">占清华</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">50</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">2</span></span>
+              <span>浏览<span class="color_5">77</span></span>
+              <span>下载量<span class="color_5">2</span></span>
+            </dd>
+          </dl>
+      </div>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2809-99770.htm" target="_blank"><img src="/upload_dir/2809/doc/2015/07/05/1e222eb9d1ff22dcf6f39afb6646f1dd.png" /></a></dt>
+            <dd class="ico_doc"><a href="/v003-doc-2809-99770.htm" target="_blank" style="font-size:14px;">PS教学大纲</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2809-6986.htm" target="_blank" class="color_2">占清华</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">2</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">1</span></span>
+              <span>浏览<span class="color_5">66</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2809-99779.htm" target="_blank"><img src="/upload_dir/2809/doc/2015/07/05/af541e6284e78efba57016ec0583f454.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-2809-99779.htm" target="_blank" style="font-size:14px;">第七章 通道与蒙板</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2809-6986.htm" target="_blank" class="color_2">占清华</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">44</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">1</span></span>
+              <span>浏览<span class="color_5">45</span></span>
+              <span>下载量<span class="color_5">28</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-2809-99774.htm" target="_blank"><img src="/upload_dir/2809/doc/2015/07/05/aa8d3e54c59981cf2d1aba6d35f1f65b.png" /></a></dt>
+            <dd class="ico_docx"><a href="/v003-doc-2809-99774.htm" target="_blank" style="font-size:14px;">实例素材1</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2809-6986.htm" target="_blank" class="color_2">占清华</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">5</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">34</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-2809-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-2809-13779.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-2809-13779.htm" class="color_2">兰雨晨</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2809-13737.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-2809-13737.htm" class="color_2">冯铖</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2809-13759.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-2809-13759.htm" class="color_2">刘天亮</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2809-13742.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-2809-13742.htm" class="color_2">刘志鹏</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-2809-13752.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-2809-13752.htm" class="color_2">刘朝霞</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2809-13771.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-2809-13771.htm" class="color_2">刘青</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2809-13756.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-2809-13756.htm" class="color_2">刘鸿榕</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2809-13712.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-2809-13712.htm" class="color_2">叶伟龙</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=2809&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=2809&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

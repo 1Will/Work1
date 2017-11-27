@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.base.meter.ElectricMeter" table="t_electricMeter">
+		<id name="id" column="id" type="long">
+			<generator class="native">
+				<param name="sequence">t_electricMeter_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		
+		<property name="code" type="string">
+            <column name="code" not-null="false" length="20" />
+        </property>
+        
+        <property name="name" type="string">
+			<column name="name" not-null="false" length="40" />
+		</property>
+		
+		<property name="rate" type="float">
+		    <column name="rate" ></column>
+		</property>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR"   type="string" length="20"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator"  column="LAST_OPERATOR"   type="string" length="20"/>
+	</class>
+</hibernate-mapping>

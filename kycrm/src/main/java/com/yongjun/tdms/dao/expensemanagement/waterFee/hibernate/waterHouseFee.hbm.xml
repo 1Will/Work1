@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.expensemanagement.waterFee.WaterHouseFee" table="t_waterHouseFee" lazy="false">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_waterHouseFee_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		
+		<property name="code" column="code" type="string"/>
+		
+		<property name="lastWater" type="double">
+            <column name="lastWater" not-null="true"/>
+        </property>
+		
+		<property name="thisWater" type="double">
+            <column name="thisWater" not-null="true"/>
+        </property>
+		
+		<property name="sumWater" type="double">
+            <column name="sumWater" not-null="true"/>
+        </property>
+
+		<property name="shareWater" type="double">
+			<column name="shareWater" not-null="true"/>
+		</property>
+		
+		<property name="sumFee" type="double">
+            <column name="sumFee" not-null="true"/>
+        </property>
+		
+		<property name="days" type="int">
+            <column name="days" not-null="true"/>
+        </property>
+		
+		<property name="starTime" column="starTime" type="timestamp"/>
+		
+		<property name="endTime" column="endTime" type="timestamp"/>
+		
+		<many-to-one name="house" class="com.yongjun.tdms.model.base.house.House" lazy="false">
+			<column name="house_id" not-null="false"/>
+		</many-to-one>
+		
+		<many-to-one name="waterFee" class="com.yongjun.tdms.model.expensemanagement.waterFee.WaterFee" lazy="false">
+			<column name="waterFee_id" not-null="false"/>
+		</many-to-one>
+		
+		<!-- 客户 -->
+		<many-to-one name="customerInfo" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo">
+			<column name="customerInfo_id" not-null="false"/>
+		</many-to-one>
+		
+		 <property name="outLine"  column="OUTLINE" type="string" length="100"/>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

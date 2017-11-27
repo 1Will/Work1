@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2009 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: contactArchives.hbm.xml 2009-12-7 16:50:35Z wliu $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.project.projectInfoPlan.ProjectInfoPlan" table="t_projectInfoPlan">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_contactArchives_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION" type="long"/>
+		<property name="outline" type="string">
+			<column name="outline" not-null="false" sql-type="NVARCHAR(1000)" />
+		</property>
+		<property name="name" type="string">
+			<column name="name" not-null="false" sql-type="NVARCHAR(100)" />
+		</property>
+		<!-- 项目 -->
+		<many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
+			<column name="projectInfo_id" not-null="false" />
+		</many-to-one>
+		<many-to-one name="projectInfoPlan_2" class="com.yongjun.tdms.model.project.projectInfoPlan.ProjectInfoPlan" lazy="false">
+			<column name="PROJECTINFOPLAN_ID" not-null="false" />
+		</many-to-one>
+		<many-to-one name="contractManagement" class="com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement" lazy="false">
+			<column name="contractManagement_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="personnelFiles" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles" lazy="false">
+			<column name="personnelFiles_id" not-null="false" />
+		</many-to-one>
+		<!--计划状态 -->
+		<many-to-one name="planState" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+			<column name="planState" not-null="false" />
+		</many-to-one>
+		<property name="assist" type="string">
+			<column name="assist" not-null="false" sql-type="NVARCHAR(200)" />
+		</property>
+		<property name="assistIds" type="string">
+			<column name="assistIds" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+		<property name="startDate" type="timestamp">
+			<column name="start_Date"/>
+		</property>
+		<property name="endDate" type="timestamp">
+			<column name="end_Date"/>
+		</property>
+		
+		<property name="startFactDate" type="timestamp">
+			<column name="startFact_Date"/>
+		</property>
+		<property name="endFactDate" type="timestamp">
+			<column name="endFact_Date"/>
+		</property>
+		
+		<!-- 提交判断 -->
+        <property name="isSaved" type="string">
+            <column name="isSaved" not-null="false" sql-type="NVARCHAR(1)"/>
+        </property>
+		
+		<property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+        <!-- 百分比 -->
+        <property name="percentt"  column="PERCENTT"   type="int" length="4"/>
+        <!-- 优先级 -->
+        <property name="priority"  column="PRIORITY"   type="int" length="2"/>
+          <!-- 排序-->
+        <property name="orderNumber"  column="ORDERNUMBER"   type="int" length="10"/>
+	</class>
+</hibernate-mapping>

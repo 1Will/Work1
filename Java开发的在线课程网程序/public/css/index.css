@@ -1,0 +1,65 @@
+@charset "utf-8";
+/*-------甯歌镙峰纺----------*/
+*{padding:0px; margin:0px;}
+body{font-size:12px; color:#000; background-color:#fff; font:Arial, Helvetica, sans-serif;}
+img {border:0px;}
+table{border:0px;}
+ul,li{list-style:none;}
+/*涓汉鐖卞ソ绫?/
+.high01{font-size:1px; line-height:1px;  clear:both; padding:0px; margin:0px; border:0px;}
+.high01{height:1px;}
+/*--------header--------*/
+#header{ width:100%; margin:0 auto;background:#fff url(/public/images/index/header_bg.jpg) repeat-y left top; height:80px;}
+.logo{ width:265px; height:80px; float:left;margin-left:35px;_margin-left:13px;}
+.tel_list{ float:right; text-align:left; line-height:16px; font-size:12px; font-weight:bold; color:#000; margin-right:15px;_margin-right:8px; margin-top:8px;}
+/*--------main--------*/
+#main{ width:100%; margin:0 auto; background:#fff url(/public/images/index/main_top_bg.gif) repeat-x left top; padding:0 2px;}
+/*镙囬銆佸垪琛?/
+.main_title{ float:left;background:url(/public/images/index/main_top_title.gif) no-repeat left top; width:76px; height:16px; text-align:center; font-size:12px; font-weight:bold; color:#4d4d4d; padding-top:9px;}
+.main_title_name{ float:left; font-size:12px; font-weight:bold; color:red; padding-top:6px; padding-left:15px;}
+.main_title_list{ float:right; margin-right:30px;_margin-right:15px; height:25px; line-height:25px;color:#0000FF;}
+.main_title_list a:link,.main_title_list a:visited{ color:#0000FF; text-decoration:none;}
+.main_title_list a:hover{ color:#0000FF; text-decoration:underline;}
+/*宸︿晶瀵艰埅镙?/
+#left{ float:left; width:150px; height:100%;background:#f6f9fd;/*background:#f00;*/ padding:20px 0px 0px 8px;}
+#left .list li{ height:31px; background:url(/public/images/index/left_li_link.jpg) no-repeat left top; line-height:31px;  padding-left:35px;margin-bottom:2px; width:150px;}
+#left .list .hover{background:url(/public/images/index/left_li_hover.gif) no-repeat left top; width:150px; height:31px; line-height:31px;}
+#left .list li a:link,#left .list li a:visited{color:#000; font-size:16px; font-weight:bold; text-decoration:none;}
+#left .list li a:hover{color:#000; font-size:16px; font-weight:bold; text-decoration:none;}
+
+#left .location{position:absolute; bottom:10;width:150px;}
+#left .location .pictent_pic{ float:left; width:60px; margin-left:20px;height:80px; padding:1px; border:1px solid #cccccc;}
+#left .location .pictent_pic img{ width:60px; height:80px;}
+#left .location .pictent_cont{ float:left; margin-left:20px; width:60px; line-height:18px; padding-top:8px;}
+#left .location a{ color:#0000FF; text-decoration:none;}
+
+#work{ width:100%;height:100%; margin:0 auto;padding:0 2px;background:#fff;}
+
+/*涓棿鍐呭鍖哄烟*/
+#middle{ width:100%;height:100%;float:left;  margin:0px auto;text-align:center;}
+/*鍙充晶甯哥敤鍒楄〃镙?/
+#right{ float:right;height:100%;width:181px; background:#f6f9fd;/*background:#f00;*/ margin-top:4px; }
+#right .title{ background:url(/public/images/index/right_title_bg.gif) no-repeat left top; width:181px; height:23px; line-height:23px; text-align:center; color:#000; font-size:12px; font-weight:bold;}
+#right .content{ padding:10px; width:161px;}
+#right .content .list li{ background:url(/public/images/index/icon_02.gif) no-repeat left center; padding-left:10px; height:22px; line-height:22px;}
+#right .content .list li a:link,#right .content .list li a:visited{ color:#6c6c6c; text-decoration:none;}
+#right .content .list li a:hover{ color:#6c6c6c; text-decoration:underline;}
+/*--------footer--------*/
+#footer{ background:#acc9e7; clear:both; width:100%; margin:0 auto; height:100px; padding-top:3px;}
+/*宸︿晶鎸夐挳*/
+#footer_D1{ float:left; width:147px; height:98px;}
+#footer_D1 .list{ padding:0px 3px 0px 2px; height:98px; width:142px;}
+#footer_D1 .list li{ background:url(/public/images/index/footer_li_bg.jpg) no-repeat left top; width:142px; height:23px; line-height:23px; text-align:center; margin-bottom:2px;}
+#footer_D1 .list li a:link,#footer .list li a:visited{ color:#000; font-size:12px; font-weight:normal; text-decoration:none;}
+#footer_D1 .list li a:hover{ color:#000; text-decoration:underline; font-weight:normal; font-size:12px;}
+/*鏂囨湰妗嗗尯鍩?/
+#footer_D2{width:98%;height:100px;margin-left:5px; float:left;text-align:left;}
+#footer_D2 .text_cont{ width:100%; height:96px; border:1px solid #000;  line-height:18px; font-size:12px; font-weight:normal; color:#000;}
+/*鍙戦€佷俊鎭?/
+#footer_D3{ float:right; width:187px; height:100px; padding:0px 3px 0px 3px;}
+#footer_D3 .text_cont2{ width:185px; height:70px; border:1px solid #000;  line-height:18px; font-size:12px; font-weight:normal; color:#000;}
+#footer_D3 .send{ margin-top:10px;}
+#footer_D3 .send li{ float:left; background:url(/public/images/index/footer_send_bg.gif) no-repeat left top; width:46px; height:19px; line-height:19px; text-align:center; margin-left:12px;_margin-left:6px;}
+#footer_D3 .send li a:link,#footer #D3 .send li a:visited{ color:#000; font-size:12px; font-weight:normal; text-decoration:none;}
+#footer_D3 .send li a:hover{ color:#000; text-decoration:none; font-weight:normal; font-size:12px;}
+

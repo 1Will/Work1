@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.expensemanagement.airFee.AirHouseFee" table="t_airHouseFee" lazy="false">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_airHouseFee_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		
+        <many-to-one name="house" class="com.yongjun.tdms.model.base.house.House" lazy="false">
+			<column name="house_id" not-null="false"/>
+		</many-to-one>
+		
+		<property name="lastAir" type="double">
+            <column name="lastAir" not-null="true"/>
+        </property>
+		
+		<property name="thisAir" type="double">
+            <column name="thisAir" not-null="true"/>
+        </property>
+		
+		<property name="sumAir" type="double">
+            <column name="sumAir" not-null="true"/>
+        </property>
+		
+		<property name="sumFee" type="double">
+            <column name="sumFee" not-null="true"/>
+        </property>
+		
+		<property name="starTime" column="starTime" type="timestamp"/>
+		
+		<property name="endTime" column="endTime" type="timestamp"/>
+		
+		<property name="factDay" column="factDay" type="int"/>
+		
+		<property name="useDay" column="useDay" type="int"/>
+		
+		<property name="openDays" column="openDays" type="int"/>
+		
+		<many-to-one name="airFee" class="com.yongjun.tdms.model.expensemanagement.airFee.AirFee" lazy="false">
+			<column name="airFee_id" not-null="false"/>
+		</many-to-one>
+		
+		<!-- 客户 -->
+		<many-to-one name="customerInfo" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo">
+			<column name="customerInfo_id" not-null="false"/>
+		</many-to-one>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+        <property name="outLine" column="OUTLINE" type="string" length="100"/>
+	</class>
+</hibernate-mapping>

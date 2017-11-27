@@ -1,0 +1,70 @@
+*{padding:0px; border:0px; margin:0px;}
+body{font-size:12px; font-family:"宋体"; color:#666666; line-height:22px;}
+span,li,dt,dd,img{display:block;}
+#box{width:1003px; margin:0 auto;}
+
+/*左边样式*/
+#left{width:182px; float:left;}
+#title{height: 28px; border:1px solid #cccccc; border-left:0px; border-right:0px;}
+div.sdmenu {width: 180px; font-size: 12px; padding-bottom: 10px; color: #666; border:#CCCCCC 1px solid; border-top:none; border-bottom:none;}
+div.sdmenu div {overflow: hidden; background: url(/public/images/pcenter/title_bg.gif) repeat-x left top;}
+div.sdmenu div.collapsed {height: 28px;}
+div.sdmenu div span {display: block; color: #666; font-weight:bold; cursor: default; padding-left: 42px; line-height: 25px; background: url(/public/images/pcenter/jianhao.gif) no-repeat 22px 8px;}
+div.sdmenu div.collapsed span {	background-image: url(/public/images/pcenter/jiahao.gif);}
+div.sdmenu div a {padding: 0px 15px 0px 42px; display: block; color: #666; text-decoration: none; line-height:25px; background:url(/public/images/pcenter/jiantou.gif) no-repeat 25px center; cursor:pointer; margin:1px 0px;}
+div.sdmenu div .sdmenu_onclick {background:#ccc url(/public/images/pcenter/linkarrow.gif) no-repeat right center; color: #666; text-decoration: none;}
+div.sdmenu div .sdmenu_hover {background:#ccc url(/public/images/pcenter/linkarrow.gif) no-repeat right center; color: #666; text-decoration: none;}
+/*div.sdmenu div a:hover {background : #ccc url(../images/linkarrow.gif) no-repeat right center; color: #666; text-decoration: none;}*/
+div.sdmenu ul{ padding:0 8px; width:164px; line-height:25px;}
+div.sdmenu dt{ float:left; display:block; width:65px; color:#000;  overflow:hidden; text-align:right;}
+div.sdmenu dd{ float:left; display:block; width:99px;color:#000; overflow:hidden; text-align:left;}
+
+/*右边样式*/
+#right{width:810px; float:right; overflow:hidden;}
+#right_top, #right_bottom{width:810px; float:left;}
+#right_center{width:788px; padding:10px; border:#CCCCCC 1px solid; border-bottom:none; border-top:none;}
+
+/*链接样式*/
+a:link {color:#666; text-decoration:none;}
+a:visited {color:#666; text-decoration:none;}
+a:hover {color:#666; text-decoration:underline;}
+a:active {color:#666; text-decoration:none;}
+
+#dh_left a{font-weight:bold; color:#1e8f00;}
+.dh{background:url(/public/images/pcenter/dh_bj.gif) no-repeat center top; width:73px; height:23px; display:block;}
+
+
+/*图标样式*/
+#navList{width:985px; background:url(/public/images/pcenter/t11.jpg) no-repeat; height:96px; float:left; margin-top:0px; margin-bottom:8px; padding:6px 0px 0 18px; /*position:relative;*/}
+#navList ul{list-style:none;}
+#navList li{width:80px; float:left; height:93px; margin-right:8px;}
+#navList li img{padding-top:5px; padding-left:15px; display:block;}
+#navList li a{display:block;}
+#navList li span{padding-top:15px; text-align:center;}
+
+/*简易型弹出菜单*/
+.simpleMenu{ width:90px; position:absolute; right:0px;*right:18px; top:11px;*top:6px;}
+.simpleMenu .arrow{	background-repeat: no-repeat; background-position:95% 40%;}
+.simpleMenu .border{ }
+.simpleMenu .hoverBorder{}
+.simpleMenu_link{}
+.simpleMenu_link a{padding:0 0 0 5px; display:block;}
+.simpleMenu_link a:hover{text-decoration:none; color:black;}
+.simpleMenu_con{width:360px;  display:none;  z-index:1000; background:url(/public/images/pcenter/t15.png) ; position:absolute; right:16px;*right:0px; }
+.simpleMenu_con ul{list-style:none;}
+.simpleMenu_con img{padding:0px;}
+.simpleMenu_con li{cursor: pointer; float: left; height: 80px; list-style: none outside none; overflow: hidden; padding: 10px 0 0; text-align: center; width: 72px;}
+.simpleMenu_con span{display:block; clear:both; height:20px; line-height:20px; color:#fff; width:72px; text-align:center;}
+.simpleMenu_con a{display:block;height:25px;padding:0 0 0 5px; }
+.simpleMenu_con a:hover{  text-decoration:none;}
+/*简易型弹出菜单*/
+
+a.nav:link {text-decoration:none; display:block; color:#000000; }
+a.nav:visited {text-decoration:none; display:block; color:#000000;}
+a.nav:hover { text-decoration:none; background:url(/public/images/pcenter/t13.png) no-repeat;  color:#000000;}
+a.nav:active {  text-decoration:none; display:block; color:#000000;}
+a.nav2{text-decoration:none; background:url(/public/images/pcenter/t12.png) no-repeat; color:#FFFFFF;}
+a.nav2:link {text-decoration:none; display:block; color:#FFFFFF; }
+a.nav2:visited {text-decoration:none; display:block; color:#FFFFFF;}
+a.nav2:hover { text-decoration:none; background:url(/public/images/pcenter/t12.png) no-repeat;  color:#FFFFFF;}
+a.nav2:active {  text-decoration:none; display:block; color:#FFFFFF;}

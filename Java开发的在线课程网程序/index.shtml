@@ -1,0 +1,802 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-分享微课 分享价值</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/skin/wkmk/js/jquery.jslides-banner.js"></script>
+<script type="text/javascript" src="/skin/wkmk/js/mobile-check.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 中国微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 
+教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<div id="header_h">
+<div class="header">
+  <div class="logo">
+    <a href="/default.html"></a>
+  </div>
+  <div class="seach">
+    <form name="searchForm" method="post">
+    <div class="mod-search">
+      <div id="lr_systembox">
+	    <div id="lr_systembtn" class="lr_systembtn">
+	        <a href="javascrip:;" class="lr_abtn"><span id="curSearchType">微课</span></a>
+	        <div id="lr_menu" class="lr_menu"> 
+	          <dl>
+	             <dt><a href="javascript:changeSearchType('2')">文档</a></dt>
+	             <dt><a href="javascript:changeSearchType('3')">教师</a></dt>
+	             <dt><a href="javascript:changeSearchType('4')">学校</a></dt>
+	          </dl>     
+	        </div>
+	    </div>
+	  </div>
+      <input type="text" placeholder="请输入搜索关键字" name="keywords" value="" class="mod-search__input" maxlength="38" id="js_keyword" onKeyPress="return search_onkeypress(event)">
+      <a class="mod-search__btn-search" href="javascript:search()"></a>
+    </div>
+    <input type="hidden" name="searchType" id="searchType" value="1"/>
+    <input type="hidden" name="searchButton" id="searchButton" value=""/>
+    </form>
+    <script type="text/javascript">
+	$(document).ready(function(){
+		var lr_systembtn = $("#lr_systembtn");
+		var lr_menu = $("#lr_menu");
+		lr_systembtn.mouseenter(function(){
+			t_delay= setTimeout(function(){
+				lr_menu.fadeIn("slow");
+			},200);
+		});
+		lr_systembtn.mouseleave(function(){
+			clearTimeout(t_delay);
+			lr_menu.fadeOut("slow");
+		});
+	
+	});
+	function changeSearchType(searchtype){
+		document.getElementById("searchType").value = searchtype;
+		if(searchtype == '1'){
+			document.getElementById("curSearchType").innerHTML = "微课";
+			document.getElementById("lr_menu").innerHTML = "<dl><dt><a href=\"javascript:changeSearchType('2')\">文档</a></dt><dt><a href=\"javascript:changeSearchType('3')\">教师</a></dt><dt><a href=\"javascript:changeSearchType('4')\">学校</a></dt></dl>";
+		}
+		if(searchtype == '2'){
+			document.getElementById("curSearchType").innerHTML = "文档";
+			document.getElementById("lr_menu").innerHTML = "<dl><dt><a href=\"javascript:changeSearchType('1')\">微课</a></dt><dt><a href=\"javascript:changeSearchType('3')\">教师</a></dt><dt><a href=\"javascript:changeSearchType('4')\">学校</a></dt></dl>";
+		}
+		if(searchtype == '3'){
+			document.getElementById("curSearchType").innerHTML = "教师";
+			document.getElementById("lr_menu").innerHTML = "<dl><dt><a href=\"javascript:changeSearchType('1')\">微课</a></dt><dt><a href=\"javascript:changeSearchType('2')\">文档</a></dt><dt><a href=\"javascript:changeSearchType('4')\">学校</a></dt></dl>";
+		}
+		if(searchtype == '4'){
+			document.getElementById("curSearchType").innerHTML = "学校";
+			document.getElementById("lr_menu").innerHTML = "<dl><dt><a href=\"javascript:changeSearchType('1')\">微课</a></dt><dt><a href=\"javascript:changeSearchType('2')\">文档</a></dt><dt><a href=\"javascript:changeSearchType('3')\">教师</a></dt></dl>";
+		}
+	};
+	function search_onkeypress(evt){
+		evt = (evt) ? evt : ((window.event) ? window.event : "")
+	  	keyCode = evt.keyCode ? evt.keyCode : (evt.which ? evt.which :evt.charCode);
+	  	if (keyCode == 13) {
+	    	keyCode=0;
+	    	search();
+	  	}
+	};
+	function search(){
+		var keywords = document.getElementById('js_keyword').value;
+		if(keywords == ''){
+			alert("请输入搜索关键字!");
+			return;
+		}
+		var searchtype = document.getElementById("searchType").value;
+		document.getElementById("searchButton").value = "1";
+		if(searchtype == "1"){
+			document.searchForm.action = '/v-vlist-x0-cx0-s0-g0-1.htm';
+		}
+		if(searchtype == "2"){
+			document.searchForm.action = '/v-dlist-x0-cx0-s0-g0-1.htm';
+		}
+		if(searchtype == "3"){
+			document.searchForm.action = '/v-ulist-1-0.htm';
+		}
+		if(searchtype == "4"){
+			document.searchForm.action = '/v-slist-1-0.htm';
+		}
+		document.searchForm.submit();
+	};
+	</script>
+    <div class="login1">
+      <ul id="login_div">
+        <li class="dv mar_9" >
+          <a href="javascript:login()" class="login_1" style="color:#000">登录</a>
+          <a href="/v.bo?method=register" target="_blank" class="login_2" style="color:#000">注册</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+	function login(){
+		var topurl = window.top.location;
+		window.top.location = '/plogin.do?method=slogin&redirecturl=' + topurl;
+	};
+	function logout(){
+	    var topurl = window.top.location;
+	    window.top.location = '/plogin.do?method=userLogout&redirecturl=' + topurl;
+	};
+	function ajaxLogin(){
+		$.ajax({
+	        type: "get",
+	        url: "/v.bo?method=ajaxLogin1&ram=" + Math.random(),
+	        dataType: "text",
+	        success: function(data){
+	        	if(data != ''){
+	        		document.getElementById("login_div").innerHTML = data;
+	        		
+	        		var lr_systembtn1 = $("#lr_systembtn1");
+        			var lr_menu1 = $("#lr_menu1");
+       				lr_systembtn1.mouseenter(function(){
+       					t_delay= setTimeout(function(){
+       						lr_menu1.fadeIn("slow");
+       					},200);
+       				});
+       				lr_systembtn1.mouseleave(function(){
+       					clearTimeout(t_delay);
+       					lr_menu1.fadeOut("slow");
+       				});
+	        	}
+	         }
+	    });
+	}
+	ajaxLogin();
+</script>
+<!-- 代码begin -->
+<div class="flexslider">
+    <div class="nav">
+    <ul>
+      <li><a href="/v-vlist-x0-cx0-s0-g0-1.htm" target="_blank">微课</a></li>
+      <li><a href="/v-dlist-x0-cx0-s0-g0-1.htm" target="_blank">文档</a></li>
+      <li><a href="/v-ulist-1-0.htm" target="_blank">教师</a></li>
+      <li><a href="/v-slist-1-0.htm" target="_blank">学校</a></li>
+      <li><a href="/v-clist-12-0.htm" target="_blank">大赛</a></li>
+      <li><a href="/v-c-12-0.htm" target="_blank">资讯</a></li>
+      <li><a href="/v-statistics-12-0.htm" target="_blank">统计</a></li>
+    </ul>
+    <div class="nav_right">
+      <a href="/feedback.htm" target="_blank">意见反馈</a>
+      <span>|</span>
+      <a href="/pcenter.do?method=index&mproduct=vod" target="_blank" class="sc">我要上传</a>
+    </div>
+  </div>
+	<div id="full-screen-slider1">
+		<ul id="slides1">
+			<li style="background:url('/upload_dir/12/vod/201510/074b594d2d0a708a1268591390046a98.jpg') no-repeat center top #02a8e4"><a href="http://www.wkmk.com/v-play-3731-85965.htm" target="_blank" title="互联网+教育的变革路径研究"></a></li>
+			<li style="background:url('/upload_dir/12/vod/201510/b6113327dab7c1dc9576e4c015a203e1.jpg') no-repeat center top #02a8e4"><a href="http://www.wkmk.com/skin/huodong/20151016-20151115.shtml" target="_blank" title="助你成为录课专家"></a></li>
+			<li style="background:url('/upload_dir/12/vod/201509/b5339108c666983d141731d0909f0751.jpg') no-repeat center top #02a8e4"><a href="http://www.tstudy.com.cn" target="_blank" title="PPClass"></a></li>
+			<li style="background:url('/upload_dir/12/vod/201509/2e0f2d8b5e0ea02e7ea7faded380c83a.jpg') no-repeat center top #02a8e4"><a href="http://www.tstudy.com.cn" target="_blank" title="E笔微课"></a></li>
+			<li style="background:url('/upload_dir/12/vod/201509/2a747985244894312a1843c5d4298292.jpg') no-repeat center top #02a8e4"><a href="/v-clist-12-0.htm" target="_blank" title="微课大赛"></a></li>
+			<li style="background:url('/upload_dir/12/vod/201508/29fee9f2c6fa7248dcf122451f4743f2.jpg') no-repeat center top #02a8e4"><a href="http://www.wkmk.com" target="_blank" title="分享资源，分享价值"></a></li>
+		</ul>
+	</div>
+    <div class="banner1">
+      <div class="menu">
+      <div class="mod-nav subpage">
+        <h2 class="mod-nav__li-first"><a class="mod-nav__course-all" target="_blank" href="/v-vlist-x0-cx0-s0-g0-1.htm">全部课程</a></h2>
+        <ul class="mod-nav__list prosul clearfix" id="proinfo">
+          <li class="mod-nav__li h_2">
+            <div class="mod-nav__wrap-nav-first">
+              <a class="mod-nav__link-nav-first" target="_blank" href="/v-vlist1-x1-cx0-s0-g0-v0-c0-1.htm">小学教育</a>
+            </div>
+            <div class="mod-nav__wrap-nav-hot h_1">
+              <a class="mod-nav__link-nav-hot" target="_blank" href="/v-vlist1-x1-cx9-s0-g0-v0-c0-1.htm">一年级</a>
+              <a class="mod-nav__link-nav-hot" target="_blank" href="/v-vlist1-x1-cx10-s0-g0-v0-c0-1.htm">二年级</a>
+              <a class="mod-nav__link-nav-hot" target="_blank" href="/v-vlist1-x1-cx11-s0-g0-v0-c0-1.htm">三年级</a>
+              <a class="mod-nav__link-nav-hot" target="_blank" href="/v-vlist1-x1-cx12-s0-g0-v0-c0-c0-1.htm">四年线</a>
+              <a class="mod-nav__link-nav-hot" target="_blank" href="/v-vlist1-x1-cx13-s0-g0-v0-c0-1.htm">五年级</a>
+              <a class="mod-nav__link-nav-hot" target="_blank" href="/v-vlist1-x1-cx14-s0-g0-v0-c0-1.htm">六年级</a>
+            </div>
+            <div class="prosmore hide">
+              <span><em><a href="/v-vlist1-x1-cx0-s11-g0-v0-c0-1.htm" target="_blank">语文</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s12-g0-v0-c0-1.htm" target="_blank">数学</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s13-g0-v0-c0-1.htm" target="_blank">英语</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s16-g0-v0-c0-1.htm" target="_blank">生物</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s17-g0-v0-c0-1.htm" target="_blank">政治</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s18-g0-v0-c0-1.htm" target="_blank">历史</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s19-g0-v0-c0-1.htm" target="_blank">地理</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s20-g0-v0-c0-1.htm" target="_blank">科学</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s21-g0-v0-c0-1.htm" target="_blank">信息</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s22-g0-v0-c0-1.htm" target="_blank">音乐</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s23-g0-v0-c0-1.htm" target="_blank">美术</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s24-g0-v0-c0-1.htm" target="_blank">体育</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s25-g0-v0-c0-1.htm" target="_blank">实践</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s26-g0-v0-c0-1.htm" target="_blank">劳技</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s28-g0-v0-c0-1.htm" target="_blank">健康</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s29-g0-v0-c0-1.htm" target="_blank">科技</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s30-g0-v0-c0-1.htm" target="_blank">书法</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s31-g0-v0-c0-1.htm" target="_blank">手工</a></em></span>
+              <span><em><a href="/v-vlist1-x1-cx0-s33-g0-v0-c0-1.htm" target="_blank">综合</a></em></span>
+            </div>
+          </li>
+          <li class="mod-nav__li">
+            <div class="mod-nav__wrap-nav-first">
+              <a class="mod-nav__link-nav-first" target="_blank" href="/v-vlist1-x2-cx0-s0-g0-v0-c0-1.htm">初中教育</a>
+            </div>
+            <div class="mod-nav__wrap-nav-hot">
+              <a class="mod-nav__link-nav-hot" target="_blank" href="/v-vlist1-x2-cx15-s0-g0-v0-c0-1.htm">初一</a>
+              <a class="mod-nav__link-nav-hot" target="_blank" href="/v-vlist1-x2-cx16-s0-g0-v0-c0-1.htm">初二</a>
+              <a class="mod-nav__link-nav-hot" target="_blank" href="/v-vlist1-x2-cx17-s0-g0-v0-c0-1.htm">初三</a>
+            </div>
+            <div class="prosmore hide">
+              <span><em><a href="/v-vlist1-x2-cx0-s11-g0-v0-c0-1.htm" target="_blank">语文</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s12-g0-v0-c0-1.htm" target="_blank">数学</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s13-g0-v0-c0-1.htm" target="_blank">英语</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s14-g0-v0-c0-1.htm" target="_blank">物理</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s15-g0-v0-c0-1.htm" target="_blank">化学</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s16-g0-v0-c0-1.htm" target="_blank">生物</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s17-g0-v0-c0-1.htm" target="_blank">政治</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s18-g0-v0-c0-1.htm" target="_blank">历史</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s19-g0-v0-c0-1.htm" target="_blank">地理</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s20-g0-v0-c0-1.htm" target="_blank">科学</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s21-g0-v0-c0-1.htm" target="_blank">信息</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s22-g0-v0-c0-1.htm" target="_blank">音乐</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s23-g0-v0-c0-1.htm" target="_blank">美术</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s24-g0-v0-c0-1.htm" target="_blank">体育</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s25-g0-v0-c0-1.htm" target="_blank">实践</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s26-g0-v0-c0-1.htm" target="_blank">劳技</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s30-g0-v0-c0-1.htm" target="_blank">书法</a></em></span>
+              <span><em><a href="/v-vlist1-x2-cx0-s33-g0-v0-c0-1.htm" target="_blank">综合</a></em></span>
+            </div>
+          </li>
+          <li class="mod-nav__li">
+            <div class="mod-nav__wrap-nav-first">
+              <a class="mod-nav__link-nav-first" target="_blank" href="/v-vlist1-x3-cx0-s0-g0-v0-c0-1.htm">高中教育</a>
+            </div>
+            <div class="mod-nav__wrap-nav-hot">
+              <a class="mod-nav__link-nav-hot" target="_blank" href="/v-vlist1-x3-cx19-s0-g0-v0-c0-1.htm">高一</a>
+              <a class="mod-nav__link-nav-hot" target="_blank" href="/v-vlist1-x3-cx20-s0-g0-v0-c0-1.htm">高二</a>
+              <a class="mod-nav__link-nav-hot" target="_blank" href="/v-vlist1-x3-cx21-s0-g0-v0-c0-1.htm">高三</a>
+            </div>
+            <div class="prosmore hide">
+              <span><em><a href="/v-vlist1-x3-cx0-s11-g0-v0-c0-1.htm" target="_blank">语文</a></em></span>
+              <span><em><a href="/v-vlist1-x3-cx0-s12-g0-v0-c0-1.htm" target="_blank">数学</a></em></span>
+              <span><em><a href="/v-vlist1-x3-cx0-s13-g0-v0-c0-1.htm" target="_blank">英语</a></em></span>
+              <span><em><a href="/v-vlist1-x3-cx0-s14-g0-v0-c0-1.htm" target="_blank">物理</a></em></span>
+              <span><em><a href="/v-vlist1-x3-cx0-s15-g0-v0-c0-1.htm" target="_blank">化学</a></em></span>
+              <span><em><a href="/v-vlist1-x3-cx0-s16-g0-v0-c0-1.htm" target="_blank">生物</a></em></span>
+              <span><em><a href="/v-vlist1-x3-cx0-s17-g0-v0-c0-1.htm" target="_blank">政治</a></em></span>
+              <span><em><a href="/v-vlist1-x3-cx0-s18-g0-v0-c0-1.htm" target="_blank">历史</a></em></span>
+              <span><em><a href="/v-vlist1-x3-cx0-s19-g0-v0-c0-1.htm" target="_blank">地理</a></em></span>
+              <span><em><a href="/v-vlist1-x3-cx0-s21-g0-v0-c0-1.htm" target="_blank">信息</a></em></span>
+              <span><em><a href="/v-vlist1-x3-cx0-s22-g0-v0-c0-1.htm" target="_blank">音乐</a></em></span>
+              <span><em><a href="/v-vlist1-x3-cx0-s23-g0-v0-c0-1.htm" target="_blank">美术</a></em></span>
+              <span><em><a href="/v-vlist1-x3-cx0-s24-g0-v0-c0-1.htm" target="_blank">体育</a></em></span>
+              <span><em><a href="/v-vlist1-x3-cx0-s25-g0-v0-c0-1.htm" target="_blank">实践</a></em></span>
+              <span><em><a href="/v-vlist1-x3-cx0-s27-g0-v0-c0-1.htm" target="_blank">通技</a></em></span>
+            </div>
+          </li>
+          <li class="mod-nav__li h_3">
+            <div class="mod-nav__wrap-nav-first">
+              <a class="mod-nav__link-nav-first" target="_blank" href="/v-vlist-x4-cx41-s0-g0-1.htm">职业教育</a>
+            </div>
+          </li>
+           <li class="mod-nav__li h_3">
+            <div class="mod-nav__wrap-nav-first">
+              <a class="mod-nav__link-nav-first" target="_blank" href="/v-vlist-x5-cx0-s0-g0-1.htm">高等教育</a>
+            </div>
+          </li>
+           <li class="mod-nav__li h_3">
+            <div class="mod-nav__wrap-nav-first">
+              <a class="mod-nav__link-nav-first" target="_blank" href="/v-vlist-x6-cx0-s0-g0-1.htm">继续教育</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+      </div>
+<script type="text/javascript">
+(function() {
+    var $subblock = $(".subpage"),
+    $head = $subblock.find('h2'),
+    $ul = $("#proinfo"),
+    $lis = $ul.find("li"),
+    inter = false;
+    $head.click(function(e) {
+        e.stopPropagation();
+        if (!inter) {
+            $ul.show();
+        } else {
+            $ul.show();
+        }
+        inter = !inter;
+    });
+    $ul.click(function(event) {
+        event.stopPropagation();
+    });
+    $('body').click(function() {
+        $ul.show();
+        inter = !inter;
+    });
+    $lis.hover(function() {
+        if (!$(this).hasClass('nochild')) {
+            $(this).addClass("prosahover");
+            $(this).find(".prosmore").removeClass('hide');
+        }
+    },
+    function() {
+        if (!$(this).hasClass('nochild')) {
+            if ($(this).hasClass("prosahover")) {
+                $(this).removeClass("prosahover");
+            }
+            $(this).find(".prosmore").addClass('hide');
+        }
+    });
+})();
+</script>
+   <div class="wrap_pic">
+      <a target="_blank" class="activity-card__link" href="/v-vlist-x0-cx0-s0-g0-9.htm"><img class="activity-card__img" alt="" src="/skin/wkmk/images/ad_img1.jpg"></a>
+      <a target="_blank" class="activity-card__link" href="/v-dlist-x0-cx0-s0-g0-9.htm"><img class="activity-card__img" alt="" src="/skin/wkmk/images/ad_img2.jpg"></a>
+      <a target="_blank" class="activity-card__link" href="/v-slist-1-0.htm"><img class="activity-card__img" alt="" src="/skin/wkmk/images/ad_img3.jpg"></a>
+      <a target="_blank" class="activity-card__link" href="http://mllab.bnu.edu.cn"><img class="activity-card__img" alt="" src="/skin/wkmk/images/ad_img4.jpg"></a>   
+   </div>
+</div>
+<!-- 代码end -->
+
+
+<!-- js调用部分begin -->
+<script src="/skin/wkmk/js/jquery.min.js"></script>
+<script src="/skin/wkmk/js/jquery.flexslider-min.js"></script>
+<script>
+$(function(){
+	$('.flexslider').flexslider({
+		directionNav: true,
+		pauseOnAction: false
+	});
+});
+</script>
+<!-- js调用部分end -->
+<div id="fine">
+  <div class="fine_left">
+    <h2 class="video"><a href="/v-vlist-x0-cx0-s0-g0-9.htm">更多&gt;&gt;</a>精品微课</h2>
+    <div class="fine_left1">
+      <div class="fine_left_1">
+        <img src="/skin/wkmk/images/pic_2.jpg" />
+      </div>
+      <div class="fine_left_2">
+        <ul class="h_pic">
+          <li class="l_pic">
+            <div class="mod-course-card">
+              <a href="/v-play-3613-22081.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/12/vod/201508/vod_a9c7c24a18e9b0a270260a352e53c696.jpg" style="width:220px;height:124px;"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="绿茶玻璃杯冲泡法" class="mod-course-card__name" target="_blank" href="/v-play-3613-22081.htm">绿茶玻璃杯冲泡法</a> 
+              </div>
+              <p class="mod-course-card__line"> 
+                <a title="郑芳萍 " target="_blank" href="/v.bo?method=actors&filmid=22081&actors=%E9%83%91%E8%8A%B3%E8%90%8D" class="mod-course-card__price mod-course-card__price_free">郑芳萍 </a> 
+                <a title="江西现代职业技术学院" class="mod-course-card__agency" target="_blank" href="/html/3613.htm">江西现代职业技术学院</a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic">
+            <div class="mod-course-card">
+              <a href="/v-play-3408-21579.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/3408/vod/2015/07/5/vod_a32f738202ba6c5f019c8731501793fd.png" style="width:220px;height:124px;"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="一元二次方程的解法" class="mod-course-card__name" target="_blank" href="/v-play-3408-21579.htm">一元二次方程的解法</a> 
+              </div>
+              <p class="mod-course-card__line"> 
+                <a title="高在为 " target="_blank" href="/v.bo?method=actors&filmid=21579&actors=%E9%AB%98%E5%9C%A8%E4%B8%BA" class="mod-course-card__price mod-course-card__price_free">高在为 </a> 
+                <a title="安徽省滁州市第六中学" class="mod-course-card__agency" target="_blank" href="/html/3408.htm">安徽省滁州市第六中学</a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic">
+            <div class="mod-course-card">
+              <a href="/v-play-2682-18276.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/12/vod/201508/vod_531d78e617c488f1fc088c0a9c7a82c1.jpg" style="width:220px;height:124px;"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="巧数线段" class="mod-course-card__name" target="_blank" href="/v-play-2682-18276.htm">巧数线段</a> 
+              </div>
+              <p class="mod-course-card__line"> 
+                <a title="王杰 " target="_blank" href="/v.bo?method=actors&filmid=18276&actors=%E7%8E%8B%E6%9D%B0" class="mod-course-card__price mod-course-card__price_free">王杰 </a> 
+                <a title="重庆市巫溪县峰灵镇中心小学校" class="mod-course-card__agency" target="_blank" href="/html/2682.htm">重庆市巫溪县峰灵镇中心小学校</a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic">
+            <div class="mod-course-card">
+              <a href="/v-play-1160-11592.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/12/vod/201508/vod_6ec0a505c9c4e367fb9453749334e788.jpg" style="width:220px;height:124px;"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="辽宁省锦州市－北镇市第一初级中学－张文君－物理-八年级－压强与浮力系列微课（4）" class="mod-course-card__name" target="_blank" href="/v-play-1160-11592.htm">辽宁省锦州市－北镇市第一初级中学－张文君－物理-八年级－压强与浮力系列微课（4）</a> 
+              </div>
+              <p class="mod-course-card__line"> 
+                <a title="张文君 " target="_blank" href="/v.bo?method=actors&filmid=11592&actors=%E5%BC%A0%E6%96%87%E5%90%9B" class="mod-course-card__price mod-course-card__price_free">张文君 </a> 
+                <a title="辽宁省锦州市北镇市第一初级中学" class="mod-course-card__agency" target="_blank" href="/html/1160.htm">辽宁省锦州市北镇市第一初级中学</a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic">
+            <div class="mod-course-card">
+              <a href="/v-play-36-459.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/12/vod/201508/vod_9fc1a1fc14f279ff64bb1c4339b60b21.jpg" style="width:220px;height:124px;"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="北京市燕山向阳小学  书法 五年级《书法与茶文化》" class="mod-course-card__name" target="_blank" href="/v-play-36-459.htm">北京市燕山向阳小学  书法 五年级《书法与茶文化》</a> 
+              </div>
+              <p class="mod-course-card__line"> 
+                <a title="许彩凤" target="_blank" href="/v.bo?method=actors&filmid=459&actors=%E8%AE%B8%E5%BD%A9%E5%87%A4" class="mod-course-card__price mod-course-card__price_free">许彩凤</a> 
+                <a title="北京市燕山教育信息中心" class="mod-course-card__agency" target="_blank" href="/html/36.htm">北京市燕山教育信息中心</a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic">
+            <div class="mod-course-card">
+              <a href="/v-play-3448-21325.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/12/vod/201508/vod_6aa4a45b07bc7014413ed034d97fde72.jpg" style="width:220px;height:124px;"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="融入血脉的“赤子之情”——《虞美人》情感赏析" class="mod-course-card__name" target="_blank" href="/v-play-3448-21325.htm">融入血脉的“赤子之情”——《虞美人》情感赏析</a> 
+              </div>
+              <p class="mod-course-card__line"> 
+                <a title="付雨霓 " target="_blank" href="/v.bo?method=actors&filmid=21325&actors=%E4%BB%98%E9%9B%A8%E9%9C%93" class="mod-course-card__price mod-course-card__price_free">付雨霓 </a> 
+                <a title="天津市实验中学" class="mod-course-card__agency" target="_blank" href="/html/3448.htm">天津市实验中学</a>
+             </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="fine_right_1">
+    <h2>
+      <span id="tab1"><a class="link" onclick="switchTab('tab1','con1');this.blur();return false;" style="cursor:pointer;">精品文档</a></span>
+      <span id="tab2"><a onclick="switchTab('tab2','con2');this.blur();return false;" style="cursor:pointer;">最新文档</a></span>
+    </h2>
+    <div class="fine_right_bottom" id="con1">
+      <dl>
+        <dd class="ico_docx"><a href="/v-doc-2504-2.htm" target="_blank" title="付珍栋 微课脚本">付珍栋 微课脚本</a></dd>
+        <dd>
+          <span>
+            <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png">
+          </span>
+          <span class="font_1">5.0分</span>
+          <span class="mar_1 font_1">4页</span>
+        </dd>
+      </dl>
+      <dl>
+        <dd class="ico_ppt"><a href="/v-doc-2265-505.htm" target="_blank" title="广东省 河源市 龙川县隆师中学 黄栋平 生物 高二 实验设计原则之对照原则">广东省 河源市 龙川...</a></dd>
+        <dd>
+          <span>
+            <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png">
+          </span>
+          <span class="font_1">5.0分</span>
+          <span class="mar_1 font_1">10页</span>
+        </dd>
+      </dl>
+      <dl>
+        <dd class="ico_ppt"><a href="/v-doc-2265-506.htm" target="_blank" title="广东省 河源市 龙川县隆师中学 黄栋平 生物 高二 微生物的实验室培养专题之分离纯化技术">广东省 河源市 龙川...</a></dd>
+        <dd>
+          <span>
+            <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png">
+          </span>
+          <span class="font_1">5.0分</span>
+          <span class="mar_1 font_1">12页</span>
+        </dd>
+      </dl>
+      <dl>
+        <dd class="ico_ppt"><a href="/v-doc-2265-507.htm" target="_blank" title="广东省 河源市 龙川县隆师中学 黄栋平 生物 高二 有氧呼吸">广东省 河源市 龙川...</a></dd>
+        <dd>
+          <span>
+            <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png">
+          </span>
+          <span class="font_1">5.0分</span>
+          <span class="mar_1 font_1">8页</span>
+        </dd>
+      </dl>
+      <dl>
+        <dd class="ico_ppt"><a href="/v-doc-2265-508.htm" target="_blank" title="广东省 河源市 龙川县隆师中学 黄栋平 生物 高二 微生物的实验室培养专题之习题讲解">广东省 河源市 龙川...</a></dd>
+        <dd>
+          <span>
+            <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png">
+          </span>
+          <span class="font_1">5.0分</span>
+          <span class="mar_1 font_1">11页</span>
+        </dd>
+      </dl>
+      <dl>
+        <dd class="ico_ppt"><a href="/v-doc-2265-512.htm" target="_blank" title="广东省 河源市 龙川县隆师中学 黄栋平 生物 高二 一对相对性状的杂交实验">广东省 河源市 龙川...</a></dd>
+        <dd>
+          <span>
+            <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png">
+          </span>
+          <span class="font_1">5.0分</span>
+          <span class="mar_1 font_1">10页</span>
+        </dd>
+      </dl>
+      <dl>
+        <dd class="ico_doc"><a href="/v-doc-2504-3.htm" target="_blank" title="付珍栋 微课教学设计">付珍栋 微课教学设计</a></dd>
+        <dd>
+          <span>
+            <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png"> <img src="/skin/wkmk/images/star_red.png">
+          </span>
+          <span class="font_1">5.0分</span>
+          <span class="mar_1 font_1">5页</span>
+        </dd>
+      </dl>
+      <div class="more"><a href="/v-dlist-x0-cx0-s0-g0-9.htm" target="_blank">更多&gt;&gt;</a></div>
+    </div>
+    <div class="fine_right_bottom" id="con2" style="display: none">
+      <dl>
+        <dd class="ico_ppt"><a href="/v-doc-35245-125474.htm" target="_blank" title="2 山雨">2 山雨</a></dd>
+        <dd>
+          <span>
+            <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png">
+          </span>
+          <span class="font_1">0.0分</span>
+          <span class="mar_1 font_1">18页</span>
+        </dd>
+      </dl>
+      <dl>
+        <dd class="ico_ppt"><a href="/v-doc-35245-125473.htm" target="_blank" title="1山中访友PPT">1山中访友PPT</a></dd>
+        <dd>
+          <span>
+            <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png">
+          </span>
+          <span class="font_1">0.0分</span>
+          <span class="mar_1 font_1">34页</span>
+        </dd>
+      </dl>
+      <dl>
+        <dd class="ico_doc"><a href="/v-doc-35245-125472.htm" target="_blank" title="新课标人教版六年级语文上册教案第四——八单元">新课标人教版六年级语...</a></dd>
+        <dd>
+          <span>
+            <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png">
+          </span>
+          <span class="font_1">0.0分</span>
+          <span class="mar_1 font_1">118页</span>
+        </dd>
+      </dl>
+      <dl>
+        <dd class="ico_doc"><a href="/v-doc-35245-125471.htm" target="_blank" title="新课标人教版六年级语文上册教案第三单元">新课标人教版六年级语...</a></dd>
+        <dd>
+          <span>
+            <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png">
+          </span>
+          <span class="font_1">0.0分</span>
+          <span class="mar_1 font_1">16页</span>
+        </dd>
+      </dl>
+      <dl>
+        <dd class="ico_doc"><a href="/v-doc-35245-125470.htm" target="_blank" title="新课标人教版六年级语文上册教案第二单元">新课标人教版六年级语...</a></dd>
+        <dd>
+          <span>
+            <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png">
+          </span>
+          <span class="font_1">0.0分</span>
+          <span class="mar_1 font_1">12页</span>
+        </dd>
+      </dl>
+      <dl>
+        <dd class="ico_doc"><a href="/v-doc-35245-125469.htm" target="_blank" title="新课标人教版六年级语文上册教案第一单元">新课标人教版六年级语...</a></dd>
+        <dd>
+          <span>
+            <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png">
+          </span>
+          <span class="font_1">0.0分</span>
+          <span class="mar_1 font_1">18页</span>
+        </dd>
+      </dl>
+      <dl>
+        <dd class="ico_doc"><a href="/v-doc-33542-125468.htm" target="_blank" title="作文口诀歌">作文口诀歌</a></dd>
+        <dd>
+          <span>
+            <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png"> <img src="/skin/wkmk/images/star_grey.png">
+          </span>
+          <span class="font_1">0.0分</span>
+          <span class="mar_1 font_1">3页</span>
+        </dd>
+      </dl>
+      <div class="more"><a href="/v-dlist-x0-cx0-s0-g0-1.htm" target="_blank">更多&gt;&gt;</a></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+        function switchTab(ProTag, ProBox) {
+            for (i = 1; i <= 2; i++) {
+                if ("tab" + i == ProTag) {
+                    document.getElementById(ProTag).getElementsByTagName("a")[0].className = "link";
+                } else {
+                    document.getElementById("tab" + i).getElementsByTagName("a")[0].className = "";
+                }
+                if ("con" + i == ProBox) {
+                    document.getElementById(ProBox).style.display = "";
+                } else {
+                    document.getElementById("con" + i).style.display = "none";
+                }
+            }
+        }
+    </script>
+</div>
+<div id="fine">
+  <div class="fine_left">
+    <h2 class="school"><a href="/v-slist-1-0.htm">更多&gt;&gt;</a>联盟学校</h2>
+    <div class="fine_left1">
+      <div class="fine_left_1">
+        <img src="/skin/wkmk/images/pic_4.jpg" />
+      </div>
+      <div class="fine_left_2">
+        <ul class="h_pic">
+          <li class="l_pic">
+            <div class="mod-course-card">
+              <a href="/html/17.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/school/17.jpg" width="220" height="124"/>
+              </a>
+              <div class="course-title">
+                <a title="山东省肥城市桃都中学" class="mod-course-card__name" target="_blank" href="/html/17.htm">山东省肥城市桃都中学</a> 
+              </div>
+              <p class="mod-course-card__line"> 
+                <a class="mod-course-card__agency">教师<span class="color_1">168</span></a>
+                <a class="mod-course-card__agency">微课<span class="color_1">137</span></a>
+                <a class="mod-course-card__agency">文档<span class="color_1">19</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic">
+            <div class="mod-course-card">
+              <a href="/html/1141.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/school/1141.jpg" width="220" height="124"/>
+              </a>
+              <div class="course-title">
+                <a title="辽宁锦州北镇市沟帮子九年一贯制学校小学二部" class="mod-course-card__name" target="_blank" href="/html/1141.htm">辽宁锦州北镇市沟帮子九年一贯制学校小学二部</a> 
+              </div>
+              <p class="mod-course-card__line"> 
+                <a class="mod-course-card__agency">教师<span class="color_1">57</span></a>
+                <a class="mod-course-card__agency">微课<span class="color_1">63</span></a>
+                <a class="mod-course-card__agency">文档<span class="color_1">16</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic">
+            <div class="mod-course-card">
+              <a href="/html/1160.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/school/1160.jpg" width="220" height="124"/>
+              </a>
+              <div class="course-title">
+                <a title="辽宁省锦州市北镇市第一初级中学" class="mod-course-card__name" target="_blank" href="/html/1160.htm">辽宁省锦州市北镇市第一初级中学</a> 
+              </div>
+              <p class="mod-course-card__line"> 
+                <a class="mod-course-card__agency">教师<span class="color_1">204</span></a>
+                <a class="mod-course-card__agency">微课<span class="color_1">193</span></a>
+                <a class="mod-course-card__agency">文档<span class="color_1">143</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic">
+            <div class="mod-course-card">
+              <a href="/html/2154.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/school/2154.jpg" width="220" height="124"/>
+              </a>
+              <div class="course-title">
+                <a title="深圳市光明新区高级中学" class="mod-course-card__name" target="_blank" href="/html/2154.htm">深圳市光明新区高级中学</a> 
+              </div>
+              <p class="mod-course-card__line"> 
+                <a class="mod-course-card__agency">教师<span class="color_1">26</span></a>
+                <a class="mod-course-card__agency">微课<span class="color_1">30</span></a>
+                <a class="mod-course-card__agency">文档<span class="color_1">9</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic">
+            <div class="mod-course-card">
+              <a href="/html/2341.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/school/2341.jpg" width="220" height="124"/>
+              </a>
+              <div class="course-title">
+                <a title="北京市龙潭中学" class="mod-course-card__name" target="_blank" href="/html/2341.htm">北京市龙潭中学</a> 
+              </div>
+              <p class="mod-course-card__line"> 
+                <a class="mod-course-card__agency">教师<span class="color_1">31</span></a>
+                <a class="mod-course-card__agency">微课<span class="color_1">36</span></a>
+                <a class="mod-course-card__agency">文档<span class="color_1">3</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic">
+            <div class="mod-course-card">
+              <a href="/html/3114.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/school/3114.jpg" width="220" height="124"/>
+              </a>
+              <div class="course-title">
+                <a title="天津市和平区岳阳道小学" class="mod-course-card__name" target="_blank" href="/html/3114.htm">天津市和平区岳阳道小学</a> 
+              </div>
+              <p class="mod-course-card__line"> 
+                <a class="mod-course-card__agency">教师<span class="color_1">43</span></a>
+                <a class="mod-course-card__agency">微课<span class="color_1">41</span></a>
+                <a class="mod-course-card__agency">文档<span class="color_1">2</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="fine_right">
+    <h2>教师</h2>
+    <div class="fine_bottom">
+      <dl>
+        <dt><a href="/v-user-12-111.htm" target="_blank"><img src="/upload_dir/12/user/201407/8e241bb9e182fdd1283178468db2a3f1.jpg" width="50" height="50"/></a></dt>
+        <dd><a href="/v-user-12-111.htm" target="_blank" class="color_2">俞红</a></dd>
+        <dd><a class="color_3" title="教科室主任">教科室主任</a></dd>
+      </dl>
+      <dl>
+        <dt><a href="/v-user-12-64.htm" target="_blank"><img src="/upload_dir/12/user/201407/0e6cf8417050d6066a4b468552342de7.jpg" width="50" height="50"/></a></dt>
+        <dd><a href="/v-user-12-64.htm" target="_blank" class="color_2">汪晓东</a></dd>
+        <dd><a class="color_3" title="教授">教授</a></dd>
+      </dl>
+      <dl>
+        <dt><a href="/v-user-12-74.htm" target="_blank"><img src="/upload_dir/12/user/201407/28764184bade93d51192e9a00a6ccd28.gif" width="50" height="50"/></a></dt>
+        <dd><a href="/v-user-12-74.htm" target="_blank" class="color_2">李书昱</a></dd>
+        <dd><a class="color_3" title="数学教研组长、微课教研负责人">数学教研组长、...</a></dd>
+      </dl>
+      <dl>
+        <dt><a href="/v-user-12-79.htm" target="_blank"><img src="/upload_dir/12/user/201407/cfe7dc6b02cff4b1e84bb9fb3467368e.jpg" width="50" height="50"/></a></dt>
+        <dd><a href="/v-user-12-79.htm" target="_blank" class="color_2">汪洵</a></dd>
+        <dd><a class="color_3" title="教师">教师</a></dd>
+      </dl>
+      <dl>
+        <dt><a href="/v-user-12-103.htm" target="_blank"><img src="/upload_dir/user/201407/vod_862fce932d6a3db2f67f15743424a249.jpg" width="50" height="50"/></a></dt>
+        <dd><a href="/v-user-12-103.htm" target="_blank" class="color_2">卢伟中</a></dd>
+        <dd><a class="color_3" title="教师">教师</a></dd>
+      </dl>
+      <div class="more"><a href="/v-ulist-1-0.htm">更多&gt;&gt;</a></div>
+    </div> 
+  </div>
+</div>
+
+<div id="footer">
+  <div class="footer_1">
+    <div class="footer_right">
+      <p class="footer_logo">微课慕课网  版权所有@2014-2015</p>
+      <p>电话 : 010-83456666&nbsp;&nbsp;010-84929209</p>
+      <p>地址 ：北京市西城区新街口外大街8号金丰和商务苑b座210室&nbsp;<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5941511'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D5941511%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></p>
+      <p>技术支持 ：北京师科学苑网络有限公司&nbsp;&nbsp;京ICP备15064195号</p>
+      <p class="footer_ff">
+        <a href="/v-aboutus-12-0.htm" target="_blank">关于我们</a>
+        <span>|</span>
+        <a href="/v-contact-12-0.htm" target="_blank">联系我们</a>
+        <span>|</span>
+        <a href="/v-job-12-0.htm" target="_blank">人才招聘</a>
+        <span>|</span>
+        <a href="/v-link-12-0.htm" target="_blank">友情链接</a>
+        <span>|</span>
+        <a href="/v-applylink-12-0.htm" target="_blank">申请链接</a>
+      </p>
+    </div>
+    <div class="footer_left">
+      <!-- 
+      <dl>
+        <dt><img src="/skin/wkmk/images/code_1.jpg" width="100" height="100"/></dt>
+        <dd>APP下载</dd>
+      </dl>
+       -->
+      <dl>
+        <dt><img src="/skin/wkmk/images/wkmk-weixin.jpg" width="100" height="100"/></dt>
+        <dd>微信公众号</dd>
+      </dl>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="/public/retop1/retop.js"></script>
+</body>
+</html>

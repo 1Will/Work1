@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-无锡商业职业技术学院</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/banner.gif" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="http://www.wxic.edu.cn" target="_blank"><img src="/upload_dir/logo.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">6</font></dd>
+        <dd>微课数量：<font id="s_wk">6</font></dd>
+        <dd>文档数量：<font id="s_doc">5</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">0</a>
+      </dl>
+      <p class="p_dl">无锡商业职业技术学院<a href="/v-sinfo-3639-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-3639-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-3639-22288.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/3639/vod/201507/vod_b483c8e3edb22547130e18d511052788.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="巧于因借——借景在园林中的运用" class="mod-course-card__name" target="_blank" href="/v-play-3639-22288.htm">巧于因借——借景在园林中的运用</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="鲁瑾 " target="_blank" href="/v.bo?method=actors&filmid=22288&actors=%E9%B2%81%E7%91%BE" class="mod-course-card__price mod-course-card__price_free">鲁瑾 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">3</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">185</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-3639-22089.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/3639/vod/201507/vod_1abf599b0373c57e4d600aa7929ebce8.JPG" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="汽车服务接待标准流程" class="mod-course-card__name" target="_blank" href="/v-play-3639-22089.htm">汽车服务接待标准流程</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="徐东 " target="_blank" href="/v.bo?method=actors&filmid=22089&actors=%E5%BE%90%E4%B8%9C" class="mod-course-card__price mod-course-card__price_free">徐东 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">97</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-3639-22160.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/3639/vod/201507/vod_c7ec6277423c9461bd15be1298161def.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《汽车发动机电控系统故障检排》——X431故障诊断仪的使用 " class="mod-course-card__name" target="_blank" href="/v-play-3639-22160.htm">《汽车发动机电控系统故障检排》——X431故障诊断仪的使用 </a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="龚文资 " target="_blank" href="/v.bo?method=actors&filmid=22160&actors=%E9%BE%9A%E6%96%87%E8%B5%84" class="mod-course-card__price mod-course-card__price_free">龚文资 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">84</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-3639-22092.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/3639/vod/201507/vod_30b1316da6c6e503026d0cbace8758c1.JPG" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="气缸测量及磨损程度的确定" class="mod-course-card__name" target="_blank" href="/v-play-3639-22092.htm">气缸测量及磨损程度的确定</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="王凤军 " target="_blank" href="/v.bo?method=actors&filmid=22092&actors=%E7%8E%8B%E5%87%A4%E5%86%9B" class="mod-course-card__price mod-course-card__price_free">王凤军 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">4</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">81</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-3639-22091.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/3639/vod/201507/vod_e2ccf83cad2f05ece35b8b62aa6d066b.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="汽车保险理赔之快速理赔服务" class="mod-course-card__name" target="_blank" href="/v-play-3639-22091.htm">汽车保险理赔之快速理赔服务</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="胡文娟 " target="_blank" href="/v.bo?method=actors&filmid=22091&actors=%E8%83%A1%E6%96%87%E5%A8%9F" class="mod-course-card__price mod-course-card__price_free">胡文娟 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">3</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">77</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-3639-22097.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/3639/vod/201507/vod_3d90b3d228006c7cad58c90f6353f0ad.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="新车六方位绕车介绍标准流程" class="mod-course-card__name" target="_blank" href="/v-play-3639-22097.htm">新车六方位绕车介绍标准流程</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="苏忆 " target="_blank" href="/v.bo?method=actors&filmid=22097&actors=%E8%8B%8F%E5%BF%86" class="mod-course-card__price mod-course-card__price_free">苏忆 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">46</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-3639-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-3639-99827.htm" target="_blank"><img src="/upload_dir/3639/doc/2015/07/07/c5448ca3f20f447e670cb103d0e3b750.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-3639-99827.htm" target="_blank" style="font-size:14px;">汽车保险理赔之快速理赔服务（无锡商..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3639-9442.htm" target="_blank" class="color_2">胡文娟</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">15</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">27</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-3639-99829.htm" target="_blank"><img src="/upload_dir/3639/doc/2015/07/07/33adac84dba94c8a4ae1456651fc1c2a.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-3639-99829.htm" target="_blank" style="font-size:14px;">新车六方位绕车介绍（苏忆）</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3639-9580.htm" target="_blank" class="color_2">苏忆</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">15</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">26</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-3639-99826.htm" target="_blank"><img src="/upload_dir/3639/doc/2015/07/07/1373247d4b251eabee6f8b45504a6124.png" /></a></dt>
+            <dd class="ico_doc"><a href="/v003-doc-3639-99826.htm" target="_blank" style="font-size:14px;">汽车保险与理赔教学设计</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3639-9442.htm" target="_blank" class="color_2">胡文娟</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">4</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">26</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-3639-99828.htm" target="_blank"><img src="/upload_dir/3639/doc/2015/07/07/6eb14f25125d25303a5bb805fd49ad9b.png" /></a></dt>
+            <dd class="ico_docx"><a href="/v003-doc-3639-99828.htm" target="_blank" style="font-size:14px;">《教学方案设计表——新车六方位绕车..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3639-9580.htm" target="_blank" class="color_2">苏忆</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">7</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">24</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-3639-99825.htm" target="_blank"><img src="/upload_dir/3639/doc/2015/07/07/69d188f1a62ff56510fb65ec137ca8f5.png" /></a></dt>
+            <dd class="ico_docx"><a href="/v003-doc-3639-99825.htm" target="_blank" style="font-size:14px;">《汽车保险理赔之快速理赔服务》教学..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3639-9442.htm" target="_blank" class="color_2">胡文娟</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">2</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">23</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-3639-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-3639-9519.htm"><img src="/upload_dir/3639/user/201507/1ed8e179b04d783b3e22fd253eaccb86.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-3639-9519.htm" class="color_2">徐东</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-3639-9570.htm"><img src="/upload_dir/3639/user/201507/953314e96ed084bd182dfc4f596d00d5.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-3639-9570.htm" class="color_2">王凤军</a>&nbsp;&nbsp;<span class="color_3">教授</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-3639-9442.htm"><img src="/upload_dir/3639/user/201507/08157c47ac4bc0d7977b7f5507556791.png" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-3639-9442.htm" class="color_2">胡文娟</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">3</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-3639-9580.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-3639-9580.htm" class="color_2">苏忆</a>&nbsp;&nbsp;<span class="color_3">汽车营销教研室主任</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">2</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-3639-9981.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-3639-9981.htm" class="color_2">鲁瑾</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-3639-9770.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-3639-9770.htm" class="color_2">龚文资</a>&nbsp;&nbsp;<span class="color_3">教研室主任</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="14%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="10%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=3639&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=3639&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

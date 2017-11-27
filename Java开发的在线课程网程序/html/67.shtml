@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-厦门市湖里区小学信息技术微课研究小组</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/12/unit/201407/57075faece9b76444273b866516098d2.jpg" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="http://www.kldexx.com" target="_blank"><img src="/upload_dir/12/unit/201407/797e89b789a44f35ae571cafc4d14fd0.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">6</font></dd>
+        <dd>微课数量：<font id="s_wk">17</font></dd>
+        <dd>文档数量：<font id="s_doc">0</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">22</a>
+      </dl>
+      <p class="p_dl">厦门市湖里区小学信息技术微课研究小组系因福建省教育科学规划领导小组办公室“十二
+五”规划2013年立项课题《小学信息技术微课的设计制作与应用研究》课题组研究需要而
+成立，研究小组成员即为全体课题组成员，成员包括厦门市湖里区9所公办小学的15位信
+息技术专职教师，以立项课题管理单位厦门市康乐第二小<a href="/v-sinfo-67-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-67-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-67-1357.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/67/vod/2014/07/16/a2e2d0e28c46531c9d18908e686b038d.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《word中的表格应用》系列微课（13节）" class="mod-course-card__name" target="_blank" href="/v-play-67-1357.htm">《word中的表格应用》系列微课（13节）</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="朱从贵" target="_blank" href="/v.bo?method=actors&filmid=1357&actors=%E6%9C%B1%E4%BB%8E%E8%B4%B5" class="mod-course-card__price mod-course-card__price_free">朱从贵</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">907</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-67-1358.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/67/vod/2014/07/16/1a75d6d4c8a11fd3da61ebff7b0e24db.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《曲线工具的使用》系列微课（3节）" class="mod-course-card__name" target="_blank" href="/v-play-67-1358.htm">《曲线工具的使用》系列微课（3节）</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="朱从贵" target="_blank" href="/v.bo?method=actors&filmid=1358&actors=%E6%9C%B1%E4%BB%8E%E8%B4%B5" class="mod-course-card__price mod-course-card__price_free">朱从贵</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">637</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-67-4396.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/67/vod/2014/12/02/612574d4d1a53dfcad2776d5187cd615.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="在word中插入图片" class="mod-course-card__name" target="_blank" href="/v-play-67-4396.htm">在word中插入图片</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="福建省厦门市湖里区小学 " target="_blank" href="/v.bo?method=actors&filmid=4396&actors=%E7%A6%8F%E5%BB%BA%E7%9C%81%E5%8E%A6%E9%97%A8%E5%B8%82%E6%B9%96%E9%87%8C%E5%8C%BA%E5%B0%8F%E5%AD%A6" class="mod-course-card__price mod-course-card__price_free">福建省厦</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">569</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-67-4394.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/67/vod/2014/12/01/b121af5fee3d0ff68188d44d9c21af1e.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="word中的文字操作" class="mod-course-card__name" target="_blank" href="/v-play-67-4394.htm">word中的文字操作</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="福建省厦门市湖里区小学 " target="_blank" href="/v.bo?method=actors&filmid=4394&actors=%E7%A6%8F%E5%BB%BA%E7%9C%81%E5%8E%A6%E9%97%A8%E5%B8%82%E6%B9%96%E9%87%8C%E5%8C%BA%E5%B0%8F%E5%AD%A6" class="mod-course-card__price mod-course-card__price_free">福建省厦</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">566</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-67-4411.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/67/vod/2014/12/14/4339c804d5370230a581cbb49e4bd709.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="使用word中的自选图形" class="mod-course-card__name" target="_blank" href="/v-play-67-4411.htm">使用word中的自选图形</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="福建省厦门市湖里区小学 " target="_blank" href="/v.bo?method=actors&filmid=4411&actors=%E7%A6%8F%E5%BB%BA%E7%9C%81%E5%8E%A6%E9%97%A8%E5%B8%82%E6%B9%96%E9%87%8C%E5%8C%BA%E5%B0%8F%E5%AD%A6" class="mod-course-card__price mod-course-card__price_free">福建省厦</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">545</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-67-4398.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/67/vod/2014/12/02/a972af4eab23952d88729bdf7b83ce74.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="在word中插入文本框" class="mod-course-card__name" target="_blank" href="/v-play-67-4398.htm">在word中插入文本框</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="福建省厦门市湖里区小学 " target="_blank" href="/v.bo?method=actors&filmid=4398&actors=%E7%A6%8F%E5%BB%BA%E7%9C%81%E5%8E%A6%E9%97%A8%E5%B8%82%E6%B9%96%E9%87%8C%E5%8C%BA%E5%B0%8F%E5%AD%A6" class="mod-course-card__price mod-course-card__price_free">福建省厦</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">388</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-67-4400.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/67/vod/2014/12/02/46d21b66bd72b7c59e43b05a27bfe76d.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="在word中插入剪贴画" class="mod-course-card__name" target="_blank" href="/v-play-67-4400.htm">在word中插入剪贴画</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="福建省厦门市湖里区小学 " target="_blank" href="/v.bo?method=actors&filmid=4400&actors=%E7%A6%8F%E5%BB%BA%E7%9C%81%E5%8E%A6%E9%97%A8%E5%B8%82%E6%B9%96%E9%87%8C%E5%8C%BA%E5%B0%8F%E5%AD%A6" class="mod-course-card__price mod-course-card__price_free">福建省厦</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">379</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-67-4327.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/67/vod/2014/11/05/a9b581a00367a3497c85ca34393dc307.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="小学信息技术微课_word模块_1.认识word" class="mod-course-card__name" target="_blank" href="/v-play-67-4327.htm">小学信息技术微课_word模块_1.认识word</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="福建省厦门市湖里区小学 " target="_blank" href="/v.bo?method=actors&filmid=4327&actors=%E7%A6%8F%E5%BB%BA%E7%9C%81%E5%8E%A6%E9%97%A8%E5%B8%82%E6%B9%96%E9%87%8C%E5%8C%BA%E5%B0%8F%E5%AD%A6" class="mod-course-card__price mod-course-card__price_free">福建省厦</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">375</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-67-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-3731-103544.htm" target="_blank"><img src="/upload_dir/xueda/ppt/upload/e1d78f1c-32c3-4a22-8e8d-1f155facc4ec/9dhMQUY26JNz.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-3731-103544.htm" target="_blank" style="font-size:14px;">现在完成时</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3731-9819.htm" target="_blank" class="color_2">师科学苑</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">11</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">33</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-3731-103543.htm" target="_blank"><img src="/upload_dir/xueda/ppt/upload/b3006a25-710f-4222-bac5-065bae5ae382/imq37bfjNRVf.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-3731-103543.htm" target="_blank" style="font-size:14px;">现在完成时</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3731-9819.htm" target="_blank" class="color_2">师科学苑</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">8</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">31</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-3731-101395.htm" target="_blank"><img src="/upload_dir/xueda/ppt/courses/5883cea7-d7e2-459a-9374-7072a0fb97d8/IlptxB6aeiln.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-3731-101395.htm" target="_blank" style="font-size:14px;">e百怎样 怎样认识拟人</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3731-9819.htm" target="_blank" class="color_2">师科学苑</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">11</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">29</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-3731-103545.htm" target="_blank"><img src="/upload_dir/xueda/ppt/upload/weikeppt/20131231143129O0QM.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-3731-103545.htm" target="_blank" style="font-size:14px;">现在完成时讲解</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3731-9819.htm" target="_blank" class="color_2">师科学苑</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">9</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">28</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-3731-103531.htm" target="_blank"><img src="/upload_dir/xueda/ppt/upload/weikeppt/201312201601576CNN.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-3731-103531.htm" target="_blank" style="font-size:14px;">一般过去时</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3731-9819.htm" target="_blank" class="color_2">师科学苑</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">8</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">23</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-3731-103542.htm" target="_blank"><img src="/upload_dir/xueda/ppt/upload/5a372cf2-493f-4e7d-9cb9-035e3eeaac27/9dHLPTXAEIMa.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-3731-103542.htm" target="_blank" style="font-size:14px;">过去将来时</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3731-9819.htm" target="_blank" class="color_2">师科学苑</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">14</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">23</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-67-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-67-14052.htm"><img src="http://wx.qlogo.cn/mmopen/PiajxSqBRaELEIee5rcicE4tpx1ede24Oa2fOjwxk52A3P8lhWT7xRpJNuG7WKVwcXfYQpHJaqGsm5gOZWOm3xqA/0" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-67-14052.htm" class="color_2">吴莹颖</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-67-14079.htm"><img src="/upload_dir/default.gif" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-67-14079.htm" class="color_2">庄梅</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-67-14080.htm"><img src="/upload_dir/default.gif" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-67-14080.htm" class="color_2">徐佳佳</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-67-10928.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-67-10928.htm" class="color_2">朱从贵</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-67-60.htm"><img src="/upload_dir/67/user/201411/eeaaccf1faa17368d5a4c36a63a947a5.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-67-60.htm" class="color_2">湖里区小学信息技术微课研究小组</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">17</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-67-10929.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-67-10929.htm" class="color_2">陈捷曼</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="14%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="10%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=67&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=67&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

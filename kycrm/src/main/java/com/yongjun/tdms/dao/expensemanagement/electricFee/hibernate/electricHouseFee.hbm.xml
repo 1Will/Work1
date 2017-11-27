@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.expensemanagement.electricFee.ElectricHouseFee" table="t_electricHouseFee"  lazy="false">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_electricHouseFee_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		
+		<property name="code" column="code" type="string"/>
+		
+		<property name="lastElectricA" type="double">
+            <column name="lastElectricA" not-null="true"/>
+        </property>
+		
+		<property name="thisElectricA" type="double">
+            <column name="thisElectricA" not-null="true"/>
+        </property>
+		
+		<property name="sumElectricA" type="double">
+            <column name="sumElectricA" not-null="true"/>
+        </property>
+		
+		<property name="lastElectricB" type="double">
+            <column name="lastElectricB" not-null="true"/>
+        </property>
+		
+		<property name="thisElectricB" type="double">
+            <column name="thisElectricB" not-null="true"/>
+        </property>
+		
+		<property name="sumElectricB" type="double">
+            <column name="sumElectricB" not-null="true"/>
+        </property>
+		
+		<property name="sumElectric" type="double">
+            <column name="sumElectric" not-null="true"/>
+        </property>
+		
+		<property name="sumFee" type="double">
+            <column name="sumFee" not-null="true"/>
+        </property>
+		
+		<property name="shareFee" type="double">
+            <column name="shareFee" not-null="true"/>
+        </property>
+		
+		<property name="starTime" column="starTime" type="timestamp"/>
+		
+		<property name="endTime" column="endTime" type="timestamp"/>
+		
+		<property name="days" type="int">
+            <column name="days" not-null="true"/>
+        </property>
+		
+		<many-to-one name="house" class="com.yongjun.tdms.model.base.house.House">
+			<column name="house_id" not-null="false"/>
+		</many-to-one>
+		
+		<many-to-one name="electricFee" class="com.yongjun.tdms.model.expensemanagement.electricFee.ElectricFee">
+			<column name="electricFee_id" not-null="false"/>
+		</many-to-one>
+		
+		<!-- 客户 -->
+		<many-to-one name="customerInfo" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo">
+			<column name="customerInfo_id" not-null="false"/>
+		</many-to-one>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+         <property name="outLine"  column="OUTLINE" type="string" length="100"/>
+	</class>
+</hibernate-mapping>

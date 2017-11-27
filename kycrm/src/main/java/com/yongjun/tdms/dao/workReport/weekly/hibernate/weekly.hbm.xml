@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2010 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: weekly.hbm.xml 2010-02-23 wliu $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.workReport.weekly.Weekly" table="t_weekly">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_weekly_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		
+		<property name="code" type="string">
+            <column name="CODE" not-null="true" sql-type="NVARCHAR(50)" unique-key="UK_Weekly"/>
+        </property>
+        
+        <property name="name" type="string">
+			<column name="NAME" not-null="true" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <property name="startDate" type="timestamp">
+			<column name="STARTDATE" not-null="true" />
+		</property>
+        
+        <property name="endDate" type="timestamp">
+			<column name="ENDDATE" not-null="true" />
+		</property>
+        
+        <property name="summary" type="string">
+			<column name="SUMMARY" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+        <property name="leaderIdea" type="string">
+			<column name="LEADERIDEA" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+        
+        <property name="comment" type="string">
+			<column name="COMMENT" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+        
+        <!-- 提交判断 -->
+        <property name="isSaved" type="string">
+            <column name="isSaved" not-null="false" sql-type="NVARCHAR(1)"/>
+        </property>
+       <!-- 提交次数 -->
+		<property name="submitNum" type="long">
+			<column name="submitNum"/>
+		</property>
+		<many-to-one name="rapporteur" class="com.yongjun.pluto.model.security.User" lazy="false">
+			<column name="RAPPORTEUR_ID" not-null="true"/>
+		</many-to-one>
+       
+		<many-to-one name="person" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles" lazy="false">
+			<column name="PERSON_ID" not-null="false"/>
+		</many-to-one>
+       
+        <many-to-one name="inst" class="com.yongjun.pluto.model.base.institution.Institution" lazy="false">
+			<column name="INST_ID" not-null="true"/>
+		</many-to-one>
+		
+		<many-to-one name="dept" class="com.yongjun.pluto.model.security.Department" lazy="false">
+			<column name="DEPT_ID" not-null="true"/>
+		</many-to-one>
+        
+        <many-to-one name="duty" class="com.yongjun.tdms.model.base.duty.Duty" lazy="false">
+			<column name="DUTY_ID" not-null="true"/>
+		</many-to-one>
+		
+        <many-to-one name="week" class="com.yongjun.tdms.model.workReport.week.Week" lazy="false">
+			<column name="WEEK_ID" not-null="true"/>
+		</many-to-one>
+        
+        
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+        <many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization">
+			<column name="ORG_ID"/>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

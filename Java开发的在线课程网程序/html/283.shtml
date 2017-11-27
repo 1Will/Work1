@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-渤海大学</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/banner.jpg" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="" target="_blank"><img src="/upload_dir/logo.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">337</font></dd>
+        <dd>微课数量：<font id="s_wk">356</font></dd>
+        <dd>文档数量：<font id="s_doc">45</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">41</a>
+      </dl>
+      <p class="p_dl"><a href="/v-sinfo-283-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-283-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-283-13523.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/283/vod/2015/05/08/89c8974c976b78ac7c99d94f535c17ac.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《皇帝的新装》" class="mod-course-card__name" target="_blank" href="/v-play-283-13523.htm">《皇帝的新装》</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="唐静 " target="_blank" href="/v.bo?method=actors&filmid=13523&actors=%E5%94%90%E9%9D%99" class="mod-course-card__price mod-course-card__price_free">唐静 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">2</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">32255</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-283-11585.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/283/vod/2015/05/04/48a0e3003c140cd8f2196dab8791c28d.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="辨析“下定义”和“作诠释”" class="mod-course-card__name" target="_blank" href="/v-play-283-11585.htm">辨析“下定义”和“作诠释”</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="陆玥 " target="_blank" href="/v.bo?method=actors&filmid=11585&actors=%E9%99%86%E7%8E%A5" class="mod-course-card__price mod-course-card__price_free">陆玥 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">9266</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-283-15517.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/283/vod/201505/vod_914769378d8ea4499e3e4b20d5bb2cdc.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="和平共处五项原则" class="mod-course-card__name" target="_blank" href="/v-play-283-15517.htm">和平共处五项原则</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="韩阳 " target="_blank" href="/v.bo?method=actors&filmid=15517&actors=%E9%9F%A9%E9%98%B3" class="mod-course-card__price mod-course-card__price_free">韩阳 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">1577</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-283-12589.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/283/vod/201505/vod_81c3e329d425b7da9e6fc8714ecd20a9.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="探究《爸爸的花儿落了》中“我已不再是小孩子了”的深刻含义" class="mod-course-card__name" target="_blank" href="/v-play-283-12589.htm">探究《爸爸的花儿落了》中“我已不再是小孩子了”的深刻含义</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李特 " target="_blank" href="/v.bo?method=actors&filmid=12589&actors=%E6%9D%8E%E7%89%B9" class="mod-course-card__price mod-course-card__price_free">李特 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">1305</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-283-13519.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/283/vod/2015/05/08/aa3f7f397cae12146fdaf1c478b8986f.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《济南的冬天》" class="mod-course-card__name" target="_blank" href="/v-play-283-13519.htm">《济南的冬天》</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="王玲 " target="_blank" href="/v.bo?method=actors&filmid=13519&actors=%E7%8E%8B%E7%8E%B2" class="mod-course-card__price mod-course-card__price_free">王玲 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">4</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">1270</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-283-12518.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/283/vod/2015/05/07/80af2e56263927c904d209ec4fb6607b.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="分析莎莉文老师的人物形象" class="mod-course-card__name" target="_blank" href="/v-play-283-12518.htm">分析莎莉文老师的人物形象</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="包露婷 " target="_blank" href="/v.bo?method=actors&filmid=12518&actors=%E5%8C%85%E9%9C%B2%E5%A9%B7" class="mod-course-card__price mod-course-card__price_free">包露婷 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">3</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">1185</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-283-11497.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/283/vod/201504/vod_b09e437f6e25db18a831179f88d21831.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《背影》导入" class="mod-course-card__name" target="_blank" href="/v-play-283-11497.htm">《背影》导入</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="刘畅 " target="_blank" href="/v.bo?method=actors&filmid=11497&actors=%E5%88%98%E7%95%85" class="mod-course-card__price mod-course-card__price_free">刘畅 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">1129</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-283-11607.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/283/vod/201505/vod_f0a0282c7bd149e6748aca0bd61bc66a.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="文言文翻译的基本方法" class="mod-course-card__name" target="_blank" href="/v-play-283-11607.htm">文言文翻译的基本方法</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="刘畅 " target="_blank" href="/v.bo?method=actors&filmid=11607&actors=%E5%88%98%E7%95%85" class="mod-course-card__price mod-course-card__price_free">刘畅 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">3</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">1004</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-283-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-283-244.htm" target="_blank"><img src="/upload_dir/doc/283/2015/06/11/b3089b52b7518c058d4c1e6c4f79f74d.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-283-244.htm" target="_blank" style="font-size:14px;">辨析“下定义”和“作诠释”课件</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-283-2592.htm" target="_blank" class="color_2">陆玥</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">11</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">29</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-283-246.htm" target="_blank"><img src="/upload_dir/doc/283/2015/06/11/3369bbc5ea01d3008072dc91109e119e.png" /></a></dt>
+            <dd class="ico_doc"><a href="/v003-doc-283-246.htm" target="_blank" style="font-size:14px;">辨析“下定义”和“作诠释”教案</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-283-2592.htm" target="_blank" class="color_2">陆玥</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">2</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">26</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-283-171.htm" target="_blank"><img src="/upload_dir/doc/283/2015/06/11/368aaf7cf0f360818625b8fa7451765f.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-283-171.htm" target="_blank" style="font-size:14px;">《东北方言口语中一种特殊的形容词异..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-283-3224.htm" target="_blank" class="color_2">刘新一</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">10</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">19</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-283-173.htm" target="_blank"><img src="/upload_dir/doc/283/2015/06/11/266a3afc742efaaa770f1de4eb0d1e6a.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-283-173.htm" target="_blank" style="font-size:14px;">行钱塘湖春行</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-283-2925.htm" target="_blank" class="color_2">王婧涵</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">14</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">19</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-283-190.htm" target="_blank"><img src="/upload_dir/doc/283/2015/06/11/b31c06eb2516cdfd35d046f1fa0f7568.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-283-190.htm" target="_blank" style="font-size:14px;">破折号的常见作用</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-283-2603.htm" target="_blank" class="color_2">周莹</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">13</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">17</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-283-167.htm" target="_blank"><img src="/upload_dir/doc/283/2015/06/11/e20f0b1d3f4dc865cd0b387ac4ae62fa.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-283-167.htm" target="_blank" style="font-size:14px;">狄更斯《双城记》</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-283-2532.htm" target="_blank" class="color_2">郭爽</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">14</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">16</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-283-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-283-3788.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-283-3788.htm" class="color_2">付雪松</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-283-1488.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-283-1488.htm" class="color_2">代丽娟</a>&nbsp;&nbsp;<span class="color_3">学生</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-283-3203.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-283-3203.htm" class="color_2">刘思阳</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-283-1887.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-283-1887.htm" class="color_2">包晓宇</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-283-3614.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-283-3614.htm" class="color_2">姚迪</a>&nbsp;&nbsp;<span class="color_3">学生</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-283-4581.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-283-4581.htm" class="color_2">孙新伟</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-283-3471.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-283-3471.htm" class="color_2">庞浩</a>&nbsp;&nbsp;<span class="color_3">学生</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-283-3764.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-283-3764.htm" class="color_2">张丽</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=283&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=283&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

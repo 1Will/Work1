@@ -1,0 +1,62 @@
+.school_home{width:1200px;height:340px;}
+.school_banner{float:left;width:650px;height:340px;}
+.school_banner img{width:650px;height:340px;}
+.school_right{width:500px;height:340px;float:left;margin-left:50px;}
+.school_right dl{border-bottom:1px solid #ccc;width:500px;height:110px;padding-top:30px;position:relative;margin-bottom:30px;}
+.school_right dl dt{width:220px;height:85px;float:left;}
+.school_right dl dt img{padding:10px;border:1px solid #ddd;width:198px;height:63px;}
+.school_right dl dd{float:left;width:260px;padding:4px 0 3px 20px;}
+.zan_btn{background:url(../images/zan_btn.png) no-repeat left center;width:58px;height:32px;display:block;position:absolute;right:30px;top:50px;line-height:32px;padding-left:35px;color:#4bb0ff !important}
+.p_dl{text-indent:28px;line-height:28px;}
+.p_dl a{color:#4bb0ff !important}
+.list_bottom1{width:1200px;margin:10px 0;float:left;}
+.date{float:right;font-size:12px;color:#666 !important;}
+.date:hover{color:#40A9FF !important;text-decoration:none;}
+.h180{height:180px;}
+.list_bottom1 ul{float:left;}
+.list_bottom1 ul li{margin-right:70px;}
+.h_pic3{margin-top:18px;width:1200px;height:200px;}
+.ed_bottom1{float: left;height: 100px;padding: 20px 0;width:1200px;}
+.ed_1{float:left;width:390px;margin-right:13px;}
+.ed_1 dt{float:left;width:80px;height:100px;margin-right:20px;}
+.ed_1 dt img{width:80px;height:100px;}
+.ed_1 dd{float:left;width:270px;font-size:14px;padding:2px 0 15px 0;font-size:12px;padding-left:20px;}
+.ed_1 dd span{margin-right:10px;}
+.de_left{width:1200px;float:left;}
+.de_left td{border-bottom:none}
+.seach_tab_1{height:50px;background:#f7f7f7;width:1200px;position:relative;float:left;}
+.seach_tab_1 ul{main-width:200px;float:left;}
+.seach_tab_1 ul li{float:left;line-height:50px;padding:0 10px;}
+.seach_tab_1 ul li a{color:#666}
+.seach_tab_1 ul li a.link{color:#000;font-weight:bold}
+.dl_wd{float:left;width:985px;margin-right:13px;}
+.dl_wd dt{float:left;width:80px;height:100px;margin-right:20px;}
+.dl_wd dt img{width:80px;height:100px;}
+.dl_wd dd{float:left;width:865px;font-size:14px;padding:0 0 15px 0;font-size:12px;padding-left:20px;}
+.dl_wd dd span{margin-right:10px;}
+/********个人**************/
+.Ind_left{width:300px;float:left;}
+.Ind_dl{width:300px;float:left;height:100px;}
+.Ind_dl dt{width:100px;height:100px;float:left;margin-right:20px;}
+.Ind_dl dt img{width:100px;height:100px;border-radius:5px;}
+.Ind_dl dd{float:left;width:180px;padding:3px 0;}
+.Ind_li{width:300px;float:left;margin:30px 0;}
+.Ind_ul{width:300px;}
+.Ind_ul li{float:left;width:300px;height:50px;line-height:50px;margin-bottom:10px;text-align:center;background:url(../images/ul_link.png) no-repeat center;}
+.Ind_ul li a{color:#666}
+.Ind_ul li a.vvv{color:#40A9FF;}
+.Ind_right{width:860px;float:left;margin:0 0 30px 20px;background:#f8f8f8;padding:10px;}
+.Ind_1{width:860px;height:auto;margin-bottom:10px;}
+.Ind_h2{width:860px;border-bottom:1px solid #ccc;padding:10px 0;}
+/********大赛**************/
+.contest_banner{width:1200px;height:500px;background:url(../images/contest_banner.jpg) no-repeat left top;}
+.contest_botton{width:1200px;height:auto;position:relative;margin-top:50px;}
+.con_h1{width:1200px;height:70px;background:url(../images/con_h1.png) no-repeat center;text-align:center;padding-top:8px;line-height:50px;color:#fff;font-size:24px;position:absolute;top:-50px;}
+.con_bottom{width:1002px;backgroun:#fff;padding:0 99px;}
+.con_bottom img{width:375px;height:240px;}
+.con_tab{background:#fff;box-shadow:0 0 10px #ccc;padding:20px 0;}
+.con_tab td{padding:30px 0;}
+.con_loading{width:1002px;backgroun:#fff;padding:0 99px;}
+
+
+

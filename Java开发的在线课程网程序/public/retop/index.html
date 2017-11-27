@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="JS代码,悬浮漂浮,JS广告代码,JS特效代码" />
+<meta name="description" content="此代码内容为弹性返回顶部JS代码，属于站长常用代码，更多悬浮漂浮代码请访问站长教学网JS代码频道。" />
+<title>jquery弹性返回顶部JS代码_教学网eduyo.com</title>
+<script src="js/jquery-1.3.2.js"></script>
+<script src="js/jquery.dialog.js?6.2.0"></script>
+
+<LINK rel=stylesheet type=text/css href="css/eduyo.css">
+</head>
+
+<body style="text-align:center;HEIGHT: 3600px; ">
+
+<script type="text/javascript">
+  <!--
+	$().ready(function() {
+		$.dialog({id:'scrolltotop',skin:"noborder",position:'rb',move:false,effects:'',fixed:1,height:160,width:50,border:0,minScrollTop:100,overlay:0,content:'<img title="回顶部" src="images/eduyo_top.jpg" style="width:30px; height:33px;border:none;cursor:pointer;" onclick="scrollToTop()"/>'});
+	});
+	function scrollToTop(){
+		var body=(window.opera)? (document.compatMode=="CSS1Compat"? $('html') : $('body')) : $('html,body');
+		body.animate({scrollTop:0},500);
+	}
+</script>
+
+</body>
+</html>

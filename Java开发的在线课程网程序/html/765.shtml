@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-北京语言大学网络教育学院</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/banner.gif" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="http://www.eblcu.cn/" target="_blank"><img src="/upload_dir/logo.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">9</font></dd>
+        <dd>微课数量：<font id="s_wk">29</font></dd>
+        <dd>文档数量：<font id="s_doc">0</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">0</a>
+      </dl>
+      <p class="p_dl">经国家教育部批准，北京语言大学网络教育学院（简称“北语网院”）于2000年成立。经
+教育部批准，北语网院可自主确定本、专科教育入学标准和考试、录取方式，对达到要求
+的学生颁发国家承认的文凭和授予学位。从2001年开始，北语网院充分利用校内外中外优
+秀的师资、丰富的学习资源，逐步开展网上对外汉语、<a href="/v-sinfo-765-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-765-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-765-18754.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/765/vod/201506/vod_c9d5bf65f236c91afca078f2709dbed0.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="Excel 电子表格" class="mod-course-card__name" target="_blank" href="/v-play-765-18754.htm">Excel 电子表格</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="北语网院 张凯 " target="_blank" href="/v.bo?method=actors&filmid=18754&actors=%E5%8C%97%E8%AF%AD%E7%BD%91%E9%99%A2+%E5%BC%A0%E5%87%AF" class="mod-course-card__price mod-course-card__price_free">北语网院</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">576</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-765-4235.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/765/vod/2014/10/05/737f43d8d43a634efd3470801c43c88e.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="介词辨析-上" class="mod-course-card__name" target="_blank" href="/v-play-765-4235.htm">介词辨析-上</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="王小萍" target="_blank" href="/v.bo?method=actors&filmid=4235&actors=%E7%8E%8B%E5%B0%8F%E8%90%8D" class="mod-course-card__price mod-course-card__price_free">王小萍</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">324</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-765-4234.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/765/vod/2014/10/05/65bd9e51b09ed6aa2706872e7e0acf9f.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《卡门》 —— 浪漫主义的“恶之花”" class="mod-course-card__name" target="_blank" href="/v-play-765-4234.htm">《卡门》 —— 浪漫主义的“恶之花”</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="陈戎女" target="_blank" href="/v.bo?method=actors&filmid=4234&actors=%E9%99%88%E6%88%8E%E5%A5%B3" class="mod-course-card__price mod-course-card__price_free">陈戎女</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">292</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-765-4232.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/765/vod/2014/10/05/7d5d21f7189104beca7b00d90fd98558.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="你不知道的中国文化 —— 冬至为什么吃饺子" class="mod-course-card__name" target="_blank" href="/v-play-765-4232.htm">你不知道的中国文化 —— 冬至为什么吃饺子</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="齐晓华" target="_blank" href="/v.bo?method=actors&filmid=4232&actors=%E9%BD%90%E6%99%93%E5%8D%8E" class="mod-course-card__price mod-course-card__price_free">齐晓华</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">233</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-765-20421.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/765/vod/2015/06/30/839a230380fef90e4f8abe6ef14a57de.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="句法-英语语法" class="mod-course-card__name" target="_blank" href="/v-play-765-20421.htm">句法-英语语法</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="北语网院 古艳东 " target="_blank" href="/v.bo?method=actors&filmid=20421&actors=%E5%8C%97%E8%AF%AD%E7%BD%91%E9%99%A2+%E5%8F%A4%E8%89%B3%E4%B8%9C" class="mod-course-card__price mod-course-card__price_free">北语网院</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">194</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-765-4233.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/765/vod/2014/10/05/538ee00289cf4fff478c101f9e12ed0f.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="语言表达技巧—— 气息控制" class="mod-course-card__name" target="_blank" href="/v-play-765-4233.htm">语言表达技巧—— 气息控制</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="刘小军" target="_blank" href="/v.bo?method=actors&filmid=4233&actors=%E5%88%98%E5%B0%8F%E5%86%9B" class="mod-course-card__price mod-course-card__price_free">刘小军</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">164</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-765-4443.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/765/vod/2015/01/05/b126a484744df9cc86437b230114e61b.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《介词辨析》上：教你读懂介词的心" class="mod-course-card__name" target="_blank" href="/v-play-765-4443.htm">《介词辨析》上：教你读懂介词的心</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="王小萍" target="_blank" href="/v.bo?method=actors&filmid=4443&actors=%E7%8E%8B%E5%B0%8F%E8%90%8D" class="mod-course-card__price mod-course-card__price_free">王小萍</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">100</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-765-4506.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/765/vod/2015/01/06/f7274982eda02bbe80eb59458d62c3d1.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="这是什么动物？" class="mod-course-card__name" target="_blank" href="/v-play-765-4506.htm">这是什么动物？</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="赵雪梅" target="_blank" href="/v.bo?method=actors&filmid=4506&actors=%E8%B5%B5%E9%9B%AA%E6%A2%85" class="mod-course-card__price mod-course-card__price_free">赵雪梅</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">84</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-765-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-765-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-765-6928.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-765-6928.htm" class="color_2">北语网院</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">23</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-765-13158.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-765-13158.htm" class="color_2">刘小军</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-765-792.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-765-792.htm" class="color_2">北京语言大学网络教育学院</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">6</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-765-7144.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-765-7144.htm" class="color_2">古艳东</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-765-7145.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-765-7145.htm" class="color_2">张凯</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-765-6930.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-765-6930.htm" class="color_2">王小萍</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-765-13283.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-765-13283.htm" class="color_2">赵雪梅</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-765-13159.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-765-13159.htm" class="color_2">陈戎女</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=765&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=765&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

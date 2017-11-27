@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-河北省唐山工业职业技术学院</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/banner.gif" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="http://www.tsgzy.edu.cn/" target="_blank"><img src="/upload_dir/logo.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">6</font></dd>
+        <dd>微课数量：<font id="s_wk">8</font></dd>
+        <dd>文档数量：<font id="s_doc">8</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">0</a>
+      </dl>
+      <p class="p_dl">河北省唐山工业职业技术学院<a href="/v-sinfo-2109-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-2109-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2109-21611.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2109/vod/2015/07/03/5a478ecb3dfc0312925dee4eef39b47e.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="河北省+唐山工业职业技术学院+鲁广英、李红艳+计算机软件编程+高职二年级+C#程序设计之动画的设计与实现" class="mod-course-card__name" target="_blank" href="/v-play-2109-21611.htm">河北省+唐山工业职业技术学院+鲁广英、李红艳+计算机软件编程+高职二年级+C#程序设计之动画的设计与实现</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="鲁广英 " target="_blank" href="/v.bo?method=actors&filmid=21611&actors=%E9%B2%81%E5%B9%BF%E8%8B%B1" class="mod-course-card__price mod-course-card__price_free">鲁广英 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">65</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2109-21528.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2109/vod/201507/vod_975e5f75ccb7659ef2cea2c54700f3e3.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="梦中的纸飞机" class="mod-course-card__name" target="_blank" href="/v-play-2109-21528.htm">梦中的纸飞机</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="周福泉" target="_blank" href="/v.bo?method=actors&filmid=21528&actors=%E5%91%A8%E7%A6%8F%E6%B3%89" class="mod-course-card__price mod-course-card__price_free">周福泉</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">61</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2109-21283.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2109/vod/201507/vod_524422e2b9a1c1434cba17f9160da33d.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="利用模板进行网页设计" class="mod-course-card__name" target="_blank" href="/v-play-2109-21283.htm">利用模板进行网页设计</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="孙秀春" target="_blank" href="/v.bo?method=actors&filmid=21283&actors=%E5%AD%99%E7%A7%80%E6%98%A5" class="mod-course-card__price mod-course-card__price_free">孙秀春</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">52</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-2109-21396.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2109/vod/201507/vod_dad96d1e00786ad6563de11a581ac128.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="人物走路动画" class="mod-course-card__name" target="_blank" href="/v-play-2109-21396.htm">人物走路动画</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李睿仙 " target="_blank" href="/v.bo?method=actors&filmid=21396&actors=%E6%9D%8E%E7%9D%BF%E4%BB%99" class="mod-course-card__price mod-course-card__price_free">李睿仙 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">51</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2109-20837.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2109/vod/201507/vod_d42e1f19240b1f15bb23490dfbf31f1e.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="网页设计——Flash中的按钮" class="mod-course-card__name" target="_blank" href="/v-play-2109-20837.htm">网页设计——Flash中的按钮</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李红艳" target="_blank" href="/v.bo?method=actors&filmid=20837&actors=%E6%9D%8E%E7%BA%A2%E8%89%B3" class="mod-course-card__price mod-course-card__price_free">李红艳</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">48</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2109-20841.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2109/vod/201507/vod_885fbd23481a087e87f9f3f8e4eb3ae4.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="网络综合布线课程——网线的制作方法" class="mod-course-card__name" target="_blank" href="/v-play-2109-20841.htm">网络综合布线课程——网线的制作方法</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="任凌翔 " target="_blank" href="/v.bo?method=actors&filmid=20841&actors=%E4%BB%BB%E5%87%8C%E7%BF%94" class="mod-course-card__price mod-course-card__price_free">任凌翔 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">45</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2109-21108.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2109/vod/201507/vod_c0975e9532cce73514c9948fd62cb463.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="RSA加密算法" class="mod-course-card__name" target="_blank" href="/v-play-2109-21108.htm">RSA加密算法</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李睿仙 " target="_blank" href="/v.bo?method=actors&filmid=21108&actors=%E6%9D%8E%E7%9D%BF%E4%BB%99" class="mod-course-card__price mod-course-card__price_free">李睿仙 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">36</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-2109-20323.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2109/vod/201506/vod_4f356749843731286d126fad6d0f4d65.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="网络综合布线课程——SC冷接子的制作" class="mod-course-card__name" target="_blank" href="/v-play-2109-20323.htm">网络综合布线课程——SC冷接子的制作</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="任凌翔 " target="_blank" href="/v.bo?method=actors&filmid=20323&actors=%E4%BB%BB%E5%87%8C%E7%BF%94" class="mod-course-card__price mod-course-card__price_free">任凌翔 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">30</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-2109-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2109-99659.htm" target="_blank"><img src="/upload_dir/2109/doc/2015/07/03/f8c2973c3a2df0440223e285e96dfb86.png" /></a></dt>
+            <dd class="ico_txt"><a href="/v003-doc-2109-99659.htm" target="_blank" style="font-size:14px;">实践题</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2109-8405.htm" target="_blank" class="color_2">鲁广英</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">1</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">33</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2109-99605.htm" target="_blank"><img src="/upload_dir/2109/doc/2015/07/01/cf2fd4c5fd08e0b8106c734147b91929.png" /></a></dt>
+            <dd class="ico_doc"><a href="/v003-doc-2109-99605.htm" target="_blank" style="font-size:14px;">网络综合布线课程——SC冷接子的制..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2109-7982.htm" target="_blank" class="color_2">任凌翔</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">7</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">31</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-2109-99606.htm" target="_blank"><img src="/upload_dir/2109/doc/2015/07/01/46ad17c59457a3ae360b3bce815b36e1.png" /></a></dt>
+            <dd class="ico_doc"><a href="/v003-doc-2109-99606.htm" target="_blank" style="font-size:14px;">网络综合布线课程——网线的制作方法..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2109-7982.htm" target="_blank" class="color_2">任凌翔</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">6</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">31</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2109-99660.htm" target="_blank"><img src="/upload_dir/2109/doc/2015/07/03/9c02a14b492c157642a7074fff4f0787.png" /></a></dt>
+            <dd class="ico_doc"><a href="/v003-doc-2109-99660.htm" target="_blank" style="font-size:14px;">微课教学设计方案-鲁广英</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2109-8405.htm" target="_blank" class="color_2">鲁广英</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">3</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">28</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2109-99608.htm" target="_blank"><img src="/upload_dir/2109/doc/2015/07/01/f7ea1c4eba7d5ee4f8160496bdc70a62.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-2109-99608.htm" target="_blank" style="font-size:14px;">网络综合布线课程——网线的制作方法</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2109-7982.htm" target="_blank" class="color_2">任凌翔</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">14</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">28</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-2109-99657.htm" target="_blank"><img src="/upload_dir/2109/doc/2015/07/03/4b5cb5ad6da4556ed153969f5bba330d.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-2109-99657.htm" target="_blank" style="font-size:14px;">河北省+唐山工业职业技术学院+鲁广..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2109-8405.htm" target="_blank" class="color_2">鲁广英</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">17</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">22</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-2109-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-2109-4243.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-2109-4243.htm" class="color_2">李睿仙</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">2</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2109-7982.htm"><img src="/upload_dir/user/201506/vod_1e8ea8bdff0351d71e32a9ec365a8f94.JPG" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-2109-7982.htm" class="color_2">任凌翔</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">5</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">4</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2109-13528.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-2109-13528.htm" class="color_2">周福泉</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2109-13589.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-2109-13589.htm" class="color_2">孙秀春</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-2109-13546.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-2109-13546.htm" class="color_2">李红艳</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2109-8405.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-2109-8405.htm" class="color_2">鲁广英</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">4</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="14%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="10%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=2109&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=2109&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

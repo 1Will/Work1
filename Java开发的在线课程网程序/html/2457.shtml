@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-延庆县十一学校</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/banner.gif" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><img src="/upload_dir/logo.gif"/></dt>
+        <dd>教师数量：<font id="s_js">18</font></dd>
+        <dd>微课数量：<font id="s_wk">36</font></dd>
+        <dd>文档数量：<font id="s_doc">4</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">4</a>
+      </dl>
+      <p class="p_dl">延庆县十一学校<a href="/v-sinfo-2457-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-2457-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2457-20706.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2457/vod/201506/vod_360a4f0213c86c631f5b4922f5c3c1e9.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="北京市  延庆县十一学校  李英 初中数学 七年级  等式的基本性质" class="mod-course-card__name" target="_blank" href="/v-play-2457-20706.htm">北京市  延庆县十一学校  李英 初中数学 七年级  等式的基本性质</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李英1 " target="_blank" href="/v.bo?method=actors&filmid=20706&actors=%E6%9D%8E%E8%8B%B11" class="mod-course-card__price mod-course-card__price_free">李英1 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">58</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2457-20688.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2457/vod/201506/vod_797a22c0db98bf87f007783ae39af97b.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title=" 北京市  延庆县十一学校  李英 初中数学 七年级  等式与方程" class="mod-course-card__name" target="_blank" href="/v-play-2457-20688.htm"> 北京市  延庆县十一学校  李英 初中数学 七年级  等式与方程</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李英1 " target="_blank" href="/v.bo?method=actors&filmid=20688&actors=%E6%9D%8E%E8%8B%B11" class="mod-course-card__price mod-course-card__price_free">李英1 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">46</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2457-20656.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2457/vod/2015/06/30/c4652cb7b36d066d914bd0be6a1c5ba1.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="北京市 延庆县十一学校 李英 初中数学 七年级 字母表示数" class="mod-course-card__name" target="_blank" href="/v-play-2457-20656.htm">北京市 延庆县十一学校 李英 初中数学 七年级 字母表示数</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李英1 " target="_blank" href="/v.bo?method=actors&filmid=20656&actors=%E6%9D%8E%E8%8B%B11" class="mod-course-card__price mod-course-card__price_free">李英1 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">43</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-2457-17441.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2457/vod/2015/06/08/1f847a3943befec3d13363381d1b4ff2.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="求二次函数几何变换后的解析式" class="mod-course-card__name" target="_blank" href="/v-play-2457-17441.htm">求二次函数几何变换后的解析式</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="程宝栓 " target="_blank" href="/v.bo?method=actors&filmid=17441&actors=%E7%A8%8B%E5%AE%9D%E6%A0%93" class="mod-course-card__price mod-course-card__price_free">程宝栓 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">39</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2457-19332.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2457/vod/2015/06/27/6fdc5f4a4d6c24b4892fb653446ef9cf.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="英语 九年级 宾语从句" class="mod-course-card__name" target="_blank" href="/v-play-2457-19332.htm">英语 九年级 宾语从句</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="王利霞 " target="_blank" href="/v.bo?method=actors&filmid=19332&actors=%E7%8E%8B%E5%88%A9%E9%9C%9E" class="mod-course-card__price mod-course-card__price_free">王利霞 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">36</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2457-17501.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2457/vod/2015/06/09/41789fcdf9031afb4e4205e716edadd5.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title=" 求二次函数几何变换后的解析式" class="mod-course-card__name" target="_blank" href="/v-play-2457-17501.htm"> 求二次函数几何变换后的解析式</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="程宝栓 " target="_blank" href="/v.bo?method=actors&filmid=17501&actors=%E7%A8%8B%E5%AE%9D%E6%A0%93" class="mod-course-card__price mod-course-card__price_free">程宝栓 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">33</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2457-18258.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2457/vod/2015/06/17/b3f5ad380aa4767755efe306912b3c14.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="初中数学八年级 线段和的最小值问题（一轴两定点）—北京市延庆县十一学校 王银平 " class="mod-course-card__name" target="_blank" href="/v-play-2457-18258.htm">初中数学八年级 线段和的最小值问题（一轴两定点）—北京市延庆县十一学校 王银平 </a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="王银平 " target="_blank" href="/v.bo?method=actors&filmid=18258&actors=%E7%8E%8B%E9%93%B6%E5%B9%B3" class="mod-course-card__price mod-course-card__price_free">王银平 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">29</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-2457-18584.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2457/vod/201506/vod_14241b601b9bf9d0fae97d4bb6139da6.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="电路故障" class="mod-course-card__name" target="_blank" href="/v-play-2457-18584.htm">电路故障</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="王迎春 " target="_blank" href="/v.bo?method=actors&filmid=18584&actors=%E7%8E%8B%E8%BF%8E%E6%98%A5" class="mod-course-card__price mod-course-card__price_free">王迎春 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">4</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">29</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-2457-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2457-99297.htm" target="_blank"><img src="/upload_dir/2457/doc/2015/06/23/3b9d12c32e1e7b0597364967da82af6f.png" /></a></dt>
+            <dd class="ico_pptx"><a href="/v003-doc-2457-99297.htm" target="_blank" style="font-size:14px;">北京市 延庆县十一学校 王银平 初..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2457-6782.htm" target="_blank" class="color_2">王银平</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">13</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">31</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2457-99528.htm" target="_blank"><img src="/upload_dir/2457/doc/2015/06/30/0a3529fafe17e19b00eafd3c63a31acf.png" /></a></dt>
+            <dd class="ico_pptx"><a href="/v003-doc-2457-99528.htm" target="_blank" style="font-size:14px;">线段和最小值问题（3）两轴两定点 ..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2457-6782.htm" target="_blank" class="color_2">王银平</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">9</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">20</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-2457-99298.htm" target="_blank"><img src="/upload_dir/2457/doc/2015/06/23/96a53583f95f7d87b83dab4b4c125d64.png" /></a></dt>
+            <dd class="ico_pptx"><a href="/v003-doc-2457-99298.htm" target="_blank" style="font-size:14px;">北京市 延庆县十一学校 王银平 初..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2457-6782.htm" target="_blank" class="color_2">王银平</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">19</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">20</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2457-99525.htm" target="_blank"><img src="/upload_dir/2457/doc/2015/06/30/fec16b01f9e6ffa2062e08566e4bd437.png" /></a></dt>
+            <dd class="ico_pptx"><a href="/v003-doc-2457-99525.htm" target="_blank" style="font-size:14px;">线段和最小值问题（2）两轴一定点 ..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2457-6782.htm" target="_blank" class="color_2">王银平</a> | <span>评分<span class="color_5">4</span></span><span>共<font class="color_5">10</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">20</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-3731-105851.htm" target="_blank"><img src="/upload_dir/xueda/ppt/courses/fbfcbda9-ef4a-4096-9c0c-c60c2835006a/CGKnrvzD8cjv.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-3731-105851.htm" target="_blank" style="font-size:14px;">【21天满分作文训练课程?选材篇之..</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3731-9819.htm" target="_blank" class="color_2">师科学苑</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">9</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">34</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-3731-105863.htm" target="_blank"><img src="/upload_dir/xueda/ppt/upload/b6deaa82-7b0f-4f27-9fef-39778ac6b4b4/JNRlptxBeimj.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-3731-105863.htm" target="_blank" style="font-size:14px;">正数与负数</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-3731-9819.htm" target="_blank" class="color_2">师科学苑</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">9</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">33</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-2457-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-2457-8606.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-2457-8606.htm" class="color_2">何丽</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">3</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2457-7094.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-2457-7094.htm" class="color_2">卢艳新</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">2</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2457-7081.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-2457-7081.htm" class="color_2">曹海莲</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2457-8330.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-2457-8330.htm" class="color_2">李春祥</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-2457-8542.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-2457-8542.htm" class="color_2">李英</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2457-8534.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-2457-8534.htm" class="color_2">李英1</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">4</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2457-5862.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-2457-5862.htm" class="color_2">牛英琴</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2457-7709.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-2457-7709.htm" class="color_2">王利霞</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=2457&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=2457&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

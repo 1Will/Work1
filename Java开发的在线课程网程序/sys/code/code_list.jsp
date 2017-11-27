@@ -1,0 +1,107 @@
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ include file="../../public/jsp/taglibs.jsp"%>
+
+<html>
+<head>
+<SCRIPT language=javascript src="/public/js/comm.js"></SCRIPT>
+<SCRIPT language=javascript>
+var num=<bean:write name="pagelist" property="pageCount" />
+
+function addRecord(){
+  document.pageForm.action="sysCodeDataAction.do?method=beforeAdd";
+  document.pageForm.submit();
+}
+
+function getOpen(url){
+   window.showModalDialog(url,'码表管理','dialogWidth:600px;dialogheight:550px;toolbar:no;status:no;toolbar:no;');
+   document.pageForm.action="sysCodeDataAction.do?method=list";
+   document.pageForm.submit();
+ }
+
+ function searchRecord(){
+  document.pageForm.startcount.value = "0";
+  document.pageForm.action="sysCodeDataAction.do?method=list";
+  document.pageForm.submit();
+}
+</SCRIPT>
+<title>码表管理</title>
+<%@ include file="../../public/jsp/style.jsp"%>
+<%@ include file="../../public/jsp/meta.jsp"%>
+</head>
+<body>
+<FORM name="pageForm" method=post>
+<table width="98%" align="center">
+  <TR>
+    <TD class="page_title" colspan="2">码表管理</TD>
+ </TR>
+ <tr height="30">
+   <td>
+     <TABLE class="table_search_title" width="100%" cellSpacing=1 cellPadding=1  >
+          <tr>
+              <td >查询>>码表信息</td>
+            </tr>
+       </table>
+       <TABLE class="table_search" width="100%" cellSpacing=1 cellPadding=1  >
+            <tr>
+              <td class="bg_basecolor" align="left">
+                <table cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td width="80" height="25" align="right">名称：</td>
+                    <td><input type="text" value='<bean:write name="codedata" />' size="20" name="codedata"/></td>
+                    <td width="80" height="25" align="right">类型：</td>
+                    <td><input type="text" value='<bean:write name="codeno" />' size="20" name="codeno"/></td>
+                  </tr>
+                </table>
+              </td>
+              <td width="88" class="bg_basecolor"><input type="button" value="搜索" onclick="searchRecord()" class="btn_search" /></td>
+              </tr>
+        </table>
+   </td>
+ </tr>
+ <TR>
+    <TD class="page_blank"></TD>
+  </TR>
+ <tr>
+   <td>
+      <INPUT class="btn_all" onclick="setState(true)" type="button" value="全选" name="selectall">
+      <INPUT class="btn_none"  onclick="setState(false)" type="button" value="全不选" name="selectnone">
+      <INPUT class="btn_add"  onclick="addRecord()" type="button" value="新增" name="btnadd">
+      <INPUT class="btn_del"  onclick="delRecord('sysCodeDataAction.do?method=delBatchRecord')" type="button" value="删除" name="btndel">
+    </td>
+     <TD align="right">
+     </TD>
+ </tr>
+</table>
+<TABLE class="page_table" cellSpacing=1 cellPadding=1 width="97%" align="center">
+<tr >
+    <TD class="table_title" width="35" ><input type="checkbox" name="select"  onclick="setState(this.checked)"></TD>
+    <TD class="table_title">名称</TD>
+    <TD class="table_title" width="250">类型</TD>
+    <TD class="table_title" width="70">操作</TD>
+</tr>
+<!--循环列出所有数据-->
+  <logic:iterate id="model" name="pagelist" property="datalist" indexId="index">
+     <TR onMouseover="chgTDbg(this,'on')" class="table_list" onMouseout="chgTDbg(this,'off')" bgcolor="#ffffff" >
+     <TD align="center">
+       <input type="checkbox" name="checkid" value="<bean:write property="codeid" name="model"/>" <bean:write name="model" property="flags"/>>
+     </TD>
+     <TD align="left">&nbsp;<bean:write name="model" property="codedata"/></TD>
+     <TD align="center"><bean:write name="model" property="codeno"/></TD>
+      <td align="center">
+        <java2page:button url="sysCodeDataAction.do" property="codeid" readonly="E"/>
+        <img alt="码表管理" title="码表管理" style="cursor:pointer;" onclick="getOpen('sysCodeDataAction.do?method=main&codeid=<bean:write property="codeid" name="model" />')" border="0"  src="/public/images/main/icon3.gif"/>
+      </td>
+     </TR>
+     </logic:iterate>
+</TABLE>
+<TABLE width="98%" border=0 align="center">
+  <TR>
+    <TD align=center>
+      <java2page:pager url="sysCodeDataAction.do?method=list" name="pagelist" />
+      <input type="hidden" name="startcount" id="startcount" value="<bean:write name="startcount"/>">
+    </TD>
+  </TR>
+</TABLE>
+</FORM>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 4001-4009 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: additionalInfo.hbm.xml 4009-12-7 14:06:35Z wliu $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.CustomerRelationship.technology.Technology" table="t_technology">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_technology_sequence</param>
+				<param name="parameters">START WITH 1</param>
+			</generator>
+		</id>
+
+        <property name="name" type="string">
+			<column name="NAME" not-null="true" sql-type="NVARCHAR(60)"/>
+		</property>
+		<!-- 专利号 -->
+        <property name="patentNumber" type="string">
+			<column name="PATENTNUMBER" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		<!-- 申请号 -->
+		<property name="applyNumber" type="string">
+			<column name="applyNumber" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		<!-- 申请时间 -->
+		<property name="applyTime" column="APPLYTIME" type="timestamp" not-null="false"/>
+		<!--  授权时间-->
+		<property name="authorizeTime" column="AUTHORIZETIME" type="timestamp" not-null="false"/>
+		<property name="applyPassTime" column="APPLYPASSTIME" type="timestamp" not-null="false"/>
+		<!-- 知识产权类别 -->
+        <many-to-one name="genre" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="GENRE" not-null="true"/>
+		</many-to-one>
+        
+        <many-to-one name="type" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="TYPE" not-null="true"/>
+		</many-to-one>
+	   <many-to-one name="customerInfo" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo">
+			<column name="CUSTOMERINFO" not-null="true"/>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

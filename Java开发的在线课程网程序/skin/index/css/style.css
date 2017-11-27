@@ -1,0 +1,135 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0;}
+body{font-size:14px;font-family: "Microsoft YaHei",Tahoma,Arial,sans-serif; letter-spacing:2px;}
+ul,li{list-style:none}
+img{border:0;}
+a:link, a:visited {color:#000; text-decoration:none;}
+a:hover, a:active {color:#046eb8;text-decoration:none;}
+
+/**************顶部****************/
+#wrapper{
+	width:100%;
+	height:100%;
+	margin:0 auto;
+	}
+.header{
+	width:100%;
+	height:35px;
+	border-bottom:1px solid #f2f2f2;
+	}
+.header_size{
+	width:1200px;
+	height:35px;
+	margin:0 auto;
+	padding-right:20px;
+	}
+.header_size span{
+	line-height:34px;
+	}
+.header_size_font{
+	display:block;
+	float:left;
+	line-height:34px;
+	margin-left:900px;
+	width:105px;
+	text-align:center;
+	letter-spacing:1px;
+	}
+.header_size_font:hover{
+	margin-left:900px;
+	width:105px;
+	height:142px;
+	background-image:url(../images/code.png);
+	background-repeat:no-repeat;
+	}
+.header_size_span{
+	float:right;
+	padding-right:20px;
+	}
+/******************搜索框*****************/
+.content{
+	width:700px;
+	height:300px;
+	margin:0 auto;
+	margin-top:9%;
+	}
+.content_title{
+	width:484px;
+	height:58px;
+	margin:0 auto;
+	background-image:url(../images/title.png);
+	background-repeat:no-repeat;
+	}
+.content_search{
+	width:642px;
+	height:42px;
+	margin:0 auto;
+	padding-top:38px;
+	}
+.content_search a{
+	position:relative;
+	left:534px;
+	}
+.content_search_input{
+	position: absolute;
+	width:534px;
+	height:38px;
+	border:1px solid #40a8ff;
+	text-indent:0.5em;
+	font-size:14px;
+	vertical-align: middle;
+	line-height:38px;
+	outline:none;
+	}
+.content_hot{
+	width:520px;
+	height:90px;
+	padding-top:44px;
+	margin:0 auto;
+	color:#595758;
+	font-size:15px;
+	}
+.content_hot_1 a:link,.content_hot_1 a:visited {color:#595758; text-decoration:none;}
+.content_hot_1 a:hover,.content_hot_1 a:active {color:#046eb8;text-decoration:none;} 
+.content_hot_1{
+	float:left;
+	margin:0px 25px 0px 33px;
+	width:41px;
+	height:88px;
+	text-align:center;
+	}
+.content_hot_1 p{
+	margin-top:6px;
+	text-align:center;
+	}
+	
+/*****************底部******************/
+.footer{
+	position:absolute;
+	width:100%;
+	height: auto;
+	text-align:center;
+	overflow:hidden;
+	bottom:40px;
+	font-size:14px;
+	}
+.footer_line{
+	color:#9a9a9a;
+
+	}
+.footer a:link,.footer a:visited {color:#9a9a9a; text-decoration:none;}
+.footer a:hover,.footer a:active {color:#046eb8;text-decoration:none;} 
+
+.content_hot_1_img{
+	display: block;
+    height:48px;
+    overflow: hidden;
+    width:40px;
+	}
+.content_hot_1_img:hover{
+    transform: scale(1.4);
+    transition: all 1s ease 0s;
+	-webkit-transform: scale(1.4);
+	-webkit-transform: all 1s ease 0s;
+}

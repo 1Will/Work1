@@ -1,0 +1,119 @@
+.thickframe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000000;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border: 0;
+    filter: alpha(opacity = 0);
+    opacity: 0;
+}
+
+.thickdiv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000001;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border: 0;
+    filter: alpha(opacity = 15);
+    opacity: .15;
+}
+
+.thickbox {
+    position: absolute;
+    z-index: 10000002;
+    overflow: hidden;
+    padding: 0;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.thicktitle {
+    height: 27px;
+    padding: 0 10px;
+    border: solid #C4C4C4;
+    border-width: 1px 1px 0;
+    background: #F3F3F3;
+    line-height: 27px;
+    font-family: arial, "\5b8b\4f53";
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.thickclose:link, .thickclose:visited {
+    display: block;
+    position: absolute;
+    z-index: 100000;
+    top: 7px;
+    right: 12px;
+    overflow: hidden;
+    width: 15px;
+    height: 15px;
+    background: url(../images/bg_thickbox.gif) no-repeat 0 -18px;
+    font-size: 0;
+    line-height: 100px;
+}
+
+.thickcon {
+    overflow: auto;
+    background: #fff;
+    border: solid #C4C4C4;
+    border-width: 1px;
+    padding: 10px;
+}
+
+.thickloading {
+    background: url(../images/loading1.gif) #fff no-repeat center center;
+}
+
+.thickcountdown {
+    height: 20px;
+    padding-right: 6px;
+    margin-top: -20px;
+    text-align: right;
+    color: #999;
+}
+
+*html .thickframe {
+    position: absolute;
+}
+
+*html .thickdiv {
+    position: absolute;
+}
+
+#thicktitler {
+    padding: 0 11px;
+    background: #8DB7DC;
+    border: none;
+    color: #fff;
+}
+
+#thickcloser:link, #thickcloser:visited {
+    top: 6px;
+    right: 9px;
+    width: 16px;
+    height: 17px;
+    background-position: 0 0;
+}
+
+#thickconr {
+    border: solid #8DB7DC;
+    border-width: 1px;
+}
+
+.regist-2013 .btnt{width:322px;margin:20px auto 0;}
+.regist-2013 .btnt .btn-img{width:322px;border:none;text-align:center;height:34px;line-heiht:34px;background:#e4393c;color:#FFF; -moz-border-radius:3px; -webkit-border-radius:3px;border-radius:3px;font-family:"微软雅黑";font-size:16px;font-weight:800;}
+#protocol-con{height:356px;overflow:auto;padding:10px 20px 0 10px;}
+#protocol-con h5{line-height:30px;}
+#protocol-con p{line-height:20px;}
+#protocol-con p strong{font-weight:normal;}
+.thicktitle{padding:0;text-align:center;}

@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-厦门大学</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/12/unit/201409/473c5203131a2676ba315238963969f0.jpg" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="http://www.xmu.edu.cn" target="_blank"><img src="/upload_dir/12/unit/201406/d6ffab80cea79ab542da4043f8cee02d.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">10</font></dd>
+        <dd>微课数量：<font id="s_wk">12</font></dd>
+        <dd>文档数量：<font id="s_doc">0</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">70</a>
+      </dl>
+      <p class="p_dl">厦门大学由著名爱国华侨领袖陈嘉庚先生于1921年创办，是中国近代教育史上第一所华侨
+创办的大学，也是国家“211工程”和“985工程”重点建设的高水平大学。
+
+建校以来，学校秉承“自强不息，止于至善”的校训，积累了丰富的办学经验，形成了鲜
+明的办学特色，成为一所学科门类齐全、师资力量雄厚、居国<a href="/v-sinfo-22-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-22-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-22-1131.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/22/vod/2014/07/10/ca8b6838eac74a9e0b227f6bf3a376ea.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="画面与乐声" class="mod-course-card__name" target="_blank" href="/v-play-22-1131.htm">画面与乐声</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="关红实" target="_blank" href="/v.bo?method=actors&filmid=1131&actors=%E5%85%B3%E7%BA%A2%E5%AE%9E" class="mod-course-card__price mod-course-card__price_free">关红实</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">904</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-22-1134.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/22/vod/2014/07/10/0f2b1fa672fd26815feef59bad9f65ee.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="博弈论在决策中的应用" class="mod-course-card__name" target="_blank" href="/v-play-22-1134.htm">博弈论在决策中的应用</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="孙传旺" target="_blank" href="/v.bo?method=actors&filmid=1134&actors=%E5%AD%99%E4%BC%A0%E6%97%BA" class="mod-course-card__price mod-course-card__price_free">孙传旺</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">480</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-22-1133.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/22/vod/2014/07/10/c99dfac86b26fab2321e83247ec98c9a.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="饮食营养与健康" class="mod-course-card__name" target="_blank" href="/v-play-22-1133.htm">饮食营养与健康</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="姚亚红" target="_blank" href="/v.bo?method=actors&filmid=1133&actors=%E5%A7%9A%E4%BA%9A%E7%BA%A2" class="mod-course-card__price mod-course-card__price_free">姚亚红</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">387</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-22-1136.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/22/vod/2014/07/10/3e126af6bc423a1d90ef6fc5d8cdff6c.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="色轮中的色彩意义" class="mod-course-card__name" target="_blank" href="/v-play-22-1136.htm">色轮中的色彩意义</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="关红实" target="_blank" href="/v.bo?method=actors&filmid=1136&actors=%E5%85%B3%E7%BA%A2%E5%AE%9E" class="mod-course-card__price mod-course-card__price_free">关红实</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">252</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-22-1135.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/22/vod/2014/07/10/eb6bdf3bc642c001e2ef8dca0caa7ff4.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="立案报告写作方法" class="mod-course-card__name" target="_blank" href="/v-play-22-1135.htm">立案报告写作方法</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="王天民" target="_blank" href="/v.bo?method=actors&filmid=1135&actors=%E7%8E%8B%E5%A4%A9%E6%B0%91" class="mod-course-card__price mod-course-card__price_free">王天民</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">229</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-22-21183.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/22/vod/201507/vod_5edbc75277fd30474ef3a3a632931759.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="经济学中的效应现象" class="mod-course-card__name" target="_blank" href="/v-play-22-21183.htm">经济学中的效应现象</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="林季红" target="_blank" href="/v.bo?method=actors&filmid=21183&actors=%E6%9E%97%E5%AD%A3%E7%BA%A2" class="mod-course-card__price mod-course-card__price_free">林季红</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">217</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-22-1132.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/22/vod/2014/07/10/0fe42ac4219a0c5e1bf026c29376f351.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="动物保护与动物权利漫谈" class="mod-course-card__name" target="_blank" href="/v-play-22-1132.htm">动物保护与动物权利漫谈</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="周赟" target="_blank" href="/v.bo?method=actors&filmid=1132&actors=%E5%91%A8%E8%B5%9F" class="mod-course-card__price mod-course-card__price_free">周赟</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">213</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-22-21199.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/22/vod/201507/vod_e5ff384e2cff29c205ce4ff6421b4095.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="电子商务系列微课" class="mod-course-card__name" target="_blank" href="/v-play-22-21199.htm">电子商务系列微课</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="杨清云" target="_blank" href="/v.bo?method=actors&filmid=21199&actors=%E6%9D%A8%E6%B8%85%E4%BA%91" class="mod-course-card__price mod-course-card__price_free">杨清云</a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">143</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-22-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-22-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-22-10796.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-22-10796.htm" class="color_2">关红实</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-22-10797.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-22-10797.htm" class="color_2">周赟</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-22-10798.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-22-10798.htm" class="color_2">姚亚红</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-22-10799.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-22-10799.htm" class="color_2">孙传旺</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-22-29.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-22-29.htm" class="color_2">施当波</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">12</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-22-13583.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-22-13583.htm" class="color_2">杨清云</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-22-13579.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-22-13579.htm" class="color_2">林季红</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-22-13288.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-22-13288.htm" class="color_2">王天明</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=22&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=22&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

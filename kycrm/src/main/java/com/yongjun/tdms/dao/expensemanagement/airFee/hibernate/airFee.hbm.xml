@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.expensemanagement.airFee.AirFee" table="t_airFee" lazy="false">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_airFee_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION" type="long"/>
+		
+		<property name="code" column="code" type="string"/>
+		<property name="airFeeName" column="AIRFEENAME" type="string"
+			length="40" />
+		<many-to-one name="building" class="com.yongjun.tdms.model.base.house.Building" lazy="false">
+			<column name="building_id" not-null="true"/>
+		</many-to-one>
+		
+		<property name="starTime" column="starTime" type="timestamp"/>
+		
+		<property name="endTime" column="endTime" type="timestamp"/>
+		
+		<property name="factDay" column="factDay" type="int"/>
+		
+		<property name="openDays" column="openDays" type="int"/>
+		
+		<!-- 提交判断 -->
+        <property name="isSaved" type="string">
+            <column name="isSaved" not-null="false" sql-type="NVARCHAR(1)"/>
+        </property>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

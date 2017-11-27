@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网</title>
+<link  href="/skin/index/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 中国微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频 搜索">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频 搜索">
+</head>
+
+<body>
+<div id="wrapper">
+	<div class="header">
+    	<div class="header_size">
+        	<a href="#" class="header_size_font">官方公众号</a>
+            <div class="header_size_span" id="login_div">
+            	<a href="/index.html"><span>首页</span></a>
+            	<span class="header_size_line">|</span>
+            	<a href="javascript:login();"><span>登录</span></a>
+            	<span class="header_size_line">|</span>
+            	<a href="/v.bo?method=register" target="_blank"> <span>注册</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+    	<div class="content_title"></div>
+    	<form name="searchForm" method="get">
+    	<input type="hidden" name="id" value="vod"/>
+    	<input type="hidden" name="xueduan" value=""/>
+    	<input type="hidden" name="cxueduan" value=""/>
+    	<input type="hidden" name="subject" value=""/>
+    	<input type="hidden" name="grade" value=""/>
+    	<input type="hidden" name="knopoint" value=""/>
+    	<input type="hidden" name="startcount" value="0"/>
+    	<input type="hidden" name="searchButton" value="1"/>
+    	<input type="hidden" name="orderby" value="1"/>
+    	<input type="hidden" name="searchtools" value="1"/>
+        <div class="content_search">
+        	<input type="text" name="keywords" id="keywords" class="content_search_input" value="" onKeyPress="return search_onkeypress(event)"/>
+            <a href="javascript:search();" class="content_search_a" style="cursor:pointer;">
+            	<img src="/skin/index/images/search.png" />
+            </a>
+        </div>
+        </form>
+        <div class="content_hot">
+        	<div class="content_hot_1">
+            	<a href="/v-vlist-x0-cx0-s0-g0-1.htm" target="_blank"><img src="/skin/index/images/icon1.png" class="content_hot_1_img"  /></a>
+           	    <a href="/v-vlist-x0-cx0-s0-g0-1.htm" target="_blank"><p>微课</p></a>
+            </div>
+            <div class="content_hot_1">
+            	<a href="/v-dlist-x0-cx0-s0-g0-1.htm" target="_blank"><img src="/skin/index/images/icon2.png"  class="content_hot_1_img"  /></a>
+           	    <a href="/v-dlist-x0-cx0-s0-g0-1.htm" target="_blank"><p>文档</p></a>
+            </div>
+            <div class="content_hot_1">
+            	<a href="/v-ulist-1-0.htm" target="_blank"><img src="/skin/index/images/icon3.png"  class="content_hot_1_img"  /></a>
+           	    <a href="/v-ulist-1-0.htm" target="_blank"><p>教师</p></a>
+            </div>
+            <div class="content_hot_1">
+            	<a href="/v-slist-1-0.htm" target="_blank"><img src="/skin/index/images/icon4.png"  class="content_hot_1_img"  /></a>
+           	    <a href="/v-slist-1-0.htm" target="_blank"><p>学校</p></a>
+            </div>
+            <div class="content_hot_1">
+            	<a href="/v-clist-12-0.htm" target="_blank"><img src="/skin/index/images/icon5.png"  class="content_hot_1_img"  /></a>
+           	    <a href="/v-clist-12-0.htm" target="_blank"><p>大赛</p></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+    	<a href="/v-contact-12-0.htm" target="_blank"><span>联系我们</span></a>
+        <span class="footer_line">|</span>
+        <a href="/feedback.htm" target="_blank"><span>意见反馈</span></a>
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5941511'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D5941511%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+</div>
+<script type="text/javascript">
+	function search_onkeypress(evt){
+		evt = (evt) ? evt : ((window.event) ? window.event : "")
+	  	keyCode = evt.keyCode ? evt.keyCode : (evt.which ? evt.which :evt.charCode);
+	  	if (keyCode == 13) {
+	    	keyCode=0;
+	    	search();
+	  	}
+	};
+	function search(){
+		var keywords = document.getElementById('keywords').value;
+		if(keywords == ''){
+			return;
+		}else{
+			document.searchForm.action = "/search.action";
+			document.searchForm.submit();
+		}
+	};
+	function login(){
+		var topurl = window.top.location;
+		window.top.location = '/plogin.do?method=slogin&redirecturl=' + topurl;
+	};
+	function logout(){
+	    var topurl = window.top.location;
+	    window.top.location = '/plogin.do?method=userLogout&redirecturl=' + topurl;
+	};
+	function ajaxLogin(){
+		$.ajax({
+	        type: "get",
+	        url: "/v.bo?method=alogin&ram=" + Math.random(),
+	        dataType: "text",
+	        success: function(data){
+	        	if(data != ''){
+	        		document.getElementById("login_div").innerHTML = data;
+	        	}
+	         }
+	    });
+	};
+	ajaxLogin();
+</script>
+</body>
+</html>

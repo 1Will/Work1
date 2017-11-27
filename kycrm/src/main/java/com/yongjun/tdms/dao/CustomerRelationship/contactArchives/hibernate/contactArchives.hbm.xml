@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2009 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: contactArchives.hbm.xml 2009-12-7 16:50:35Z wliu $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives" table="t_contactArchives">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_contactArchives_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION" type="long"/>
+		<property name="name" type="string">
+            <column name="NAME" not-null="true" sql-type="NVARCHAR(20)"/>
+        </property>
+        <property name="abbreviations" type="string">
+            <column name="CALL" not-null="false" sql-type="NVARCHAR(20)"/>
+        </property>
+        <property name="sex" type="boolean">
+            <column name="SEX" not-null="false"/>
+        </property>
+        <property name="custName" type="string">
+			<column name="CUST_NAME" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="proName" type="string">
+			<column name="pro_NAME" not-null="false" sql-type="NVARCHAR(100)" />
+		</property>
+		<property name="customerInfoCode" type="string">
+			<column name="CUSTOMER_INFO_CODE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<!--
+		<property name="custType" type="string">
+			<column name="CUST_TYPE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		--><property name="duty" type="string">
+			<column name="OFFICE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="industry" type="string">
+			<column name="INDUSTRY" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="dept" type="string">
+			<column name="DEPT" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="phone" type="string">
+			<column name="PHONE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="mobilePhone" type="string">
+			<column name="MOBILE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="chuanzhen" type="string">
+			<column name="CHUANZHEN" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="qitalink" type="string">
+			<column name="QITALINK" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="homePhone" type="string">
+			<column name="HOME_PHONE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<!--
+		<property name="fax" type="string">
+			<column name="FAX" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>-->
+		<property name="qq" type="string">
+			<column name="QQ" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="msn" type="string">
+			<column name="MSN" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="email" type="string">
+			<column name="EMAIL" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="school" type="string">
+			<column name="SCHOOL" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="professional" type="string">
+			<column name="PROFESSION" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="favorite" type="string">
+			<column name="INTEREST" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="birthday" type="date">
+            <column name="BIRTH_DATE" />
+        </property>
+		<property name="postCode" type="string">
+			<column name="POST_CODE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<property name="address" type="string">
+			<column name="HOME_ADDRESS" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="comment" type="string">
+			<column name="REMARKS" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+		<!-- 
+		<property name="birthplace" type="string">
+			<column name="NATIVE_PLACE" not-null="false" sql-type="NVARCHAR(50)" />
+			</property>
+			 -->
+			<property name="birthplace" type="string">
+			<column name="NATIVE_PLACENew" not-null="false" sql-type="NVARCHAR(50)" />
+			</property>
+		<many-to-one name="customerName" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo" lazy="false">
+			<column name="CUSTOMER_ID" not-null="false" />
+		</many-to-one>
+		<many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
+			<column name="projectInfo_id" not-null="false" />
+		</many-to-one>
+		<many-to-one name="supplier" class="com.yongjun.tdms.model.supplier.Supplier">
+			<column name="SUPPLIER_ID" not-null="false" />
+		</many-to-one>
+		<many-to-one name="customerType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="CUSTOMERTYPE_ID" not-null="false"/>
+		</many-to-one>
+		<many-to-one name="nationality" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="NATIONALITY" not-null="false"/>
+		</many-to-one>
+		<many-to-one name="businessType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="businessType" not-null="false"/>
+		</many-to-one>
+		<!-- <many-to-one name="birthplace" class="com.yongjun.tdms.model.base.area.Area">
+			<column name="NATIVE_PLACE" not-null="false"/>
+		</many-to-one> -->
+		<many-to-one name="temperament" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="CHARACTER" not-null="false" />
+		</many-to-one>
+		<many-to-one name="type" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="TYPE" not-null="false" />
+		</many-to-one>
+		<property name="customerInfoIntegrity" column="CUSTOMER_INFO_INTEGRITY" type="float"></property>
+		
+		<property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+        <!--印象描述 -->
+		<property name="enterpriseSynopsis" column="ENTERPRISE_SYNOPSIS" type="string" length="500"/>
+		<!-- 称呼 -->
+		<property name="honorific" type="string">
+			<column name="honorific" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<!-- 身份证 -->
+		<property name="idCard" type="string">
+			<column name="idCard" not-null="false" sql-type="NVARCHAR(100)" />
+		</property>
+		<!-- 微信 -->
+		<property name="weChat" type="string">
+			<column name="weChat" not-null="false" sql-type="NVARCHAR(100)" />
+		</property>
+		<!-- 通讯地址 -->
+		<property name="postalAddress" type="string">
+			<column name="postalAddress" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+		<!-- 邮编 -->
+		<property name="zipCode" type="string">
+			<column name="zipCode" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<!-- 是否是主要联系人 -->
+		<property name="isKeyContact" type="string">
+			<column name="isKeyContact" not-null="false" sql-type="NVARCHAR(1)" />
+		</property>
+		
+		<!--直属领导 -->
+		<many-to-one name="leader" class="com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives" lazy="false">
+			<column name="leader_id" not-null="false" />
+		</many-to-one>
+		<!-- 血型 -->
+		<many-to-one name="bloodType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="blood_Type" not-null="false"/>
+		</many-to-one>
+		<!--星座  -->
+		
+		<many-to-one name="constellation" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="constellation" not-null="false"/>
+		</many-to-one>
+		
+		
+		<!-- 生肖 -->
+		<many-to-one name="chineseZodiac" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="chinese_Zodiac" not-null="false"/>
+		</many-to-one>
+		
+		<!-- 九型人格 -->
+		<many-to-one name="enneagram" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="enneagram" not-null="false"/>
+		</many-to-one>
+		
+		<!-- 宗教信仰 -->
+		<many-to-one name="religiousBelief" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="religious_Belief" not-null="false"/>
+		</many-to-one>
+		<!-- 健康状况 -->
+		
+		<many-to-one name="health" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="health" not-null="false"/>
+		</many-to-one>
+		
+		<!-- 身高 -->
+		<property name="height" type="string">
+			<column name="height" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<!-- 体重 -->
+		<property name="weight" type="string">
+			<column name="weight" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+		<!-- 联系人角色说明 -->
+		<property name="outline" type="string">
+			<column name="outline" not-null="false" sql-type="NVARCHAR(1000)" />
+		</property>
+		<!-- 视力 -->
+		
+		<many-to-one name="vision" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="vision" not-null="false"/>
+		</many-to-one>
+		<!-- 婚姻状态 -->
+		<many-to-one name="maritalStatus" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="marital_Status" not-null="false"/>
+		</many-to-one>
+		<!-- 政治面貌 -->
+		<many-to-one name="politicalOutlook" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="political_Outlook" not-null="false"/>
+		</many-to-one>
+		<!-- 学历 -->
+		<many-to-one name="education" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="education" not-null="false"/>
+		</many-to-one>
+		<!-- 是否提交 -->
+		<property name="isSaved" type="string">
+			<column name="isSaved" sql-type="NVARCHAR(1)"/>
+		</property>
+		
+	</class>
+</hibernate-mapping>

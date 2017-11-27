@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.customercontract.contractmanagement.state.ContractState" table="t_contractState">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_contractState_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+        <property name="explain" type="string">
+			<column name="EXPLAIN" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+		<property name="fileName" type="string">
+			<column name="FILE_NAME" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="position" type="string">
+			<column name="POSITION" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="creatorName" type="string">
+			<column name="CREATORNAME" not-null="false" sql-type="NVARCHAR(10)" />
+		</property>
+		<property name="uploadDate" column="UPLOAD_DATE" type="timestamp"/>
+		
+		<many-to-one name="beforeState" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="BEFORESTATE" not-null="false"/>
+		</many-to-one>
+		<many-to-one name="newState" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="NEWSTATE" not-null="false"/>
+		</many-to-one>
+		
+		<many-to-one name="contractManagement" class="com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement">
+			<column name="CONTRACTMANAGEMENT_ID" not-null="true"></column>
+		</many-to-one>
+		
+		
+		<property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

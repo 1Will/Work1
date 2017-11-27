@@ -1,0 +1,74 @@
+@charset "utf-8";
+/*-------甯歌镙峰纺----------*/
+*{padding:0px; margin:0px;}
+body{font-size:12px; color:#000; background-color:#fff;}
+img {border:0px;}
+table{border:0px;}
+ul,li,dt,dd{list-style:none;}
+/*娓呮娴姩绫?/
+.high01{font-size:1px; line-height:0px;  clear:both; padding:0px; margin:0px; border:0px;height:0px;}
+
+#MessageBoard{ width:970px; padding:0px; margin:0 auto; background:#fff;}
+/*澶撮儴*/
+#MB_header{ width:970px;height:35px; position:relative; margin:20px 0px;}
+.MB_btn1{ background:url(/public/images/leaveword/school002/MB_btn1.jpg) no-repeat left top; width:113px; height:35px; position:absolute; left:0px; bottom:0px; border:0px; cursor:pointer;}
+.MB_btn2{ background:url(/public/images/leaveword/school002/MB_btn2.jpg) no-repeat left top; width:95px; height:35px; position:absolute; left:125px; bottom:0px;border:0px;cursor:pointer;}
+
+/*缈婚〉*/
+#MB_header .MB_page { position:absolute; right:0px; bottom:0px;padding: 3px; text-align:right;font-family:"寰蒋板呴粦",Arial,Times New Roman; padding-right:15px;}
+#MB_main .MB_page {padding: 3px; text-align:right;font-family:"寰蒋板呴粦",Arial,Times New Roman; padding-right:15px; margin-top:20px;}
+.MB_page * { margin: 0 5px 0 0; padding:0 3px; border: 1px solid #cbcbcb; background: #fff; color: #747474; }
+.MB_page strong { background: #afaeae; color: #fff; }
+.MB_page a { color: #666; text-decoration:none; }
+.MB_page a:hover { background: #afaeae; text-decoration: none; color:#fff; }
+.MB_page .MB_page_txt{ width:15px;}
+#MB_header .MB_page .MB_page_btn{ background:url(/public/images/leaveword/school002/MB_btn1.gif); width:19px; height:19px; border:0px; position:absolute; bottom:3px; right:-5px; cursor:pointer;}
+#MB_main .MB_page .MB_page_btn{ background:url(/public/images/leaveword/school002/MB_btn1.gif); width:19px; height:19px; border:0px; cursor:pointer;position:absolute; bottom:3px; right:-5px; }
+
+/*缈婚〉*/
+.page{ width:890px;text-align:center; word-spacing:3px; margin-top:20px; color:#333; margin-bottom:20px; font-family:Verdana, Arial, Helvetica, sans-serif,"瀹嬩綋";}
+.page .disabled{ border:1px solid #999; padding:2px 3px 0px 3px; color:#999;}
+.page a{ padding:2px 3px 0px 3px; border:1px solid #ccc;color:#ccc; text-decoration:none;}
+.page a:hover{ background:#ccc; border:1px solid #ccc; color:#fff; text-decoration:none;}
+.page_text{ width:28px; height:16px; border:1px solid #ccc;}
+.page_btn{ background:#184002 url(/public/images/leaveword/school002/go.gif) no-repeat; width:33px; height:21px; border:0px; cursor:pointer; display:inline; overflow:hidden;color:#fff; /**vertical-align:middle;+vertical-align:text-bottom;*/ /*position:relative;vertical-align:bottom; +vertical-align:text-top; +top:-4px;_vertical-align:top;*/}
+
+#MB_main{ width:970px; margin-top:20px; margin-bottom:30px;font-family:Arial,Times New Roman,"瀹嬩綋"; position:relative;}
+.liuyan_box{ margin-bottom:10px;}
+/*鐣栾█镄勬爣棰?/
+.MB_q_title{ background:url(/public/images/leaveword/school002/MB_q_title_bg.gif) no-repeat left top; width:970px; height:34px; line-height:34px; }
+.MB_q_title .MB_q_name{ float:left; color:#9e9e9e; margin-left:20px;margin-right:20px; display:inline;}
+.MB_q_title .MB_q_theme,.MB_FB_theme{ background:url(/public/images/leaveword/school002/MB_btn5.gif) no-repeat left 8px; padding-left:22px; float:left; font-size:12px; font-weight:bold; color:#000;}
+.MB_q_amount,.MB_q_quick,.MB_q_time,.MB_FB_note{ float:right; display:inline;}
+.MB_q_amount{ margin-right:20px; color:#9e9e9e;}
+.MB_q_quick{margin-right:5px;_padding-top:8px;}
+.MB_q_quick a{ margin-right:5px;}
+.MB_q_time{ margin-right:10px; color:#9e9e9e;}
+/*鐣栾█镄勫唴瀹瑰尯鍩?/
+.MB_q_content{ background:url(/public/images/leaveword/school002/MB_q_content_bg.gif) no-repeat left top; width:970px; height:254px; position:relative;}
+.MB_q_content2{ background:url(/public/images/leaveword/school002/MB_q_content_bg2.gif) no-repeat left top; width:970px; height:254px; position:relative;}
+.MB_q_photo{ position:absolute; top:35px; left:20px;} 
+.MB_q_photo img{ width:106px; height:106px;}
+.MB_q_photo_detail{ position:absolute; top:165px; left:15px; color:#9e9e9e; line-height:18px; width:115px;}
+.MB_q_liuyan{ position:absolute; left:170px; top:26px; line-height:20px; font-size:14px; color:#000; width:770px; height:117px; overflow:hidden;}/*链€澶ч檺鍒?琛?/
+.MB_q_hftitle{ position:absolute; top:150px; left:215px; font-size:14px; font-weight:bold; color:#f00;}
+.MB_q_hftitle span{ color:#9e9e9e; font-size:12px; padding:0px 5px; font-weight:normal;}
+.MB_q_huifu{ position:absolute; top:172px; left:190px; font-size:14px; line-height:20px; color:#000; width:728px; height:60px; overflow:hidden;}/*链€澶ч檺鍒?琛?/
+
+
+/*鍙戣〃鐣栾█椤?/
+.MB_FB_theme{ margin-left:20px; display:inline;}
+.MB_FB_note{ margin-right:20px; color:#9e9e9e;}
+.MB_FB_note span{ color:#f00; font-weight:bold;}
+.MB_FB_content{ background:url(/public/images/leaveword/school002/MB_FB_content_bg.gif) no-repeat left top; width:810px; height:734px; padding:50px 80px 0px 80px;}
+.MB_FB_txt1{ width:204px; height:21px; border:1px solid #e3e3e3; line-height:21px;}
+.MB_FB_txt2{ width:84px; height:21px; border:1px solid #e3e3e3; line-height:21px;}
+.FB_red{ color:#f00; margin-left:10px; font-weight:nomal;}
+.MB_FB_btn1{ background:url(/public/images/leaveword/school002/MB_btn6.gif) no-repeat left top; width:94px; height:29px; border:0px; cursor:pointer;}
+.MB_FB_btn2{ background:url(/public/images/leaveword/school002/MB_btn8.gif) no-repeat left top; width:94px; height:29px; border:0px; cursor:pointer; margin-left:30px;}
+
+/*鍙戣〃鎴愬姛*/
+.FB_success{ background:url(/public/images/leaveword/school002/ok.jpg) no-repeat left top; width:970px; height:328px; position:relative;}
+.tips{ position:absolute;top:165px; left:480px; color:#999; font-family:"瀹嬩綋"; font-size:12px; font-weight:normal; width:385px;line-height:18px;}
+.tips a{ color:#0000ff; text-decoration:none;} 
+.tips a:active{ color:#810081; text-decoration:none;} 

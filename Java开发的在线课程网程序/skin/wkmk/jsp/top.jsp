@@ -1,0 +1,143 @@
+﻿<%@ page contentType="text/html;charset=utf-8"%>
+<script type="text/javascript" src="/skin/wkmk/js/mobile-check.js"></script>
+<div id="header_1">
+  <div class="header_t">
+    <div class="login1">
+      <ul id="login_div">
+        <li class="dv mar_11">
+          <a href="javascript:login()" class="login_3">登录</a>
+          <a href="/v.bo?method=register" target="_blank" class="login_4">注册</a>
+        </li>
+      </ul>
+    </div>
+    <a href="/default.html" class="logo1"></a>
+    <ul class="ulnav_1">
+      <li><a href="/index.html">首页</a></li>
+      <li><a href="/v-vlist-x0-cx0-s0-g0-1.htm">微课</a></li>
+      <li><a href="/v-dlist-x0-cx0-s0-g0-1.htm">文档</a></li>
+      <li><a href="/v-ulist-1-0.htm">教师</a></li>
+      <li><a href="/v-slist-1-0.htm">学校</a></li>
+      <li><a href="/v-clist-12-0.htm">大赛</a></li>
+      <li><a href="/v-c-12-0.htm">资讯</a></li>
+      <li><a href="/v-statistics-12-0.htm">统计</a></li>
+    </ul>
+    <form name="searchForm" method="post">
+    <div class="mod-search1">
+      <div id="lr_systembox">
+	    <div id="lr_systembtn" class="lr_systembtn">
+	        <a href="javascrip:;" class="lr_abtn1" style="color:#fff;"><span id="curSearchType">微课</span></a>
+	        <div id="lr_menu" class="lr_menu"> 
+	          <dl>
+	             <dt><a href="javascript:changeSearchType('2')">文档</a></dt>
+	             <dt><a href="javascript:changeSearchType('3')">教师</a></dt>
+	             <dt><a href="javascript:changeSearchType('4')">学校</a></dt>
+	          </dl>     
+	        </div>
+	    </div>
+	  </div>
+	  <input type="text" placeholder="请输入搜索关键字" name="keywords" value="" class="mod-search__input" maxlength="38" id="js_keyword" style="width:180px;background:none;color:#fff;" onKeyPress="return search_onkeypress(event)">
+      <a class="mod-search__btn-search" href="javascript:search()"></a>
+    </div>
+    <input type="hidden" name="searchType" id="searchType" value="1"/>
+    <input type="hidden" name="searchButton" id="searchButton" value=""/>
+  	</form>
+    <script type="text/javascript">
+	$(document).ready(function(){
+		var lr_systembtn = $("#lr_systembtn");
+		var lr_menu = $("#lr_menu");
+		lr_systembtn.mouseenter(function(){
+			t_delay= setTimeout(function(){
+				lr_menu.fadeIn("slow");
+			},200);
+		});
+		lr_systembtn.mouseleave(function(){
+			clearTimeout(t_delay);
+			lr_menu.fadeOut("slow");
+		});
+	
+	});
+	function changeSearchType(searchtype){
+		document.getElementById("searchType").value = searchtype;
+		if(searchtype == '1'){
+			document.getElementById("curSearchType").innerHTML = "微课";
+			document.getElementById("lr_menu").innerHTML = "<dl><dt><a href=\"javascript:changeSearchType('2')\">文档</a></dt><dt><a href=\"javascript:changeSearchType('3')\">教师</a></dt><dt><a href=\"javascript:changeSearchType('4')\">学校</a></dt></dl>";
+		}
+		if(searchtype == '2'){
+			document.getElementById("curSearchType").innerHTML = "文档";
+			document.getElementById("lr_menu").innerHTML = "<dl><dt><a href=\"javascript:changeSearchType('1')\">微课</a></dt><dt><a href=\"javascript:changeSearchType('3')\">教师</a></dt><dt><a href=\"javascript:changeSearchType('4')\">学校</a></dt></dl>";
+		}
+		if(searchtype == '3'){
+			document.getElementById("curSearchType").innerHTML = "教师";
+			document.getElementById("lr_menu").innerHTML = "<dl><dt><a href=\"javascript:changeSearchType('1')\">微课</a></dt><dt><a href=\"javascript:changeSearchType('2')\">文档</a></dt><dt><a href=\"javascript:changeSearchType('4')\">学校</a></dt></dl>";
+		}
+		if(searchtype == '4'){
+			document.getElementById("curSearchType").innerHTML = "学校";
+			document.getElementById("lr_menu").innerHTML = "<dl><dt><a href=\"javascript:changeSearchType('1')\">微课</a></dt><dt><a href=\"javascript:changeSearchType('2')\">文档</a></dt><dt><a href=\"javascript:changeSearchType('3')\">教师</a></dt></dl>";
+		}
+	};
+	function search_onkeypress(evt){
+		evt = (evt) ? evt : ((window.event) ? window.event : "")
+	  	keyCode = evt.keyCode ? evt.keyCode : (evt.which ? evt.which :evt.charCode);
+	  	if (keyCode == 13) {
+	    	keyCode=0;
+	    	search();
+	  	}
+	};
+	function search(){
+		var keywords = document.getElementById('js_keyword').value;
+		if(keywords == ''){
+			alert("请输入搜索关键字!");
+			return;
+		}
+		var searchtype = document.getElementById("searchType").value;
+		document.getElementById("searchButton").value = "1";
+		if(searchtype == "1"){
+			document.searchForm.action = '/v-vlist-x0-cx0-s0-g0-1.htm';
+		}
+		if(searchtype == "2"){
+			document.searchForm.action = '/v-dlist-x0-cx0-s0-g0-1.htm';
+		}
+		if(searchtype == "3"){
+			document.searchForm.action = '/v-ulist-1-0.htm';
+		}
+		if(searchtype == "4"){
+			document.searchForm.action = '/v-slist-1-0.htm';
+		}
+		document.searchForm.submit();
+	};
+	function login(){
+		var topurl = window.top.location;
+		window.top.location = '/plogin.do?method=slogin&redirecturl=' + topurl;
+	};
+	function logout(){
+	    var topurl = window.top.location;
+	    window.top.location = '/plogin.do?method=userLogout&redirecturl=' + topurl;
+	};
+	function ajaxLogin(){
+		$.ajax({
+	        type: "get",
+	        url: "/v.bo?method=ajaxLogin&ram=" + Math.random(),
+	        dataType: "text",
+	        success: function(data){
+	        	if(data != ''){
+	        		document.getElementById("login_div").innerHTML = data;
+	        		
+        			var lr_systembtn1 = $("#lr_systembtn1");
+        			var lr_menu1 = $("#lr_menu1");
+       				lr_systembtn1.mouseenter(function(){
+       					t_delay= setTimeout(function(){
+       						lr_menu1.fadeIn("slow");
+       					},200);
+       				});
+       				lr_systembtn1.mouseleave(function(){
+       					clearTimeout(t_delay);
+       					lr_menu1.fadeOut("slow");
+       				});
+	        	}
+	         }
+	    });
+	}
+	ajaxLogin();
+	</script>
+  </div>
+</div>

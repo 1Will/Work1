@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.expensemanagement.expense.Expense" table="t_expense">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_expense_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION" type="long"/>
+		
+		<property name="code" column="code" type="string"/>
+		
+		<property name="startTime" column="startTime" type="timestamp"/>
+		
+		<property name="endTime" column="endTime" type="timestamp"/>
+		
+		<many-to-one name="customerInfo" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo" >
+			<column name="customerInfo_id" />
+		</many-to-one>
+		
+		<property name="waterMoney" type="double">
+			<column name="waterMoney" />
+		</property>
+		
+		<property name="electricMoney" type="double">
+			<column name="electricMoney" />
+		</property>
+		
+		<property name="airMoney" type="double">
+			<column name="airMoney" />
+		</property>
+		
+		<property name="netMoney" type="double">
+			<column name="netMoney" />
+		</property>
+		
+		<property name="propertyMoney" type="double">
+			<column name="propertyMoney" />
+		</property>
+		
+		<property name="sum" type="double">
+			<column name="sum" />
+		</property>
+		
+		<property name="sumSquare" type="double">
+			<column name="sumSquare" />
+		</property>
+		
+		<property name="sumHouse" type="int">
+			<column name="sumHouse" />
+		</property>
+		
+		<property name="sumCustomer" type="int">
+			<column name="sumCustomer" />
+		</property>
+		
+		<many-to-one name="state" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="state" />
+		</many-to-one>
+		
+		<many-to-one name="parentEP" class="com.yongjun.tdms.model.expensemanagement.expense.Expense">
+			<column name="parentEP" />
+		</many-to-one>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

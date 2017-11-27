@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-天津市和平区万全小学</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/banner.jpg" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="" target="_blank"><img src="/upload_dir/logo.gif"/></a></dt>
+        <dd>教师数量：<font id="s_js">33</font></dd>
+        <dd>微课数量：<font id="s_wk">28</font></dd>
+        <dd>文档数量：<font id="s_doc">88</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">5</a>
+      </dl>
+      <p class="p_dl"><a href="/v-sinfo-448-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-448-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-448-21885.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/448/vod/201507/vod_a0baf77bded4a0fb991d89cea8189669.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="快乐的小笛子" class="mod-course-card__name" target="_blank" href="/v-play-448-21885.htm">快乐的小笛子</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="石方 " target="_blank" href="/v.bo?method=actors&filmid=21885&actors=%E7%9F%B3%E6%96%B9" class="mod-course-card__price mod-course-card__price_free">石方 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">433</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-448-22073.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/448/vod/2015/07/06/5781321f41a1a878abe8800cf4228ed6.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="法国号" class="mod-course-card__name" target="_blank" href="/v-play-448-22073.htm">法国号</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="裴盛玉 " target="_blank" href="/v.bo?method=actors&filmid=22073&actors=%E8%A3%B4%E7%9B%9B%E7%8E%89" class="mod-course-card__price mod-course-card__price_free">裴盛玉 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">3</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">393</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-448-21720.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/448/vod/2015/07/03/a1ee3b41b15b44644f1bddfe239ef403.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="了解肠胃" class="mod-course-card__name" target="_blank" href="/v-play-448-21720.htm">了解肠胃</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="刘奕 " target="_blank" href="/v.bo?method=actors&filmid=21720&actors=%E5%88%98%E5%A5%95" class="mod-course-card__price mod-course-card__price_free">刘奕 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">293</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-448-21859.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/448/vod/201507/vod_2fc877ab42bad0dec282695054b5a0a0.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="《恒星的一生》微课 " class="mod-course-card__name" target="_blank" href="/v-play-448-21859.htm">《恒星的一生》微课 </a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="孙国防 " target="_blank" href="/v.bo?method=actors&filmid=21859&actors=%E5%AD%99%E5%9B%BD%E9%98%B2" class="mod-course-card__price mod-course-card__price_free">孙国防 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">287</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">1</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-448-3403.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/448/vod/2014/09/26/a73f73948abc97a247fc85b2f192ec3d.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="小松鼠找花生" class="mod-course-card__name" target="_blank" href="/v-play-448-3403.htm">小松鼠找花生</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="田丽 " target="_blank" href="/v.bo?method=actors&filmid=3403&actors=%E7%94%B0%E4%B8%BD" class="mod-course-card__price mod-course-card__price_free">田丽 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">168</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-448-21876.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/448/vod/2015/07/05/1bf7ff80e4a9423e83ba5ae05c8b0d9a.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="自己的花是让别人看的" class="mod-course-card__name" target="_blank" href="/v-play-448-21876.htm">自己的花是让别人看的</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="李玥 " target="_blank" href="/v.bo?method=actors&filmid=21876&actors=%E6%9D%8E%E7%8E%A5" class="mod-course-card__price mod-course-card__price_free">李玥 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">0</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">52</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-448-21781.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/448/vod/2015/07/04/333db9ea5ab8c6d8307143efebf975cc.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="打开思路写具体" class="mod-course-card__name" target="_blank" href="/v-play-448-21781.htm">打开思路写具体</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="姜宁 " target="_blank" href="/v.bo?method=actors&filmid=21781&actors=%E5%A7%9C%E5%AE%81" class="mod-course-card__price mod-course-card__price_free">姜宁 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">1</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">49</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" style="margin-right:0">
+            <div class="mod-course-card h180">
+              <a href="/v-play-448-21773.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/448/vod/201507/vod_953d2786f85bfa181c1793b20f94c7d5.png" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="各式各样的鞋" class="mod-course-card__name" target="_blank" href="/v-play-448-21773.htm">各式各样的鞋</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="王元 " target="_blank" href="/v.bo?method=actors&filmid=21773&actors=%E7%8E%8B%E5%85%83" class="mod-course-card__price mod-course-card__price_free">王元 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">1</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">41</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-448-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-448-99772.htm" target="_blank"><img src="/upload_dir/448/doc/2015/07/05/e36afce53c01ed91587340feb8b90b5f.png" /></a></dt>
+            <dd class="ico_docx"><a href="/v003-doc-448-99772.htm" target="_blank" style="font-size:14px;">《快乐的小笛子》微教案</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-448-9241.htm" target="_blank" class="color_2">石方</a> | <span>评分<span class="color_5">4</span></span><span>共<font class="color_5">3</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">67</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-448-99815.htm" target="_blank"><img src="/upload_dir/448/doc/2015/07/06/2a9fa4d70fb93940965cb372b1a619b7.png" /></a></dt>
+            <dd class="ico_docx"><a href="/v003-doc-448-99815.htm" target="_blank" style="font-size:14px;">法国号  微练习</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-448-9269.htm" target="_blank" class="color_2">裴盛玉</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">1</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">65</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-448-99773.htm" target="_blank"><img src="/upload_dir/448/doc/2015/07/05/60ca5974297ff2c48b4f7c5218bbebc2.png" /></a></dt>
+            <dd class="ico_pptx"><a href="/v003-doc-448-99773.htm" target="_blank" style="font-size:14px;">快乐的小笛子     微课件</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-448-9241.htm" target="_blank" class="color_2">石方</a> | <span>评分<span class="color_5">5</span></span><span>共<font class="color_5">13</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">64</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-448-99763.htm" target="_blank"><img src="/upload_dir/448/doc/2015/07/05/7c241d47bfb7c208b69f91a3ab1d8902.png" /></a></dt>
+            <dd class="ico_docx"><a href="/v003-doc-448-99763.htm" target="_blank" style="font-size:14px;">快乐的小笛子  微反思</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-448-9241.htm" target="_blank" class="color_2">石方</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">1</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">64</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-448-99703.htm" target="_blank"><img src="/upload_dir/448/doc/2015/07/04/8a183b131bb111f4533a714ca7930bad.png" /></a></dt>
+            <dd class="ico_docx"><a href="/v003-doc-448-99703.htm" target="_blank" style="font-size:14px;">习题— 作品的制作要求</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-448-9267.htm" target="_blank" class="color_2">王元</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">1</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">64</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-448-99768.htm" target="_blank"><img src="/upload_dir/448/doc/2015/07/05/18b81de50de4136ea20cf6ba59fd1f5d.png" /></a></dt>
+            <dd class="ico_ppt"><a href="/v003-doc-448-99768.htm" target="_blank" style="font-size:14px;">恒星的一生微课件</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-448-9228.htm" target="_blank" class="color_2">孙国防</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">13</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">58</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-448-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-448-9567.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-448-9567.htm" class="color_2">周峰</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-448-471.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-448-471.htm" class="color_2">万全小学</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-448-9315.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-448-9315.htm" class="color_2">佟维会</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">3</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-448-9186.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-448-9186.htm" class="color_2">刘奕</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">4</span></p>
+		    
+		    </td>
+		    </tr>
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-448-9377.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-448-9377.htm" class="color_2">刘肖</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-448-9284.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-448-9284.htm" class="color_2">商萌</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">4</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-448-9282.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="14%" align="left">
+		      <p><a href="/v-user-448-9282.htm" class="color_2">姜宁</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">3</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-448-9228.htm"><img src="/upload_dir/woman.jpg" /></a></td>
+		    <td width="10%" align="left">
+		      <p><a href="/v-user-448-9228.htm" class="color_2">孙国防</a>&nbsp;&nbsp;<span class="color_3">教师</span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">1</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">3</span></p>
+		    
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=448&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=448&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

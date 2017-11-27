@@ -1,0 +1,106 @@
+*{padding:0px; border:0px; margin:0px;}
+body{font-size:12px; font-family:"宋体"; color:#666666; background:url(/public/images/pcenter/bj.gif) repeat-x; line-height:22px;}
+span,li,dt,dd,img{display:block;}
+#box{width:1003px; margin:0 auto;}
+#top{width:100%; margin:0 auto;}
+#top_box{ width:1003px; margin:0 auto;}
+#top_left{width:50%; float:left; height:28px;}
+#top_left ul{list-style:none; padding-left:18px; width:97%;}
+#top_left li{padding-right:5px; float:left; width:68px;}
+#top_left li dt{float:left; padding-right:4px; padding-top:5px;}
+#top_left li dd{float:left; line-height:28px;}
+
+#top_right{width:430px; float:right; height:28px; text-align:right; margin-right:-8px;}
+#top_right ul{list-style:none; width:430px;}
+#top_right li{ float:left; width:123px;}
+#top_right li dt{float:left; padding-right:4px; padding-top:5px; width:40px;}
+#top_right li dd{float:right; padding-top:0px; width:75px; padding-top:4px;}
+
+
+#daohang{width:813px; background:url(/public/images/pcenter/a05.jpg) no-repeat; height:76px; float:left; margin-top:10px; padding:10px 0px 0 190px;}
+#dh_left{width:700px; float:left;}
+#dh_left ul{list-style:none; position:relative; width:700px;}
+#dh_left li{width:70px; display:block; float:left; color:#FFFFFF; font-size:14px; background:url(/public/images/pcenter/a06.jpg) no-repeat right center; margin-right:10px; padding-right:10px; text-align:center;}
+#line{width:780px; border-bottom:dashed #fff 1px; float:left; line-height:2px; position:absolute; left:0px; top:23px; clear:both;}
+/*
+#dh_left{width:304px; float:left;}
+#dh_left ul{list-style:none; position:relative; width:304px;}
+#dh_left li{width:87px; display:block; float:left; color:#FFFFFF; font-size:14px; background:url(/public/images/pcenter/a06.jpg) no-repeat right center; margin-right:10px; padding-right:10px; }
+#line{width:304px; border-bottom:dashed #c3c3c3 1px; float:left; line-height:2px; position:absolute; left:0px; top:23px; clear:both;}
+#dh_right{width:304px; float:left; padding-left:186px;}
+#dh_right ul{list-style:none; position:relative; width:304px;}
+#dh_right li{width:87px; display:block; float:left; color:#FFFFFF; font-size:14px; background:url(/public/images/pcenter/a06.jpg) no-repeat right center; margin-right:10px; padding-right:10px; }
+*/
+
+/*左边样式*/
+#left{width:182px; float:left;}
+#title{height: 28px; border:1px solid #cccccc; border-left:0px; border-right:0px;}
+div.sdmenu {width: 180px; font-size: 12px; padding-bottom: 10px; color: #666; border:#CCCCCC 1px solid; border-top:none; border-bottom:none;}
+div.sdmenu div {overflow: hidden; background: url(/public/images/pcenter/title_bg.gif) repeat-x left top;}
+div.sdmenu div.collapsed {height: 28px;}
+div.sdmenu div span {display: block; color: #666; font-weight:bold; cursor: default; padding-left: 42px; line-height: 25px; background: url(/public/images/pcenter/jianhao.gif) no-repeat 22px 8px;}
+div.sdmenu div.collapsed span {	background-image: url(/public/images/pcenter/jiahao.gif);}
+div.sdmenu div a {padding: 0px 15px 0px 42px; display: block; color: #666; text-decoration: none; line-height:25px; background:url(/public/images/pcenter/jiantou.gif) no-repeat 25px center; cursor:pointer; margin:1px 0px;}
+div.sdmenu div .sdmenu_onclick {background:#ccc url(/public/images/pcenter/linkarrow.gif) no-repeat right center; color: #666; text-decoration: none;}
+div.sdmenu div .sdmenu_hover {background:#ccc url(/public/images/pcenter/linkarrow.gif) no-repeat right center; color: #666; text-decoration: none;}
+/*div.sdmenu div a:hover {background : #ccc url(../images/linkarrow.gif) no-repeat right center; color: #666; text-decoration: none;}*/
+div.sdmenu ul{ padding:0 8px; width:164px; line-height:25px;}
+div.sdmenu dt{ float:left; display:block; width:65px; color:#000;  overflow:hidden; text-align:right;}
+div.sdmenu dd{ float:left; display:block; width:99px;color:#000; overflow:hidden; text-align:left;}
+
+
+/*右边样式*/
+#right{width:810px; float:right; overflow:hidden;}
+#right_top, #right_bottom{width:810px; float:left;}
+#right_center{width:788px; padding:10px; border:#CCCCCC 1px solid; border-bottom:none; border-top:none;}
+
+
+
+
+/*链接样式*/
+a:link {color:#666; text-decoration:none;}
+a:visited {color:#666; text-decoration:none;}
+a:hover {color:#666; text-decoration:underline;}
+a:active {color:#666; text-decoration:none;}
+
+#dh_left a{font-weight:bold; color:#1e8f00;}
+.dh{background:url(/public/images/pcenter/dh_bj.gif) no-repeat center top; width:73px; height:23px; display:block;}
+
+/*个人中心快捷按钮*/
+*{padding:0px; margin:0px;}
+.clear{ font-size:1px; line-height:1px;  clear:both; padding:0px; margin:0px; border:0px;height:1px;}
+ul.menus{ width:390px;}
+ul.menus li{ display:inline; width:100px; height:100px; float:left; margin:15px;}
+ul.menus li a{ display:block; width:100px; height:100px; }
+a.menu1{ background:url(/public/images/pcenter/menu_1.gif) no-repeat left top;}
+a.menu1:hover{ background:url(/public/images/pcenter/menu_1_on.gif);}
+a.menu2{ background:url(/public/images/pcenter/menu_2.gif) no-repeat left top;}
+a.menu2:hover{ background:url(/public/images/pcenter/menu_2_on.gif);}
+a.menu3{ background:url(/public/images/pcenter/menu_3.gif) no-repeat left top;}
+a.menu3:hover{ background:url(/public/images/pcenter/menu_3_on.gif);}
+a.menu4{ background:url(/public/images/pcenter/menu_4.gif) no-repeat left top;}
+a.menu4:hover{ background:url(/public/images/pcenter/menu_4_on.gif);}
+a.menu5{ background:url(/public/images/pcenter/menu_5.gif) no-repeat left top;}
+a.menu5:hover{ background:url(/public/images/pcenter/menu_5_on.gif);}
+a.menu6{ background:url(/public/images/pcenter/menu_6.gif) no-repeat left top;}
+a.menu6:hover{ background:url(/public/images/pcenter/menu_6_on.gif);}
+a.menu7{ background:url(/public/images/pcenter/menu_7.gif) no-repeat left top;}
+a.menu7:hover{ background:url(/public/images/pcenter/menu_7_on.gif);}
+a.menu8{ background:url(/public/images/pcenter/menu_8.gif) no-repeat left top;}
+a.menu8:hover{ background:url(/public/images/pcenter/menu_8_on.gif);}
+a.menu9{ background:url(/public/images/pcenter/menu_9.gif) no-repeat left top;}
+a.menu9:hover{ background:url(/public/images/pcenter/menu_9_on.gif);}
+a.menu10{ background:url(/public/images/pcenter/menu_10.gif) no-repeat left top;}
+a.menu10:hover{ background:url(/public/images/pcenter/menu_10_on.gif);}
+a.menu11{ background:url(/public/images/pcenter/menu_11.gif) no-repeat left top;}
+a.menu11:hover{ background:url(/public/images/pcenter/menu_11_on.gif);}
+a.menu12{ background:url(/public/images/pcenter/menu_12.gif) no-repeat left top;}
+a.menu12:hover{ background:url(/public/images/pcenter/menu_12_on.gif);}
+
+#my_source{ position:absolute; top:14px; right:20px; width:190px;}
+#my_source .my_source_link{ width:190px; height:40px; margin:0px;}
+#my_source_box{ background:url(/public/images/pcenter/menu_13_bg1.gif) no-repeat left top; width:190px; padding-top:15px; display:none;}
+#my_source_box ul{padding-bottom:10px; padding-right:10px; padding-left:15px; width:165px;}
+#my_source_box li{ background:url(/public/images/pcenter/menu_14.gif) no-repeat 0px center; height:25px; line-height:25px; list-style:none;}
+#my_source_box a{padding-left:25px;  font-size:13px; font-weight:normal; color:#333; text-decoration:none;}
+#my_source_box a:hover{ font-size:13px; font-weight:bold; text-decoration:underline;}

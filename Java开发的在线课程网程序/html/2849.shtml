@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微课慕课网-北京化工大学</title>
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/header.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/main.css" />
+<link rel="stylesheet" type="text/css" href="/skin/wkmk/css/school.css" />
+<script type="text/javascript" src="/skin/wkmk/js/jquery-1.7.2.min.js"></script>
+<meta name="keywords" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+<meta name="description" itemprop="description" content="微课慕课网 微课 慕课 mooc 微课大赛 慕课大赛 翻转课堂 课程学习 在线学习 文库 文档 教案 课件 习题 试卷 中国微课 中国慕课 微课在线 慕课在线 微课学习 慕课学习 基础教育微课大赛 职业教育微课大赛 高等教育微课大赛 继续教育微课大赛 慕课网 中小学微课大赛 k12教育微课 www.wkmk.com www.wkmk.cn www.wkmk.org www.wkmk.net dasai.wkmk.com www.iweike.org.cn 微课慕课网 微课慕课网 微课慕课网  微课网 慕课网 微课程 精品课程 微课慕课 备课 教育资源 教研资料 教学视频">
+</head>
+
+<body>
+<!--#include virtual="/skin/wkmk/comm/top.html"-->
+<div id="tab_nav">
+<div class="clearfix">
+  <div class="school_home">
+    <div class="school_banner">
+      <img src="/upload_dir/12/unit/201506/df8bace78280df2fa39de3b6dc5d6c70.jpg" />
+    </div>
+    <div class="school_right">
+      <dl>
+        <dt><a href="http://www.buct.edu.cn" target="_blank"><img src="/upload_dir/12/unit/201506/0a423b258b019fc23305f7715e6fb940.jpg"/></a></dt>
+        <dd>教师数量：<font id="s_js">2</font></dd>
+        <dd>微课数量：<font id="s_wk">2</font></dd>
+        <dd>文档数量：<font id="s_doc">6</font></dd>
+        <a href="javascript:praise()" class="zan_btn" id="s_praise">1</a>
+      </dl>
+      <p class="p_dl">北京化工大学,创办于1958年，原名北京化工学院，是新中国为“培养尖端科学技术所需求的高级化工人才”而创建的一所高水平大学。作为教育部直属的全国重点大学，国家“211工程”和“‘985’优势学科创新平台”重点建设院校，肩负着高层次创新人才培养和基础性、前瞻性科学研究以及原创性高新技术开发的使命。
+北<a href="/v-sinfo-2849-0.htm" target="_blank">［查看更多］</a></p>
+    </div>
+  </div>
+  <div class="list clearfix">
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-svlist-2849-1.htm" class="date">更多&gt;&gt;</a>微课</h2>
+        <ul class="h_pic3">
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2849-18907.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2849/vod/201506/vod_21ad06aecd127051b00c92922b63c20c.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="蛋白质的变性" class="mod-course-card__name" target="_blank" href="/v-play-2849-18907.htm">蛋白质的变性</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="陈畅 " target="_blank" href="/v.bo?method=actors&filmid=18907&actors=%E9%99%88%E7%95%85" class="mod-course-card__price mod-course-card__price_free">陈畅 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">34</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+          <li class="l_pic1" >
+            <div class="mod-course-card h180">
+              <a href="/v-play-2849-18912.htm" target="_blank" class="mod-course-card__link-img">
+                <img src="/upload_dir/2849/vod/2015/06/25/7d4efcf4fec132407f531ab3bb0285ec.jpg" width="220" height="124"/>
+                <i class="icon-card-play"></i>
+              </a>
+              <div class="course-title">
+                <a title="遗传密码" class="mod-course-card__name" target="_blank" href="/v-play-2849-18912.htm">遗传密码</a> 
+              </div>
+             <p class="mod-course-card__line"> 
+                <a title="陈畅 " target="_blank" href="/v.bo?method=actors&filmid=18912&actors=%E9%99%88%E7%95%85" class="mod-course-card__price mod-course-card__price_free">陈畅 </a> 
+                <a class="mod-course-card__agency font_1 mar_3">评分<span class="color_5">5</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">浏览<span class="color_5">22</span></a>
+                <a class="mod-course-card__agency font_1 mar_3">收藏<span class="color_5">0</span></a>
+             </p>
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sdlist-2849-1.htm" class="date">更多&gt;&gt;</a>文档</h2>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2849-99343.htm" target="_blank"><img src="/upload_dir/2849/doc/2015/06/24/516eb667f9e00ba8b9356d03ad5ef171.png" /></a></dt>
+            <dd class="ico_pdf"><a href="/v003-doc-2849-99343.htm" target="_blank" style="font-size:14px;">微课件-蛋白质的变性</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2849-6799.htm" target="_blank" class="color_2">陈畅</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">12</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">12</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2849-99346.htm" target="_blank"><img src="/upload_dir/2849/doc/2015/06/24/61f805a4088e34865c579ce947831910.png" /></a></dt>
+            <dd class="ico_pdf"><a href="/v003-doc-2849-99346.htm" target="_blank" style="font-size:14px;">微课教学评价-蛋白质的变性</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2849-6799.htm" target="_blank" class="color_2">陈畅</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">1</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">11</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-2849-99344.htm" target="_blank"><img src="/upload_dir/2849/doc/2015/06/24/c9170619618f16859a37d519b8ca921c.png" /></a></dt>
+            <dd class="ico_pdf"><a href="/v003-doc-2849-99344.htm" target="_blank" style="font-size:14px;">微习题-蛋白质的变性</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2849-6799.htm" target="_blank" class="color_2">陈畅</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">1</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">10</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+      <div class="ed_bottom1">
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2849-99349.htm" target="_blank"><img src="/upload_dir/2849/doc/2015/06/25/dcb04bc92ffee6418f03a7a18401dea4.png" /></a></dt>
+            <dd class="ico_pdf"><a href="/v003-doc-2849-99349.htm" target="_blank" style="font-size:14px;">微课教学评价-遗传密码</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2849-6799.htm" target="_blank" class="color_2">陈畅</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">1</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">4</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" >
+            <dt><a href="/v-doc-2849-99348.htm" target="_blank"><img src="/upload_dir/2849/doc/2015/06/25/8125b5ffe8d2ab4e40650c0f55353c5f.png" /></a></dt>
+            <dd class="ico_pdf"><a href="/v003-doc-2849-99348.htm" target="_blank" style="font-size:14px;">微习题-遗传密码</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2849-6799.htm" target="_blank" class="color_2">陈畅</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">1</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">4</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+        <dl class="ed_1" style="margin-right:0">
+            <dt><a href="/v-doc-2849-99347.htm" target="_blank"><img src="/upload_dir/2849/doc/2015/06/25/b2a31a44fe59343b76c706f4b316a207.png" /></a></dt>
+            <dd class="ico_pdf"><a href="/v003-doc-2849-99347.htm" target="_blank" style="font-size:14px;">微课件-遗传密码</a></dd>
+            <dd style="padding-left:0px;"><a href="/v-user-2849-6799.htm" target="_blank" class="color_2">陈畅</a> | <span>评分<span class="color_5">0</span></span><span>共<font class="color_5">25</font>页</span></dd>
+            <dd style="padding-left:0px;">
+              <span>收藏<span class="color_5">0</span></span>
+              <span>浏览<span class="color_5">4</span></span>
+              <span>下载量<span class="color_5">0</span></span>
+            </dd>
+          </dl>
+      </div>
+    </div>
+    <div class="list_bottom1 clearfix">
+      <h2><a href="/v-sulist-2849-1.htm" class="date">更多&gt;&gt;</a>教师</h2>
+      <div class="de_left">
+      <table width="100%" border="0" cellspacing="0" class="tabel_1">
+		  <tr>
+		    <td width="10%" align="left"><a href="/v-user-2849-9141.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="19%" align="left">
+		      <p><a href="/v-user-2849-9141.htm" class="color_2">宋军</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">0</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">0</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left"><a href="/v-user-2849-6799.htm"><img src="/upload_dir/man.jpg" /></a></td>
+		    <td width="17%" align="left">
+		      <p><a href="/v-user-2849-6799.htm" class="color_2">陈畅</a>&nbsp;&nbsp;<span class="color_3"></span></p>
+		      <p class="color_3" style="font-size:10px;">微课数量：<span class="color_5">2</span></p>
+		      <p class="color_3" style="font-size:10px;">文档数量：<span class="color_5">6</span></p>
+		    
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="14%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    <td width="10%" align="left">&nbsp;</td>
+		    <td width="10%" align="left">
+<p>&nbsp;</p>
+		    </td>
+		    </tr>
+		</table>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function praise(){
+	$.ajax({
+	   url: "/v.bo?method=praise",
+	   data: "unitid=2849&flag=1",
+	   success: function(msg){
+	   	 if('-1' == msg){
+	   	 	alert("您已点过赞！");
+	   	 }else{
+	   	    $("#s_praise").text(msg);
+	   	 }
+	   }
+	}); 
+	return;
+}
+function getSchoolStatistics(){
+	$.ajax({
+        type: "get",
+        url: "/v.bo?method=getSchoolStatistics",
+        data: "unitid=2849&ram=" + Math.random(),
+        dataType: "text",
+        success: function(data){
+        	var statistics = data.split(";");
+        	$("#s_js").text(statistics[0]);
+        	$("#s_wk").text(statistics[1]);
+        	$("#s_doc").text(statistics[2]);
+        	$("#s_praise").text(statistics[3]);
+         }
+    });
+}
+getSchoolStatistics();
+</script>
+<!--#include virtual="/skin/wkmk/comm/footer.html"-->
+</body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: deviceCard.hbm.xml 11436 2008-03-18 14:16:50Z wzou $ -->
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.base.event.EventNew" table="EventNew" lazy="true">
+		 <id name="id" type="java.lang.Long">
+            <column name="ID"/>
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        
+        <many-to-one name="eventType" class="com.yongjun.tdms.model.base.event.EventType" fetch="select" lazy="false">
+            <column name="EVENTTYPE_ID" />
+        </many-to-one>
+        
+        <property name="moreinfo" type="java.lang.String">
+            <column name="MOREINFO" length="500"/>
+        </property>
+        
+        <property name="effectflag" type="java.lang.String">
+            <column name="EFFECTFLAG" />
+        </property>
+        <property name="status" type="java.lang.Long">
+            <column name="STATUS" />
+        </property>
+        <property name="orgId" type="java.lang.Long">
+            <column name="ORGID" />
+        </property>
+        <property name="docId" type="java.lang.Long">
+            <column name="DOCID" />
+        </property>
+        <property name="userId" type="java.lang.String">
+            <column name="USERID" />
+        </property>
+        <property name="docType" type="java.lang.String">
+            <column name="DOCTYPE" />
+        </property>
+        <property name="dealFlag" type="java.lang.String">
+            <column name="DEALFLAG" />
+        </property>
+
+	</class>
+</hibernate-mapping>
