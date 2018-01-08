@@ -27,6 +27,7 @@ import com.yongjun.tdms.model.base.event.EventType;
 import com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement;
 import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
 import com.yongjun.tdms.model.project.ProjectInfo;
+import com.yongjun.tdms.model.workflow.Flow;
 import com.yongjun.tdms.model.workspace.overTimeBill.OverTimeBill;
 import com.yongjun.tdms.service.base.event.EventNewManager;
 import com.yongjun.tdms.service.base.event.EventTypeManager;
@@ -34,6 +35,7 @@ import com.yongjun.tdms.service.base.org.DepartmentManager;
 import com.yongjun.tdms.service.customercontract.contractmanagement.ContractManagementManager;
 import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 import com.yongjun.tdms.service.project.ProjectInfoManager;
+import com.yongjun.tdms.service.workflow.flow.FlowManager;
 import com.yongjun.tdms.service.workflow.workflowcase.WorkflowCaseManager;
 import com.yongjun.tdms.service.workspace.overTimeBill.OverTimeBillManager;
 
@@ -54,12 +56,14 @@ public class EditOverTimeBillAction extends PrepareAction {
 	private PersonnelFiles personnelFiles;
 	private ProjectInfo projectInfo;
 	private ContractManagement contractManagement;
+	private String activitiFLow ;
+	private final FlowManager flowManager;
 
 	public EditOverTimeBillAction(OverTimeBillManager overTimeBillManager, CodeValueManager codeValueManager,
 			DepartmentManager departmentManager, UserManager userManager, PersonnelFilesManager personnelFilesManager,
 			WorkflowCaseManager workflowCaseManager, ProjectInfoManager projectInfoManager,
 			ContractManagementManager contractManagementManager, EventNewManager eventNewManager,
-			EventTypeManager eventTypeManager, GroupManager groupManager) {
+			EventTypeManager eventTypeManager, GroupManager groupManager, FlowManager flowManager) {
 		this.overTimeBillManager = overTimeBillManager;
 		this.codeValueManager = codeValueManager;
 		this.departmentManager = departmentManager;
@@ -71,9 +75,13 @@ public class EditOverTimeBillAction extends PrepareAction {
 		this.eventNewManager = eventNewManager;
 		this.eventTypeManager = eventTypeManager;
 		this.groupManager = groupManager;
+		this.flowManager=flowManager;
 	}
 
 	public void prepare() throws Exception {
+		if (request.getParameter("activitiFLow") != null) {
+			this.activitiFLow = request.getParameter("activitiFLow");
+		}
 		if (hasId("overTimeBill.id")) {
 			this.overTimeBill = this.overTimeBillManager.loadOverTimeBill(getId("overTimeBill.id"));
 			this.personnelFiles = this.overTimeBill.getApplyPerson();
@@ -110,6 +118,11 @@ public class EditOverTimeBillAction extends PrepareAction {
 					.getParameter("status.id"))));
 		} else {
 			this.overTimeBill.setStatus((CodeValue) this.codeValueManager.loadByKey("code", "02000").get(0));
+		}
+
+		if (!StringUtils.isEmpty(this.request.getParameter("flow.id"))) {
+			this.overTimeBill.setFlow(this.flowManager.loadFlow(Long.valueOf(this.request
+					.getParameter("flow.id"))));
 		}
 
 		if (null == this.overTimeBill.getDept()) {
@@ -315,4 +328,23 @@ public class EditOverTimeBillAction extends PrepareAction {
 	public void setContractManagement(ContractManagement contractManagement) {
 		this.contractManagement = contractManagement;
 	}
+
+	public String getActivitiFLow() {
+		return activitiFLow;
+	}
+
+	public void setActivitiFLow(String activitiFLow) {
+		this.activitiFLow = activitiFLow;
+	}
+	public List<Flow> getAllFlows() {
+		List depts = null;
+		try {
+			depts = this.flowManager.loadByKey("openOrNot", "0");
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return depts;
+	}
+	
 }

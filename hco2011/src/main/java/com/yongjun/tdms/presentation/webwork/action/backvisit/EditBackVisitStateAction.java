@@ -173,9 +173,9 @@
 /*     */     try
 /*     */     {
 /* 211 */       List codes = new ArrayList();
-/* 212 */       List one = this.codeValueManager.loadByKey("code", Long.valueOf("022"));
+/* 212 */       List one = this.codeValueManager.loadByKey("code", "022");
 /* 213 */       if ((null != one) && (one.size() > 0)) {
-/* 214 */         List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue)one.get(1)).getId());
+/* 214 */         List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue)one.get(0)).getId());
 /* 215 */         if ((null != list) && (list.size() > 0)) {
 /* 216 */           codes.addAll(list);
 /*     */         }
@@ -193,7 +193,7 @@
 /*     */     try
 /*     */     {
 /* 211 */       List codes = new ArrayList();
-/* 212 */       List one = this.codeValueManager.loadByKey("code", Long.valueOf("200"));
+/* 212 */       List one = this.codeValueManager.loadByKey("code", "200");
 /* 213 */       if ((null != one) && (one.size() > 0)) {
 /* 214 */         List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue)one.get(0)).getId());
 /* 215 */         if ((null != list) && (list.size() > 0)) {

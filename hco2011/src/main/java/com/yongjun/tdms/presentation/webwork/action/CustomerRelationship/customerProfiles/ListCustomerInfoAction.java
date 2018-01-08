@@ -146,7 +146,7 @@ public class ListCustomerInfoAction extends ValueListAction {
 	public List<CodeValue> getAllTypes() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("001"));
+			List one = this.codeValueManager.loadByKey("code", "001");
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				codes.addAll(list);
@@ -211,7 +211,7 @@ public class ListCustomerInfoAction extends ValueListAction {
 	public List<CodeValue> getAllIndustrys() {
 		try {
 			List industrys = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("002"));
+			List one = this.codeValueManager.loadByKey("code", "002");
 			if ((null != one) && (one.size() > 0) && (null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				industrys.addAll(list);
@@ -237,7 +237,7 @@ public class ListCustomerInfoAction extends ValueListAction {
 	public List<CodeValue> getAllCompanyNatures() {
 		try {
 			List companyNatures = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("003"));
+			List one = this.codeValueManager.loadByKey("code", "003");
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {
@@ -263,9 +263,9 @@ public class ListCustomerInfoAction extends ValueListAction {
 	public List<CodeValue> getAllSteps() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("022"));
+			List one = this.codeValueManager.loadByKey("code", "022");
 			if ((null != one) && (one.size() > 0)) {
-				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(1)).getId());
+				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {
 					codes.addAll(list);
 				}

@@ -69,7 +69,7 @@ public class EditProductsPersonAction extends PrepareAction {
 	public List<CodeValue> getAllRole() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("21000"));
+			List one = this.codeValueManager.loadByKey("code", "21000");
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {

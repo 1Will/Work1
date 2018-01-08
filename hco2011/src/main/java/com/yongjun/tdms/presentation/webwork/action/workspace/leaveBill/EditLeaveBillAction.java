@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import net.sf.json.JSONObject;
-
 import org.apache.commons.lang.StringUtils;
 
 import com.yongjun.pluto.exception.DaoException;
@@ -23,14 +21,17 @@ import com.yongjun.pluto.webwork.action.PrepareAction;
 import com.yongjun.tdms.model.base.event.EventNew;
 import com.yongjun.tdms.model.base.event.EventType;
 import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
+import com.yongjun.tdms.model.workflow.Flow;
 import com.yongjun.tdms.model.workspace.leaveBill.LeaveBill;
 import com.yongjun.tdms.service.base.event.EventNewManager;
 import com.yongjun.tdms.service.base.event.EventTypeManager;
 import com.yongjun.tdms.service.base.org.DepartmentManager;
 import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
+import com.yongjun.tdms.service.workflow.flow.FlowManager;
 import com.yongjun.tdms.service.workflow.workflowcase.WorkflowCaseManager;
 import com.yongjun.tdms.service.workspace.leaveBill.LeaveBillManager;
-import com.yongjun.tdms.service.workspace.workingcycle.WorkingCycleManager;
+
+import net.sf.json.JSONObject;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class EditLeaveBillAction extends PrepareAction {
@@ -41,16 +42,17 @@ public class EditLeaveBillAction extends PrepareAction {
 	private final UserManager userManager;
 	private final PersonnelFilesManager personnelFilesManager;
 	private final WorkflowCaseManager workflowCaseManager;
-	private final WorkingCycleManager workingCycleManager;
+	private final FlowManager flowManager;
 	private final EventNewManager eventNewManager;
 	private final EventTypeManager eventTypeManager;
 	protected final GroupManager groupManager;
 	private LeaveBill leaveBill;
 	private PersonnelFiles personnelFiles;
+	private String activitiFLow ;
 
 	public EditLeaveBillAction(LeaveBillManager leaveBillManager, CodeValueManager codeValueManager,
 			DepartmentManager departmentManager, UserManager userManager, PersonnelFilesManager personnelFilesManager,
-			WorkflowCaseManager workflowCaseManager, WorkingCycleManager workingCycleManager,EventNewManager eventNewManager,
+			WorkflowCaseManager workflowCaseManager, FlowManager flowManager,EventNewManager eventNewManager,
 			EventTypeManager eventTypeManager, GroupManager groupManager) {
 		this.leaveBillManager = leaveBillManager;
 		this.codeValueManager = codeValueManager;
@@ -58,13 +60,16 @@ public class EditLeaveBillAction extends PrepareAction {
 		this.userManager = userManager;
 		this.personnelFilesManager = personnelFilesManager;
 		this.workflowCaseManager = workflowCaseManager;
-		this.workingCycleManager = workingCycleManager;
+		this.flowManager = flowManager;
 		this.eventNewManager = eventNewManager;
 		this.eventTypeManager = eventTypeManager;
 		this.groupManager = groupManager;
 	}
 
 	public void prepare() throws Exception {
+		if (request.getParameter("activitiFLow") != null) {
+			this.activitiFLow = request.getParameter("activitiFLow");
+		}
 		if (hasId("leaveBill.id")) {
 			this.leaveBill = this.leaveBillManager.loadLeaveBill(getId("leaveBill.id"));
 			this.personnelFiles = this.leaveBill.getApplyPerson();
@@ -95,6 +100,10 @@ public class EditLeaveBillAction extends PrepareAction {
 			this.leaveBill.setType(this.codeValueManager.loadCodeValue(Long.valueOf(this.request
 					.getParameter("type.id"))));
 		}
+		if (!StringUtils.isEmpty(this.request.getParameter("flow.id"))) {
+			this.leaveBill.setFlow(this.flowManager.loadFlow(Long.valueOf(this.request
+					.getParameter("flow.id"))));;
+		}
 
 		if (null != this.personnelFiles.getDept()) {
 			this.leaveBill.setDept(this.personnelFiles.getDept());
@@ -104,6 +113,7 @@ public class EditLeaveBillAction extends PrepareAction {
 		}
 
 		this.leaveBill.setOrganization(this.userManager.getOrganization());
+		this.leaveBill.setIsSaved(this.request.getParameter("isSaved"));
 		if (isNew) {
 			String newCode = autoCompleteCode();
 			this.leaveBill.setCode(newCode);
@@ -116,7 +126,6 @@ public class EditLeaveBillAction extends PrepareAction {
 			WorkflowTrigger(this.personnelFiles);
 			return "new";
 		}
-		this.leaveBill.setIsSaved(this.request.getParameter("isSaved"));
 		String submit =null;
 		try {
 			this.leaveBillManager.storeLeaveBill(this.leaveBill);
@@ -271,6 +280,17 @@ public class EditLeaveBillAction extends PrepareAction {
 		List depts = this.departmentManager.loadAllDepartments();
 		return depts;
 	}
+	
+	public List<Flow> getAllFlows() {
+		List depts = null;
+		try {
+			depts = this.flowManager.loadByKey("openOrNot", "0");
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return depts;
+	}
 
 	public User getUser() {
 		return this.userManager.getUser();
@@ -283,4 +303,13 @@ public class EditLeaveBillAction extends PrepareAction {
 	public void setLeaveBill(LeaveBill leaveBill) {
 		this.leaveBill = leaveBill;
 	}
+
+	public String getActivitiFLow() {
+		return activitiFLow;
+	}
+
+	public void setActivitiFLow(String activitiFLow) {
+		this.activitiFLow = activitiFLow;
+	}
+	
 }

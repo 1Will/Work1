@@ -271,7 +271,7 @@ public class ListContactArchivesAction extends ValueListAction {
 	public List<CodeValue> getAllTypes() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("001"));
+			List one = this.codeValueManager.loadByKey("code", "001");
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {

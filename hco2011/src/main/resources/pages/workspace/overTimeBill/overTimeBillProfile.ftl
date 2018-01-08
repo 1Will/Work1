@@ -166,6 +166,36 @@
 				</@ww.select>
 			</#if>
         </tr>
+        <tr>
+       <#if overTimeBill.status?exists && overTimeBill.status.code != '02000'>
+				<@ww.select label="'${action.getText('流程类型')}'" 
+					name="'flow.id'" 
+					value="${req.getParameter('flow.id')?if_exists}"
+					listKey="id"
+					listValue="name"
+					list="allFlows"
+					required="true"
+					emptyOption="true"
+					disabled="true">
+				</@ww.select>
+				<#else>
+				<@ww.select label="'${action.getText('流程类型')}'" 
+					name="'flow.id'" 
+					value="${req.getParameter('flow.id')?if_exists}"
+					listKey="id"
+					listValue="name"
+					list="allFlows"
+					required="true"
+					emptyOption="true"
+					disabled="false">
+				</@ww.select>
+			</#if>
+		<script type="text/javascript" >
+		<#if overTimeBill.flow?exists>
+			getObjByName('flow.id').value='${overTimeBill.flow.id?if_exists}';
+		</#if>
+		</script>
+        </tr>
 		<tr>
 			<td align="right" valign="top">
 	       		<span class="required">*</span>
@@ -188,6 +218,9 @@
 		-->
     </@inputTable>
     <@buttonBar>
+     <#if activitiFLow?exists>
+    <input type="button" name="close" value="关闭" onclick="window.close()">
+    <#else>
     	<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 		
@@ -209,11 +242,26 @@
 		</#if>
 		
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/overTimeBill/listOverTimeBill.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
-    </@buttonBar>
+</#if>   
+</@buttonBar>
 
 </@ww.form>
 
 <script type="text/javascript">
+//初始化页面
+<#if overTimeBill.status?exists>
+var statusCode = "${overTimeBill.status.code?if_exists}";
+if(statusCode != "02000"){
+	if(statusCode == "02002"){
+		getObjByName("save").style.display = "none";
+		getObjByName("submit").value = "重新提交";
+		getObjByName("submit").disabled = false;
+	}else{
+		getObjByName("save").disabled = "true";
+		getObjByName("submit").disabled = "true";
+	}
+}
+</#if>
 //	window.onload=function(){
 		<#if overTimeBill.dept?exists>
 			getObjByName('dept.id').value='${overTimeBill.dept.id?if_exists}';
@@ -276,7 +324,11 @@
 	
 	
 	function submitt(){
-		getObjByName('isSaved').value="1";
+		if(getObjByName("submit").value == "重新提交"){
+			getObjByName('isSaved').value="2";
+		}else{
+			getObjByName('isSaved').value="1";
+		}
 		return storeValidation();
     }
     
@@ -353,7 +405,11 @@
 			getObjByName('status.id').focus();
 			return false;
 		}
-		
+		if(getObjByName('flow.id').value==''){
+			alert("请选择流程类型！");
+			getObjByName('flow.id').focus();
+			return false;
+		}
 		if(getObjByName('overTimeBill.betreffzeile').value==''){
 			alert("${action.getText('overTimeBill.betreffzeile.requiredstring')}");
 			getObjByName('overTimeBill.betreffzeile').focus();
@@ -366,8 +422,14 @@
 <#if overTimeBill.id?exists>
 <ul id="beautytab">
 	<li>
+		<a id="runPoint" onclick="activeTab(this);"  href='${req.contextPath}/activitiFlow/listRunPoint.html?flow.id=${overTimeBill.flow.id?if_exists}&bussnessId=#{overTimeBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('审批人')}</a>
+	</li>
+	<li>
+		<a id="CopySendPerson" onclick="activeTab(this);"  href='${req.contextPath}/activitiFlow/listCopySendPerson.html?flow.id=${overTimeBill.flow.id?if_exists}&bussnessId=#{overTimeBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('抄送人')}</a>
+	</li>
+	<li>
 		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?overTimeBill.id=#{overTimeBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
 	</li>
 </ul>
-<iframe name="frame" frameborder="0.5" src="${req.contextPath}/applicationDocManager/listApplicationDoc.html?overTimeBill.id=#{overTimeBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="60%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/activitiFlow/listRunPoint.html?flow.id=${overTimeBill.flow.id?if_exists}&bussnessId=#{overTimeBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="60%"/>
 </#if>

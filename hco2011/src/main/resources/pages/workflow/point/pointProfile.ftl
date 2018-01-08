@@ -106,7 +106,7 @@
         	</script>
 		</tr>
 		<tr>
-			<@textarea label="${action.getText('备注')}" name="point.remark" value="" colspan="5" rows="4" cols="150" 
+			<@textarea label="${action.getText('备注')}" name="point.remark" value="" colspan="5" rows="4" cols="100" 
 			           value="${point.remark?if_exists}"/>
 		</tr>
 	</@inputTable>
@@ -114,7 +114,7 @@
 	<#if !(action.isReadOnly())>
 		<@vsubmit name="save" value="'${'保存'}'" onclick="'return storeValidation();'"/>
 	</#if>
-		<@vbutton class="button" name="${action.getText('close')}" value="${action.getText('close')}" onclick="javascript:window.close();"/>
+		<@vbutton class="button" name="${action.getText('close')}" value="${action.getText('close')}" onclick="closeThis();"/>
     </@buttonBar>
 </@ww.form>
 
@@ -123,13 +123,14 @@
 //	alert(getObjByName('flow.id').value);
 //}
 
-
+/*
 function closeThis(){
 	var flowId = getObjByName('flow.id').value;
 	//var url = "${req.contextPath}/point/listPoint.html?flow.id=flowId&readOnly=false";
 	returnDialog(flowId,"reload");
 	return true;
 }
+*/
 //弹出负责人查询模态窗体
 function persons_OpenDialog(){
    var url = "${req.contextPath}/personnelFile/listPersonByUser.html";

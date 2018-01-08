@@ -14,6 +14,7 @@ import com.yongjun.pluto.service.security.UserManager;
 import com.yongjun.pluto.webwork.action.valuelist.ValueListAction;
 import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
 import com.yongjun.tdms.model.project.ProjectInfo;
+import com.yongjun.tdms.presentation.webwork.action.backvisit.EditBackVisitAction;
 import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 import com.yongjun.tdms.service.project.ProjectInfoManager;
 import com.yongjun.tdms.service.project.projectInfoPersonnels.ProjectInfoPersonnelsManager;
@@ -186,7 +187,7 @@ public class ListProjectInfoAction extends ValueListAction {
 	public List<CodeValue> getAllStates() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("201"));
+			List one = this.codeValueManager.loadByKey("code", "201");
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {

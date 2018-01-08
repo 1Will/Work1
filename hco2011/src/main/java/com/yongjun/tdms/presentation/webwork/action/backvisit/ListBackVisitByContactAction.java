@@ -191,9 +191,9 @@
 /*     */     try
 /*     */     {
 /* 205 */       List codes = new ArrayList();
-/* 206 */       List one = this.codeValueManager.loadByKey("code", Long.valueOf("022"));
+/* 206 */       List one = this.codeValueManager.loadByKey("code", "022");
 /* 207 */       if ((null != one) && (one.size() > 0)) {
-/* 208 */         List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue)one.get(1)).getId());
+/* 208 */         List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue)one.get(0)).getId());
 /* 209 */         if ((null != list) && (list.size() > 0)) {
 /* 210 */           codes.addAll(list);
 /*     */         }

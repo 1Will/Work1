@@ -28,25 +28,23 @@
  	</#if>
 	<@inputTable>
 		<tr>
-			<@textfield label="${action.getText('流程编码')}" name="flow.code" value="${flow.code?if_exists}" 
-			            required="true"/>
+			<@ww.select label="'${action.getText('流程编码')}'" 
+				name="'flow.flowCode'" 
+				value="'${flow.flowCode?if_exists}'"
+				listKey="id"
+				listValue="name"
+				list="allFlowCode"
+				emptyOption="true"
+				required="true" 
+				disabled="false">
+			</@ww.select>
+			<#--
+			<@textfield label="${action.getText('流程编码')}" name="flow.code" value="${flow.flowCode?if_exists}" 
+			            required="true"/>-->
+			
 			<@textfield label="${action.getText('流程名称')}" name="flow.name" value="${flow.name?if_exists}" anothername="name"
 			            required="true"/>
-			<@textfield label="${action.getText('工作时限(天)')}" name="flow.allowTime" value="${flow.allowTime?if_exists}"  anothername="allowTime"
-			            required="true"/>
-		</tr>
-		<tr>
-			<@ww.select label="'${action.getText('适用范围')}'" 
-						name="'flow.department'" 
-						value="'${req.getParameter('flow.department')?if_exists}'"
-						listKey="id"
-						listValue="name"
-						list="allDepartment"
-						emptyOption="false" 
-						disabled="false">
-			</@ww.select>
-
-		    <td align="right">
+			<td align="right">
 		       <label for="" class="label">
 		           ${action.getText('是否启用')}:
 		       </label>
@@ -69,7 +67,7 @@
         	</script>
 		</tr>
 		<tr>
-			<@textarea label="备注" name="remark" colspan="5" rows="4" cols="150"
+			<@textarea label="备注" name="flow.remark" colspan="5" rows="4" cols="150"
 			           value="${flow.remark?if_exists}"/>
 		</tr>
 	</@inputTable>
@@ -81,38 +79,33 @@
     </@buttonBar>
 </@ww.form>
 <script language="javascript">
-window.onload=function()
-{
-	<#if flow.department?exists>
-		getObjByName('flow.department').value='${flow.department.id?if_exists}';
+//window.onload=function(){
+//}
+<#if flow.department?exists>
+	getObjByName('flow.department').value='${flow.department.id?if_exists}';
+</#if>
+<#if flow.flowCode?exists>
+	getObjByName('flow.flowCode').value='${flow.flowCode.id?if_exists}';
+<#else>
+	<#if req.getParameter('flow.flowCode.id')?exists>
+	getObjByName('flow.flowCode').value='${req.getParameter('flow.flowCode.id')?if_exists}';
 	</#if>
-	
-	
-	<#if flow.code?exists>
-		getObjByName('flow.code').value='${flow.code?if_exists}';
-	<#else>
-		<#if req.getParameter('flow.code')?exists>
-		getObjByName('flow.code').value='${req.getParameter('flow.code')?if_exists}';
-		</#if>
-	</#if>
-}
+</#if>
 //保存前给隐藏域赋值和验证字段
 function storeValidation(){
     //流程编码
-    if(!textfieldCheck_code()){
-        getObjByName('flow.code').focus();
+    if(getObjByName('flow.flowCode').value == ""){
+        getObjByName('flow.flowCode').focus();
+        alert("请选择流程编码！");
 		return false;
 	}
     //流程名称
-    if(!textfieldCheck_name()){
+    if(getObjByName('flow.name').value == ""){
         getObjByName('flow.name').focus();
+        alert("请填写流程名称！");
 		return false;
 	}
-    //工作时限(天)
-    if(!textfieldCheck_allowTime()){
-        getObjByName('flow.allowTime').focus();
-		return false;
-	}
+	
 }
 </script>
 <#if flow.id?exists>

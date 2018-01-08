@@ -91,7 +91,7 @@
 /* 140 */     List codes = null;
 /*     */     try {
 /* 142 */       codes = new ArrayList();
-/* 143 */       List one = this.codeValueManager.loadByKey("code", Long.valueOf("084001"));
+/* 143 */       List one = this.codeValueManager.loadByKey("code", "084001");
 /*     */ 
 /* 145 */       if ((null != one) && (one.size() > 0))
 /*     */       {
@@ -117,7 +117,7 @@
 /* 168 */     List codes = null;
 /*     */     try {
 /* 170 */       codes = new ArrayList();
-/* 171 */       List one = this.codeValueManager.loadByKey("code", Long.valueOf("083001"));
+/* 171 */       List one = this.codeValueManager.loadByKey("code", "083001");
 /*     */ 
 /* 173 */       if ((null != one) && (one.size() > 0))
 /*     */       {

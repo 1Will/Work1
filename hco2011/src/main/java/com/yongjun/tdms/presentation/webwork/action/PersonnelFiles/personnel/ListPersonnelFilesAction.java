@@ -96,6 +96,7 @@ public class ListPersonnelFilesAction extends ValueListAction {
 
 	public List<Department> getAllDepts() {
 		List list = new ArrayList();
+		list = departmentManager.loadAllDepartments();
 		Department agency = new Department();
 		agency.setId(Long.valueOf(-1L));
 		agency.setName(getText("select.option.all"));
@@ -105,6 +106,7 @@ public class ListPersonnelFilesAction extends ValueListAction {
 
 	public List<Duty> getAllDutys() {
 		List list = new ArrayList();
+		list = dutyManager.loadAllDuty();
 		Duty duty = new Duty();
 		duty.setId(Long.valueOf(-1L));
 		duty.setName(getText("select.option.all"));

@@ -5,8 +5,10 @@
 /*     */ import com.yongjun.tdms.dao.workflow.flow.FlowDao;
 /*     */ import com.yongjun.tdms.dao.workflow.point.PointDao;
 /*     */ import com.yongjun.tdms.model.workflow.Flow;
+import com.yongjun.tdms.model.workflow.Point;
 /*     */ import com.yongjun.tdms.service.workflow.flow.FlowManager;
 /*     */ import java.util.Collection;
+import java.util.Date;
 /*     */ import java.util.List;
 /*     */ 
 /*     */ public class DefaultFlowManager extends BaseManager
@@ -72,7 +74,23 @@
 /*     */ 
 /*     */   public void storeFlow(Flow flow)
 /*     */   {
+	         Long lastId = flow.getId();
 /* 168 */     getFlowDao().storeFlow(flow);
+
+               //如果流程id不存在 即第一次保存 自动创建一个上级领导人的流程节点
+              if(lastId==null){
+            	  Point point = new Point();
+            	  point.setCode("SJLDRSP");
+            	  point.setCreatedTime(new Date());
+            	  point.setName("上级领导人审批");
+            	  point.setFlow(flow);
+            	  point.setMyNum(1);
+            	  point.setRemark("上级领导人审批");
+            	  point.setOpenOrNot(0);
+            	  point.setCreator("admin");
+            	  this.pointDao.storePoint(point);
+            	  
+              }
 /*     */   }
 /*     */ 
 /*     */   public String disabled(List<Flow> flowList)

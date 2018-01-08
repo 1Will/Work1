@@ -94,7 +94,7 @@
 /*     */     try
 /*     */     {
 /* 154 */       List industrys = new ArrayList();
-/* 155 */       List one = this.codeValueManager.loadByKey("code", Long.valueOf("002"));
+/* 155 */       List one = this.codeValueManager.loadByKey("code", "002");
 /* 156 */       if ((null != one) && (one.size() > 0) && 
 /* 157 */         (null != one) && (one.size() > 0)) {
 /* 158 */         List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue)one.get(0)).getId());
@@ -122,7 +122,7 @@
 /*     */     try
 /*     */     {
 /* 184 */       List companyNatures = new ArrayList();
-/* 185 */       List one = this.codeValueManager.loadByKey("code", Long.valueOf("003"));
+/* 185 */       List one = this.codeValueManager.loadByKey("code", "003");
 /* 186 */       if ((null != one) && (one.size() > 0)) {
 /* 187 */         List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue)one.get(0)).getId());
 /* 188 */         if ((null != list) && (list.size() > 0)) {

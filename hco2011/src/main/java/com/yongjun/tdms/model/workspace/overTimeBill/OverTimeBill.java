@@ -3,9 +3,11 @@ package com.yongjun.tdms.model.workspace.overTimeBill;
 import com.yongjun.pluto.model.BaseInfoEntity;
 import com.yongjun.pluto.model.codevalue.CodeValue;
 import com.yongjun.pluto.model.security.Department;
+import com.yongjun.pluto.util.DateUtil;
 import com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement;
 import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
 import com.yongjun.tdms.model.project.ProjectInfo;
+import com.yongjun.tdms.model.workflow.Flow;
 
 import java.util.Date;
 
@@ -24,6 +26,7 @@ public class OverTimeBill extends BaseInfoEntity {
 	private ProjectInfo projectInfo;
 	private ContractManagement contractManagement;
 	private String isSaved;// 提交判断
+	private Flow flow;
 
 	public String getFailReason() {
 		return this.failReason;
@@ -136,4 +139,25 @@ public class OverTimeBill extends BaseInfoEntity {
 	public void setIsSaved(String isSaved) {
 		this.isSaved = isSaved;
 	}
+
+	public Flow getFlow() {
+		return flow;
+	}
+
+	public void setFlow(Flow flow) {
+		this.flow = flow;
+	}
+	@Override
+	public String toString() {
+		
+		
+		StringBuffer sb = new StringBuffer();
+		 sb.append("部门为【"+this.getApplyPerson().getDept().getName()+"】的【"+this.getApplyPerson().getName()+"】在时间为【"+DateUtil.getDate(this.getCreateDate(), "yyyy年MM月dd日")+"】提出了类型为【"+this.getFlow().getName())
+		 .append("】的流程，")
+		 .append("具体内容是：【从"+DateUtil.getDate(this.getStartTime(), "yyyy-MM-dd HH:mm:ss")+"到"+DateUtil.getDate(this.getEndTime(), "yyyy-MM-dd HH:mm:ss"))
+		 .append("期间内加班,共计时(工时)："+this.getManHour())
+		 .append("】加班原因为：【"+this.getBetreffzeile()+"】");
+		return sb.toString();
+	}
+	
 }

@@ -1575,6 +1575,9 @@
 		<constructor-arg index="10">
 			<ref bean="groupManager" />
 		</constructor-arg>
+		<constructor-arg index="11">
+			<ref bean="flowManager" />
+		</constructor-arg>
 	</bean>
 	
 	<!-- 请假/调休 gliang2011-2-21-->
@@ -1612,7 +1615,7 @@
 			<ref bean="workflowCaseManager" />
 		</constructor-arg>
 		<constructor-arg index="6">
-			<ref bean="workingCycleManager" />
+			<ref bean="flowManager" />
 		</constructor-arg>
 		<constructor-arg index="7">
 			<ref bean="eventNewManager" />
@@ -2022,6 +2025,9 @@
 		</constructor-arg>
 		<constructor-arg index="2">
 			<ref bean="pointManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
 		</constructor-arg>
 	</bean>
 	<!-- 流程 结束 -->
@@ -2622,6 +2628,9 @@
 		</constructor-arg>
 		<constructor-arg index="9">
 			<ref bean="personnelFilesToUserManager" />
+		</constructor-arg>
+		<constructor-arg index="10">
+			<ref bean="flowManager" />
 		</constructor-arg>
 	</bean>
 	
@@ -3454,4 +3463,99 @@
 		</constructor-arg>
 	</bean>
 	
+	<!-- 审批流程节点 开始 -->
+	<bean id="listRunPointAction" parent="valueListAction" 
+	      class="com.yongjun.tdms.presentation.webwork.action.activitiFlow.ListRunPointAction" 
+	      scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runPointManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="flowManager" />
+		</constructor-arg>	
+	</bean>
+	<bean id="editRunPointAction" 
+	      class="com.yongjun.tdms.presentation.webwork.action.activitiFlow.EditRunPointAction" 
+	      scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runPointManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="flowManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="personnelFilesManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	
+	<!-- 待审批任务 开始 -->
+	<bean id="listMyRunTaskAction" parent="valueListAction" 
+	      class="com.yongjun.tdms.presentation.webwork.action.activitiFlow.ListMyRunTaskAction" 
+	      scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runTaskManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="flowManager" />
+		</constructor-arg>	
+	</bean>
+	<bean id="editMyRunTaskAction" 
+	      class="com.yongjun.tdms.presentation.webwork.action.activitiFlow.EditMyRunTaskAction" 
+	      scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runTaskManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="runPointManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="activitFlowManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="personnelFilesManager" />
+		</constructor-arg>
+	</bean> 
+	
+	
+	<!-- 历史审批 开始 -->
+	<bean id="listMyHistoryTaskAction" parent="valueListAction" 
+	      class="com.yongjun.tdms.presentation.webwork.action.activitiFlow.ListMyHistoryTaskAction" 
+	      scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="historyTaskinstManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="flowManager" />
+		</constructor-arg>	
+	</bean>
+	<!-- 历史审批 开始 -->
+	<bean id="editMyHistoryTaskAction" 
+	      class="com.yongjun.tdms.presentation.webwork.action.activitiFlow.EditMyHistoryTaskAction" 
+	       scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="historyTaskinstManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="codeValueManager" />
+		</constructor-arg>	
+		<constructor-arg index="2">
+			<ref bean="runPointManager" />
+		</constructor-arg>	
+	</bean>
+	
+	
+	<!--抄送人开始 -->
+	<bean id="listCopySendPersonAction" parent="valueListAction" 
+	      class="com.yongjun.tdms.presentation.webwork.action.activitiFlow.ListCopySendPersonAction" 
+	      scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="copySendPersonManager" />
+		</constructor-arg>
+	</bean>
 </beans>

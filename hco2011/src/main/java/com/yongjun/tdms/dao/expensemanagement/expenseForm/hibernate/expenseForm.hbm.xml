@@ -40,6 +40,14 @@
 		<property name="remark" type="string">
 			<column name="REMARK" not-null="false" sql-type="NVARCHAR(100)"/>
 		</property>
+		<!-- 所属流程-->
+        <many-to-one name="flow" class="com.yongjun.tdms.model.workflow.Flow" lazy="false">
+			<column name="flow" not-null="true"/>
+		</many-to-one>
+		<!-- 状态 -->
+        <many-to-one name="status" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+			<column name="STATUS" not-null="true"/>
+		</many-to-one>
 		
 		<!-- 提交判断 -->
         <property name="isSaved" type="string">

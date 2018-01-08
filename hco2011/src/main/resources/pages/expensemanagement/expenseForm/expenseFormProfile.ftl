@@ -111,12 +111,59 @@
 				<input type="text" name="expenseForm.attachmentNum" class="underline"  value="${expenseForm.attachmentNum?if_exists}" maxlength="140" size="20"/>
 			</td>
 		
+		<#if expenseForm.status?exists && expenseForm.status.code != '02000'>
+				<@ww.select label="'${action.getText('流程类型')}'" 
+					name="'flow.id'" 
+					value="${req.getParameter('flow.id')?if_exists}"
+					listKey="id"
+					listValue="name"
+					list="allFlows"
+					required="true"
+					emptyOption="true"
+					disabled="true">
+				</@ww.select>
+				<#else>
+				<@ww.select label="'${action.getText('流程类型')}'" 
+					name="'flow.id'" 
+					value="${req.getParameter('flow.id')?if_exists}"
+					listKey="id"
+					listValue="name"
+					list="allFlows"
+					required="true"
+					emptyOption="true"
+					disabled="false">
+				</@ww.select>
+			</#if>
+			<script language="JavaScript" type="text/JavaScript">
+			<#if expenseForm.flow?exists>
+			getObjByName('flow.id').value='${expenseForm.flow.id?if_exists}';
+		</#if>
+			</script>
+		</tr>
+		<tr>
+	        	<@ww.select label="'${action.getText('状态')}'" 
+					name="'status.id'" 
+					value="${req.getParameter('status.id')?if_exists}"
+					listKey="id"
+					listValue="name"
+					list="allStatus"
+					emptyOption="true" 
+					disabled="true">
+				</@ww.select>
+				<script language="JavaScript" type="text/JavaScript">
+			<#if expenseForm.status?exists>
+			getObjByName('status.id').value='${expenseForm.status.id?if_exists}';
+		</#if>
+			</script>
 		</tr>
 		<tr>
 			<@textarea name="expenseForm.remark" rows="4" cols="150" label="${action.getText('expenseForm.remark')}" anothername="remark" maxLength="500" required="false" value="${expenseForm.remark?if_exists}"/>				
 		</tr>
 	</@inputTable>
 	<@buttonBar>
+	<#if activitiFLow?exists>
+    <input type="button" name="close" value="关闭" onclick="window.close()">
+    <#else>
 		<#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'"/>
 		
@@ -142,10 +189,25 @@
 		<#else>
 			<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/expenseForm/listExpenseFormAction.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
    		</#if>
+   		</#if>
     </@buttonBar>
 </@ww.form>
 
 <script language="JavaScript" type="text/JavaScript"> 
+//初始化页面
+<#if expenseForm.status?exists>
+var statusCode = "${expenseForm.status.code?if_exists}";
+if(statusCode != "02000"){
+	if(statusCode == "02002"){
+		getObjByName("save").style.display = "none";
+		getObjByName("submit").value = "重新提交";
+		getObjByName("submit").disabled = false;
+	}else{
+		getObjByName("save").disabled = "true";
+		getObjByName("submit").disabled = "true";
+	}
+}
+</#if>
 	 //项目名称查询模态窗体(添加)
 	function projectName_OpenDialog(){
    		var url = "${req.contextPath}/projectInfo/listProjectInfo.html?backVisitCheckBox=backVisitCheckBox&readOnly=${req.getParameter('readOnly')?if_exists}";
@@ -191,9 +253,13 @@
 		return storeValidation();
 	}
 	function submitt(){
-     	getObjByName('expenseForm.isSaved').value=1;
+		if(getObjByName("submit").value == "重新提交"){
+			getObjByName('isSaved').value="2";
+		}else{
+			getObjByName('isSaved').value="1";
+		}
 		return storeValidation();
-	}
+    }
 	
 
 	<#-- 提交验证-->
@@ -203,6 +269,13 @@
 			alert("${action.getText('请输入报销单编号!')}");
 			getObjByName("expenseForm.code").focus();
 			return false;
+		}else{
+			var codeLength = getObjByName("expenseForm.code").value.length;
+			if(codeLength > 15){
+				alert("${action.getText('报销单编号长度超出限制!')}");
+				getObjByName("expenseForm.code").focus();
+				return false;
+			}
 		}
 		
 		if(getObjByName("projectInfo.name").value==""){
@@ -245,6 +318,11 @@
 				return false;
 			}
 		}
+		if(getObjByName('flow.id').value==''){
+			alert("请选择流程类型！");
+			getObjByName('flow.id').focus();
+			return false;
+		}
 		return true;
 	}
 </script>
@@ -253,8 +331,14 @@
 <#if expenseForm.id?exists>
 <ul id="beautytab">
 	<li>
+		<a id="runPoint" onclick="activeTab(this);"  href='${req.contextPath}/activitiFlow/listRunPoint.html?bussnessId=#{expenseForm.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('审批人')}</a>
+	</li>
+	<li>
+		<a id="CopySendPerson" onclick="activeTab(this);"  href='${req.contextPath}/activitiFlow/listCopySendPerson.html?flow.id=${expenseForm.flow.id?if_exists}&bussnessId=#{expenseForm.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('抄送人')}</a>
+	</li>
+	<li>
 		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?expenseForm.id=#{expenseForm.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
 	</li>
 </ul>
-<iframe name="frame" frameborder="0.5" src="${req.contextPath}/applicationDocManager/listApplicationDoc.html?expenseForm.id=#{expenseForm.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="50%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/activitiFlow/listRunPoint.html?bussnessId=#{expenseForm.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="50%"/>
 </#if>

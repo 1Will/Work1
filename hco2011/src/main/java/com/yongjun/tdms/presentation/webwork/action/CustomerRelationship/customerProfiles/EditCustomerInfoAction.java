@@ -370,7 +370,7 @@ public class EditCustomerInfoAction extends PrepareAction {
 	public List<CodeValue> getAllTypes() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("001"));
+			List one = this.codeValueManager.loadByKey("code", "001");
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {
@@ -387,7 +387,7 @@ public class EditCustomerInfoAction extends PrepareAction {
 	public List<CodeValue> getAllTypess() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("001"));
+			List one = this.codeValueManager.loadByKey("code", "001");
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {
@@ -404,9 +404,9 @@ public class EditCustomerInfoAction extends PrepareAction {
 	public List<CodeValue> getAllSteps() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("022"));
+			List one = this.codeValueManager.loadByKey("code", "022");
 			if ((null != one) && (one.size() > 0)) {
-				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(1)).getId());
+				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {
 					codes.addAll(list);
 				}
@@ -421,7 +421,7 @@ public class EditCustomerInfoAction extends PrepareAction {
 	public List<CodeValue> getAllStates() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("200"));
+			List one = this.codeValueManager.loadByKey("code", "200");
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {
@@ -440,7 +440,7 @@ public class EditCustomerInfoAction extends PrepareAction {
 	public List<CodeValue> getAllResources() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("006"));
+			List one = this.codeValueManager.loadByKey("code", "006");
 
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
@@ -458,7 +458,7 @@ public class EditCustomerInfoAction extends PrepareAction {
 	public List<CodeValue> getAllFamiliarityTypes() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("010"));
+			List one = this.codeValueManager.loadByKey("code", "010");
 
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
@@ -477,7 +477,7 @@ public class EditCustomerInfoAction extends PrepareAction {
 	public List<CodeValue> getAllIndustrys() {
 		try {
 			List industrys = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("002"));
+			List one = this.codeValueManager.loadByKey("code", "002");
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {
@@ -495,7 +495,7 @@ public class EditCustomerInfoAction extends PrepareAction {
 	public List<CodeValue> getAllCompanyNatures() {
 		try {
 			List companyNatures = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("003"));
+			List one = this.codeValueManager.loadByKey("code", "003");
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {

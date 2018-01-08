@@ -39,6 +39,9 @@
 	        <script type="text/javascript" src="${req.contextPath}/javascripts/prototype-1.6.0.2.js"></script>
 	        <script type="text/javascript" src="${req.contextPath}/javascripts/jquery-1.4.2.min.js"></script>
 	        <script type="text/javascript" src="${req.contextPath}/javascripts/dtree.js"></script>
+	        
+	        <script type='text/javascript' src='${req.contextPath}/dwr/engine.js'></script>
+			<script type='text/javascript' src='${req.contextPath}/dwr/util.js'></script>
         </head>
         <body>
             <#nested>

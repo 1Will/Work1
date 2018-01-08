@@ -118,6 +118,11 @@
    		    <param name="beanName" value="productTypeManager"></param>
    		    <include method="loadByBtype"/>
    		</create>
+   		<!-- //新建抄送人 -->
+   		<create javascript="newCopySendPerson" creator="spring">
+   		    <param name="beanName" value="copySendPersonManager"></param>
+   		    <include method="saveCopySendPerson"/>
+   		</create>
    </allow>
 </dwr>
 

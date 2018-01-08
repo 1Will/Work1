@@ -3,7 +3,9 @@ package com.yongjun.tdms.model.workspace.leaveBill;
 import com.yongjun.pluto.model.BaseInfoEntity;
 import com.yongjun.pluto.model.codevalue.CodeValue;
 import com.yongjun.pluto.model.security.Department;
+import com.yongjun.pluto.util.DateUtil;
 import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
+import com.yongjun.tdms.model.workflow.Flow;
 
 import java.util.Date;
 
@@ -21,6 +23,7 @@ public class LeaveBill extends BaseInfoEntity {
 	private CodeValue type;
 	private String failReason;
 	private String isSaved;// 提交判断
+	private Flow flow;//所属流程
 
 	public String getFailReason() {
 		return this.failReason;
@@ -125,4 +128,24 @@ public class LeaveBill extends BaseInfoEntity {
 	public int hashCode() {
 		return 0;
 	}
+
+	public Flow getFlow() {
+		return flow;
+	}
+
+	public void setFlow(Flow flow) {
+		this.flow = flow;
+	}
+	@Override
+	public String toString() {
+		
+		StringBuffer sb = new StringBuffer();
+		 sb.append("部门为【"+this.getApplyPerson().getDept().getName()+"】的【"+this.getApplyPerson().getName()+"】在时间为【"+DateUtil.getDate(this.getCreateDate(), "yyyy年MM月dd日")+"】提出了类型为【"+this.getFlow().getName())
+		 .append("】的流程，")
+		 .append("具体内容是：【从"+DateUtil.getDate(this.getStartTime(), "yyyy-MM-dd HH:mm:ss")+"到"+DateUtil.getDate(this.getEndTime(), "yyyy-MM-dd HH:mm:ss"))
+		 .append("期间内请假,共计时(工时)："+this.getManHour())
+		 .append("】请假原因为：【"+this.getBetreffzeile()+"】");
+		return sb.toString();
+	}
+	
 }

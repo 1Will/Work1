@@ -47,7 +47,7 @@
 				<@alignCenter />
 			</@vcolumn>
 			<#assign itemNo=itemNo + 1/>
-            <@vcolumn title="${action.getText('流程编码')}" property="code" sortable="desc">
+            <@vcolumn title="${action.getText('流程编码')}" property="flowCode.code" sortable="desc">
             	<@alignLeft/>
             </@vcolumn>
             <@vcolumn title="${action.getText('流程名称')}" property="name" sortable="desc">

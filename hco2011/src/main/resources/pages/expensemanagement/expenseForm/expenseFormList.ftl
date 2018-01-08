@@ -40,6 +40,9 @@
             <@vcolumn title="${action.getText('expenseForm.applyDate')}" property="applyDate" format="yyyy-MM-dd" sortable="desc">
      			<@alignLeft/>
             </@vcolumn>
+             <@vcolumn title="${action.getText('状态')}" property="status.name" sortable="desc">
+     			<@alignLeft/>
+            </@vcolumn>
             
         </@list>
         <#if !first>

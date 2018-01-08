@@ -1,18 +1,18 @@
 /*     */ package com.yongjun.tdms.presentation.webwork.action.workspace.leaveBill;
+/*     */ import java.util.ArrayList;
+/*     */ import java.util.List;
+/*     */ import java.util.Map;
+
 /*     */ 
 /*     */ import com.yongjun.pluto.exception.DaoException;
 /*     */ import com.yongjun.pluto.model.codevalue.CodeValue;
 /*     */ import com.yongjun.pluto.model.security.Department;
 /*     */ import com.yongjun.pluto.model.security.User;
 /*     */ import com.yongjun.pluto.service.codevalue.CodeValueManager;
-/*     */ import com.yongjun.pluto.service.security.UserManager;
 /*     */ import com.yongjun.pluto.webwork.action.valuelist.ValueListAction;
 /*     */ import com.yongjun.tdms.model.workspace.leaveBill.LeaveBill;
 /*     */ import com.yongjun.tdms.service.base.org.DepartmentManager;
 /*     */ import com.yongjun.tdms.service.workspace.leaveBill.LeaveBillManager;
-/*     */ import java.util.ArrayList;
-/*     */ import java.util.List;
-/*     */ import java.util.Map;
 /*     */ 
 /*     */ public class ListLeaveBillAction extends ValueListAction
 /*     */ {
@@ -134,7 +134,7 @@
 /* 193 */     List codes = null;
 /*     */     try {
 /* 195 */       codes = new ArrayList();
-/* 196 */       List one = this.codeValueManager.loadByKey("code", Long.valueOf("030"));
+/* 196 */       List one = this.codeValueManager.loadByKey("code", "030");
 /*     */ 
 /* 198 */       if ((null != one) && (one.size() > 0))
 /*     */       {

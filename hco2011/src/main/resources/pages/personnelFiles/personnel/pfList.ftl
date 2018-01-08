@@ -40,7 +40,7 @@
           <#if !(action.isReadOnly())>
           <#if backVisitCheckBox?exists>
           <@ww.hidden name="'backVisitCheckBox'" value="'${backVisitCheckBox?if_exists}'"/>
-				 <input class="button" type="button" value="保存参与者" onclick="return_employeess()"/>
+				 <input class="button" type="button" value="保存" onclick="return_employeess()"/>
 		  </#if>
           </#if>
         </@buttonBar>

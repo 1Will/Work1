@@ -7,7 +7,7 @@ import java.util.List;
 
 public abstract interface LeaveBillManager
 {
-  public abstract void storeLeaveBill(LeaveBill paramLeaveBill);
+  public abstract void storeLeaveBill(LeaveBill paramLeaveBill)throws DaoException;
 
   public abstract void deleteLeaveBill(LeaveBill paramLeaveBill);
 

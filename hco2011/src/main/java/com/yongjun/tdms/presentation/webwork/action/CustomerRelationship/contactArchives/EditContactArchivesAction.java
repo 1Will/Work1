@@ -671,7 +671,7 @@ public class EditContactArchivesAction extends PrepareAction {
 	public List<CodeValue> getAllBusinessType() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("207"));
+			List one = this.codeValueManager.loadByKey("code", "207");
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {

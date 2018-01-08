@@ -1,10 +1,15 @@
 /*    */ package com.yongjun.tdms.service.workspace.leaveBill.pojo;
 /*    */ 
-/*    */ import com.yongjun.pluto.exception.DaoException;
+import com.yongjun.pluto.dao.codevalue.CodeValueDao;
+import com.yongjun.pluto.exception.DaoException;
+import com.yongjun.pluto.model.codevalue.CodeValue;
 /*    */ import com.yongjun.pluto.service.impl.BaseManager;
 /*    */ import com.yongjun.tdms.dao.workspace.leaveBill.LeaveBillDao;
+import com.yongjun.tdms.model.activitiFlow.StartActiviti;
 /*    */ import com.yongjun.tdms.model.workspace.leaveBill.LeaveBill;
+import com.yongjun.tdms.service.activitiFlow.ActivitFlowManager;
 /*    */ import com.yongjun.tdms.service.workspace.leaveBill.LeaveBillManager;
+
 /*    */ import java.util.Collection;
 /*    */ import java.util.List;
 /*    */ 
@@ -12,10 +17,14 @@
 /*    */   implements LeaveBillManager
 /*    */ {
 /*    */   private final LeaveBillDao leaveBillDao;
+           private final ActivitFlowManager activitFlowManager;
+           private final CodeValueDao codeValueDao;
 /*    */ 
-/*    */   public DefaultLeaveBillManager(LeaveBillDao leaveBillDao)
+/*    */   public DefaultLeaveBillManager(LeaveBillDao leaveBillDao,ActivitFlowManager activitFlowManager,CodeValueDao codeValueDao)
 /*    */   {
 /* 18 */     this.leaveBillDao = leaveBillDao;
+             this.activitFlowManager=activitFlowManager;
+             this.codeValueDao=codeValueDao;
 /*    */   }
 /*    */ 
 /*    */   public void deleteAllLeaveBill(Collection<LeaveBill> lbs) {
@@ -64,8 +73,47 @@
 /* 64 */     return this.leaveBillDao.loadLeaveBill(lbId);
 /*    */   }
 /*    */ 
-/*    */   public void storeLeaveBill(LeaveBill lb) {
-/* 68 */     this.leaveBillDao.storeLeaveBill(lb);
+/*    */   public void storeLeaveBill(LeaveBill lb) throws DaoException {
+	
+	/**
+	 * 第一步 保存请假单
+	 */
+	      
+	     
+	       
+	       if((lb.getIsSaved()!=null&&lb.getIsSaved().equals("1")) || lb.getIsSaved().equals("2")){
+	    	   
+	    	   List<CodeValue> bussnessCodeList =this.codeValueDao.loadByKey("code", "02003");//预节点待审核状态
+			   if(bussnessCodeList!=null&&bussnessCodeList.size()>0){//将当前业务状态更新我审核中
+				   lb.setStatus(bussnessCodeList.get(0));
+			   }
+	    	  
+	       }
+	       this.leaveBillDao.storeLeaveBill(lb);
+	       
+	       /**
+	        * 第二步 开启流程  会根据保存还是提交状态做不同的处理 
+	        * 如果是保存 只会增加预节点，如果是提交则会启动流程到第一位审批人 进行审批 
+	        */
+	       StartActiviti sActiviti = new StartActiviti();
+	       sActiviti.setApplyPerson(lb.getApplyPerson());
+	       sActiviti.setBussnessId(lb.getId());
+	       sActiviti.setIsSaved(lb.getIsSaved());
+	       sActiviti.setContent(lb.toString());
+	       sActiviti.setCreatedTime(lb.getCreateDate());
+	       sActiviti.setFlow(lb.getFlow());
+	       sActiviti.setName("请假/调休单审批");
+	       sActiviti.setLinkHref("/leaveBill/editLeaveBill.html?activitiFLow=activitiFLow&leaveBill.id="+lb.getId());
+	       //根据反射获取类名 
+	       sActiviti.setBussnessType(lb.getClass().getSimpleName());
+	       
+	       try {
+			this.activitFlowManager.startAtiviti(sActiviti);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+/* 68 */    
 /*    */   }
 /*    */ 
 /*    */   public String getMaxPFCode(String code, Long orgId)

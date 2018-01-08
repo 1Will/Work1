@@ -6,7 +6,7 @@ import com.yongjun.pluto.exception.DaoException;
 import com.yongjun.tdms.model.expensemanagement.expenseForm.ExpenseForm;
 
 public interface ExpenseFormManager {
-	public abstract void storeExpenseForm(ExpenseForm paramExpenseForm);
+	public abstract void storeExpenseForm(ExpenseForm paramExpenseForm)throws Exception;
 
 	public abstract ExpenseForm loadExpenseForm(Long paramLong);
 

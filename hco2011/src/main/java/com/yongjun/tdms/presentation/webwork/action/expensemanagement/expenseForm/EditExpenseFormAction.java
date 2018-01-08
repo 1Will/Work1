@@ -1,12 +1,17 @@
 package com.yongjun.tdms.presentation.webwork.action.expensemanagement.expenseForm;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 import net.sf.json.JSONObject;
 
+import com.yongjun.pluto.exception.DaoException;
+import com.yongjun.pluto.model.codevalue.CodeValue;
 import com.yongjun.pluto.service.codevalue.CodeValueManager;
 import com.yongjun.pluto.service.security.UserManager;
 import com.yongjun.pluto.webwork.action.PrepareAction;
@@ -16,6 +21,7 @@ import com.yongjun.tdms.model.customercontract.contractmanagement.ContractManage
 import com.yongjun.tdms.model.expensemanagement.expenseForm.ExpenseForm;
 import com.yongjun.tdms.model.personnelFiles.PersonnelFiles;
 import com.yongjun.tdms.model.project.ProjectInfo;
+import com.yongjun.tdms.model.workflow.Flow;
 import com.yongjun.tdms.service.base.event.EventNewManager;
 import com.yongjun.tdms.service.base.event.EventTypeManager;
 import com.yongjun.tdms.service.base.org.DepartmentManager;
@@ -23,6 +29,7 @@ import com.yongjun.tdms.service.customercontract.contractmanagement.ContractMana
 import com.yongjun.tdms.service.expensemanagement.expenseForm.ExpenseFormManager;
 import com.yongjun.tdms.service.personnelFiles.personnel.PersonnelFilesManager;
 import com.yongjun.tdms.service.project.ProjectInfoManager;
+import com.yongjun.tdms.service.workflow.flow.FlowManager;
 import com.yongjun.tdms.util.personnelFilesToUser.PersonnelFilesToUserManager;
 
 public class EditExpenseFormAction extends PrepareAction {
@@ -42,11 +49,13 @@ public class EditExpenseFormAction extends PrepareAction {
 	private PersonnelFiles applyPeople;
 	private ContractManagement contractManagement;
 	private String popWindowFlag;
+	private final FlowManager flowManager;
+	private String activitiFLow ;
 
 	public EditExpenseFormAction(ExpenseFormManager expenseFormManager, ProjectInfoManager projectInfoManager,
 			PersonnelFilesManager personnelFilesManager, UserManager userManager, DepartmentManager departmentManager,
 			CodeValueManager codeValueManager,ContractManagementManager contractManagementManager,EventNewManager eventNewManager
-			,EventTypeManager eventTypeManager,PersonnelFilesToUserManager personnelFilesToUserManager) {
+			,EventTypeManager eventTypeManager,PersonnelFilesToUserManager personnelFilesToUserManager,FlowManager flowManager) {
 		this.expenseFormManager = expenseFormManager;
 		this.projectInfoManager = projectInfoManager;
 		this.personnelFilesManager = personnelFilesManager;
@@ -57,11 +66,15 @@ public class EditExpenseFormAction extends PrepareAction {
 		this.eventNewManager = eventNewManager;
 		this.eventTypeManager = eventTypeManager;
 		this.personnelFilesToUserManager = personnelFilesToUserManager;
+		this.flowManager=flowManager;
 	}
 
 	public void prepare() throws Exception {
 		if (request.getParameter("popWindowFlag") != null) {
 			this.popWindowFlag = request.getParameter("popWindowFlag");
+		}
+		if (request.getParameter("activitiFLow") != null) {
+			this.activitiFLow = request.getParameter("activitiFLow");
 		}
 		if (hasId("expenseForm.id")) {
 			this.expenseForm = expenseFormManager.loadExpenseForm(getId("expenseForm.id"));
@@ -88,6 +101,22 @@ public class EditExpenseFormAction extends PrepareAction {
 		boolean isNew = this.expenseForm.isNew();
 		this.expenseForm.setProjectInfo(this.projectInfo);
 		this.expenseForm.setApplyPeople(this.applyPeople);
+		
+		if (!StringUtils.isEmpty(this.request.getParameter("flow.id"))) {
+			this.expenseForm.setFlow(this.flowManager.loadFlow(Long.valueOf(this.request
+					.getParameter("flow.id"))));;
+		}
+		if (!StringUtils.isEmpty(this.request.getParameter("status.id"))) {
+			this.expenseForm.setStatus(this.codeValueManager.loadCodeValue(Long.valueOf(this.request
+					.getParameter("status.id"))));	
+		} else {
+			try {
+				this.expenseForm.setStatus((CodeValue) this.codeValueManager.loadByKey("code", "02000").get(0));
+			} catch (DaoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		String submit = null;
 		try {
 			this.expenseFormManager.storeExpenseForm(this.expenseForm);
@@ -173,4 +202,42 @@ public class EditExpenseFormAction extends PrepareAction {
 	public void setPopWindowFlag(String popWindowFlag) {
 		this.popWindowFlag = popWindowFlag;
 	}
+	public List<Flow> getAllFlows() {
+		List depts = null;
+		try {
+			depts = this.flowManager.loadByKey("openOrNot", "0");
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return depts;
+	}
+	public List<CodeValue> getAllStatus() {
+		List codes = null;
+		try {
+			codes = new ArrayList();
+			List one = this.codeValueManager.loadByKey("code", "020");
+
+			if ((null != one) && (one.size() > 0)) {
+				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
+
+				if ((null != list) && (list.size() > 0)) {
+					codes.addAll(list);
+				}
+			}
+			return codes;
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return codes;
+	}
+
+	public String getActivitiFLow() {
+		return activitiFLow;
+	}
+
+	public void setActivitiFLow(String activitiFLow) {
+		this.activitiFLow = activitiFLow;
+	}
+	
 }

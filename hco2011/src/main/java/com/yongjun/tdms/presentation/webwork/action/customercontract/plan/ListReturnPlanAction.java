@@ -116,7 +116,7 @@
 /* 166 */     List codes = null;
 /*     */     try {
 /* 168 */       codes = new ArrayList();
-/* 169 */       List one = this.codeValueManager.loadByKey("code", Long.valueOf("065"));
+/* 169 */       List one = this.codeValueManager.loadByKey("code", "065");
 /*     */ 
 /* 171 */       if ((null != one) && (one.size() > 0))
 /*     */       {

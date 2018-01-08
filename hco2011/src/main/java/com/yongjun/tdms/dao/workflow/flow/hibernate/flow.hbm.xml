@@ -54,7 +54,10 @@
 		</property>
 		
 		<many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
-			<column name="DEPARTMENT" not-null="true"/>
+			<column name="DEPARTMENT" />
+		</many-to-one>
+		<many-to-one name="flowCode" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="flowCode" />
 		</many-to-one>
        
        <set name="pointSet" inverse="true" cascade="delete" lazy="true">

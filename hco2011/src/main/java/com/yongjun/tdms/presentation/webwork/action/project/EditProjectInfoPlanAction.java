@@ -275,8 +275,8 @@ public class EditProjectInfoPlanAction extends PrepareAction {
 			List codes = new ArrayList();
 			String[] keys = { "name", "code" };
 			String[] values = { "计划状态", "211" };
-			List one = this.codeValueManager.loadByKeyArray(keys, values);// this.codeValueManager.loadByKey("code",
-																			// Long.valueOf("211"));
+			List one = this.codeValueManager.loadByKeyArray(keys, values);// this.codeValueManager.loadByKey("code", Long.valueOf("211"))
+																			// ;
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {

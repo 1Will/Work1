@@ -142,7 +142,7 @@ public class EditProjectInfoAction extends PrepareAction {
 		User u = this.userManager.getUser();
 		if (isNew) {
 			// CodeValue cv = this.codeValueManager.loadCodeValue(464l);//立项
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("20101"));
+			List one = this.codeValueManager.loadByKey("code","20101");
 			if ((null != one) && (one.size() > 0)) {
 				CodeValue co = (CodeValue) one.get(0);
 				this.projectInfo.setState(co);
@@ -234,7 +234,7 @@ public class EditProjectInfoAction extends PrepareAction {
 		if (isNew) {
 			this.projectInfoPersonnels.setProjectInfo(projectInfo);
 			try {
-				List one = this.codeValueManager.loadByKey("code", Long.valueOf("20201"));
+				List one = this.codeValueManager.loadByKey("code", "20201");
 				if ((null != one) && (one.size() > 0)) {
 					CodeValue co = (CodeValue) one.get(0);
 					this.projectInfoPersonnels.setBusinessType(co);
@@ -279,7 +279,7 @@ public class EditProjectInfoAction extends PrepareAction {
 	public List<CodeValue> getAllBusinessType() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("207"));
+			List one = this.codeValueManager.loadByKey("code", "207");
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {
@@ -298,7 +298,7 @@ public class EditProjectInfoAction extends PrepareAction {
 	public List<CodeValue> getAllStates() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("201"));
+			List one = this.codeValueManager.loadByKey("code", "201");
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {

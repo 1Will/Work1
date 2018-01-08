@@ -866,8 +866,8 @@
                 /~onlyValid: AND otrb.disabled=false ~/
             	 /~leaveBill.crateDate_start: AND otrb.createDate >= {leaveBill.crateDate_start} ~/
                 /~leaveBill.crateDate_end: AND otrb.createDate <= {leaveBill.crateDate_end} ~/
-                /~leaveBill.startTime_start: AND otrb.endTime >= {leaveBill.startTime_start} ~/
-                /~leaveBill.startTime_end: AND otrb.endTime <= {leaveBill.startTime_end} ~/
+                /~leaveBill.startTime_start: AND otrb.startTime >= {leaveBill.startTime_start} ~/
+                /~leaveBill.startTime_end: AND otrb.startTime <= {leaveBill.startTime_end} ~/
                 /~leaveBill.endTime_start: AND otrb.endTime >= {leaveBill.endTime_start} ~/
                 /~leaveBill.endTime_end: AND otrb.endTime <= {leaveBill.endTime_end} ~/
             	/~leaveBill.applyPerson: AND otrb.applyPerson.name LIKE {leaveBill.applyPerson} ~/
@@ -1206,6 +1206,8 @@
 			</value>
 		</property>
 	</bean>
+	
+	
 	
 	<!-- 工作流管理 -->
 	<bean id="workflow" parent="abstractHibernate20Adapter">
@@ -2242,6 +2244,88 @@
             </value>
         </property>
     </bean>
+    
+    <!-- 审批流程节点管理 -->
+	<bean id="runPoint" parent="abstractHibernate20Adapter">
+	    <property name="defaultSortColumn">
+			<value>myNum</value>
+		</property>
+		<property name="defaultSortDirection">
+			<value>asc</value>
+		</property>
+		<property name="hql">
+			<value>
+				<![CDATA[
+                FROM RunPoint AS point
+                WHERE 1=1 AND point.myNum NOT IN (0,-1)
+                /~point.name: AND point.name LIKE {point.name} ~/
+            	/~flow.id: AND point.flow.id = {flow.id} ~/
+            	/~bussnessId: AND point.bussnessId = {bussnessId} ~/
+                /~sortColumn: ORDER BY point.[sortColumn] [sortDirection]~/
+                ]]>
+			</value>
+		</property>
+	</bean>
+	<!--  private static final long serialVersionUID = 1L;
+/*     */   private long bussnessId;//绑定业务  可能是请假id 报销id 等等
+/*     */   private String name;//任务名称
+			private Flow flow;//所属流程
+			private PersonnelFiles submitPer;//提交人
+			private Date submitTime;//提交时间
+			private Date createTime;//创建时间
+			private PersonnelFiles assignee;//任务办理人 -->
+	 <!-- 待审批管理 -->
+	<bean id="runTask" parent="abstractHibernate20Adapter">
+		<property name="hql">
+			<value>
+				<![CDATA[
+                FROM RunTask AS task
+                WHERE 1=1 
+                /~name: AND task.name LIKE {name} ~/
+            	/~flow.name: AND task.flow.name like {flow.name} ~/
+            	/~submitPer.name: AND task.submitPer.name LIKE {submitPer.name} ~/
+            	/~assignee.id: AND task.assignee.id = {assignee.id} ~/
+            	/~assignee.code: AND task.assignee.code = {assignee.code} ~/
+                /~sortColumn: ORDER BY task.[sortColumn] [sortDirection]~/
+                ]]>
+			</value>
+		</property>
+	</bean>
+	<!-- 抄送人 -->
+	<bean id="copySendPerson" parent="abstractHibernate20Adapter">
+		<property name="hql">
+			<value>
+				<![CDATA[
+                FROM CopySendPerson AS person
+                WHERE 1=1 
+            	/~bussnessId: AND person.bussnessId = {bussnessId} ~/
+            	/~flow.id: AND person.flow.id = {flow.id} ~/
+                /~sortColumn: ORDER BY person.[sortColumn] [sortDirection]~/
+                ]]>
+			</value>
+		</property>
+	</bean>
+	
+	
+	 <!-- 历史审批管理 -->
+	<bean id="historyTaskinst" parent="abstractHibernate20Adapter">
+		<property name="hql">
+			<value>
+				<![CDATA[
+                FROM HistoryTaskinst AS hisTask
+                WHERE 1=1 
+                 /~name: AND hisTask.name LIKE {name} ~/
+            	/~flow.name: AND hisTask.flow.name like {flow.name} ~/
+            	/~submitPer.name: AND hisTask.submitPer.name LIKE {submitPer.name} ~/
+            	/~assignee.id: AND hisTask.assignee.id = {assignee.id} ~/
+            	/~assignee.code: AND hisTask.assignee.code = {assignee.code} ~/
+                /~sortColumn: ORDER BY hisTask.[sortColumn] [sortDirection]~/
+                ]]>
+			</value>
+		</property>
+	</bean>
+	
+	
 </beans>
 
 

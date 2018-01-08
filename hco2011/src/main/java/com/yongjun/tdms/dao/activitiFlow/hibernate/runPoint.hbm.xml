@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2010 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: point.hbm.xml 2011-02-24 hjia $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.activitiFlow.RunPoint" table="t_RunPoint">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_runPoint_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		<!-- 绑定业务  可能是请假id 报销id 等等 -->
+		<property name="bussnessId" type="long">
+            <column name="bussnessId" not-null="true" />
+        </property>
+		<!-- 流程任务序号 -->
+		<property name="myNum" type="int">
+			<column name="MY_NUM" not-null="false"/>
+		</property>
+		<!--审核人  -->
+		<many-to-one name="inspectPser" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+			<column name="inspectPser" not-null="false" />
+		</many-to-one>
+		<!-- s流程名称 -->
+		<property name="name" type="string">
+			<column name="name" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<!-- 流程类型 -->
+		<many-to-one name="flow" class="com.yongjun.tdms.model.workflow.Flow">
+			<column name="FLOW" not-null="false" />
+		</many-to-one>
+		<!-- 审核意见//0驳回1同意2等待 -->
+		<many-to-one name="result" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="result" not-null="false" />
+		</many-to-one>
+		<!--审核时间 -->
+		<property name="inspectTime" column="inspectTime" type="timestamp"/>
+		
+        <!-- 审核意见 -->
+        <property name="remark" type="string">
+			<column name="REMARK" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+        <!-- 业务主体跳转 -->
+		<property name="linkHref" type="string">
+			<column name="linkHref"  sql-type="NVARCHAR(200)"/>
+		</property>
+		 <!-- 备注 -->
+        <property name="comments" type="string">
+			<column name="comments" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+		 <!-- 备注 -->
+        <property name="duration" type="long">
+			<column name="duration" not-null="false" />
+		</property>
+        
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+	</class>
+</hibernate-mapping>

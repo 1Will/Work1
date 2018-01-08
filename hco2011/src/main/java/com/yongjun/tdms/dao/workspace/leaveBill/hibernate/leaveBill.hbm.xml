@@ -40,6 +40,10 @@
         <many-to-one name="type" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
 			<column name="TYPE" not-null="true"/>
 		</many-to-one>
+		<!-- 所属流程-->
+        <many-to-one name="flow" class="com.yongjun.tdms.model.workflow.Flow" lazy="false">
+			<column name="flow" not-null="true"/>
+		</many-to-one>
 		<!-- 事由 -->
 	    <property name="betreffzeile" type="string">
             <column name="BETREFFZEILE" not-null="true"  sql-type="NVARCHAR(500)"/>

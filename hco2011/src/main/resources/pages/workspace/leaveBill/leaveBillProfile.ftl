@@ -123,6 +123,49 @@
 				emptyOption="true" 
 				disabled="false">
 			</@ww.select>
+			<#if leaveBill.status?exists && leaveBill.status.code != '02000'>
+				<@ww.select label="'${action.getText('流程类型')}'" 
+					name="'flow.id'" 
+					value="${req.getParameter('flow.id')?if_exists}"
+					listKey="id"
+					listValue="name"
+					list="allFlows"
+					required="true"
+					emptyOption="true"
+					disabled="true">
+				</@ww.select>
+				<#else>
+				<@ww.select label="'${action.getText('流程类型')}'" 
+					name="'flow.id'" 
+					value="${req.getParameter('flow.id')?if_exists}"
+					listKey="id"
+					listValue="name"
+					list="allFlows"
+					required="true"
+					emptyOption="true"
+					disabled="false">
+				</@ww.select>
+			</#if>
+			<script type="text/javascript">
+		<#if leaveBill.dept?exists>
+			getObjByName('dept.id').value='${leaveBill.dept.id?if_exists}';
+		<#else>
+			<#if leaveBill.applyPerson?exists>
+				<#if leaveBill.applyPerson.dept?exists>
+					getObjByName('dept.id').value='${leaveBill.applyPerson.dept.id}';
+				</#if>
+			</#if>
+		</#if>
+		<#if leaveBill.status?exists>
+			getObjByName('status.id').value='${leaveBill.status.id?if_exists}';
+		</#if>
+		<#if leaveBill.type?exists>
+			getObjByName('type.id').value='${leaveBill.type.id?if_exists}';
+		</#if>
+		<#if leaveBill.flow?exists>
+			getObjByName('flow.id').value='${leaveBill.flow.id?if_exists}';
+		</#if>
+		</script>
         </tr>
 		<tr>
 			<td align="right" valign="top">
@@ -145,16 +188,17 @@
 		-->
     </@inputTable>
     <@buttonBar>
-    	<#if !(action.isReadOnly())>
+    <#if activitiFLow?exists>
+    <input type="button" name="close" value="关闭" onclick="window.close()">
+    <#else>
+    <#if !(action.isReadOnly())>
 			<@vsubmit name="'save'" value="'${action.getText('save')}'" onclick="'return savee();'">
 			</@vsubmit>
-			
 			<#if leaveBill.isSaved?exists && leaveBill.isSaved=='0' >
 		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'"/>
 		    <#else>
 		    	<@vsubmit name="'submit'" value="'${action.getText('refer')}'" onclick="'return submitt();'" disabled="true"/>
 		    </#if>
-			
 			<#-- 继续新建按钮   -->
 			<#if leaveBill.id?exists>
 				<@redirectButton value="${action.getText('newNext')}" url="${req.contextPath}/leaveBill/editLeaveBill.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
@@ -168,29 +212,28 @@
 		
 		
 		<@redirectButton value="${action.getText('back')}" url="${req.contextPath}/leaveBill/listLeaveBill.html?readOnly=${req.getParameter('readOnly')?if_exists}"/>
+    </#if>
+    
+    	
     </@buttonBar>
 
 </@ww.form>
 
 <script type="text/javascript">
-	window.onload=function(){
-		<#if leaveBill.dept?exists>
-			getObjByName('dept.id').value='${leaveBill.dept.id?if_exists}';
-		<#else>
-			<#if leaveBill.applyPerson?exists>
-				<#if leaveBill.applyPerson.dept?exists>
-					getObjByName('dept.id').value='${leaveBill.applyPerson.dept.id}';
-				</#if>
-			</#if>
-		</#if>
-		<#if leaveBill.status?exists>
-			getObjByName('status.id').value='${leaveBill.status.id?if_exists}';
-		</#if>
-		<#if leaveBill.type?exists>
-			getObjByName('type.id').value='${leaveBill.type.id?if_exists}';
-		</#if>
+//初始化页面
+<#if leaveBill.status?exists>
+var statusCode = "${leaveBill.status.code?if_exists}";
+if(statusCode != "02000"){
+	if(statusCode == "02002"){
+		getObjByName("save").style.display = "none";
+		getObjByName("submit").value = "重新提交";
+		getObjByName("submit").disabled = false;
+	}else{
+		getObjByName("save").disabled = "true";
+		getObjByName("submit").disabled = "true";
 	}
-	
+}
+</#if>
 	function getDate(dt){
 		var tem = dt.split(" ");
 		var date = tem[0].split("-");
@@ -209,10 +252,13 @@
 	}
 	
 	function submitt(){
-		getObjByName('isSaved').value="1";
+		if(getObjByName("submit").value == "重新提交"){
+			getObjByName('isSaved').value="2";
+		}else{
+			getObjByName('isSaved').value="1";
+		}
 		return storeValidation();
     }
-    
     function savee(){
 		getObjByName('isSaved').value="0";
      	return storeValidation();
@@ -252,11 +298,6 @@
 	      	    getObjByName('leaveBill.startTime').focus();
 				return false;
 			} 
-			if(isDateLessThenCurrent(getObjByName('leaveBill.startTime').value)){
-				alert('${action.getText('leaveBill.startTime.earlyError')}');
-	       		getObjByName('leaveBill.startTime').focus();
-				return false;
-			}
 		}
 		
 		if(getObjByName('leaveBill.endTime').value ==''){
@@ -301,7 +342,11 @@
 			getObjByName('type.id').focus();
 			return false;
 		}
-		
+		if(getObjByName('flow.id').value==''){
+			alert("请选择流程类型！");
+			getObjByName('flow.id').focus();
+			return false;
+		}
 		if(getObjByName('leaveBill.betreffzeile').value==''){
 			alert("${action.getText('leaveBill.betreffzeile.requiredstring')}");
 			getObjByName('leaveBill.betreffzeile').focus();
@@ -314,8 +359,14 @@
 <#if leaveBill.id?exists>
 <ul id="beautytab">
 	<li>
+		<a id="runPoint" class="selectedtab" onclick="activeTab(this);"  href='${req.contextPath}/activitiFlow/listRunPoint.html?flow.id=${leaveBill.flow.id?if_exists}&bussnessId=#{leaveBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('审批人')}</a>
+	</li>
+	<li>
+		<a id="CopySendPerson" onclick="activeTab(this);"  href='${req.contextPath}/activitiFlow/listCopySendPerson.html?flow.id=${leaveBill.flow.id?if_exists}&bussnessId=#{leaveBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('抄送人')}</a>
+	</li>
+	<li>
 		<a id="additionalInformation" onclick="activeTab(this);"  href='${req.contextPath}/applicationDocManager/listApplicationDoc.html?leaveBill.id=#{leaveBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}' target="frame" >${action.getText('附件资料')}</a>
 	</li>
 </ul>
-<iframe name="frame" frameborder="0.5" src="${req.contextPath}/applicationDocManager/listApplicationDoc.html?leaveBill.id=#{leaveBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="60%"/>
+<iframe name="frame" frameborder="0.5" src="${req.contextPath}/activitiFlow/listRunPoint.html?flow.id=${leaveBill.flow.id?if_exists}&bussnessId=#{leaveBill.id}&readOnly=${req.getParameter('readOnly')?if_exists}" marginHeight="0" marginWidth="0" scrolling="auto" vspace=0 hspace=0 width="100%" height="60%"/>
 </#if>

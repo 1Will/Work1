@@ -350,9 +350,9 @@ public class EditBackVisitAction extends PrepareAction {
 	public List<CodeValue> getAllSteps() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("022"));
+			List one = this.codeValueManager.loadByKey("code","022");
 			if ((null != one) && (one.size() > 0)) {
-				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(1)).getId());
+				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {
 					codes.addAll(list);
 				}
@@ -369,7 +369,7 @@ public class EditBackVisitAction extends PrepareAction {
 	public List<CodeValue> getAllStates() {
 		try {
 			List codes = new ArrayList();
-			List one = this.codeValueManager.loadByKey("code", Long.valueOf("200"));
+			List one = this.codeValueManager.loadByKey("code","200");
 			if ((null != one) && (one.size() > 0)) {
 				List list = this.codeValueManager.loadByKey("parentCV.id", ((CodeValue) one.get(0)).getId());
 				if ((null != list) && (list.size() > 0)) {

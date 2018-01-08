@@ -722,6 +722,12 @@
 				<constructor-arg index="0">
 					<ref bean="overTimeBillDao" />
 				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="codeValueDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="activitFlowManager" />
+				</constructor-arg>
 			</bean>
 		</property>
 	</bean>
@@ -731,6 +737,12 @@
 			<bean class="com.yongjun.tdms.service.workspace.leaveBill.pojo.DefaultLeaveBillManager">
 				<constructor-arg index="0">
 					<ref bean="leaveBillDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="activitFlowManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="codeValueDao" />
 				</constructor-arg>
 			</bean>
 		</property>
@@ -1150,6 +1162,12 @@
 				<constructor-arg index="0">
 					<ref bean="expenseFormDao" />
 				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="codeValueDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="activitFlowManager" />
+				</constructor-arg>
 			</bean>
 		</property>
 	</bean>
@@ -1556,6 +1574,92 @@
 				class="com.yongjun.tdms.service.project.state.pojo.DefaultProjectStateManager">
 				<constructor-arg index="0">
 					<ref bean="projectStateDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 审批流程节点管理 开始 -->
+	<bean id="runPointManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.service.activitiFlow.pojo.DefaultRunPointManager">
+				<constructor-arg index="0">
+					<ref bean="runPointDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<!-- 当前待审批管理 开始 -->
+	<bean id="runTaskManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.service.activitiFlow.pojo.DefaultRunTaskManager">
+				<constructor-arg index="0">
+					<ref bean="runTaskDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<!-- 审批流程节点管理 开始 -->
+	<bean id="historyTaskinstManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.service.activitiFlow.pojo.DefaultHistoryTaskinstManager">
+				<constructor-arg index="0">
+					<ref bean="historyTaskinstDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<!-- 审批工作 开始 -->
+	<bean id="activitFlowManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.service.activitiFlow.pojo.DefaultActivitFlowManager">
+				<constructor-arg index="0">
+					<ref bean="runTaskDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="runPointDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="historyTaskinstDao" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="pointDao" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="codeValueDao" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="eventTypeManager" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="eventNewManager" />
+				</constructor-arg>
+				<constructor-arg index="7">
+					<ref bean="userManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<!-- 审批工作 开始 -->
+	<bean id="copySendPersonManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.service.activitiFlow.pojo.DefaultCopySendPersonManager">
+				<constructor-arg index="0">
+					<ref bean="copySendPersonDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="personnelFilesManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="flowManager" />
 				</constructor-arg>
 			</bean>
 		</property>

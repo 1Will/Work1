@@ -5954,9 +5954,156 @@
 			<interceptor-ref name="fileUploadStack" />
 			<interceptor-ref name="propertySenderStack" />
 		</action>
+	</package>
+<!-- 审批节点 开始 -->
+	<package name="activitiFlow" namespace="/activitiFlow" extends="pluto">
+		<action name="searchRunPoint" class="listRunPointAction">
+			<result name="success" type="redirect">
+				listRunPoint.html?flow.id=${flow.id}&amp;bussnessId=${bussnessId}&amp;readOnly=${readOnly}&amp;flag=1
+			</result>
+			<result name="error" type="redirect">
+				listRunPoint.html?flow.id=${flow.id}&amp;bussnessId=${bussnessId}&amp;readOnly=${readOnly}
+			</result>
+			<result name="invalid.token" type="redirect">
+				listRunPoint.html?flow.id=${flow.id}&amp;bussnessId=${bussnessId}&amp;readOnly=${readOnly}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">flow</param>
+			</interceptor-ref>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<action name="listRunPoint" class="listRunPointAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/activitiFlow/runPointList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="saveRunPoint" class="editRunPointAction" method="save">
+			<result name="success" type="redirect">
+				editRunPoint.html?runPoint.id=${runPoint.id}&amp;flow.id=${flow.id}
+			</result>
+			<result name="new" type="redirect">
+				editRunPoint.html?runPoint.id=${runPoint.id}&amp;flow.id=${flow.id}
+			</result>
+			<result name="error" type="redirect">
+				editRunPoint.html?runPoint.id=${runPoint.id}&amp;flow.id=${flow.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">point</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editRunPoint" class="editRunPointAction" >
+			<result name="success" type="freemarker">
+				/pages/activitiFlow/runPointProfile.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
 		
+		<!-- 代办审批 开始 -->
+		<action name="searchMyRunTask" class="listMyRunTaskAction">
+			<result name="success" type="redirect">
+				listMyRunTask.html
+			</result>
+			<result name="error" type="redirect">
+				listMyRunTask.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				listMyRunTask.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<action name="listMyRunTask" class="listMyRunTaskAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/activitiFlow/myRunTaskList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="editMyRunTask" class="editMyRunTaskAction">
+			<result name="success" type="freemarker">
+				/pages/activitiFlow/myRunTaskProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="editMyRunTaskBatch" class="editMyRunTaskAction">
+			<result name="success" type="freemarker">
+				/pages/activitiFlow/myRunTaskBatchProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveMyRunTask" class="editMyRunTaskAction" method="save">
+			<result name="input" type="redirect">
+				listMyRunTask.html
+			</result>
+			<result name="new" type="redirect">
+				listMyRunTask.html
+			</result>
+			<result name="success" type="redirect">
+				listMyRunTask.html
+			</result>
+			<result name="error" type="redirect">
+				editMyRunTask.html
+			</result>
+			<result name="batchSuccess" type="redirect">
+				editMyRunTaskBatch.html?batchFinished=${batchFinished}
+			</result>
+			<result name="batchError" type="redirect">
+				editMyRunTaskBatch.html?batchFinished=${batchFinished}
+			</result>
+			
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">runtask</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+	<!-- 待审批结束 -->
+			<!-- 历史审批开始 -->
+		<action name="searchMyHistoryTask" class="listMyHistoryTaskAction">
+			<result name="success" type="redirect">
+				listMyHistoryTask.html
+			</result>
+			<result name="error" type="redirect">
+				listMyHistoryTask.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				listMyHistoryTask.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<action name="listMyHistoryTask" class="listMyHistoryTaskAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/activitiFlow/myHistoryTaskList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="editMyHistoryTask" class="editMyHistoryTaskAction">
+			<result name="success" type="freemarker">
+				/pages/activitiFlow/myHistoryTaskProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action> 
+		
+			<!-- 抄送人开始 -->
+		<action name="searchCopySendPerson" class="listCopySendPersonAction">
+			<result name="success" type="redirect">
+				listCopySendPerson.html
+			</result>
+			<result name="error" type="redirect">
+				listCopySendPerson.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				listCopySendPerson.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<action name="listCopySendPerson" class="listCopySendPersonAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/activitiFlow/copySendPersonList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
 		
 	</package>
-
 
 </xwork>

@@ -59,7 +59,7 @@
             </@vcolumn>
             
             <@vcolumn title="${action.getText('financialManagement.contractManagement.projectInfo.name')}" property="contractManagement.project.name" sortable="desc">
-     			<a href="javascript:editProjectInfo_OpenDialog(<#if (object.contractManagement?exists)>#{object.contractManagement.project.id}</#if>)" ><#if (object.contractManagement?exists)>${object.contractManagement.project.name}</#if></a>
+     			<a href="javascript:editProjectInfo_OpenDialog(<#if (object.contractManagement?exists)><#if (object.contractManagement.project?exists)>#{object.contractManagement.project.id}</#if></#if>)" ><#if (object.contractManagement?exists)><#if (object.contractManagement.project?exists)>${object.contractManagement.project.name}</#if></#if></a>
      			<@vlh.attribute name="width" value="10%" />
      			<@alignLeft/>
             </@vcolumn>

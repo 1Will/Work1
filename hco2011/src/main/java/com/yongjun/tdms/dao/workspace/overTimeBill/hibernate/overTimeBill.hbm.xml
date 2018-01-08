@@ -47,7 +47,10 @@
         <property name="isSaved" type="string">
             <column name="isSaved" not-null="false" sql-type="NVARCHAR(1)"/>
         </property>
-        
+        <!-- 所属流程-->
+        <many-to-one name="flow" class="com.yongjun.tdms.model.workflow.Flow" lazy="false">
+			<column name="flow" not-null="true"/>
+		</many-to-one>
         <many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
 			<column name="PROJECTINFO_ID" not-null="false"/>
 		</many-to-one>

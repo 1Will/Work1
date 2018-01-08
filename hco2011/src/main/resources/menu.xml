@@ -4,14 +4,19 @@
 <MenuConfig>
 	<Menus>
 	    <Menu name="taskManager" title="任务管理">
-	<!-- 
+	    <!-- 
 			<Item name="toDoTask" title="待办任务"
 				location="toDoTask/listToDoTask.html">
 			</Item>
 	 		<Item name="historyTask" title="历史任务"
 				location="historyTask/listHistoryTask.html">
+			</Item> -->
+			<Item name="myRunTask" title="待审批"
+				location="activitiFlow/listMyRunTask.html">
 			</Item>
-	 -->
+	 		<Item name="myHistoryTask" title="历史审批"
+				location="activitiFlow/listMyHistoryTask.html">
+			</Item>
 		</Menu>
 		<!--1-->
 		<Menu name="BaseInformationManager" title="基础信息管理">
@@ -312,12 +317,12 @@
 					location="workReport/listDailyREAD.html">
 				</Item>
 			</Item>
-			<!-- 
+			
 			<Item name="meeting" title="早会"
 				location="workReport/listMeetingMonthREAD.html" />
 			<Item name="meeting" title="早会"
 				location="workReport/listMeetingMonthWRITE.html" />
-			 -->
+			
 		</Menu>
 		<!--9-->
 		<!-- 

@@ -9,7 +9,7 @@
 			 <value>com.microsoft.sqlserver.jdbc.SQLServerDriver</value>  
 		</property>
 		<property name="url">
-			<value>jdbc:sqlserver://192.168.1.110:1433;databasename=crm;SelectMethod=Cursor</value>
+			<value>jdbc:sqlserver://192.168.1.101:1433;databasename=crm;SelectMethod=Cursor</value>
 		</property>
 		<property name="password">
 			<value>root</value>
@@ -1566,5 +1566,71 @@
 			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.project.state.hibernate.HibernateProjectState"></bean>
 		</property>		
 	</bean>
+	
+	<!-- 审批节点管理 开始 -->
+	<bean id="runPointHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>/com/yongjun/tdms/dao/activitiFlow/hibernate/runPoint.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="runPointDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.activitiFlow.RunPointDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.activitiFlow.hibernate.HibernateRunPointDao" />
+		</property>
+	</bean>
+	<!-- 审批节点管理 结束 -->
+	
+	
+	<!-- 执行任务 开始 -->
+	<bean id="runTaskHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>/com/yongjun/tdms/dao/activitiFlow/hibernate/runTask.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="runTaskDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.activitiFlow.RunTaskDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.activitiFlow.hibernate.HibernateRunTaskDao" />
+		</property>
+	</bean>
+	<!-- 执行 结束 -->
+	
+	
+	<!-- 历史任务 开始 -->
+	<bean id="historyTaskinstHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>/com/yongjun/tdms/dao/activitiFlow/hibernate/historyTaskinst.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="historyTaskinstDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.activitiFlow.HistoryTaskinstDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.activitiFlow.hibernate.HibernateHistoryTaskinstDao" />
+		</property>
+	</bean>
+	<!-- 历史任务 结束 -->
+	
+	<!-- 抄送人 开始 -->
+	<bean id="copySendPersonHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>/com/yongjun/tdms/dao/activitiFlow/hibernate/copySendPerson.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="copySendPersonDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.activitiFlow.CopySendPersonDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.activitiFlow.hibernate.HibernateCopySendPersonDao" />
+		</property>
+	</bean>
+	<!--抄送人结束 -->
 	
 </beans>
