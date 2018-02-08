@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+ <!-- $Id:  $-->       
+<validators>
+    <field name="repairDoc.name">
+        <field-validator type="requiredstring">
+            <message key="repairDoc.name.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">150</param>
+            <message key="repairDoc.name.maxLength"/>
+        </field-validator>
+    </field>
+    <field name="repairDoc.description">    
+        <field-validator type="stringlength">
+        	<param name="minLength">0</param>
+            <param name="maxLength">250</param>
+            <message key="repairDoc.description.maxLength"/>
+        </field-validator>
+	</field>
+</validators>

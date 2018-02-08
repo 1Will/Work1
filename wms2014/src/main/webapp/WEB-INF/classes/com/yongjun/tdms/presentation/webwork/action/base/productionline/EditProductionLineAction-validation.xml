@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+ <!-- $Id:  $-->       
+<validators>
+    <field name="productionLine.code">
+        <field-validator type="requiredstring">
+            <message key="productionLine.code.requiredstring"/>
+        </field-validator>
+    </field>
+    <field name="productionLine.name">
+        <field-validator type="requiredstring">
+            <message key="productionLine.name.requiredstring"/>
+        </field-validator>
+    </field>
+</validators>

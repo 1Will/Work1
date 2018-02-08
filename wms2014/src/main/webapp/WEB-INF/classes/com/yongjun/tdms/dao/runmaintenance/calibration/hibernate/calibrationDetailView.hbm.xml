@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.calibration.CalibrationDetailView" table="t_calibration_plan_view" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_calibration_plan_view_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        
+        <property name="month" type="string">
+            <column name="month" not-null="false"/>
+        </property>
+        
+        <property name="deptName" type="string">
+            <column name="dept_name" not-null="false"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="calibrationPlanno" type="string">
+            <column name="calibration_planNo" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="calibrationPlanname" type="string">
+            <column name="name" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="deviceNo" type="string">
+            <column name="asset_no" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+         
+       
+        <property name="deviceName" type="string">
+            <column name="asset_name" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="graphNo" type="string">
+            <column name="graphNo" not-null="false"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="demarcateCycle" type="string">
+            <column name="demarcateCycle" not-null="false" sql-type="NVARCHAR(10)"/>
+        </property>
+        
+        <property name="dutypeople" type="string">
+            <column name="duty_people" not-null="false" sql-type="NVARCHAR(10)"/>
+        </property>
+        
+        <property name="planDate" type="date">
+            <column name="planDate" />
+        </property>
+        
+        <property name="actualDate" type="date">
+            <column name="actual_date" />
+        </property>
+        
+        <property name="result" type="string">
+            <column name="result" not-null="false" sql-type="NVARCHAR(10)" />
+        </property>
+        
+        <property name="calibrationResult" type="string">
+            <column name="calibration_result" not-null="false" sql-type="NVARCHAR(10)" />
+        </property>
+                
+        <property name="calibrationId" type="long">
+            <column name="calibration_id" not-null="false"/>
+        </property>
+   
+	</class>
+    
+</hibernate-mapping>

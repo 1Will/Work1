@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2009 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: spareInOutBill.hbm.xml 10135 2008-01-06 05:31:37Z mwei $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.asset.spare.Location" table="t_location" lazy="true">
+		<id name="id" column="ID" type="long">
+			<generator class="native">
+				<param name="sequence">t_location_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION" type="long" />
+
+		<property name="code" type="string">
+			<column name="CODE" not-null="true" sql-type="NVARCHAR(50)" />
+		</property>
+
+		<property name="status" type="com.yongjun.tdms.dao.asset.spare.location.hibernate.LocationStatusEnum">
+			<column name="STATUS" not-null="false" length="50" />
+		</property>
+		<!--仓库-->
+		<many-to-one name="warehouse" class="com.yongjun.pluto.model.security.Warehouse">
+			<column name="warehouse_id" not-null="false"></column>
+		</many-to-one>
+		<!-- 库区 -->
+		<many-to-one name="regional" class="com.yongjun.tdms.model.asset.spare.warehouseInfo.regional.Regional">
+			<column name="regional_id" not-null="false"></column>
+		</many-to-one>
+		<!-- 库位类型 -->
+		<many-to-one name="locationType" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="loactionType" not-null="false"></column>
+		</many-to-one>
+		<!-- 相同备件存放 -->
+		<many-to-one name="samestore" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="samestore" not-null="false"></column>
+		</many-to-one>
+		<!-- 混放模式 -->
+		<many-to-one name="mixmode" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="mixmode" not-null="false"></column>
+		</many-to-one>
+		<!-- 承载类型 -->
+		<many-to-one name="bearload" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="bearload" not-null="false"></column>
+		</many-to-one>
+		<!-- 过道 -->
+		<property name="passageway" type="string">
+			<column name="passageway" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<!-- 过道排位 -->
+		<property name="row" type="string">
+			<column name="row" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<!-- 货架层次 -->
+		<property name="level" type="string">
+			<column name="level" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<!-- 货架格位 -->
+		<property name="site" type="string">
+			<column name="site" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		
+			<!--仓库级别-->
+		<many-to-one name="storageGrade" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="STORAGE_GRADE" not-null="true" />
+		</many-to-one>
+
+		<property name="maxWeight" type="double">
+			<column name="maxWeight" />
+		</property>
+		<property name="length" type="double">
+			<column name="length" />
+		</property>
+		<property name="hight" type="double">
+			<column name="hight" />
+		</property>
+		<property name="wide" type="double">
+			<column name="wide" />
+		</property>
+		<property name="volume" type="double">
+			<column name="volume" />
+		</property>
+		<property name="describe" type="string">
+			<column name="describe" />
+		</property>
+		<property name="disabled" type="boolean">
+			<column name="disabled" not-null="true" />
+		</property>
+		<set name="spareLoc" inverse="true" cascade="all-delete-orphan"
+			lazy="true">
+			<key column="locationId" />
+			<one-to-many
+				class="com.yongjun.tdms.model.asset.spare.SpareLocation" />
+		</set>
+		<property name="createdTime" column="CREATED_TIME"
+			type="timestamp" />
+		<property name="creator" column="CREATOR" type="string"
+			length="50" />
+		<property name="lastModifiedTime" column="LAST_MODIFIED_TIME"
+			type="timestamp" />
+		<property name="lastOperator" column="LAST_OPERATOR"
+			type="string" length="50" />
+	</class>
+	<query name="GetLocationByCodeAndOnlyValid">
+		<![CDATA[FROM  Location location WHERE location.code = :code AND location.disabled=false]]>
+	</query>
+	<query name="GetLocationByCodeAndOnlyInvalid">
+		<![CDATA[FROM  Location location WHERE location.code = :code AND location.disabled=true]]>
+	</query>
+	<query name="GetLocationByCodeAndOnlyValidAndWarehouse">
+		<![CDATA[FROM  Location location WHERE location.code = :code AND location.warehouse.id = :warehouseId AND location.disabled=false]]>
+	</query>
+</hibernate-mapping>

@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" 
+	"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<import resource="classpath:propertiesPlaceholderContext.xml" />
+
+	<!-- base -->
+	<bean id="reportUrlMapping" abstract="true"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="defaultHandler">
+			<bean
+				class="com.yongjun.pluto.spring.controller.JasperReportsImageController" />
+		</property>
+		<property name="interceptors">
+			<list>
+				<bean
+					class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor">
+					<property name="sessionFactory">
+						<ref bean="sessionFactory" />
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="jasperReportsViewResolver"
+		class="com.yongjun.pluto.spring.view.JasperReportsViewResolver">
+		<property name="viewClass">
+			<value>
+				com.yongjun.pluto.spring.view.JasperReportsMultiFormatView
+			</value>
+		</property>
+		<property name="prefix">
+			<value>classpath:</value>
+		</property>
+		<property name="suffix">
+			<value>.jrxml</value>
+		</property>
+		<property name="exporterParameters">
+			<map>
+				<entry
+					key="net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IS_OUTPUT_IMAGES_TO_DIR">
+					<bean
+						class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+						<property name="staticField">
+							<value>java.lang.Boolean.FALSE</value>
+						</property>
+					</bean>
+				</entry>
+				<entry
+					key="net.sf.jasperreports.engine.JRExporterParameter.CHARACTER_ENCODING">
+					<value>UTF-8</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="urlMapping" parent="reportUrlMapping">
+		<property name="mappings">
+			<bean
+				class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+				<property name="locations">
+					<value>
+						classpath*:reportUrlMapping.properties
+					</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- business -->
+	<bean id="areaReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.base.area.AreaReportController">
+		<constructor-arg index="0">
+			<ref bean="checkPointRuleManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="toolingDiscardReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.discard.DiscardReportController">
+		<constructor-arg index="0">
+			<ref bean="discardManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="deviceDiscardReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.discard.DiscardReportController">
+		<constructor-arg index="0">
+			<ref bean="discardManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="spareReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.SpareReportController">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="spareListReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.SpareListReportController">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listDeviceReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.ListDeviceReportController">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listToolingReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.tooling.ListToolingReportController">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSubscribeDetailController"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListSubscribeDetailController">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+			<constructor-arg index="1">
+			<ref bean="subscribeDao" />
+		</constructor-arg>
+	</bean>
+	<bean id="listALLSubscribeDetailController"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListAllSubsctibeDetailController">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+			<constructor-arg index="1">
+			<ref bean="subscribeDao" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSubscribeCollectBillDetailController"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListSubscribeCollectBillDetailController">
+		<constructor-arg index="0">
+			<ref bean="subscribeCollectBillManager" />
+		</constructor-arg>
+			<constructor-arg index="1">
+			<ref bean="subscribeDao" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="spareInReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.SpareInReportController">
+		<constructor-arg index="0">
+			<ref bean="spareInOutBillManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="toolingBorrowReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.tooling.record.ToolingBorrowController">
+		<constructor-arg index="0">
+			<ref bean="toolingBorrowBillManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="spareOutReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.SpareOutReportController">
+		<constructor-arg index="0">
+			<ref bean="spareInOutBillManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="preRepairPlanReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.PreRepairPlanReportController">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="spareInventoryReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.SpareInventoryReportController">
+		<constructor-arg index="0">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="deviceFullUsingReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.report.DeviceFullUsingReportController">
+		<constructor-arg index="0">
+			<ref bean="deviceFullUsingManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="deviceUseStatusReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.report.DeviceUseStatusReportController">
+		<constructor-arg index="0">
+			<ref bean="deviceUseStatusManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="mainProductDeviceCheckController"
+		class="com.yongjun.tdms.presentation.webwork.action.report.MainProductDeviceCheckController">
+		<constructor-arg index="0">
+			<ref bean="mainProductDeviceCheckManager" />
+		</constructor-arg>
+
+	</bean>
+
+	<bean id="toolingChangeBillReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.tooling.record.ToolingChangeBillReportController">
+		<constructor-arg index="0">
+			<ref bean="toolingChangeBillManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="toolingAccountReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.tooling.ToolingAccountReportController">
+		<constructor-arg index="0">
+			<ref bean="toolingAccountManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listCalibrationDetailRepaortController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.calibration.ListCalibrationDetailRepaortController">
+		<constructor-arg index="0">
+			<ref bean="calibrationManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listWashDetailRepaortController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.wash.ListWashDetailRepaortController">
+		<constructor-arg index="0">
+			<ref bean="washManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listAllWashPlanController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.wash.ListAllWashPlanController">
+		<constructor-arg index="0">
+			<ref bean="washManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+
+
+
+	<bean id="listDeviceDiscardRepaortController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.discard.ListDeviceDiscardRepaortController">
+		<constructor-arg index="0">
+			<ref bean="discardBillManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="SealedReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.alteration.SealedReportController">
+		<constructor-arg index="0">
+			<ref bean="alterationManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="migrateReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.migrate.MigrateReportController">
+		<constructor-arg index="0">
+			<ref bean="migrateManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="faultBillReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.fault.FaultBillReportController">
+		<constructor-arg index="0">
+			<ref bean="faultBillManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listDeviceUnusedRepaortController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.unused.ListDeviceUnusedRepaortController">
+		<constructor-arg index="0">
+			<ref bean="unusedManger" />
+		</constructor-arg>
+	</bean>
+	<bean id="yearPlanReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.yearPlan.YearPlanReportController">
+		<constructor-arg index="0">
+			<ref bean="yearPlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listPurchasePlanDetailRepaortController"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.purchasePlan.ListPurchasePlanDetailRepaortController">
+		<constructor-arg index="0">
+			<ref bean="purchasePlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="lubricationPlanDetailReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.device.lubrication.LubricationPlanDetailReportController">
+		<constructor-arg index="0">
+			<ref bean="lubricationPlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listYearPlanColectReport"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.yearPlan.ListYearPlanColectReport">
+		<constructor-arg index="0">
+			<ref bean="yearPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+
+	</bean>
+	<bean id="listCheckPointRepaortController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.report.ListCheckPointRepaortController">
+		<constructor-arg index="0">
+			<ref bean="checkPointReportManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listMaintenanceRepaortController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.maintenance.ListMaintenanceRepaortController">
+		<constructor-arg index="0">
+			<ref bean="maintenanceManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listAllCheckPointReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.report.ListAllCheckPointReportController">
+		<constructor-arg index="0">
+			<ref bean="checkPointReportManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listAllMaintenanceReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.maintenance.ListAllMaintenanceController">
+		<constructor-arg index="0">
+			<ref bean="maintenanceManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listAllLubricationPlanController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.device.lubrication.ListAllLubricationPlanController">
+		<constructor-arg index="0">
+			<ref bean="lubricationPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listAllCalibrationDetailController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.calibration.ListAllCalibrationDetailController">
+		<constructor-arg index="0">
+			<ref bean="calibrationManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="quarterDetailPlanReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.quarterPlan.QuarterDetailPlanReportController">
+		<constructor-arg index="0">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="quarterPlanColectReportListController"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.quarterPlan.QuarterPlanColectReportListController">
+		<constructor-arg index="0">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listAllpreRepairPlanController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListAllpreRepairPlanController">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listAllPurchasePlanController"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.purchasePlan.ListAllPurchasePlanController">
+		<constructor-arg index="0">
+			<ref bean="purchasePlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSupplierEvaluateReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.ListSupplierEvaluateReportController">
+		<constructor-arg index="0">
+			<ref bean="supplierEavluateDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listRepairPlanOrProcDetailController"
+		class="com.yongjun.tdms.presentation.webwork.action.year.repair.ListRepairPlanOrProcDetailController">
+		<constructor-arg index="0">
+			<ref bean="yearRepairPlanAndProcManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listAllRepairPlanAndProcController"
+		class="com.yongjun.tdms.presentation.webwork.action.year.repair.ListAllRepairPlanAndProcController">
+		<constructor-arg index="0">
+			<ref bean="yearRepairPlanAndProcManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listPurchaseBillDetailController"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListPurchaseBillDetailController">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillDetailDao" />
+		</constructor-arg>
+	</bean>
+	<!--备件入库明细报表 -->
+	<bean id="spareInBillDetailReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inWareHouse.SpareInBillDetailReportController">
+		<constructor-arg>
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSpareInventoryController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.Inventory.ListSpareInventoryController">
+		<constructor-arg index="0">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSpareOutWareHouseBillController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.ListSpareOutWareHouseBillController">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+	</bean>
+	<!-- 工装采购合同报表-->
+	<bean id="listToolingPurchaseBillDetailController"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.ListToolingPurchaseBillDetailController">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+	</bean>
+	<!--备件入库报表汇总bean -->
+	<bean id="listAllSpareInBillReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inWareHouse.ListAllSpareInBillReportController">
+		<constructor-arg index="0">
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+		<!-- 
+			<constructor-arg index="1">
+			<ref bean="supplierManager"/>
+			</constructor-arg>
+			<constructor-arg index="2">
+			<ref bean="userManager"/>
+			</constructor-arg>
+		-->
+	</bean>
+	<!--备件出库报表汇总bean -->
+	<bean id="listAllSpareOutBillReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.ListAllSpareOutBillReportController">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<!--备件领用报表 -->
+	<bean id="spareBorrowBillDetailReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.spareBorrow.SpareBorrowBillDetailReportController">
+		<constructor-arg index="0">
+			<ref bean="spareBorrowManager" />
+		</constructor-arg>
+	</bean>
+	<!--打印工装采购单报表 -->
+	<bean id="listToolingSubscribeDetailController"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListToolingSubscribeDetailController">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+	</bean>
+	<!--打印工装验收单报表 -->
+	<bean id="listToolingAcceptBillDetailController"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListToolingAcceptBillDetailController">
+		<constructor-arg index="0">
+			<ref bean="acceptBillDetailManager" />
+		</constructor-arg>
+	</bean>
+	<!--打印库房收发存报表 -->
+	<bean id="listSpareInAndOutReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inAndOutAndStoreReport.ListSpareInAndOutReportController">
+		<constructor-arg index="0">
+			<ref bean="spareInAndOutAndStoreReportManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<!--打印备件明细台帐报表 -->
+	<bean id="listSpareDetailViewReportController"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.ListSpareDetailViewReportController">
+		<constructor-arg index="0">
+			<ref bean="spareDetailViewManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="spareDetailTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<!-- 库房月收发存报表 -->
+	<bean id="listSpareInAndOutMonthReportController" 
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inAndOutAndStoreReport.ListSpareInAndOutMonthReportController">
+		<constructor-arg index="0">
+			<ref bean="spareInAndOutAndStoreReportMonthViewDao"/>
+		</constructor-arg>
+	</bean>
+	 <bean id="listSpareInventoryAndCleanHouseReportController" class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inventoryAndCleanHouse.ListSpareInventoryAndCleanHouseReportController">
+		<constructor-arg index="0">
+			<ref bean="spareInventoryAndCleanHouseReportViewDao"/>
+		</constructor-arg>
+	</bean>
+	
+    <!-- 采购计划月份报表 zzb 按部门-->
+    <bean id="listSubscribeDetailMonthReportController" class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.reportmanager.ListSubscribeDetailMonthReportController">
+		<constructor-arg index="0">
+			<ref bean="subscribeDetailMonthViewManager"/>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager"/>
+		</constructor-arg>
+	</bean>
+	  <!-- 采购计划月份报表 zzb 按供应商-->
+     <bean id="listSubscribeDetailMonthSupplierReportController" class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.reportmanager.ListSubscribeDetailMonthSupplierReportController">
+		<constructor-arg index="0">
+			<ref bean="purchaseCountBySupplierReportManager"/>
+		</constructor-arg>
+	</bean>
+	
+    <!-- 一级出库单月份报表 zzb-->
+    <bean id="listSpareOutBillMonthViewController" 
+          class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.reportmanager.ListSpareOutBillMonthViewController">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillMonthViewManager"/>
+		</constructor-arg>
+	</bean>
+</beans>

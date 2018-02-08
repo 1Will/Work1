@@ -1,0 +1,5714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" 
+	"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+<!-- $Id: eam2008-action-servlet.xml 11417 2008-03-18 10:43:51Z wzou $ -->
+
+<beans>
+	<bean id="filialeSelectDeptAction"
+		class="com.yongjun.tdms.presentation.webwork.action.remote.RemoteFilialeSelectDeptAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="filialeManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="remoteCustomSelectorAction"
+		class="com.yongjun.tdms.presentation.webwork.action.remote.RemoteCustomSelectorAction"
+		scope="prototype" />
+
+	<bean id="loginAction"
+		class="com.yongjun.tdms.presentation.webwork.action.TdmsLoginAction"
+		scope="prototype" />
+	<bean id="tdmsLogoutAction"
+		class="com.yongjun.tdms.presentation.webwork.action.TdmsLogoutAction"
+		scope="prototype">
+		<property name="eventNewManager">
+			<ref bean="eventNewManager" />
+		</property>
+		<property name="userManager">
+			<ref bean="userManager" />
+		</property>
+	</bean>
+	<bean id="framesetAction"
+		class="com.yongjun.tdms.presentation.webwork.action.FramesetAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="workWarnningManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="receviceNoticeManager" />
+		</constructor-arg>
+	</bean>
+	<!-- 
+		<bean id="framesetAction" class="com.yongjun.tdms.presentation.webwork.action.FramesetAction" scope="prototype" />
+	-->
+	<bean id="demoListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.demo.DemoListAction"
+		parent="valueListAction" scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="demoManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listUsersAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.security.ListUsersAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="filialeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editUserAction"
+		class="com.yongjun.tdms.presentation.webwork.action.security.EditUserAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="persistenceManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="localeBuilder" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="groupManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="roleManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="filialeManager" />
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<!-- 
+			<constructor-arg index="5">
+			<ref bean="licenseManager"/>
+			</constructor-arg>
+		-->
+	</bean>
+	<bean id="userProfileAction"
+		class="com.yongjun.tdms.presentation.webwork.action.security.UserProfileAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listAreaAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.area.ListAreaAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="areaManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editAreaAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.area.EditAreaAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="areaManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listDeviceAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.ListDeviceAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="wfDocStateManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="filialeManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listDeviceSelectorAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.ListDeviceSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="filialeManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listAlterationAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.alteration.ListAlterationAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="alterationManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editAlterationAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.alteration.EditAlterationAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="alterationManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listToolingAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.tooling.ListToolingAccountAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="toolingTypeDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="productManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listToolingAccountSelectorAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.tooling.ListToolingAccountSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="toolingTypeDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="productManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editToolingAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.tooling.EditToolingAccountAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="toolingTypeDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="productManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="8">
+			<ref bean="productionLineManager" />
+		</constructor-arg>
+		<constructor-arg index="9">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+		<constructor-arg index="10">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listToolingBorrowBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.tooling.record.ListToolingBorrowBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="toolingBorrowBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listToolingDemarcatePlanAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.tooling.record.ListToolingDemarcatePlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="demarcatePlanManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editToolingDemarcatePlanAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.tooling.record.EditToolingDemarcatePlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="demarcatePlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="demarcatePlanDetailManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listToolingDemarcateRuleAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.tooling.record.ListToolingDemarcateRuleAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editToolingBorrowBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.tooling.record.EditToolingBorrowBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="toolingBorrowBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listDiscardAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.discard.ListDiscardAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="discardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="deviceTypeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editDiscardAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.discard.EditDiscardAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="discardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listFaultBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.fault.ListFaultBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="faultBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editFaultBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.fault.EditFaultBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="faultBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listAccidentBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.accident.ListAccidentBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="accidentBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editAccidentBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.accident.EditAccidentBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="accidentBillManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listFeedbackAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.feedback.ListFeedbackAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="feedbackManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editFeedbackAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.feedback.EditFeedbackAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="feedbackManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listToolingChangeBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.tooling.record.ListToolingChangeBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="toolingChangeBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listToolingChangeBillsAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.tooling.record.ListToolingChangeBillsAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editToolingChangeBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.tooling.record.EditToolingChangeBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="toolingChangeBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listToolingChangeDocAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.tooling.record.ListToolingChangeDocAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="toolingChangeBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listPurchaseBillDocPurchaseEnclosureAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListPurchaseBillDocPurchaseEnclosureAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editPurchaseBillPurchaseEnclosureAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.EditPurchaseBillPurchaseEnclosureAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editUsualCheckTechnicalMaterialAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.usualcheck.EditUsualCheckTechnicalMaterialAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="checkManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listUsualCheckTechnicalMaterialAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.usualcheck.ListUsualCheckTechnicalMaterialAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="checkManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editToolingChangeDocAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.tooling.record.EditToolingChangeDocAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="toolingChangeBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+
+	</bean>
+	<bean id="editDeviceAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.EditDeviceAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="productionLineManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="deviceTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="wfDocApproverManager" />
+		</constructor-arg>
+		<constructor-arg index="8">
+			<ref bean="wfJobManager" />
+		</constructor-arg>
+		<property name="filialeManager">
+			<ref bean="filialeManager" />
+		</property>
+	</bean>
+
+	<bean id="listDeviceTypeAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.ListDeviceTypeAction"
+		scope="prototype">
+	</bean>
+
+	<bean id="listDeviceDocAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.ListDeviceDocAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editDeviceDocAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.EditDeviceDocAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listRepairDocAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListRepairDocAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="faultRepairManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editRepairDocAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.EditRepairDocAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="faultRepairManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listSpareDocAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.ListSpareDocAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editSpareDocAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.EditSpareDocAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editAttachToolAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.EditAttachToolAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="attachToolManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listAttachToolAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.ListAttachToolAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="attachToolManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+
+	<!-- <bean id="editDeviceExtInfoAction" class="com.yongjun.tdms.presentation.webwork.action.asset.device.EditDeviceExtInfoAction" scope="prototype">
+		<constructor-arg index="0">
+		<ref bean="deviceExtInfoManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+		<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+		<ref bean="codeValueManager" />
+		</constructor-arg>
+		</bean>-->
+
+	<bean id="editDeviceFinanceInfoAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.EditDeviceFinanceInfoAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceFinanceInfoManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="financeTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+
+
+
+	<bean id="listAccessoryDeviceAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.ListAccessoryDeviceAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="accessoryDeviceManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editAccessoryDeviceAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.EditAccessoryDeviceAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="accessoryDeviceManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editDeviceArgsAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.EditDeviceArgsAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceArgsManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listDeviceArgsAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.ListDeviceArgsAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceArgsManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listOperateCertAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.ListOperateCertAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="operaterCertsManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editOperateCertsAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.EditOperateCertsAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="operaterCertsManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listTrusteeshipAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.trusteeship.ListTrusteeshipAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="trusteeshipManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listTrusteeshipDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.trusteeship.ListTrusteeshipDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="trusteeshipDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="trusteeshipManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listMigrateAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.migrate.ListMigrateAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="migrateManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editTrusteeshipAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.trusteeship.EditTrusteeshipAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="trusteeshipManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editMigrateAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.migrate.EditMigrateAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="migrateManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="productionLineManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listMigrateDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.migrate.ListMigrateDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="migrateManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="migrateDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listunusedAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.unused.listunusedAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="unusedManger" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editUnusedAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.unused.EditUnusedAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="unusedManger" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listInventorysAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.inventory.ListInventoryAction"
+		scope="prototype">
+
+		<constructor-arg index="0">
+			<ref bean="inventoryManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+
+	</bean>
+	<bean id="editInventoryAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.inventory.EditInventoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="inventoryManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listinventoryDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.inventory.ListInventoryDetailAction"
+		scope="prototype">
+
+		<constructor-arg index="0">
+			<ref bean="inventoryManager" />
+		</constructor-arg>
+
+		<constructor-arg index="1">
+			<ref bean="inventoryBillDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editInventoryDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.inventory.EditInventoryDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="inventoryBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="inventoryManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listCheckPointRuleAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.rule.ListCheckPointRuleAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="checkPointRuleManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listCheckPointRuleSelectorAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.rule.ListCheckPointRuleSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="checkPointRuleManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="wfDocStateManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editCheckPointRuleAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.rule.EditCheckPointRuleAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="checkPointRuleManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listCheckPointRuleDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.rule.ListCheckPointRuleDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="checkPointRuleDetailManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editCheckPointRuleDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.rule.EditCheckPointRuleDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="checkPointRuleManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="checkPointRuleDetailManager" />
+		</constructor-arg>
+	</bean>
+	<!-- 
+		<bean id="listCheckPointPlanDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.plan.ListCheckPointPlanDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+		<ref bean="checkPointPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+		<ref bean="checkPointPlanManager" />
+		</constructor-arg>
+		</bean>
+		
+		<bean id="editCheckPointPlanDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.plan.EditCheckPointPlanDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+		<ref bean="checkPointPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+		<ref bean="checkPointPlanDetailManager" />
+		</constructor-arg>
+		</bean>
+		
+		<bean id="listCheckPointPlanAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.plan.ListCheckPointPlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+		<ref bean="checkPointPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+		<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+		<ref bean="wfDocStateManager" />
+		</constructor-arg>
+		</bean>
+		
+		<bean id="listCheckPointPlanSelectorAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.plan.ListCheckPointPlanSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+		<ref bean="checkPointPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+		<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+		<ref bean="wfDocStateManager" />
+		</constructor-arg>
+		</bean>
+		
+		<bean id="editCheckPointPlanAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.plan.EditCheckPointPlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+		<ref bean="checkPointPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+		<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+		<ref bean="checkPointRuleManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+		<ref bean="checkPointPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+		<ref bean="wfDocApproverManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+		<ref bean="wfJobManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+		<ref bean="userManager" />
+		</constructor-arg>
+		</bean>
+		
+		<bean id="listCheckPointProcAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.proc.ListCheckPointProcAction"
+		scope="prototype">
+		<constructor-arg index="0">
+		<ref bean="checkPointProcManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+		<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+		<ref bean="wfDocStateManager" />
+		</constructor-arg>
+		</bean>
+		
+		<bean id="editCheckPointProcAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.proc.EditCheckPointProcAction"
+		scope="prototype">
+		<constructor-arg index="0">
+		<ref bean="checkPointProcManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+		<ref bean="checkPointPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+		<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+		<ref bean="wfDocApproverManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+		<ref bean="wfJobManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+		<ref bean="userManager" />
+		</constructor-arg>
+		</bean>
+	-->
+	<bean id="listCheckPointReportAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.report.ListCheckPointReportAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="checkPointReportManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editCheckPointReportAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.report.EditCheckPointReportAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="checkPointReportManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listCheckPointReportDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.report.ListCheckPointReportDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="checkPointReportDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="checkPointReportManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listDepartmentAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.org.ListDepartmentAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="filialeManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editDepartmentAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.org.EditDepartmentAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="productionLineManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="filialeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editCountryAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.country.EditCountryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="countryManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listCountryAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.country.ListCountryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="countryManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listCodeValueAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.codevalue.ListCodeValueAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editCodeValueAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.codevalue.EditCodeValueAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editCodeValueDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.codevalue.EditCodeValueDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listDocumentAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.document.ListDocumentAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="eidtDocumentAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.document.EditDocumentAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listSupplierEvaluateAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.ListSupplierEvaluateAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierEavluateManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editSupplierEvaluateAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.EditSupplierEvaluateAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="supplierEavluateManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listSupplierEvaluateLevelHostroyAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.ListSupplierEvaluateLevelHostroyAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierEavluateManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="supplierLevelHistoryManager" />
+		</constructor-arg>
+
+	</bean>
+	<bean id="listSupplierEvaluateDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.ListSupplierEvaluateDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierEavluateDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="supplierEavluateManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listProductAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.product.ListProductAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="productManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editProductAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.product.EditProductAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="productManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listSupplierAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.ListSupplierAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="wfDocStateManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editSupplierAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.EditSupplierAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="wfDocApproverManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="wfJobManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="countryManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="supplierSequenceManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editSupplierLevelHistoryAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.EditSupplierLevelHistoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="supplierLevelHistoryManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSupplierLevelHistoryAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.ListSupplierLevelHistoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editSupplierExtInfoAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.EditSupplierExtInfoAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editSupplierCerfiticationAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.EditSupplierCerfiticationAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierCerfiticationManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSupplierProductAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.ListSupplierProductAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="supplierProductManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSupplierCertificationAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.ListSupplierCertificationAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierCerfiticationManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editSupplierProductAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.EditSupplierProductAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="supplierProductManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listSupplierBusinessHistoryAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.supplier.ListSupplierBusinessHistoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listFactoryAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.factory.ListFactoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="countryManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editFactoryAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.factory.EditFactoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="countryManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="factorySequenceManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listSubscribeAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListSubscribeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="subscribeCollectBillManager"/>
+		</constructor-arg>
+			<constructor-arg index="3">
+			<ref bean="userManager"/>
+		</constructor-arg>
+	    <constructor-arg index="4">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+	</bean>
+
+	<bean id="editSubscribeAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.EditSubscribeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="budgetDetailManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listSubscribeDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListSubscribeDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+	</bean>
+	<!-- zzb 申购单明细选择 -->
+	<bean id="listSubscribeDetailChooseAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListSubscribeDetailChooseAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+        <constructor-arg index="2">
+			<ref bean="spareTypeManager" />
+		</constructor-arg>
+		 <constructor-arg index="3">
+			<ref bean="spareTypeDetailManager" />
+		</constructor-arg>
+		 <constructor-arg index="4">
+			<ref bean="subscribeDao" />
+		</constructor-arg>
+		 <constructor-arg index="5">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	    <constructor-arg index="6">
+			<ref bean="purchaseBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listPurchaseDtlBillSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListPurchaseDtlBillSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+
+	</bean>
+
+	<bean id="editSubscribeDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.EditSubscribeDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="spareTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="spareTypeDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="factorySequenceManager" />
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="8">
+			<ref bean="workWarnningManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listPurchaseBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListPurchaseBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editPurchaseBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.EditPurchaseBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="budgetDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listPurchaseBillDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListPurchaseBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillDetailManager" />
+		</constructor-arg>
+	   	<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editAcceptBillEnclosureDocAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.EditAcceptBillEnclosureDocAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listSpartPartAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListSpartPartAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="sparePartManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editSparePartAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.EditSparePartAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="sparePartManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listacceptBillEnclosureFileAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListacceptBillEnclosureFileAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editAcceptBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.EditAcceptBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editAcceptBillDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.EditAcceptBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="acceptBillDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editPurchaseBillDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.EditPurchaseBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="viewSupplierAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ViewPurcahseSupplierAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listPurchaseBillMiddleCheck" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListPurchaseBillMiddleCheck"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillMiddleCheckManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listPurchaseBillInspectStandard" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListPurchaseBillInspectStandard"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillInspectStandardManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editPurchaseBillInspectStandardAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.EditPurchaseBillInspectStandardAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillInspectStandardManager" />
+		</constructor-arg>
+
+	</bean>
+	<bean id="editPurchaseBillMiddleCheckAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.EditPurchaseBillMiddleCheckAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillMiddleCheckManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+
+	</bean>
+
+	<bean id="listPurchaseBillPayDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListPurchaseBillPayDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillPayDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listAcceptBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListAcceptBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="purchaseBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listacceptBillDetailsAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListacceptBillDetailsAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="acceptBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editPurchaseBillPayDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.EditPurchaseBillPayDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillPayDetailManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listCheckPointProcDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.proc.ListCheckPointProcDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="checkPointProcDetailManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editCheckPointProcDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.checkpoint.proc.EditCheckPointProcDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="checkPointProcManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="checkPointProcDetailManager" />
+		</constructor-arg>
+	</bean>
+
+
+	<bean id="listToolingDevSpareAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.ListToolingDevSpareAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="toolingDevSpareManager" />
+		</constructor-arg>
+	</bean>
+
+
+	<bean id="editSpareAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.EditSpareAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listBaseSpareAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.ListBaseSpareAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="spareDetailTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+		<constructor-arg index="8">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="9">
+			<ref bean="spareBorrowManager" />
+		</constructor-arg>
+		<constructor-arg index="10">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listBaseOldSpareAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.ListBaseOldSpareAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="spareDetailTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+		<constructor-arg index="8">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="9">
+			<ref bean="spareBorrowManager" />
+		</constructor-arg>
+		<constructor-arg index="10">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listSpareInHistroyAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.ListSpareInHistroyAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSpareDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.spareLocation.ListSpareDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareLocationManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSpareWareHouseAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.spareWareHouse.ListSpareWareHouseAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareWareHouseManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="spareDetailTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listOldSpareWareHouseAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.spareWareHouse.ListOldSpareWareHouseAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareWareHouseManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="spareDetailTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listSpareOutHistroyAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.ListSpareOutHistoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editBaseSpareAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.EditSpareAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="spareDetailTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="userManager"/>
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="spareTypeManager"/>
+		</constructor-arg>
+		<constructor-arg index="8">
+			<ref bean="workWarnningManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="editOldBaseSpareAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.EditOldSpareAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="spareDetailTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="userManager"/>
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="spareTypeManager"/>
+		</constructor-arg>
+	</bean>
+
+	<bean id="editSpareHistoryAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.EditSpareHistoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInOutHistoryManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editSpareInAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.EditSpareInAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareInOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editSpareOutAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.EditSpareOutAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareInOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editSpareInventoryAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.EditSpareInventoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listToolingBorrowHistoryAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.tooling.record.ListToolingBorrowHistoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listFinanceTypeAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.financeType.ListFinanceTypeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="financeTypeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editFinanceTypeAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.financeType.EditFinanceTypeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="financeTypeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listLubricationOilAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.lubricationOil.ListLubricationOilAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="lubricationOilManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editLubricationOilAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.lubricationOil.EditLubricationOilAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="lubricationOilManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<!-- ~~~~~~~~~~ Workflow begin~~~~~~~~~~~~~~~~~~~~ -->
+	<bean id="listApproversAction"
+		class="com.yongjun.tdms.workflow.presentation.webwork.action.approver.ListApproverAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="wfDocApproverManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listDocsAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.workspace.doc.ListDocAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="wfDocTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="wfDocStateManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editDocAction"
+		class="com.yongjun.tdms.presentation.webwork.action.workspace.doc.EditDocAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="wfDocStateManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="wfJobManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="wfJobApproverManager" />
+		</constructor-arg>
+
+	</bean>
+
+	<bean id="listSignatureLogAction"
+		class="com.yongjun.tdms.presentation.webwork.action.workspace.doc.ListSignatureLogAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="wfJobManager" />
+		</constructor-arg>
+	</bean>
+	<!-- ~~~~~~~~~~ Workflow end~~~~~~~~~~~~~~~~~~~~ -->
+	<bean id="listProductionlineAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.productionline.ListProductionLineAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="productionLineManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editProductionLineAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.productionline.EditProductionLineAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="productionLineManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listLubricationRuleAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.device.lubrication.ListLubricationRuleAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="lubricationRuleManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editLubricationRuleAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.device.lubrication.EditLubricationRuleAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="lubricationRuleManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="lubricationOilManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listPreRepairRuleAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListPreRepairRuleAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairRuleManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editPreRepairRuleAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.EditPreRepairRuleAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairRuleManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listPreRepairPlanAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListPreRepairPlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="wfDocStateManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editPreRepairPlanAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.EditPreRepairPlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="wfDocApproverManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="wfJobManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listPreRepairPlanDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListPreRepairPlanDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="preRepairPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listPreRepairPlanDetailHistoryAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListPreRepairPlabDetailHistoryAction"
+		scope="prototype">
+	</bean>
+	<bean id="editPreRepairPlanDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.EditPreRepairPlanDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="preRepairPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="budgetDetailManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listLubricationPlanAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.device.lubrication.ListLubricationPlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="lubricationPlanManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listLubricationPlanDetailsAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.device.lubrication.ListLubricationPlanDetailsAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="lubricationPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="lubricationPlanManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listLubricationDetailsSearchAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.device.lubrication.ListLubricationDetailsSearchAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="lubricationPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="lubricationPlanManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editLubricationPlanDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.device.lubrication.EditLubricationPlanDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="lubricationPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="lubricationPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="lubricationOilManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listLubricationProcAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.device.lubrication.ListLubricationProcAction"
+		scope="prototype">
+	</bean>
+
+	<bean id="listRepairSpareAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListRepairSpareAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="repairSpareManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="faultRepairManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editRepairItemAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.EditRepairItemAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="repairItemManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="faultRepairManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editRepairSpareAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.EditRepairSpareAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="repairSpareManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listRepairToolAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListRepairToolAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="repairToolManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="faultRepairManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editRepairToolAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.EditRepairToolAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="repairToolManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="faultRepairManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listRepairItemAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListRepairItemAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="repairItemManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="faultRepairManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listRepairFeeAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListRepairFeeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="repairFeeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="preRepairPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="yearRepairPlanAndProcManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="faultRepairManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editRepairFeeAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.EditRepairFeeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="repairFeeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="preRepairPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="yearRepairPlanAndProcManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="faultRepairManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listRepairManHourAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListRepairManHourAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="repairManHourManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="faultRepairManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editRepairManHourAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.EditRepairManHourAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="preRepairPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="repairManHourManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="workTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="faultRepairManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSpareInventoryAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.ListSpareInventoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listOldSpareInventoryAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.ListOldSpareInventoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="editRepairPlanAndProcAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.repair.EditRepairPlanAndProcAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="yearRepairPlanAndProcManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listRepairPlanAndProcAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.repair.ListRepairPlanAndProcAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="yearRepairPlanAndProcManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listRepairPlanAndProcDetailAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.repair.ListRepairPlanAndProcDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="yearRepairPlanAndProcManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editRepairPlanAndProcDetailItemAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.repair.EditRepairPlanAndProcDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="yearRepairPlanAndProcDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="yearRepairPlanAndProcManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editLubricationPlanAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.device.lubrication.EditLubricationPlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="lubricationPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editMsgAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.information.EditMsgAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="msgManager" />
+		</constructor-arg>
+		<constructor-arg index="">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listMsgsAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.information.MsglistAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="msgManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listWashsAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.wash.ListWashAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="washManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editWashAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.wash.EditWashAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="washManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listWashDetailsAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.wash.ListWashDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="washDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="washManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="productManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listCalibrationAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.calibration.ListCalibrationAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="calibrationManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editCalibrationAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.calibration.EditCalibrationAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="calibrationManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editCalibrationDocAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.calibration.EditCalibrationDocAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="calibrationDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listCalibrationDocAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.calibration.ListCalibrationDocAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="calibrationDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listMaintenanceAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.maintenance.ListMaintenanceAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="maintenanceManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editMaintenanceAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.maintenance.EditMaintenanceAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="maintenanceManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editMaintenanceDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.maintenance.EditMaintenanceDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="maintenanceDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editDeviceMaintenanceDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.maintenance.EditDeviceMaintenanceDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="maintenanceDeviceDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="maintenanceDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editMaintenanceRulesAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.maintenance.EditMaintenanceRulesAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="maintenanceRuleManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listMaintenanceDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.maintenance.ListMaintenanceDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="maintenanceDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="maintenanceManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listDeviceMaintenanceDetailAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.maintenance.ListDeviceMaintenanceDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="maintenanceDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="maintenanceDeviceDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listCheckAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.usualcheck.ListCheckAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="checkManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editCheckAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.usualcheck.EditCheckAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="checkManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listCalibrationDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.calibration.ListCalibrationDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="calibrationDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="calibrationManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editCalibrationDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.calibration.EditCalibrationDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="calibrationDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listIntactnessAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.intactness.ListIntactnessAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="intactnessBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editIntactnessAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.intactness.EditIntactnessAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="intactnessBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listIntactnessDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.intactness.ListIntactnessDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="intactnessBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="intactnessBillManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listWorkTypeAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.workType.ListWorkTypeAction"
+		scope="prototype">
+	</bean>
+	<bean id="listMaintenanceRuleAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.maintenance.ListMaintenanceRuleAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="maintenanceRuleManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editFaultRepairAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.fault.EditFaultRepairAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="faultRepairManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="faultBillManager" />
+		</constructor-arg>
+		<property name="budgetDetailManager">
+			<ref bean="budgetDetailManager" />
+		</property>
+	</bean>
+	<bean id="listYearPlanAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.yearPlan.ListYearPlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="yearPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editYearPlanAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.yearPlan.EditYearPlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="yearPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listToolingMakeDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.ListToolingMakeDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="yearPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="yearPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editToolingMakeDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.EditToolingMakeDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="yearPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="yearPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listQuarterToolingMakeDetailAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.quarterPlan.ListQuarterToolingMakeDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="quarterPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="budgetDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editQuarterToolingMakeDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.quarterPlan.EditQuarterToolingMakeDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="quarterPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSparePurchaseDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.ListSparePurchaseDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="yearPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="yearPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listQuarterSparePurchaseDetailAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.quarterPlan.ListQuarterSparePurchaseDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="quarterPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="budgetDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editSparePurchaseDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.EditSparePurchaseDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="sparePurchaseDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="yearPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="spareDetailTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listRepairMaintenanceDetailAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.ListRepairMaintenanceDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="yearPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="yearPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editRepairMaintenanceDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.EditRepairMaintenanceDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="yearPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="yearPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listQuarterRepairMaintenanceDetailAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.quarterPlan.ListQuarterRepairMaintenanceDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="quarterPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="budgetDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editQuarterRepairMaintenanceDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.quarterPlan.EditQuarterRepairMaintenanceDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="quarterPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listTechAlterDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.ListTechAlterDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="yearPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="yearPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listQuarterTechAlterDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.quarterPlan.ListQuarterTechAlterDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="quarterPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="budgetDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editQuarterTechAlterDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.quarterPlan.EditQuarterTechAlterDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="quarterPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editTechAlterDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.EditTechAlterDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="yearPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="yearPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listQuarterPlanAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.quarterPlan.ListQuarterPlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editQuarterPlanAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.quarterPlan.EditQuarterPlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listToolingMakeDetailSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.ListToolingMakeDetailSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSparePurchaseDetailSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.ListSparePurchaseDetailSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editQuarterSparePurchaseDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.quarterPlan.EditQuarterSparePurchaseDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="quarterPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="spareDetailTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="spareTypeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listRepairMaintenanceDetailSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.ListRepairMaintenanceDetailSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listTechAlterDetailSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.tooling.ListTechAlterDetailSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listYearBudgetAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.budget.ListBudgetAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="budgetManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editYearBudgetAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.budget.EditBudgetAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="budgetManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listYearBudgetDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.budget.ListBudgetDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="budgetManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="budgetDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editYearBudgetDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.budget.EditBudgetDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="budgetManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="budgetDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listPurchasePlanAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.purchasePlan.ListPurchasePlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchasePlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editPurchasePlanAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.purchasePlan.EditPurchasePlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchasePlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listDiscardBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.discard.ListDiscardBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="discardBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editDiscardBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.discard.EditDiscardBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="discardBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listDiscardBillDetailAction " parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.discard.ListDiscardBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="discardBillDtlManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="discardBillManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listPurchasePlanDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.purchasePlan.ListPurchasePlanDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchasePlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchasePlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editPurchasePlanDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.purchasePlan.EditPurchasePlanDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchasePlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchasePlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listRunmaintainPlanAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.runmaintainPlan.ListRunmaintainPlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runmaintainPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editRunmaintainPlanAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.runmaintainPlan.EditRunmaintainPlanAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runmaintainPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listRunmaintainPlanDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.runmaintainPlan.ListRunmaintainPlanDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runmaintainPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="runmaintainPlanDetailManager" />
+		</constructor-arg>
+	</bean>
+
+
+
+	<bean id="editRunmaintainPlanDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.runmaintainPlan.EditRunmaintainPlanDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runmaintainPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="runmaintainPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listDailyRepairAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.runmaintainPlan.ListDailyRepairAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runmaintainPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="dailyRepairManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editDailyRepairAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.runmaintainPlan.EditDailyRepairAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runmaintainPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="dailyRepairManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listPricisionCheckAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.runmaintainPlan.ListPricisionCheckAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runmaintainPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="pricisionCheckManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editPricisionCheckAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.runmaintainPlan.EditPricisionCheckAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runmaintainPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="pricisionCheckManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listDeviceChangeAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.runmaintainPlan.ListDeviceChangeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runmaintainPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceChangeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editDeviceChangeAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.runmaintainPlan.EditDeviceChangeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runmaintainPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="deviceChangeManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listPivotalSpareAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.device.runmaintainPlan.ListPivotalSpareAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="runmaintainPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="pivotalSpareManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listWorkWarnningAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.workspace.warnning.ListWorkWarnningAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="workWarnningManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listWarnningRuleAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.warnning.ListWarnningRuleAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="warnningRuleManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editWarnningRuleAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.warnning.EditWarnningRuleAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="warnningRuleManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listManualAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.helpManual.ListManualAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editManualAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.helpManual.EditManualAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="applicationDocManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listDeviceFullUsingAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.report.ListDeviceFullUsingAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceFullUsingManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listDeviceUseStatusAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.report.ListDeviceUseStatusAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceUseStatusManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listMainProductDeviceCheckAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.report.ListMainProductDeviceCheckAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="mainProductDeviceCheckManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listuauslCheckchooseAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListuauslCheckchooseAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="checkManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listQuarterPlanchooseAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListQuarterPlanchooseAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="quarterPlanDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="quarterPlanManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listPreRepairRuleSelectorAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListPreRepairRuleSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listBrockenRateChoosesAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListBrockenRateChoosesAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="brockenRateManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listDamagedSpartchooseAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.repair.ListDamagedSpartchooseAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="toolingDevSpareManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="deviceTypeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listBudgetDetailSelectorAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.year.budget.ListBudgetDetailSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listNoticeAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.notice.ListNoticeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="sendNoticeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editNoticeAction"
+		class="com.yongjun.tdms.presentation.webwork.action.notice.EditNoticeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="sendNoticeManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="receviceNoticeManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="receviceNoticeDao" />
+		</constructor-arg>
+	</bean>
+	<bean id="listReceviceNoticeAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.notice.ListReceviceNoticeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="receviceNoticeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editReceviceNoticeAction"
+		class="com.yongjun.tdms.presentation.webwork.action.notice.EditReceviceNoticeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="receviceNoticeManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="fileTransportManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listToolingTypeAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.codevalue.ListToolingTypeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editToolingTypeAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.codevalue.EditToolingTypeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listToolingTypeDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.codevalue.ListToolingTypeDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="toolingTypeDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editToolingTypeDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.codevalue.EditToolingTypeDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="toolingTypeDetailManager" />
+		</constructor-arg>
+	</bean>
+	<!--澶囦欢鍒嗙被 -->
+	<bean id="listSpareTypeAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.codevalue.ListSpareTypeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareTypeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editSpareTypeAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.codevalue.EditSpareTypeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareTypeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSpareDetailTypeAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.codevalue.ListSpareDetailTypeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareTypeDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editSpareDetailTypeAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.codevalue.EditSpareDetailTypeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareTypeDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareTypeManager" />
+		</constructor-arg>
+	</bean>
+	<!-- The spareOutBill has added by smZhang  2008-11-04-->
+	<bean id="listSpareOutBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.ListSpareOutBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listOldSpareOutBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.ListOldSpareOutBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="newwarehouseManager"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listOldSpareScrapBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.ListOldSpareScrapBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="newwarehouseManager"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listOldSpareMaintainBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.ListOldSpareMaintainBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="newwarehouseManager"/>
+		</constructor-arg>
+	</bean>
+
+	<bean id="editSpareOutBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.EditSpareOutBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="warehouseManager"/>
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="spareInBillManager"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="editOldSpareOutBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.EditOldSpareOutBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="warehouseManager"/>
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="spareInBillManager"/>
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="newwarehouseManager"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="editOldSpareScrapBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.EditOldSpareScrapBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="warehouseManager"/>
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="spareInBillManager"/>
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="newwarehouseManager"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="editOldSpareMaintainBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.EditOldSpareMaintainBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="warehouseManager"/>
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="spareInBillManager"/>
+		</constructor-arg>
+		<constructor-arg index="7">
+			<ref bean="newwarehouseManager"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listSpareOutBillDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.ListSpareOutBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareOutBillDetailManager" />
+		</constructor-arg>
+			<constructor-arg index="2">
+			<ref bean="spareInBillDetailManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listOldSpareOutBillDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.ListOldSpareOutBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareOutBillDetailManager" />
+		</constructor-arg>
+			<constructor-arg index="2">
+			<ref bean="spareInBillDetailManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listOldSpareScrapBillDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.ListOldSpareScrapBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareOutBillDetailManager" />
+		</constructor-arg>
+			<constructor-arg index="2">
+			<ref bean="spareInBillDetailManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listOldSpareMaintainBillDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.ListOldSpareMaintainBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareOutBillDetailManager" />
+		</constructor-arg>
+			<constructor-arg index="2">
+			<ref bean="spareInBillDetailManager" />
+		</constructor-arg>
+	</bean>
+	
+	<!-- <bean id="editSpareOutBillDetailAction"  class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.EditSpareOutBillDetailAction" scope="prototype">
+		<constructor-arg index="0">
+		<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+		<ref bean="spareOutBillDetailManager" />
+		</constructor-arg>
+		</bean>-->
+	<!-- 鐢ㄦ埛鏃ュ織鏌ヨ -->
+	<bean id="listUserLogAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.userLog.ListUserLogAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="userLogManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<!--澶囦欢绠＄悊,鍏ュ簱 -->
+	<bean id="listSpareInBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inWareHouse.ListSpareInBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+			<constructor-arg index="3">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listOldSpareInBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inWareHouse.ListOldSpareInBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	
+	<!-- 入库单 -->
+	<bean id="editSpareInBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inWareHouse.EditSpareInBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+    <!-- 入库单 -->
+	<bean id="editOldSpareInBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inWareHouse.EditOldSpareInBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+	</bean>
+
+   <!-- 用依旧换新入库单 -->
+	<bean id="editSpareInBillForOldToNewAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inWareHouse.EditOldSpareInBillForOldToNewAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listSpareInBillDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inWareHouse.ListSpareInBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareInBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="regionalManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listSpareInBillDetailForOldToNewAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inWareHouse.ListSpareInBillForOldToNewDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareInBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="regionalManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listOldSpareInBillDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inWareHouse.ListOldSpareInBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareInBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="regionalManager" />
+		</constructor-arg>
+		<constructor-arg index="6">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	<!-- 以旧换新入库详细列表 -->
+	<bean id="listOldSpareInBillForOldToNewDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inWareHouse.ListOldSpareInBillForOldToNewDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareInBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="regionalManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listPurchaseBillDetailSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inWareHouse.ListPurchaseBillDetailSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSpareInventoryBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.Inventory.ListSpareInventoryBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listOldSpareInventoryBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.Inventory.ListOldSpareInventoryBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="editSpareInventoryBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.Inventory.EditSpareInventoryBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="warehouseManager"/>
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="editOldSpareInventoryBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.Inventory.EditOldSpareInventoryBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="eventNewManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="warehouseManager"/>
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listSpareInventoryBillDetailAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.Inventory.ListSpareInventoryBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInventoryDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listOldSpareInventoryBillDetailAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.Inventory.ListOldSpareInventoryBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInventoryDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+	</bean>
+	
+	<!--澶囦欢鍏ュ簱鍘嗗彶鏌ョ湅 -->
+	<bean id="listSpareInWareHouseHistoryAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inWareHouse.ListSpareInWareHouseHistoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	<!--澶囦欢鍏ュ簱鍘嗗彶鏌ョ湅 -->
+	<bean id="listOldSpareInWareHouseHistoryAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inWareHouse.ListOldSpareInWareHouseHistoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	<!--澶囦欢鍑哄簱鍘嗗彶鏌ョ湅 -->
+	<bean id="listSpareOutWareHouseHistoryAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.ListSpareOutWareHouseHistoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	<!--澶囦欢鍑哄簱鍘嗗彶鏌ョ湅 -->
+	<bean id="listOldSpareOutWareHouseHistoryAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.ListOldSpareOutWareHouseHistoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	<!--澶囦欢鐩樼偣鍘嗗彶鏌ョ湅 -->
+	<bean id="listSpareInventoryBillHistoryAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.Inventory.ListSpareInventoryBillHistoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listSpareOutBillHistoryAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.ListSpareOutBillHistoryAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareOutBillDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSpareBorrowAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.spareBorrow.ListSpareBorrowAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareBorrowManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editSpareBorrowAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.spareBorrow.EditSpareBorrowAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareBorrowManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSpareBorrowDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.spareBorrow.ListSpareBorrowDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareBorrowManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareBorrowDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSpareBorrowSelectorAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.spareBorrow.ListSpareBorrowSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listAcceptToolingMakeDetail" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.accept.ListAcceptToolingMakeDetail"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="acceptBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editAcceptToolingMakeDetail"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.accept.EditAcceptToolingMakeDetail"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="acceptBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="userManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSparePurchaseDetail" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.accept.ListSparePurchaseDetail"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="acceptBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listAcceptRepairMaintenanceDetailAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.accept.ListAcceptRepairMaintenanceDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="acceptBillDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editAcceptRepairMaintenanceDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.accept.EditAcceptRepairMaintenanceDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="acceptBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listAcceptTechAlterDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.accept.ListAcceptTechAlterDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="acceptBillDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editAcceptTechAlterDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.accept.EditAcceptTechAlterDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="acceptBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listPurchaseContractDtlSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.accept.ListPurchaseContractDtlSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="acceptBillManager" />
+		</constructor-arg>
+	</bean>
+
+
+	<!--宸ヨ鍟嗗姟绠＄悊 -->
+	<!--閲囪喘鍗曞伐瑁呭埗浣滄槑缁� -->
+	<bean id="listPurchaseToolingMakeDetailAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.ListPurchaseToolingMakeDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editPurchaseToolingMakeDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.EditPurchaseToolingMakeDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listToolingMakeDetailPurchaseConcatAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.ListToolingMakeDetailPurchaseConcatAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editToolingMakeDetailPurchaseConcatAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.EditToolingMakeDetailPurchaseConcatAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listPurchaseBillDetailChooseAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.ListPurchaseBillDetailChooseAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+
+	</bean>
+	<!--閲囪喘鍗曞鍝佸浠舵槑缁� -->
+	<bean id="listPurchaseSparePurchaseDetailAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.ListPurchaseSparePurchaseDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+	</bean>
+	<!--閲囪喘鍗曠淮淇繚鍏绘槑缁� -->
+	<bean id="listPurchaseRepairMaintenanceDetailAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.ListPurchaseRepairMaintenanceDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editPurchaseRepairMaintenanceDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.EditPurchaseRepairMaintenanceDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+	</bean>
+	<!--閲囪喘鍗曟妧鏈敼閫犳槑缁� -->
+	<bean id="listPurchaseTechAlterDetailAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.ListPurchaseTeachAlterDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editPurchaseTeachAlterDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.EditPurchaseTeachAlterDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+	</bean>
+
+
+	<bean id="listPurchaseQuarterPlanDetailAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.ListQuarterPlanDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+	</bean>
+	<!--  閲囪喘鍚堝悓澶囦欢閲囪喘鏄庣粏-->
+	<bean id="listSparePurchaseDetailPurchaseConcatAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.ListSparePurchaseDetailPurchaseConcatAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillDetailManager" />
+		</constructor-arg>
+	</bean>
+
+	<!--  閲囪喘鍚堝悓淇濆吇缁翠慨鏄庣粏-->
+	<bean id="listRepairMaintenancePurchaseConcatAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.ListRepairMantanceDetailPurchaseConcatAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editRepairMaintenancePurchaseConcatAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.EditRepairMaintenancePurchaseConcatAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+
+	<!--  閲囪喘鍚堝悓鎶�鏈敼閫犳槑缁�-->
+	<bean id="listTechAlterDetailsPurchaseConcatAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.ListTechAlterDetailsPurchaseConcatAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillDetailManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editTechAlterDetailsPurchaseConcatAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.EditTechAlterDetailsPurchaseConcatAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="purchaseBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="purchaseBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="toolingTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editCheckToolingGroupNo"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.accept.EditCheckToolingGroupNo"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="deviceCardManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="acceptBillDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="listSpareInAndOutAndStoreReportAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inAndOutAndStoreReport.ListSpareInAndOutAndStoreReportAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInAndOutAndStoreReportManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listSpareInAndOutAndStoreMonthReportAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inAndOutAndStoreReport.ListSpareInAndOutAndStoreMonthReportAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+	</bean>
+	<!-- 搴撲綅绠＄悊  -->
+	<bean id="listLocationAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.location.ListLocationAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="locationManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editLocationAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.location.EditLocationAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="locationManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listLocationSearcherCommonAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.location.ListLocationSearcherCommonAction"
+		scope="prototype">
+	</bean>
+
+	<bean id="listSpareLocationAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.spareLocation.ListSpareLocationAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="spareDetailTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+			<constructor-arg index="4">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="listOldSpareLocationAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.spareLocation.ListOldSpareLocationAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="spareTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="spareDetailTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="spareOutBillManager" />
+		</constructor-arg>
+		<constructor-arg index="5">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	
+	<!-- 娓呬粨鐩樼偣椤甸潰鏌ヨ -->
+	<bean id="listSpareInventoryAndCleanHouseReportAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.inventoryAndCleanHouse.ListSpareInventoryAndCleanHouseReportAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+	</bean>
+	<!--移位单查询Action -->
+	<bean id="listMovePostionBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.move.ListMovePostionBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="movePositionBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editMovePostionBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.move.EditMovePostionBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="movePositionBillManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="listMovePostionBillDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.move.ListMovePostionBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="movePositionBillManager" />
+		</constructor-arg>
+		<constructor-arg index="1" ref="movePositionBillDetailManager" />
+	</bean>
+
+	<!-- 鍒嗗叕鍙� -->
+	<bean id="listFilialeAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.filiale.ListFilialeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="filialeManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="editFilialeAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.filiale.EditFilialeAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="filialeManager" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="filialeSelectorAction"
+		class="com.yongjun.tdms.presentation.webwork.action.base.filiale.FilialeSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="filialeManager" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="warehouseSelectorAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.warehouseInfo.warehouse.WarehouseSelectorAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	
+
+	<bean id="listLubricationRuleSelectAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.device.lubrication.ListLubricationRuleSelectAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+
+	<!-- 设备折旧明细 -->
+	<bean id="deviceDepreciationDetailSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.ListDeviceDepreciationDetailAction">
+	</bean>
+
+	<!-- 设备故障历史 -->
+	<bean id="deviceFailureHistorySelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.ListDeviceFailureHistoryAction">
+	</bean>
+
+	<!-- 部门故障统计 -->
+	<bean id="faultAnalysisByDepartmentSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.fault.ListFaultAnalysisByDepartmentAction">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+
+	<!-- 设备故障统计 -->
+	<bean id="faultAnalysisByDeviceSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.fault.ListFaultAnalysisByDeviceAction">
+	</bean>
+
+	<!-- 设备类型故障统计 -->
+	<bean id="faultAnalysisByDeviceTypeSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.fault.ListFaultAnalysisByDeviceTypeAction">
+		<constructor-arg index="0">
+			<ref bean="deviceTypeManager" />
+		</constructor-arg>
+	</bean>
+
+	<!-- 故障类型故障统计 -->
+	<bean id="faultAnalysisByFaultCatorgySelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.runmaintenance.fault.ListFaultAnalysisByFaultCatorgyAction">
+		<constructor-arg index="0">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+
+	<!-- 设备原值净值统计 -->
+	<bean id="deviceOriginalNetStatisticsActionSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.accountReport.ListDeviceOriginalNetStatisticsAction">
+		<constructor-arg index="0">
+			<ref bean="deviceTypeManager" />
+		</constructor-arg>
+	</bean>
+
+	<!-- 设备年限到期统计 -->
+	<bean id="deviceLifeMaturityStatisticsActionSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.accountReport.ListDeviceLifeMaturityStatisticsAction">
+		<constructor-arg index="0">
+			<ref bean="deviceTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="filialeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+
+	<!-- 设备报废统计 -->
+	<bean id="deviceWasterStatisticsActionSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.accountReport.ListDeviceWasterStatisticsAction">
+		<constructor-arg index="0">
+			<ref bean="deviceTypeManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="filialeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager" />
+		</constructor-arg>
+	</bean>
+
+	<!-- 设备发生历史 -->
+	<!-- 设备采购信息 -->
+	<bean id="devicePurchaseInfoActionSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.deviceOccursHistory.ListPurchaseInfoAction">
+	</bean>
+	<!-- 设备验收信息 -->
+	<bean id="deviceAcceptInfoActionSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.deviceOccursHistory.ListAcceptInfoAction">
+	</bean>
+	<!-- 设备故障记录 -->
+	<bean id="deviceFailureRecordActionSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.deviceOccursHistory.ListFailureRecordAction">
+	</bean>
+	<!-- 设备大项修 -->
+	<bean id="deviceYearRepairActionSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.deviceOccursHistory.ListYearRepairAction">
+	</bean>
+	<!-- 设备预防性维修 -->
+	<bean id="devicePreRepairActionSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.deviceOccursHistory.ListPreRepairAction">
+	</bean>
+	<!-- 设备故障维修 -->
+	<bean id="deviceFaultRepairActionSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.deviceOccursHistory.ListFaultRepairAction">
+	</bean>
+	<!-- 设备保养记录 -->
+	<bean id="deviceMaintenanceRecordActionSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.deviceOccursHistory.ListMaintenanceRecordAction">
+	</bean>
+	<!-- 设备润滑记录 -->
+	<bean id="deviceLubricationRecordActionSelectorAction"
+		parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.device.deviceOccursHistory.ListLubricationRecordAction">
+	</bean>
+	<!-- 仓库 -->
+	<bean id="listWarehouseAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.warehouseInfo.warehouse.ListWarehouseAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editWarehouseAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.warehouseInfo.warehouse.EditWarehouseAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager"/>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+		
+	</bean>
+	<!-- 库区 -->
+	<bean id="listRegionalAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.warehouseInfo.regional.ListRegionalAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="regionalManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager"/>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="newwarehouseManager" />
+		</constructor-arg>
+	</bean>
+	<bean id="editRegionalAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.warehouseInfo.regional.EditRegionalAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="regionalManager" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager"/>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager"/>
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+	</bean>
+	<!-- 库位 -->
+	<bean id="listNewLocationAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.warehouseInfo.location.ListLocationAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="regionalManager"/>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager"/>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="locationManager"/>
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="newwarehouseManager"/>
+		</constructor-arg>
+	</bean>
+	<bean id="editNewLocationAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.warehouseInfo.location.EditLocationAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="regionalManager"/>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="warehouseManager"/>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="locationManager"/>
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="userManager"/>
+		</constructor-arg>
+	</bean>
+	
+	<!--申购总汇单	-->
+	<bean id="listSubscribeCollectBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListSubscribeCollectBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeCollectBillManager"/>
+		</constructor-arg>
+			<constructor-arg index="1">
+			<ref bean="userManager"/>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="departmentManager"/>
+		</constructor-arg>	
+	   <constructor-arg index="3">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+	</bean>
+		<bean id="editSubscribeCollectBillAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.EditSubscribeCollectBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeCollectBillManager"/>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="userManager"/>
+		</constructor-arg>		
+			<constructor-arg index="2">
+			<ref bean="departmentManager"/>
+		</constructor-arg>	
+	</bean>
+	
+	<!-- 申购汇总单明细	-->
+	<bean id="listSubscribeCollectBillDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListSubscribeCollectBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeCollectBillManager" />
+		</constructor-arg>	
+		<constructor-arg index="1">
+			<ref bean="subscribeManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="subscribeDao" />
+		</constructor-arg>		
+	</bean>
+	<bean id="editSubscribeCollectBillDetailAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.EditSubscribeCollectBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeCollectBillManager" />
+		</constructor-arg>
+		
+	</bean>
+	
+	<!-- 库存明细	-->
+	<bean id="listStocksDetailAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.spareLocation.ListStocksDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareLocationManager" />
+		</constructor-arg>	
+		<constructor-arg index="1">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		
+	</bean>
+	
+	<!-- 出库单明细选择-->
+	<bean id="listSpareOutBillDetailInBillAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.outWareHouse.ListSpareOutBillDetailInBillAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="departmentManager" />
+		</constructor-arg>	
+		
+		<constructor-arg index="1">
+			<ref bean="spareManager" />
+		</constructor-arg>
+		
+	    <constructor-arg index="2">
+			<ref bean="spareTypeManager" />
+		</constructor-arg>
+		
+		<constructor-arg index="3">
+			<ref bean="spareDetailTypeManager" />
+		</constructor-arg>
+		
+	  	<constructor-arg index="4">
+			<ref bean="warehouseManager" />
+		</constructor-arg>
+		 <constructor-arg index="5">
+			<ref bean="codeValueManager" />
+		</constructor-arg>
+		 <constructor-arg index="6">
+			<ref bean="locationManager" />
+		</constructor-arg>
+		 <constructor-arg index="7">
+			<ref bean="spareOutBillDetailManager" />
+		</constructor-arg>
+		 
+	</bean>
+	
+		<!-- 盘点 -->
+	<bean id="editSpareInventyBillDetailAction"  
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.Inventory.EditSpareInventyBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInventoryDetailManager" />
+		</constructor-arg>	
+		<constructor-arg index="1">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+        <constructor-arg index="3">
+			<ref bean="spareTypeManager"/>
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="userManager"/>
+		</constructor-arg>	
+		<constructor-arg index="5">
+			<ref bean="spareDetailTypeManager"/>
+		</constructor-arg>	
+		<constructor-arg index="6">
+			<ref bean="warehouseManager"/>
+		</constructor-arg>	
+		<constructor-arg index="7">
+			<ref bean="regionalManager"/>
+		</constructor-arg>	
+		<constructor-arg index="8">
+			<ref bean="locationManager"/>
+		</constructor-arg>	
+		<constructor-arg index="9">
+			<ref bean="spareLocationManager"/>
+		</constructor-arg>	
+		<constructor-arg index="10">
+			<ref bean="spareManager"/>
+		</constructor-arg>	
+		<constructor-arg index="11">
+			<ref bean="supplierManager"/>
+		</constructor-arg>	
+		
+	</bean>
+	
+	<bean id="editOldSpareInventyBillDetailAction"  
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.Inventory.EditOldSpareInventyBillDetailAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInventoryDetailManager" />
+		</constructor-arg>	
+		<constructor-arg index="1">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="codeValueManager"/>
+		</constructor-arg>
+        <constructor-arg index="3">
+			<ref bean="spareTypeManager"/>
+		</constructor-arg>
+		<constructor-arg index="4">
+			<ref bean="userManager"/>
+		</constructor-arg>	
+		<constructor-arg index="5">
+			<ref bean="spareDetailTypeManager"/>
+		</constructor-arg>	
+		<constructor-arg index="6">
+			<ref bean="warehouseManager"/>
+		</constructor-arg>	
+		<constructor-arg index="7">
+			<ref bean="regionalManager"/>
+		</constructor-arg>	
+		<constructor-arg index="8">
+			<ref bean="locationManager"/>
+		</constructor-arg>	
+		<constructor-arg index="9">
+			<ref bean="spareLocationManager"/>
+		</constructor-arg>	
+		<constructor-arg index="10">
+			<ref bean="spareManager"/>
+		</constructor-arg>	
+		<constructor-arg index="11">
+			<ref bean="supplierManager"/>
+		</constructor-arg>	
+		<constructor-arg index="12">
+			<ref bean="newwarehouseManager"/>
+		</constructor-arg>
+		
+	</bean>
+	
+		<!-- zzb-->	
+	<bean id="listSpareLocationToFrameAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.Inventory.ListSpareLocationToFrameAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInventoryDetailManager" />
+		</constructor-arg>	
+		<constructor-arg index="1">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager"/>
+		</constructor-arg>	
+	</bean>
+	
+	<bean id="listOldSpareLocationToFrameAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.asset.spare.Inventory.ListOldSpareLocationToFrameAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="spareInventoryDetailManager" />
+		</constructor-arg>	
+		<constructor-arg index="1">
+			<ref bean="spareInventoryManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="userManager"/>
+		</constructor-arg>	
+		<constructor-arg index="3">
+			<ref bean="newwarehouseManager"/>
+		</constructor-arg>	
+	</bean>
+	
+	 <!-- 汇总单明细查询 zzb-->	
+	<bean id="listSubscribeCollectBillDetaiLonelylAction" parent="valueListAction"
+		class="com.yongjun.tdms.presentation.webwork.action.prophase.business.ListSubscribeCollectBillDetaiLonelylAction"
+		scope="prototype">
+		<constructor-arg index="0">
+			<ref bean="subscribeManager" />
+		</constructor-arg>	
+			<constructor-arg index="1">
+			<ref bean="departmentManager"/>
+		</constructor-arg>	
+			<constructor-arg index="2">
+			<ref bean="userManager"/>
+		</constructor-arg>	
+		<constructor-arg index="3">
+			<ref bean="subscribeCollectBillManager"/>
+		</constructor-arg>	
+	</bean>
+	
+     <!--采购单 报表查询 zzb-->	
+	<bean id="listPurchaseBillReoprtAction" parent="valueListAction"
+		  class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.reportmanager.ListPurchaseBillReoprtAction"
+		  scope="prototype">
+	</bean>
+	 <!--采购单 报表查询  按部门 zzb-->
+	<bean id="listSubscribeDetailMonthReportAction" parent="valueListAction"
+		  class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.reportmanager.ListSubscribeDetailMonthReportAction"
+		  scope="prototype">
+		<constructor-arg index="0">
+		  <ref bean="departmentManager"/>
+		</constructor-arg>
+	</bean>
+		 <!--采购单 报表查询 按供应商 zzb-->
+	<bean id="listSubscribeDetailSupplierReportAction" parent="valueListAction"
+		  class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.reportmanager.ListSubscribeDetailSupplierReportAction"
+		  scope="prototype">
+	</bean>
+	<!--  
+	<bean id="listSubscribeDetailMonthSupplierReportController" parent="valueListAction"
+		  class="com.yongjun.tdms.presentation.webwork.action.prophase.business.tooling.reportmanager.ListSubscribeDetailMonthSupplierReportController"
+		  scope="prototype">
+		<constructor-arg index="0">
+		  <ref bean="purchaseCountBySupplierReport2Manager"/>
+		</constructor-arg>
+	</bean>-->
+</beans>

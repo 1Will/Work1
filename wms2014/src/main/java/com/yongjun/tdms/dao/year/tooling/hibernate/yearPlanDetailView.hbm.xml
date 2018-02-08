@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id:  $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.year.tooling.YearPlanDetailView" table="t_year_plan_detail_view" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_year_plan_detail_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        
+        <property name="detailType" type="string">
+            <column name="DETAIL_TYPE" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="planNo" type="string">
+            <column name="PLAN_NO" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="planName" type="string">
+            <column name="PLAN_NAME" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="year" type="string">
+            <column name="PLAN_YEAR" not-null="true" sql-type="NVARCHAR(10)"/>
+        </property>
+        
+        <property name="deptName" type="string">
+            <column name="DEPT_NAME" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+         
+       
+        <property name="planAllFee" type="double">
+            <column name="PLAN_ALL_FEE" not-null="false"/>
+        </property>
+        
+        <property name="graphNo" type="string">
+            <column name="GRAPH_NO" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="name" type="string">
+            <column name="NAME" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="specification" type="string">
+            <column name="SPECIFICATION" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="model" type="string">
+            <column name="MODEL" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="categoryName" type="string">
+            <column name="CATEGORY_NAME" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="detailCategoryName" type="string">
+            <column name="DETAIL_CATEGORY_NAME" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="unitPrice" type="double">
+            <column name="UNIT_PRICE" not-null="false"/>
+        </property>
+        
+        <property name="number" type="integer">
+            <column name="NUMBER" not-null="false" />
+        </property>
+        
+        <property name="allPrice" type="double">
+            <column name="ALL_PRICE" not-null="false" />
+        </property>
+        
+        <property name="planFinishedDate" type="date">
+            <column name="PLAN_FINISHED_DATE" not-null="false" />
+        </property>
+        
+        <property name="requestReason" type="string">
+            <column name="REQUEST_REASON" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="comment" type="string">
+            <column name="COMMENT" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+
+		<property name="yearPlan" type="long">
+            <column name="YEAR_PLAN_ID" not-null="false"/>
+        </property>
+        
+        <property name="unit" type="string">
+            <column name="UNIT" not-null="false"  sql-type="NVARCHAR(50)" />
+        </property>
+	</class>
+    <query name="GetYEARPLANDETAILBYYEARPLANID">
+		<![CDATA[FROM YearPlanDetailView detail WHERE detail.yearPlan = :yearPlanId order by detail.detailType]]>
+	</query>
+	<query name="GetYearPlanDetailYear">
+		<![CDATA[FROM YearPlanDetailView detail WHERE detail.year =:year AND detail.deptName=:departName]]>
+	</query>
+	<query name="GetYearPlanDetailAndYear">
+		<![CDATA[FROM YearPlanDetailView detail WHERE detail.year =:year]]>
+	</query>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+<validators>
+	<field name="feedback.feedbackName">
+  	    <field-validator type="requiredstring">
+            <message key="feedback.feedbackName.requiredstring"/>
+        </field-validator>
+	</field>
+	<field name="feedback.content">
+		<field-validator type="requiredstring">
+            <message key="feedback.content.requiredstring"/>
+        </field-validator>
+	</field>
+</validators>

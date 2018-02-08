@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+ <!-- $Id: EditAttachToolAction-validation.xml 7953 2007-10-23 05:58:17Z qsun $-->       
+<validators>
+   <!-- 
+    <field name="spare.name">
+    	<field-validator type="requiredstring">
+            <message key="spare.name.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">0</param>
+            <param name="maxLength">150</param>
+            <message key="spare.name.maxLength"/>
+        </field-validator>
+    </field>
+  
+     <field name="spare.unitPrice">
+        <field-validator type="required">
+            <message key="spare.unitPrice.required"/>
+        </field-validator>
+        <field-validator type="double">
+            <param name="min">0.00</param>
+        	<param name="max">1000000000.00</param>
+            <message key="spare.unitPrice.int"/>
+        </field-validator>
+	</field>
+
+	 <field name="spare.purchaseCycle">
+        <field-validator type="int">
+            <param name="min">0</param>
+        	<param name="max">1000000000</param>
+            <message key="spare.purchaseCycle.int"/>
+        </field-validator>
+	</field>
+		-->
+	<!-- 
+	<field name="spare.usingQty">
+        <field-validator type="int">
+            <param name="min">0</param>
+        	<param name="max">1000000000</param>
+            <message key="spare.usingQty.int"/>
+        </field-validator>
+	</field>
+  
+    <field name="spare.enName">
+        <field-validator type="stringlength">
+        	<param name="minLength">0</param>
+            <param name="maxLength">150</param>
+            <message key="spare.enName.maxLength"/>
+        </field-validator>
+    </field>
+      
+    <field name="spare.graphNo">
+        <field-validator type="stringlength">
+            <param name="maxLength">50</param>
+            <message key="spare.graphNo.maxLength"/>
+        </field-validator>
+    </field>
+     -->
+    <!-- 
+    <field name="spare.putPostion">
+        <field-validator type="stringlength">
+        	<param name="minLength">0</param>
+            <param name="maxLength">50</param>
+            <message key="spare.putPostion.maxLength"/>
+        </field-validator>
+    </field>
+   
+    <field name="spare.originalHabitat">
+        <field-validator type="stringlength">
+        	<param name="minLength">0</param>
+            <param name="maxLength">150</param>
+            <message key="spare.originalHabitat.maxLength"/>
+        </field-validator>
+    </field>
+    
+    <field name="spare.comment">
+        <field-validator type="stringlength">
+        	<param name="minLength">0</param>
+            <param name="maxLength">250</param>
+            <message key="spare.comment.maxLength"/>
+        </field-validator>
+    </field>
+     -->
+</validators>

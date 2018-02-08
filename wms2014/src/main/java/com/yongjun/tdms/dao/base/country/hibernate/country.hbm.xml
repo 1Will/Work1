@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: country.hbm.xml 8124 2007-10-31 00:53:34Z qsun $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.base.country.Country" table="t_country" lazy="true">
+        <id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_country_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <discriminator column="DISCRIMINATOR" type="string"/>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="code" type="string">
+            <column name="code" not-null="true" sql-type="NVARCHAR(50)" unique-key="uk_t_country_code"/>
+        </property>
+        
+        <property name="name" type="string">
+            <column name="name" not-null="true" sql-type="NVARCHAR(150)" unique-key="uk_t_country_name"/>
+        </property>
+        
+        <property name="disabled" type="boolean">
+            <column name="disabled" not-null="true"/>
+        </property>
+        
+        <many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization">
+			<column name="org_id" not-null="true" />
+		</many-to-one>
+		
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+    </class>
+    <query name="LoadAllCountriesByOrgId">
+		<![CDATA[FROM Country country WHERE country.organization.id = :orgId]]>
+	</query>
+</hibernate-mapping>

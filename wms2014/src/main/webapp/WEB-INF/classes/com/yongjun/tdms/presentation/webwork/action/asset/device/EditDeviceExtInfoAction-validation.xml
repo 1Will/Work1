@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+<validators>
+	<field name="deviceExtInfo.zone">
+		<field-validator type="stringlength">
+			<param name="minLength">0</param>
+			<param name="maxLength">50</param>
+			<message key="deviceExtInfo.zone.maxLength" />
+		</field-validator>
+	</field>
+	<field name="deviceExtInfo.material">
+		<field-validator type="stringlength">
+			<param name="minLength">0</param>
+			<param name="maxLength">50</param>
+			<message key="deviceExtInfo.material.maxLength" />
+		</field-validator>
+	</field>
+	<field name="deviceExtInfo.productNo">
+		<field-validator type="stringlength">
+			<param name="minLength">0</param>
+			<param name="maxLength">50</param>
+			<message key="deviceExtInfo.productNo.maxLength" />
+		</field-validator>
+	</field>
+	<field name="deviceExtInfo.graphNo">
+		<field-validator type="stringlength">
+			<param name="minLength">0</param>
+			<param name="maxLength">50</param>
+			<message key="deviceExtInfo.graphNo.maxLength" />
+		</field-validator>
+	</field>
+	<field name="deviceExtInfo.opCondition">
+		<field-validator type="stringlength">
+			<param name="minLength">0</param>
+			<param name="maxLength">250</param>
+			<message key="deviceExtInfo.opCondition.maxLength" />
+		</field-validator>
+	</field>
+	<field name="deviceExtInfo.power">
+		<field-validator type="double">
+			<param name="min">0</param>
+			<param name="max">10000000</param>
+			<message key="deviceExtInfo.power.double" />
+		</field-validator>
+	</field>
+	<field name="deviceExtInfo.weight">
+		<field-validator type="double">
+			<param name="min">0</param>
+			<param name="max">10000000</param>
+			<message key="deviceExtInfo.weight.double" />
+		</field-validator>
+	</field>
+	<field name="deviceExtInfo.size">
+		<field-validator type="stringlength">
+			<param name="minLength">0</param>
+			<param name="maxLength">50</param>
+			<message key="deviceExtInfo.size.maxLength" />
+		</field-validator>
+	</field>
+
+	<field name="deviceExtInfo.machineHour">
+		<field-validator type="int">
+			<param name="min">0</param>
+			<param name="max">1000000000</param>
+			<message key="deviceExtInfo.machineHour.int" />
+		</field-validator>
+	</field>
+	
+	<field name="deviceExtInfo.equippedCapacitor">
+		<field-validator type="int">
+			<param name="min">0</param>
+			<param name="max">1000000000</param>
+			<message key="deviceExtInfo.equippedCapacitor.int" />
+		</field-validator>
+	</field>
+
+	<field name="deviceExtInfo.statusDescription">
+		<field-validator type="stringlength">
+			<param name="minLength">0</param>
+			<param name="maxLength">250</param>
+			<message key="deviceExtInfo.statusDescription.maxLength" />
+		</field-validator>
+	</field>
+	<field name="deviceExtInfo.comment">
+		<field-validator type="stringlength">
+			<param name="minLength">0</param>
+			<param name="maxLength">250</param>
+			<message key="deviceExtInfo.comment.maxLength" />
+		</field-validator>
+	</field>
+
+</validators>

@@ -1,0 +1,4385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xwork PUBLIC
+        "-//OpenSymphony Group//XWork 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+
+<xwork>
+
+	<package name="toolingDailyCheck"
+		namespace="/preview/tooling/dailyCheck" extends="pluto">
+		<action name="listToolingDailyCheckTOOLING"
+			class="nullAction">
+			<result name="success" type="redirect">
+				listToolingDailyCheck.html
+			</result>
+		</action>
+		<action name="listToolingDailyCheck" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/dailyCheck/dailyCheckList.ftl
+			</result>
+		</action>
+		<action name="editToolingDailyCheck" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/dailyCheck/dailyCheckProfile.ftl
+			</result>
+		</action>
+	</package>
+	<package name="purchaseContract"
+		namespace="/preview/tooling/purchaseContract" extends="pluto">
+		<action name="listToolingMakeDetailPreviews"
+			class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/quarterPlanDetailList.ftl
+			</result>
+		</action>
+	</package>
+	<package name="deviceDailyCheck"
+		namespace="/preview/device/dailyCheck" extends="pluto">
+		<action name="listDeviceDailyCheck" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/dailyCheck/dailyCheckList.ftl
+			</result>
+		</action>
+		<action name="editDeviceDailyCheck" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/dailyCheck/dailyCheckProfile.ftl
+			</result>
+		</action>
+	</package>
+	<package name="calibration1"
+		namespace="/preview/tooling/calibration" extends="pluto">
+		<action name="listCalibrationPlans" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/calibration/calibrationPlanList.ftl
+			</result>
+		</action>
+		<action name="editCalibrationPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/calibration/calibrationPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listCalibrationItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/calibration/calibrationPlanItemList.ftl
+			</result>
+		</action>
+		<action name="listCalibrationProcs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/calibration/calibrationProcList.ftl
+			</result>
+		</action>
+		<action name="editCalibrationProc" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/calibration/calibrationProcProfile.ftl
+			</result>
+		</action>
+		<action name="listCalibrationProcItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/calibration/calibrationProcItemList.ftl
+			</result>
+		</action>
+	</package>
+	<package name="wash1" namespace="/preview/tooling/wash"
+		extends="pluto">
+		<action name="listWashPlans" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/wash/washPlanList.ftl
+			</result>
+		</action>
+		<action name="editWashPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/wash/washPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listWashItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/wash/washPlanItemList.ftl
+			</result>
+		</action>
+		<action name="listWashProcs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/wash/washProcList.ftl
+			</result>
+		</action>
+		<action name="editWashProc" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/wash/washProcProfile.ftl
+			</result>
+		</action>
+		<action name="listWashProcItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/wash/washProcItemList.ftl
+			</result>
+		</action>
+	</package>
+	<package name="deviceBudgetPlan"
+		namespace="/preview/plan/year/budget" extends="pluto">
+		<action name="listBudgetPlanDEVICE" class="nullAction">
+			<result name="success" type="redirect">
+				listBudgetPlan.html
+			</result>
+		</action>
+		<action name="listBudgetPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/budget/budgetPlanList.ftl
+			</result>
+		</action>
+		<action name="editBudgetPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/budget/budgetPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listBudgetPlanDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/budget/budgetPlanDetailList.ftl
+			</result>
+		</action>
+		<action name="editBudgetPlanDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/budget/budgetPlanDetailProfile.ftl
+			</result>
+		</action>
+		<action name="listRepairForEveryday" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/budget/budgetPlanRepairForEverydayList.ftl
+			</result>
+		</action>
+		<action name="editRepairForEveryday" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/budget/budgetPlanRepairForEverydayProfile.ftl
+			</result>
+		</action>
+		<action name="listExactCheck" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/budget/exactCheckList.ftl
+			</result>
+		</action>
+		<action name="editExactCheck" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/budget/exactCheckProfile.ftl
+			</result>
+		</action>
+		<action name="listRepair" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/budget/repairList.ftl
+			</result>
+		</action>
+		<action name="editRepair" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/budget/repairProfile.ftl
+			</result>
+		</action>
+		<action name="listDeviceAlter" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/budget/deviceAlterList.ftl
+			</result>
+		</action>
+		<action name="editDeviceAlter" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/budget/deviceAlterProfile.ftl
+			</result>
+		</action>
+		<action name="listKeySpare" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/budget/keySpareList.ftl
+			</result>
+		</action>
+		<action name="editKeySpare" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/budget/keySpareProfile.ftl
+			</result>
+		</action>
+	</package>
+	<package name="appendDevice"
+		namespace="/preview/plan/year/appendDevice" extends="pluto">
+		<action name="listAppendDevice" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/appendDevice/appendDeviceList.ftl
+			</result>
+		</action>
+		<action name="editAppendDevice" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/appendDevice/appendDeviceProfile.ftl
+			</result>
+		</action>
+		<action name="listAppendDeviceDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/appendDevice/appendDeviceDetailList.ftl
+			</result>
+		</action>
+		<action name="editAppendDeviceDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/appendDevice/appendDeviceDetailProfile.ftl
+			</result>
+		</action>
+	</package>
+	<package name="evaluate" namespace="/preview/pro/supplier/evaluate"
+		extends="pluto">
+		<action name="listSupplierEvaluateTOOLING" class="nullAction">
+			<result name="success" type="redirect">
+				listSupplierEvaluate.html
+			</result>
+		</action>
+		<action name="listSupplierEvaluate" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/supplier/evaluate/supplierEvaluateList.ftl
+			</result>
+		</action>
+		<action name="editSupplierEvaluate" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/supplier/evaluate/supplierEvaluateProfile.ftl
+			</result>
+		</action>
+		<action name="listSupplierEvaluateDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/supplier/evaluate/supplierEvaluateDetailList.ftl
+			</result>
+		</action>
+		<action name="listSupplierEvaluateGatherTOOLING"
+			class="nullAction">
+			<result name="success" type="redirect">
+				listSupplierEvaluateGather.html
+			</result>
+		</action>
+		<action name="listSupplierEvaluateGather" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/supplier/evaluate/supplierEvaluateGatherList.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="device.checkpoint.rule"
+		namespace="/preview__/device/checkpoint" extends="pluto">
+		<action name="listCheckPointRules" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/checkpoint/checkPointRuleList.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="tool.purchase" namespace="/preview/tool/purchase"
+		extends="pluto">
+
+		<action name="listRequestBillsTOOLING" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/requestBillList.ftl
+			</result>
+		</action>
+		<action name="listRequestBills" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/requestBillList.ftl
+			</result>
+		</action>
+		<action name="editRequestBill" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/requestBillProfile.ftl
+			</result>
+		</action>
+		<action name="listRequestBillItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/requestBillItemList.ftl
+			</result>
+		</action>
+		<action name="listRequestBillAttachs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/requestBillAttachList.ftl
+			</result>
+		</action>
+		<action name="editRequestBillItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/requestBillItemProfile.ftl
+			</result>
+		</action>
+		<action name="listPurchaseBillsTOOLING" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/purchaseBillList.ftl
+			</result>
+		</action>
+		<action name="listPurchaseBills" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/purchaseBillList.ftl
+			</result>
+		</action>
+		<action name="editPurchaseBill" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/purchaseBillProfile.ftl
+			</result>
+		</action>
+		<action name="listPurchaseBillItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/purchaseBillItemList.ftl
+			</result>
+		</action>
+		<action name="" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/purchaseBillItemProfile.ftl
+			</result>
+		</action>
+		<action name="listPurchaseBillAttachs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/purchaseBillAttachList.ftl
+			</result>
+		</action>
+		<action name="listPurchaseBillCheck" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/purchaseBillCheckList.ftl
+			</result>
+		</action>
+		<action name="listReceiveBillsTOOLING" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/receiveBillList.ftl
+			</result>
+		</action>
+		<action name="listReceiveBills" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/receiveBillList.ftl
+			</result>
+		</action>
+		<action name="editReceiveBill" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/receiveBillProfile.ftl
+			</result>
+		</action>
+		<action name="listReceiveBillItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/receiveBillItemList.ftl
+			</result>
+		</action>
+		<action name="editReceiveBillItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/receiveBillItemProfile.ftl
+			</result>
+		</action>
+		<action name="listReceiveBillSpares" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/receiveBillSparesList.ftl
+			</result>
+		</action>
+		<action name="listReceiveBillTools" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/receiveBillToolList.ftl
+			</result>
+		</action>
+		<action name="listReceiveBillDocs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/receiveBillDocList.ftl
+			</result>
+		</action>
+		<action name="listReceiveBillProcs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/receiveBillProcDetail.ftl
+			</result>
+		</action>
+		<action name="listPurchaseProgress" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/purchaseProgressList.ftl
+			</result>
+		</action>
+		<action name="listSelectBudgePlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/selectBudgetPlanItems.ftl
+			</result>
+		</action>
+		<action name="listSelectedBudgePlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/selectedBudgetPlanItems.ftl
+			</result>
+		</action>
+
+		<action name="editPurchaseProgress" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/purchaseProgressProfile.ftl
+			</result>
+		</action>
+		<action name="listPurchaseProgressHistories"
+			class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/purchaseProgressHistoryList.ftl
+			</result>
+		</action>
+		<action name="editPurchaseProgressHistory" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/purchaseProgressHistoryProfile.ftl
+			</result>
+		</action>
+		<action name="editPurchaseBillContract" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/pro/purchase/purchaseBillContractProfile.ftl
+			</result>
+		</action>
+	</package>
+	<package name="tool.repairs" namespace="/preview/tooling/repairs"
+		extends="pluto">
+		<action name="listReqRepairsTOOLING" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/reqRepairList.ftl
+			</result>
+		</action>
+		<action name="listReqRepairs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/reqRepairList.ftl
+			</result>
+		</action>
+		<action name="editReqRepair" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/reqRepairProfile.ftl
+			</result>
+		</action>
+		<action name="listRepairPlansTOOLING" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/repairPlanList.ftl
+			</result>
+		</action>
+		<action name="listRepairPlans" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/repairPlanList.ftl
+			</result>
+		</action>
+		<action name="editRepairPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/repairPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listRepairPlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/repairPlanItemList.ftl
+			</result>
+		</action>
+	</package>
+	<package name="tool" namespace="/preview/tool/base"
+		extends="pluto">
+		<action name="listTools" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/base/toolCardList.ftl
+			</result>
+		</action>
+
+		<action name="listToolEnclosure" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/base/toolEnclosureList.ftl
+			</result>
+		</action>
+		<action name="listRequestitionLogs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/base/requisitionLogsHistoryList.ftl
+			</result>
+		</action>
+		<action name="listChangeLogsHistorys" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/base/changeLogsHistoryList.ftl
+			</result>
+		</action>
+		<action name="listToolSpares" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/base/toolSpareList.ftl
+			</result>
+		</action>
+		<action name="listToolDocs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/base/toolDocList.ftl
+			</result>
+		</action>
+
+
+	</package>
+
+
+	<package name="tool.discard" namespace="/preview/tool/discard"
+		extends="pluto">
+		<action name="listToolDiscards" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/discard/toolDiscardList.ftl
+			</result>
+		</action>
+		<action name="editToolDiscard" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/discard/toolDiscardProfile.ftl
+			</result>
+		</action>
+	</package>
+	<package name="tool.checkpoint" namespace="/preview/tool/checkpoint"
+		extends="pluto">
+		<action name="listCheckPointRules" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/checkpoint/rule/checkPointRuleList.ftl
+			</result>
+		</action>
+		<action name="editCheckPointRule" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/checkpoint/rule/checkPointRuleProfile.ftl
+			</result>
+		</action>
+		<action name="listCheckPointRuleItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/checkpoint/rule/checkPointRuleItemList.ftl
+			</result>
+		</action>
+		<action name="listCheckPointPlans" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/checkpoint/plan/checkPointPlanList.ftl
+			</result>
+		</action>
+		<action name="editCheckPointPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/checkpoint/plan/checkPointPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listCheckPointPlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/checkpoint/plan/checkPointPlanItemList.ftl
+			</result>
+		</action>
+		<!-- 
+			<action name="listCheckPointProcs" class="nullAction">
+			<result name="success" type="freemarker">/pages/preview__/tool/checkpoint/proc/checkPointProcList.ftl</result>
+			</action>
+			<action name="editCheckPointProc" class="nullAction">
+			<result name="success" type="freemarker">/pages/preview__/tool/checkpoint/proc/checkPointProcProfile.ftl</result>
+			</action>
+			<action name="listCheckPointProcItems" class="nullAction">
+			<result name="success" type="freemarker">/pages/preview__/tool/checkpoint/proc/checkPointProcItemList.ftl</result>
+			</action>
+		-->
+		<action name="listCheckPointProcs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/checkpoint/proc/deviceCheckPointProcList.ftl
+			</result>
+		</action>
+		<action name="editCheckPointProc" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/checkpoint/proc/deviceCheckPointProcProfile.ftl
+			</result>
+		</action>
+		<action name="listCheckPointProcItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/checkpoint/proc/deviceCheckPointProcItemList.ftl
+			</result>
+		</action>
+	</package>
+	<package name="tool.standard" namespace="/preview/tool/standard"
+		extends="pluto">
+		<action name="listStandardRules" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/standard/standardRuleList.ftl
+			</result>
+		</action>
+	</package>
+	<package name="tool.soomthInfo" namespace="/preview/tool/smoothInfo"
+		extends="pluto">
+		<action name="listSmoothInfo" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/smoothInfo/smoothInfoList.ftl
+			</result>
+		</action>
+		<action name="updateSmoothInfo" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/smoothInfo/smoothInfoProfile.ftl
+			</result>
+		</action>
+		<action name="newSmoothInfo" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/smoothInfo/smoothInfoProfile.ftl
+			</result>
+		</action>
+		<!-- 
+			<action name="listSingleSmoothInfo" class="nullAction">
+			<result name="success" type="freemarker">/pages/preview__/tool/smoothInfo/smoothInfoSingleList.ftl</result>
+			</action>
+			
+			<action name="listSmoothRules" class="nullAction">
+			<result name="success" type="freemarker">/pages/preview__/tool/smoothInfo/smoothRuleList.ftl</result>
+			</action>
+		-->
+		<action name="editSmoothRule" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/smoothInfo/smoothRuleProfile.ftl
+			</result>
+		</action>
+		<action name="listSmoothPlans" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/smoothInfo/smoothPlanList.ftl
+			</result>
+		</action>
+		<action name="listSmoothPlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/smoothInfo/smoothPlanItemList.ftl
+			</result>
+		</action>
+		<action name="editSmoothPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/smoothInfo/smoothPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listSmoothPlanImpls" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/smoothInfo/smoothPlanImplList.ftl
+			</result>
+		</action>
+		<action name="listSmoothRuleItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/smoothInfo/smoothRuleItemList.ftl
+			</result>
+		</action>
+		<action name="listSmoothPlanImplItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/smoothInfo/smoothPlanImplItemList.ftl
+			</result>
+		</action>
+		<action name="editSmoothPlanImpls" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/smoothInfo/smoothPlanImplProfile.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="tool.repair" namespace="/preview/tooling/repair"
+		extends="pluto">
+		<action name="listReqRepairs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/reqRepairList.ftl
+			</result>
+		</action>
+		<action name="editReqRepair" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/reqRepairProfile.ftl
+			</result>
+		</action>
+		<action name="listRepairPlans" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/repairPlanList.ftl
+			</result>
+		</action>
+		<action name="editRepairPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/repairPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listRepairPlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/repairPlanItemList.ftl
+			</result>
+		</action>
+		<action name="listRepairPlanSpare" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/repairPlanSpareList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairRuleFee" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/preRepairRuleFeeList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairRuleManHour" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/preRepairRuleManHourList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairRuleTool" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/preRepairRuleToolList.ftl
+			</result>
+		</action>
+		<action name="editRepairPlanItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/repairPlanItemProfile.ftl
+			</result>
+		</action>
+		<action name="editRepairSpares" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/repairPlanSpareProfile.ftl
+			</result>
+		</action>
+		<action name="editPreRepairRuleTool" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/preRepairRuleToolProfile.ftl
+			</result>
+		</action>
+		<action name="editPreRepairRuleFee" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/preRepairRuleFeeProfile.ftl
+			</result>
+		</action>
+		<action name="editPreRepairRuleManHour" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/preRepairRuleManHourProfile.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="device.runRecordInfo"
+		namespace="/preview/device/runRecordInfo" extends="pluto">
+		<action name="listRunRecordInfo" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/runRecordInfo/runRecordInfoList.ftl
+			</result>
+		</action>
+		<action name="newRunRecordInfo" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/runRecordInfo/stopInfoProfile.ftl
+			</result>
+		</action>
+		<action name="editRunRecordInfo" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/runRecordInfo/runRecordInfoProfile.ftl
+			</result>
+		</action>
+		<action name="listRunRecordInfoHistories" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/runRecordInfo/runRecordInfoHistoryList.ftl
+			</result>
+		</action>
+	</package>
+	<package name="device.unused" namespace="/preview/device/unused"
+		extends="pluto">
+		<action name="listUnused" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/unused/unusedList.ftl
+			</result>
+		</action>
+		<action name="editUnused" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/unused/unusedProfile.ftl
+			</result>
+		</action>
+	</package>
+	<package name="device.operate" namespace="/preview/device/operate"
+		extends="pluto">
+		<action name="listOperate" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/operate/operateList.ftl
+			</result>
+		</action>
+		<action name="editOperate" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/operate/operateProfile.ftl
+			</result>
+		</action>
+	</package>
+	<package name="device.migrate" namespace="/preview/device/migrate"
+		extends="pluto">
+		<action name="listMigrateTOOLING" class="nullAction">
+			<result name="success" type="redirect">
+				listMigrate.html
+			</result>
+		</action>
+		<action name="listMigrateDEVICE" class="nullAction">
+			<result name="success" type="redirect">
+				listMigrate.html
+			</result>
+		</action>
+		<action name="listMigrate" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/migrate/deviceMigrateList.ftl
+			</result>
+		</action>
+		<action name="editMigrate" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/migrate/deviceMigrateProfile.ftl
+			</result>
+		</action>
+		<action name="migrateDeviceList" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/migrate/migrateDeviceList.ftl
+			</result>
+		</action>
+	</package>
+	<package name="tooling.migrate" namespace="/preview/tooling/migrate"
+		extends="pluto">
+		<action name="listMigrate" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/migrate/toolingMigrateList.ftl
+			</result>
+		</action>
+		<action name="editMigrate" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/migrate/toolingMigrateProfile.ftl
+			</result>
+		</action>
+	</package>
+	<package name="device.trusteeship"
+		namespace="/preview/device/trusteeship" extends="pluto">
+		<action name="listTrusteeship" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/trusteeship/deviceTrusteeshipList.ftl
+			</result>
+		</action>
+		<action name="editTrusteeship" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/trusteeship/deviceTrusteeshipProfile.ftl
+			</result>
+		</action>
+		<action name="trusteeshipDeviceList" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/trusteeship/trusteeshipDeviceList.ftl
+			</result>
+		</action>
+	</package>
+	<package name="device.borrow" namespace="/preview/device/borrow"
+		extends="pluto">
+		<action name="listDeviceBorrowBills" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/Borrow/deviceBorrowBillsList.ftl
+			</result>
+		</action>
+		<action name="editDeviceBorrowBill" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/Borrow/deviceBorrowBillsProfile.ftl
+			</result>
+		</action>
+	</package>
+	<package name="device.errlog" namespace="/preview/device/errlog"
+		extends="pluto">
+		<action name="listErrLogs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/errlog/errLogList.ftl
+			</result>
+		</action>
+		<action name="editErrLog" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/errlog/errLogProfile.ftl
+			</result>
+		</action>
+		<action name="listErrLogHistories" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/errlog/errLogHistoryList.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="device.acclog" namespace="/preview/device/acclog"
+		extends="pluto">
+		<action name="listAccidentLogs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/accidentlog/accidentLogList.ftl
+			</result>
+		</action>
+		<action name="editAccidentLog" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/accidentlog/accidentLogProfile.ftl
+			</result>
+		</action>
+		<action name="listAccidentLogHistories" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/accidentlog/accidentLogHistoryList.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="device.change" namespace="/preview/device/change"
+		extends="pluto">
+		<action name="listDisabledDevices" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/change/disabledDeviceList.ftl
+			</result>
+		</action>
+		<action name="editDisabledDevice" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/change/disabledDeviceProfile.ftl
+			</result>
+		</action>
+		<action name="listEnabledDevices" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/change/enabledDeviceList.ftl
+			</result>
+		</action>
+		<action name="editEnabledDevice" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/change/enabledDeviceProfile.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="device.maintenance"
+		namespace="/preview/device/maintenance" extends="pluto">
+		<action name="listMaintenanceRules" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenanceRuleList.ftl
+			</result>
+		</action>
+		<action name="editMaintenanceRule" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenanceRuleProfile.ftl
+			</result>
+		</action>
+		<action name="listMaintenanceRuleItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenanceRuleItemList.ftl
+			</result>
+		</action>
+		<action name="listMaintenancePlans" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanList.ftl
+			</result>
+		</action>
+		<action name="editMaintenancePlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanProfile.ftl
+			</result>
+		</action>
+		<action name="listMaintenanceProcs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanImplList.ftl
+			</result>
+		</action>
+		<action name="editMaintenanceProc" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenanceProcProfile.ftl
+			</result>
+		</action>
+		<action name="listMaintenancePlanFees" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanFeeList.ftl
+			</result>
+		</action>
+		<action name="listMaintenancePlanManHours" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanManHourList.ftl
+			</result>
+		</action>
+		<action name="listMaintenancePlanImpls" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanImplList.ftl
+			</result>
+		</action>
+		<action name="editMaintenancePlanImpl" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanImplProfile.ftl
+			</result>
+		</action>
+		<action name="editMaintenancePlanProfile" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanProfile.ftl
+			</result>
+		</action>
+		<action name="listMaintenancePlanImplFees" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanFeeList.ftl
+			</result>
+		</action>
+		<action name="maintenanceBaseInfo" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenanceBaseInfo.ftl
+			</result>
+		</action>
+		<action name="maintenancePlanVerify" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanVerify.ftl
+			</result>
+		</action>
+		<action name="maintenancePlanWake" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanWake.ftl
+			</result>
+		</action>
+		<action name="maintenanceImpBase" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenanceImpBase.ftl
+			</result>
+		</action>
+		<action name="maintenanceWakeReader" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenanceWakeReader.ftl
+			</result>
+		</action>
+		<action name="maintenanceRuleDeviceList" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenanceRuleDeviceList.ftl
+			</result>
+		</action>
+		<action name="maintenancePlanDeviceList" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanDeviceList.ftl
+			</result>
+		</action>
+		<action name="listMaintenanceItemDetails" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/listMaintenanceItemDetails.ftl
+			</result>
+		</action>
+		<action name="listMaintenanceProcItemDetails"
+			class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/listMaintenanceProcItemDetails.ftl
+			</result>
+		</action>
+		<action name="editMaintenanceDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanDetailList.ftl
+			</result>
+		</action>
+		<action name="editMaintenanceProcDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenanceProcDetailList.ftl
+			</result>
+		</action>
+		<action name="maintenanceProcDeviceList" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenanceProcDeviceList.ftl
+			</result>
+		</action>
+		<action name="maintenancePlaneditDeviceList"
+			class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlaneditDeviceList.ftl
+			</result>
+		</action>
+		<action name="maintenanceBZ" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenanceBZ.ftl
+			</result>
+		</action>
+		<action name="maintenancePlanBZ" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanBZ.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="device.soomthInfo"
+		namespace="/preview/device/smoothInfo" extends="pluto">
+		<action name="listSmoothInfo" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothInfoList.ftl
+			</result>
+		</action>
+		<action name="updateSmoothInfo" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothInfoProfile.ftl
+			</result>
+		</action>
+		<action name="newSmoothInfo" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothInfoProfile.ftl
+			</result>
+		</action>
+		<action name="listSingleSmoothInfo" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothInfoSingleList.ftl
+			</result>
+		</action>
+		<action name="listSmoothRules" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothRuleList.ftl
+			</result>
+		</action>
+		<action name="editSmoothRule" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothRuleProfile.ftl
+			</result>
+		</action>
+		<action name="listSmoothPlans" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothPlanList.ftl
+			</result>
+		</action>
+		<action name="listSmoothPlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothPlanItemList.ftl
+			</result>
+		</action>
+		<action name="editSmoothPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listSmoothPlanImpls" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothPlanImplList.ftl
+			</result>
+		</action>
+		<action name="listSmoothRuleItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothRuleItemList.ftl
+			</result>
+		</action>
+		<action name="listSmoothPlanImplItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothPlanImplItemList.ftl
+			</result>
+		</action>
+		<action name="editSmoothPlanImpls" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothPlanImplProfile.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="device.discard" namespace="/preview/device/discard"
+		extends="pluto">
+		<action name="listDiscardPlans" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/discard/discardPlanList.ftl
+			</result>
+		</action>
+		<action name="listDiscardPlanImpls" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/discard/discardPlanList.ftl
+			</result>
+		</action>
+		<action name="editDiscardPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/discard/discardPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listDiscardPlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/discard/discardPlanItemList.ftl
+			</result>
+		</action>
+		<action name="listDiscardDevices" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/discard/discardDevicesList.ftl
+			</result>
+		</action>
+		<action name="editDiscardDevice" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/discard/discardDeviceProfile.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="device.repair" namespace="/preview/device/repair"
+		extends="pluto">
+		<action name="listRepairHistory" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairHistoryList.ftl
+			</result>
+		</action>
+		<action name="RepairReport" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairReportAdd.ftl
+			</result>
+		</action>
+		<action name="listRepairBills" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairBillList.ftl
+			</result>
+		</action>
+		<action name="editRepairBill" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairBillProfile.ftl
+			</result>
+		</action>
+		<action name="listRepairPlans" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairPlanList.ftl
+			</result>
+		</action>
+		<action name="editRepairPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listRepairPlanImpls" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairPlanImplList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairRule" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairRuleList.ftl
+			</result>
+		</action>
+		<action name="editPreRepairRule" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairRuleProfile.ftl
+			</result>
+		</action>
+		<action name="listPreRepairRuleItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairRuleItemList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairPlanTOOLING" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairPlanList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairPlanDEVICE" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairPlanList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairPlanList.ftl
+			</result>
+		</action>
+		<action name="editPreRepairPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listPreRepairPlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairPlanItemList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairProcTOOLING" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairProcList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairProc" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairProcList.ftl
+			</result>
+		</action>
+		<action name="editPreRepairProc" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairProcProfile.ftl
+			</result>
+		</action>
+		<action name="listPreRepairProcItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairProcItemList.ftl
+			</result>
+		</action>
+		<action name="editPreRepairProcDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairDetail.ftl
+			</result>
+		</action>
+		<action name="editPreRepairProcDetailX" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairDetail.ftl
+			</result>
+		</action>
+		<action name="listPreRepairPlanItemDetails"
+			class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairPlanItemDetails.ftl
+			</result>
+		</action>
+		<action name="listReqRepairsTOOLING" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/reqRepairList.ftl
+			</result>
+		</action>
+		<action name="listReqRepairs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/reqRepairList.ftl
+			</result>
+		</action>
+		<action name="editReqRepair" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/reqRepairProfile.ftl
+			</result>
+		</action>
+		<action name="listRepairImpls" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairImplList.ftl
+			</result>
+		</action>
+		<action name="editRepairImpl" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairImplProfile.ftl
+			</result>
+		</action>
+		<action name="listRepairPlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairPlanItemList.ftl
+			</result>
+		</action>
+		<action name="listRepairImplItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairImplItemList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairRuleFee" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairRuleFeeList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairRuleManHour" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairRuleManHourList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairRuleTool" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairRuleToolList.ftl
+			</result>
+		</action>
+		<action name="listRepairPlanSpare" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairPlanSpareList.ftl
+			</result>
+		</action>
+		<action name="listRepairImplFee" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairImplFeeList.ftl
+			</result>
+		</action>
+	</package>
+
+
+	<package name="device.base" namespace="/preview/device/base"
+		extends="pluto">
+		<action name="listDevices2" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/base/deviceList.ftl
+			</result>
+		</action>
+		<action name="listDeviceAccounts" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/base/deviceAccountList.ftl
+			</result>
+		</action>
+		<action name="editDevice" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/base/deviceProfile.ftl
+			</result>
+		</action>
+		<action name="listRandDevice" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/base/randDeviceList.ftl
+			</result>
+		</action>
+		<action name="editRandDevice" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/base/randDeviceProfile.ftl
+			</result>
+		</action>
+		<action name="listDeviceArgs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/base/deviceArgs.ftl
+			</result>
+		</action>
+		<action name="editDeviceArgs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/base/deviceArgs.ftl
+			</result>
+		</action>
+	</package>
+
+	<!-- 
+		<package name="device.sync" namespace="/preview/device/sync" extends="pluto">
+		<action name="listSyncHistories" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/device/sync/syncHistoryList.ftl</result>
+		</action>
+		<action name="editSyncProfile" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/device/sync/syncProfile.ftl</result>
+		</action>
+		</package>
+	-->
+
+	<package name="popup" namespace="/popup" extends="pluto">
+		<!-- 
+			<action name="deviceSpareAccountSelector" class="listBaseSpareAction" method="list">
+			<result name="success" type="freemarker">/pages/asset/spare/spareSelector.ftl</result>
+			<interceptor-ref name="parameterReceiverStack" />
+			</action>
+			<action name="searchDeviceSpares" class="listBaseSpareAction">
+			<result name="success" type="redirect">deviceSpareAccountSelector.html?readOnly=${readOnly}</result>
+			<result name="error" type="redirect">deviceSpareAccountSelector.html?readOnly=${readOnly}</result>
+			<result name="invalid.token" type="redirect">deviceSpareAccountSelector.html?readOnly=${readOnly}</result>
+			<interceptor-ref name="parameterSenderStack" />
+			</action>
+		-->
+		<action name="helpSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/help.ftl
+			</result>
+		</action>
+		<action name="technogySupport" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/technogySupport.ftl
+			</result>
+		</action>
+		<action name="helpFristSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/helpFristPage.ftl
+			</result>
+		</action>
+		<!-- 生产厂家选择 -->
+		<action name="factorySelector" class="listFactoryAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/prophase/factory/factoryListSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="searchFactorySelector"
+			class="listFactoryAction">
+			<result name="success" type="redirect">
+				factorySelector.html
+			</result>
+			<result name="error" type="redirect">
+				factorySelector.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				factorySelector.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<!-- 
+			<action name="editCheckPointProcsView" class="editCheckPointProcAction">
+			<result name="success" type="freemarker">/pages/runmaintenance/checkpoint/proc/checkPointProcView.ftl</result>
+			<interceptor-ref name="propertyReceiverStack" />
+			</action>
+		-->
+		<action name="editCheckPointRuleView"
+			class="editCheckPointRuleAction">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/checkpoint/rule/checkPointRuleView.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+
+		<action name="editDeviceCardView" class="editDeviceAction">
+			<result name="success" type="freemarker">
+				/pages/asset/device/deviceView.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+
+		<!-- 
+			<action name="editCheckPointPlanView" class="editCheckPointPlanAction">
+			<result name="success" type="freemarker">/pages/runmaintenance/checkpoint/plan/checkPointPlanView.ftl</result>
+			<interceptor-ref name="propertyReceiverStack" />
+			</action>
+		-->
+		<action name="editSafeStock" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/spare/safeStockProfile.ftl
+			</result>
+		</action>
+		<action name="uploadTechDoc" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/techDoc/techDocUploader.ftl
+			</result>
+		</action>
+		<action name="peopleSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/peopleSelector.ftl
+			</result>
+		</action>
+		<action name="budgetSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/budgetSelector.ftl
+			</result>
+		</action>
+		<action name="toolDeviceSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/toolDeviceSelector.ftl
+			</result>
+		</action>
+		<action name="editRequestBillItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/requestBillItemProfile.ftl
+			</result>
+		</action>
+		<action name="editRequestBillAttach" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/requestBillAttachProfile.ftl
+			</result>
+		</action>
+		<action name="editPurchaseBillItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillfundsProfile.ftl
+			</result>
+		</action>
+		<action name="editPurchaseBillAttach" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillAttachProfile.ftl
+			</result>
+		</action>
+		<action name="editPurchaseBillCheck" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillCheckProfile.ftl
+			</result>
+		</action>
+		<action name="editReceiveBillItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/receiveBillItemProfile.ftl
+			</result>
+		</action>
+		<action name="editReceiveBillSpares" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/receiveBillSparesProfile.ftl
+			</result>
+		</action>
+		<action name="editReceiveBillTool" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/receiveBillToolProfile.ftl
+			</result>
+		</action>
+		<action name="editPurchaseBillmiddleCheck" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillmiddleProfile.ftl
+			</result>
+		</action>
+		<action name="editPurchaseBillmiddleCheck" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillmiddleProfile.ftl
+			</result>
+		</action>
+		<action name="editReceiveBillDoc" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/receiveBillDocProfile.ftl
+			</result>
+		</action>
+		<action name="editReceiveBillProcDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/receiveBillProcDetailProfile.ftl
+			</result>
+		</action>
+		<action name="editPurchaseProgressHistory" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseProgressHistoryProfile.ftl
+			</result>
+		</action>
+		<action name="editPurchaseBillfundsItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillfundsProfile.ftl
+			</result>
+		</action>
+		<action name="editYearRepairPlanItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairPlanItemProfile.ftl
+			</result>
+		</action>
+		<action name="editPurchasePlanItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/purchase/purchasePlanItemProfile.ftl
+			</result>
+		</action>
+
+		<action name="editSpares" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/extInfo/sparesProfile.ftl
+			</result>
+		</action>
+		<action name="editRandDevice" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/base/randDeviceProfile.ftl
+			</result>
+		</action>
+		<action name="editCheckPointRuleItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/checkpoint/checkPointRuleItemProfile.ftl
+			</result>
+		</action>
+		<action name="editCheckPointPlanItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/checkpoint/checkPointPlanItemProfile.ftl
+			</result>
+		</action>
+		<action name="editMaintenanceRuleItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenanceRuleItemProfile.ftl
+			</result>
+		</action>
+		<action name="editMaintenancePlanFee" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanFeeProfile.ftl
+			</result>
+		</action>
+		<action name="editMaintenancePlanManHour" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/maintenance/maintenancePlanManHourProfile.ftl
+			</result>
+		</action>
+		<action name="editSmoothRuleItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothRuleItemProfile.ftl
+			</result>
+		</action>
+		<action name="editSmoothPlanImplItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothPlanImplItemProfile.ftl
+			</result>
+		</action>
+		<action name="editSmoothPlanImpl" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothPlanImplProfile.ftl
+			</result>
+		</action>
+		<action name="editDiscardPlanItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/discard/discardPlanItemProfile.ftl
+			</result>
+		</action>
+		<!-- 
+			<action name="editSmoothPlanItem" class="nullAction">
+			<result name="success" type="freemarker">/pages/preview__/device/smoothInfo/smoothPlanItemProfile.ftl</result>
+			</action>
+		-->
+		<action name="editSmoothPlanItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/device/lubrication/lubricationRuleSelector.ftl
+			</result>
+		</action>
+		<action name="editCheckPointStatusItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/checkpoint/checkPointStatusItemProfile.ftl
+			</result>
+		</action>
+		<action name="editCheckPointStatusExceptionItem"
+			class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/checkpoint/checkPointStatusExceptionItemProfile.ftl
+			</result>
+		</action>
+		<action name="editPreRepairRuleItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairRuleItemProfile.ftl
+			</result>
+		</action>
+		<!--<action name="editPreRepairPlanItem" class="nullAction">
+			<result name="success" type="freemarker">/pages/preview__/device/repair/preRepairPlanItemProfile.ftl</result>
+			</action>-->
+		<action name="editRepairPlanItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairPlanItemProfile.ftl
+			</result>
+		</action>
+		<action name="editCheckPointExceptionBox" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/checkpoint/checkPointExceptionBox.ftl
+			</result>
+		</action>
+		<!-- 
+			<action name="supplierSelector" class="nullAction">
+			<result name="success" type="freemarker">/pages/preview__/pro/supplier/supplierSelector.ftl</result>
+			</action>
+		-->
+		<action name="repairPlanSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/repairPlanSelector.ftl
+			</result>
+		</action>
+		<action name="productCodeSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/productCodeSelector.ftl
+			</result>
+		</action>
+		<action name="editRepairImplItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairImplItemProfile.ftl
+			</result>
+		</action>
+		<action name="requestBillSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/requestBillSelector.ftl
+			</result>
+		</action>
+		<action name="purchaseBillSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/purchaseBillSelector.ftl
+			</result>
+		</action>
+		<action name="editPreRepairRuleFee" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairRuleFeeProfile.ftl
+			</result>
+		</action>
+		<action name="editPreRepairRuleManHour" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairRuleManHourProfile.ftl
+			</result>
+		</action>
+		<action name="editPreRepairRuleTool" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/preRepairRuleToolProfile.ftl
+			</result>
+		</action>
+		<action name="toolSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/toolSelector.ftl
+			</result>
+		</action>
+		<action name="budgetCodeSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/budgetCodeSelector.ftl
+			</result>
+		</action>
+		<action name="toolingSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/toolingSelector.ftl
+			</result>
+		</action>
+		<action name="requisitionSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/requisitionSelector.ftl
+			</result>
+		</action>
+		<action name="disabledDevSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/disabledDeviceSelector.ftl
+			</result>
+		</action>
+		<action name="smoothRuleSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothRuleSelector.ftl
+			</result>
+		</action>
+		<action name="toolSmoothRuleSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/smoothInfo/smoothRuleSelector.ftl
+			</result>
+		</action>
+		<action name="toolSmoothPlanSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/smoothInfo/smoothPlanSelector.ftl
+			</result>
+		</action>
+
+		<action name="smoothPlanSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/smoothInfo/smoothPlanSelector.ftl
+			</result>
+		</action>
+		<action name="editRepairSpares" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/repair/repairSpareProfile.ftl
+			</result>
+		</action>
+
+		<action name="maintenanceManagerSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/maintenanceManager.ftl
+			</result>
+		</action>
+		<action name="requestBillSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/requestBillSelector.ftl
+			</result>
+		</action>
+		<action name="maintenancePeopleSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/maintenanceSelector.ftl
+			</result>
+		</action>
+		<action name="lidtRequestBillSelectorItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/requestBillSelectorItemList.ftl
+			</result>
+		</action>
+		<!--<action name="editRepairFee" class="nullAction">
+			<result name="success" type="freemarker">/pages/preview__/device/repair/repairImplFeeProfile.ftl</result>
+			</action>-->
+		<action name="editToolSpare" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/base/toolSpareProfile.ftl
+			</result>
+		</action>
+		<action name="editToolDoc" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/base/toolDocProfile.ftl
+			</result>
+		</action>
+		<action name="editToolEnclosure" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/base/toolEnclosureProfile.ftl
+			</result>
+		</action>
+		<action name="listToolRecordViews" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/base/toolRecordView.ftl
+			</result>
+		</action>
+		<action name="editCheckPointRuleItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/checkpoint/rule/checkPointRuleItemProfile.ftl
+			</result>
+		</action>
+		<action name="editCheckPointProcItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/checkpoint/proc/checkPointProcItemProfile.ftl
+			</result>
+		</action>
+		<action name="listProducts" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/base/productSelector.ftl
+			</result>
+		</action>
+		<action name="editRepairPlanItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/repair/repairPlanItemProfile.ftl
+			</result>
+		</action>
+		<action name="editdocArch" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/docarch/docArchProfile.ftl
+			</result>
+		</action>
+
+		<!--  real -->
+
+		<action name="helpSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/help.ftl
+			</result>
+		</action>
+		<action name="technogySupport" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/technogySupport.ftl
+			</result>
+		</action>
+		<action name="helpFristSelector" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/helpFristPage.ftl
+			</result>
+		</action>
+		<action name="editCheckPointRuleDetail"
+			class="editCheckPointRuleDetailAction">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/checkpoint/rule/checkPointRuleDetailProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveCheckPointRuleDetail"
+			class="editCheckPointRuleDetailAction" method="save">
+			<result name="input" type="redirect">
+				editCheckPointRuleDetail.html?detail.id=${detail.id}&amp;rule.id=${rule.id}
+			</result>
+			<result name="new" type="redirect">
+				editCheckPointRuleDetail.html?detail.id=${detail.id}&amp;rule.id=${rule.id}
+			</result>
+			<result name="success" type="redirect">
+				editCheckPointRuleDetail.html?detail.id=${detail.id}&amp;rule.id=${rule.id}
+			</result>
+			<result name="error" type="redirect">
+				editCheckPointRuleDetail.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				editCheckPointRuleDetail.html
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">detail</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<!-- 
+			<action name="editCheckPointPlanDetail" class="editCheckPointPlanDetailAction">
+			<result name="success" type="freemarker">/pages/runmaintenance/checkpoint/plan/checkPointPlanDetailProfile.ftl</result>
+			<interceptor-ref name="propertyReceiverStack" />
+			</action>
+			
+			<action name="saveCheckPointPlanDetail" class="editCheckPointPlanDetailAction" method="save">
+			<result name="input" type="redirect">editCheckPointPlanDetail.html?detail.id=${detail.id}&amp;plan.id=${plan.id}</result>
+			<result name="new" type="redirect">editCheckPointPlanDetail.html?detail.id=${detail.id}&amp;plan.id=${plan.id}</result>
+			<result name="success" type="redirect">editCheckPointPlanDetail.html?detail.id=${detail.id}&amp;plan.id=${plan.id}</result>
+			<result name="error" type="redirect">editCheckPointPlanDetail.html</result>
+			<result name="invalid.token" type="redirect">editCheckPointPlanDetail.html</result>
+			<interceptor-ref name="propertySender">
+			<param name="propertyNames">detail</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+			</action>
+		-->
+		<action name="listSelectDevices" class="listDeviceAction"
+			method="list">
+			<result name="success" type="freemarker">
+				pages/misc/deviceSelector.ftl
+			</result>
+			<result name="invalid.token" type="redirect">
+				listSelectDevices.html
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="searchSelectDevices" class="listDeviceAction">
+			<result name="success" type="redirect">
+				listSelectDevices.html
+			</result>
+			<result name="error" type="redirect">
+				listSelectDevices.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				listSelectDevices.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<action name="budgetDetailSelector"
+			class="listBudgetDetailSelectorAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/year/budget/budgetDetailSelector.ftl
+			</result>
+		</action>
+		<action name="userSelector" class="listUsersAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/security/userSelector.ftl
+			</result>
+		</action>
+		<action name="locationSelector"
+			class="listLocationSearcherCommonAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/asset/spare/location/locationSearcherCommon.ftl
+			</result>
+		</action>
+		<action name="workTypeSelector" class="listWorkTypeAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/base/workType/workTypeSelector.ftl
+			</result>
+		</action>
+		<action name="receiveUserSelector" class="listUsersAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/security/receiveUserSelector.ftl
+			</result>
+		</action>
+
+		<action name="deviceSelector" class="listDeviceSelectorAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/asset/device/deviceSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="preRepairRuleSelector"
+			class="listPreRepairRuleSelectorAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/repair/preRepairRuleSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="toolingSelector"
+			class="listToolingAccountSelectorAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/asset/tooling/toolingSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+
+		<action name="deviceTypeSelector" class="listDeviceTypeAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/asset/device/deviceTypeSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="searchDeviceTypeSelector"
+			class="listDeviceTypeAction">
+			<result name="success" type="redirect">
+				deviceTypeSelector.html
+			</result>
+			<result name="error" type="redirect">
+				deviceTypeSelector.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				deviceTypeSelector.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<action name="countrySelector" class="listCountryAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/base/country/countrySelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+
+		<action name="lubricationRuleSelector"
+			class="listLubricationRuleSelectAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/device/lubrication/lubricationRuleSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+
+		<action name="financeTypeSelector" class="listFinanceTypeAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/base/financeType/financeTypeSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="accessoryDeviceSelector"
+			class="listAccessoryDeviceAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/asset/device/accessoryDeviceSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+
+		<action name="searchAccessoryDeviceSelector"
+			class="listAccessoryDeviceAction">
+			<result name="success" type="redirect">
+				accessoryDeviceSelector.html?device.id=${device.id}
+			</result>
+			<result name="error" type="redirect">
+				accessoryDeviceSelector.html?device.id=${device.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				accessoryDeviceSelector.html?device.id=${device.id}
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+
+		<action name="createAccessoryDevice"
+			class="listAccessoryDeviceAction" method="create">
+			<result name="success" type="redirect">
+				accessoryDeviceSelector.html?device.id=${device.id}
+			</result>
+			<result name="error" type="redirect">
+				accessoryDeviceSelector.html?device.id=${device.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				accessoryDeviceSelector.html?device.id=${device.id}
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+			<!-- <interceptor-ref name="parameterReceiverStack" />-->
+		</action>
+
+		<action name="editDeviceDoc" class="editDeviceDocAction">
+			<result name="success" type="freemarker">
+				/pages/asset/device/deviceDocProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveDeviceDoc" class="editDeviceDocAction"
+			method="save">
+			<result name="input" type="redirect">
+				editDeviceDoc.html?device.id=${device.id}&amp;doc.id=${deviceDoc.id}
+			</result>
+			<result name="new" type="redirect">
+				editDeviceDoc.html?device.id=${device.id}&amp;doc.id=${deviceDoc.id}
+			</result>
+			<result name="error" type="redirect">
+				editDeviceDoc.html?device.id=${device.id}&amp;doc.id=${deviceDoc.id}
+			</result>
+			<result name="success" type="redirect">
+				editDeviceDoc.html?device.id=${device.id}&amp;doc.id=${deviceDoc.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editDeviceDoc.html?device.id=${device.id}&amp;doc.id=${deviceDoc.id}
+			</result>
+			<interceptor-ref name="fileUploadStack" />
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">deviceDoc,device</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<!-- 以下两个action解决改写文件名-->
+		<action name="editModifyDeviceDoc"
+			class="editDeviceDocAction">
+			<result name="success" type="freemarker">
+				/pages/asset/device/deviceDocModify.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveModifyDeviceDoc" class="editDeviceDocAction"
+			method="modify">
+			<result name="input" type="redirect">
+				editModifyDeviceDoc.html?device.id=${device.id}&amp;doc.id=${deviceDoc.id}
+			</result>
+			<result name="success" type="redirect">
+				editModifyDeviceDoc.html?device.id=${device.id}&amp;doc.id=${deviceDoc.id}
+			</result>
+			<result name="error" type="redirect">
+				editModifyDeviceDoc.html?device.id=${device.id}&amp;doc.id=${deviceDoc.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editModifyDeviceDoc.html?device.id=${device.id}&amp;doc.id=${deviceDoc.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">deviceDoc</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+
+		<action name="editRepairDoc" class="editRepairDocAction">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/repair/repairDocProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveRepairDoc" class="editRepairDocAction"
+			method="save">
+			<result name="input" type="redirect">
+				editRepairDoc.html?doc.id=${repairDoc.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="new" type="redirect">
+				editRepairDoc.html?doc.id=${repairDoc.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}&amp;first="true"
+			</result>
+			<result name="success" type="redirect">
+				editRepairDoc.html?doc.id=${repairDoc.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="error" type="redirect">
+				editRepairDoc.html?doc.id=${repairDoc.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editRepairDoc.html?doc.id=${repairDoc.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<interceptor-ref name="fileUploadStack" />
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">
+					repairDoc,preRepairPlanDetail
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<!-- 以下两个action解决改写文件名-->
+		<action name="editModifyRepairDoc"
+			class="editRepairDocAction">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/repair/repairDocModify.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveModifyRepairDoc" class="editRepairDocAction"
+			method="modify">
+			<result name="input" type="redirect">
+				editModifyRepairDoc.html?doc.id=${repairDoc.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="success" type="redirect">
+				editModifyRepairDoc.html?doc.id=${repairDoc.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="error" type="redirect">
+				editModifyRepairDoc.html?doc.id=${repairDoc.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editModifyRepairDoc.html?doc.id=${repairDoc.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">repairDoc</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+
+		<action name="editAttachTool" class="editAttachToolAction">
+			<result name="success" type="freemarker">
+				/pages/asset/device/attachToolProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveAttachTool" class="editAttachToolAction"
+			method="save">
+			<result name="input" type="redirect">
+				editAttachTool.html?device.id=${device.id}&amp;attachTool.id=${attachTool.id}
+			</result>
+			<result name="new" type="redirect">
+				editAttachTool.html?device.id=${device.id}&amp;attachTool.id=${attachTool.id}
+			</result>
+			<result name="success" type="redirect">
+				editAttachTool.html?device.id=${device.id}&amp;attachTool.id=${attachTool.id}
+			</result>
+			<result name="error" type="redirect">
+				editAttachTool.html?device.id=${device.id}&amp;attachTool.id=${attachTool.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editAttachTool.html?device.id=${device.id}&amp;attachTool.id=${attachTool.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">attachTool</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+
+		<action name="checkPointRuleSelector"
+			class="listCheckPointRuleSelectorAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/checkpoint/rule/checkPointRuleSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+
+		<action name="searchCheckPointRuleSelector"
+			class="listCheckPointRuleSelectorAction">
+			<result name="success" type="redirect">
+				checkPointRuleSelector.html
+			</result>
+			<result name="error" type="redirect">
+				checkPointRuleSelector.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				checkPointRuleSelector.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<!-- 
+			<action name="checkPointPlanSelector" class="listCheckPointPlanSelectorAction" method="list">
+			<result name="success" type="freemarker">/pages/runmaintenance/checkpoint/plan/checkPointPlanSelector.ftl</result>
+			<interceptor-ref name="parameterReceiverStack" />
+			</action>
+			<action name="searchCheckPointPlanSelector" class="listCheckPointPlanSelectorAction">
+			<result name="success" type="redirect">checkPointPlanSelector.html</result>
+			<result name="error" type="redirect">checkPointPlanSelector.html</result>
+			<result name="invalid.token" type="redirect">checkPointPlanSelector.html</result>
+			<interceptor-ref name="parameterSenderStack" />
+			</action>
+		-->
+		<action name="supplierSelector" class="listSupplierAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/prophase/supplier/supplierSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="searchSupplierSelector"
+			class="listSupplierAction">
+			<result name="success" type="redirect">
+				supplierSelector.html
+			</result>
+			<result name="error" type="redirect">
+				supplierSelector.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				supplierSelector.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<!--选择所有的供应商所触发的supplierAllSelector -->
+		<action name="supplierAllSelector" class="listSupplierAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/prophase/supplier/supplierSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="searchSupplierSelector"
+			class="listSupplierAction">
+			<result name="success" type="redirect">
+				supplierAllSelector.html?toolingDevFlag=toolingDev
+			</result>
+			<result name="error" type="redirect">
+				supplierAllSelector.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				supplierAllSelector.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<action name="editSpare" class="editSpareAction">
+			<result name="success" type="freemarker">
+				/pages/asset/device/spareProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveSpare" class="editSpareAction"
+			method="save">
+			<result name="input" type="redirect">
+				editSpare.html?device.id=${device.id}&amp;spare.id=${spare.id}
+			</result>
+			<result name="new" type="redirect">
+				editSpare.html?device.id=${device.id}&amp;spare.id=${spare.id}
+			</result>
+			<result name="success" type="redirect">
+				editSpare.html?device.id=${device.id}&amp;spare.id=${spare.id}
+			</result>
+			<result name="error" type="redirect">
+				editSpare.html?device.id=${device.id}&amp;spare.id=${spare.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editSpare.html?device.id=${device.id}&amp;spare.id=${spare.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">spare</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+
+		<action name="editSpareDoc" class="editSpareDocAction">
+			<result name="success" type="freemarker">
+				/pages/asset/spare/spareDocProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveSpareDoc" class="editSpareDocAction"
+			method="save">
+			<result name="input" type="redirect">
+				editSpareDoc.html?spare.id=${spare.id}&amp;doc.id=${spareDoc.id}
+			</result>
+			<result name="new" type="redirect">
+				editSpareDoc.html?spare.id=${spare.id}&amp;doc.id=${spareDoc.id}
+			</result>
+			<result name="error" type="redirect">
+				editSpareDoc.html?spare.id=${spare.id}&amp;doc.id=${spareDoc.id}
+			</result>
+			<result name="success" type="redirect">
+				editSpareDoc.html?spare.id=${spare.id}&amp;doc.id=${spareDoc.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editSpareDoc.html?spare.id=${spare.id}&amp;doc.id=${spareDoc.id}
+			</result>
+			<interceptor-ref name="fileUploadStack" />
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">spareDoc,spare</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<!-- 以下两个action解决改写文件名-->
+		<action name="editModifySpareDoc" class="editSpareDocAction">
+			<result name="success" type="freemarker">
+				/pages/asset/spare/spareDocModify.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveModifySpareDoc" class="editSpareDocAction"
+			method="modify">
+			<result name="input" type="redirect">
+				editModifySpareDoc.html?spare.id=${spare.id}&amp;doc.id=${spareDoc.id}
+			</result>
+			<result name="success" type="redirect">
+				editModifySpareDoc.html?spare.id=${spare.id}&amp;doc.id=${spareDoc.id}
+			</result>
+			<result name="error" type="redirect">
+				editModifySpareDoc.html?spare.id=${spare.id}&amp;doc.id=${spareDoc.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editModifySpareDoc.html?spare.id=${spare.id}&amp;doc.id=${spareDoc.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">spareDoc</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+
+		<action name="editDeviceArgs" class="editDeviceArgsAction">
+			<result name="success" type="freemarker">
+				/pages/asset/device/deviceArgsProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveDeviceArgs" class="editDeviceArgsAction"
+			method="save">
+			<result name="input" type="redirect">
+				editDeviceArgs.html?device.id=${device.id}&amp;deviceArgs.id=${deviceArgs.id}
+			</result>
+			<result name="new" type="redirect">
+				editDeviceArgs.html?device.id=${device.id}&amp;deviceArgs.id=${deviceArgs.id}
+			</result>
+			<result name="success" type="redirect">
+				editDeviceArgs.html?device.id=${device.id}&amp;deviceArgs.id=${deviceArgs.id}
+			</result>
+			<result name="error" type="redirect">
+				editDeviceArgs.html?device.id=${device.id}&amp;deviceArgs.id=${deviceArgs.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editDeviceArgs.html?device.id=${device.id}&amp;deviceArgs.id=${deviceArgs.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">deviceArgs</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+
+		<action name="approverSelector" class="listApproversAction">
+			<result name="success" type="freemarker">
+				/pages/workflow/approver/approverSelector.ftl
+			</result>
+		</action>
+		<action name="editSupplierProduct"
+			class="editSupplierProductAction">
+			<result name="success" type="freemarker">
+				/pages/prophase/supplier/productProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveSupplierProduct"
+			class="editSupplierProductAction" method="save">
+			<result name="input" type="redirect">
+				editSupplierProduct.html?supplier.id=${supplier.id}&amp;product.id=${product.id}
+			</result>
+			<result name="new" type="redirect">
+				editSupplierProduct.html?supplier.id=${supplier.id}&amp;product.id=${product.id}
+			</result>
+			<result name="success" type="redirect">
+				editSupplierProduct.html?supplier.id=${supplier.id}&amp;product.id=${product.id}
+			</result>
+			<result name="error" type="redirect">
+				editSupplierProduct.html?supplier.id=${supplier.id}&amp;product.id=${product.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editSupplierProduct.html
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">product</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+
+		<action name="productSelector" class="listProductAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/base/product/productSelector.ftl
+			</result>
+			<result name="invalid.token" type="redirect">
+				productSelector.html
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="searchProductSelector"
+			class="listProductAction">
+			<result name="success" type="redirect">
+				productSelector.html
+			</result>
+			<result name="error" type="redirect">
+				productSelector.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				productSelector.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+
+		<action name="spareSelector" class="listBaseSpareAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/asset/spare/spareSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+
+
+		<action name="lubricationOilSelector"
+			class="listLubricationOilAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/base/lubricationOil/lubricationOilSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="demarceteRuleSelector"
+			class="listToolingDemarcateRuleAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/tooling/record/toolingDemarcateRuleSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+
+		<action name="editToolingChangeDoc"
+			class="editToolingChangeDocAction">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/tooling/record/toolingChangeDocProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveToolingChangeDoc"
+			class="editToolingChangeDocAction" method="save">
+			<result name="input" type="redirect">
+				editToolingChangeDoc.html?toolingChangeBill.id=${toolingChangeBill.id}&amp;toolingChangeDoc.id=${toolingChangeDoc.id}
+			</result>
+			<result name="new" type="redirect">
+				editToolingChangeDoc.html?toolingChangeBill.id=${toolingChangeBill.id}&amp;toolingChangeDoc.id=${toolingChangeDoc.id}&amp;first="true"
+			</result>
+			<result name="error" type="redirect">
+				editToolingChangeDoc.html?toolingChangeBill.id=${toolingChangeBill.id}&amp;toolingChangeDoc.id=${toolingChangeDoc.id}
+			</result>
+			<result name="success" type="redirect">
+				editToolingChangeDoc.html?toolingChangeBill.id=${toolingChangeBill.id}&amp;toolingChangeDoc.id=${toolingChangeDoc.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editToolingChangeDoc.html?toolingChangeBill.id=${toolingChangeBill.id}&amp;toolingChangeDoc.id=${toolingChangeDoc.id}
+			</result>
+			<interceptor-ref name="fileUploadStack" />
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">
+					toolingChangeBill,toolingChangeDoc
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="saveModifyToolingChangeDoc"
+			class="editToolingChangeDocAction" method="modify">
+			<result name="input" type="redirect">
+				editToolingChangeDoc.html?toolingChangeBill.id=${toolingChangeBill.id}&amp;toolingChangeDoc.id=${toolingChangeDoc.id}
+			</result>
+			<result name="success" type="redirect">
+				editToolingChangeDoc.html?toolingChangeBill.id=${toolingChangeBill.id}&amp;toolingChangeDoc.id=${toolingChangeDoc.id}
+			</result>
+			<result name="error" type="redirect">
+				editToolingChangeDoc.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				editToolingChangeDoc.html?toolingChangeDoc.id=${toolingChangeDoc.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">toolingChangeDoc</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editPreRepairRule"
+			class="editPreRepairRuleAction">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/repair/preRepairRuleProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="savePreRepairRule" class="editPreRepairRuleAction"
+			method="save">
+			<result name="input" type="redirect">
+				editPreRepairRule.html?device.id=${asset.id}&amp;preRepairRule.id=${preRepairRule.id}
+			</result>
+			<result name="new" type="redirect">
+				editPreRepairRule.html?device.id=${asset.id}&amp;preRepairRule.id=${preRepairRule.id}
+			</result>
+			<result name="success" type="redirect">
+				editPreRepairRule.html?device.id=${asset.id}&amp;preRepairRule.id=${preRepairRule.id}
+			</result>
+			<result name="error" type="redirect">
+				editPreRepairRule.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				editPreRepairRule.html
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">preRepairRule</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="preRepairPlanSelector"
+			class="listPreRepairPlanAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/repair/preRepairPlanSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="editPreRepairPlanDetailItem"
+			class="editPreRepairPlanDetailAction">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/repair/preRepairPlanDetailProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="savePreRepairPlanDetail"
+			class="editPreRepairPlanDetailAction" method="save">
+			<result name="input" type="redirect">
+				editPreRepairPlanDetailItem.html?preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;preRepairPlan.id=${preRepairPlan.id}&amp;planProcFlag=${planProcFlag}&amp;toolingDevFlag=${toolingDevFlag}
+			</result>
+			<result name="new" type="redirect">
+				editPreRepairPlanDetailItem.html?preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;preRepairPlan.id=${preRepairPlan.id}&amp;planProcFlag=${planProcFlag}&amp;toolingDevFlag=${toolingDevFlag}
+			</result>
+			<result name="success" type="redirect">
+				editPreRepairPlanDetailItem.html?preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;preRepairPlan.id=${preRepairPlan.id}&amp;planProcFlag=${planProcFlag}&amp;toolingDevFlag=${toolingDevFlag}
+			</result>
+			<result name="error" type="redirect">
+				editPreRepairPlanDetailItem.html?preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;errorFlag="save.error"&amp;preRepairPlan.id=${preRepairPlan.id}&amp;planProcFlag=${planProcFlag}&amp;toolingDevFlag=${toolingDevFlag}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editPreRepairPlanDetailItem.html?preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;preRepairPlan.id=${preRepairPlan.id}&amp;planProcFlag=${planProcFlag}&amp;toolingDevFlag=${toolingDevFlag}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">preRepairPlanDetail</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editRepairPlanAndProcDetailItem"
+			class="editRepairPlanAndProcDetailItemAction">
+			<result name="success" type="freemarker">
+				/pages/year/repair/repairPlanAndProcDetailItemProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveRepairPlanOrProcDetail"
+			class="editRepairPlanAndProcDetailItemAction" method="save">
+			<result name="input" type="redirect">
+				editRepairPlanAndProcDetailItem.html?repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;repairPlanOrProc.id=${repairPlanOrProc.id}&amp;planProcFlag=${planProcFlag}&amp;toolingDevFlag=${toolingDevFlag}
+			</result>
+			<result name="new" type="redirect">
+				editRepairPlanAndProcDetailItem.html?repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;repairPlanOrProc.id=${repairPlanOrProc.id}&amp;planProcFlag=${planProcFlag}&amp;toolingDevFlag=${toolingDevFlag}
+			</result>
+			<result name="success" type="redirect">
+				editRepairPlanAndProcDetailItem.html?repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;repairPlanOrProc.id=${repairPlanOrProc.id}&amp;planProcFlag=${planProcFlag}&amp;toolingDevFlag=${toolingDevFlag}
+			</result>
+			<result name="error" type="redirect">
+				editRepairPlanAndProcDetailItem.html?repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;repairPlanOrProc.id=${repairPlanOrProc.id}&amp;planProcFlag=${planProcFlag}&amp;toolingDevFlag=${toolingDevFlag}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editRepairPlanAndProcDetailItem.html?repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;repairPlanOrProc.id=${repairPlanOrProc.id}&amp;planProcFlag=${planProcFlag}&amp;toolingDevFlag=${toolingDevFlag}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">
+					repairPlanOrProcDetail
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<!-- 
+			<action name="editModifyDeviceDoc" class="editDeviceDocAction">
+			<result name="success" type="freemarker">/pages/asset/device/deviceDocModify.ftl</result>
+			<interceptor-ref name="propertyReceiverStack" />
+			</action>
+			<action name="saveModifyDeviceDoc" class="editDeviceDocAction" method="modify">
+			<result name="input" type="redirect">editModifyDeviceDoc.html?device.id=${device.id}&amp;doc.id=${deviceDoc.id}</result>
+			<result name="success" type="redirect">editModifyDeviceDoc.html?device.id=${device.id}&amp;doc.id=${deviceDoc.id}</result>
+			<result name="error" type="redirect">editModifyDeviceDoc.html?device.id=${device.id}&amp;doc.id=${deviceDoc.id}</result>
+			<result name="invalid.token" type="redirect">editModifyDeviceDoc.html?device.id=${device.id}&amp;doc.id=${deviceDoc.id}</result>
+			<interceptor-ref name="propertySender">
+			<param name="propertyNames">deviceDoc</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+			</action>	
+		-->
+
+		<action name="editRepairSpare" class="editRepairSpareAction">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/repair/repairSpareProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveRepairSpare" class="editRepairSpareAction"
+			method="save">
+			<result name="input" type="redirect">
+				editRepairSpare.html?repairSpare.id=${repairSpare.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="new" type="redirect">
+				editRepairSpare.html?repairSpare.id=${repairSpare.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="success" type="redirect">
+				editRepairSpare.html?repairSpare.id=${repairSpare.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="error" type="redirect">
+				editRepairSpare.html?repairSpare.id=${repairSpare.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editRepairSpare.html?repairSpare.id=${repairSpare.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">repairSpare</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editRepairItem" class="editRepairItemAction">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/repair/repairItemProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveRepairItem" class="editRepairItemAction"
+			method="save">
+			<result name="input" type="redirect">
+				editRepairItem.html?repairItem.id=${repairItem.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;faultRepair.id=${faultRepair.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="new" type="redirect">
+				editRepairItem.html?repairItem.id=${repairItem.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;faultRepair.id=${faultRepair.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="success" type="redirect">
+				editRepairItem.html?repairItem.id=${repairItem.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;faultRepair.id=${faultRepair.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="error" type="redirect">
+				editRepairItem.html?repairItem.id=${repairItem.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;faultRepair.id=${faultRepair.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editRepairItem.html?repairItem.id=${repairItem.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;faultRepair.id=${faultRepair.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">repairItem</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editRepairFee" class="editRepairFeeAction">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/repair/repairFeeProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveRepairFee" class="editRepairFeeAction"
+			method="save">
+			<result name="input" type="redirect">
+				editRepairFee.html?repairFee.id=${repairFee.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="new" type="redirect">
+				editRepairFee.html?repairFee.id=${repairFee.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="success" type="redirect">
+				editRepairFee.html?repairFee.id=${repairFee.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="error" type="redirect">
+				editRepairFee.html?repairFee.id=${repairFee.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editRepairFee.html?repairFee.id=${repairFee.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">repairFee</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editRepairTool" class="editRepairToolAction">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/repair/repairToolProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveRepairTool" class="editRepairToolAction"
+			method="save">
+			<result name="input" type="redirect">
+				editRepairTool.html?repairTool.id=${repairTool.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="new" type="redirect">
+				editRepairTool.html?repairTool.id=${repairTool.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="success" type="redirect">
+				editRepairTool.html?repairTool.id=${repairTool.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="error" type="redirect">
+				editRepairTool.html?repairTool.id=${repairTool.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editRepairTool.html?repairTool.id=${repairTool.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">repairTool</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editRepairManHour"
+			class="editRepairManHourAction">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/repair/repairManHourProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveRepairManHour" class="editRepairManHourAction"
+			method="save">
+			<result name="input" type="redirect">
+				editRepairManHour.html?repairManHour.id=${repairManHour.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="new" type="redirect">
+				editRepairManHour.html?repairManHour.id=${repairManHour.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="success" type="redirect">
+				editRepairManHour.html?repairManHour.id=${repairManHour.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="error" type="redirect">
+				editRepairManHour.html?repairManHour.id=${repairManHour.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editRepairManHour.html?repairManHour.id=${repairManHour.id}&amp;repairPlanOrProcDetail.id=${repairPlanOrProcDetail.id}&amp;preRepairPlanDetail.id=${preRepairPlanDetail.id}&amp;planProcFlag=${planProcFlag}&amp;preYearFlag=${preYearFlag}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">repairManHour</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="preRepairPlanDetailHistorySelector"
+			class="listPreRepairPlanDetailHistoryAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/runmaintenance/repair/preRepairPlanDetailHistoryList.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+
+		<action name="subscribeSelector" class="listSubscribeAction"
+			method="list">
+			<result name="success" type="freemarker">
+				/pages/prophase/business/subscribeSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="searchSubscribesSelector"
+			class="listSubscribeAction">
+			<result name="success" type="redirect">
+				subscribeSelector.html
+			</result>
+			<result name="error" type="redirect">
+				subscribeSelector.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				subscribeSelector.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>
+		<action name="editSubscribeDetail"
+			class="editSubscribeDetailAction">
+			<result name="success" type="freemarker">
+				/pages/prophase/business/subscribeDetailProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveSubscribeDetail"
+			class="editSubscribeDetailAction" method="save">
+			<result name="input" type="redirect">
+				editSubscribeDetail.html?subscribeDtl.id=${subscribeDtl.id}&amp;subscribe.id=${subscribe.id}
+			</result>
+			<result name="new" type="redirect">
+				editSubscribeDetail.html?subscribeDtl.id=${subscribeDtl.id}&amp;subscribe.id=${subscribe.id}
+			</result>
+			<result name="success" type="redirect">
+				editSubscribeDetail.html?subscribeDtl.id=${subscribeDtl.id}&amp;subscribe.id=${subscribe.id}
+			</result>
+			<result name="error" type="redirect">
+				editSubscribeDetail.html?subscribeDtl.id=${subscribeDtl.id}&amp;subscribe.id=${subscribe.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editSubscribeDetail.html?subscribeDtl.id=${subscribeDtl.id}&amp;subscribe.id=${subscribe.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">
+					subscribe, subscribeDtl
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+
+		<action name="editToolingMakeDetail"
+			class="editToolingMakeDetailAction">
+			<result name="success" type="freemarker">
+				/pages/year/tooling/toolingMakeDetailProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveToolingMakeDetail"
+			class="editToolingMakeDetailAction" method="save">
+			<result name="input" type="redirect">
+				editToolingMakeDetail.html?toolingMakeDetail.id=${toolingMakeDetail.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearPlan.id=${yearPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="new" type="redirect">
+				editToolingMakeDetail.html?toolingMakeDetail.id=${toolingMakeDetail.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearPlan.id=${yearPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="success" type="redirect">
+				editToolingMakeDetail.html?toolingMakeDetail.id=${toolingMakeDetail.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearPlan.id=${yearPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="error" type="redirect">
+				editToolingMakeDetail.html?toolingMakeDetail.id=${toolingMakeDetail.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearPlan.id=${yearPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editToolingMakeDetail.html?toolingMakeDetail.id=${toolingMakeDetail.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearPlan.id=${yearPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">toolingMakeDetail</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editQuarterToolingMakeDetail"
+			class="editQuarterToolingMakeDetailAction">
+			<result name="success" type="freemarker">
+				/pages/year/tooling/quarterPlan/toolingMakeDetailProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveQuarterToolingMakeDetail"
+			class="editQuarterToolingMakeDetailAction" method="save">
+			<result name="input" type="redirect">
+				editQuarterToolingMakeDetail.html?toolingMakeDetail.id=${toolingMakeDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="new" type="redirect">
+				editQuarterToolingMakeDetail.html?toolingMakeDetail.id=${toolingMakeDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="success" type="redirect">
+				editQuarterToolingMakeDetail.html?toolingMakeDetail.id=${toolingMakeDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="error" type="redirect">
+				editQuarterToolingMakeDetail.html?toolingMakeDetail.id=${toolingMakeDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editQuarterToolingMakeDetail.html?toolingMakeDetail.id=${toolingMakeDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">toolingMakeDetail</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editQuarterRepairMaintenanceDetail"
+			class="editQuarterRepairMaintenanceDetailAction">
+			<result name="success" type="freemarker">
+				/pages/year/tooling/quarterPlan/repairMaintenanceDetailProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveQuarterRepairMaintenanceDetail"
+			class="editQuarterRepairMaintenanceDetailAction" method="save">
+			<result name="input" type="redirect">
+				editQuarterRepairMaintenanceDetail.html?repairMaintenanceDetail.id=${repairMaintenanceDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="new" type="redirect">
+				editQuarterRepairMaintenanceDetail.html?repairMaintenanceDetail.id=${repairMaintenanceDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="success" type="redirect">
+				editQuarterRepairMaintenanceDetail.html?repairMaintenanceDetail.id=${repairMaintenanceDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="error" type="redirect">
+				editQuarterRepairMaintenanceDetail.html?repairMaintenanceDetail.id=${repairMaintenanceDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editQuarterRepairMaintenanceDetail.html?repairMaintenanceDetail.id=${repairMaintenanceDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">
+					repairMaintenanceDetail
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editQuarterTechAlterDetail"
+			class="editQuarterTechAlterDetailAction">
+			<result name="success" type="freemarker">
+				/pages/year/tooling/quarterPlan/techAlterDetailProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveQuarterTechAlterDetail"
+			class="editQuarterTechAlterDetailAction" method="save">
+			<result name="input" type="redirect">
+				editQuarterTechAlterDetail.html?techAlterDetail.id=${techAlterDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="new" type="redirect">
+				editQuarterTechAlterDetail.html?techAlterDetail.id=${techAlterDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="success" type="redirect">
+				editQuarterTechAlterDetail.html?techAlterDetail.id=${techAlterDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="error" type="redirect">
+				editQuarterTechAlterDetail.html?techAlterDetail.id=${techAlterDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editQuarterTechAlterDetail.html?techAlterDetail.id=${techAlterDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">techAlterDetail</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editSparePurchaseDetail"
+			class="editSparePurchaseDetailAction">
+			<result name="success" type="freemarker">
+				/pages/year/tooling/sparePurchaseDetailProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="editQuarterSparePurchaseDetail"
+			class="editQuarterSparePurchaseDetailAction">
+			<result name="success" type="freemarker">
+				/pages/year/tooling/quarterPlan/sparePurchaseDetailProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveQuarterSparePurchaseDetail"
+			class="editQuarterSparePurchaseDetailAction" method="save">
+			<result name="input" type="redirect">
+				editQuarterSparePurchaseDetail.html?sparePurchaseDetail.id=${sparePurchaseDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="new" type="redirect">
+				editQuarterSparePurchaseDetail.html?sparePurchaseDetail.id=${sparePurchaseDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="success" type="redirect">
+				editQuarterSparePurchaseDetail.html?sparePurchaseDetail.id=${sparePurchaseDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="error" type="redirect">
+				editQuarterSparePurchaseDetail.html?sparePurchaseDetail.id=${sparePurchaseDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editQuarterSparePurchaseDetail.html?sparePurchaseDetail.id=${sparePurchaseDetail.id}&amp;quarterPlan.id=${quarterPlan.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">sparePurchaseDetail</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="saveSparePurchaseDetail"
+			class="editSparePurchaseDetailAction" method="save">
+			<result name="input" type="redirect">
+				editSparePurchaseDetail.html?sparePurchaseDetail.id=${sparePurchaseDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="new" type="redirect">
+				editSparePurchaseDetail.html?sparePurchaseDetail.id=${sparePurchaseDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="success" type="redirect">
+				editSparePurchaseDetail.html?sparePurchaseDetail.id=${sparePurchaseDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="error" type="redirect">
+				editSparePurchaseDetail.html?sparePurchaseDetail.id=${sparePurchaseDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editSparePurchaseDetail.html?sparePurchaseDetail.id=${sparePurchaseDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">sparePurchaseDetail</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editRepairMaintenanceDetail"
+			class="editRepairMaintenanceDetailAction">
+			<result name="success" type="freemarker">
+				/pages/year/tooling/repairMaintenanceDetailProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveRepairMaintenanceDetail"
+			class="editRepairMaintenanceDetailAction" method="save">
+			<result name="input" type="redirect">
+				editRepairMaintenanceDetail.html?repairMaintenanceDetail.id=${repairMaintenanceDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="new" type="redirect">
+				editRepairMaintenanceDetail.html?repairMaintenanceDetail.id=${repairMaintenanceDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="success" type="redirect">
+				editRepairMaintenanceDetail.html?repairMaintenanceDetail.id=${repairMaintenanceDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="error" type="redirect">
+				editRepairMaintenanceDetail.html?repairMaintenanceDetail.id=${repairMaintenanceDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editRepairMaintenanceDetail.html?repairMaintenanceDetail.id=${repairMaintenanceDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">
+					repairMaintenanceDetail
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editTechAlterDetail"
+			class="editTechAlterDetailAction">
+			<result name="success" type="freemarker">
+				/pages/year/tooling/techAlterDetailProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveTechAlterDetail"
+			class="editTechAlterDetailAction" method="save">
+			<result name="input" type="redirect">
+				editTechAlterDetail.html?techAlterDetail.id=${techAlterDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="new" type="redirect">
+				editTechAlterDetail.html?techAlterDetail.id=${techAlterDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="success" type="redirect">
+				editTechAlterDetail.html?techAlterDetail.id=${techAlterDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="error" type="redirect">
+				editTechAlterDetail.html?techAlterDetail.id=${techAlterDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editTechAlterDetail.html?techAlterDetail.id=${techAlterDetail.id}&amp;yearPlan.id=${yearPlan.id}&amp;quarterPlan.id=${quarterPlan.id}&amp;yearQuarterFlag=${yearQuarterFlag}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">techAlterDetail</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="toolingMakeDetailSelector"
+			class="listToolingMakeDetailSelectorAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/year/tooling/toolingMakeDetailSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="sparePurchaseDetailSelector"
+			class="listSparePurchaseDetailSelectorAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/year/tooling/sparePurchaseDetailSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="repairMaintenanceDetailSelector"
+			class="listRepairMaintenanceDetailSelectorAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/year/tooling/repairMaintenanceDetailSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="techAlterDetailSelector"
+			class="listTechAlterDetailSelectorAction" method="list">
+			<result name="success" type="freemarker">
+				/pages/year/tooling/techAlterDetailSelector.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="editYearBudgetDetail"
+			class="editYearBudgetDetailAction">
+			<result name="success" type="freemarker">
+				/pages/year/budget/budgetDetailProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveYearBudgetDetail"
+			class="editYearBudgetDetailAction" method="save">
+			<result name="input" type="redirect">
+				editYearBudgetDetail.html?budget.id=${budget.id}&amp;budgetDetail.id=${budgetDetail.id}
+			</result>
+			<result name="new" type="redirect">
+				editYearBudgetDetail.html?budget.id=${budget.id}&amp;budgetDetail.id=${budgetDetail.id}
+			</result>
+			<result name="success" type="redirect">
+				editYearBudgetDetail.html?budget.id=${budget.id}&amp;budgetDetail.id=${budgetDetail.id}
+			</result>
+			<result name="error" type="redirect">
+				editYearBudgetDetail.html?budget.id=${budget.id}&amp;budgetDetail.id=${budgetDetail.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editYearBudgetDetail.html?budget.id=${budget.id}&amp;budgetDetail.id=${budgetDetail.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">budgetDetail</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editPurchasePlanDetail"
+			class="editPurchasePlanDetailAction">
+			<result name="success" type="freemarker">
+				/pages/year/device/purchasePlan/purchasePlanDetailProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="savePurchasePlanDetail"
+			class="editPurchasePlanDetailAction" method="save">
+			<result name="input" type="redirect">
+				editPurchasePlanDetail.html?purchasePlan.id=${purchasePlan.id}&amp;purchasePlanDetail.id=${purchasePlanDetail.id}
+			</result>
+			<result name="new" type="redirect">
+				editPurchasePlanDetail.html?purchasePlan.id=${purchasePlan.id}&amp;purchasePlanDetail.id=${purchasePlanDetail.id}
+			</result>
+			<result name="success" type="redirect">
+				editPurchasePlanDetail.html?purchasePlan.id=${purchasePlan.id}&amp;purchasePlanDetail.id=${purchasePlanDetail.id}
+			</result>
+			<result name="error" type="redirect">
+				editPurchasePlanDetail.html?purchasePlan.id=${purchasePlan.id}&amp;purchasePlanDetail.id=${purchasePlanDetail.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editPurchasePlanDetail.html?purchasePlan.id=${purchasePlan.id}&amp;purchasePlanDetail.id=${purchasePlanDetail.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">purchasePlanDetail</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editRunmaintainPlanDetail"
+			class="editRunmaintainPlanDetailAction">
+			<result name="success" type="freemarker">
+				/pages/year/device/runmaintainPlan/runmaintainPlanDetailProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveRunmaintainPlanDetail"
+			class="editRunmaintainPlanDetailAction" method="save">
+			<result name="input" type="redirect">
+				editRunmaintainPlanDetail.html?runmaintainPlan.id=${runmaintainPlan.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="new" type="redirect">
+				editRunmaintainPlanDetail.html?runmaintainPlan.id=${runmaintainPlan.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="success" type="redirect">
+				editRunmaintainPlanDetail.html?runmaintainPlan.id=${runmaintainPlan.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="error" type="redirect">
+				editRunmaintainPlanDetail.html?runmaintainPlan.id=${runmaintainPlan.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editRunmaintainPlanDetail.html?runmaintainPlan.id=${runmaintainPlan.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">purchasePlanDetail</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editDailyRepair" class="editDailyRepairAction">
+			<result name="success" type="freemarker">
+				/pages/year/device/runmaintainPlan/dailyRepairProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveDailyRepair" class="editDailyRepairAction"
+			method="save">
+			<result name="input" type="redirect">
+				editDailyRepair.html?dailyRepair.id=${dailyRepair.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="new" type="redirect">
+				editDailyRepair.html?dailyRepair.id=${dailyRepair.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="success" type="redirect">
+				editDailyRepair.html?dailyRepair.id=${dailyRepair.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="error" type="redirect">
+				editDailyRepair.html?dailyRepair.id=${dailyRepair.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editDailyRepair.html?dailyRepair.id=${dailyRepair.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">dailyRepair</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editPricisionCheck"
+			class="editPricisionCheckAction">
+			<result name="success" type="freemarker">
+				/pages/year/device/runmaintainPlan/pricisionCheckProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="savePricisionCheck"
+			class="editPricisionCheckAction" method="save">
+			<result name="input" type="redirect">
+				editPricisionCheck.html?pricisionCheck.id=${pricisionCheck.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="new" type="redirect">
+				editPricisionCheck.html?pricisionCheck.id=${pricisionCheck.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="success" type="redirect">
+				editPricisionCheck.html?pricisionCheck.id=${pricisionCheck.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="error" type="redirect">
+				editPricisionCheck.html?pricisionCheck.id=${pricisionCheck.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editPricisionCheck.html?pricisionCheck.id=${pricisionCheck.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">pricisionCheck</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+		<action name="editDeviceChange"
+			class="editDeviceChangeAction">
+			<result name="success" type="freemarker">
+				/pages/year/device/runmaintainPlan/deviceChangeProfile.ftl
+			</result>
+			<interceptor-ref name="propertyReceiverStack" />
+		</action>
+		<action name="saveDeviceChange" class="editDeviceChangeAction"
+			method="save">
+			<result name="input" type="redirect">
+				editDeviceChange.html?deviceChange.id=${deviceChange.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="new" type="redirect">
+				editDeviceChange.html?deviceChange.id=${deviceChange.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="success" type="redirect">
+				editDeviceChange.html?deviceChange.id=${deviceChange.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="error" type="redirect">
+				editDeviceChange.html?deviceChange.id=${deviceChange.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<result name="invalid.token" type="redirect">
+				editDeviceChange.html?deviceChange.id=${deviceChange.id}&amp;runmaintainPlanDetail.id=${runmaintainPlanDetail.id}
+			</result>
+			<interceptor-ref name="propertySender">
+				<param name="propertyNames">deviceChange</param>
+			</interceptor-ref>
+			<interceptor-ref name="propertySenderStack" />
+		</action>
+	</package>
+
+	<package name="purchase" namespace="/preview/pro/purchase"
+		extends="pluto">
+		<action name="listRequestBillsDEVICE" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/requestBillList.ftl
+			</result>
+		</action>
+		<action name="listRequestBills" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/requestBillList.ftl
+			</result>
+		</action>
+		<action name="editRequestBill" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/requestBillProfile.ftl
+			</result>
+		</action>
+		<action name="listRequestBillItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/requestBillItemList.ftl
+			</result>
+		</action>
+		<action name="listRequestBillAttachs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/requestBillAttachList.ftl
+			</result>
+		</action>
+		<action name="editRequestBillItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/requestBillItemProfile.ftl
+			</result>
+		</action>
+		<action name="listPurchaseBillsDEVICE" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillList.ftl
+			</result>
+		</action>
+		<action name="listPurchaseBills" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillList.ftl
+			</result>
+		</action>
+		<action name="editPurchaseBill" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillProfile.ftl
+			</result>
+		</action>
+		<action name="listPurchaseBillItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillItemList.ftl
+			</result>
+		</action>
+		<action name="fundsItemsInfomation" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillfundsItemsList.ftl
+			</result>
+		</action>
+
+		<action name="middleCheckInfomation" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillmiddleCheck.ftl
+			</result>
+		</action>
+
+		<action name="editPurchaseBillItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillItemProfile.ftl
+			</result>
+		</action>
+		<action name="listPurchaseBillAttachs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillAttachList.ftl
+			</result>
+		</action>
+		<action name="listPurchaseBillCheck" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillCheckList.ftl
+			</result>
+		</action>
+		<action name="listReceiveBillsDEVICE" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/receiveBillList.ftl
+			</result>
+		</action>
+		<action name="listReceiveBills" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/receiveBillList.ftl
+			</result>
+		</action>
+		<action name="editReceiveBill" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/receiveBillProfile.ftl
+			</result>
+		</action>
+		<action name="listReceiveBillItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/receiveBillItemList.ftl
+			</result>
+		</action>
+		<action name="editReceiveBillItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/receiveBillItemProfile.ftl
+			</result>
+		</action>
+		<action name="listReceiveBillSpares" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/receiveBillSparesList.ftl
+			</result>
+		</action>
+		<action name="listReceiveBillTools" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/receiveBillToolList.ftl
+			</result>
+		</action>
+		<action name="listReceiveBillDocs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/receiveBillDocList.ftl
+			</result>
+		</action>
+		<action name="listReceiveBillProcs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/receiveBillProcDetail.ftl
+			</result>
+		</action>
+		<action name="listPurchaseProgress" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseProgressList.ftl
+			</result>
+		</action>
+		<action name="listSelectBudgePlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/selectBudgetPlanItems.ftl
+			</result>
+		</action>
+		<action name="listSelectedBudgePlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/selectedBudgetPlanItems.ftl
+			</result>
+		</action>
+
+		<action name="editPurchaseProgress" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseProgressProfile.ftl
+			</result>
+		</action>
+		<action name="listPurchaseProgressHistories"
+			class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseProgressHistoryList.ftl
+			</result>
+		</action>
+		<action name="editPurchaseProgressHistory" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseProgressHistoryProfile.ftl
+			</result>
+		</action>
+		<action name="editPurchaseBillContract" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/purchaseBillContractProfile.ftl
+			</result>
+		</action>
+		<action name="viewSupplierInfo" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/pro/purchase/supplierInfo.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="purchasePlan" namespace="/preview/plan/year/purchase"
+		extends="pluto">
+		<action name="listPurchasePlansDEVICE" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/purchase/purchasePlanList.ftl
+			</result>
+		</action>
+		<action name="listPurchasePlans" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/purchase/purchasePlanList.ftl
+			</result>
+		</action>
+		<action name="editPurchasePlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/purchase/purchasePlanProfile.ftl
+			</result>
+		</action>
+		<action name="listPurchasePlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/purchase/purchasePlanItemList.ftl
+			</result>
+		</action>
+		<action name="editPurchasePlanItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/purchase/purchasePlanItemProfile.ftl
+			</result>
+		</action>
+		<action name="listPurchasePlanImpls" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/purchase/purchasePlanImplList.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="budgetPlan" namespace="/preview/plan/budget"
+		extends="pluto">
+		<action name="listBudgePlansDEVICE" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/budgetPlansList.ftl
+			</result>
+		</action>
+		<action name="listBudgePlans" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/budgetPlansList.ftl
+			</result>
+		</action>
+		<action name="editBudgetPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/budgetPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listBudgePlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/budgetPlanItemList.ftl
+			</result>
+		</action>
+		<action name="listOccurParticular" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/occurParticularList.ftl
+			</result>
+		</action>
+		<action name="listAttacheBudget" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/attacheBudgetPlan.ftl
+			</result>
+		</action>
+		<action name="listBudgetBillProfile" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/budgetBillProfile.ftl
+			</result>
+		</action>
+		<action name="listYearBudgetTOOLING" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/yearBudgetList.ftl
+			</result>
+		</action>
+		<action name="listYearBudget" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/yearBudgetList.ftl
+			</result>
+		</action>
+		<action name="editYearBudget" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/yearBudgetProfile.ftl
+			</result>
+		</action>
+		<action name="listYearBudgetDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/yearBudgetDetailList.ftl
+			</result>
+		</action>
+		<action name="editYearBudgetDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/yearBudgetDetailProfile.ftl
+			</result>
+		</action>
+		<action name="listYearBudgetToolDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/yearBudgetToolDetailList.ftl
+			</result>
+		</action>
+		<action name="editYearBudgetToolDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/yearBudgetToolDetailProfile.ftl
+			</result>
+		</action>
+		<action name="listYearBudgetOccur" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/yearBudgetOccurList.ftl
+			</result>
+		</action>
+		<action name="listQuarterPlanTOOLING" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/quarterPlanList.ftl
+			</result>
+		</action>
+		<action name="listQuarterPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/quarterPlanList.ftl
+			</result>
+		</action>
+		<action name="editQuarterPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/quarterPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listQuarterPlanDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/quarterPlanDetailList.ftl
+			</result>
+		</action>
+		<action name="editQuarterPlanDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/quarterPlanDetailProfile.ftl
+			</result>
+		</action>
+		<action name="listYearBudgetProductDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/budget/yearBudgetproductDetailList.ftl
+			</result>
+		</action>
+	</package>
+
+
+	<package name="repairPlan" namespace="/preview/plan/year/repair"
+		extends="pluto">
+		<action name="listRepairPlansTOOLING" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairPlanList.ftl
+			</result>
+		</action>
+		<action name="listRepairPlansDEVICE" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairPlanList.ftl
+			</result>
+		</action>
+		<action name="listRepairPlans" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairPlanList.ftl
+			</result>
+		</action>
+		<action name="listRepairPlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairPlanItemList.ftl
+			</result>
+		</action>
+		<action name="listRepairProcItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairProcItemList.ftl
+			</result>
+		</action>
+		<action name="listRepairPlanItemDetails" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairPlanItemDetails.ftl
+			</result>
+		</action>
+		<action name="listRepairPlanSpare" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairPlanSpareList.ftl
+			</result>
+		</action>
+		<action name="listRepairFee" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairFeeList.ftl
+			</result>
+		</action>
+		<action name="listRepairManHour" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairManHourList.ftl
+			</result>
+		</action>
+		<action name="listRepairTool" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairToolList.ftl
+			</result>
+		</action>
+		<action name="editPreRepairProcDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairPlanDetail.ftl
+			</result>
+		</action>
+		<action name="editRepairPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairPlanProfile.ftl
+			</result>
+		</action>
+		<action name="editRepairProc" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairProcProfile.ftl
+			</result>
+		</action>
+		<action name="editRepairBill" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairPlanItemProfile.ftl
+			</result>
+		</action>
+		<action name="listRepairPlanItemProgress" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairPlanItemProgressList.ftl
+			</result>
+		</action>
+
+		<action name="listRepairProcsDEVICE" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairProcList.ftl
+			</result>
+		</action>
+		<action name="listRepairProcs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairProcList.ftl
+			</result>
+		</action>
+		<action name="editRepairBill" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairPlanItemProfile.ftl
+			</result>
+		</action>
+		<action name="listRepairPlanItemProgress" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/plan/year/repair/repairPlanItemProgressList.ftl
+			</result>
+		</action>
+	</package>
+
+	<!-- 
+		<package name="supplier" namespace="/preview/pro/supplier" extends="pluto">
+		<action name="listSuppliers" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/suppliersInfo.ftl</result>
+		</action>
+		<action name="listSuppliersItem" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/supplierList.ftl</result>
+		</action>
+		<action name="baseSuppliersItem" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/suppliersBase.ftl</result>
+		</action>
+		<action name="editSupplier" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/editSupplierInfo.ftl</result>
+		</action>
+		<action name="listSuppliersDevice" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/listSupplierDevice.ftl</result>
+		</action>
+		<action name="editSupplierDevice" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/supplierDevice.ftl</result>
+		</action>
+		<action name="listSupplierHistory" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/suppliersHistoryInfo.ftl</result>
+		</action>
+		<action name="listSupplierAccount" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/supplierDeviceAccount.ftl</result>
+		</action>
+		<action name="listSupplierPurchase" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/supplierPurchaseBill.ftl</result>
+		</action>
+		<action name="listSupplierReceive" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/supplierReceiveBills.ftl</result>
+		</action>
+		<action name="listSupplierLevel" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/listSupplierLevel.ftl</result>
+		</action>
+		<action name="editSupplierLevel" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/editSupplierLevel.ftl</result>
+		</action>
+		<action name="confirmSupplierLevel" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/confirmSupplierLevel.ftl</result>
+		</action>
+		<action name="listSupplierLevelHistory" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/listSupplierLevelHistory.ftl</result>
+		</action>
+		<action name="supplierBaseInfomation" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/supperlierBaseInfo.ftl</result>
+		</action>
+		<action name="supplierElseInfomation" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/supperlierElseInfo.ftl</result>
+		</action>
+		<action name="supplierLevelInfomation" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/supplierLevelInfo.ftl</result>
+		</action>
+		<action name="supplierNoLevelInfo" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/supplierSelectLevel.ftl</result>
+		</action>
+		<action name="supplierLevelBaseInfo" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/supplierLevelBaseInfo.ftl</result>
+		</action>
+		<action name="supplierLevelElseInfo" class="nullAction">
+		<result name="success" type="freemarker">/pages/preview__/pro/supplier/supplierLevelElseInfo.ftl</result>
+		</action>
+		</package>
+	-->
+	<package name="tool.log" namespace="/preview/tool/log"
+		extends="pluto">
+		<action name="listRequisitionLogs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/log/requisitionLogList.ftl
+			</result>
+		</action>
+		<action name="editRequisitionLog" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/log/requisitionLogProfile.ftl
+			</result>
+		</action>
+		<action name="listRequisitionLogHistories" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/log/requisitionLogHistoryList.ftl
+			</result>
+		</action>
+		<action name="listReturnLogs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/log/returnLogList.ftl
+			</result>
+		</action>
+		<action name="editReturnLog" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/log/returnLogProfile.ftl
+			</result>
+		</action>
+		<action name="listReturnLogHistories" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/log/returnLogHistoryList.ftl
+			</result>
+		</action>
+		<action name="listChangeLogs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/log/changeLogList.ftl
+			</result>
+		</action>
+		<action name="editChangeLog" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/log/changeLogProfile.ftl
+			</result>
+		</action>
+		<action name="listChangeLogHistories" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/log/changeLogHistoryList.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="tool.demarcates" namespace="/preview/tool/demarcates"
+		extends="pluto">
+		<action name="listDemarcates" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/demarcates/demarcatesList.ftl
+			</result>
+		</action>
+		<action name="editDemarcate" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/demarcates/demarcateProfile.ftl
+			</result>
+		</action>
+		<action name="listDemarcateHistories" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/demarcates/demarcateHistoryList.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="tool.errlog" namespace="/preview/tool/errlog"
+		extends="pluto">
+		<action name="listErrLogs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/errlog/errLogList.ftl
+			</result>
+		</action>
+		<action name="editErrLog" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/errlog/errLogProfile.ftl
+			</result>
+		</action>
+		<action name="listErrLogHistories" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/errlog/errLogHistoryList.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="tool.acclog" namespace="/preview/tool/acclog"
+		extends="pluto">
+		<action name="listAccidentLogs" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/accidentlog/accidentLogList.ftl
+			</result>
+		</action>
+		<action name="editAccidentLog" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/accidentlog/accidentLogProfile.ftl
+			</result>
+		</action>
+		<action name="listAccidentLogHistories" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/accidentlog/accidentLogHistoryList.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="tool.preRepair.rule"
+		namespace="/preview/tool/preRepair/rule" extends="pluto">
+		<action name="listPreRepairRuleTOOLING" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/preRepair/rule/preRepairRuleList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairRule" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/preRepair/rule/preRepairRuleList.ftl
+			</result>
+		</action>
+		<action name="editPreRepairRule" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/preRepair/rule/preRepairRuleProfile.ftl
+			</result>
+		</action>
+		<action name="listPreRepairRuleDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/preRepair/rule/preRepairRuleDetailList.ftl
+			</result>
+		</action>
+	</package>
+	<package name="tool.preRepair.plan"
+		namespace="/preview/tool/preRepair/plan" extends="pluto">
+		<action name="listPreRepairPlanTOOLING" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/preRepair/plan/preRepairPlanList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/preRepair/plan/preRepairPlanList.ftl
+			</result>
+		</action>
+		<action name="editPreRepairPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/preRepair/plan/preRepairPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listPreRepairPlanDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/preRepair/plan/preRepairPlanDetailList.ftl
+			</result>
+		</action>
+	</package>
+	<package name="tool.preRepair.proc"
+		namespace="/preview/tool/preRepair/proc" extends="pluto">
+		<action name="listPreRepairProcTOOLING" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/preRepair/proc/preRepairProcList.ftl
+			</result>
+		</action>
+		<action name="listPreRepairProc" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/preRepair/proc/preRepairProcList.ftl
+			</result>
+		</action>
+		<action name="editPreRepairProc" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/preRepair/proc/preRepairProcProfile.ftl
+			</result>
+		</action>
+		<action name="listPreRepairProcDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/preRepair/proc/preRepairProcDetailList.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="tool.maintenance.rule"
+		namespace="/preview/tool/maintenance/rule" extends="pluto">
+		<action name="listMaintenanceRule" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/maintenance/rule/maintenanceRuleList.ftl
+			</result>
+		</action>
+		<action name="editMaintenanceRule" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/maintenance/rule/maintenanceRuleProfile.ftl
+			</result>
+		</action>
+		<action name="listMaintenanceRuleDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/maintenance/rule/maintenanceRuleDetailList.ftl
+			</result>
+		</action>
+	</package>
+	<package name="tool.maintenance.plan"
+		namespace="/preview/tool/maintenance/plan" extends="pluto">
+		<action name="listMaintenancePlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/maintenance/plan/maintenancePlanList.ftl
+			</result>
+		</action>
+		<action name="editMaintenancePlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/maintenance/plan/maintenancePlanProfile.ftl
+			</result>
+		</action>
+		<action name="listMaintenancePlanDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/maintenance/plan/maintenancePlanDetailList.ftl
+			</result>
+		</action>
+	</package>
+	<package name="tool.maintenance.proc"
+		namespace="/preview/tool/maintenance/proc" extends="pluto">
+		<action name="listMaintenanceProc" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/maintenance/proc/maintenanceProcList.ftl
+			</result>
+		</action>
+		<action name="editMaintenanceProc" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/maintenance/proc/maintenanceProcProfile.ftl
+			</result>
+		</action>
+		<action name="listMaintenanceProcDetail" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/maintenance/proc/maintenanceProcDetailList.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="check" namespace="/preview/check" extends="pluto">
+		<action name="listCheckRules" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/check/checkRulesList.ftl
+			</result>
+		</action>
+		<action name="listCheckPlans" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/check/checkPlansList.ftl
+			</result>
+		</action>
+		<action name="listCheckPlanImpls" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/check/checkPlanImplsList.ftl
+			</result>
+		</action>
+		<action name="editCheckRules" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/check/checkRulesProfile.ftl
+			</result>
+		</action>
+		<action name="listCheckRulesItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/check/checkRulesItems.ftl
+			</result>
+		</action>
+		<action name="editCheckRulesItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/check/checkRulesItemProfile.ftl
+			</result>
+		</action>
+		<action name="editCheckPlan" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/check/checkPlanProfile.ftl
+			</result>
+		</action>
+		<action name="listCheckPlanItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/check/checkPlanItems.ftl
+			</result>
+		</action>
+		<action name="editCheckPlanItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/check/checkPlanItemProfile.ftl
+			</result>
+		</action>
+
+		<action name="editCheckPlanImpls" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/check/checkPlanImplsProfile.ftl
+			</result>
+		</action>
+		<action name="listCheckPlanImplsItems" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/check/checkPlanImplsItems.ftl
+			</result>
+		</action>
+		<action name="editCheckPlanImplsItem" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/check/checkPlanImplsItemProfile.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="myworkspace" namespace="/preview/workspace"
+		extends="pluto">
+		<action name="listUnAuditWorks" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/workspace/unAuditWorkList.ftl
+			</result>
+		</action>
+		<action name="listExecWorks" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/workspace/execWorkList.ftl
+			</result>
+		</action>
+		<action name="editMyWork" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/workspace/myworkProfile.ftl
+			</result>
+		</action>
+		<action name="editMyWarnning" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/workspace/mywarnningProfile.ftl
+			</result>
+		</action>
+		<action name="listAuditHistories" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/workspace/auditHistoryList.ftl
+			</result>
+		</action>
+		<action name="sampleDocument" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/workspace/sampleDocument.ftl
+			</result>
+		</action>
+		<action name="listUnReadWarnning" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/workspace/unReadWarnningList.ftl
+			</result>
+		</action>
+		<action name="listReader" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/workspace/readerList.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="device.inventory"
+		namespace="/preview/device/inventory" extends="pluto">
+		<action name="listDeviceInventories" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/inventory/deviceInventoryList.ftl
+			</result>
+		</action>
+		<action name="editDeviceInventory" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/inventory/deviceInventoryProfile.ftl
+			</result>
+		</action>
+		<action name="deviceInventoryDetails" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/inventory/inventoryDetails.ftl
+			</result>
+		</action>
+		<action name="editDeviceInventoryDetails" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/inventory/inventoryDetailProfile.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="tooling.inventory"
+		namespace="/preview/tooling/inventory" extends="pluto">
+		<action name="listToolingInventoriesTOOLING"
+			class="nullAction">
+			<result name="success" type="redirect">
+				listToolingInventories.html
+			</result>
+		</action>
+		<action name="listToolingInventories" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/inventory/toolingInventoryList.ftl
+			</result>
+		</action>
+		<action name="editToolingInventory" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/inventory/toolingInventoryProfile.ftl
+			</result>
+		</action>
+		<action name="toolingInventoryDetails" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/inventory/inventoryDetails.ftl
+			</result>
+		</action>
+		<action name="editToolingInventoryDetails" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/tool/inventory/inventoryDetailProfile.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="deivce.Instactness"
+		namespace="/preview/device/intactness" extends="pluto">
+		<action name="listDeviceIntactness" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/intactness/unIntactnessList.ftl
+			</result>
+		</action>
+		<action name="editDeviceIntactness" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/intactness/unIntactnessProfile.ftl
+			</result>
+		</action>
+		<action name="deviceDeviceIntactnessDetails"
+			class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/intactness/unIntactnessDetails.ftl
+			</result>
+		</action>
+		<action name="editDeviceDeviceIntactnessDetails"
+			class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/device/intactness/unIntactnessDetailProfile.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="empty" namespace="/preview/empty" extends="pluto">
+		<action name="TOOLING0" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="TOOLING1" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="TOOLING2" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="TOOLING3" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="TOOLING4" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="TOOLING5" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="TOOLING6" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="TOOLING7" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="TOOLING8" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="TOOLING_WARNRULE" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="NEWS_SHARE" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="DEVICE0" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="DEVICE1" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="DEVICE2" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="DEVICE3" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="DEVICE4" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="DEVICE5" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="DEVICE6" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="DEVICE7" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="DEVICE8" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="0" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="1" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="2" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="3" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="4" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="5" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="6" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="7" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="8" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="9" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="10" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+		<action name="11" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/misc/empty.ftl
+			</result>
+		</action>
+	</package>
+
+	<!-- 仓库基本信息 -->
+	<package name="warehouseInfo_" namespace="/warehouseInfo_"
+		extends="pluto">
+		<action name="listWarehouseInfo_" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/warehouseInfo/warehouse/warehouseInfoList.ftl
+			</result>
+		</action>
+		<action name="editWarehouseInfo_" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/warehouseInfo/warehouse/warehouseInfoProfile.ftl
+			</result>
+		</action>
+		<action name="newWarehouseInfo_" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/warehouseInfo/warehouse/warehouseInfoNew.ftl
+			</result>
+		</action>
+		<action name="listRegional_" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/warehouseInfo/regional/regionalList.ftl
+			</result>
+		</action>
+		<action name="editRegional_" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/warehouseInfo/regional/regionalProfile.ftl
+			</result>
+		</action>
+		<action name="newRegional_" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/warehouseInfo/regional/regionalNew.ftl
+			</result>
+		</action>
+	</package>
+	<package name="location_" namespace="/location_" extends="pluto">
+		<action name="listLocation_" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/warehouseInfo/location/locationList.ftl
+			</result>
+		</action>
+		<action name="editLocation_" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/warehouseInfo/location/locationProfile.ftl
+			</result>
+		</action>
+		<action name="newLocation_" class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/warehouseInfo/location/locationNew.ftl
+			</result>
+		</action>
+	</package>
+	
+	<!-- 申购单汇总查询 start -->
+	<package name="DevicesubscribeSummary" namespace="/DevicesubscribeSummary" extends="pluto">
+		<!-- 库存明细 2010-09-14 hmguan start -->
+		<action name="listDevicesDetails"
+			class="nullAction">
+			<result name="success" type="freemarker">
+				/pages/preview__/devicesubscribesummary/listDevicesDetails.ftl
+			</result>
+			<interceptor-ref name="parameterReceiverStack" />
+		</action>
+		<action name="searchDevicesDetails"
+			class="nullAction">
+			<result name="success" type="redirect">
+				listDevicesDetails.html?
+			</result>
+			<result name="error" type="redirect">
+				listDevicesDetails.html
+			</result>
+			<result name="invalid.token" type="redirect">
+				listDevicesDetails.html
+			</result>
+			<interceptor-ref name="parameterSenderStack" />
+		</action>		
+		<!-- 库存明细 2010-09-14 hmguan end -->		
+	</package>
+	<!-- 申购单汇总查询 end -->
+	
+	
+</xwork>

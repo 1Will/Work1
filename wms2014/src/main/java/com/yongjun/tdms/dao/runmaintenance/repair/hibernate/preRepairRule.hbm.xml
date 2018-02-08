@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: preRepairRule.hbm.xml 9677 2007-12-24 07:08:45Z qsun $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.repair.PreRepairRule" table="t_prerepair_rule" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_prerepair_rule_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="position" type="string">
+            <column name="position" not-null="false"  sql-type="NVARCHAR(150)"/>
+        </property>
+        
+        <property name="content" type="string">
+            <column name="content" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="lastRepairDate" type="date">
+            <column name="last_repair_date" not-null="false" />
+        </property>
+        
+        <property name="preRepairTime" type="double">
+            <column name="prerepair_time" not-null="false"/>
+        </property>
+        
+         <property name="maxRunHour" type="integer">
+            <column name="max_run_hour" not-null="false" />
+        </property>
+        
+		<many-to-one name="asset" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+			<column name="asset_id" not-null="true" />
+		</many-to-one>
+				
+	</class>
+</hibernate-mapping>

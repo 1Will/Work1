@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: payDetail.hbm.xml 10908 2008-02-14 01:48:14Z qsun $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.prophase.business.AcceptBillDetail" table="t_acceptBill_Detail" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_acceptBill_Detail_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="acceptProject" type="string">
+        	<column name="ACCEPT_PROJECT" not-null="false" length="50" />
+        </property>
+        
+        <property name="acceptSituation" type="string">
+            <column name="ACCEPT_SITUATION" not-null="false" length="250"/>
+        </property>
+        
+         <property name="handleOpinion" type="string">
+        	<column name="HANDLE_OPINION" not-null="false" length="50" />
+        </property>
+        
+        <property name="memo" type="string">
+            <column name="MEMO" not-null="false" length="250"/>
+        </property>
+         <many-to-one name="acceptBill" class="com.yongjun.tdms.model.prophase.business.AcceptBill">
+            <column name="ACCEPT_BILL_ID" not-null="true" />
+        </many-to-one>
+        <!--新增加的字段-->
+         <many-to-one name="spare" class="com.yongjun.tdms.model.asset.spare.Spare">
+            <column name="SPARE_ID" not-null="false" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="NAME" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <property name="model" type="string">
+            <column name="MODEL" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="graphNo" type="string">
+            <column name="GRAPH_NO" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+         <property name="specification" type="string">
+            <column name="SPECIFICATION" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="amount" type="integer">
+            <column name="AMOUNT" not-null="false"/>
+        </property>
+         <property name="unitPrice" type="double">
+            <column name="UNITPRICE" not-null="true" />
+        </property>
+        <property name="totalPrice" type="double">
+            <column name="TOTAL_PRICE" not-null="false"/>
+        </property>
+        <many-to-one name="purchaseContractDtl" class="com.yongjun.tdms.model.prophase.business.PurchaseBillDetail">
+			<column name="PURCHASE_BILL_DETAIL_ID" not-null="false" />
+		</many-to-one>
+         <property name="detailType" type="com.yongjun.tdms.dao.year.tooling.yearPlan.hibernate.YearPlanDetailCategoryEnum">
+            <column name="DETAIL_TYPE" not-null="false" length="50"/>
+        </property>
+         <property name="categoryName" type="string">
+            <column name="CATEGORY_NAME" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="detailCategoryName" type="string">
+            <column name="DETAIL_CATEGORY_NAME" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="DEPARTMENT_ID" not-null="false" />
+		</many-to-one>
+		 <property name="departmentName" type="string">
+            <column name="DEPART_NAME" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <many-to-one name="toolingCategory" class="com.yongjun.tdms.model.base.codevalue.ToolingType">
+			<column name="TOOLING_CATEGORY_ID" not-null="false" />
+		</many-to-one>
+		<many-to-one name="tooling" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+			<column name="TOOLING_ID" not-null="false" />
+		</many-to-one>
+		<many-to-one name="category" class="com.yongjun.tdms.model.base.codevalue.SpareType">
+			<column name="CATEGORY_ID" not-null="false" />
+		</many-to-one>
+	    <many-to-one name="detailCategory" class="com.yongjun.tdms.model.base.codevalue.SpareDetailType">
+			<column name="DETAIL_CATEGORY_ID" not-null="false" />
+		</many-to-one>
+		<property name="result" type="com.yongjun.tdms.dao.prophase.business.hibernate.AcceptResultEnum">
+            <column name="RESULT_VALUE" not-null="true"/>
+        </property>
+        <property name="establish" type="com.yongjun.tdms.dao.prophase.business.hibernate.AcceptEstablishAccountEnum">
+            <column name="ESTABLISH" not-null="false"/>
+        </property>
+        <many-to-one name="calUnit" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="cal_unit_id" not-null="false" />
+		</many-to-one>
+		 <property name="judageSave" type="boolean">
+            <column name="judage_Save" not-null="false"/>
+        </property>
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+        
+    </class>
+</hibernate-mapping>

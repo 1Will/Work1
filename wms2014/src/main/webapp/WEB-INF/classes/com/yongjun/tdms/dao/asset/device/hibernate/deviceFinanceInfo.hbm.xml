@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: deviceFinanceInfo.hbm.xml 11194 2008-03-04 12:45:26Z wzou $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.asset.device.DeviceFinanceInfo" table="t_device_finance_info">
+        <id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_device_finance_info_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <discriminator column="DISCRIMINATOR" type="string"/>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="usedDate" type="date">
+            <column name="used_date" not-null="false" />
+        </property>
+        
+        <property name="unitPrice" type="double">
+            <column name="unit_price" not-null="false" />
+        </property>
+        
+        <property name="miscExpenses" type="double">
+            <column name="misc_expenses" not-null="false" />
+        </property>
+        
+        <property name="origPrice" type="double">
+            <column name="orig_price" not-null="false" />
+        </property>
+        <property name="yearLimit" type="integer">
+            <column name="year_limit" not-null="false" />
+        </property>
+        
+        <property name="netSalvageScale" type="double">
+            <column name="net_salvage_scale" not-null="false" />
+        </property>
+        
+        <property name="yearDeprecitionScale" type="double">
+            <column name="year_deprecition_scale" not-null="false" />
+        </property>
+        
+        <property name="initDeprecitionDate" type="date">
+            <column name="init_deprecition_date" not-null="false" />
+        </property>
+        
+        <property name="initDeprecitionSum" type="double">
+            <column name="init_deprecition_sum" not-null="false" />
+        </property>
+        
+        <property name="curDeprecitionDate" type="date">
+            <column name="cur_deprecition_date" not-null="false" />
+        </property>
+        
+        <property name="curDeprecitionSum" type="double">
+            <column name="cur_deprecition_sum" not-null="false" />
+        </property>
+        
+        <property name="foreignCurrencyPrice" type="double">
+            <column name="foreign_currency_price" not-null="false" />
+        </property>
+        
+         <property name="netValue" type="double">
+            <column name="net_value" not-null="false" />
+        </property>
+        
+        <many-to-one name="device" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+            <column name="device_id" not-null="true" unique-key="uk_device_id"/>
+        </many-to-one>
+        
+        <many-to-one name="financeType" class="com.yongjun.tdms.model.base.financeType.FinanceType">
+            <column name="finance_type_id" not-null="false" />
+        </many-to-one>
+        
+        <many-to-one name="foreignCurrencyName" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+            <column name="foreign_currency_name_id" not-null="false" />
+        </many-to-one>
+        
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+        
+    </class>
+</hibernate-mapping>

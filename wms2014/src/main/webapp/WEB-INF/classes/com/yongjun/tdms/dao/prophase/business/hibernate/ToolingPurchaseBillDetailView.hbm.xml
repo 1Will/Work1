@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id:  $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.prophase.business.ToolingPurchaseBillDetailView" table="t_toolingpurchase_contract_view" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_toolingpurchase_contract_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        
+        <property name="graphNo" type="string">
+            <column name="graphNo" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="name" type="string">
+            <column name="name" not-null="false"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="department" type="string">
+            <column name="DEPARTMENT" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="categoryName" type="string">
+            <column name="categoryName" not-null="false" sql-type="NVARCHAR(10)"/>
+        </property>
+        
+        <property name="detailCategoryName" type="string">
+            <column name="detailCategoryName" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+         
+       
+        <property name="model" type="string">
+            <column name="model" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="detailType" type="string">
+            <column name="detailType" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="specification" type="string">
+            <column name="specification" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+       
+        <property name="purchaseBillName" type="string">
+            <column name="purchaseBillName" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        	<property name="actualDeliveryDate" type="date">
+            <column name="ACTUAL_DELIVERY_DATE" not-null="false"/>
+        </property>        
+        
+        <property name="buser" type="string">
+            <column name="BUSER_ID" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        <property name="factory" type="string">
+            <column name="FACTORY_ID" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+       
+        <property name="unitPrice" type="double">
+            <column name="unitprice" not-null="false"/>
+        </property>        
+        <property name="amount" type="integer">
+            <column name="amount" not-null="false" />
+        </property>
+         <property name="allPrice" type="double">
+            <column name="allPrice" not-null="false"/>
+        </property>
+        <property name="calUnit" type="string">
+            <column name="calUnit" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="reqDeliveryDate" type="date">
+            <column name="reqDeliveryDate" not-null="false" />
+        </property>
+        <property name="purchaseDate" type="date">
+            <column name="purchaseDate" not-null="false" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="comment" type="string">
+            <column name="COMMENT" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+
+		<property name="purchaseBillId" type="long">
+            <column name="purchaseBillId" not-null="false"/>
+        </property>
+        
+        
+        <property name="consigneeAdd" type="string">
+			<column name="CONSIGNEE_ADD" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		<property name="consigneeName" type="string">
+			<column name="CONSIGNEE_NAME" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		<property name="consigneeTel" type="string">
+			<column name="CONSIGNEE_TEL" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		<property name="consigneeFax" type="string">
+			<column name="CONSIGNEE_FAX" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		<property name="address" type="string">
+        	<column name="ADDRESS" not-null="false" length="255" />
+        </property>
+		<!-- 邮编 -->
+		<property name="postCode" type="string">
+            <column name="POSTCODE" not-null="false" length="50" />
+        </property>
+        <!-- 税号 -->
+		<property name="taxId" type="string">
+            <column name="TAXID" not-null="false" length="50" />
+        </property>
+        <!-- 开户行 -->
+		<property name="bank" type="string">
+            <column name="BANK" not-null="false" length="50" />
+        </property>
+        <!-- 银行帐号 -->
+		<property name="bankAccount" type="string">
+            <column name="BANKACCOUNT" not-null="false" length="50" />
+        </property>
+        
+        <property name="total" type="double">
+            <column name="total" not-null="false" length="50" />
+        </property>
+         <property name="duty" type="double">
+            <column name="duty" not-null="false" length="50" />
+        </property>
+
+
+		<property name="filialeName" type="string">
+            <column name="FILIALENAME" not-null="false" length="50" />
+        </property>
+        <property name="supplierName" type="string">
+            <column name="SUPPLIERNAME" not-null="false" length="50" />
+        </property>
+         <property name="billNo" type="string">
+            <column name="billNo" not-null="false" length="50" />
+        </property>
+          <property name="orderNo" type="string">
+            <column name="orderNo" not-null="false" length="50" />
+        </property>
+        
+	</class>
+    <query name="GetTOOLINGPURCHASECONTRACT">
+		<![CDATA[FROM ToolingPurchaseBillDetailView detail WHERE detail.purchaseBillId = :purchaseBillId order by detail.detailType]]>
+	</query>
+</hibernate-mapping>

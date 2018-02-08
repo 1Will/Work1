@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" 
+	"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<beans>
+	
+	<!-- ~~~~~~~~~~~ Dao ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	
+    <bean id="wfJobHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/yongjun/tdms/workflow/dao/job/hibernate/job.hbm.xml</value>
+        </constructor-arg>
+    </bean> 
+    <bean id="jobDao" parent="abstractTrackingProxy">
+        <property name="proxyInterfaces">
+            <value>com.yongjun.tdms.workflow.dao.job.JobDao</value>
+        </property>
+        <property name="target">
+            <bean parent="baseHibernateDao"
+                  class="com.yongjun.tdms.workflow.dao.job.hibernate.HibernateJob"/>
+        </property>
+    </bean>
+    
+    <bean id="wfJobHistoryHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/yongjun/tdms/workflow/dao/job/hibernate/jobHistory.hbm.xml</value>
+        </constructor-arg>
+    </bean> 
+    <bean id="jobHistoryDao" parent="abstractTrackingProxy">
+        <property name="proxyInterfaces">
+            <value>com.yongjun.tdms.workflow.dao.job.JobHistoryDao</value>
+        </property>
+        <property name="target">
+            <bean parent="baseHibernateDao"
+                  class="com.yongjun.tdms.workflow.dao.job.hibernate.HibernateJobHistory"/>
+        </property>
+    </bean>
+    
+    <bean id="wfDocStateHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/yongjun/tdms/workflow/dao/docstate/hibernate/docState.hbm.xml</value>
+        </constructor-arg>
+    </bean> 
+    <bean id="docStateDao" parent="abstractTrackingProxy">
+        <property name="proxyInterfaces">
+            <value>com.yongjun.tdms.workflow.dao.docstate.DocStateDao</value>
+        </property>
+        <property name="target">
+            <bean parent="baseHibernateDao"
+                  class="com.yongjun.tdms.workflow.dao.docstate.hibernate.HibernateDocState"/>
+        </property>
+    </bean>
+    
+    <bean id="wfDocTypeHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/yongjun/tdms/workflow/dao/doctype/hibernate/docType.hbm.xml</value>
+        </constructor-arg>
+    </bean> 
+    <bean id="docTypeDao" parent="abstractTrackingProxy">
+        <property name="proxyInterfaces">
+            <value>com.yongjun.tdms.workflow.dao.doctype.DocTypeDao</value>
+        </property>
+        <property name="target">
+            <bean parent="baseHibernateDao"
+                  class="com.yongjun.tdms.workflow.dao.doctype.hibernate.HibernateDocType"/>
+        </property>
+    </bean>
+    
+    <bean id="wfJobApproverHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/yongjun/tdms/workflow/dao/approver/hibernate/jobApprover.hbm.xml</value>
+        </constructor-arg>
+    </bean> 
+    <bean id="jobApproverDao" parent="abstractTrackingProxy">
+        <property name="proxyInterfaces">
+            <value>com.yongjun.tdms.workflow.dao.approver.JobApproverDao</value>
+        </property>
+        <property name="target">
+            <bean parent="baseHibernateDao"
+                  class="com.yongjun.tdms.workflow.dao.approver.hibernate.HibernateJobApprover"/>
+        </property>
+    </bean>
+    
+    <bean id="wfDocApproverHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/yongjun/tdms/workflow/dao/approver/hibernate/docApprover.hbm.xml</value>
+        </constructor-arg>
+    </bean> 
+    <bean id="docApproverDao" parent="abstractTrackingProxy">
+        <property name="proxyInterfaces">
+            <value>com.yongjun.tdms.workflow.dao.approver.DocApproverDao</value>
+        </property>
+        <property name="target">
+            <bean parent="baseHibernateDao"
+                  class="com.yongjun.tdms.workflow.dao.approver.hibernate.HibernateDocApprover"/>
+        </property>
+    </bean>
+    
+    <bean id="wfSignatureLogHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/yongjun/tdms/workflow/dao/signlog/hibernate/signatureLog.hbm.xml</value>
+        </constructor-arg>
+    </bean> 
+    <bean id="signatureLogDao" parent="abstractTrackingProxy">
+        <property name="proxyInterfaces">
+            <value>com.yongjun.tdms.workflow.dao.signlog.SignatureLogDao</value>
+        </property>
+        <property name="target">
+            <bean parent="baseHibernateDao"
+                  class="com.yongjun.tdms.workflow.dao.signlog.hibernate.HibernateSignatureLog"/>
+        </property>
+    </bean>
+    
+    
+    <!-- ~~~~~~~~~~~ Manager ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <bean id="wfDocTypeManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.workflow.service.doctype.pojo.DefaultWfDocTypeManager">
+				<constructor-arg index="0">
+					<ref bean="docTypeDao" />
+				</constructor-arg>	
+				<property name="validDocTypes">
+					<list>
+						<value>com.yongjun.tdms.workflow.service.SimplePoJo</value>
+						<value>com.yongjun.tdms.model.runmaintenance.checkpoint.CheckPointRule</value>
+						<value>com.yongjun.tdms.model.runmaintenance.checkpoint.CheckPointPlan</value>
+						<value>com.yongjun.tdms.model.runmaintenance.checkpoint.CheckPointProc</value>
+						<value>com.yongjun.tdms.model.prophase.supplier.Supplier</value>
+						<value>com.yongjun.tdms.model.asset.device.DeviceCard</value>
+						<value>com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlan</value>
+						<value>com.yongjun.tdms.model.year.repair.RepairPlanAndProc</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="wfDocStateManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.workflow.service.docstate.pojo.DefaultWfDocStateManager">	
+				<constructor-arg index="0">
+					<ref bean="docStateDao" />
+				</constructor-arg>	
+				<property name="docStateSubmitting" value="DOC_SUBMITTING"/>
+				<property name="docStateSubmitted" value="DOC_SUBMITTED"/>
+				<property name="docStateApproving" value="DOC_APPROVING"/>
+				<property name="docStateApproved" value="DOC_APPROVED"/>
+				<property name="docStateRejected" value="DOC_REJECTED"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="wfJobManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.workflow.service.job.pojo.DefaultWfJobManager">	
+				<constructor-arg index="0">
+					<ref bean="wfDocTypeManager" />
+				</constructor-arg>	
+				<constructor-arg index="1">
+					<ref bean="jobDao" />
+				</constructor-arg>	
+				<constructor-arg index="2">
+					<ref bean="jobApproverDao" />
+				</constructor-arg>					
+				<constructor-arg index="3">
+					<ref bean="wfJobApproverManager" />
+				</constructor-arg>	
+				<constructor-arg index="4">
+					<ref bean="wfDocStateManager" />
+				</constructor-arg>					
+				<constructor-arg index="5">
+					<ref bean="wfJobHistoryManager" />
+				</constructor-arg>	
+				<constructor-arg index="6">
+					<ref bean="userManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="wfJobHistoryManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.workflow.service.job.pojo.DefaultWfJobHistoryManager">
+				<constructor-arg index="0">
+					<ref bean="jobHistoryDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="wfDocApproverManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.workflow.service.approver.pojo.DefaultWfDocApproverManager">	
+				<constructor-arg index="0">
+					<ref bean="docApproverDao" />
+				</constructor-arg>	
+				<constructor-arg index="1">
+					<ref bean="docTypeDao" />
+				</constructor-arg>		
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="wfJobApproverManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.workflow.service.approver.pojo.DefaultWfJobApproverManager">				
+				<constructor-arg index="0">
+					<ref bean="userDao" />
+				</constructor-arg>	
+				<constructor-arg index="1">
+					<ref bean="wfDocStateManager" />
+				</constructor-arg>	
+				<constructor-arg index="2">
+					<ref bean="jobApproverDao" />
+				</constructor-arg>		
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="wfSignatureLogManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.workflow.service.signlog.pojo.DefaultWfSignatureLogManager">	
+				<constructor-arg index="0">
+					<ref bean="signatureLogDao" />
+				</constructor-arg>					
+			</bean>
+		</property>
+	</bean>
+</beans>

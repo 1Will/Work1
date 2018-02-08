@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+ <!-- $Id: EditDeviceArgsAction-validation.xml 7953 2007-10-23 05:58:17Z qsun $-->       
+<validators>
+    <field name="deviceArgs.name">
+        <field-validator type="requiredstring">
+            <message key="deviceArgs.name.requiredstring"/>
+        </field-validator>
+    </field>
+    
+    <field name="deviceArgs.value">
+    	<field-validator type="requiredstring">
+            <message key="deviceArgs.value.requiredstring"/>
+        </field-validator>
+    </field>
+</validators>

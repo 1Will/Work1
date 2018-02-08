@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: operateCert.hbm.xml 10760 2008-01-29 03:34:18Z qsun $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.repair.BrockenRate" table="t_Device_Monthly_Rate" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_Device_Monthly_Rate_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="month" type="date">
+            <column name="Month" not-null="false"/>
+        </property>
+   
+        <property name="deviceNo" type="string">
+            <column name="device_no" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="deviceName" type="string">
+            <column name="device_name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property> 
+        <many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+            <column name="dept_id" not-null="false"/>
+        </many-to-one> 
+		<property name="departName" type="string">
+            <column name="dept_Name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>    
+        <property name="usAgeRate" type="double">
+            <column name="Usage_Rate" not-null="false"/>
+        </property>  
+        <property name="usAbleRate" type="double">
+            <column name="Usable_Rate" not-null="false"/>
+        </property>
+        <property name="devBrockenRate" type="double">
+            <column name="Brocken_Rate" not-null="false"/>
+        </property>
+        <property name="createTime" column="Creater_Date" type="timestamp"/>
+        <property name="comment" type="string">
+            <column name="comment" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+       <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+       <many-to-one name="deviceCard" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+            <column name="device_id" not-null="false"/>
+        </many-to-one>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" 
+	"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+	<beans>
+	<import resource="eam2008-hibernate-daoContext.xml"/>
+   <!--  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName">
+            <value>com.mysql.jdbc.Driver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:mysql://localhost:3306/eam2008_test?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8</value>
+        </property>
+        <property name="username">
+            <value>sa</value>
+        </property>
+        <property name="password">
+            <value>sa</value>
+        </property>
+        <property name="maxActive">
+            <value>200</value>
+        </property>-->
+   
+	<!-- 
+        <property name="driverClassName">
+            <value>oracle.jdbc.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@10.195.36.11:21530:XWL1</value>
+        </property>
+        <property name="username">
+            <value>panatms</value>
+        </property>
+        <property name="password">
+            <value>panatms</value>
+        </property>
+        <property name="maxActive">
+            <value>200</value>
+        </property>
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject">
+            <ref local="dataSource"/>
+        </property>
+        <property name="targetMethod">
+            <value>addConnectionProperty</value>
+        </property>
+        <property name="arguments">
+            <list>
+                <value>defaultNChar</value>
+                <value>true</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="dbUnitTemplate" class="com.yongjun.tdms.dao.asset.device.hibernate.DBUnitTemplate">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+    </bean>
+    -->
+</beans>

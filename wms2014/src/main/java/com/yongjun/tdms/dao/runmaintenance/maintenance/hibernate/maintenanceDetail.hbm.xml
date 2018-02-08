@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: calibrationDetail.hbm.xml 10951 2008-02-15 09:20:27Z wzou $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.maintenance.MaintenanceDetail" table="t_maintenance_detail" lazy="true">
+        <id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_maintenance_detail_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="planDate" type="date">
+            <column name="plan_date" not-null="false" />
+        </property>
+        
+        <property name="actualDate" type="date">
+            <column name="actual_date" not-null="false" />
+        </property>
+        
+        <property name="result" type="com.yongjun.tdms.model.runmaintenance.maintenance.MaintenanceResultTypeEnum">
+            <column name="result" not-null="false" length="25" />
+        </property>
+        
+        <property name="part" type="string">
+            <column name="part" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="method" type="string">
+            <column name="method" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="appeal" type="string">
+            <column name="appeal" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="comment" type="string">
+            <column name="comment" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <set name="maintenanceDeviceDetails" inverse="true" cascade="all-delete-orphan" lazy="true">
+        	<key column="maintenance_detail"/>
+        	<one-to-many class="com.yongjun.tdms.model.runmaintenance.maintenance.MaintenanceDeviceDetail"/>
+		</set>
+        
+        <many-to-one name="dutyPeople" class="com.yongjun.pluto.model.security.User">
+			<column name="duty_people" not-null="false" />
+		</many-to-one>
+ 
+        <many-to-one name="plan" class="com.yongjun.tdms.model.runmaintenance.maintenance.Maintenance">
+            <column name="plan_id" not-null="false" />
+        </many-to-one>
+        
+        <many-to-one name="proc" class="com.yongjun.tdms.model.runmaintenance.maintenance.Maintenance">
+            <column name="proc_id" not-null="false" />
+        </many-to-one>
+        
+        <many-to-one name="device" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+            <column name="device_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="resultType" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="result_type" not-null="false" />
+		</many-to-one>
+        
+		<property name="createdTime" column="created_time" type="timestamp"/>
+        <property name="creator"  column="creator"   type="string" length="50"/>
+        <property name="lastModifiedTime" column="last_modified_time" type="timestamp"/>
+        <property name="lastOperator"  column="last_modifier"   type="string" length="50"/>
+    </class>  
+    <query name="GetdeviceIdLoadMaintenanceDetail">
+        	<![CDATA[from MaintenanceDetail md where md.device.id = :id]]>
+    </query>
+    <query name="GetdeviceIdAndMonthLoadMaintenanceDetail">
+        	<![CDATA[from MaintenanceDetail md where md.device.id = :id AND md.plan.month=:month]]>
+    </query>
+</hibernate-mapping>

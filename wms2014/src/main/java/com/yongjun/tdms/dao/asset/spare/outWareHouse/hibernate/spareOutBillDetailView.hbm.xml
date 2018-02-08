@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: spareInOutHistory.hbm.xml 8643 2007-11-25 18:10:43Z mwei $ -->
+
+<hibernate-mapping>
+	<class
+		name="com.yongjun.tdms.model.asset.spare.outWareHouse.SpareOutBillDetailView"
+		table="t_spare_outWareHouse_detail_view" lazy="true">
+		<id name="id" column="ID" type="long">
+			<generator class="native">
+				<param name="sequence">
+					t_spareOut_bill_detail_sequence
+				</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<property name="outBillCode" type="string">
+			<column name="OUT_BILL_CODE" not-null="false"
+				sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="outBillDate" type="date">
+			<column name="OUT_BILL_DATE" not-null="false" />
+		</property>
+		<property name="outBillPerson" type="string">
+			<column name="OUT_BILL_PERSON" not-null="false" />
+		</property>
+
+		<property name="borrower" column="BORROWER" type="string"
+			not-null="false" />
+
+		<property name="outBillName" column="OUTBILLNAME" type="string"
+			not-null="false" />
+		<property name="oldSpare" type="string">
+			<column name="OLDSPARE" not-null="false" />
+		</property>
+		<property name="outType" type="string">
+			<column name="OUTTYPE" not-null="false" />
+		</property>
+		<property name="status" type="string">
+			<column name="OUT_STATUS" not-null="false"
+				sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="deptName" type="string">
+			<column name="DEPT_NAME" not-null="false" />
+		</property>
+		<property name="code" type="string">
+			<column name="CODE" not-null="true" />
+		</property>
+		<property name="name" type="string">
+			<column name="NAME" not-null="false" />
+		</property>
+		<property name="specification" type="string">
+			<column name="SPECIFICATION" not-null="false" />
+		</property>
+		<property name="model" type="string">
+			<column name="MODEL" not-null="false" />
+		</property>
+		<property name="unitPrice" type="double">
+			<column name="UNIT_PRICE" not-null="false" />
+		</property>
+		<property name="number" type="long">
+			<column name="NUMBER" not-null="false" />
+		</property>
+		<property name="allPrice" type="double">
+			<column name="ALL_PRICE" not-null="false" />
+		</property>
+		<property name="categoryName" type="string">
+			<column name="CATE_NAME" not-null="false" />
+		</property>
+		<property name="unit" type="string">
+			<column name="UNIT" not-null="false" />
+		</property>
+		<property name="stocksBeforeInOrOut" type="long">
+			<column name="STOCK_OUT" not-null="false" />
+		</property>
+		<property name="stocksAfterInOrOut" type="long">
+			<column name="STOCK_IN" not-null="false" />
+		</property>
+		<property name="outWareHouseBillId" type="long">
+			<column name="OUT_WARE_HOUSE_Bill_Id" not-null="false" />
+		</property>
+		<property name="outWareHouse" type="string">
+			<column name="OUT_WAREHOUSE" not-null="false" />
+		</property>
+		<property name="locationCode" type="string">
+			<column name="LOCATION_CODE" not-null="false" />
+		</property>
+		<property name="detailCategoryName" type="string">
+			<column name="DETAIL_CATEGORY_NAME" not-null="false" />
+		</property>
+		<property name="orderNo" type="string">
+			<column name="ORDER_NO" not-null="false" />
+		</property>
+		<property name="factoryName" type="string">
+			<column name="FACTORY_NAME" not-null="false" />
+		</property>
+		<property name="borrowerPeople" type="string">
+			<column name="BORROWER_PEOPLE" not-null="false" />
+		</property>
+		<property name="shebei" type="string">
+			<column name="DEVICE" not-null="false" />
+		</property>
+		<property name="shebeino" type="string">
+			<column name="shebeino" not-null="false" />
+		</property>
+		<property name="useTypes" type="string">
+			<column name="useTypes" not-null="false" />
+		</property>
+		<property name="banzu" type="string">
+			<column name="BANZU" not-null="false" />
+		</property>
+	    <property name="newOrOld" type="string">
+			<column name="NEWOROLD" not-null="false" />
+		</property>
+	    <property name="outPeople" type="string">
+			<column name="OUTWAREHOUSER" not-null="false" />
+		</property>
+		<property name="outDate" type="date">
+			<column name="OUTWAREHOUSE_DATE" not-null="false" />
+		</property>
+		        <!-- 备注 zzb --> 
+		 <property name="comment" type="string">
+            <column name="COMMENT" not-null="false"/>
+        </property>
+        <property name="warehouse" type="long">
+			<column name="WAREHOUSE_ID" not-null="false" />
+		</property>
+	</class>
+	<query name="GetOutBillDetailByOutWareHouseId">
+		<![CDATA[FROM SpareOutBillDetailView detail WHERE 1=1 and detail.outWareHouseBillId = :outWareHouseBillId]]>
+	</query>
+</hibernate-mapping>

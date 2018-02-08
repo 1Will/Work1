@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: spareInventoryDetail.hbm.xml 9298 2007-12-13 04:15:06Z qsun $ -->
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.asset.spare.Inventory.SpareInventoryDetail" table="t_spare_inventory_detail" lazy="true">
+        <id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_spare_inventory_detail_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <discriminator column="DISCRIMINATOR" type="string"/>
+        <version name="version" column="VERSION" type="long"/>
+        <property name="inventoryNum" type="long">
+            <column name="inventory_num" not-null="false" />
+        </property>
+        <property name="code" type="string">
+            <column name="CODE" not-null="false" />
+        </property>
+       <!--  <property name="callFlag" type="boolean">
+            <column name="CALL_FLAG"/>
+        </property>-->
+        <property name="name" type="string">
+            <column name="NAME" not-null="false" />
+        </property>
+        <property name="model" type="string">
+            <column name="MODEL" not-null="false" />
+        </property>
+         <property name="specification" type="string">
+            <column name="SPECIFICATION" not-null="false" />
+        </property>
+        
+         <property name="currentSysStocks" type="long">
+            <column name="current_sys_stocks" not-null="false" />
+        </property>
+        <property name="actualNumber" type="long">
+            <column name="ACTUAL_NUMBER" not-null="false" />
+        </property>
+        
+        <property name="comment" type="string" column="COMMENT" not-null="false"/>
+        
+         <property name="unitPrice" type="double">
+            <column name="UNIT_PRICE" not-null="false" />
+        </property>
+        
+        <property name="actualTotalPrice" type="double">
+            <column name="ActualTotalPrice" not-null="false" />
+        </property>
+        
+        <property name="inventoryTotalPrice" type="double">
+            <column name="InventoryTotalPrice" not-null="false" />
+        </property>
+        
+        <many-to-one name="inventory" class="com.yongjun.tdms.model.asset.spare.Inventory.SpareInventory">
+            <column name="inventory_id" not-null="true" />
+        </many-to-one>
+        
+         <many-to-one name="spare" class="com.yongjun.tdms.model.asset.spare.Spare">
+            <column name="spare_id" not-null="true" />
+        </many-to-one>
+        
+        <property name="locationCode" type="string">
+            <column name="LOCATION_CODE" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <!--  
+        <property name="categoryName" type="string">
+            <column name="CATEGORY_NAME" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        -->
+        <many-to-one name="location" class="com.yongjun.tdms.model.asset.spare.Location">
+            <column name="LOCATION_ID" not-null="false" />
+        </many-to-one>
+        
+        <many-to-one name="spareLocation" class="com.yongjun.tdms.model.asset.spare.SpareLocation">
+			<column name="spare_location_id" not-null="true" />
+		</many-to-one>
+		
+		  <!--仓库级别-->
+		<many-to-one name="storageGrade" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="STORAGE_GRADE_ID" not-null="false" />
+		</many-to-one>
+		
+		 <!-- 仓库 -->
+		<many-to-one name="warehouse" class="com.yongjun.pluto.model.security.Warehouse">
+            <column name="WAREHOUSE_ID" not-null="false" />
+        </many-to-one>
+      <!-- 备件类别 -->
+		<many-to-one name="category" class="com.yongjun.tdms.model.base.codevalue.SpareType">
+			<column name="CATEGORY_ID" not-null="false" />
+		</many-to-one>
+		<!-- 备件明细类 -->
+	    <many-to-one name="spareDetailType" class="com.yongjun.tdms.model.base.codevalue.SpareDetailType">
+			<column name="SPARE_DETAIL_ID" not-null="false" />
+		</many-to-one>
+        
+         <!-- 差额 -->
+         <property name="marginPrice" type="double">
+            <column name="MARGIN_PRICE" not-null="false" />
+        </property>
+        
+         <!-- 差异 -->
+         <property name="different" type="long">
+            <column name="DIFFERENT" not-null="false" />
+        </property>
+        
+          <!-- 生产厂家-->
+         <property name="factoryName" type="string">
+            <column name="FACTORY_NAME" not-null="false" />
+        </property>
+        
+           <!-- 所属设备-->
+         <property name="equipmentName" type="string">
+            <column name="EQUIPMENT_NAME" not-null="false" />
+        </property>
+        
+           <!-- 设备厂家-->
+         <property name="equFactoryName" type="string">
+            <column name="EQ_FACTORY_NAME" not-null="false" />
+        </property>
+        
+            <!-- 订货号-->
+         <property name="orderNo" type="string">
+            <column name="ORDER_NO" not-null="false" />
+        </property>
+        <!-- 单位 -->
+		 <many-to-one name="unit" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="UNIT_ID" not-null="false" />
+		</many-to-one>
+		 <!-- 库区 -->
+		 <many-to-one name="regional" class="com.yongjun.tdms.model.asset.spare.warehouseInfo.regional.Regional">
+			<column name="REGIONAL_ID" not-null="false" />
+		</many-to-one>
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+        
+    </class>
+</hibernate-mapping>

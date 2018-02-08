@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: spareInOutBill.hbm.xml 10135 2008-01-06 05:31:37Z mwei $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.asset.spare.inWareHouse.SpareInBill" table="t_spareIn_bill" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_spareIn_bill_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <discriminator column="DISCRIMINATOR" type="string"/>
+        <version name="version" column="VERSION" type="long"/>
+        <!-- 入库单号 -->
+        <property name="code" type="string">
+            <column name="CODE" not-null="true" sql-type="NVARCHAR(50)" />
+        </property>
+         <!-- 入库单名称 -->
+        <property name="name" type="string">
+            <column name="NAME" not-null="true" sql-type="NVARCHAR(50)" />
+        </property>
+        <!-- 入库日期 -->
+        <property name="inDate" type="timestamp">
+            <column name="IN_DATE" not-null="true"/>
+        </property>
+        <!-- 备注 -->
+        <property name="comment" type="string">
+            <column name="COMMENT" not-null="false" sql-type="NVARCHAR(255)" />
+        </property>
+         <!-- 是否‘发送提醒’标识 -->
+        <property name="submit" type="boolean">
+            <column name="SUBMIT" not-null="false"/>
+        </property>
+        
+        <property name="disabled" type="boolean">
+            <column name="disabled" not-null="true"/>
+        </property>
+         <!-- 总金额 -->
+        <property name="totalPrice" type="double">
+            <column name="TOTAL_PRICE" not-null="false"/>
+        </property>
+        <!-- 入库单状态 -->
+         <property name="status" type="com.yongjun.tdms.dao.asset.spare.inWareHouse.hibernate.SpareInBillStatusEnum">
+            <column name="STATUS" not-null="false"/>
+        </property>
+          <!-- 标识是否打印过验收单-->
+        <property name="acceptanceList" type="boolean">
+            <column name="ACCEPTANCELIST" not-null="false"/>
+        </property>
+        <!-- 供应商 -->
+        <many-to-one name="supplier" class="com.yongjun.tdms.model.prophase.supplier.Supplier">
+            <column name="SUPPLIER_ID" not-null="false" />
+        </many-to-one>
+        <!-- 入库人 -->
+        <many-to-one name="inPeople" class="com.yongjun.pluto.model.security.User">
+			<column name="IN_PEOPLE_ID" not-null="false" />
+		</many-to-one>
+		<!-- 验收人 -->
+		<many-to-one name="checkPeople" class="com.yongjun.pluto.model.security.User">
+			<column name="CHECK_PEOPLE_ID" not-null="false" />
+		</many-to-one>
+		<!--入仓库 -->
+		<many-to-one name="warehouse" class="com.yongjun.pluto.model.security.Warehouse">
+            <column name="WAREHOUSE_ID" not-null="false" />
+        </many-to-one>
+        <!--  出仓库 -->
+		<many-to-one name="outWarehouse" class="com.yongjun.pluto.model.security.Warehouse">
+            <column name="OUT_WAREHOUSE_ID" not-null="false" />
+        </many-to-one>
+		<!--关联的入库单明细 -->
+        <set name="detail" inverse="true"
+			cascade="all-delete-orphan" lazy="true" order-by="created_time">
+			<key column="IN_BILL_ID"/>
+			<one-to-many class="com.yongjun.tdms.model.asset.spare.inWareHouse.SpareInBillDetail"/>
+		</set>
+		<!--仓库级别-->
+		<many-to-one name="storageGrade" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="STORAGE_GRADE" not-null="true" />
+		</many-to-one>
+		 <!-- 关联的出库单 -->
+        <many-to-one name="spareOutBill" class="com.yongjun.tdms.model.asset.spare.outWareHouse.SpareOutBill">
+            <column name="OUT_BILL_ID" not-null="false" />
+        </many-to-one>
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+        
+    </class>
+    <query name="GetSpareInBillBySpareOutBillId">
+        <![CDATA[from SpareInBill sib where sib.spareOutBill.id=:sobid]]>
+    </query>
+</hibernate-mapping>

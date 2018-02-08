@@ -1,0 +1,564 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: deviceArgs.hbm.xml 11194 2008-03-04 12:45:26Z wzou $ -->
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.asset.device.DeviceCard" table="t_device_card" lazy="true">
+		<id name="id" column="id" type="long">
+			<generator class="native">
+				<param name="sequence">t_device_card_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<discriminator column="DISCRIMINATOR" type="string" />
+		<version name="version" column="VERSION" type="long" />
+		<property name="deviceNo" type="string">
+			<column name="device_no" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		
+		<property name="assetNo" type="string">
+			<column name="asset_no" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+
+		<property name="name" type="string">
+			<column name="name" not-null="true" sql-type="NVARCHAR(50)" />
+		</property>
+
+		<property name="model" type="string">
+			<column name="model" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+
+		<property name="specification" type="string">
+			<column name="specification" not-null="false" sql-type="NVARCHAR(250)" />
+		</property>
+
+		<property name="installPlace" type="string">
+			<column name="install_place" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+
+		<property name="cardCreatedTime" type="date">
+			<column name="card_created_time" not-null="false" />
+		</property>
+		
+		<property name="stateAlterTime" type="date">
+			<column name="state_alter_time" not-null="false" />
+		</property>
+		
+		<property name="factory" type="string">
+			<column name="factory" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+
+		<property name="boughtDate" type="date">
+			<column name="bought_date" not-null="false" />
+		</property>
+		
+		<property name="madeTime" type="date">
+			<column name="made_time" not-null="false" />
+		</property>
+		
+		<property name="graphNo" type="string">
+			<column name="graph_no" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		
+		<property name="maker" type="string">
+			<column name="maker" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		
+		<property name="usedQuota" type="double">
+			<column name="used_quota" not-null="false"/>
+		</property>
+		
+		<property name="usedStartedTime" type="date">
+			<column name="used_started_time" not-null="false" />
+		</property>
+		
+		<property name="designTime" type="date">
+			<column name="design_time" not-null="false" />
+		</property>
+		
+		<property name="completeTime" type="date">
+			<column name="complete_time" not-null="false" />
+		</property>
+		
+		<property name="checkTime" type="date">
+			<column name="check_time" not-null="false" />
+		</property>
+		
+		<property name="acceptanceTime" type="date">
+			<column name="acceptance_time" not-null="false" />
+		</property>
+		
+	    <property name="preDemarcateTime" type="date">
+			<column name="pre_demarcate_time" not-null="false" />
+		</property>
+		
+		<property name="demarcateCycle" type="short">
+			<column name="demarcate_cycle" not-null="false"/>
+		</property>
+		
+		<property name="qualityEnsure" type="short">
+			<column name="quality_ensure" not-null="false"/>
+		</property>
+		
+		<property name="usingDevice" type="string">
+			<column name="using_device" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		
+		<property name="borrower" type="string">
+			<column name="borrower" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		
+		<property name="disabledTime" type="date">
+			<column name="disabled_time" not-null="false" />
+		</property>
+		
+		<property name="totalOutput" type="long">
+			<column name="total_output" not-null="false" />
+		</property>
+		
+		<property name="suggestion" type="string">
+			<column name="suggestion" not-null="false" sql-type="NVARCHAR(250)" />
+		</property>
+		
+		<property name="putNo" type="string">
+			<column name="put_no" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		
+		<property name="processNo" type="string">
+			<column name="process_no" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		
+		<property name="comment" type="string">
+			<column name="comment" not-null="false" sql-type="NVARCHAR(250)" />
+		</property>
+		
+		<property name="toolingDevFlag" type="com.yongjun.tdms.dao.base.codevalue.hibernate.SysModelEnum">
+            <column name="tooling_dev_flag" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="report" type="boolean">
+            <column name="report" not-null="false"/>
+        </property>
+        
+        <property name="disabled" type="boolean">
+            <column name="disabled" not-null="true"/>
+        </property>
+        
+        <property name="managementLevel" type="string">
+            <column name="management_level" not-null="false"/>
+        </property>
+        
+        <property name="number" type="long">
+            <column name="number" not-null="false"/>
+        </property>
+        
+        <property name="mouldParam" type="string">
+            <column name="mould_param" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="mouldWeight" type="double">
+            <column name="mouldWeight" not-null="false"/>
+        </property>
+        
+        <property name="full" type="boolean">
+            <column name="full_dsp" not-null="false"/>
+        </property>
+        
+        <property name="emphasis" type="boolean">
+            <column name="emphasis" not-null="false"/>
+        </property>
+        
+        <property name="standard" type="boolean">
+            <column name="standard" not-null="false"/>
+        </property>
+        
+        <many-to-one name="useCategory" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+            <column name="use_category_id" not-null="false" />
+        </many-to-one>
+        <property name="useCategoryString" type="string">
+			<column name="use_category_string" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+       <!--  <many-to-one name="excellentBigSparse" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+            <column name="excellent_big_sparse" not-null="false" />
+        </many-to-one>-->
+        <property name="accuracy" type="boolean">
+            <column name="accuracy" not-null="false"/>
+        </property>
+        
+        <property name="large" type="boolean">
+            <column name="large" not-null="false"/>
+        </property>
+        
+        <property name="rare" type="boolean">
+            <column name="rare" not-null="false"/>
+        </property>
+        
+        <many-to-one name="toolingStatus" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="tooling_state_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="toolingType" class="com.yongjun.tdms.model.base.codevalue.ToolingType">
+			<column name="tooling_type_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="checker" class="com.yongjun.pluto.model.security.User">
+			<column name="checker_id" not-null="false" />
+		</many-to-one>
+		<property name="checkerString" type="string">
+			<column name="checker_string" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		
+		<many-to-one name="product" class="com.yongjun.tdms.model.base.product.Product">
+			<column name="product_id" not-null="false" />
+		</many-to-one>
+		
+		<property name="productString" type="string">
+			<column name="product_string" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		
+		<many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="dept_id" not-null="false" />
+		</many-to-one>
+
+		<many-to-one name="manager" class="com.yongjun.pluto.model.security.User">
+			<column name="manager_id" not-null="false" />
+		</many-to-one>
+
+		<many-to-one name="toolingDesigner" class="com.yongjun.pluto.model.security.User">
+			<column name="tooling_designer_id" not-null="false" />
+		</many-to-one>
+		<property name="toolingDesignerString" type="string">
+			<column name="tooling_designer_string" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		
+		<many-to-one name="deviceType" class="com.yongjun.tdms.model.asset.device.DeviceType">
+			<column name="type_id" not-null="false" />
+		</many-to-one>
+
+		<many-to-one name="supplier" class="com.yongjun.tdms.model.prophase.supplier.Supplier">
+			<column name="supplier_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="trusteeshipSupplier" class="com.yongjun.tdms.model.prophase.supplier.Supplier">
+			<column name="trusteeship_supplier_id" not-null="false" />
+		</many-to-one>
+		
+		<property name="trusteeshipSupplierName" type="string">
+			<column name="trusteeship_supplier_name" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+
+		<many-to-one name="productionLine" class="com.yongjun.pluto.model.security.ProductionLine">
+			<column name="line_id" not-null="false" />
+		</many-to-one>
+
+		<many-to-one name="toolingTypeDetail" class="com.yongjun.tdms.model.base.codevalue.ToolingTypeDetail">
+			<column name="tooling_type_detail_id" not-null="false" />
+		</many-to-one>
+		<property name="toolingTypeDetailString" type="string">
+			<column name="tooling_type_detail_string" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		<property name="stringToolingDesigner" type="string">
+			<column name="string_Tooling_Designer" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		<many-to-one name="property" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="property_id" not-null="false" />
+		</many-to-one>
+
+		<many-to-one name="specificationProp" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="specification_prop_id" not-null="false" />
+		</many-to-one>
+		
+		<property name="specificationPropString" type="string">
+			<column name="specification_prop_string" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+
+		<many-to-one name="deviceStatus" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="device_status_id" not-null="false" />
+		</many-to-one>
+		
+	    <many-to-one name="calUnit" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="cal_unit_id" not-null="false" />
+		</many-to-one>
+		<property name="calUnitString" type="string">
+			<column name="cal_unit_string" not-null="false" sql-type="NVARCHAR(5)"/>
+		</property>
+	<!-- 	
+		<many-to-one name="filiale" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="filiale_id" not-null="false" />
+		</many-to-one>
+	 -->
+	 	<many-to-one name="filiale" class="com.yongjun.pluto.model.security.Filiale">
+			<column name="filiale_id" not-null="false" />
+		</many-to-one>
+	 	
+	 		
+		<property name="filialeString" type="string">
+			<column name="filiale_string" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		
+		<many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization">
+			<column name="org_id" not-null="true" />
+		</many-to-one>
+
+		<set name="deviceDoc" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="device_id" />
+			<one-to-many class="com.yongjun.tdms.model.base.document.ApplicationDoc" />
+		</set>
+
+		<set name="attachTool" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="device_id" />
+			<one-to-many class="com.yongjun.tdms.model.asset.device.AttachTool" />
+		</set>
+
+		<!-- <set name="extInfo" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="device_id" />
+			<one-to-many class="com.yongjun.tdms.model.asset.device.DeviceExtInfo" />
+		</set>-->
+
+		<set name="financeInfo" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="device_id" />
+			<one-to-many class="com.yongjun.tdms.model.asset.device.DeviceFinanceInfo" />
+		</set>
+
+		<set name="accessoryDevices" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="master_device_id" />
+			<one-to-many class="com.yongjun.tdms.model.asset.device.AccessoryDevice" />
+		</set>
+
+		<set name="spares" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="device_id" />
+			<one-to-many class="com.yongjun.tdms.model.asset.device.DeviceSpare" />
+		</set>
+
+		<set name="args" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="device_id" />
+			<one-to-many class="com.yongjun.tdms.model.asset.device.DeviceArgs" />
+		</set>
+		
+		<set name="toolingBorrowBill" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="tooling_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.tooling.record.ToolingBorrowBill" />
+		</set>
+		
+		<set name="toolingFaultBill" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="tooling_dev_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.fault.FaultBill" />
+		</set>
+		
+		<set name="lubricationRules" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="device_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.lubrication.LubricationRule" />
+		</set>
+		
+		<set name="checkPointRules" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="device_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.checkpoint.CheckPointRule" />
+		</set>
+		
+		<set name="preRepairRules" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="asset_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.repair.PreRepairRule" />
+		</set>
+		
+		<set name="maintenanceRules" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="device_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.maintenance.MaintenanceRule" />
+		</set>
+		
+		<set name="operateCerts" inverse="true" cascade="save-update" lazy="true">
+			<key column="device_id" />
+			<one-to-many class="com.yongjun.tdms.model.asset.device.OperateCert" />
+		</set>
+		
+		
+		<property name="madeIn" type="string">
+            <column name="made_in" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="material" type="string">
+            <column name="material" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="productNo" type="string">
+            <column name="product_no" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="madeDate" type="timestamp">
+            <column name="made_date" not-null="false" />
+        </property>
+        
+        <property name="installedDate" type="timestamp">
+            <column name="installed_date" not-null="false" />
+        </property>
+        
+        <property name="zone" type="string">
+            <column name="zone" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="weight" type="double">
+            <column name="weight" not-null="false"/>
+        </property>
+        
+        <property name="machCoefficient" type="double">
+            <column name="mach_coefficient" not-null="false"/>
+        </property>
+        
+        <property name="elecCoefficient" type="double">
+            <column name="elec_coefficient" not-null="false"/>
+        </property>
+        
+        <property name="power" type="double">
+            <column name="power" not-null="false"/>
+        </property>
+        
+        <property name="size" type="string">
+            <column name="size" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="statusDescription" type="string">
+            <column name="status_description" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="lastModifiedMgrStatusDate" type="timestamp">
+            <column name="last_modified_mgr_status_date" not-null="false" />
+        </property>
+        
+        <!-- <property name="comment" type="string">
+            <column name="comment" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>-->
+        
+        <property name="opCondition" type="string">
+            <column name="op_condition" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="centerCode" type="string">
+            <column name="center_code" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="equippedCapacitor" type="integer">
+            <column name="equipped_capacitor" />
+        </property>
+        
+        <property name="machMaintenancePeople" type="string">
+            <column name="mach_maintenance_people" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="elecMaintenancePeople" type="string">
+            <column name="elec_maintenance_people" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="identifiers" type="string">
+            <column name="identifiers" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <!-- <property name="machineHour" type="integer">
+            <column name="machine_hour" />
+        </property>-->
+        
+        <property name="elecMotorNum" type="integer">
+            <column name="elec_motor_num" />
+        </property>
+        
+        <property name="bigRepairDayNum" type="integer">
+            <column name="big_repair_day_num" />
+        </property>
+        
+        <property name="oilCapacity" type="integer">
+            <column name="oil_capacity" />
+        </property>
+        
+        <property name="oneMaintenanceTime" type="integer">
+            <column name="one_maintenance_time" />
+        </property>
+        
+        <property name="twoMaintenanceTime" type="integer">
+            <column name="two_maintenance_time" />
+        </property>
+        
+        <property name="inFactoryTime" type="timestamp">
+            <column name="in_factory_time" not-null="false" />
+        </property>
+        
+        <property name="systemDaisTime" type="double">
+			<column name="system_dais_time" />
+		</property>
+		
+		<property name="lastOneMaintenanceTime" type="date">
+			<column name="last_oneMaintenance_time" not-null="false" />
+		</property>
+		
+		<property name="lastTwoMaintenanceTime" type="date">
+			<column name="last_twoMaintenance_time" not-null="false" />
+		</property>
+        
+        <property name="oneMaintenanceHour" type="integer">
+            <column name="one_maintenance_hour" />
+        </property>
+        
+        <property name="twoMaintenanceHour" type="integer">
+            <column name="two_maintenance_hour" />
+        </property>
+         <many-to-one name="acceptBill" class="com.yongjun.tdms.model.prophase.business.AcceptBill">
+			<column name="acceptBill_ID" not-null="false" />
+		</many-to-one> 
+		<many-to-one name="acceptBillDetail" class="com.yongjun.tdms.model.prophase.business.AcceptBillDetail">
+			<column name="acceptBill_Detail_ID" not-null="false" />
+		</many-to-one> 
+        <!-- <many-to-one name="device" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+            <column name="device_id" not-null="true" />
+        </many-to-one>-->
+        
+		<property name="keepNo" column="KEEP_NO" type="integer"/>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp" />
+		<property name="creator" column="CREATOR" type="string" length="50" />
+		<property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp" />
+		<property name="lastOperator" column="LAST_OPERATOR" type="string" length="50" />
+
+	</class>
+	<query name="GetDeviceByNo">
+		<![CDATA[FROM DeviceCard deviceCard WHERE deviceCard.deviceNo = :deviceNo]]>
+	</query>
+<!-- 
+	<query name="LoadAllUnrelatedDevices">
+		<![CDATA[FROM DeviceCard deviceCard WHERE 
+        deviceCard.id NOT IN (SELECT accessoryDevice.slaveDevice.id FROM 
+        AccessoryDevice accessoryDevice WHERE accessoryDevice.masterDevice.id = :id) 
+        AND deviceCard.id <> :id
+        ]]>
+	</query>
+ -->
+	<query name="GetMaxDeviceNoByAssetCode">
+		<![CDATA[SELECT MAX(deviceCard.deviceNo) FROM DeviceCard deviceCard WHERE deviceCard.deviceNo LIKE :assetCode]]>
+	</query>
+	<query name="GetDeviceByStatusAndAssetType">
+		<![CDATA[FROM DeviceCard deviceCard WHERE deviceCard.toolingDevFlag = 'DEVICE' AND deviceCard.deviceStatus.realCode = 'DEVICE_NORMAL']]>
+	</query>
+	<query name="GetDeviceByAcceptId">
+		<![CDATA[FROM DeviceCard deviceCard WHERE deviceCard.acceptBill =:acceptBillId]]>
+	</query>
+	<query name="GetToolingGroupNoByGroupNo">
+		<![CDATA[FROM DeviceCard deviceCard WHERE deviceCard.deviceNo  =:groupNo]]>
+	</query>
+	<query name="GetAcceptGroupNoByGroupNo">
+		<![CDATA[SELECT count(deviceCard.deviceNo) FROM DeviceCard deviceCard WHERE deviceCard.deviceNo  =:groupNo]]>
+	</query>
+</hibernate-mapping>

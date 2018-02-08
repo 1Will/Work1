@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+ <!-- $Id: EditToolingBorrowBillAction-validation.xml 10840 2008-02-01 01:58:31Z qsun $-->       
+<validators>
+	<field name="toolingBorrowBill.billName">
+        <field-validator type="requiredstring">
+            <message key="toolingBorrowBill.billName.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">50</param>
+            <message key="toolingBorrowBill.billName.maxLength"/>
+        </field-validator>
+	</field>	
+    <!-- 
+    <field name="toolingBorrowBill.productTailState">
+        <field-validator type="stringlength">
+            <param name="maxLength">250</param>
+            <message key="toolingBorrowBill.productTailState.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="toolingBorrowBill.repairMaintenance">
+        <field-validator type="stringlength">
+            <param name="maxLength">250</param>
+            <message key="toolingBorrowBill.repairMaintenance.maxLength"/>
+        </field-validator>
+	</field>
+	-->
+</validators>

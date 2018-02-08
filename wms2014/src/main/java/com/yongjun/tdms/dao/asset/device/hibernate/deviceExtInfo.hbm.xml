@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: attachTool.hbm.xml 6999 2007-09-08 04:03:04Z qsun $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.asset.device.DeviceExtInfo" table="t_device_ext_info">
+        <id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_device_ext_info_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <discriminator column="DISCRIMINATOR" type="string"/>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="madeIn" type="string">
+            <column name="made_in" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="material" type="string">
+            <column name="material" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="productNo" type="string">
+            <column name="product_no" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="madeDate" type="timestamp">
+            <column name="made_date" not-null="false" />
+        </property>
+        
+        <property name="graphNo" type="string">
+            <column name="graph_no" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="installedDate" type="timestamp">
+            <column name="installed_date" not-null="false" />
+        </property>
+        
+        <property name="zone" type="string">
+            <column name="zone" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="weight" type="double">
+            <column name="weight" not-null="false"/>
+        </property>
+        
+        <property name="machCoefficient" type="double">
+            <column name="mach_coefficient" not-null="false"/>
+        </property>
+        
+        <property name="elecCoefficient" type="double">
+            <column name="elec_coefficient" not-null="false"/>
+        </property>
+        
+        <property name="power" type="double">
+            <column name="power" not-null="false"/>
+        </property>
+        
+        <property name="size" type="string">
+            <column name="size" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="statusDescription" type="string">
+            <column name="status_description" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="lastModifiedMgrStatusDate" type="timestamp">
+            <column name="last_modified_mgr_status_date" not-null="false" />
+        </property>
+        
+        <property name="comment" type="string">
+            <column name="comment" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="opCondition" type="string">
+            <column name="op_condition" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="centerCode" type="string">
+            <column name="center_code" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="equippedCapacitor" type="integer">
+            <column name="equipped_capacitor" />
+        </property>
+        
+        <property name="machMaintenancePeople" type="string">
+            <column name="mach_maintenance_people" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="elecMaintenancePeople" type="string">
+            <column name="elec_maintenance_people" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="identifiers" type="string">
+            <column name="identifiers" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="machineHour" type="integer">
+            <column name="machine_hour" />
+        </property>
+        
+        <property name="elecMotorNum" type="integer">
+            <column name="elec_motor_num" />
+        </property>
+        
+        <property name="number" type="long">
+            <column name="number" />
+        </property>
+        
+        <property name="bigRepairDayNum" type="integer">
+            <column name="big_repair_day_num" />
+        </property>
+        
+        <property name="oilCapacity" type="integer">
+            <column name="oil_capacity" />
+        </property>
+        
+        <property name="oneMaintenanceTime" type="integer">
+            <column name="one_maintenance_time" />
+        </property>
+        
+        <property name="twoMaintenanceTime" type="integer">
+            <column name="two_maintenance_time" />
+        </property>
+        
+        <property name="inFactoryTime" type="timestamp">
+            <column name="in_factory_time" not-null="false" />
+        </property>
+        
+        <property name="systemDaisTime" type="integer">
+			<column name="system_dais_time" />
+		</property>
+		
+		<property name="lastOneMaintenanceTime" type="date">
+			<column name="last_oneMaintenance_time" not-null="false" />
+		</property>
+		
+		<property name="lastTwoMaintenanceTime" type="date">
+			<column name="last_twoMaintenance_time" not-null="false" />
+		</property>
+     <!--      
+        <property name="emphasis" type="boolean">
+            <column name="emphasis" not-null="false"/>
+        </property>
+    
+        <property name="full" type="boolean">
+            <column name="full_dsp" not-null="false"/>
+        </property>
+        
+        <property name="standard" type="boolean">
+            <column name="standard" not-null="false"/>
+        </property>
+      -->  
+        <many-to-one name="device" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+            <column name="device_id" not-null="true" />
+        </many-to-one>
+      <!-- 
+        <many-to-one name="useCategory" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+            <column name="use_category_id" not-null="false" />
+        </many-to-one>
+        
+        <many-to-one name="excellentBigSparse" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+            <column name="excellent_big_sparse" not-null="false" />
+        </many-to-one>
+        -->
+        <!-- 
+       	<many-to-one name="useCategory" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+            <column name="use_category_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mgrStatus" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+            <column name="mgr_status_id" not-null="true" />
+        </many-to-one>
+        -->
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+
+    </class>
+</hibernate-mapping>

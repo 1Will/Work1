@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: preRepairPlan.hbm.xml 10296 2008-01-10 06:03:36Z zbzhang $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.year.repair.RepairPlanAndProcView" table="t_year_repair_plan_and_proc_view" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_year_repair_plan_and_proc_view_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        
+        <property name="year" type="string">
+            <column name="year" not-null="false" length="10"/>
+        </property>
+        
+        <property name="departName" type="string">
+            <column name="departName" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="workNo" type="string">
+            <column name="work_no" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="deviceNo" type="string">
+			<column name="device_no" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+        
+        <property name="deviceName" type="string">
+			<column name="device_name" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+        
+        <property name="model" type="string">
+			<column name="model" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+        
+        <property name="machineFlag" type="boolean">
+            <column name="machine_flag" not-null="false"/>
+        </property>
+        
+        <property name="electricalFlag" type="boolean">
+            <column name="electrical_flag" not-null="false"/>
+        </property>
+        
+        <many-to-one name="category" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="category_id" not-null="false" />
+		</many-to-one>
+        
+        <property name="useDept" type="string">
+			<column name="use_dept" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+        
+        <property name="repairDept" type="string">
+			<column name="repair_dept" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		
+		<property name="planDetailAllFee" type="double">
+            <column name="plan_detail_all_fee" not-null="false"/>
+        </property>
+		
+		<property name="planRepairDate" type="date">
+            <column name="plan_repair_date" not-null="false" />
+        </property>
+        
+        <property name="planBeginDate" type="date">
+            <column name="plan_begin_date" not-null="false" />
+        </property>
+        
+        <property name="procBeginDate" type="date">
+            <column name="proc_begin_date" not-null="false" />
+        </property>
+        
+        <property name="planEndDate" type="date">
+            <column name="plan_end_date" not-null="false" />
+        </property>
+        
+        <property name="procRepairDate" type="date">
+            <column name="proc_repair_date" not-null="false" />
+        </property>
+        
+        <property name="procEndDate" type="date">
+            <column name="proc_end_date" not-null="false" />
+        </property>
+        
+        <property name="procDetailAllFee" type="double">
+            <column name="proc_detail_all_fee" not-null="false"/>
+        </property>
+        
+        <many-to-one name="procExecPeople" class="com.yongjun.pluto.model.security.User">
+			<column name="proc_exec_people" not-null="false" />
+		</many-to-one>
+		
+		<property name="procResult" type="string">
+            <column name="proc_result" not-null="false" length="50"/>
+        </property>
+        
+        <property name="content" type="string">
+            <column name="content" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="yearRepairPlanAndProcId" type="long">
+			<column name="yearRepairPlanAndProcId" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+	</class>
+</hibernate-mapping>

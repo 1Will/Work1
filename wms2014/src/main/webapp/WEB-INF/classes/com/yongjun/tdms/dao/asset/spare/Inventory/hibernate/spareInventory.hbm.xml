@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: spareInventory.hbm.xml 9279 2007-12-12 12:50:04Z qsun $ -->
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.asset.spare.Inventory.SpareInventory" table="t_spare_inventory" lazy="true">
+        <id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_spare_inventory_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <discriminator column="DISCRIMINATOR" type="string"/>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="inventoryNo" type="string">
+            <column name="inventory_no" not-null="true" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="name" type="string">
+            <column name="name" not-null="true" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="disabled" type="boolean">
+            <column name="disabled" not-null="true"/>
+        </property>
+        
+         <property name="inventoryDateTm" type="date">
+            <column name="inventory_datetime" not-null="true"/>
+        </property>
+        
+        <many-to-one name="inventoryPeople" class="com.yongjun.pluto.model.security.User">
+			<column name="inventory_people" not-null="false" />
+		</many-to-one>
+		
+         <property name="comment" type="string">
+            <column name="comment" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="submit" type="boolean">
+            <column name="submit" not-null="false"/>
+        </property>
+        <!--仓库级别-->
+		<many-to-one name="storageGrade" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="STORAGE_GRADE_ID" not-null="false" />
+		</many-to-one>
+		
+		 <!-- 仓库 -->
+		<many-to-one name="warehouse" class="com.yongjun.pluto.model.security.Warehouse">
+            <column name="WAREHOUSE_ID" not-null="false" />
+        </many-to-one>
+        
+        
+        <property name="totalPrice" type="double">
+            <column name="TOTAL_PRICE" not-null="false"/>
+        </property>
+        <set name="inventoryDetails" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="inventory_id" />
+			<one-to-many class="com.yongjun.tdms.model.asset.spare.Inventory.SpareInventoryDetail" />
+		</set>
+        
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+        
+    </class>
+</hibernate-mapping>

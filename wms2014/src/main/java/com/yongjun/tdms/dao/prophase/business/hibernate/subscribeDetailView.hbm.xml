@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">    
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.prophase.business.SubscribeDetailView" table="t_purchase_bill_detail_view" lazy="true">
+		<id name="id" column="ID" type="long">
+			<generator class="native">
+				<param name="sequence">t_purchase_bill_detail_view_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<property name="detailType" column="PUR_DETAIL_TYPE" type="string" not-null="false"/>
+		<property name="graphNo" column="PUR_GRAPH_NO" type="string" not-null="false" />
+		<property name="name" column="PUR_NAME" type="string" not-null="false" />
+		<property name="categoryName" column="PUT_CATEGORY_NAME" type="string" not-null="false" />
+		<property name="detailCategoryName" column="PUR_DETAIL_CATEGORY_NAME" type="string" not-null="false" />
+		<property name="model" column="PUR_MODEL" type="string" not-null="false" />
+		<property name="specification" column="PUR_SPECIFICATION" type="string" not-null="false" />
+		<property name="unitPrice" column="PUR_UNIT_PRICE" type="double" not-null="false" />
+		<property name="amount" column="PUR_AMOUNT" type="integer" not-null="false" />
+		<property name="calUnit" column="PUR_CALUNIT" type="string" not-null="false" />
+		<property name="totalPrice" column="PUR_TOTAL_PRICE" type="double" not-null="false" />
+		<property name="reqDate" column="PUR_REQDATE" type="timestamp" not-null="false" />
+		<property name="reqReason" column="PUR_REQUEST_REASON" type="string" not-null="false" length="250"/>
+		<property name="comment" column="PUR_COMMENT" type="string" not-null="false" length="250"/>
+		<property name="status" column="PUR_STATUS" type="string" not-null="false"/>
+		<property name="department" column="PUR_DEPT_NAME" type="string" not-null="false"/>
+		<property name="departmentId" column="PUR_DEPT_ID" type="long" not-null="false"/>
+		<property name="buyingPerson" column="PUR_BUYING_PERSON" type="string" not-null="false"/>
+		<property name="subscribeDate" column="PUR_SUBSCRIBE_DATE" type="timestamp" not-null="false"/>
+		<property name="purchaseBillId" column="PURCHASE_BILL_ID" type="long" not-null="false"/>
+		
+		<property name="category" column="PUR_CATEGORY_ID" type="string" not-null="false"/>
+		<property name="orderNo" column="PUR_ORDERNO" type="string" not-null="false"/>
+		<property name="detailCategory" column="PUR_DETAIL_CATEGORY" type="string" not-null="false"/>
+		<property name="requireDate" column="PUR_REQUIRE_DATE" type="timestamp" not-null="false"/>
+		<property name="factory" column="PUR_FACTORY" type="string" not-null="false"/>
+		<property name="ownedEquipment" column="PUR_OWND_EQUIPMENT" type="string" not-null="false"/>
+		<property name="equipmentFactory" column="PUR_EQUIPMENT_FACTORY" type="string" not-null="false"/>
+		
+		<property name="buyer" column="PUR_BUYER" type="string" not-null="false"/>
+		<property name="stock" column="PUR_STOCK" type="string" not-null="false"/>
+		<property name="stocks" column="PUR_STOCKS" type="long" not-null="false"/>
+		<!-- 我的修改 WCLIN-->
+		<property name="buyeAmount" column="PUR_BUYE_AMOUNT" type="integer" not-null="false"/>
+		<property name="purchaseDate" column="PUR_PURCHASE_DATE" type="timestamp" not-null="false"/>
+		
+		<property name="arrivalAmount" column="PUR_ARRIVAL_AMOUNT" type="integer" not-null="false"/>
+		<property name="arrivalDate" column="PUR_ARRIVAL_DATE" type="timestamp" not-null="false"/>
+		<property name="supplier" column="PUR_SUPPLIER" type="string" not-null="false"/>
+		<property name="supplierName" column="PUR_SUPPLIER_NAME" type="string" not-null="false"/>
+		<!-- 备注 zzb  -->
+         <property name="beizhu" type="string">
+            <column name="BEIZHU" not-null="false" />
+        </property>
+        <!-- 所属设备总数量 -->
+        <property name="sssbzsl" type="string">
+            <column name="SSSBZSL" not-null="false" />
+        </property>
+        <!-- 损坏频次 -->
+        <property name="shpc" type="string">
+            <column name="SHPC" not-null="false"/>
+        </property>
+		
+	</class>
+	 <query name="GetSubscribeDetailBySubscribeId">
+		<![CDATA[FROM SubscribeDetailView detail WHERE 1=1 and detail.purchaseBillId = :SubscribeId order by detail.detailType]]>
+	</query>
+</hibernate-mapping>

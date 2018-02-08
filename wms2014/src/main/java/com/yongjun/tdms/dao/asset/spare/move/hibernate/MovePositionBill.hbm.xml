@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: subscribe.hbm.xml 11220 2008-03-07 10:03:29Z mwei $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.asset.spare.move.MovePositionBill" table="t_movePosition" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_movePosition_bill_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+          <discriminator column="DISCRIMINATOR" type="string"/>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="billNo" type="string">
+            <column name="BILL_NO" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="billName" type="string">
+            <column name="BILL_NAME" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="moveTime" type="date">
+            <column name="MOVE_TIME" not-null="true"/>
+        </property>
+        
+        <many-to-one name="user" class="com.yongjun.pluto.model.security.User">
+			<column name="USER_ID" not-null="true" />
+		</many-to-one>
+		
+		<property name="disabled" type="boolean">
+            <column name="disabled" not-null="true"/>
+        </property>
+        <property  name="moveStatus" type="com.yongjun.tdms.dao.asset.spare.move.hibernate.MovePositionStatusEnum">
+            <column name="MOVE_STATUS" not-null="true" />
+        </property >
+        <property name="comment" type="string">
+            <column name="COMMENT" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        <!--仓库级别-->
+		<many-to-one name="storageGrade" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="STORAGE_GRADE_ID" not-null="false" />
+		</many-to-one>
+		
+		 <!-- 仓库 -->
+		<many-to-one name="warehouse" class="com.yongjun.pluto.model.security.Warehouse">
+            <column name="WAREHOUSE_ID" not-null="false" />
+        </many-to-one>
+		<set name="movePositionBillDtls" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="MOVE_POSITION_ID" />
+			<one-to-many class="com.yongjun.tdms.model.asset.spare.move.MovePositionBillDetail" />
+		</set>
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+        
+    </class>
+</hibernate-mapping>

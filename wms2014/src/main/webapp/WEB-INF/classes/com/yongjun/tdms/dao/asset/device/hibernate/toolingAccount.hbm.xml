@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: deviceCard.hbm.xml 11436 2008-03-18 14:16:50Z wzou $ -->
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.asset.device.ToolingAccount" table="t_tooling_account" lazy="true">
+		<id name="id" column="id" type="long">
+			<generator class="native">
+				<param name="sequence">t_tooling_account_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<property name="toolingID" type="long">
+			<column name="toolingID" not-null="false"  />
+		</property>
+		
+		<property name="deviceNo" type="string">
+            <column name="device_no" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="productString" type="string">
+            <column name="product_string" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="usedQuota" type="double">
+            <column name="usedQuota" not-null="false"/>
+        </property>
+        
+        <property name="toolingTypeDetailString" type="string">
+            <column name="tooling_type_detail_string" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="acceptanceTime" type="date">
+			<column name="acceptanceTime" not-null="false" />
+		</property>
+        
+        <property name="toolingName" type="string">
+            <column name="toolingName" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="maker" type="string">
+            <column name="maker" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="checkerString" type="string">
+            <column name="checker_string" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="madeTime" type="date">
+			<column name="madeTime" not-null="false" />
+		</property>
+		
+		<property name="checkTime" type="date">
+			<column name="checkTime" not-null="false" />
+		</property>
+        
+        <property name="toolingDesignerString" type="string">
+            <column name="tooling_designer_string" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="completeTime" type="date">
+			<column name="completeTime" not-null="false" />
+		</property>
+		
+		<property name="designTime" type="date">
+			<column name="designTime" not-null="false" />
+		</property>
+        
+        <property name="putNo" type="string">
+            <column name="putNo" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="disabledTime" type="date">
+			<column name="disabledTime" not-null="false" />
+		</property>
+		
+		<property name="calUnitString" type="string">
+            <column name="cal_unit_string" not-null="true"  sql-type="NVARCHAR(5)" />
+        </property>
+        
+        <property name="suggestion" type="string">
+            <column name="suggestion" not-null="true"  sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="totalOutput" type="long">
+			<column name="totalOutput" not-null="false"  />
+		</property>
+		
+		<property name="borrowReturnDateTm" type="date">
+			<column name="borrowReturnDateTm" not-null="false" />
+		</property>
+		
+		<property name="usedStartedTime" type="date">
+			<column name="usedStartedTime" not-null="false" />
+		</property>
+		
+		<property name="borrowerName" type="string">
+            <column name="borrowerName" not-null="true"  sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="produceNum" type="long">
+			<column name="produceNum" not-null="false"  />
+		</property>
+       
+      </class>
+	<query name="GetToolingAccountList">
+		<![CDATA[FROM ToolingAccount tooling WHERE tooling.toolingID = :id]]>
+	</query>
+</hibernate-mapping>

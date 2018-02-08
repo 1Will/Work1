@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: $ -->
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.base.document.ApplicationDoc" table="t_Application_doc">
+		<id name="id" column="id" type="long">
+			<generator class="native">
+				<param name="sequence">t_device_doc_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		
+		<property name="fileNo" type="string">
+            <column name="file_no" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="fileName" type="string">
+			<column name="file_name" not-null="true" sql-type="NVARCHAR(150)" />
+		</property>
+		
+	    <property name="name" type="string">
+            <column name="name" not-null="true" sql-type="NVARCHAR(150)" />
+        </property>
+        
+		<property name="position" type="string">
+			<column name="position" not-null="true" sql-type="NVARCHAR(50)" />
+		</property>
+		
+		<property name="description" type="string">
+			<column name="description" sql-type="NVARCHAR(250)" />
+		</property>
+		
+	    <property name="manualVersion" type="string">
+			<column name="MANUAL_VERSION" length="10" not-null="false"/>
+		</property>
+		
+		<property name="docFlag" type="com.yongjun.tdms.dao.base.document.hibernate.ApplicationDocTypeEnum">
+			<column name="doc_flag" length="15"/>
+		</property>
+		
+		<many-to-one name="changeBill" class="com.yongjun.tdms.model.runmaintenance.tooling.record.ToolingChangeBill">
+			<column name="change_bill_id" not-null="false" />
+		</many-to-one>
+		<many-to-one name="check" class="com.yongjun.tdms.model.runmaintenance.usualcheck.Check">
+			<column name="check_id" not-null="false" />
+		</many-to-one>
+		<many-to-one name="purchaseBill" class="com.yongjun.tdms.model.prophase.business.PurchaseBill">
+			<column name="purchase_Bill_id" not-null="false" />
+		</many-to-one>
+		<many-to-one name="acceptBill" class="com.yongjun.tdms.model.prophase.business.AcceptBill">
+			<column name="accept_Bill_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="device" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+			<column name="device_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="spare" class="com.yongjun.tdms.model.asset.spare.Spare">
+			<column name="spare_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="preRepairPlanDetail" class="com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlanDetail">
+			<column name="prerepair_detail_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="calibrationDetail" class="com.yongjun.tdms.model.runmaintenance.calibration.CalibrationDetail">
+			<column name="calibration_detail_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="yearRepairPlanDetail" class="com.yongjun.tdms.model.year.repair.RepairPlanAndProcDetail">
+			<column name="repair_detail_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="faultRepair" class="com.yongjun.tdms.model.runmaintenance.fault.FaultRepair">
+			<column name="fault_repair_id" not-null="false" />
+		</many-to-one>	
+		
+		<many-to-one name="category" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="category" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization">
+			<column name="org_id" not-null="true" />
+		</many-to-one>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR"   type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator"  column="LAST_OPERATOR"   type="string" length="50"/>
+	</class>
+    <query name="GetNumberOfManualDoc">
+        <![CDATA[
+        	select count(doc.id) from ApplicationDoc as doc
+        	where doc.docFlag = 'HELP_MANUAL_DOC'
+        ]]>
+    </query>
+    <query name="GetAllManualDoc">
+        <![CDATA[
+        	from ApplicationDoc as doc
+        	where doc.docFlag = 'HELP_MANUAL_DOC'
+        ]]>
+    </query>
+</hibernate-mapping>

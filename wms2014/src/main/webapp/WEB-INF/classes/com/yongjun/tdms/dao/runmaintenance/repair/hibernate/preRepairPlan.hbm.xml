@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: preRepairPlan.hbm.xml 11198 2008-03-05 09:17:12Z zbzhang $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlan" table="t_prerepair_plan" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_prerepair_plan_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="planNo" type="string">
+            <column name="plan_no" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="name" type="string">
+            <column name="name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="beginDate" type="date">
+            <column name="begin_date" not-null="false" />
+        </property>
+        
+        <property name="planAllFee" type="double">
+            <column name="plan_All_fee" not-null="false"/>
+        </property>
+        
+        <property name="procAllFee" type="double">
+            <column name="proc_All_fee" not-null="false"/>
+        </property>
+        
+        <property name="planProcFlag" type="com.yongjun.tdms.dao.runmaintenance.repair.hibernate.PreRepairModelEnum">
+            <column name="plan_proc_flag" not-null="false" length="50"/>
+        </property>
+        
+        <property name="procFinishStatus" type="string">
+            <column name="proc_finish_status" not-null="false"  sql-type="NVARCHAR(10)" />
+        </property>
+        
+        <property name="procResult" type="com.yongjun.tdms.dao.runmaintenance.repair.hibernate.PreRepairResultEnum">
+            <column name="proc_result" not-null="false" length="50"/>
+        </property>
+        
+        <property name="reportDate" type="date">
+            <column name="report_date" not-null="false" />
+        </property>
+        
+        <property name="toolingDevFlag" type="com.yongjun.tdms.dao.base.codevalue.hibernate.SysModelEnum">
+            <column name="tooling_dev_flag" not-null="false" length="50" />
+        </property>
+        
+        <property name="planCreatedTime" type="date">
+            <column name="created_date" not-null="false" />
+        </property>
+        
+        <property name="deptName" type="string">
+            <column name="dept_name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+          <!-- workflow begin-->
+          <!-- 
+        <property name="status" type="string">
+            <column name="status" not-null="false" />
+        </property>
+        
+        <property name="submitComment" type="string">
+            <column name="submit_comment" not-null="false" length="250" />
+        </property>
+        
+        <property name="approvers" type="string">
+            <column name="approvers" not-null="false" length="50" />
+        </property>
+        
+        <many-to-one name="job" class="com.yongjun.tdms.workflow.model.job.Job">
+        	<column name="job_id" not-null="false" />
+        </many-to-one>
+        -->
+        <!-- workflow end  -->
+        
+        <many-to-one name="planCreator" class="com.yongjun.pluto.model.security.User">
+			<column name="plan_creator_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="planAuditor" class="com.yongjun.pluto.model.security.User">
+			<column name="plan_auditor_id" not-null="false" />
+		</many-to-one>
+		
+        <many-to-one name="reportor" class="com.yongjun.pluto.model.security.User">
+			<column name="reportor_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="dept_id" not-null="true" />
+		</many-to-one>
+		
+		<set name="planDetails" inverse="true" cascade="delete" lazy="true" order-by="id desc">
+			<key column="plan_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlanDetail" />
+		</set>
+		
+		<set name="procDetails" inverse="true" cascade="delete" lazy="true" order-by="id desc">
+			<key column="proc_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlanDetail"/>
+		</set>
+		
+	    <many-to-one name="preRepairPlan" class="com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlan">
+            <column name="plan_id" not-null="false" />
+        </many-to-one>
+        
+        <set name="preRepairProc" inverse="true" cascade="all-delete-orphan" lazy="true">
+        	<key column="plan_id"/>
+        	<one-to-many class="com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlan"/>
+		</set>
+	</class>
+</hibernate-mapping>

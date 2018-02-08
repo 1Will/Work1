@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: spareInOutBill.hbm.xml 10135 2008-01-06 05:31:37Z mwei $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.asset.spare.SpareLocation" table="t_spare_location" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_spare_location_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+
+		<property name="unitPrice" type="double" >
+			<column name="unitPrice" sql-type="decimal(18,2)" />
+		</property>
+		<property name="stocks" type="long">
+			<column name="stocks" />
+		</property>
+		<property name="lockedStocks" type="long">
+			<column name="lockedStocks" />
+		</property>
+		<property name="locationCode" type="string">
+			<column name="locationCode" />
+		</property>
+		<property name="preStocks" type="long">
+			<column name="preStocks" />
+		</property>
+        <property name="money" type="double" >
+			<column name="money" sql-type="decimal(18,2)" />
+		</property>
+		<many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="deptId"/>
+		</many-to-one>
+		<many-to-one name="warehouse" class="com.yongjun.pluto.model.security.Warehouse">
+			<column name="warehouseId"/>
+		</many-to-one>
+		<many-to-one name="regional" class="com.yongjun.tdms.model.asset.spare.warehouseInfo.regional.Regional">
+			<column name="regionalId"/>
+		</many-to-one>
+		<many-to-one name="location" class="com.yongjun.tdms.model.asset.spare.Location">
+			<column name="locationId"/>
+		</many-to-one>
+		<many-to-one name="spare" class="com.yongjun.tdms.model.asset.spare.Spare">
+			<column name="spareId"/>
+		</many-to-one>
+			
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+    </class>
+    <query name="GetNumByDeptAndLocationAndSpare">
+		<![CDATA[SELECT count(spareLocation.id) FROM  SpareLocation  spareLocation 
+		         WHERE spareLocation.department.id = :deptId
+		               AND spareLocation.location.id = :locationId
+		               AND spareLocation.spare.id = :spareId
+		                                                                            
+		]]>
+	</query>
+	<query name="GetSumBySpare">
+		<![CDATA[SELECT sum(spareLocation.stocks) FROM  SpareLocation  spareLocation 
+		         WHERE  spareLocation.spare.id = :spareId
+		                                                                            
+		]]>
+	</query>
+	<query name="GetSumBySpareAndWareHouse">
+		<![CDATA[SELECT sum(spareLocation.stocks) FROM  SpareLocation  spareLocation 
+		         WHERE  spareLocation.spare.id = :spareId and spareLocation.warehouse.id = :wareHouseId
+		                                                                            
+		]]>
+	</query>
+	<query name="GetSumByLocation">
+		<![CDATA[SELECT sum(spareLocation.stocks) FROM  SpareLocation  spareLocation 
+		         WHERE  spareLocation.location.id = :locationId
+		                                                                            
+		]]>
+	</query>
+    <query name="GetNumByDeptAndSpare">
+		<![CDATA[SELECT count(spareLocation.id) FROM  SpareLocation  spareLocation 
+		         WHERE spareLocation.department.id = :deptId
+		               AND spareLocation.spare.spareNo = :spareNo                                                                        
+		]]>
+	</query>
+    <query name="GetStocksBySpareIdANDLocationId">
+		<![CDATA[SELECT sum(spareLocation.stocks) FROM  SpareLocation  spareLocation 
+		         WHERE spareLocation.spare.id = :spareId
+		               AND spareLocation.location.id = :locationId                                                                        
+		]]>
+	</query>
+</hibernate-mapping>

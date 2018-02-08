@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2010 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id:$ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.prophase.business.SubscribeCollectBill" table="t_subscribe_collect_bill" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_subscribe_collect_bill_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        <!-- 申购单汇总编码 -->
+        <property name="code" type="string">
+            <column name="CODE" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 申购单汇总名称 -->
+        <property name="name" type="string">
+            <column name="NAME" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 汇总日期 -->
+        <property name="collectDate" type="date">
+            <column name="COLLECT_DATE" not-null="true"/>
+        </property>
+        <!-- 汇总人 -->
+        <many-to-one name="collectPerson" class="com.yongjun.pluto.model.security.User">
+			<column name="COLLECT_PERSON_ID" not-null="true" />
+		</many-to-one>
+		<!-- 汇总部门 -->
+		<many-to-one name="collectDept" class="com.yongjun.pluto.model.security.Department">
+			<column name="COLLECT_DEPT_ID" not-null="false" />
+		</many-to-one>
+		<!-- 申购汇总单状态 -->
+		<property  name="billStatus" type="com.yongjun.tdms.dao.prophase.business.hibernate.SubscribeCollectBillStatusEnum">
+            <column name="BILL_STATUS" not-null="true" />
+        </property >
+		<!-- 备注 -->
+        <property name="comment" type="string">
+            <column name="COMMENT" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+		<!-- 设备或工装备件标识 -->
+        <property name="toolingDevFlag" type="com.yongjun.tdms.dao.base.codevalue.hibernate.SysModelEnum">
+            <column name="TOOLING_DEV_FLAG" not-null="true" length="50"/>
+        </property>
+        <!-- 申购汇总类型 [设备|工装|备件] -->
+        <property name="typeStatus" type="com.yongjun.tdms.dao.prophase.business.hibernate.SubscribeTypeEnum">
+            <column name="TYPE" not-null="false" length="50"/>
+        </property>
+		<property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+        <!-- 关联的汇总单明细 -->
+        <set name="subscribeDetails" inverse="true" cascade="delete" lazy="true">
+			<key column="SUBSCRIBE_COLLECT_BILL_ID" />
+			<one-to-many class="com.yongjun.tdms.model.prophase.business.SubscribeDetail" />
+		</set>
+		<!-- 明细的数量 -->
+		 <property  name="sumDetail" type="int">
+            <column name="SUM_DETAIL" not-null="false" />
+        </property >
+        
+        <!-- 采购数量 -->
+		 <property  name="purNum" type="int">
+            <column name="PUR_NUM" not-null="false" />
+        </property >
+         <!-- 取消数量 -->
+		 <property  name="calNum" type="int">
+            <column name="CAL_NUM" not-null="false" />
+        </property >
+           <!--待确认数量 -->
+		 <property  name="conNum" type="int">
+            <column name="CON_NUM" not-null="false" />
+        </property >
+          <!--入库数量 -->
+		 <property  name="insNum" type="int">
+            <column name="INS_NUM" not-null="false" />
+        </property >
+        
+        
+          <!--金额 -->
+		 <property  name="totalMoney" type="double">
+            <column name="TOTAL_MONEY" not-null="false" />
+        </property >
+        
+        
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+        
+    </class>
+</hibernate-mapping>

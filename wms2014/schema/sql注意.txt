@@ -1,0 +1,31 @@
+eam2008修改后需要执行的sql语句
+
+--t_users表
+update t_users set user_type = 'SYSTEM_USER'
+
+update t_users set filiale_id = 1
+
+--t_filiale表
+update t_filiale set disabled = 0
+
+--t_country表
+update t_country set disabled = 0
+
+--将t_code_value表中的备件种类添加到t_spare_type表中
+insert t_spare_type (DISCRIMINATOR,version,disabled,code,name,toolingDevFlag) 
+	select 'Initialized',0,0,refer_code,name,real_code from t_code_value where master_code_id=82
+
+--在t_code_value表中添加故障分类大类
+insert t_code_value(DISCRIMINATOR,VERSION,code,name,disabled,read_only) values('backend',0,'028','故障分类',0,0)
+
+
+insert eventtype(eventId,eventName) values(55,'设备折旧处理')
+insert eventtype(eventId,eventName) values(1001,'故障分析处理')
+INSERT INTO EventType(EventId,EventName) values(1100,'设备统计报表处理')
+
+--修改t_device_card表中分公司
+update t_device_card set filiale_id = 1 where filiale_id=180
+update t_device_card set filiale_id = 2 where filiale_id=181
+
+--修改工装领用和设备领用 共用一张表的判断字段，以前的数据先初始化为 工装字段“TOOLING”
+update t_tooling_borrow_bill set tooling_dev_flag='TOOLING'

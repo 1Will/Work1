@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+<!-- $Id: supplier.hbm.xml 11272 2008-03-11 12:56:45Z zbzhang $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.prophase.supplier.Supplier" table="t_supplier" lazy="true">
+		<id name="id" column="id" type="long">
+			<generator class="native">
+				<param name="sequence">t_supplier_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<discriminator column="DISCRIMINATOR" type="string" />
+		<version name="version" column="VERSION" type="long" />
+
+
+		<property name="name" type="string">
+			<column name="name" not-null="true" sql-type="NVARCHAR(50)" />
+		</property>
+
+		<property name="enName" type="string">
+			<column name="en_name" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+
+		<property name="supplierNo" type="string">
+			<column name="supplier_no" not-null="true" unique="true" sql-type="NVARCHAR(20)" unique-key="uk_t_supplier_no" />
+		</property>
+        
+         <property name="disabled" type="boolean">
+            <column name="disabled" not-null="true"/>
+        </property>
+        
+		<!--
+		<many-to-one name="registeredFunds" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="registered_funds_id" not-null="false" />
+		</many-to-one>
+		-->
+		
+		<property name="registeredFunds" type="string">
+			<column name="registered_Funds" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="zone" type="string">
+			<column name="zone" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+
+		<property name="legalPerson" type="string">
+			<column name="legal_person" not-null="false" sql-type="NVARCHAR(30)" />
+		</property>
+
+        <many-to-one name="level" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="level_id" not-null="false" />
+		</many-to-one>
+		
+
+		<property name="comment" type="string">
+			<column name="comment" not-null="false" sql-type="NVARCHAR(250)" />
+		</property>
+
+		<component name="supplierExtInfo" class="com.yongjun.tdms.model.prophase.supplier.SupplierExtInfo">
+			<property name="peopleScale" type="long">
+				<column name="people_scale" not-null="false"/>
+			</property>
+
+			<property name="contact0" type="string">
+				<column name="contact0" not-null="false" sql-type="NVARCHAR(50)" />
+			</property>
+
+			<property name="fax" type="string">
+				<column name="fax" not-null="false" sql-type="NVARCHAR(50)" />
+			</property>
+
+			<property name="tel" type="string">
+				<column name="tel" not-null="false" sql-type="NVARCHAR(50)" />
+			</property>
+
+			<property name="site" type="string">
+				<column name="site" not-null="false" sql-type="NVARCHAR(50)" />
+			</property>
+
+			<property name="email" type="string">
+				<column name="email" not-null="false" sql-type="NVARCHAR(50)" />
+			</property>
+
+			<property name="commercialInstrument" type="string">
+				<column name="commercial_instrument" not-null="false" sql-type="NVARCHAR(250)" />
+			</property>
+
+			<property name="businessVariety" type="string">
+				<column name="business_variety" not-null="false" sql-type="NVARCHAR(250)" />
+			</property>
+
+			<property name="saleSupport" type="string">
+				<column name="sale_support" not-null="false" sql-type="NVARCHAR(250)" />
+			</property>
+
+			<property name="supportQos" type="string">
+				<column name="support_qos" not-null="false" sql-type="NVARCHAR(250)" />
+			</property>
+		</component>
+
+		<many-to-one name="country" class="com.yongjun.tdms.model.base.country.Country">
+			<column name="country_id" not-null="false" />
+		</many-to-one>
+
+		<many-to-one name="supplierType" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="sp_type_id" not-null="false" />
+		</many-to-one>
+
+		<many-to-one name="companyType" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="company_type_id" not-null="false" />
+		</many-to-one>
+
+		<many-to-one name="tradeType" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="trade_id" not-null="false" />
+		</many-to-one>
+
+		<many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization">
+			<column name="org_id" not-null="true" />
+		</many-to-one>
+        <!-- 
+        <many-to-one name="wishLevel" class="com.yongjun.tdms.model.prophase.supplier.SupplierLevelHistory">
+            <column name="wish_level_id" not-null="false" />
+        </many-to-one>
+        -->
+       
+		<set name="product" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="supplier_id" />
+			<one-to-many class="com.yongjun.tdms.model.prophase.supplier.SupplierProduct" />
+		</set>
+        
+        <property name="toolingDevFlag" type="com.yongjun.tdms.dao.base.codevalue.hibernate.SysModelEnum">
+            <column name="tooling_dev_flag" not-null="false" length="50"/>
+        </property>
+        
+        <set name="certification" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="supplier_id" />
+			<one-to-many class="com.yongjun.tdms.model.prophase.supplier.SupplierCertification" />
+		</set>
+		
+		<set name="supplierBusinessHistory" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="supplier_id" />
+			<one-to-many class="com.yongjun.tdms.model.prophase.supplier.SupplierBusinessHistory" />
+		</set>
+
+		<set name="supplierLevelHistory" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="supplier_id" />
+			<one-to-many class="com.yongjun.tdms.model.prophase.supplier.SupplierLevelHistory" />
+		</set>
+
+		<!-- 类别 -->
+		<property name="category" type="string">
+			<column name="CATEGORY" not-null="false" sql-type="NVARCHAR(10)" />
+		</property>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp" />
+		<property name="creator" column="CREATOR" type="string" length="50" />
+		<property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp" />
+		<property name="lastOperator" column="LAST_OPERATOR" type="string" length="50" />
+
+	</class>
+	<query name="LoadAllExternalHelpSupplier">
+		<![CDATA[FROM Supplier supplier WHERE supplier.supplierType.id = :supplierCategoryId]]>
+	</query>
+    <query name="GetSupplierByCode">
+		<![CDATA[FROM Supplier supplier WHERE supplier.supplierNo = :code]]>
+	</query>
+	<query name="GetMaxSupplierNoBySupplierCode">
+		<![CDATA[SELECT MAX(SUBSTRING(supplier.supplierNo,5)) FROM Supplier supplier WHERE supplier.supplierNo like :code]]>
+	</query>
+	<query name="LoadSuppliersByName">
+		<![CDATA[FROM Supplier supplier WHERE supplier.disabled = false and supplier.name like :name and category = :category]]>
+	</query>
+	<query name="LoadSupplierByName">
+		<![CDATA[FROM Supplier supplier WHERE supplier.disabled = false and supplier.name = :name and category = :category]]>
+	</query>
+</hibernate-mapping>

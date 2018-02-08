@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: preRepairPlan.hbm.xml 10705 2008-01-24 02:33:31Z zbzhang $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.wash.Wash" table="t_wash" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_wash_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="planNo" type="string">
+            <column name="plan_no" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="name" type="string">
+            <column name="name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="deptName" type="string">
+            <column name="dept_name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="planBeginDate" type="date">
+            <column name="plan_begin_date" not-null="false" />
+        </property>
+        
+        <property name="planCreatedTime" type="date">
+            <column name="created_date" not-null="false" />
+        </property>
+        
+        <property name="reportDate" type="date">
+            <column name="report_date" not-null="false" />
+        </property>
+        
+        <property name="planProcFlag" type="com.yongjun.tdms.dao.runmaintenance.repair.hibernate.PreRepairModelEnum">
+            <column name="plan_proc_flag" not-null="false" length="50"/>
+        </property>
+        
+        <many-to-one name="planCreator" class="com.yongjun.pluto.model.security.User">
+			<column name="plan_creator_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="planAuditor" class="com.yongjun.pluto.model.security.User">
+			<column name="plan_auditor_id" not-null="false" />
+		</many-to-one>
+		
+        <many-to-one name="reportor" class="com.yongjun.pluto.model.security.User">
+			<column name="reportor_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="dept_id" not-null="true" />
+		</many-to-one>
+		
+		<set name="planDetails" inverse="true" cascade="all-delete-orphan" lazy="true" order-by="id desc">
+			<key column="wash_plan_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.wash.WashDetail" />
+		</set>
+		
+		<set name="procDetails" inverse="true" cascade="save-update" lazy="true" order-by="id desc">
+			<key column="wash_proc_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.wash.WashDetail"/>
+		</set>
+		
+	    <many-to-one name="washPlan" class="com.yongjun.tdms.model.runmaintenance.wash.Wash">
+            <column name="plan_id" not-null="false" />
+        </many-to-one>
+        
+        <set name="washProc" inverse="true" cascade="all-delete-orphan" lazy="true">
+        	<key column="plan_id"/>
+        	<one-to-many class="com.yongjun.tdms.model.runmaintenance.wash.Wash"/>
+		</set>
+	</class>
+</hibernate-mapping>

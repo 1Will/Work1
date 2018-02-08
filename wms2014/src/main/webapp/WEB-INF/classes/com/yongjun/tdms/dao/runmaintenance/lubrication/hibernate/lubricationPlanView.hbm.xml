@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: lubricationPlan.hbm.xml 11079 2008-02-25 07:29:17Z zbzhang $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.lubrication.LubricationPlanView" table="t_lubrication_plan_view" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_lubrication_plan_view_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <property name="month" type="string">
+            <column name="month" not-null="false" sql-type="NVARCHAR(10)"/>
+        </property>
+        
+        <property name="deptName" type="string">
+            <column name="dept_name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+         <property name="lubricationPlanNo" type="string">
+            <column name="lubrication_planNo" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="lubricationPlanName" type="string">
+			<column name="name" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		
+		<property name="deviceNo" type="string">
+            <column name="device_no" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+		
+		<property name="deviceName" type="string">
+            <column name="device_name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+		
+        <property name="position" type="string">
+            <column name="position" not-null="false"  sql-type="NVARCHAR(150)"/>
+        </property>
+        
+        <property name="ruleDsp" type="string">
+			<column name="ruleDsp" not-null="false" sql-type="NVARCHAR(250)"/>
+		</property>
+        
+        <property name="methodDsp" type="string">
+            <column name="methodDsp" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="lubricatingOil" type="string">
+            <column name="lubricatingOil_name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="lubricatingOilMeasureUnit" type="string">
+			<column name="lubricatingOilMeasureUnit" not-null="false" />
+		</property>
+        
+        <property name="planLubricatingOilQty" type="double">
+			<column name="planLubricatingOilQty" not-null="false" />
+		</property>
+		
+        <property name="planExePeople" type="string">
+			<column name="planExePeople" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+        
+        <property name="planExectPeople" type="string">
+			<column name="planExectPeople" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		
+        <property name="estimateExecDate" type="date">
+            <column name="estimateExecDate" not-null="false"/>
+        </property>
+        
+        <property name="comment" type="string">
+			<column name="comment" not-null="false" sql-type="NVARCHAR(250)"/>
+		</property>
+        
+        <property name="lubricationPlanId" type="long">
+            <column name="lubricationPlan_id" not-null="false"/>
+        </property>
+        
+        <property name="actualLubricatingOilQty" type="double">
+			<column name="actualLubricatingOilQty" not-null="false" />
+		</property>
+        
+        <property name="actualExePeople" type="string">
+			<column name="actualExePeople" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		
+        <property name="actualExecDate" type="date">
+            <column name="actualExecDate" not-null="false"/>
+        </property>
+        
+        <property name="planStatus" type="string">
+            <column name="plan_status" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+	</class>
+</hibernate-mapping>

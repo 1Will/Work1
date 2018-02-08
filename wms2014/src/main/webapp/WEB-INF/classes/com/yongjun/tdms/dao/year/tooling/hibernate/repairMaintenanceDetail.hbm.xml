@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id:  $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.year.tooling.RepairMaintenanceDetail" table="t_repair_maintenance_detail" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_repair_maintenance_detail_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="planFee" type="double">
+            <column name="PLAN_FEE" not-null="false"/>
+        </property>
+        
+        <property name="planFinishedDate" type="date">
+            <column name="PLAN_FINISHED_DATE" not-null="true" />
+        </property>
+        
+        <property name="reason" type="string">
+            <column name="REASON" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="comment" type="string">
+            <column name="COMMENT" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="detailType" type="string">
+            <column name="DETAIL_TYPE" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="createQuarterFlag" type="boolean">
+            <column name="CREATE_QUARTER_FLAG" not-null="true"/>
+        </property>
+        
+        <property name="lockedFlag" type="boolean">
+            <column name="LOCKED_FLAG" not-null="false"/>
+        </property>
+        
+        <property name="toolingNo" type="string">
+            <column name="TOOLING_NO" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="toolingName" type="string">
+            <column name="TOOLING_NAME" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="toolingModel" type="string">
+            <column name="TOOLING_MODEL" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="toolingSpecification" type="string">
+			<column name="TOOLING_SPECIFICATION" not-null="false" sql-type="NVARCHAR(250)" />
+		</property>
+		
+		<property name="toolingCategory" type="string">
+			<column name="TOOLING_CATEGORY" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		
+        <many-to-one name="tooling" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+			<column name="TOOLING_ID" not-null="true" />
+		</many-to-one>
+		
+		<many-to-one name="yearPlan" class="com.yongjun.tdms.model.year.tooling.yearPlan.YearPlan">
+			<column name="YEAR_PLAN_ID" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="quarterPlan" class="com.yongjun.tdms.model.year.tooling.quarterPlan.QuarterPlan">
+			<column name="QUARTER_PLAN_ID" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="yearRepairMaintenanceDetail" class="com.yongjun.tdms.model.year.tooling.RepairMaintenanceDetail">
+			<column name="YEAR_REAPIR_MAINTENANCE_DETAIL_ID" not-null="false" />
+		</many-to-one>
+		
+		<set name="quarterRepairMaintenanceDetail" inverse="true" cascade="all-delete-orphan" lazy="true">
+        	<key column="YEAR_REAPIR_MAINTENANCE_DETAIL_ID"/>
+        	<one-to-many class="com.yongjun.tdms.model.year.tooling.RepairMaintenanceDetail"/>
+		</set>
+	</class>
+</hibernate-mapping>

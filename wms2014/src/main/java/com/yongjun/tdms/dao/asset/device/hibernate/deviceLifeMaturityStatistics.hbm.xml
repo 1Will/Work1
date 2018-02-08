@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: deviceLifeMaturityStatistics.hbm.xml  2009-09-22 13:57:30Z wliu $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.asset.device.accountReport.DeviceLifeMaturityStatistics" table="t_device_lifeMaturityStatistics">
+        <id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_device_lifeMaturityStatistics_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <property name="leader" type="java.lang.String">
+			<column name="leader" length="23" />
+		</property>
+        <property name="installationDate" type="java.util.Date">
+			<column name="installationDate" />
+		</property>
+        <property name="useYear" type="java.lang.Integer">
+			<column name="useYear" />
+		</property>
+		<property name="openingDate" type="java.util.Date">
+			<column name="openingDate" />
+		</property>
+		<property name="expirationDate" type="java.util.Date">
+			<column name="expirationDate" />
+		</property>
+		<property name="originalValue" type="java.lang.Double">
+			<column name="originalValue" />
+		</property>
+		<property name="netValue" type="java.lang.Double">
+			<column name="netValue" />
+		</property>
+		<property name="curDeprecitionSum" type="java.lang.Double">
+			<column name="curDeprecitionSum" />
+		</property>
+		<property name="month" type="java.lang.String">
+			<column name="month" length="23" />
+		</property>
+        <many-to-one name="deviceCard" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+            <column name="device_deviceCard_id" not-null="false" />
+        </many-to-one>
+    </class>
+    
+</hibernate-mapping>
+

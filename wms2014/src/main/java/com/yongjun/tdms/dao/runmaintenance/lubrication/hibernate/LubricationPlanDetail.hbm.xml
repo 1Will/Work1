@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: lubricationPlan.hbm.xml 9971 2007-12-29 09:23:18Z qsun $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.lubrication.LubricationPlanDetail" table="t_lubrication_plan_detail" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_lubrication_plan_detail_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="estimateExecDate" type="date">
+            <column name="estimate_exec_date" not-null="false"/>
+        </property>
+        
+        <property name="actualExecDate" type="date">
+            <column name="actual_exec_date" not-null="false" />
+        </property>
+        
+        <property name="dutyPeople" type="string">
+			<column name="duty_people" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		
+		<property name="planExePeople" type="string">
+			<column name="plan_exe_people" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		
+		<property name="planExectPeople" type="string">
+			<column name="planExectPeople" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>	
+			
+	    <property name="actualExePeople" type="string">
+			<column name="actual_exe_people" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		
+		<property name="position" type="string">
+            <column name="position" not-null="false"  sql-type="NVARCHAR(150)"/>
+        </property>
+        
+		<property name="ruleDsp" type="string">
+			<column name="rule_description" not-null="false" sql-type="NVARCHAR(250)"/>
+		</property>
+		
+		<property name="comment" type="string">
+			<column name="comment" not-null="false" sql-type="NVARCHAR(250)"/>
+		</property>
+        
+        <property name="planLubricatingOilQty" type="double">
+			<column name="plan_lubricatingOil_Qty" not-null="false" />
+		</property>
+		
+		<property name="actualLubricatingOilQty" type="double">
+			<column name="actual_lubricatingOil_Qty" not-null="false" />
+		</property>
+		
+		<property name="lubricatingOilMeasureUnit" type="string">
+			<column name="lubricatingOil_measure_unit" not-null="false" sql-type="NVARCHAR(10)"/>
+		</property>
+		
+		<property name="methodDsp" type="string">
+            <column name="lubriction_method" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <many-to-one name="lubricatingOil" class="com.yongjun.tdms.model.base.lubricationOil.LubricationOil">
+			<column name="lubricatingOil" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="rule" class="com.yongjun.tdms.model.runmaintenance.lubrication.LubricationRule">
+			<column name="rule_id" not-null="false" />
+		</many-to-one>
+		
+	    <many-to-one name="plan" class="com.yongjun.tdms.model.runmaintenance.lubrication.LubricationPlan">
+			<column name="lubricaion_plan_id" not-null="false" />
+		</many-to-one>
+		
+	    <many-to-one name="proc" class="com.yongjun.tdms.model.runmaintenance.lubrication.LubricationPlan">
+			<column name="lubricaion_proc_id" not-null="false" />
+		</many-to-one>
+		<!-- 
+		<many-to-one name="methodDsp" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="lubrication_method" not-null="false" />
+		</many-to-one>
+		-->
+		<many-to-one name="device" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+			<column name="device_id" not-null="false" />
+		</many-to-one>
+		
+		<property name="planStatus" type="com.yongjun.tdms.dao.runmaintenance.lubrication.hibernate.LubricationPlanStatusEnum">
+            <column name="plan_status" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+	</class>
+	<query name="LoadMaxActualExecDateByDeviceIDAndRuleID">
+        <![CDATA[SELECT MAX(estimateExecDate) FROM LubricationPlanDetail detail WHERE detail.device.id=:deviceId AND detail.rule.id=:ruleId]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: preRepairPlan.hbm.xml 10296 2008-01-10 06:03:36Z zbzhang $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.year.device.purchasePlan.PurchasePlanView" table="t_purchase_plan_view" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_purchase_plan_view_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <property name="year" type="string">
+            <column name="year" not-null="false" length="10"/>
+        </property>
+        
+        <property name="deptName" type="string">
+            <column name="deptName" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="name" type="string">
+            <column name="name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="specification" type="string">
+            <column name="specification" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="model" type="string">
+            <column name="model" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="unitPrice" type="float">
+            <column name="unitPrice" not-null="false"/>
+        </property>
+        
+        <property name="number" type="integer">
+            <column name="number" not-null="false" />
+        </property>
+        
+        <property name="allPrice" type="float">
+            <column name="allPrice" not-null="false" />
+        </property>
+        
+        <property name="planPurchaseDate" type="date">
+            <column name="planPurchaseDate" not-null="false" />
+        </property>
+        
+        <property name="comment" type="string">
+            <column name="comment" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+		
+		 <!-- <property name="planAllFee" type="float">
+            <column name="planAllFee" not-null="false"/>
+        </property>-->
+		
+        <property name="PurchasePlanId" type="long">
+            <column name="PurchasePlanId" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+	</class>
+</hibernate-mapping>

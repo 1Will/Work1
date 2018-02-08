@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: toolingBorrowBill.hbm.xml 8686 2007-11-28 04:02:28Z zbzhang $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.runmaintenance.tooling.record.ToolingBorrowBill" table="t_tooling_borrow_bill" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_tooling_borrow_bill_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="billNo" type="string">
+            <column name="bill_no" not-null="true" unique-key="UK_TOOLING_BORROW_BILL" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="billName" type="string">
+            <column name="bill_name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="borrowReturnDateTm" type="timestamp">
+            <column name="bor_ret_datetime" not-null="true" />
+        </property>
+        <property name="checkDateTm" type="timestamp">
+            <column name="check_time" not-null="false" />
+        </property>
+        <property name="inDateTm" type="timestamp">
+            <column name="in_datetime" not-null="false" />
+        </property>
+        <property name="disabled" type="boolean">
+			<column name="disabled" not-null="true" />
+		</property>
+        <property name="produceNum" type="long">
+            <column name="produce_num" not-null="false" />
+        </property>
+        <property name="productTailState" type="string">
+            <column name="product_tail_state" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        <property name="repairMaintenance" type="string">
+            <column name="repair_maintenance_content" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        <property name="returnFlag" type="boolean">
+            <column name="return_flag" not-null="false" />
+        </property>
+        <property name="totalOutput" type="long">
+			<column name="total_output" not-null="false" />
+		</property>
+		
+		<property name="repayPeople" type="string">
+			<column name="repay_people" not-null="false" />
+		</property>
+		
+		<property name="toolingDevFlag" type="com.yongjun.tdms.dao.base.codevalue.hibernate.SysModelEnum">
+            <column name="tooling_dev_flag" not-null="true" length="50"/>
+        </property>
+		
+        <many-to-one name="tooling" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+			<column name="tooling_id" not-null="true" />
+		</many-to-one>
+		
+		<many-to-one name="device" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+			<column name="device_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="checker" class="com.yongjun.pluto.model.security.User">
+			<column name="checker_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="borrower" class="com.yongjun.pluto.model.security.User">
+			<column name="borrower_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="storeman" class="com.yongjun.pluto.model.security.User">
+			<column name="storeman_id" not-null="false" />
+		</many-to-one>
+
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR"   type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator"  column="LAST_OPERATOR"   type="string" length="50"/>
+ 
+    </class>
+    <!-- 设备领用 根据toolingDevFlag，returnFlag 收集 需要过滤掉的设备编号 mfzhang 09/24/2009-->
+    <query name="GetOldDeviceIds">
+    	<![CDATA[SELECT tbb.device.id FROM ToolingBorrowBill tbb WHERE tbb.toolingDevFlag LIKE :toolingDev_Flag AND tbb.returnFlag =:returnFlag]]>
+    </query>
+    
+    
+</hibernate-mapping>

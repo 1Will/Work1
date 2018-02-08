@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: check.hbm.xml 10875 2008-02-02 09:59:42Z zbzhang $ -->
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.runmaintenance.trusteeship.Trusteeship" table="t_trusteeship" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_trusteeship_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="billNo" type="string">
+            <column name="BILL_NO" not-null="true" unique-key="UK_MIGRATE_BILL" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="billName" type="string">
+            <column name="BILL_NAME" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="trusteeshipRequestDate" type="date">
+            <column name="TrusteeshipRequest_DATE" not-null="true" />
+        </property>
+        
+         <property name="reason" type="string">
+            <column name="TRU_reason" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="disabled" type="boolean">
+            <column name="disabled" not-null="true"/>
+        </property>
+        
+		<property name="toolingDevFlag" type="com.yongjun.tdms.dao.base.codevalue.hibernate.SysModelEnum">
+            <column name="TOOLING_DEV_FLAG" not-null="true" length="50"/>
+        </property>
+        
+        <property name="trusteeshipUser" type="string">
+			<column name="TrusteeshipUser_ID" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		
+        <many-to-one name="supplier" class="com.yongjun.tdms.model.prophase.supplier.Supplier">
+            <column name="SUPPLIER_ID" not-null="false"/>
+        </many-to-one>
+        
+		<many-to-one name="trusteeshipDepartment" class="com.yongjun.pluto.model.security.Department">
+			<column name="REQUEST_DEPT_ID" not-null="false" />
+		</many-to-one>
+  
+  	   <many-to-one name="trusteeshipRequestDepartment" class="com.yongjun.pluto.model.security.Department">
+			<column name="TRU_REQUEST_DEPT_ID" not-null="false" />
+	   </many-to-one>
+  
+		
+		<set name="trusteeshipDetail" inverse="true" cascade="all-delete-orphan" lazy="true" order-by="id desc">
+			<key column="TRUSTEESHIP_ID" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.trusteeship.TrusteeshipDetail"/>
+		</set>
+
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        
+        <property name="creator"  column="CREATOR"   type="string" length="50"/>
+        
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        
+        <property name="lastOperator"  column="LAST_OPERATOR"   type="string" length="50"/>
+ 
+    </class>
+</hibernate-mapping>

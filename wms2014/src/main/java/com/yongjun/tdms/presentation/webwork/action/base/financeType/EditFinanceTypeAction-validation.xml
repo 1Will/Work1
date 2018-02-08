@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+ <!-- $Id: EditSpareAction-validation.xml 7953 2007-10-23 05:58:17Z qsun $-->       
+<validators>
+    <field name="financeType.code">
+        <field-validator type="requiredstring">
+            <message key="financeType.code.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+        	<param name="minLength">0</param>
+            <param name="maxLength">50</param>
+            <message key="financeType.code.maxLength"/>
+        </field-validator>
+    </field>
+    <field name="financeType.name">
+        <field-validator type="requiredstring">
+            <message key="financeType.name.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+        	<param name="minLength">0</param>
+            <param name="maxLength">50</param>
+            <message key="financeType.name.maxLength"/>
+        </field-validator>
+    </field>
+    <field name="financeType.deprecitionYearLimit">
+        <field-validator type="int">
+            <param name="min">0</param>
+        	<param name="max">200</param>
+            <message key="financeType.deprecitionYearLimit.double"/>
+        </field-validator>
+	</field>
+	<field name="financeType.yearDeprecitionScale">
+        <field-validator type="double">
+            <param name="min">0</param>
+        	<param name="max">10000000</param>
+            <message key="financeType.yearDeprecitionScale.double"/>
+        </field-validator>
+	</field>
+	<field name="financeType.netSalvageScale">
+        <field-validator type="double">
+            <param name="min">0</param>
+        	<param name="max">10000000</param>
+            <message key="financeType.netSalvageScale.double"/>
+        </field-validator>
+	</field>
+    <field name="financeType.comment">
+        <field-validator type="stringlength">
+            <param name="maxLength">250</param>
+            <message key="document.comment.maxLength"/>
+        </field-validator>
+    </field>
+</validators>

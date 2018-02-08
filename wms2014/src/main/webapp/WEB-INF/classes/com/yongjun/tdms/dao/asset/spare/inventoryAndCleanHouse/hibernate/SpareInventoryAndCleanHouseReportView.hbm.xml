@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 关联到视图
+    <class name="com.yongjun.tdms.model.asset.spare.inventoryAndCleanHouse.SpareInventoryAndCleanHouseReportView" table="t_spareClear2_Inventory_view" lazy="true">
+ 	-->  
+    <class name="com.yongjun.tdms.model.asset.spare.inventoryAndCleanHouse.SpareInventoryAndCleanHouseReportView" table="t_spareClear2_Inventory" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_spareOut_bill_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+		<property name="spareNo" column="spareNo" type="string" length="50"/>
+		<property name="spareName" column="spareName" type="string" length="50"/>
+		<property name="unit" column="unit" type="string" length="50"/>
+		<property name="modelSpecs" column="modelSpecs" type="string" length="50"/>
+		<property name="unitPrice" column="unitPrice" type="double"/>
+		<property name="beforeStocks" column="beforeStocks" type="long"/>
+		<property name="inStocks" column="inStocks" type="long"/>
+		<property name="outStocks" column="outStocks" type="long"/>
+		<property name="afterStocks" column="afterStocks" type="long"/>
+		<property name="totalPrice" column="totalPrice" type="double"/>
+		<property name="createTime" column="createTime" type="timestamp"/>
+		<property name="month" column="MONTH" type="string" length="50"/>
+		<property name="toolingDevFlag" column="toolingDevFlag" type="string" length="50"/>
+		
+		<!-- 仓库id、仓库名 -->
+		<property name="warehouse" column="WAREHOUSE_ID" type="java.lang.Long"/>
+		<property name="warehouseName" column="WAREHOUSE_NAME" type="string"/>
+		<!-- 仓库名、库区名 -->
+		<property name="regional" column="REGIONAL_ID" type="java.lang.Long"/>
+        <property name="regionalName" column="REGIONAL_NAME" type="string"/>
+		
+		<property name="locationCode" column="locationCode" type="string"/>
+		<property name="department" column="deptId" type="long"/>
+		<property name="deptName" column="deptName" type="string"/>
+		<!-- 保管员 -->
+        <property name="custos" type="string">
+            <column name="custos" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+ 		<many-to-one name="spareCustos" class="com.yongjun.pluto.model.security.User">
+			<column name="spareCustos_id" not-null="false" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

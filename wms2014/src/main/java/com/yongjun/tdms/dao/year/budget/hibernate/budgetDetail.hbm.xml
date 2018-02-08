@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: preRepairPlan.hbm.xml 10296 2008-01-10 06:03:36Z zbzhang $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.year.budget.BudgetDetail" table="t_budget_detail" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_budget_detail_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="budgetNo" type="string">
+            <column name="BUDGET_NO" not-null="true"  sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="budgetName" type="string">
+            <column name="BUDGET_NAME" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="fee" type="double">
+            <column name="FEE" not-null="false"/>
+        </property>
+        
+        <property name="quarterPlanFee" type="double">
+            <column name="QUARTER_PLAN_FEE" not-null="false"/>
+        </property>
+        <property name="repairFee" type="double">
+            <column name="REPAIR_FEE" not-null="false"/>
+        </property>
+        <property name="purchaseFee" type="double">
+            <column name="PURCHASE_FEE" not-null="false"/>
+        </property>
+        <property name="purchaseContractFee" type="double">
+            <column name="PURCHASE_CONTRACT_FEE" not-null="false"/>
+        </property>
+        <property name="occurFee" type="double">
+            <column name="OCCUR_FEE" not-null="false"/>
+        </property>
+        <property name="comment" type="string">
+            <column name="COMMENT" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="DEPT_ID" not-null="true" />
+		</many-to-one>
+		
+        <many-to-one name="budget" class="com.yongjun.tdms.model.year.budget.Budget">
+			<column name="BUDGET_ID" not-null="true" />
+		</many-to-one>
+
+	</class>
+	<query name="GetAllBudgetNoOfEnabled">
+		<![CDATA[SELECT budgetDetail.budgetNo FROM BudgetDetail budgetDetail WHERE budgetDetail.budget.disabled=false]]>
+	</query>
+	<query name="GetYearBudgetByDepartmenyBudgetAndBudgetNo">
+		<![CDATA[FROM BudgetDetail budgetDetail WHERE budgetDetail.department.id = :departmentId 
+		         AND budgetDetail.budget.id = :budgetId  AND budgetDetail.budgetNo = :budgetNo
+		]]>
+	</query>
+	<query name="GetYearBudgetByDepartmentAndBudgetNoAndYear">
+		<![CDATA[FROM BudgetDetail budgetDetail WHERE budgetDetail.department.id = :departmentId 
+		         AND budgetDetail.budgetNo = :budgetNo AND budgetDetail.budget.id = (
+		           SELECT budget.id FROM Budget budget WHERE budget.year = :year AND budget.toolingDevFlag = 'TOOLING'
+		                                               AND budget.disabled = false
+		         )
+		]]>
+	</query>
+    <query name="GetYearBudgetDetailByBudgetNo">
+		<![CDATA[FROM BudgetDetail budgetDetail WHERE budgetDetail.budgetNo = :budgetNo 
+		                                              AND budgetDetail.budget.disabled = false
+		]]>
+	</query>
+</hibernate-mapping>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+ <!-- $Id: EditDeviceAction-validation.xml 7541 2007-09-19 13:48:06Z qsun $-->       
+<validators>
+
+  	<field name="tooling.deviceNo">
+  	    <field-validator type="requiredstring">
+            <message key="tooling.deviceNo.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">50</param>
+            <message key="tooling.deviceNo.maxLength"/>
+        </field-validator>
+	</field>
+
+<!-- 
+	<field name="tooling.graphNo">
+        <field-validator type="requiredstring">
+            <message key="tooling.graphNo.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">50</param>
+            <message key="tooling.graphNo.maxLength"/>
+        </field-validator>
+	</field>
+-->
+	<field name="tooling.name">
+        <field-validator type="requiredstring">
+            <message key="tooling.name.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">50</param>
+            <message key="tooling.name.maxLength"/>
+        </field-validator>
+	</field>
+<!-- 
+	<field name="product.name">
+        <field-validator type="stringlength">
+            <param name="maxLength">50</param>
+            <message key="product.name.maxLength"/>
+        </field-validator>
+	</field>
+     -->
+     <!-- 
+    <field name="tooling.usedQuota">
+        <field-validator type="double">
+        	<param name="min">0</param>
+        	<param name="max">10000000</param>
+            <message key="tooling.usedQuota.double"/>
+        </field-validator>
+    </field>	
+    <field name="tooling.maker">
+        <field-validator type="stringlength">
+            <param name="maxLength">50</param>
+            <message key="tooling.maker.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="tooling.suggestion">
+        <field-validator type="stringlength">
+            <param name="maxLength">250</param>
+            <message key="tooling.suggestion.maxLength"/>
+        </field-validator>
+	</field>
+	-->
+</validators>

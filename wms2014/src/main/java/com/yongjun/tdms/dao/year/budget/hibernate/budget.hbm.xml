@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: preRepairPlan.hbm.xml 10296 2008-01-10 06:03:36Z zbzhang $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.year.budget.Budget" table="t_budget" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_budget_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="yearBudgetNo" type="string">
+            <column name="YEAR_BUDGET_NO" not-null="true"  sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="name" type="string">
+            <column name="NAME" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="year" type="string">
+            <column name="YEAR" not-null="true" length="10"/>
+        </property>
+        
+        <property name="allFee" type="double">
+            <column name="ALL_FEE" not-null="true"/>
+        </property>
+        
+        <property name="toolingDevFlag" type="com.yongjun.tdms.dao.base.codevalue.hibernate.SysModelEnum">
+            <column name="TOOLING_DEV_FLAG" not-null="true" length="50" />
+        </property>
+        
+        <property name="planCreatedDate" type="date">
+            <column name="CREATE_DATE" not-null="true" />
+        </property>
+        
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+        
+        <many-to-one name="planCreator" class="com.yongjun.pluto.model.security.User">
+			<column name="CREATOR_ID" not-null="false" />
+		</many-to-one>
+		
+		<set name="budgetDetail" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="BUDGET_ID" />
+			<one-to-many class="com.yongjun.tdms.model.year.budget.BudgetDetail" />
+		</set>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+	</class>
+    <query name="GetYearBudgetByYear">
+		<![CDATA[FROM Budget budget WHERE budget.year = :year AND budget.disabled=false AND budget.toolingDevFlag = 'TOOLING']]>
+	</query>
+</hibernate-mapping>

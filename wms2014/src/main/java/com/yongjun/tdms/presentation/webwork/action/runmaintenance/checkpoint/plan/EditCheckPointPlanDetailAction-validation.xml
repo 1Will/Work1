@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+
+<validators>
+    <field name="detail.part">
+        <field-validator type="requiredstring">
+            <message key="detail.part.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">250</param>
+            <message key="detail.part.maxLength"/>
+        </field-validator>
+    </field>
+  	
+  	<field name="detail.rule">
+        <field-validator type="requiredstring">
+            <message key="detail.rule.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">250</param>
+            <message key="detail.rule.maxLength"/>
+        </field-validator>
+    </field>
+    
+    <field name="detail.content">
+        <field-validator type="requiredstring">
+            <message key="detail.content.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">250</param>
+            <message key="detail.content.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="detail.method">
+        <field-validator type="stringlength">
+            <param name="maxLength">250</param>
+            <message key="detail.method.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="detail.fee">
+        <field-validator type="double">
+            <param name="min">0</param>
+            <param name="max">10000000</param>
+            <message key="transInsurance.compensateAmount.double"/>
+        </field-validator>
+    </field>
+	<field name="detail.tool">
+        <field-validator type="stringlength">
+            <param name="maxLength">250</param>
+            <message key="detail.tool.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="detail.comment">
+        <field-validator type="stringlength">
+            <param name="maxLength">250</param>
+            <message key="detail.comment.maxLength"/>
+        </field-validator>
+	</field>
+</validators>

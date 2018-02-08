@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: preRepairPlanDetail.hbm.xml 11205 2008-03-06 05:39:57Z zbzhang $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlanView" table="t_prerepair_plan_view" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_prerepair_plan_view_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <property name="beginDate" type="date">
+            <column name="begin_date" not-null="false" />
+        </property>
+        
+        <property name="content" type="string">
+            <column name="content" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="deptName" type="string">
+            <column name="deptName" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="deviceNo" type="string">
+            <column name="device_no" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="deviceName" type="string">
+            <column name="device_name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="graphNo" type="string">
+            <column name="graph_no" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="dutyDeptName" type="string">
+            <column name="duty_deptName" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="planAllFee" type="double">
+            <column name="plan_all_Fee" not-null="false"/>
+        </property>
+        
+        <property name="procAllFee" type="double">
+            <column name="proc_all_Fee" not-null="false"/>
+        </property>
+        
+        <property name="externalHelpFlag" type="boolean">
+            <column name="externalHelpFlag" not-null="false"/>
+        </property>
+        
+        <property name="dutyPeople" type="string">
+            <column name="dutyPeople" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="execPeople" type="string">
+			<column name="execPeople" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		
+		<property name="procExecPeople" type="string">
+			<column name="proc_exec_people" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>	
+		<property name="repairLevel" type="string">
+            <column name="repairLevel" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- <many-to-one name="repairLevel" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="repairLevel" not-null="false" />
+		</many-to-one>-->
+
+		<property name="planEstimateFinishDate" type="date">
+            <column name="planEstimateFinishDate" not-null="false" />
+        </property>	
+     
+        <property name="procEstimateFinishDate" type="date">
+            <column name="procEstimateFinishDate" not-null="false" />
+        </property>
+     
+        <property name="prerepairPlanId" type="long">
+            <column name="prerepair_plan_id" not-null="false"/>
+        </property>
+        
+        <property name="procResult" type="string">
+            <column name="procResult" not-null="false" length="50" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="planAllListFee" type="double">
+            <column name="planAllFee" not-null="false"/>
+        </property>
+        
+        <property name="procAllListFee" type="double">
+            <column name="procAllFee" not-null="false"/>
+        </property>
+        
+        <property name="tooling_dev_flag" type="string">
+            <column name="tooling_dev_flag" not-null="false" length="50" sql-type="NVARCHAR(50)"/>
+        </property>
+	</class>
+	
+</hibernate-mapping>

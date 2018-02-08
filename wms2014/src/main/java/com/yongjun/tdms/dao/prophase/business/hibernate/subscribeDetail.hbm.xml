@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: subscribeDetail.hbm.xml 11309 2008-03-13 05:51:55Z mwei $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.prophase.business.SubscribeDetail" table="t_subscribe_detail" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_subscribe_detail_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        <!-- 品名 -->
+        <property name="name" type="string">
+            <column name="NAME" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+       <!--  <property name="callFlag" type="boolean">
+            <column name="CALL_FLAG"/>
+        </property>-->
+        <!-- 图号 -->
+        <property name="graphNo" type="string">
+            <column name="GRAPH_NO" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 型号 -->
+        <property name="model" type="string">
+            <column name="MODEL" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 规格 -->
+         <property name="specification" type="string">
+            <column name="specification" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="department" type="string">
+            <column name="DEPARTMENT" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 供应商 -->
+        <property name="supplierName" type="string">
+            <column name="supplier_Name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 申购数量 -->
+        <property name="amount" type="integer">
+            <column name="AMOUNT" not-null="true"/>
+        </property>
+        <!-- 单价 -->
+        <property name="unitPrice" type="double">
+            <column name="UNITPRICE" not-null="true" />
+        </property>
+        <!-- 总价 -->
+        <property name="totalPrice" type="double">
+            <column name="TOTAL_PRICE" not-null="false"/>
+        </property>
+        <!-- 需求日期 -->
+        <property name="requireDate" type="date">
+            <column name="require_Date" not-null="false"/>
+        </property>
+        <!-- 需求原因 -->
+        <property name="reqReason" type="string" not-null="false" column="ReqReason"/>
+        <!-- 备注 -->
+        <property name="comment" type="string">
+            <column name="COMMENT" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+
+        <!-- 申购关联备件 -->
+        <many-to-one name="spare" class="com.yongjun.tdms.model.asset.spare.Spare">
+            <column name="SPARE_ID" not-null="false" />
+        </many-to-one>
+        <!-- 申购单和汇总单单身状态 -->
+         <property  name="status" type="com.yongjun.tdms.dao.prophase.business.hibernate.SubscribeDetailStatusEnum">
+            <column name="STATUS_ID" not-null="true" />
+        </property >
+        <!-- 关联的申购单 -->
+        <many-to-one name="subscribe" class="com.yongjun.tdms.model.prophase.business.Subscribe">
+            <column name="SUBSCRIBE_ID" not-null="true" />
+        </many-to-one>
+        <!-- 关联的申购汇总单 -->
+        <many-to-one name="subscribeCollectBill" class="com.yongjun.tdms.model.prophase.business.SubscribeCollectBill">
+            <column name="SUBSCRIBE_COLLECT_BILL_ID" not-null="false" />
+        </many-to-one>
+        <!-- 采购人 -->
+        <many-to-one name="buyer" class="com.yongjun.pluto.model.security.User">
+			<column name="BUYER_ID" not-null="false" />
+		</many-to-one>
+		<!-- 采购数量 -->
+        <property name="buyeAmount" type="integer">
+            <column name="BUYE_AMOUNT" not-null="false"/>
+        </property>
+        <!-- 采购日期 -->
+        <property name="purchaseDate" type="date">
+            <column name="PURCHASE_Date" not-null="false"/>
+        </property>
+        <!-- 到货数量 -->
+        <property name="arrivalAmount" type="integer">
+            <column name="ARRIVAL_AMOUNT" not-null="false"/>
+        </property>
+        <!-- 到货日期 -->
+        <property name="arrivalDate" type="date">
+            <column name="ARRIVAL_Date" not-null="false"/>
+        </property>
+        <!-- 订货号|备件台帐 所冗余的字段 -->
+         <property name="orderNo" type="string">
+            <column name="ORDER_NO" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 生产厂家 -->
+        <many-to-one name="factory" class="com.yongjun.tdms.model.prophase.supplier.Supplier">
+			<column name="FACTORY_ID" not-null="false" />
+		</many-to-one>
+		<!-- 设备厂家 -->
+        <many-to-one name="equFactory" class="com.yongjun.tdms.model.prophase.supplier.Supplier">
+			<column name="EQU_FACTORY_ID" not-null="false" />
+		</many-to-one>
+		<!-- 生产厂家 所冗余的字段 -->
+		<property name="factoryStr" type="string">
+            <column name="FACTORY_STR" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 设备厂家 所冗余的字段 -->
+		<property name="equFactoryStr" type="string">
+            <column name="EQU_FACTORY_STR" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 所属设备|备件台帐 所冗余的字段 -->
+         <property name="ownedEquipment" type="string">
+            <column name="ORDER_EQUIPMENT" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 设备厂家|备件台帐 所冗余的字段 -->
+         <property name="equipmentFactory" type="string">
+            <column name="EQUIPMENT_FACTORY" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 备件分类|工装分类 所冗余的字段 -->
+         <property name="categoryName" type="string">
+            <column name="CATEGORY_NAME" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 备件明细分类|工装明细分类|所冗余的字段 -->
+        <property name="detailCategoryName" type="string">
+            <column name="DETAIL_CATEGORY_NAME" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+		<!-- 备件类别 -->
+		<many-to-one name="category" class="com.yongjun.tdms.model.base.codevalue.SpareType">
+			<column name="CATEGORY_ID" not-null="false" />
+		</many-to-one>
+		<!-- 备件明细类 -->
+	    <many-to-one name="detailCategory" class="com.yongjun.tdms.model.base.codevalue.SpareDetailType">
+			<column name="DETAIL_CATEGORY_ID" not-null="false" />
+		</many-to-one>
+		<!-- 计量单位 -->
+		 <many-to-one name="calUnit" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="CAL_UNIT_ID" not-null="false" />
+		</many-to-one>
+		
+		<!-- -所关联的工装 -->
+		<many-to-one name="tooling" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+			<column name="TOOLING_ID" not-null="false" />
+		</many-to-one>
+		<!-- 工装类别 -->
+        <many-to-one name="toolingCategory" class="com.yongjun.tdms.model.base.codevalue.ToolingType">
+			<column name="TOOLING_CATEGORY_ID" not-null="false" />
+		</many-to-one>
+		<!-- 季度计划明细的类别 -->
+		<property name="detailType" type="com.yongjun.tdms.dao.year.tooling.yearPlan.hibernate.YearPlanDetailCategoryEnum">
+            <column name="DETAIL_TYPE" not-null="false" length="50"/>
+        </property>
+        <!-- 关联季度计划  -->        
+        <many-to-one name="quarterPlanDetail" class="com.yongjun.tdms.model.year.tooling.quarterPlan.QuarterPlanDetail">
+            <column name="quarterPlanDetail_id" not-null="false" />
+        </many-to-one>
+        <!-- 备注 zzb  -->
+         <property name="beizhu" type="string">
+            <column name="BEIZHU" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        <!-- 所属设备总数量 -->
+        <property name="sssbzsl" type="string">
+            <column name="SSSBZSL" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 损坏频次 -->
+        <property name="shpc" type="string">
+            <column name="SHPC" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+         <property name="stocked" type="boolean">
+            <column name="STOCKED" not-null="true"/>
+        </property>
+    </class>
+    <query name="GetAllValuesByDetailType">
+        <![CDATA[from SubscribeDetail as sd where sd.subscribe = :id AND sd.detailType = :detailType]]>
+    </query>
+     <query name="GetAllValuesByDetailTypeToolingMake">
+        <![CDATA[from SubscribeDetail as sd where sd.detailType ='TOOLING_MAKE']]>
+    </query>
+    <query name="getAllSubscribeDetailTotalPriceBySubscribeIdAndDetailType">
+        <![CDATA[SELECT SUM(subscribeDetail.totalPrice) FROM SubscribeDetail subscribeDetail
+                 where subscribeDetail.subscribe.id=:subscribeId]]>
+    </query>
+    <query name="loadByParameter">
+        <![CDATA[from SubscribeDetail as sd where sd.name = :name AND sd.model = :model AND sd.orderNo = :orderNo AND sd.factoryStr=factoryStr]]>
+    </query>
+</hibernate-mapping>

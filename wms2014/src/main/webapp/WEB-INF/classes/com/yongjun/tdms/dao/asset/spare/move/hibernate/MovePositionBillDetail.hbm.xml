@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: spareInventory.hbm.xml 9279 2007-12-12 12:50:04Z qsun $ -->
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.asset.spare.move.MovePositionBillDetail" table="t_move_position_dtl" lazy="true">
+        <id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_spare_inventory_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <discriminator column="DISCRIMINATOR" type="string"/>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="spareNo" type="string">
+            <column name="SPARE_NO" not-null="true" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="spareName" type="string">
+            <column name="SPARE_NAME" not-null="true" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="modelSpec" type="string">
+            <column name="MODEL_SPEC" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <property name="beforeMoveWarehouse" type="string">
+            <column name="BEFORE_MOVE_WAREHOUSE" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <property name="beforeMoveRegional" type="string">
+            <column name="BEFORE_MOVE_REGIONAL" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <property name="beforeMoveLocationCode" type="string">
+            <column name="BEFORE_MOVE_LOCATION_CODE" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="beforeMoveStocks" type="long">
+            <column name="BEFOR_MOVE_STOCKS" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <property name="afterMoveWarehouse" type="string">
+            <column name="AFTER_MOVE_WAREHOUSE" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <property name="afterMoveRegional" type="string">
+            <column name="AFTER_MOVE_REGIONAL" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <property name="afterMoveLocationCode" type="string">
+            <column name="AFTER_MOVE_LOCATION_CODE" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="number" type="long">
+            <column name="NUMBER" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+         <property  name="movePositionDtlStatus" type="com.yongjun.tdms.dao.asset.spare.move.hibernate.MovePositionBillDetailStatusEnum">
+            <column name="MOVE_POSITION_DtlStatus" not-null="true" />
+        </property >
+        <many-to-one name="movePositionBill" class="com.yongjun.tdms.model.asset.spare.move.MovePositionBill">
+            <column name="MOVE_POSITION_ID" not-null="false" />
+        </many-to-one>
+         <many-to-one name="spareLocation" class="com.yongjun.tdms.model.asset.spare.SpareLocation">
+            <column name="SPARE_LOCATION_ID" not-null="false" />
+        </many-to-one>
+         <property name="spareId" type="long">
+            <column name="SPARE_ID" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <many-to-one name="warehouse" class="com.yongjun.pluto.model.security.Warehouse">
+            <column name="WAREHOUSE_ID" not-null="false" />
+        </many-to-one>
+        <many-to-one name="regional" class="com.yongjun.tdms.model.asset.spare.warehouseInfo.regional.Regional">
+            <column name="REGIONAL_ID" not-null="false" />
+        </many-to-one>
+        <many-to-one name="location" class="com.yongjun.tdms.model.asset.spare.Location">
+            <column name="LOCATION_ID" not-null="false" />
+        </many-to-one>
+        <many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+            <column name="DEPARTMENT_ID" not-null="false"/>
+       	</many-to-one>
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+        
+    </class>
+</hibernate-mapping>

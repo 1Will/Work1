@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: deviceSpare.hbm.xml 11212 2008-03-06 07:54:18Z wzou $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.asset.device.DeviceSpare" table="t_device_spare" lazy="true">
+		<id name="id" column="id" type="long">
+			<generator class="native">
+				<param name="sequence">t_device_spare_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION" type="long" />
+
+        <many-to-one name="asset" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+			<column name="device_id" not-null="true" unique-key="UK_DEVICE_SPARE"/>
+		</many-to-one>
+		
+		<many-to-one name="spare" class="com.yongjun.tdms.model.asset.spare.Spare">
+			<column name="spare_id" not-null="true"  unique-key="UK_DEVICE_SPARE"/>
+		</many-to-one>
+		
+		<property name="installPlace" type="string">
+			<column name="install_place" not-null="false" sql-type="NVARCHAR(150)"/>
+		</property>
+		
+		<property name="number" type="long">
+            <column name="number" not-null="false" />
+        </property>
+        
+        <property name="amount" type="long">
+            <column name="amount" not-null="false" />
+        </property>
+		
+		<property name="lastReplaceTime" type="date">
+			<column name="last_replace_time" not-null="false" />
+		</property>
+		
+		<property name="useTime" type="double">
+            <column name="use_time" not-null="false"/>
+        </property>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp" />
+		<property name="creator" column="CREATOR" type="string" length="50" />
+		<property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp" />
+		<property name="lastOperator" column="LAST_OPERATOR" type="string" length="50" />
+	</class>
+	<query name="GetDeviceSpareBySpareId">
+		<![CDATA[FROM DeviceSpare deviceSpare WHERE deviceSpare.spare.id = :spareId AND deviceSpare.asset.id=:deviceId]]>
+	</query>
+</hibernate-mapping>

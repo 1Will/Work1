@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: codeValue.hbm.xml 7404 2007-09-17 00:54:21Z qsun $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.base.codevalue.ToolingType" table="t_tooling_type" lazy="true">
+        <id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_tooling_type_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <discriminator column="DISCRIMINATOR" type="string"/>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="code" type="string">
+            <column name="code" not-null="true" sql-type="NVARCHAR(50)"  unique-key="uk_t_tooling_type_code"/>
+        </property>
+        
+        <property name="value" type="string">
+            <column name="name" not-null="true" sql-type="NVARCHAR(50)" />
+        </property>
+
+        <property name="realCode" type="string">
+            <column name="real_code" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <set name="toolingTypeDetail" inverse="true" cascade="all-delete-orphan" lazy="true">
+        	<key column="tooling_type_id"/>
+        	<one-to-many class="com.yongjun.tdms.model.base.codevalue.ToolingTypeDetail"/>
+		</set>
+		
+		<many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization">
+			<column name="org_id" not-null="true" />
+		</many-to-one>
+		<property name="disabled" column="DISABLED" type="boolean"/>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+        
+    </class>    
+</hibernate-mapping>

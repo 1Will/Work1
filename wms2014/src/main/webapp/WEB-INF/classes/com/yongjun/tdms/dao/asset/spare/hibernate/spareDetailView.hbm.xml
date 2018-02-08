@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: spareInOutBill.hbm.xml 10135 2008-01-06 05:31:37Z mwei $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.asset.spare.SpareDetailView" table="t_spare_location_view" lazy="true">
+        <id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_spare_location_view_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <property name="spareNo" type="string">
+            <column name="spare_No" not-null="true" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="spareName" type="string">
+            <column name="spare_Name" not-null="true" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="spareEnName" type="string">
+            <column name="spare_EnName" not-null="true" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="unit" type="string">
+            <column name="unit" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="modelSpecs" type="string">
+            <column name="model_Specs" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="category" type="string">
+            <column name="category" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="detailType" type="string">
+            <column name="detail_Type" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+      
+        <property name="dept" type="string">
+            <column name="dept" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+       <property name="unitPrice" type="double" >
+			<column name="unit_Price" sql-type="decimal(18,2)" />
+		</property>
+		
+        <property name="stocks" type="long">
+			<column name="stocks" />
+		</property>
+		
+        <property name="totalPrice" type="double" >
+			<column name="total_Price" sql-type="decimal(18,2)" />
+		</property>
+		<property name="locationCode" type="string">
+            <column name="location_Code" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>      
+		<property name="toolingDevFlag" type="string">
+            <column name="tooling_dev_flag" not-null="false" sql-type="NVARCHAR(50)" />
+        </property> 
+        
+        <property name="warehouse" type="long">
+            <column name="warehouseId" not-null="false"  />
+        </property> 
+        
+         <property name="warehouseName" type="string">
+            <column name="warehouseName" not-null="false" sql-type="NVARCHAR(20)" />
+        </property>
+        
+        <property name="regionalName" type="string">
+            <column name="regionalName" not-null="false" sql-type="NVARCHAR(20)" />
+        </property>
+        
+        <property name="regional" type="long">
+            <column name="regionalId" not-null="false"  />
+        </property> 
+    </class>
+</hibernate-mapping>

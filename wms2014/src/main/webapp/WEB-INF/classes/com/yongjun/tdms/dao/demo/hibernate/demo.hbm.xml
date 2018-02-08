@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.demo.Demo" table="t_demo">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">user_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        <property name="name" type="string">
+            <column name="NAME" not-null="true" unique-key="UK_DEMO" sql-type="NVARCHAR(45)"/>
+        </property>
+        <property name="password" type="string">
+            <column name="PASSWORD" not-null="true" sql-type="NVARCHAR(45)"/>
+        </property>
+    </class>
+</hibernate-mapping>

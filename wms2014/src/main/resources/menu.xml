@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- $Id: menu.xml 11417 2008-03-18 10:43:51Z wzou $ -->
+<MenuConfig>
+	<Menus>
+
+		<Menu name="Tool" title="tool">
+			<Item name="WRITEdocArch" title="tool.docarch"
+				location="base/document/listDocumentsTOOLINGWRITE.html" />
+			<Item name="READdocArch" title="tool.listDevicesubscribeSummarydocarch"
+				location="base/document/listDocumentsTOOLINGREAD.html" />
+			<Item name="ToolPlan" title="计划与预算管理">
+				<!-- 年度计划写、汇总权限 -->
+				<Item name="WriteAndCollectToolYearPlan"
+					title="tool.yearplan"
+					location="year/tooling/yearPlan/listYearPlansWriteAndCollect.html" />
+				<!-- 年度计划写权限 -->
+				<Item name="WriteToolYearPlan" title="tool.yearplan"
+					location="year/tooling/yearPlan/listYearPlansWRITE.html" />
+				<!-- 年度计划读权限 -->
+				<Item name="ReadYearPlan" title="tool.yearplan"
+					location="year/tooling/yearPlan/listYearPlansREAD.html" />
+				<!-- 
+					<Item name="ToolYearBudgetInput" title="tool.yearBudgetInput" location="preview/plan/budget/listYearBudgetTOOLING.html"/>
+				-->
+				<!-- 工装年度预算写权限 -->
+				<Item name="WriteToolYearBudgetInput"
+					title="tool.yearBudgetInput"
+					location="year/budget/listYearBudgetsTOOLINGWRITE.html" />
+				<!-- 工装年度预算读权限 -->
+				<Item name="ReadToolYearBudgetInput"
+					title="tool.yearBudgetInput"
+					location="year/budget/listYearBudgetsTOOLINGREAD.html" />
+				<!-- 
+					<Item name="ToolQuarterPlanInput" title="tool.quarterPlanInput" location="preview/plan/budget/listQuarterPlanTOOLING.html"/>
+				-->
+				<Item name="WriteAndCollectToolQuarterPlanInput"
+					title="tool.quarterPlanInput"
+					location="year/tooling/quarterPlan/listQuarterPlansWriteAndCollect.html" />
+				<Item name="WriteToolQuarterPlanInput"
+					title="tool.quarterPlanInput"
+					location="year/tooling/quarterPlan/listQuarterPlansWRITE.html" />
+				<Item name="ReadToolQuarterPlanInput"
+					title="tool.quarterPlanInput"
+					location="year/tooling/quarterPlan/listQuarterPlansREAD.html" />
+			</Item>
+			<Item name="ToolBusiness" title="tool.business">
+				<Item name="ToolBom" title="tool.bom">
+					<!-- 工装供应商写权限 -->
+					<Item name="WriteToolSupplier" title="tool.supplier"
+						location="prophase/supplier/listSuppliersTOOLINGWRITE.html" />
+					<!--  工装供应商读权限 -->
+					<Item name="ReadToolSupplier" title="tool.supplier"
+						location="prophase/supplier/listSuppliersTOOLINGREAD.html" />
+					<!-- 工装供应商评定写权限 -->
+					<Item name="WriteToolSupplierEvaluate"
+						title="tool.supplierEvaluate"
+						location="prophase/supplier/listSupplierEvaluateTOOLINGWRITE.html" />
+					<!-- 工装供应商评定读权限 -->
+					<Item name="ReadToolSupplierEvaluate"
+						title="tool.supplierEvaluate"
+						location="prophase/supplier/listSupplierEvaluateTOOLINGREAD.html" />
+					<!-- 
+						<Item name="ToolSupplierEvaluateAll" title="tool.supplierEvaluateAll" location="preview/pro/supplier/evaluate/listSupplierEvaluateGatherTOOLING.html" />
+					-->
+				</Item>
+				<Item name="ToolBuy" title="tool.buy">
+					<!--工装采购单写权限 -->
+					<Item name="subscribe" title="tooling.purchaseBill"
+						location="tooling/prophase/business/listPurchaseBillTOOLING.html" />
+					<!-- 工装采购单读权限-->
+					<Item name="subscribe" title="tooling.purchaseBill"
+						location="tooling/prophase/business/listPurchaseBillRead.html" />
+					<!-- 工装采购合同写权限-->
+					<Item name="tooling.purchaseBill"
+						title="tooling.purchaseBillHT"
+						location="toooling/purchaseContract/listPurchaseContractTOOLINGWRITE.html" />
+					<!-- 工装采购合同读权限-->
+					<Item name="tooling.purchaseBillRead"
+						title="tooling.purchaseBillHT"
+						location="toooling/purchaseContract/listPurchaseContractRead.html" />
+					<!-- 
+						<Item name="subscribe" title="tool.subscribe" location="prophase/business/listSubscribesTOOLING.html"/>
+						<Item name="tooling.purchaseBill" title="tooling.purchaseBill" location="prophase/listPurchaseBillsTOOLING.html" />
+					-->
+					<!--验收单写权限 -->
+					<Item name="ToolReceBill" title="tool.receBill"
+						location="tooling/acceptBillSelector/listAcceptBillsTOOLING.html" />
+					<!--验收单读权限 -->
+					<Item name="ToolReceBillRead" title="tool.receBill"
+						location="tooling/acceptBillSelector/listAcceptBillsRead.html" />
+
+				</Item>
+			</Item>
+			<Item name="ToolMachAccount" title="tool.machAccount">
+				<!-- 工装台帐写权限 -->
+				<Item name="ToolAccount" title="tool.account"
+					location="asset/tooling/listToolingAccountsWRITE.html" />
+				<!-- 工装台帐读权限 -->
+				<Item name="ReadToolAccount" title="tool.account"
+					location="asset/tooling/listToolingAccountsREAD.html" />
+				<!-- 工装台帐读权限且附属信息写权限 -->
+				<Item name="ReadToolAccountWriteAdditionalInfo"
+					title="tool.account"
+					location="asset/tooling/listToolingAccountsREADAndAdditinalInfoWrite.html" />
+				<!-- 工装备件写权限 -->
+				<Item name="WriteSpares" title="tool.spares"
+					location="asset/spare/listSparesTOOLINGWRITE.html" />
+				<!-- 工装备件读权限 -->
+				<Item name="ReadSpares" title="tool.spares"
+					location="asset/spare/listSparesTOOLINGREAD.html" />
+			</Item>
+			<Item name="ToolRunMaintenance"
+				title="tool.runMaintenance">
+				<Item name="ToolRunLog" title="tool.run.log">
+					<!-- 工装日常检查写权限-->
+					<Item name="ToolDailyCheck"
+						title="deivce.dailyCheck"
+						location="runmaintenance/usualcheck/listChecksTOOLINGWRITE.html" />
+					<!-- 工装日常检查读权限-->
+					<Item name="ToolDailyCheckRead"
+						title="deivce.dailyCheck"
+						location="runmaintenance/usualcheck/listChecksTOOLINGRead.html" />
+					<!--工装备件领用写权限 -->
+					<Item name="ToolSpareBorrow"
+						title="toolSpare.borrow"
+						location="runmaintenance/spareBorrow/listToolingSpareBorrowBillsWRITE.html" />
+					<!--工装备件领用读权限 -->
+					<Item name="ToolSpareBorrowREAD"
+						title="toolSpare.borrow"
+						location="runmaintenance/spareBorrow/listToolingSpareBorrowBillsREAD.html" />
+					<!--工装领用单写权限-->
+					<Item name="ToolBorrow" title="tool.borrow"
+						location="runmaintenance/tooling/record/listToolingBorrowBillsWRITE.html" />
+					<!--工装领用单读权限 -->
+					<Item name="ToolBorrowRead" title="tool.borrow"
+						location="runmaintenance/tooling/record/listToolingBorrowBillsRead.html" />
+					<!--工装变更单写权限 -->
+					<Item name="ToolChange" title="too.change"
+						location="runmaintenance/tooling/record/listToolingChangeBillsWRITE.html" />
+					<!--工装变更单读权限 -->
+					<Item name="ToolChangeRead" title="too.change"
+						location="runmaintenance/tooling/record/listToolingChangeBillsRead.html" />
+					<!--工装故障单写权限 -->
+					<Item name="ToolFault" title="tool.fault"
+						location="runmaintenance/fault/listToolingFaultBillsWRITE.html" />
+					<!--工装故障单读权限 -->
+					<Item name="ReadToolFault" title="tool.fault"
+						location="runmaintenance/fault/listToolingFaultBillsRead.html" />
+					<!-- <Item name="ToolMigrate" title="tooling.migrate" location="preview/tooling/migrate/listMigrateTOOLING.html"/>	-->
+					<!--工装转移单写权限 -->
+					<Item name="ToolMigrate" title="tooling.migrate"
+						location="runmaintenance/migrate/listMigrateToolingWRITE.html" />
+					<!--工装转移单读权限 -->
+					<Item name="ReadToolMigrate" title="tooling.migrate"
+						location="runmaintenance/migrate/listMigrateToolingRead.html" />
+					<!--工装托管写权限 -->
+					<Item name="ToolingTrusteeship"
+						title="tooling.trusteeship"
+						location="runmaintenance/trusteeship/listTrusteeshipTOOLINGWRITE.html" />
+					<!--工装托管读权限 -->
+					<Item name="ReadToolingTrusteeship"
+						title="tooling.trusteeship"
+						location="runmaintenance/trusteeship/listTrusteeshipTOOLINGRead.html" />
+					<!--工装清查写权限 -->
+					<Item name="ToolInventory" title="tool.inventory"
+						location="runmaintenance/inventory/listInventorysTOOLINGWRITE.html" />
+					<!--工装清查读权限 -->
+					<Item name="ReadToolInventory"
+						title="tool.inventory"
+						location="runmaintenance/inventory/listInventorysTOOLINGRead.html" />
+					<!--工装闲置单写权限 -->
+					<Item name="ToolUnused" title="tool.unused"
+						location="runmaintenance/unused/listUsusedTOOLINGWRITE.html" />
+					<!--工装闲置蛋读权限 -->
+					<Item name="ReadToolUnused" title="tool.unused"
+						location="runmaintenance/unused/listUsusedTOOLINGRead.html" />
+					<!--工装封存单写权限-->
+					<Item name="ToolAlteration" title="tool.alteration"
+						location="runmaintenance/alteration/listToolingSealedsTOOLINGWRITE.html" />
+					<!--工装封存单读权限 -->
+					<Item name="ReadToolAlteration"
+						title="tool.alteration"
+						location="runmaintenance/alteration/listToolingSealedsTOOLINGRead.html" />
+					<!--工装报废单写权限 -->
+					<Item name="ToolDiscard" title="tool.discard"
+						location="runmaintenance/discard/listToolingDiscardsWRITE.html" />
+					<!--工装报废单读权限 -->
+					<Item name="ReadToolDiscard" title="tool.discard"
+						location="runmaintenance/discard/listToolingDiscardsRead.html" />
+
+				</Item>
+				<Item name="ToolWash" title="tool.wash">
+					<!-- 工装清洗计划写，汇总权限 -->
+					<Item name="WriteCollectToolWashPlan"
+						title="tool.wash.plan"
+						location="runmaintenance/wash/listWashsPLANWriteAndCollect.html" />
+					<!-- 工装清洗计划写权限 -->
+					<Item name="WriteToolWashPlan"
+						title="tool.wash.plan"
+						location="runmaintenance/wash/listWashsPLANWRITE.html" />
+					<!--工装清洗计划读权限 -->
+					<Item name="READToolWashPlan" title="tool.wash.plan"
+						location="runmaintenance/wash/listWashsPLANREAD.html" />
+					<!-- 工装清洗实施写，汇总权限 -->
+					<Item name="WriteCollectToolWashProc"
+						title="tool.wash.proc"
+						location="runmaintenance/wash/listWashsPROCWriteAndCollect.html" />
+					<!-- 工装清洗实施写权限 -->
+					<Item name="WriteToolWashProc"
+						title="tool.wash.proc"
+						location="runmaintenance/wash/listWashsPROCWRITE.html" />
+					<!--工装清洗实施读权限 -->
+					<Item name="ReadToolWashProc" title="tool.wash.proc"
+						location="runmaintenance/wash/listWashsPROCREAD.html" />
+				</Item>
+				<Item name="ToolCalibration" title="tool.calibration">
+					<!--<Item name="ToolCalibrationPlan" title="tool.calibration.plan" location="preview/tooling/calibration/listCalibrationPlans.html" />-->
+					<!-- 工装标定计划写，汇总权限 -->
+					<Item name="WriteCollectToolCalibrationPlan"
+						title="tool.calibration.plan"
+						location="runmaintenance/calibration/listCalibrationPlanWriteAndCollect.html" />
+					<!-- 工装标定计划写权限 -->
+					<Item name="WriteToolCalibrationPlan"
+						title="tool.calibration.plan"
+						location="runmaintenance/calibration/listCalibrationPlanWRITE.html" />
+					<!--工装标定计划读权限 -->
+					<Item name="READToolCalibrationPlan"
+						title="tool.calibration.plan"
+						location="runmaintenance/calibration/listCalibrationPlanREAD.html" />
+					<!-- 工装标定实施写，汇总权限 -->
+					<Item name="WriteCollectToolCalibrationProc"
+						title="tool.calibration.proc"
+						location="runmaintenance/calibration/listCalibrationProcWriteAndCollect.html" />
+					<!-- 工装标定实施写 -->
+					<Item name="WriteToolCalibrationProc"
+						title="tool.calibration.proc"
+						location="runmaintenance/calibration/listCalibrationProcWRITE.html" />
+					<!-- 工撞标定实施读权限-->
+					<Item name="ReadCollectToolCalibrationProc"
+						title="tool.calibration.proc"
+						location="runmaintenance/calibration/listCalibrationProcREAD.html" />
+				</Item>
+			</Item>
+
+			<Item name="ToolRepair" title="维修管理">
+				<Item name="Toolpre" title="预防性维修">
+					<!-- 工装预防性维修计划写，汇总权限 -->
+					<Item name="WriteCollectToolplan" title="维修计划"
+						location="runmaintenance/repair/plan/listPreRepairPlansPlanTOOLINGWriteAndCollect.html" />
+					<!-- 工装预防性维修计划写权限 -->
+					<Item name="WriteToolplan" title="维修计划"
+						location="runmaintenance/repair/plan/listPreRepairPlansPlanTOOLINGWRITE.html" />
+					<!--工装预防性维修计划读权限 -->
+					<Item name="ReadToolplan" title="维修计划"
+						location="runmaintenance/repair/plan/listPreRepairPlansPlanTOOLINGRAED.html" />
+					<!-- 工装预防性维修实施写，汇总权限 -->
+					<Item name="WriteCollectToolproc" title="维修实施"
+						location="runmaintenance/repair/plan/listPreRepairPlansProcTOOLINGWriteAndCollect.html" />
+					<!-- 工装预防性维修实施写权限 -->
+					<Item name="WriteToolproc" title="维修实施"
+						location="runmaintenance/repair/plan/listPreRepairPlansProcTOOLINGWRITE.html" />
+					<Item name="READToolproc" title="维修实施"
+						location="runmaintenance/repair/plan/listPreRepairPlansProcTOOLINGREAD.html" />
+
+				</Item>
+				<!-- 
+					<Item name="Toolreq" title="维修申请" location="preview/tooling/repair/listReqRepairsTOOLING.html" />
+					<Item name="Toolplan" title="维修报告" location="preview/tooling/repair/listRepairPlansTOOLING.html" />
+				-->
+			</Item>
+			<!-- 
+				<Item name="ToolAnalyzerReport" title="统计分析报表">
+				<Item name="1" title="生产准备台帐统计" location="preview/empty/TOOLING0.html" />
+				<Item name="2.5" title="季度采购计划统计" location="preview/empty/TOOLING1.html" />
+				<Item name="2.6" title="月度点检统计" location="preview/empty/TOOLING1.html" />
+				<Item name="2" title="预防性维修计划统计" location="preview/empty/TOOLING1.html" />
+				<Item name="3" title="工装经济技术分析" location="preview/empty/TOOLING2.html" />
+				<Item name="req" title="工装维修、改造与更新决策分析" location="preview/empty/TOOLING3.html" />
+				</Item>
+			-->
+		</Menu>
+
+		<Menu name="Device" title="device">
+			<Item name="DevicePlan" title="device.plan">
+				<!-- 
+					<Item name="DevicePurchase" title="device.purchase" location="preview/plan/year/purchase/listPurchasePlansDEVICE.html" />
+				-->
+				<!-- 设备采购计划写、汇总权限 -->
+				<Item name="WriteCollectDevicePurchase"
+					title="device.purchase"
+					location="year/device/purchasePlan/listPurchasePlansWriteAndCollect.html" />
+				<!-- 设备采购计划写权限 -->
+				<Item name="WriteDevicePurchase" title="device.purchase"
+					location="year/device/purchasePlan/listPurchasePlansWRITE.html" />
+				<!--设备采购计划读权限 -->
+				<Item name="ReadDevicePurchase" title="device.purchase"
+					location="year/device/purchasePlan/listPurchasePlansREAD.html" />
+				<!-- 设备大项修计划写、汇总权限 -->
+				<Item name="WriteCollectDeviceBigrepair"
+					title="device.bigrepair"
+					location="year/repair/listYearRepairPlansDEVICEWriteAndCollect.html" />
+				<!-- 设备大项修计划写权限 -->
+				<Item name="WriteDeviceBigrepair"
+					title="device.bigrepair"
+					location="year/repair/listYearRepairPlansDEVICEWRITE.html" />
+				<!-- 设备大项修计划读权限-->
+				<Item name="ReadDeviceBigrepair"
+					title="device.bigrepair"
+					location="year/repair/listYearRepairPlansDEVICEREAD.html" />
+				<!--设备运维计划写权限 -->
+				<Item name="DeviceRunmaintainPlan"
+					title="device.runmaintainPlan"
+					location="year/device/runmaintainPlan/listRunmaintainPlansWRITE.html" />
+				<!-- 设备运维计划读权限-->
+				<Item name="DeviceRunmaintainPlan"
+					title="device.runmaintainPlan"
+					location="year/device/runmaintainPlan/listRunmaintainPlansREAD.html" />
+				<!-- 			
+					<Item name="DeviceBudgetPlanOfYear" title="device.budgetPlanOfYear" location="preview/plan/year/budget/listBudgetPlanDEVICE.html" />
+				-->
+				<!-- 设备年度预算写权限 -->
+				<Item name="WriteDeviceBudgetOfYear"
+					title="device.budgetOfYear"
+					location="year/budget/listYearBudgetsDEVICEWRITE.html" />
+				<!-- 设备年度预算读权限 -->
+				<Item name="ReadDeviceBudgetOfYear"
+					title="device.budgetOfYear"
+					location="year/budget/listYearBudgetsDEVICEREAD.html" />
+			</Item>
+
+			<Item name="DeviceBusiness" title="device.business">
+				<Item name="bom" title="供应商管理">
+					<!-- 机动部供应商权限 -->
+					<Item name="WriteSupplier" title="tool.supplier"
+						location="prophase/supplier/listSuppliersDEVICEWRITE.html" />
+					<!-- 分厂供应商权限 -->
+					<Item name="ReadSupplier" title="tool.supplier"
+						location="prophase/supplier/listSuppliersDEVICEREAD.html" />
+					<!-- 设备供应商评定写权限 -->
+					<Item name="WriteToolSupplierEvaluate"
+						title="tool.supplierEvaluate"
+						location="prophase/supplier/listSupplierEvaluateDEVICEWRITE.html" />
+					<!-- 设备供应商评定读权限 -->
+					<Item name="WriteToolSupplierEvaluate"
+						title="tool.supplierEvaluate"
+						location="prophase/supplier/listSupplierEvaluateDEVICEREAD.html" />
+					<!-- 
+						<Item name="ToolSupplierEvaluateAll" title="tool.supplierEvaluateAll" location="preview/pro/supplier/evaluate/listSupplierEvaluateGatherDEVICE.html" />
+					-->
+				</Item>
+				<Item name="factory" title="厂家管理" location="prophase/factory/listFactory.html">
+				</Item>
+				<Item name="buy" title="采购管理">
+					<!--设备申购单读权限 -->
+					<Item name="ReadDevicesubscribe"
+						title="device.subscribe"
+						location="prophase/business/listSubscribesDEVICERead.html" />
+					<!--设备申购单写权限 -->
+					<Item name="Devicesubscribe"
+						title="device.subscribe"
+						location="prophase/business/listSubscribesDEVICEWRITE.html" />
+					<!--设备申购单汇总权限 -->
+					<Item name="Devicesubscribe"
+						title="device.subscribe"
+						location="prophase/business/listSubscribesDEVICEWriteAndCollect.html" />
+						
+						
+					<!-- 申购汇总单查询 -->
+					<Item name="DevicesubscribeSummary"
+						  title="申购汇总单"
+						  location="devicesubscribeSummary/listSubscribeCollectBillDEVICEREAD.html" />						
+					
+					<!--  <Item name="DevicesubscribeSummaryLonely"
+						  title="汇总单明细查询"
+						  location="devicesubscribeSummary/listSubscribeCollectBillDetaiLonely.html" />		
+					-->	
+
+					<!-- 设备采购单写权限-->
+					<Item name="purchaseBill" title="purchaseBill"
+						location="prophase/listPurchaseBillsDEVICEWRITE.html" />
+					<!--设备采购单读权限 -->
+					<Item name="READpurchaseBill" title="purchaseBill"
+						location="prophase/listPurchaseBillsDEVICERead.html" />
+					
+					 	
+						
+					<!--设备验收单写权限 -->
+					<!--  
+					<Item name="receBill" title="验收单"
+						location="accept/listAcceptBillsDEVICEWRITE.html" />
+					-->
+					<!--设备验收单读权限  -->
+					<!-- 
+					<Item name="ReadreceBill" title="验收单"
+						location="accept/listAcceptBillsDEVICERead.html" />
+					 -->
+				</Item>
+			</Item>
+			<Item name="DeviceMachAccount" title="device.machAccount">
+				<!-- 
+					<Item name="DeviceAcct" title="device.account" location="asset/device/listDevices.html"/>
+				-->
+				<!-- 设备台帐写权限 -->
+				<Item name="WriteDeviceAcct" title="device.account"
+					location="asset/device/listDevicesWRITE.html" />
+				<!-- 设备台帐读权限 -->
+				<Item name="ReadDeviceAcct" title="device.account"
+					location="asset/device/listDevicesREAD.html" />
+				<!-- 设备备件写权限 -->
+				<Item name="WriteSpares" title="device.spares"
+					location="asset/spare/listSparesDEVICEWRITE.html" />
+				<!-- 设备备件读权限 -->
+				<Item name="ReadSpares" title="device.spares"
+					location="asset/spare/listSparesDEVICEREAD.html" />
+				<!-- 
+					<Item name="operate" title="device.operate" location="preview/device/operate/listOperate.html" />
+				-->
+			</Item>
+			<Item name="DeviceRunMaintenance"
+				title="device.runMaintenance">
+				<Item name="RunLog" title="device.run.log">
+					<!--设备日常检查写权限 -->
+					<Item name="DeviceDailyCheck"
+						title="deivce.dailyCheck"
+						location="runmaintenance/usualcheck/listChecksDEVICEWRITE.html" />
+					<!--设备日常检查读权限 -->
+					<Item name="ReadDeviceDailyCheck"
+						title="deivce.dailyCheck"
+						location="runmaintenance/usualcheck/listChecksDEVICERead.html" />
+					<!--设备备件领用写权限-->
+					<Item name="DeviceSpareBorrow"
+						title="DeviceSpare.borrow"
+						location="runmaintenance/spareBorrow/listSpareBorrowBillsWRITE.html" />
+					<!-- 设备备件领用单读权限-->
+					<Item name="DeviceSpareBorrowREAD"
+						title="DeviceSpare.borrow"
+						location="runmaintenance/spareBorrow/listSpareBorrowBillsREAD.html" />
+					
+					<!--设备设备领用写权限-->
+					<Item name="DeviceBorrow"
+						title="device.borrow"
+						location="runmaintenance/device/record/listDeviceBorrowBillsWRITE.html" />
+					<!-- 设备设备领用单读权限
+					<Item name="DeviceBorrowREAD"
+						title="device.borrow"
+						location="runmaintenance/device/record/listDeviceBorrowBillsRead.html" />	
+						-->	
+					<!--设备故障记录写权限 -->
+					<Item name="Fault" title="device.fault"
+						location="runmaintenance/fault/listDeviceFaultBillsWRITE.html" />
+					<!-- 设备故障记录读权限-->
+					<Item name="ReadFault" title="device.fault"
+						location="runmaintenance/fault/listDeviceFaultBillsRead.html" />
+					<!--设备清查写权限 -->
+					<Item name="DeviceInventory"
+						title="device.inventory"
+						location="runmaintenance/inventory/listInventorysDEVICEWRITE.html" />
+					<!--设备清查读权限 -->
+					<Item name="ReadDeviceInventory"
+						title="device.inventory"
+						location="runmaintenance/inventory/listInventorysDEVICERead.html" />
+					<!-- 设备鉴定写权限-->
+					<Item name="DeviceInstactness"
+						title="deivce.Instactness"
+						location="runmaintenance/intactness/listIntactnessesWRITE.html" />
+					<!--设备鉴定读权限 -->
+					<Item name="DeviceInstactness"
+						title="deivce.Instactness"
+						location="runmaintenance/intactness/listIntactnessesRead.html" />
+					<!-- <Item name="DeviceUnused" title="device.unused" location="preview/device/unused/listUnused.html" />-->
+					<!--设备闲置单写权限 -->
+					<Item name="DeviceUnused" title="device.unused"
+						location="runmaintenance/unused/listunusedDeviceWRITE.html" />
+					<!--设备闲置单读权限 -->
+					<Item name="ReadDeviceUnused" title="device.unused"
+						location="runmaintenance/unused/listunusedDeviceRead.html" />
+					<!--设备封存单写权限 -->
+					<Item name="DeviceAlteration"
+						title="device.deviceAlteration"
+						location="runmaintenance/alteration/listToolingSealedsDEVICEWRITE.html" />
+					<!--设备封存单读权限 -->
+					<Item name="ReadDeviceAlteration"
+						title="device.deviceAlteration"
+						location="runmaintenance/alteration/listToolingSealedsDEVICERead.html" />
+					<!--设备转移单写权限 -->
+					<!-- <Item name="DeviceMigrate" title="device.migrate" location="preview/device/migrate/listMigrateDEVICE.html"/>-->
+					<Item name="DeviceMigrate" title="device.migrate"
+						location="runmaintenance/migrate/listMigrateDeviceWRITE.html" />
+					<!--设备转移单读权限 -->
+					<Item name="ReadDeviceMigrate"
+						title="device.migrate"
+						location="runmaintenance/migrate/listMigrateDeviceRead.html" />
+					<!--设备托管单写权限 -->
+					<Item name="DeviceTrusteeship"
+						title="device.trusteeship"
+						location="runmaintenance/trusteeship/listTrusteeshipDEVICEWRITE.html" />
+					<!--设备托管单读权限 -->
+					<Item name="ReadDeviceTrusteeship"
+						title="device.trusteeship"
+						location="runmaintenance/trusteeship/listTrusteeshipDEVICERead.html" />
+					<!-- 设备报废单写权限-->
+					<Item name="DeviceDiscard" title="deivce.discard"
+						location="runmaintenance/discard/listDiscardBillDeviceWRITE.html" />
+					<!--设备报废单读权限 -->
+					<Item name="ReadDeviceDiscard"
+						title="deivce.discard"
+						location="runmaintenance/discard/listDiscardBillDeviceRead.html" />
+				</Item>
+				<Item name="DeviceCheckPoint"
+					title="device.checkPoint">
+					<!-- 设备点检报告写、汇总权限 -->
+					<Item name="WriteCollectCheckPointReport"
+						title="checkPoint.report"
+						location="runmaintenance/toolingDev/checkpoint/listCheckPointReportWriteAndCollect.html" />
+					<!-- 设备点检报告写权限 -->
+					<Item name="WriteCheckPointReport"
+						title="checkPoint.report"
+						location="runmaintenance/toolingDev/checkpoint/listCheckPointReportWRITE.html" />
+					<!-- 设备点检报告读权限 -->
+					<Item name="ReadCheckPointReport"
+						title="checkPoint.report"
+						location="runmaintenance/toolingDev/checkpoint/listCheckPointReportREAD.html" />
+					<!-- 
+						<Item name="Proc" title="checkPoint.proc" location="preview/tool/checkpoint/listCheckPointProcs.html" />
+						<Item name="Plan" title="checkPoint.plan" location="runmaintenance/checkPoint/listCheckPointPlans.html" />
+						<Item name="Proc" title="checkPoint.proc" location="runmaintenance/checkPoint/listCheckPointProcs.html" />
+					-->
+				</Item>
+				<Item name="DeviceLubrication"
+					title="device.lubrication">
+					<!--
+						<Item name="Lubrication.rule" title="lubrication.rule" location="preview/device/smoothInfo/listSmoothRules.html" />
+					-->
+					<!-- 设备润滑计划写、汇总权限 -->
+					<Item name="WriteAndCollectLubrication.plan"
+						title="lubrication.plan"
+						location="runmaintenance/lubrication/listLubricationsPLANWriteAndCollect.html" />
+					<!-- 设备润滑计划写权限 -->
+					<Item name="WriteLubrication.plan"
+						title="lubrication.plan"
+						location="runmaintenance/lubrication/listLubricationsPLANWRITE.html" />
+					<!--设备润滑计划读权限 -->
+					<Item name="ReadLubrication.plan"
+						title="lubrication.plan"
+						location="runmaintenance/lubrication/listLubricationsPLANREAD.html" />
+					<!-- 设备润滑实施写、汇总权限 -->
+					<Item name="WriteAndCollectLubrication.proc"
+						title="lubrication.proc"
+						location="runmaintenance/lubrication/listLubricationsPROCWriteAndCollect.html" />
+					<!-- 设备润滑实施写权限 -->
+					<Item name="WriteLubrication.proc"
+						title="lubrication.proc"
+						location="runmaintenance/lubrication/listLubricationsPROCWRITE.html" />
+					<!--设备润滑实施读查询 -->
+					<Item name="ReadLubrication.proc"
+						title="lubrication.proc"
+						location="runmaintenance/lubrication/listLubricationsPROCRAED.html" />
+					<!-- 
+						<Item name="Lubrication.plan" title="lubrication.plan" location="preview/device/smoothInfo/listSmoothPlans.html" />
+						<Item name="Lubrication.proc" title="lubrication.proc" location="preview/device/smoothInfo/listSmoothPlanImpls.html" />
+					-->
+				</Item>
+				<Item name="DeviceMaintain"
+					title="device.maintenance">
+					<!-- <Item name="" title="保养标准" location="preview/device/maintenance/listMaintenanceRules.html" />-->
+					<!-- 设备保养计划写、汇总权限 -->
+					<Item name="WriteAndCollectMaintenance.plan"
+						title="Maintenance.plan"
+						location="runmaintenance/maintenance/listMaintenancePlanWriteAndCollect.html" />
+					<!-- 设备保养计划写权限 -->
+					<Item name="WriteMaintenance.plan"
+						title="Maintenance.plan"
+						location="runmaintenance/maintenance/listMaintenancePlanWRITE.html" />
+					<!--设备保养计划读权限 -->
+					<Item name="ReadMaintenance.plan"
+						title="Maintenance.plan"
+						location="runmaintenance/maintenance/listMaintenancePlanREAD.html" />
+					<!-- 设备保养实施写、汇总权限 -->
+					<Item name="WriteAndCollectMaintenance.proc"
+						title="Maintenance.proc"
+						location="runmaintenance/maintenance/listMaintenanceProcWriteAndCollect.html" />
+					<!-- 设备保养实施写权限 -->
+					<Item name="WriteMaintenance.proc"
+						title="Maintenance.proc"
+						location="runmaintenance/maintenance/listMaintenanceProcWRITE.html" />
+					<Item name="ReadMaintenance.proc"
+						title="Maintenance.proc"
+						location="runmaintenance/maintenance/listMaintenanceProcREAD.html" />
+
+				</Item>
+				<!-- 
+					<Item name="check" title="定期检查">
+					<Item name="" title="检查标准" location="preview/check/listCheckRules.html" />
+					<Item name="" title="检查计划" location="preview/check/listCheckPlans.html" />
+					<Item name="" title="检查实施" location="preview/check/listCheckPlanImpls.html" />
+					</Item>
+				-->
+			</Item>
+
+			<Item name="DeviceRepair" title="device.repair">
+				<!--设备大项修实施写,汇总权限 -->
+				<!--设备大项修实施读权限 -->
+				<Item name="READDeviceBigrepairProc"
+					title="device.bigrepairProc"
+					location="year/repair/listYearRepairProcsDEVICEREAD.html" />
+				<Item name="WriteAndCollectDeviceBigrepairProc"
+					title="device.bigrepairProc"
+					location="year/repair/listYearRepairProcsDEVICEWriteAndCollect.html" />
+				<Item name="WriteDeviceBigrepairProc"
+					title="device.bigrepairProc"
+					location="year/repair/listYearRepairProcsDEVICEWRITE.html" />
+				<Item name="pre" title="预防性维修">
+					<!--设备预防性维修计划写,汇总权限 -->
+					<Item name="WriteAndCollectplan" title="维修计划"
+						location="runmaintenance/repair/plan/listPreRepairPlansPLANDEVICEWriteAndCollect.html" />
+					<!--设备预防性维修计划写权限 -->
+					<Item name="Writeplan" title="维修计划"
+						location="runmaintenance/repair/plan/listPreRepairPlansPLANDEVICEWRITE.html" />
+					<!--设备预防性维修计划读权限 -->
+					<Item name="Readplan" title="维修计划"
+						location="runmaintenance/repair/plan/listPreRepairPlansPLANDEVICEREAD.html" />
+					<!--设备预防性维修实施写,汇总权限 -->
+					<Item name="WriteAndCollectproc" title="维修实施"
+						location="runmaintenance/repair/plan/listPreRepairPlansPROCDEVICEWriteAndCollect.html" />
+					<!--设备预防性维修实施写权限 -->
+					<Item name="Writeproc" title="维修实施"
+						location="runmaintenance/repair/plan/listPreRepairPlansPROCDEVICEWRITE.html" />
+					<!--设备预防性维修实施读权限 -->
+					<Item name="Readproc" title="维修实施"
+						location="runmaintenance/repair/plan/listPreRepairPlansPROCDEVICEREAD.html" />
+				</Item>
+				<!-- 
+					<Item name="req" title="维修申请" location="preview/device/repair/listReqRepairs.html" />
+					<Item name="report" title="维修报告" location="preview/device/repair/listPreRepairPlanDEVICE.html"/>
+				-->
+			</Item>
+
+			<Item name="DeviceAnalyzerReport"
+				title="device.AnalyzerReport">
+				<!-- 
+					<Item name="" title="设备寿命周期费用分析" location="preview/empty/DEVICE0.html" />
+					<Item name="" title="KPI管理与分析" location="preview/empty/DEVICE1.html" />
+					<Item name="" title="设备经济技术分析" location="preview/empty/DEVICE2.html" />
+					<Item name="req" title="设备维修、改造与更新决策分析" location="preview/empty/DEVICE3.html" />
+				-->
+				<Item name="" title="主要生产设备完好利用情况月报表"
+					location="report/listDeviceFullUsing.html" />
+				<Item name="" title="主要生产设备使用状况月报表"
+					location="report/listDeviceUseStatus.html" />
+				<Item name="" title="主要生产设备综合考核表"
+					location="report/listMainProductDeviceCheck.html" />
+				<Item name="FaultAnalysis" title="故障分析报表">
+					<Item name="FaultAnalysisByDepartment" title="部门故障分析月报表"
+						location="faultAnalysis/listFaultAnalysisByDepartment.html"/>
+					<Item name="FaultAnalysisByDevice" title="设备故障分析月报表"
+						location="faultAnalysis/listFaultAnalysisByDevice.html"/>
+					<Item name="FaultAnalysisByDeviceType" title="设备类别故障分析月报表"
+						location="faultAnalysis/listFaultAnalysisByDeviceType.html"/>
+					<Item name="FaultAnalysisByFaultCatorgy" title="故障类别故障分析月报表"
+						location="faultAnalysis/listFaultAnalysisByFaultCatorgy.html"/>
+				</Item>
+				<Item name="accountReport" title="设备统计报表">
+					<Item name="DeviceOriginalNetStatistics" title="设备原值净值统计分析月报表"
+						location="accountReport/listDeviceOriginalNetStatistics.html"/>
+					<Item name="DeviceLifeMaturityStatistics" title="设备年限到期统计分析月报表"
+						location="accountReport/listDeviceLifeMaturityStatistics.html"/>
+					<Item name="DeviceWasterStatistics" title="设备报废统计分析月报表"
+						location="accountReport/listDeviceWasterStatistics.html"/>
+				</Item>
+				<Item name="purBillReport" title="采购报表管理">	
+					<!--  
+					   <Item name="purBillReportm" title="采购报表"
+						   location="prophase/listPurchaseBillReoprt.html" />-->
+						   
+					  <Item name="purBillReportmontj" title="按部门报表"
+						   location="tooling/report/listSubscribeDetailMonthReport.html" />	
+						   
+					<!--   <Item name="purBillReportsupplier" title="按供应商报表"
+						   location="prophase/listPurchaseBillReoprt.html" />	-->
+						 <Item name="purBillReportsupplier" title="按供应商报表"
+						   location="tooling/report/listSubscribeDetailSupplierReport.html" />	   
+						      	
+					 </Item>
+					
+			</Item>
+		</Menu>
+		<Menu name="Spare" title="spare">
+			<!-- 仓库信息开始 -->
+			<Item name="warehouseInfo" title="warehouseInfo">
+				<!-- 仓库管理开始 -->
+				<Item name="warehouse" title="warehouse" location="warehouseInfo/listWarehouse.html" ></Item>
+				<!-- 仓库管理结束 -->
+				<!-- 库区管理开始 -->
+				<Item name="regional" title="regional" location="regionalInfo/listRegional.html" ></Item>
+				<!-- 库区管理结束 -->
+				<!-- 库位管理开始 -->
+				<Item name="Location" title="location" location="newLocation/listLocation.html" />
+				<!-- 库位管理结束 -->
+			<!-- 库位管理结束 -->
+			</Item>
+			
+			<!-- 商务管理 -->
+			<Item name="DeviceBusiness" title="device.business">
+				<Item name="bom" title="供应商管理">
+					<!-- 机动部供应商权限 -->
+					<Item name="WriteSupplier" title="tool.supplier"
+						location="prophase/supplier/listSuppliersDEVICEWRITE.html" />
+					<!-- 分厂供应商权限 -->
+					<Item name="ReadSupplier" title="tool.supplier"
+						location="prophase/supplier/listSuppliersDEVICEREAD.html" />
+					<!-- 设备供应商评定写权限 -->
+					<Item name="WriteToolSupplierEvaluate"
+						title="tool.supplierEvaluate"
+						location="prophase/supplier/listSupplierEvaluateDEVICEWRITE.html" />
+					<!-- 设备供应商评定读权限 -->
+					<Item name="WriteToolSupplierEvaluate"
+						title="tool.supplierEvaluate"
+						location="prophase/supplier/listSupplierEvaluateDEVICEREAD.html" />
+					<!-- 
+						<Item name="ToolSupplierEvaluateAll" title="tool.supplierEvaluateAll" location="preview/pro/supplier/evaluate/listSupplierEvaluateGatherDEVICE.html" />
+					-->
+				</Item>
+				<Item name="factory" title="厂家管理" location="prophase/factory/listFactory.html">
+				</Item>
+				<Item name="buy" title="采购管理">
+					<!--设备申购单读权限 -->
+					<Item name="ReadDevicesubscribe"
+						title="device.subscribe"
+						location="prophase/business/listSubscribesDEVICERead.html" />
+					<!--设备申购单写权限 -->
+					<Item name="Devicesubscribe"
+						title="device.subscribe"
+						location="prophase/business/listSubscribesDEVICEWRITE.html" />
+					<!--设备申购单汇总权限 -->
+					<Item name="Devicesubscribe"
+						title="device.subscribe"
+						location="prophase/business/listSubscribesDEVICEWriteAndCollect.html" />
+						
+						
+					<!-- 申购汇总单查询 -->
+					<Item name="DevicesubscribeSummary"
+						  title="申购汇总单"
+						  location="devicesubscribeSummary/listSubscribeCollectBillDEVICEREAD.html" />						
+					
+					<!--  <Item name="DevicesubscribeSummaryLonely"
+						  title="汇总单明细查询"
+						  location="devicesubscribeSummary/listSubscribeCollectBillDetaiLonely.html" />		
+					-->	
+
+					<!-- 设备采购单写权限-->
+					<Item name="purchaseBill" title="purchaseBill"
+						location="prophase/listPurchaseBillsDEVICEWRITE.html" />
+					<!--设备采购单读权限 -->
+					<Item name="READpurchaseBill" title="purchaseBill"
+						location="prophase/listPurchaseBillsDEVICERead.html" />
+					
+					 	
+						
+					<!--设备验收单写权限 
+					<Item name="receBill" title="验收单"
+						location="accept/listAcceptBillsDEVICEWRITE.html" />
+					-->
+					<!--设备验收单读权限  
+					<Item name="ReadreceBill" title="验收单"
+						location="accept/listAcceptBillsDEVICERead.html" />
+					-->
+				</Item>
+			</Item>
+			<!-- 仓库信息结束 -->
+			<!--工装设备备件读权限-->
+			 <Item name="SpareAccountManager" title="spareAccountManager">
+			        <!-- 备件信息总台帐读权限 -->
+			        <Item name="ReadSpareAccountMaterial" title="spareAccountMaterial"
+				        location="asset/spare/listSparesTOOLINDEVICEREAD.html">
+			        </Item>
+			        <!-- 备件信息总台帐写权限 -->
+			        <Item name="WriteSpareAccountMaterial" title="spareAccountMaterial"
+				        location="asset/spare/listSparesTOOLINDEVICEWRITE.html">
+			        </Item>
+			        <Item name="ReadSpareWareHouseAccount" title="spareWareHouseAccount"
+				        location="spare/spareWareHouse/listSpareWareHouse.html">
+			        </Item>
+			        <Item name="WriteSpareAccountDetail" title="spareAccountDetail"
+				        location="asset/spare/listSpareDetailSearcherCommonREAD.html">
+			        </Item>
+
+			 </Item>
+			 
+			<Item name="WareHouseManager" title="wareHouseManger">
+				<!--工装设备备件入库读权限-->
+				<Item name="SpareInputREAD" title="spareInput"
+					location="spare/listSpareInBillREAD.html" />
+				<!--工装设备备件入库写权限 -->
+				<Item name="SpareInputWRITE" title="spareInput"
+					location="spare/listSpareInBillWRITE.html" />
+				<!--工装设备备件出库读权限 -->
+				<Item name="SpareOutputREAD" title="spareOutput"
+					location="spare/listSpareOutBillREAD.html" />
+				<!--工装设备备件出库写权限 -->
+				<Item name="SpareOutputWRITE" title="spareOutput"
+					location="spare/listSpareOutBillWRITE.html" />
+				<!--工装设备备件盘点读权限 -->
+				<Item name="SpareInventoryREAD" title="spareInventory"
+					location="spare/listSpareInventoryREAD.html" />
+				<!--工装设备备件盘点写权限-->
+				<Item name="SpareInventoryWRITE" title="spareInventory"
+					location="spare/listSpareInventoryWRITE.html" />
+					
+				<Item name="movePostionManagerREAD" title="movePostionManager"
+					location="spare/movePostionBillREAD.html" />
+			     <Item name="movePostionManagerWRITE" title="movePostionManager"
+					location="spare/movePostionBillWRITE.html" />
+			</Item>
+			 
+			 <!--工装设备备件读权限-->
+			 <Item name="oldSpareAccountManager" title="旧件台账管理">
+			        <!-- 备件信息总台帐读权限 -->
+			        <Item name="ReadSpareAccountMaterial" title="旧件信息总台账"
+				        location="asset/spare/listOldSparesTOOLINDEVICEREAD.html">
+			        </Item>
+			        <!-- 备件信息总台帐写权限 -->
+			        <Item name="WriteSpareAccountMaterial" title="旧件信息总台账"
+				        location="asset/spare/listOldSparesTOOLINDEVICEWRITE.html">
+			        </Item>
+			        <Item name="ReadSpareWareHouseAccount" title="旧件库总台账"
+				        location="spare/spareWareHouse/listOldSpareWareHouse.html">
+			        </Item>
+			 </Item>
+			
+			<Item name="oldwarehouseManager" title="旧件库内管理">
+				<!--工装设备备件入库读权限-->
+				<Item name="SpareInputREAD" title="入库管理"
+					location="spare/listOldSpareInBillREAD.html" />
+				<!--工装设备备件入库写权限 -->
+				<Item name="SpareInputWRITE" title="入库管理"
+					location="spare/listOldSpareInBillWRITE.html" />
+				<!--工装设备备件出库读权限 -->
+				<Item name="SpareOutputREAD" title="出库管理"
+					location="spare/listOldSpareOutBillREAD.html" />
+				<!--工装设备备件出库写权限 -->
+				<Item name="SpareOutputWRITE" title="出库管理"
+					location="spare/listOldSpareOutBillWRITE.html" />
+				<!--工装设备备件出库写权限 -->
+				<Item name="SpareScrapREAD" title="报废管理"
+					location="spare/listOldSpareScrapBillREAD.html" />
+				<!--工装设备备件盘点读权限 -->
+				<Item name="SpareScrapWRITE" title="报废管理"
+					location="spare/listOldSpareScrapBillWRITE.html" />
+				<!--工装设备备件盘点读权限 -->
+				<Item name="SpareMaintainREAD" title="维修管理"
+					location="spare/listOldSpareMaintainBillREAD.html" />
+				<!--工装设备备件出库写权限 -->
+				<Item name="SpareMaintainWRITE" title="维修管理"
+					location="spare/listOldSpareMaintainBillWRITE.html" />
+				<!--工装设备备件盘点读权限 -->
+				<Item name="SpareInventoryREAD" title="盘点管理"
+					location="spare/listOldSpareInventoryREAD.html" />
+				<!--工装设备备件盘点写权限-->
+				<Item name="SpareInventoryWRITE" title="盘点管理"
+					location="spare/listOldSpareInventoryWRITE.html" />
+					
+			</Item>
+			
+			<Item name="reportManager" title="reportManager">
+			  <Item name="spareInAndOutStore" title="spareInAndOutStore">
+				   <Item name="daySpareInAndOutStore"
+					   title="daySpareInAndOutStore"
+					   location="inAndOutAndStoreReport/listSpareInAndOutAndStoreReportFristREAD.html">
+					</Item>
+					   <Item name="monthSpareInAndOutStore"
+					   title="monthSpareInAndOutStore"
+					   location="inAndOutAndStoreReport/listSpareInAndOutAndStoreMonthReportREAD.html">
+					</Item>
+				<Item name="inventoryCleanHouseReport"
+					   title="inventoryCleanHouseReport"
+					   location="inAndOutAndStoreReport/listInventoryAndCleanHouseREAD.html">
+				</Item>
+			 </Item>
+			 <!-- 清仓盘点报表 -->
+			   <Item name="inventoryCleanHouseReport"
+					   title="inventoryCleanHouseReport"
+					   location="inAndOutAndStoreReport/listInventoryAndCleanHouseREAD.html">
+				</Item>
+			</Item>
+		</Menu>
+		<!-- 
+			<Menu name="Mynotice" title="我的通知">
+			<Item name="do" title="通知1" location="notice/listNotice.html" />
+			<Item name="" title="通知2" location="preview/workspace/listUnReadWarnning.html" />
+			</Menu>
+		-->
+		<Menu name="MyWorkSpace" title="myWorkSpace">
+			<!-- 
+				<Item name="Documents" title="myWorkSpace.documents" location="workspace/listDocs.html" />
+			-->
+			<!-- 
+				<Item name="do" title="我的提醒" location="preview/workspace/listUnReadWarnning.html" />
+			-->
+			<!--我的提醒写权限 -->
+			<Item name="do" title="我的提醒"
+				location="workspace/warnning/myWarnning/listWorkWarnnings.html" />
+			<Item name="notice" title="我的通知">
+				<Item name="do" title="发通知"
+					location="notice/listNotice.html" />
+				<Item name="" title="收通知"
+					location="notice/listReceviceNotices.html" />
+			</Item>
+		</Menu>
+
+		<Menu name="System" title="system">
+			<Item name="Security" title="security">
+				<Item name="User" title="security.user"
+					location="security/listUsers.html" />
+				<Item name="Group" title="security.group"
+					location="security/listGroups.html" />
+				<Item name="Role" title="security.role"
+					location="security/listRoles.html" />
+			</Item>
+			<!-- 
+				<Item name="Rule" title="报警规则" location="preview/empty/TOOLING_WARNRULE.html"/>
+			-->
+			<Item name="Rule" title="报警规则"
+				location="base/warnningRule/listWarnningRules.html" />
+			<!-- 
+				<Item name="care" title="device.care.rule" location="preview/empty/6.html" />
+				<Item name="repair" title="device.repair.rule" location="preview/empty/7.html" />
+				<Item name="smooth" title="device.smooth.rule" location="preview/empty/8.html" />
+				<Item name="timePointCheck" title="device.timePointCheck.rule" location="preview/empty/9.html" />
+				</Item>
+			-->
+			<Item name="master" title="system.master">
+				<Item name="country" title="system.country"
+					location="base/country/listCountries.html" />
+				<Item name="code" title="system.code"
+					location="base/codevalue/listCodeValues.html" />
+				<Item name="product" title="org.product"
+					location="base/product/listProducts.html" />
+				<Item name="financeType" title="system.financeType"
+					location="base/financeType/listFinanceTypes.html" />
+				<Item name="toolingType" title="system.toolingType"
+					location="base/codevalue/listToolingTypes.html" />
+				<Item name="spareType" title="system.spareType"
+					location="base/codevalue/listSpareTypes.html" />
+				<Item name="lubricationOil"
+					title="system.lubricationOil"
+					location="base/lubricationOil/listLubricationOils.html" />
+			</Item>
+			<Item name="org" title="system.organization">
+				<Item name="Filiale" title="system.filiale" 
+					location="base/filiale/listFiliales.html" />
+				<Item name="Department" title="system.department"
+					location="base/department/listDepartments.html" />
+				<Item name="productionLine" title="org.productionLine"
+					location="base/productionLine/listProductionLines.html" />
+				<!-- 
+					<Item name="workGroup" title="system.workGroup" location="base/org/listWorkGroups.html" />
+				-->
+			</Item>
+			<!-- 
+				<Item name="dataimport" title="system.dataimport">
+				<Item name="MRPSync" title="device.mrpsync" location="dataimport/mrpsync/listSyncHistories.html" />
+				</Item>
+			-->
+			<!-- 
+				<Item name="news" title="system.news" location="base/news/listNews.html" />
+			-->
+			<!-- 
+				<Item name="news" title="system.news" location="base/msg/listMsgs.html" />
+				
+				<Item name="help" title="system.share.help" location="pages/news.ftl" />
+			-->
+			<Item name="help" title="system.share.help"
+				location="base/manual/listManuals.html" />
+			<Item name="UserLog" title="user.log"
+				location="base/userLog/listUserLog.html" />
+		</Menu>
+
+	</Menus>
+
+</MenuConfig>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: unused.hbm.xml 11320 2008-03-14 09:12:34Z zbzhang $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.unused.UnUsed" table="t_unused" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_unused_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="code" type="string">
+            <column name="plan_no" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="name" type="string">
+            <column name="name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="unUseDate" type="date">
+            <column name="unuse_date" not-null="true" />
+        </property>
+        
+        <property name="disabled" type="boolean">
+            <column name="disabled" not-null="true"/>
+        </property>
+        
+        <property name="toolingDevFlag" type="com.yongjun.tdms.dao.base.codevalue.hibernate.SysModelEnum">
+            <column name="TOOLING_DEV_FLAG" not-null="true" length="50"/>
+        </property>
+        
+        <many-to-one name="applicant" class="com.yongjun.pluto.model.security.User">
+			<column name="applicant" not-null="true" />
+		</many-to-one>
+		
+	    <many-to-one name="unUsedApr" class="com.yongjun.pluto.model.security.User">
+			<column name="unused_apr" not-null="false" />
+		</many-to-one>
+		
+		 <many-to-one name="usedApr" class="com.yongjun.pluto.model.security.User">
+			<column name="used_apr" not-null="false" />
+		 </many-to-one>
+		
+        <property name="reason" type="string">
+            <column name="reason" not-null="false" length="250"/>
+        </property>
+        
+        <property name="comment" type="string">
+            <column name="comment" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="isUnUsedAduit" type="boolean">
+            <column name="is_unused" not-null="true" />
+        </property>
+        
+        <property name="devise" type="string">
+            <column name="devise_apr" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+         <property name="usedreason" type="string">
+            <column name="usedreason_apr" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="unUsedAprDate" type="date">
+            <column name="unused_apr_date" not-null="false"/>
+        </property>
+        
+        <property name="unUsedAprCmt" type="string">
+            <column name="unused_apr_cmt" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="isUsedAduit" type="boolean">
+            <column name="isUsed" not-null="true" />
+        </property>
+    
+        <property name="usedAprDate" type="date">
+            <column name="used_apr_date" not-null="false" />
+        </property>
+        
+        <property name="usedAprCmt" type="string">
+            <column name="used_apr_cmt" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="status" type="com.yongjun.tdms.dao.runmaintenance.unused.hibernate.UnUsedStatusEnum">
+            <column name="status" not-null="false" length="50"/>
+        </property>
+        
+	    <many-to-one name="asset" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+            <column name="device_id" not-null="true" />
+        </many-to-one>
+ 
+	</class>
+</hibernate-mapping>

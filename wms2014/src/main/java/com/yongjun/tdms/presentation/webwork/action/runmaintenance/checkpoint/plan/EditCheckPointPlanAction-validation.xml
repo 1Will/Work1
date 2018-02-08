@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+
+<!-- $Id: EditCheckPointPlanAction-validation.xml 7925 2007-10-22 02:37:55Z qsun $ -->
+<validators>
+    <field name="plan.name">
+        <field-validator type="requiredstring">
+            <message key="plan.name.requiredstring"/>
+        </field-validator>
+	</field>
+	<field name="plan.scheduleTime">
+        <field-validator type="date">
+            <message key="plan.scheduleTime.date"/>
+        </field-validator>
+	</field>
+	<field name="plan.request">      
+        <field-validator type="stringlength">
+            <param name="maxLength">250</param>
+            <message key="plan.request.maxLength"/>
+        </field-validator>
+	</field>
+</validators>

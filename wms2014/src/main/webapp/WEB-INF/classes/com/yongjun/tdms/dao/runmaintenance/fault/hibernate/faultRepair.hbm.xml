@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: preRepairPlan.hbm.xml 10296 2008-01-10 06:03:36Z zbzhang $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.fault.FaultRepair" table="t_fault_repair" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_fault_repair_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="finishedDate" type="date">
+            <column name="FINISHED_DATE" not-null="false" />
+        </property>
+        
+        <property name="budgetNo" type="string">
+            <column name="BUDGET_NO" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="allFee" type="double">
+            <column name="ALL_FEE" not-null="false"/>
+        </property>
+        
+        <property name="externalHelpDepartment" type="string">
+            <column name="EXTERNAL_HELP_DEPARTMENT" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="externalHelpFlag" type="boolean">
+            <column name="EXTERNAL_HELP_FLAG" not-null="false"/>
+        </property>
+        
+        <many-to-one name="sourceType" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="SOURCE_TYPE" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="repairLevel" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="REPAIR_LEVEL" not-null="false" />
+		</many-to-one>
+		
+        <many-to-one name="dutyPeople" class="com.yongjun.pluto.model.security.User">
+			<column name="DUTY_PEOPLE_ID" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="receiver" class="com.yongjun.pluto.model.security.User">
+			<column name="RECEIVER_ID" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="dept_id" not-null="true" />
+		</many-to-one>
+		
+		<many-to-one name="faultBill" class="com.yongjun.tdms.model.runmaintenance.fault.FaultBill">
+			<column name="fault_bill_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="budgetDetail" class="com.yongjun.tdms.model.year.budget.BudgetDetail">
+			<column name="budget_detail_id" not-null="false" />
+		</many-to-one>
+		
+		<set name="spares" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="fault_repair_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.repair.RepairSpare" />
+		</set>
+		
+		<set name="repairItems" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="fault_repair_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.repair.RepairItem" />
+		</set>
+		
+		<set name="repairFees" inverse="true" cascade="delete" lazy="true">
+			<key column="fault_repair_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.repair.RepairFee" />
+		</set>
+		
+		<set name="manHours" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="fault_repair_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.repair.RepairManHour" />
+		</set>
+		
+		<set name="repairTools" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="fault_repair_id" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.repair.RepairTool" />
+		</set>
+		
+		<set name="repairDoc" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="fault_repair_id" />
+			<one-to-many class="com.yongjun.tdms.model.base.document.ApplicationDoc" />
+		</set>
+	</class>
+</hibernate-mapping>

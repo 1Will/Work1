@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: check.hbm.xml 10875 2008-02-02 09:59:42Z zbzhang $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.prophase.supplier.SupplierEvaluate" table="t_supplierEvalue" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_supplierEvalue_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <!-- <property name="supplierNo" type="string">
+            <column name="supplier_NO" not-null="true" unique-key="UK_SUPPLIER_EVALUE" length="50"/>
+        </property>-->
+        
+        <property name="evaluatedate" type="date">
+            <column name="EVALUATE_DATE" not-null="true" />
+        </property>
+        
+        <property name="unitYear" type="date">
+            <column name="Unit_Year" not-null="true" />
+        </property>
+         <property name="deptName" type="string">
+            <column name="dept_Name" not-null="false"  sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="supplierName" type="string">
+            <column name="supplier_Name" not-null="false"  sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="evaluateName" type="string">
+            <column name="evaluate_Name" not-null="false"  sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="evaluateMinute" type="double">
+            <column name="evaluate_MINUTE" not-null="false" length="50"/>
+        </property>
+        
+        <property name="disabled" type="boolean">
+            <column name="disabled" not-null="true"/>
+        </property>
+        
+		<property name="toolingDevFlag" type="com.yongjun.tdms.dao.base.codevalue.hibernate.SysModelEnum">
+            <column name="TOOLING_DEV_FLAG" not-null="true" length="50"/>
+        </property>
+        
+        <many-to-one name="evaluateUser" class="com.yongjun.pluto.model.security.User">
+			<column name="EVALUATE_ID" not-null="false" />
+		</many-to-one>
+		
+        <many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="DEPT_ID" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="level" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="level_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="originalLevel" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="originalLevel_id" not-null="false" />
+		</many-to-one>
+		
+		 <many-to-one name="supplier" class="com.yongjun.tdms.model.prophase.supplier.Supplier">
+			<column name="SUPPLIER_ID" not-null="false" />
+		</many-to-one>
+		
+		<set name="supplierEvaluateDetail" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="SUPPLIEREVALUE_ID" />
+			<one-to-many class="com.yongjun.tdms.model.prophase.supplier.SupplierEvaluateDetail"/>
+		</set>
+
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        
+        <property name="creator"  column="CREATOR"   type="string" length="50"/>
+        
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        
+        <property name="lastOperator"  column="LAST_OPERATOR"   type="string" length="50"/>
+ 
+    </class>
+    <query name="LoadAllSupplierEvaluateBySupplier">
+		<![CDATA[FROM SupplierEvaluate evaluate WHERE evaluate.supplier.id = :supplierId]]>
+	</query>
+</hibernate-mapping>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: check.hbm.xml 10875 2008-02-02 09:59:42Z zbzhang $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.prophase.supplier.SupplierEvaluateDetail" table="t_supplierEvalue_detail">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_supplierEvaluedetail_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+       
+        <property name="grade" type="double">
+            <column name="grade_no" not-null="false" length="50"/>
+        </property>
+        
+        <property name="coment" type="string">
+            <column name="coment_NO" not-null="false"  sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="gradeFlag" type="string">
+            <column name="grade_flag" not-null="false"  sql-type="NVARCHAR(50)"/>
+        </property>
+        
+		<many-to-one name="supplierevaluate" class="com.yongjun.tdms.model.prophase.supplier.SupplierEvaluate">
+            <column name="SUPPLIEREVALUE_ID" not-null="true"/>
+        </many-to-one>
+    </class>
+    <query name="LoadSupplierEvaluateDetailBySupplierEvaluateId">
+		<![CDATA[FROM SupplierEvaluateDetail supplierEvaluateDetail WHERE supplierEvaluateDetail.supplierevaluate.id = :supplierEvaluateId
+		]]>
+	</query>
+    <query name="LoadSupplierEvaluateDetailBySupplierEvaluateIdAndGradFlag">
+		<![CDATA[FROM SupplierEvaluateDetail supplierEvaluateDetail WHERE supplierEvaluateDetail.supplierevaluate.id = :supplierEvaluateId
+				 AND supplierEvaluateDetail.gradeFlag LIKE :flag
+		]]>
+	</query>
+</hibernate-mapping>

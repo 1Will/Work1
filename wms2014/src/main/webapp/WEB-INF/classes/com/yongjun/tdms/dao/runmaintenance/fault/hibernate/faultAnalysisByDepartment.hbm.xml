@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: faultBill.hbm.xml 11206 2008-03-06 05:40:11Z zbzhang $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.runmaintenance.fault.FaultAnalysisByDepartment" table="t_faultAnalysis_byDepartment" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_faultAnalysis_byDepartment_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="totalFaultCount" type="integer">
+            <column name="totalFaultCount" />
+        </property>
+        <property name="totalStopTime" type="double">
+            <column name="totalStopTime" />
+        </property>
+        <property name="faultFrequency" type="double">
+            <column name="faultFrequency" />
+        </property>
+        <property name="faultStopFrequency" type="double">
+            <column name="faultStopFrequency" />
+        </property> 
+        <property name="month" type="string">
+            <column name="month" />
+        </property>
+        <property name="upOrDown" type="com.yongjun.tdms.dao.runmaintenance.fault.hibernate.UpOrDownEnum">
+            <column name="upOrDown"/>
+        </property>                                 		
+	    <many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="dept_id"/>
+		</many-to-one>
+
+    </class>
+</hibernate-mapping>

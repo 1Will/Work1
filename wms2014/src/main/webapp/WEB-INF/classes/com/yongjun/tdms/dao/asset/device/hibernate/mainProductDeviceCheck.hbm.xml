@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: attachTool.hbm.xml 6999 2007-09-08 04:03:04Z qsun $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.report.MainProductDeviceCheck" table="t_main_pro_check">
+        <id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_main_pro_check_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        <property name="department" type="string">
+            <column name="depart_ment" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+       <property name="deviceTotal" type="integer">
+            <column name="device_Total" not-null="false"/>
+        </property>
+         <property name="fullDeviceAmount" type="integer">
+            <column name="full_Device_Amount" not-null="false"/>
+        </property>
+         <property name="unFullDeviceAmount" type="integer">
+            <column name="unFull_Device_Amount" not-null="false"/>
+        </property>
+        <property name="stopUseAmount" type="integer">
+            <column name="stop_Use_Amount" not-null="false"/>
+        </property>
+        <property name="deviceFullModulus" type="double">
+            <column name="device_Full_Modulus" not-null="false"/>
+        </property>
+        <property name="useAmount" type="integer">
+            <column name="use_Amount" not-null="false"/>
+        </property>
+         <property name="keepAmount" type="integer">
+            <column name="keep_Amount" not-null="false"/>
+        </property>
+         <property name="useDaisTime" type="integer">
+            <column name="use_Dais_Time" not-null="false"/>
+        </property>
+         <property name="systemDaisTime" type="integer">
+            <column name="system_Dais_Time" not-null="false"/>
+        </property>
+         <property name="maintainDate" type="integer">
+            <column name="maintain_Date" not-null="false"/>
+        </property>
+         <property name="faultStopDate" type="integer">
+            <column name="fault_Stop_Date" not-null="false"/>
+        </property>
+         <property name="deviceUseModulus" type="double">
+            <column name="device_Use_Modulus" not-null="false"/>
+        </property>
+         <property name="deviceEffectModulus" type="double">
+            <column name="device_Effect_Modulus" not-null="false"/>
+        </property>
+        <property name="faultStopModulus" type="double">
+            <column name="fault_Stop_Modulus" not-null="false"/>
+        </property>
+        <property name="JQusing" type="double">
+            <column name="JQ_using" not-null="false"/>
+        </property>
+        <property name="planMaintainAmount" type="integer">
+            <column name="plan_Maintain_Amount" not-null="false"/>
+        </property>
+         <property name="JQuseAmount" type="integer">
+            <column name="JQ_useAmount" not-null="false"/>
+        </property>
+         <property name="JQsystemDaisTime" type="integer">
+            <column name="JQ_system_DaisTime" not-null="false"/>
+        </property>
+        <property name="practiceMaintainAmount" type="integer">
+            <column name="practice_Maintain_Amount" not-null="false"/>
+        </property>
+        <property name="year" type="string">
+            <column name="year" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <property name="month" type="string">
+            <column name="month" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <property name="filiale" type="string">
+			<column name="filiale" not-null="false" sql-type="NVARCHAR(15)" />
+		</property>
+		<property name="reportDate" type="date">
+			<column name="report_Date" not-null="false" />
+		</property>
+		<property name="figureDate" type="date">
+			<column name="figure_Date" not-null="false" />
+		</property>
+        <property name="manager" type="string">
+            <column name="manager" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+         <property name="marker" type="string">
+            <column name="marker" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <many-to-one name="filaileId" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="filaile_Id" not-null="false" />
+		</many-to-one>
+       <!--<many-to-one name="device" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+            <column name="device_id" not-null="true" />
+        </many-to-one>-->
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+    </class>
+</hibernate-mapping>

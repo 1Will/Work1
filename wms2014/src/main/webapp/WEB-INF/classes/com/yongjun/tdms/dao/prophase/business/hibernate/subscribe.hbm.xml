@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: subscribe.hbm.xml 11220 2008-03-07 10:03:29Z mwei $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.prophase.business.Subscribe" table="t_subscribe" lazy="false">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_subscribe_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="billNo" type="string">
+            <column name="BILL_NO" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="name" type="string">
+            <column name="NAME" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+       <property name="subscriber" type="string">
+            <column name="SUBSCRIBE" not-null="false" length="50" />
+        </property>
+        
+        <property name="subscribeDate" type="date">
+            <column name="SUBSCRIBE_DATE" not-null="true"/>
+        </property>
+        
+        <property name="toolingDevFlag" type="com.yongjun.tdms.dao.base.codevalue.hibernate.SysModelEnum">
+            <column name="TOOLING_DEV_FLAG" not-null="true" length="50"/>
+        </property>
+        <property name="typeStatus" type="com.yongjun.tdms.dao.prophase.business.hibernate.SubscribeTypeEnum">
+            <column name="Type" not-null="false" length="50"/>
+        </property>
+        <many-to-one name="buyingPerson" class="com.yongjun.pluto.model.security.User">
+			<column name="buying_Person_ID" not-null="true" />
+		</many-to-one>
+		
+		<property name="disabled" type="boolean">
+            <column name="disabled" not-null="true"/>
+        </property>
+        
+		 <many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="DEPT_ID" not-null="false" />
+		</many-to-one>
+        
+        <many-to-one name="feeSource" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="FEE_SOURCE" not-null="false" />
+		</many-to-one>
+        
+        <property name="budgetNo" type="string">
+            <column name="BUDGET_NO" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="totalPrice" type="double">
+            <column name="TOTAL_PRICE" not-null="false" />
+        </property>
+        
+        <property name="totalAmounts" type="integer">
+            <column name="TOTAL_AMOUNTS" not-null="false" />
+        </property>
+        
+        <property name="reason" type="string">
+            <column name="REASON" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="comment" type="string">
+            <column name="COMMENT" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property  name="status" type="com.yongjun.tdms.dao.prophase.business.hibernate.SubscribeStatusEnum">
+            <column name="STATUS" not-null="true" />
+        </property >
+        <!-- 明细数量 -->
+        <property  name="sumDetail" type="int">
+            <column name="SUM_DETAIL" not-null="false" />
+        </property >
+        <!-- 采购数量 -->
+         <property  name="purNum" type="int">
+            <column name="PUR_NUM" not-null="false" />
+        </property >
+         <!-- 入库数量 -->
+         <property  name="insNum" type="int">
+            <column name="INS_NUM" not-null="false" />
+        </property >
+         <!-- 申购数量 -->
+         <property  name="subNum" type="int">
+            <column name="SUB_NUM" not-null="false" />
+        </property >
+        
+        <many-to-one name="budgetDetail" class="com.yongjun.tdms.model.year.budget.BudgetDetail">
+			<column name="budget_detail_id" not-null="false" />
+		</many-to-one>
+		
+		<set name="toolingMakeDetails" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="SUBSCRIBE_ID" />
+			<one-to-many class="com.yongjun.tdms.model.year.tooling.ToolingMakeDetail" />
+		</set>
+		
+		<set name="sparePurchaseDetails" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="SUBSCRIBE_ID" />
+			<one-to-many class="com.yongjun.tdms.model.year.tooling.SparePurchaseDetail" />
+		</set>
+		
+		<set name="repairMaintenanceDetails" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="SUBSCRIBE_ID" />
+			<one-to-many class="com.yongjun.tdms.model.year.tooling.RepairMaintenanceDetail" />
+		</set>
+		
+		<set name="techAlterDetails" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="SUBSCRIBE_ID" />
+			<one-to-many class="com.yongjun.tdms.model.year.tooling.TechAlterDetail" />
+		</set>
+		
+        <set name="subscribeDetails" inverse="true" cascade="delete" lazy="true">
+			<key column="SUBSCRIBE_ID" />
+			<one-to-many class="com.yongjun.tdms.model.prophase.business.SubscribeDetail" />
+		</set>
+        <many-to-one name="detailKind" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="DETAIL_KIND" not-null="false" />
+		</many-to-one>
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+        <!-- 标记是否汇总 lwc -->
+        <property name="remark" type="int">
+        	<column name="REMARK" not-null="false"/>
+        </property>
+    </class>
+</hibernate-mapping>

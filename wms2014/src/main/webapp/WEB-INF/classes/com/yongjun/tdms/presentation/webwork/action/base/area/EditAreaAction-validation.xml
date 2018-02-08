@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+
+<!--
+  Copyright (c) 2001-2005 vTradEx Information Technology Co.,Ltd. All Rights Reserved.
+
+  This software is the confidential and proprietary information of vTradEx
+  Information Technology Co.,Ltd. ("Confidential Information").  You shall not
+  disclose such Confidential Information and shall use it only in
+  accordance with the terms of the license agreement you entered into
+  with vTradEx.
+
+  VTRADEX MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+  SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+  PURPOSE, OR NON-INFRINGEMENT. VTRADEX SHALL NOT BE LIABLE FOR ANY DAMAGES
+  SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+  THIS SOFTWARE OR ITS DERIVATIVES.
+-->
+<!-- $Id: EditAreaAction-validation.xml 6847 2007-09-05 00:51:42Z qsun $ -->
+<validators>
+    <field name="area.code">
+        <field-validator type="requiredstring">
+            <message key="area.code.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">20</param>
+            <message key="area.code.maxLength"/>
+        </field-validator>
+    </field>
+    <field name="area.name">
+        <field-validator type="requiredstring">
+            <message key="area.name.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">20</param>
+            <message key="area.name.maxLength"/>
+        </field-validator>
+	</field>
+</validators>

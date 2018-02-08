@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id:  $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.year.tooling.quarterPlan.QuarterPlan" table="t_tooling_quarter_plan" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_tooling_quarter_plan_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="planNo" type="string">
+            <column name="PLAN_NO" not-null="true"  sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="name" type="string">
+            <column name="NAME" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="year" type="string">
+            <column name="YEAR" not-null="true" sql-type="NVARCHAR(10)"/>
+        </property>
+        
+        <property name="qarterType" type="com.yongjun.tdms.dao.year.tooling.quarterPlan.hibernate.QuarterTypeEnum">
+            <column name="QUARTER_TYPE" not-null="true" length="50"/>
+        </property>
+        
+        <property name="planAllFee" type="double">
+            <column name="PLAN_ALL_FEE" not-null="false"/>
+        </property>
+        
+        <property name="planCreatedDate" type="date">
+            <column name="PLAN_CREATED_DATE" not-null="true" />
+        </property>
+        
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+        
+        <many-to-one name="planCreator" class="com.yongjun.pluto.model.security.User">
+			<column name="PLAN_CREATOR_ID" not-null="true" />
+		</many-to-one>
+		
+		<many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="DEPT_ID" not-null="true" />
+		</many-to-one>
+		
+		<property name="deptName" type="string">
+            <column name="DEPT_NAME" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+		<set name="toolingMakeDetails" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="QUARTER_PLAN_ID" />
+			<one-to-many class="com.yongjun.tdms.model.year.tooling.ToolingMakeDetail" />
+		</set>
+		
+		<set name="sparePurchaseDetails" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="QUARTER_PLAN_ID" />
+			<one-to-many class="com.yongjun.tdms.model.year.tooling.SparePurchaseDetail" />
+		</set>
+		
+		<set name="repairMaintenanceDetails" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="QUARTER_PLAN_ID" />
+			<one-to-many class="com.yongjun.tdms.model.year.tooling.RepairMaintenanceDetail" />
+		</set>
+		
+		<set name="techAlterDetails" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="QUARTER_PLAN_ID" />
+			<one-to-many class="com.yongjun.tdms.model.year.tooling.TechAlterDetail" />
+		</set>
+		
+		<set name="quarterPlanDetails" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="QUARTER_PLAN_ID" />
+			<one-to-many class="com.yongjun.tdms.model.year.tooling.quarterPlan.QuarterPlanDetail" />
+		</set>
+
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+	</class>
+	<query name="GetQuarterByDepartNameAndYearANDquarter">
+		<![CDATA[from QuarterPlan quarterPlan where quarterPlan.department.id=:departmentId AND quarterPlan.year=:year AND quarterPlan.qarterType=:qarterTypeId AND quarterPlan.disabled=false]]>
+	</query>
+	<query name="GetQuarterListByDepartNameAndYearANDquarter">
+		<![CDATA[from QuarterPlan quarterPlan where quarterPlan.department.id=:departmentId AND quarterPlan.year=:year AND quarterPlan.qarterType=:qarterTypeId AND quarterPlan.disabled=false]]>
+	</query>
+	<query name="GetListQuarterByDepartNameAndYearANDquarter">
+		<![CDATA[from QuarterPlan quarterPlan where quarterPlan.department.id=:departmentId AND quarterPlan.year=:year AND quarterPlan.qarterType=:qarterTypeId AND quarterPlan.disabled=false]]>
+	</query>
+	<query name="GetListQuarterByDepartNameAndYearANDquarterAndTrue">
+		<![CDATA[from QuarterPlan quarterPlan where quarterPlan.department.id=:departmentId AND quarterPlan.year=:year AND quarterPlan.qarterType=:qarterTypeId AND quarterPlan.disabled=true]]>
+	</query>
+</hibernate-mapping>

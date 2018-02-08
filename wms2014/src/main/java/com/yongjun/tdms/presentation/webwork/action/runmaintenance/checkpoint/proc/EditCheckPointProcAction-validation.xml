@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+
+<!-- $Id: EditCheckPointProcAction-validation.xml 7961 2007-10-23 07:03:11Z qsun $ -->
+<validators>
+    <field name="proc.name">
+        <field-validator type="requiredstring">
+            <message key="proc.name.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">0</param>
+            <param name="maxLength">50</param>
+            <message key="proc.name.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="proc.procExecTime">
+        <field-validator type="date">
+            <message key="plan.scheduleTime.date"/>
+        </field-validator>
+	</field>
+	<field name="proc.summary">      
+        <field-validator type="stringlength">
+            <param name="minLength">0</param>
+            <param name="maxLength">250</param>
+            <message key="proc.request.maxLength"/>
+        </field-validator>
+	</field>
+	<!-- 
+	<field name="proc.plan.planNo">
+	 <field-validator type="requiredstring">
+            <message key="proc.plan.planNo.requiredstring"/>
+     </field-validator>
+	</field>
+
+	<field name="proc.content">      
+        <field-validator type="stringlength">
+            <param name="maxLength">50</param>
+            <message key="proc.content.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="proc.request">      
+        <field-validator type="stringlength">
+            <param name="maxLength">50</param>
+            <message key="proc.request.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="proc.comment">      
+        <field-validator type="stringlength">
+            <param name="maxLength">50</param>
+            <message key="proc.comment.maxLength"/>
+        </field-validator>
+	</field>
+			-->
+</validators>

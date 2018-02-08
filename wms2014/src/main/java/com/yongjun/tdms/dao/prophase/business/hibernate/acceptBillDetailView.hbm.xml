@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.prophase.business.AcceptBillDetailView" table="t_accept_bill_detail_view" lazy="true">
+		<id name="id" column="ID">
+			<generator class="native">
+				<param name="sequence">t_acceptBill_Detail_view_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<property name="detailType" column="detailType" not-null="false" type="string"/>
+		<property name="graphNo" column="graphNo" not-null="false" type="string"/>
+		<property name="name" column="name" not-null="false" type="string"/>
+		<property name="categoryName" column="categoryName" not-null="false" type="string"/>
+		<property name="detailCategoryName" column="detailCategoryName" not-null="false" type="string"/>
+		<property name="model" column="model" not-null="false" type="string"/>
+		<property name="specification" column="specification" not-null="false" type="string"/>
+		<property name="unitPrice" column="unitPrice" not-null="false" type="double"/>
+		<property name="amount" column="amount" not-null="false" type="integer"/>
+		<property name="calUnit" column="calUnit" not-null="false" type="string"/>
+		<property name="totalPrice" column="totalPrice" not-null="false" type="double"/>
+		<property name="result" column="result" not-null="false" type="string"/>
+		<property name="comment" column="memo" not-null="false" type="string" length="250"/>
+		<property name="acceptDate" column="acceptDate" not-null="false" type="timestamp"/>
+		<property name="dept" column="department" not-null="false" type="string"/>
+		<property name="acceptPeople" column="acceptPeople" not-null="false" type="string"/>
+		<property name="supplier" column="supplier" not-null="false" type="string"/>
+		<property name="acceptId" column="acceptId" not-null="false" type="long"/>
+		<property name="applyDept" column="applyDept" not-null="false" type="string"/>
+		<property name="establish" column="establish" not-null="false" type="string"/>
+	</class>
+	 <query name="GetAcceptBillDetailByAcceptBillId">
+		<![CDATA[FROM AcceptBillDetailView detail WHERE 1=1 and detail.acceptId = :AcceptBillId order by detail.detailType]]>
+	</query>
+</hibernate-mapping>

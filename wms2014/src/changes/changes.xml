@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<document>
+	<properties>
+		<title>Hotel Database tutorial application</title>
+		<author email="266889u.xp@gmail.com">eam2008-team</author>
+	</properties>
+	<body>
+		<release version="current" description="Current work version">
+			<action dev="eam2008 team" type="add">A new cool feature.</action>
+		</release>
+		<release version="1.0.1" date="2007-09-20" description="try release beta">
+			<action dev="eam2008 team" type="add">Fixed a nasty bug.</action>
+		</release>
+	</body>
+</document>

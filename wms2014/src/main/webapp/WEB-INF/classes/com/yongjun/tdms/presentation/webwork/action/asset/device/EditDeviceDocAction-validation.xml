@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+ <!-- $Id: EditDeviceDocAction-validation.xml 7953 2007-10-23 05:58:17Z qsun $-->       
+<validators>
+<!--
+	<field name="file">
+        <field-validator type="required">
+            <message key="deviceDoc.file.requiredstring"/>
+        </field-validator>
+    </field>
+    -->
+    <field name="deviceDoc.name">
+        <field-validator type="requiredstring">
+            <message key="deviceDoc.name.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">50</param>
+            <message key="deviceDoc.name.maxLength"/>
+        </field-validator>
+    </field>
+    <field name="deviceDoc.description">    
+        <field-validator type="stringlength">
+        	<param name="minLength">0</param>
+            <param name="maxLength">250</param>
+            <message key="deviceDoc.description.maxLength"/>
+        </field-validator>
+	</field>
+</validators>

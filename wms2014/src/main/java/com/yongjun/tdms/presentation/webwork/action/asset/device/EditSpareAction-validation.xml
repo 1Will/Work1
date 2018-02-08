@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+ <!-- $Id: EditSpareAction-validation.xml 7953 2007-10-23 05:58:17Z qsun $-->       
+<validators>
+    <field name="spare.spareNo">
+        <field-validator type="requiredstring">
+            <message key="spare.spareNo.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+        	<param name="minLength">0</param>
+            <param name="maxLength">50</param>
+            <message key="spare.spareNo.maxLength"/>
+        </field-validator>
+    </field>
+    <field name="spare.name">
+        <field-validator type="requiredstring">
+            <message key="spare.name.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">150</param>
+            <message key="spare.name.maxLength"/>
+        </field-validator>
+    </field>
+     <field name="spare.modelSpecs">
+        <field-validator type="requiredstring">
+            <message key="spare.name.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">75</param>
+            <message key="spare.name.maxLength"/>
+        </field-validator>
+    </field>
+</validators>

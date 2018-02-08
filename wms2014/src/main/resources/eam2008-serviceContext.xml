@@ -1,0 +1,3694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" 
+	"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="abstractRemoteCoolSelector" abstract="true"
+		class="com.yongjun.tdms.presentation.webwork.action.remote.support.DefaultRemoteCoolSelector" />
+
+	<bean id="abstractRemoteCustomSelector" abstract="true"
+		class="com.yongjun.tdms.presentation.webwork.action.remote.support.DefaultRemoteCustomSelector" />
+
+	<bean id="demoManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.demo.impl.DefaultDemoManager"
+				autowire="byName" />
+		</property>
+	</bean>
+
+	<bean id="areaManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.area.pojo.DefaultAreaManager">
+				<constructor-arg index="0">
+					<ref bean="areaDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="fileTransportManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.pluto.service.file.pojo.DefaultFileTransportManager"
+				autowire="byName">
+				<property name="systemParameterConfiguration">
+					<bean
+						class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+						<property name="location">
+							<value>
+								classpath:systemParameterConfig.properties
+							</value>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="sysLogManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.log.pojo.DefaultSysLogManager">
+				<constructor-arg index="0">
+					<ref bean="sysLogDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="userLogManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.log.pojo.DefaultUserLogManager">
+				<constructor-arg index="0">
+					<ref bean="eventLogDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+<!-- byt鲍杨涛仓库 -->
+   <bean id="newwarehouseManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.yongjun.tdms.service.asset.spare.warehouseInfo.warehouse.pojo.DefaultWarehouseManager">
+				<constructor-arg index="0">
+					<ref bean="bytwarehouseDao"/>
+				</constructor-arg>
+				<constructor-arg index="1">
+		            <ref bean="userManager" />
+		        </constructor-arg>            
+			</bean>
+		</property>
+	</bean>
+	<bean id="deviceCardManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.device.pojo.DefaultDeviceCardManager">
+				<constructor-arg index="0">
+					<ref bean="deviceCardDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="wfJobManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="userManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="deviceSelector" parent="abstractRemoteSelector">
+		<constructor-arg index="0">
+			<ref local="deviceCardManager" />
+		</constructor-arg>
+		<property name="methodName">
+			<value>getDeviceByNo</value>
+		</property>
+	</bean>
+
+	<bean id="deviceTypeManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.device.pojo.DefaultDeviceTypeManager">
+				<constructor-arg index="0">
+					<ref bean="deviceTypeDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="alterationManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.alteration.pojo.DefaultAlterationManager">
+				<constructor-arg index="0">
+					<ref bean="alterationDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="toolingSealedSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="spareManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.pojo.DefaultSpareManager">
+				<constructor-arg index="0">
+					<ref bean="spareDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareInOutHistoryDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="spareSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="toolingDevSpareDao" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="sysLogManager" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="subscribeDao" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="spareTypeDao" />
+				</constructor-arg>
+				<constructor-arg index="7">
+					<ref bean="spareDetailTypeDao" />
+				</constructor-arg>
+				<constructor-arg index="8">
+					<ref bean="supplierDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="spareDetailTypeManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.pojo.DefaultSpareDetailTypeManager">
+				<constructor-arg index="0">
+					<ref bean="spareDetailTypeDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="spareTypeManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.codevalue.pojo.DefaultSpareTypeManager">
+				<constructor-arg index="0">
+					<ref bean="spareTypeDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="spareTypeDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.codevalue.pojo.DefaultSpareDetailTypeManager">
+				<constructor-arg index="0">
+					<ref bean="spareDetailTypeDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="toolingDevSpareManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.device.pojo.DefaultDeviceSpareManager">
+				<constructor-arg index="0">
+					<ref bean="toolingDevSpareDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="demarcatePlanManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.tooling.record.pojo.DefaultDemarcatePlanManager">
+				<constructor-arg index="0">
+					<ref bean="demarcatePlanDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="toolingDemarcatePlanSequenceManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="demarcatePlanDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.tooling.record.pojo.DefaultDemarcatePlanDetailManager">
+				<constructor-arg index="0">
+					<ref bean="demarcatePlanDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="userManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="demarcatePlanManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+
+	<bean id="purchaseBillPayDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.business.pojo.DefaultPurchaseBillPayDetailManager">
+				<constructor-arg index="0">
+					<ref bean="payDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="purchaseBillManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="purchaseBillDao" />
+				</constructor-arg>
+				<property name="budgetDetailManager">
+					<ref bean="budgetDetailManager" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="acceptBillDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.business.pojo.DefaultAcceptBillDetailManager">
+				<constructor-arg index="0">
+					<ref bean="acceptBillDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="purchaseBillDetailManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="purchaseBillDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="acceptBillDao" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="acceptBillDetailViewDao" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="deviceCardDao" />
+				</constructor-arg>
+				<constructor-arg index="7">
+					<ref bean="departmentManager" />
+				</constructor-arg>
+				<constructor-arg index="8">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="spareInOutBillManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.pojo.DefaultSpareInOutBillManager">
+				<constructor-arg index="0">
+					<ref bean="spareInOutBillDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="spareInOutHistoryDao" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="spareInBillSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="spareOutBillSequenceManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="spareInOutHistoryManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.pojo.DefaultSpareInOutHistoryManager">
+				<constructor-arg index="0">
+					<ref bean="spareInOutHistoryDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="spareInventoryManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.Inventory.pojo.DefaultSpareInventoryManager">
+				<constructor-arg index="0">
+					<ref bean="spareInventoryDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareInventoryDetailManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="spareManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="spareInventorySequenceManager" />
+				</constructor-arg>
+
+
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="spareInventoryDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.Inventory.pojo.DefaultSpareInventoryDetailManager">
+				<constructor-arg index="0">
+					<ref bean="spareInventoryDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="spareManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="spareInBillDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="spareInventoryDao" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="spareLocationDao" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="locationDao" />
+				</constructor-arg>
+				<constructor-arg index="7">
+					<ref bean="spareLocationManager" />
+				</constructor-arg>
+				<constructor-arg index="8">
+					<ref bean="spareWareHouseManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="deviceFinanceInfoManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.device.pojo.DefaultDeviceFinanceInfoManager">
+				<constructor-arg index="0">
+					<ref bean="deviceFinanceInfoDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+
+	<bean id="deviceArgsManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.device.pojo.DefaultDeviceArgsManager">
+				<constructor-arg index="0">
+					<ref bean="deviceArgsDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="operaterCertsManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.device.pojo.DefaultOperaterCertsManager">
+				<constructor-arg index="0">
+					<ref bean="operaterCertDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="accessoryDeviceManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.device.pojo.DefaultAccessoryDeviceManager">
+				<constructor-arg index="0">
+					<ref bean="accessoryDeviceDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="deviceCardDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="checkPointRuleManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.checkpoint.pojo.DefaultCheckPointRuleManager">
+				<constructor-arg index="0">
+					<ref bean="checkPointRuleDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="checkPointRuleSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="wfJobManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!--  
+		<bean id="checkPointProcManager" parent="abstractTransactionProxy">
+		<property name="target">
+		<bean class="com.yongjun.tdms.service.runmaintenance.checkpoint.pojo.DefaultCheckPointProcManager">
+		<constructor-arg index="0">
+		<ref bean="checkPointProcDao" />
+		</constructor-arg>
+		<constructor-arg index="1">
+		<ref bean="checkPointPlanManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+		<ref bean="checkPointProcDetailManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+		<ref bean="checkPointProcSequenceManager" />
+		</constructor-arg>
+		<constructor-arg index="4">
+		<ref bean="wfJobManager" />
+		</constructor-arg>
+		</bean>
+		</property>
+		</bean>
+	-->
+	<bean id="checkPointRuleDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.checkpoint.pojo.DefaultCheckPointRuleDetailManager">
+				<constructor-arg index="0">
+					<ref bean="checkPointRuleDetailDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- 
+		<bean id="checkPointPlanManager" parent="abstractTransactionProxy">
+		<property name="target">
+		<bean class="com.yongjun.tdms.service.runmaintenance.checkpoint.pojo.DefaultCheckPointPlanManager">
+		<constructor-arg index="0">
+		<ref bean="checkPointPlanDao" />
+		</constructor-arg>
+		<constructor-arg index="1">
+		<ref bean="checkPointRuleDao" />
+		</constructor-arg>
+		<constructor-arg index="2">
+		<ref bean="checkPointPlanSequenceManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+		<ref bean="wfJobManager" />
+		</constructor-arg>
+		</bean>
+		</property>
+		</bean>
+	-->
+	<!-- 
+		<bean id="checkPointPlanDetailManager" parent="abstractTransactionProxy">
+		<property name="target">
+		<bean class="com.yongjun.tdms.service.runmaintenance.checkpoint.pojo.DefaultCheckPointPlanDetailManager">
+		<constructor-arg index="0">
+		<ref bean="checkPointPlanDetailDao" />
+		</constructor-arg>
+		</bean>
+		</property>
+		</bean>
+	-->
+	<bean id="checkPointReportManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.checkpoint.pojo.DefaultCheckPointReportManager">
+				<constructor-arg index="0">
+					<ref bean="checkPointReportDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="departmentManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="checkPointReportDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="checkPointReportSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="workWarnningManager" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="checkPointReportViewDao" />
+				</constructor-arg>
+				<property name="resourceParameterConfiguration">
+					<bean
+						class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+						<property name="location">
+							<value>
+								classpath:resourceParameterConfig.properties
+							</value>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="checkPointReportDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.checkpoint.pojo.DefaultCheckPointReportDetailManager">
+				<constructor-arg index="0">
+					<ref bean="checkPointReportDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="departmentManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.org.pojo.DefaultDepartmentManager">
+				<constructor-arg index="0">
+					<ref bean="departmentDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="workGroupManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.org.pojo.DefaultWorkGroupManager">
+				<constructor-arg index="0">
+					<ref bean="workGroupDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="productionLineManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.productionline.pojo.DefaultProductionLineManager">
+				<constructor-arg index="0">
+					<ref bean="productionLineDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="userManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="receviceNoticeManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.notice.pojo.DefaultReceviceNoticeManager">
+				<constructor-arg index="0">
+					<ref bean="receviceNoticeDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="fileTransportManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="sendNoticeManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.notice.pojo.DefaultSendNoticeManager">
+				<constructor-arg index="0">
+					<ref bean="sendNoticeDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="userDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="receviceNoticeDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="codeValueManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.codevalue.pojo.DefaultCodeValueManager">
+				<constructor-arg index="0">
+					<ref bean="codeValueDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="countryManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.country.pojo.DefaultCountryManager">
+				<constructor-arg index="0">
+					<ref bean="countryDao" />
+				</constructor-arg>
+				<!-- 
+					<constructor-arg index="1">
+					<ref bean="userManager" />
+					</constructor-arg>
+				-->
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="toolingTypeManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.codevalue.pojo.DefaultToolingTypeManager">
+				<constructor-arg index="0">
+					<ref bean="toolingTypeDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="toolingTypeDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.codevalue.pojo.DefaultToolingTypeDetailManager">
+				<constructor-arg index="0">
+					<ref bean="toolingTypeDetailDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="productManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.product.pojo.DefaultProductManager">
+				<constructor-arg index="0">
+					<ref bean="productDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="documentManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.document.pojo.DefaultDocumentManager">
+				<constructor-arg index="0">
+					<ref bean="documentDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="supplierManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.supplier.pojo.DefaultSupplierManager">
+				<constructor-arg index="0">
+					<ref bean="supplierDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="supplierSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="wfJobManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="supplierLevelHistoryManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="supplierLevelHistoryManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.supplier.pojo.DefaultSupplierLevelHistoryManager">
+				<constructor-arg index="0">
+					<ref bean="supplierLevelHistoryDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="supplierDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="supplierProductManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.supplier.pojo.DefaultSupplierProductManager">
+				<constructor-arg index="0">
+					<ref bean="supplierProductDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="supplierEavluateManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.supplier.pojo.DefaultSupplierEavluateManager">
+				<constructor-arg index="0">
+					<ref bean="supplierEvaluateDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="supplierEvaluateDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="supplierEvaluateViewDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="supplierEavluateDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.supplier.pojo.DefaultSupplierEavluateDetailManager">
+				<constructor-arg index="0">
+					<ref bean="supplierEvaluateDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="supplierEavluateManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="supplierManager" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="supplierLevelHistoryManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+
+	<bean id="supplierCerfiticationManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.supplier.pojo.DefaultSupplierCerfiticationManager">
+				<constructor-arg index="0">
+					<ref bean="supplierCerfiticationDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+
+
+	<bean id="eventNewManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.event.pojo.DefaultEventNewManager">
+				<constructor-arg index="0">
+					<ref bean="eventNewDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="checkPointReportManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="spareInOutBillManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="spareInventoryManager" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="spareInBillManager" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="spareOutBillManager" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="purchaseBillManager" />
+				</constructor-arg>
+				<constructor-arg index="7">
+					<ref bean="acceptBillManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="subscribeManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.business.pojo.DefaultSubscribeManager">
+				<constructor-arg index="0">
+					<ref bean="subscribeDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="subscribeSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="quarterPlanDetailManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="spareDao" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="subscribeDetailViewDao" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="userManager" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="eventNewDao" />
+				</constructor-arg>
+				<constructor-arg index="7">
+					<ref bean="spareWareHouseManager" />
+				</constructor-arg>
+				<property name="budgetDetailManager">
+					<ref bean="budgetDetailManager" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="purchaseBillManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.business.pojo.DefaultPurchaseBillManager">
+				<constructor-arg index="0">
+					<ref bean="purchaseBillDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="purchaseBillSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="subscribeDao" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="purchaseBillDetailDao" />
+				</constructor-arg>
+				<property name="budgetDetailManager">
+					<ref bean="budgetDetailManager" />
+				</property>
+				<constructor-arg index="4">
+					<ref bean="subscribeManager" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="toolingPurchaseBillDetailViewDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="sparePartManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.business.pojo.DefaultSparePartManager">
+				<constructor-arg index="0">
+					<ref bean="sparePartDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="purchaseBillInspectStandardManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.business.pojo.DefaultPurchaseBillInspectStandardManager">
+				<constructor-arg index="0">
+					<ref bean="inspectStandardDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="purchaseBillMiddleCheckManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.business.pojo.DefaultPurchaseBillMiddleCheckManager">
+				<constructor-arg index="0">
+					<ref bean="middleCheckDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="acceptBillManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.business.pojo.DefaultAcceptBillManager">
+				<constructor-arg index="0">
+					<ref bean="acceptBillDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="acceptBillSequenceManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="deviceDocManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.device.pojo.DefaultDeviceDocManager">
+				<constructor-arg index="0">
+					<ref bean="deviceDocDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="applicationDocManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.document.pojo.DefaultApplicationDocManager">
+				<constructor-arg index="0">
+					<ref bean="applicationDocDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="userManager" />
+				</constructor-arg>
+				<property name="systemParameterConfiguration">
+					<bean
+						class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+						<property name="location">
+							<value>
+								classpath:systemParameterConfig.properties
+							</value>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="attachToolManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.device.pojo.DefaultAttachToolManager">
+				<constructor-arg index="0">
+					<ref bean="attachToolDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- <bean id="deviceExtInfoManager" parent="abstractTransactionProxy">
+		<property name="target">
+		<bean class="com.yongjun.tdms.service.asset.device.pojo.DefaultDeviceExtInfoManager">
+		<constructor-arg index="0">
+		<ref bean="deviceExtInfoDao" />
+		</constructor-arg>
+		</bean>
+		</property>
+		</bean>-->
+	<!-- 
+		<bean id="checkPointProcDetailManager" parent="abstractTransactionProxy">
+		<property name="target">
+		<bean class="com.yongjun.tdms.service.runmaintenance.checkpoint.pojo.DefaultCheckPointProcDetailManager">
+		<constructor-arg index="0">
+		<ref bean="checkPointProcDetailDao" />
+		</constructor-arg>
+		</bean>
+		</property>
+		</bean>
+	-->
+	<bean id="financeTypeManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.financeType.pojo.DefaultFinanceTypeManager">
+				<constructor-arg index="0">
+					<ref bean="financeTypeDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="toolingBorrowBillManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.tooling.record.pojo.DefaultToolingBorrowBillManager">
+				<constructor-arg index="0">
+					<ref bean="toolingBorrowBillDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="borrowBillSequenceManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="discardManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.discard.pojo.DefaultDiscardManager">
+				<constructor-arg index="0">
+					<ref bean="discardDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="toolingDiscardSequenceManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="discardBillManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.discard.pojo.DefaultDiscardBillManager">
+				<constructor-arg index="0">
+					<ref bean="discardBillDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="discardBillSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="discardBillDtlManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.discard.pojo.DefaultDiscardBillDtlManager">
+				<constructor-arg index="0">
+					<ref bean="discardBillDtlDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="faultBillManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.fault.pojo.DefaultFaultBillManager">
+				<constructor-arg index="0">
+					<ref bean="faultBillDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="faultBillSequenceManager" />
+				</constructor-arg>
+				<property name="faultRepairManager">
+					<ref bean="faultRepairManager" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="faultRepairManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.fault.pojo.DefaultFaultRepairManager">
+				<constructor-arg index="0">
+					<ref bean="faultRepairDao" />
+				</constructor-arg>
+				<property name="budgetDetailManager">
+					<ref bean="budgetDetailManager" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="accidentBillManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.accident.pojo.DefaultAccidentBillManager">
+				<constructor-arg index="0">
+					<ref bean="accidentBillDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="accidentBillSequenceManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="feedbackManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.feedback.pojo.DefaultFeedbackManager">
+				<constructor-arg index="0">
+					<ref bean="feedbackDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="feedbackSequenceManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="toolingChangeBillManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.tooling.record.pojo.DefaultToolingChangeBillManager">
+				<constructor-arg index="0">
+					<ref bean="toolingChangeBillDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="toolingChangeBillSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="toolingChangeDocManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.tooling.record.pojo.DefaultToolingChangeDocManager">
+				<constructor-arg index="0">
+					<ref bean="toolingChangeDocDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="lubricationOilManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.lubricationOil.pojo.DefaultLubricationOilManager">
+				<constructor-arg index="0">
+					<ref bean="lubricationOilDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="lubricationRuleManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.lubrication.pojo.DefaultLubricationRuleManager">
+				<constructor-arg index="0">
+					<ref bean="lubricationRuleDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="lubricationPlanManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.lubrication.pojo.DefaultLubricationPlanManager">
+				<constructor-arg index="0">
+					<ref bean="lubricationPlanDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="lubricationRuleManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="lubricationPlanSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="departmentManager" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="lubricationPlanDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="workWarnningManager" />
+				</constructor-arg>
+				<constructor-arg index="7">
+					<ref bean="lubricationPlanViewDao" />
+				</constructor-arg>
+				<property name="resourceParameterConfiguration">
+					<bean
+						class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+						<property name="location">
+							<value>
+								classpath:resourceParameterConfig.properties
+							</value>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="lubricationPlanDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.lubrication.pojo.DefaultLubricationPlanDetailManager">
+				<constructor-arg index="0">
+					<ref bean="lubricationPlanDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="lubricationRuleManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+
+	<bean id="preRepairRuleManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.repair.pojo.DefaultPreRepairRuleManager">
+				<constructor-arg index="0">
+					<ref bean="preRepairRuleDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="preRepairPlanManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.repair.pojo.DefaultPreRepairPlanManager">
+				<constructor-arg index="0">
+					<ref bean="preRepairPlanDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="preRepairPlanSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="repairItemManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="repairSpareManager" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="repairManHourManager" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="repairToolManager" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="preRepairPlanDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="7">
+					<ref bean="wfJobManager" />
+				</constructor-arg>
+				<constructor-arg index="8">
+					<ref bean="preRepairPlanViewDao" />
+				</constructor-arg>
+				<property name="budgetDetailManager">
+					<ref bean="budgetDetailManager" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="preRepairPlanDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.repair.pojo.DefaultPreRepairPlanDetailManager">
+				<constructor-arg index="0">
+					<ref bean="preRepairPlanDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="departmentManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="userManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="preRepairPlanDao" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="repairItemManager" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="repairSpareManager" />
+				</constructor-arg>
+				<constructor-arg index="7">
+					<ref bean="repairFeeManager" />
+				</constructor-arg>
+				<constructor-arg index="8">
+					<ref bean="repairManHourManager" />
+				</constructor-arg>
+				<constructor-arg index="9">
+					<ref bean="repairToolManager" />
+				</constructor-arg>
+				<constructor-arg index="10">
+					<ref bean="applicationDocManager" />
+				</constructor-arg>
+				<constructor-arg index="11">
+					<ref bean="preRepairPlanManager" />
+				</constructor-arg>
+				<constructor-arg index="12">
+					<ref bean="checkManager" />
+				</constructor-arg>
+				<constructor-arg index="13">
+					<ref bean="brockenRateManager" />
+				</constructor-arg>
+				<constructor-arg index="14">
+					<ref bean="preRepairRuleManager" />
+				</constructor-arg>
+				<constructor-arg index="15">
+					<ref bean="toolingDevSpareManager" />
+				</constructor-arg>
+				<constructor-arg index="16">
+					<ref bean="budgetDetailManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="repairSpareManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.repair.pojo.DefaultRepairSpareManager">
+				<constructor-arg index="0">
+					<ref bean="repairSpareDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="toolingDevSpareManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="repairItemManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.repair.pojo.DefaultRepairItemManager">
+				<constructor-arg index="0">
+					<ref bean="repairItemDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="userManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="preRepairRuleManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="repairToolManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.repair.pojo.DefaultRepairToolManager">
+				<constructor-arg index="0">
+					<ref bean="repairToolDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="repairFeeManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.repair.pojo.DefaultRepairFeeManager">
+				<constructor-arg index="0">
+					<ref bean="repairFeeDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="preRepairPlanDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="preRepairPlanDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="yearRepairPlanAndProcDao" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="yearRepairPlanAndProcDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="faultRepairDao" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="yearRepairPlanAndProcManager" />
+				</constructor-arg>
+				<constructor-arg index="7">
+					<ref bean="preRepairPlanManager" />
+				</constructor-arg>
+				<property name="budgetDetailManager">
+					<ref bean="budgetDetailManager" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="repairManHourManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.repair.pojo.DefaultRepairManHourManager">
+				<constructor-arg index="0">
+					<ref bean="repairManHourDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="yearRepairPlanAndProcManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.repair.pojo.DefaultRepairPlanAndProcManager">
+				<constructor-arg index="0">
+					<ref bean="yearRepairPlanAndProcDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="yearRepairPlanAndProcSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="yearRepairPlanAndProcDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="repairPlanAndProcViewDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="calibrationManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.calibration.pojo.DefaultCalibrationManager">
+				<constructor-arg index="0">
+					<ref bean="calibrationDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="calibrationSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="calibrationDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="calibrationDetailViewDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="calibrationDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.calibration.pojo.DefaultCalibrationDetailManager">
+				<constructor-arg index="0">
+					<ref bean="calibrationDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="departmentManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="userManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="maintenanceManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.maintenance.pojo.DefaultMaintenanceManager">
+				<constructor-arg index="0">
+					<ref bean="maintenanceDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="maintenanceSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="departmentManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="maintenanceDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="maintenanceDeviceDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="7">
+					<ref bean="workWarnningManager" />
+				</constructor-arg>
+				<constructor-arg index="8">
+					<ref bean="maintenanceDetailViewDao" />
+				</constructor-arg>
+				<property name="resourceParameterConfiguration">
+					<bean
+						class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+						<property name="location">
+							<value>
+								classpath:resourceParameterConfig.properties
+							</value>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="maintenanceDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.maintenance.pojo.DefaultMaintenanceDetailManager">
+				<constructor-arg index="0">
+					<ref bean="maintenanceDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="departmentManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="userManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="maintenanceDeviceDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.maintenance.pojo.DefaultMaintenanceDeviceDetailManager">
+				<constructor-arg index="0">
+					<ref bean="maintenanceDeviceDetailDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="deviceFullUsingManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.device.pojo.DefaultDeviceFullUsingManager">
+				<constructor-arg index="0">
+					<ref bean="deviceFullUsingDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="deviceUseStatusManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.device.pojo.DefaultDeviceUseStatusManager">
+				<constructor-arg index="0">
+					<ref bean="deviceUseStatusDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="departmentManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="checkPointReportDetailManager" />
+				</constructor-arg>
+				<property name="resourceParameterConfiguration">
+					<bean
+						class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+						<property name="location">
+							<value>
+								classpath:resourceParameterConfig.properties
+							</value>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="mainProductDeviceCheckManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.device.pojo.DefaultMainProductDeviceCheckManager">
+				<constructor-arg index="0">
+					<ref bean="mainProductDeviceCheckDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="departmentManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="checkPointReportDetailManager" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="maintenanceDetailManager" />
+				</constructor-arg>
+				<property name="resourceParameterConfiguration">
+					<bean
+						class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+						<property name="location">
+							<value>
+								classpath:resourceParameterConfig.properties
+							</value>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="yearRepairPlanAndProcDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.repair.pojo.DefaultRepairPlanAndProcDetailManager">
+				<constructor-arg index="0">
+					<ref bean="yearRepairPlanAndProcDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="departmentManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="userManager" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="yearRepairPlanAndProcManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="migrateManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.migrate.pojo.DefaultMigrateManager">
+				<constructor-arg index="0">
+					<ref bean="migrateDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="MigrateSequenceManage" />
+				</constructor-arg>
+
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="migrateDetailManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.migrate.pojo.DefaultMigrateDetailManager">
+				<constructor-arg index="0">
+					<ref bean="migrateDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="userManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="migrateDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="trusteeshipManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.trusteeship.pojo.DefaultTrusteeshipManager">
+				<constructor-arg index="0">
+					<ref bean="trusteeshipDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="TrusteeshipSequenceManage" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+
+			</bean>
+		</property>
+	</bean>
+
+
+	<bean id="purchaseBillDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.business.pojo.DefaultPurchaseBillDetailManager">
+				<constructor-arg index="0">
+					<ref bean="purchaseBillDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="subscribeManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="subscribeDao" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="purchaseBillManager" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="purchaseBillDao" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="spareDao" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="subscribeCollectBillDao" />
+				</constructor-arg>
+				<property name="budgetDetailManager">
+					<ref bean="budgetDetailManager" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="trusteeshipDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.trusteeship.pojo.DefaultTrusteeshipDetailManager">
+				<constructor-arg index="0">
+					<ref bean="trusteeshipDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="TrusteeshipSequenceManage" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="TrusteeshipSequenceManageTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>TG</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="unusedManger" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.unused.pojo.DefaultUnusedManager">
+				<constructor-arg index="0">
+					<ref bean="unusedDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="UnusedSequenceManage" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="MigrateSequenceManage" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="MigrateSequenceManageTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>ZY</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="spareBorrowSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="spareBorrowSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>BJLY</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="UnusedSequenceManage" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="UnusedSequenceManageTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>XZ</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="inventoryManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.inventory.pojo.DefaultInventoryManager">
+				<constructor-arg index="0">
+					<ref bean="inventoryBillDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="InventorySequenceManager" />
+				</constructor-arg>
+
+			</bean>
+		</property>
+	</bean>
+	<bean id="inventoryBillDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.inventory.pojo.DefaultInventoryBillDetailManager">
+				<constructor-arg index="0">
+					<ref bean="inventoryBillDetailDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="msgManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.information.pojo.DefaultMsgManager">
+				<constructor-arg index="0">
+					<ref bean="msgDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+
+	<bean id="washManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.wash.pojo.DefaultWashManager">
+				<constructor-arg index="0">
+					<ref bean="washDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="washSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="washPlanViewDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="washDetailManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.wash.pojo.DefaultWashDetailManager">
+				<constructor-arg index="0">
+					<ref bean="washDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="userManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="productManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="checkManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.usualcheck.pojo.DefaultCheckManager">
+				<constructor-arg index="0">
+					<ref bean="checkDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="usualCheckBillSequenceManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="intactnessBillManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.intactness.pojo.DefaultIntactnessManager">
+				<constructor-arg index="0">
+					<ref bean="intactnessDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="codeValueManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="intactnessSequenceManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="intactnessBillDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.intactness.pojo.DefaultIntactnessDetailManager">
+				<constructor-arg index="0">
+					<ref bean="intactnessDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="workTypeManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.workType.pojo.DefaultWorkTypeManager">
+				<constructor-arg index="0">
+					<ref bean="workTypeDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="yearPlanManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.tooling.yearPlan.pojo.DefaultYearPlanManager">
+				<constructor-arg index="0">
+					<ref bean="yearPlanDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="yearPlanSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="yearPlanDetailViewDao" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="budgetManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="yearPlanDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.tooling.yearPlan.pojo.DefaultYearPlanDetailManager"
+				parent="calculateFeeForYearOrQuarterPlanManager">
+				<constructor-arg index="0">
+					<ref bean="yearPlanDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="brockenRateManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.repair.pojo.DefaultBrockenRateManager">
+				<constructor-arg index="0">
+					<ref bean="brockenRateDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="maintenanceRuleManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.maintenance.pojo.DefaultMaintenanceRuleManager">
+				<constructor-arg index="0">
+					<ref bean="maintenanceRuleDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="calculateFeeForYearOrQuarterPlanManager" abstract="true"
+		class="com.yongjun.tdms.service.year.tooling.pojo.CalculateAllFeeManager">
+		<property name="yearPlanDao">
+			<ref bean="yearPlanDao" />
+		</property>
+		<property name="quarterPlanDao">
+			<ref bean="quarterPlanDao" />
+		</property>
+	</bean>
+	<bean id="toolingMakeDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.tooling.pojo.DefaultToolingMakeDetailManager"
+				parent="calculateFeeForYearOrQuarterPlanManager">
+				<constructor-arg index="0">
+					<ref bean="toolingMakeDetailDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="sparePurchaseDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.tooling.pojo.DefaultSparePurchaseDetailManager"
+				parent="calculateFeeForYearOrQuarterPlanManager">
+				<constructor-arg index="0">
+					<ref bean="sparePurchaseDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="repairMaintenanceDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.tooling.pojo.DefaultRepairMaintenanceDetailManager"
+				parent="calculateFeeForYearOrQuarterPlanManager">
+				<constructor-arg index="0">
+					<ref bean="repairMaintenanceDetailDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="techAlterDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.tooling.pojo.DefaultTechAlterDetailManager"
+				parent="calculateFeeForYearOrQuarterPlanManager">
+				<constructor-arg index="0">
+					<ref bean="techAlterDetailDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="quarterPlanManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.tooling.quarterPlan.pojo.DefaultQuarterPlanManager">
+				<constructor-arg index="0">
+					<ref bean="quarterPlanDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="quarterPlanSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="toolingMakeDetailManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="sparePurchaseDetailManager" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="repairMaintenanceDetailManager" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="techAlterDetailManager" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="quarterPlanDetailViewDao" />
+				</constructor-arg>
+				<constructor-arg index="7">
+					<ref bean="quarterPlanDetailDao" />
+				</constructor-arg>
+				<property name="budgetDetailManager">
+					<ref bean="budgetDetailManager" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="quarterPlanDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.tooling.quarterPlan.pojo.DefaultQuarterPlanDetailManager"
+				parent="calculateFeeForYearOrQuarterPlanManager">
+				<constructor-arg index="0">
+					<ref bean="quarterPlanDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="yearPlanDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="spareManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="budgetDetailManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="budgetManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.budget.pojo.DefaultBudgetManager">
+				<constructor-arg index="0">
+					<ref bean="budgetDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="budgetSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="yearPlanDetailManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="budgetDetailManager" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="yearPlanDao" />
+				</constructor-arg>
+				<property name="resourceParameterConfiguration">
+					<bean
+						class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+						<property name="location">
+							<value>
+								classpath:resourceParameterConfig.properties
+							</value>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="budgetDetailManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.budget.pojo.DefaultBudgetDetailManager">
+				<constructor-arg index="0">
+					<ref bean="budgetDetailDao" />
+				</constructor-arg>
+				<property name="resourceParameterConfiguration">
+					<bean
+						class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+						<property name="location">
+							<value>
+								classpath:resourceParameterConfig.properties
+							</value>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="purchasePlanManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.device.purchasePlan.pojo.DefaultPurchasePlanManager">
+				<constructor-arg index="0">
+					<ref bean="purchasePlanDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="purchasePlanSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="purchasePlanViewDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="purchasePlanDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.device.purchasePlan.pojo.DefaultPurchasePlanDetailManager">
+				<constructor-arg index="0">
+					<ref bean="purchasePlanDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="purchasePlanManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="runmaintainPlanManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.device.runmaintainPlan.pojo.DefaultRunmaintainPlanManager">
+				<constructor-arg index="0">
+					<ref bean="runmaintainPlanDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="runmaintainPlanSequenceManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="calculateFeeForRunmaintainPlanManager" abstract="true"
+		class="com.yongjun.tdms.service.year.device.runmaintainPlan.pojo.CalculateFeeManager">
+		<property name="runmaintainPlanDao">
+			<ref bean="runmaintainPlanDao" />
+		</property>
+		<property name="runmaintainPlanDetailDao">
+			<ref bean="runmaintainPlanDetailDao" />
+		</property>
+	</bean>
+
+	<bean id="runmaintainPlanDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.device.runmaintainPlan.pojo.DefaultRunmaintainPlanDetailManager"
+				parent="calculateFeeForRunmaintainPlanManager">
+				<constructor-arg index="0">
+					<ref bean="runmaintainPlanDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="deviceCardManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="dailyRepairManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.device.runmaintainPlan.pojo.DefaultDailyRepairManager"
+				parent="calculateFeeForRunmaintainPlanManager">
+				<constructor-arg index="0">
+					<ref bean="dailyRepairDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="pricisionCheckManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.device.runmaintainPlan.pojo.DefaultPricisionCheckManager"
+				parent="calculateFeeForRunmaintainPlanManager">
+				<constructor-arg index="0">
+					<ref bean="pricisionCheckDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="deviceChangeManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.device.runmaintainPlan.pojo.DefaultDeviceChangeManager"
+				parent="calculateFeeForRunmaintainPlanManager">
+				<constructor-arg index="0">
+					<ref bean="deviceChangeDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="pivotalSpareManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.year.device.runmaintainPlan.pojo.DefaultPivotalSpareManager"
+				parent="calculateFeeForRunmaintainPlanManager">
+				<constructor-arg index="0">
+					<ref bean="pivotalSpareDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="workWarnningManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.workspace.warnning.pojo.DefaultWorkWarnningManager">
+				<constructor-arg index="0">
+					<ref bean="workWarnningDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="warnningRuleManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.warnning.pojo.DefaultWarnningRuleManager">
+				<constructor-arg index="0">
+					<ref bean="warnningRuleDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="toolingAccountManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.device.pojo.DefaultToolingAccountManager">
+				<constructor-arg index="0">
+					<ref bean="toolingAccountDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="movePositionBillManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.move.pojo.DefaultMovePositionBillManager">
+				<constructor-arg index="0">
+					<ref bean="movePositionBillDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="movePostionBillSequenceManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="movePositionBillDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.move.pojo.DefaultMovePositionBillDetailManager">
+				<constructor-arg index="0">
+					<ref bean="movePositionBillDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1" ref="spareLocationDao" />
+				<constructor-arg index="2" ref="locationDao" />
+				<constructor-arg index="3" ref="movePositionBillDao" />
+				<constructor-arg index="4">
+					<ref bean="spareWareHouseManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- <bean id="repairPlanAndProcDetailManager" parent="abstractTransactionProxy">
+		<property name="target">
+		<bean class="com.yongjun.tdms.service.year.repair.pojo.DefaultRepairPlanAndProcDetailManager">
+		<constructor-arg index="0">
+		<ref bean="preRepairPlanDetailDao" />
+		</constructor-arg>
+		<constructor-arg index="1">
+		<ref bean="departmentManager" />
+		</constructor-arg>
+		<constructor-arg index="2">
+		<ref bean="userManager" />
+		</constructor-arg>
+		<constructor-arg index="3">
+		<ref bean="preRepairPlanDao" />
+		</constructor-arg>
+		<constructor-arg index="4">
+		<ref bean="codeValueManager" />
+		</constructor-arg>
+		</bean>
+		</property>
+		</bean>-->
+	<!-- ~~~~~~~~~~~ SECQUENCE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<bean name="allDocumentNOFormatter"
+		parent="abstractAllInclusiveSequenceFormatter">
+		<property name="pattern">
+			<value>00000000</value>
+		</property>
+	</bean>
+
+
+	<bean id="checkPointRuleSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="checkPointRuleSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>CR-RULE</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="spareSequenceManager" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="spareSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>BJ</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="InventorySequenceManager" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="InventorySequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>QC</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="checkPointPlanSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="checkPointPlanSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>CR-PLAN</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="toolingSealedSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="toolingSealedSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>FC-</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="checkPointProcSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="checkPointProcSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>CR-PROC</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="supplierSequenceManager" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="supplierSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>GBS</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="factorySequenceManager" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="factorySequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>CJ</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="discardBillSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="discardBillSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>BF</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="acceptBillSequenceManager" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="acceptBillSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>YS</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="borrowBillSequenceManager" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="borrowBillSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>LY</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="intactnessSequenceManager" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="intactnessSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>JD</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="faultBillSequenceManager" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="faultBillSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>GZ</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="accidentBillSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="accidentBillSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>SG</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="feedbackSequenceManager" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="feedbackSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>FK</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="toolingDiscardSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="discardSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>BF</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="toolingChangeBillSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="toolingChangeBillSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>BG</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="preRepairPlanSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="preRepairPlanSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>WX</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="toolingDemarcatePlanSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="toolingDemarcatePlanSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>BD</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="spareInventorySequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="spareInventorySequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>PDD</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="spareInBillSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="spareInBillSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>RKD</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="spareOutBillSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="spareOutBillSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>CKD</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="yearRepairPlanAndProcSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="yearRepairPlanAndProcSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>YWX</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="washSequenceManager" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="washSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>QX</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="calibrationSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="calibrationSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>BD</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="maintenanceSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="maintenanceSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>BY</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="subscribeSequenceManager" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="subscribeSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>SHG</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="subscribeCollectBillSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="subscribeCollectBillSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>SGHZD</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="purchaseBillSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="purchaseBillSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>CG</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="usualCheckBillSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="usualCheckBillSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>RCJC</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="lubricationPlanSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="lubricationPlanSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>RH</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="yearPlanSequenceManager" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="yearPlanSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>NDJH</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="quarterPlanSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="quarterPlanSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>JDJH</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="budgetSequenceManager" parent="baseSequenceManager">
+		<property name="target">
+			<bean id="budgetSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>YS</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="checkPointReportSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="checkPointReportSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>DJ-BG</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="movePostionBillSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="movePostionBillSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>YWD</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="purchasePlanSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="purchasePlanSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>CG</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="runmaintainPlanSequenceManager"
+		parent="baseSequenceManager">
+		<property name="target">
+			<bean id="runmaintainPlanSequenceManagerTarget"
+				parent="abstractEachSequenceManager">
+				<constructor-arg index="0">
+					<value>YW</value>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="allDocumentNOFormatter" />
+				</constructor-arg>
+				<property name="step">
+					<value>1</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<!-- The spareOutBill has added by smZhang  2008-11-04-->
+	<bean id="spareOutBillManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.outWareHouse.pojo.DefaultSpareOutBillManager">
+				<constructor-arg index="0">
+					<ref bean="spareOutBillDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareOutBillSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="spareOutBillDetailViewDao" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="spareBorrowDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="spareBorrowDetailManager" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="spareInBillDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- 出库单明细 -->
+	<bean id="spareOutBillDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.outWareHouse.pojo.DefaultSpareOutBillDetailManager">
+				<constructor-arg index="0">
+					<ref bean="spareOutBillDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="spareOutBillManager" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="spareBorrowDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="spareBorrowDetailManager" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="spareLocationManager" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="spareLocationDao" />
+				</constructor-arg>
+				<constructor-arg index="7">
+					<ref bean="locationManager" />
+				</constructor-arg>
+				<constructor-arg index="8">
+					<ref bean="spareInBillDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="9">
+					<ref bean="spareOutBillDao" />
+				</constructor-arg>
+				<constructor-arg index="10">
+					<ref bean="userDao" />
+				</constructor-arg>
+				<constructor-arg index="11">
+					<ref bean="spareWareHouseManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="spareBorrowManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.spareBorrow.pojo.DefaultSpareBorrowManager">
+				<constructor-arg index="0">
+					<ref bean="spareBorrowDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareBorrowSequenceManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="spareBorrowDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.runmaintenance.spareBorrow.pojo.DefaultSpareBorrowDetailManager">
+				<constructor-arg index="0">
+					<ref bean="spareBorrowDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="spareBorrowDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<!--备件管理,入库 -->
+	<bean id="spareInBillManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.inWareHouse.pojo.DefaultSpareInBillManager">
+				<constructor-arg index="0">
+					<ref bean="spareInBillDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareInBillSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="spareDao" />
+				</constructor-arg>
+				<constructor-arg>
+					<ref bean="spareInBillDetailViewDao" />
+				</constructor-arg>
+				<constructor-arg>
+					<ref bean="purchaseBillDetailDao" />
+				</constructor-arg>
+				<constructor-arg>
+					<ref bean="purchaseBillDetailManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="spareInBillDetailManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.inWareHouse.pojo.DefaultSpareInBillDetailManager">
+				<constructor-arg index="0">
+					<ref bean="spareInBillDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="purchaseBillDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="spareInBillManager" />
+				</constructor-arg>
+				<constructor-arg index="4">
+					<ref bean="purchaseBillDetailManager" />
+				</constructor-arg>
+				<constructor-arg index="5">
+					<ref bean="departmentManager" />
+				</constructor-arg>
+				<constructor-arg index="6">
+					<ref bean="locationDao" />
+				</constructor-arg>
+				<constructor-arg index="7">
+					<ref bean="spareLocationDao" />
+				</constructor-arg>
+				<constructor-arg index="8">
+					<ref bean="spareLocationManager" />
+				</constructor-arg>
+				<constructor-arg index="9">
+					<ref bean="spareOutBillDetailDao" />
+				</constructor-arg>
+				<constructor-arg index="10">
+					<ref bean="purchaseBillDao" />
+				</constructor-arg>
+				<constructor-arg index="11">
+					<ref bean="subscribeDao" />
+				</constructor-arg>
+				<constructor-arg index="12">
+					<ref bean="spareOutBillDao" />
+				</constructor-arg>
+				<constructor-arg index="13">
+					<ref bean="subscribeCollectBillDao" />
+				</constructor-arg>
+				<constructor-arg index="14">
+					<ref bean="spareWareHouseManager" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="spareInAndOutAndStoreReportManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.inAndOutAndStoreReport.pojo.DefaultSpareInAndOutAndStoreReportManager">
+				<constructor-arg index="0">
+					<ref bean="spareInAndOutAndStoreReportDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareInAndOutAndStoreReportViewDao" />
+				</constructor-arg>
+
+			</bean>
+		</property>
+	</bean>
+
+	<!-- 备件明细台帐 -->
+	<bean id="spareLocationManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.spareLocation.pojo.DefaultSpareLocationManager">
+				<constructor-arg index="0">
+					<ref bean="spareLocationDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="locationDao" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="spareDao" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="spareOutBillDetailDao" />
+				</constructor-arg>
+
+			</bean>
+		</property>
+	</bean>
+	<!-- 备件库总台帐 -->
+	<bean id="spareWareHouseManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.spareWareHouse.pojo.DefaultSpareWareHouseManager">
+				<constructor-arg index="0">
+					<ref bean="spareWareHouseDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="spareLocationDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- 库区 -->
+	<bean id="regionalManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.warehouseInfo.regional.pojo.DefaultRegionalManager">
+				<constructor-arg index="0">
+					<ref bean="regionalDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- 库位 -->
+	<bean id="locationManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.location.pojo.DefaultLocationManager">
+				<constructor-arg index="0">
+					<ref bean="locationDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="spareDetailViewManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.asset.spare.pojo.DefaultSpareDetailViewManager">
+				<constructor-arg index="0">
+					<ref bean="spareDetailViewDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- 分公司 -->
+	<bean id="filialeManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.base.filiale.pojo.DefaultFilialeManager">
+				<constructor-arg index="0">
+					<ref bean="filialeDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~ AJAX 服务对象调用 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<!--  根据code选择供应商 -->
+	<bean id="supplierSelectorAjax" parent="abstractRemoteSelector">
+		<constructor-arg index="0">
+			<ref bean="supplierManager" />
+		</constructor-arg>
+		<property name="methodName">
+			<value>getSupplierByCode</value>
+		</property>
+	</bean>
+	<!-- 根据用户登陆名(loginName)选择供应商 -->
+	<bean id="userSelectorAjax" parent="abstractRemoteSelector">
+		<constructor-arg index="0">
+			<ref bean="userManager" />
+		</constructor-arg>
+		<property name="methodName">
+			<value>getUserByLoginName</value>
+		</property>
+	</bean>
+	<!-- 根据根据库存号验证该库位号存不存在 -->
+	<bean id="locationCodeSelectorAjax"
+		parent="abstractRemoteSelector">
+		<constructor-arg index="0">
+			<ref bean="locationManager" />
+		</constructor-arg>
+		<property name="methodName">
+			<value>getLocationByCode</value>
+		</property>
+	</bean>
+
+	<!-- 分公司 与 部门 级联 DWR -->
+
+
+
+	<!-- ~~~~~~~~~~~ SCHEDULE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- <bean id="timeCreateJobForCheckPointPlan" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+		<ref local="checkPointPlanManager" />
+		</property>
+		<property name="targetMethod">
+		<value>ceatePlanByScheduler</value>
+		</property>
+		</bean>
+		
+		<bean id="timeCalculateCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+		<ref local="timeCreateJobForCheckPointPlan" />
+		</property>
+		<property name="cronExpression">
+		<value>0 0 0 22 * ?</value>
+		
+		</property>
+		</bean>
+		
+		<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" abstract="false" singleton="true" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="triggers">
+		<list>
+		<ref local="timeCalculateCronTrigger" />
+		</list>
+		</property>
+		</bean>
+		<bean id="timeCaculateForLubricationPlan" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+		<ref local="lubricationPlanManager" />
+		</property>
+		<property name="targetMethod">
+		<value>createPlanByScheduler</value>
+		</property>
+		</bean>
+		
+		<bean id="timeCalculateCronTriggerForLubricationPlan" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+		<ref local="timeCaculateForLubricationPlan" />
+		</property>
+		<property name="cronExpression">
+		<value>0 9 17 * * ?</value>
+		</property>
+		</bean>
+		
+		<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" abstract="false" singleton="true" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="triggers">
+		<list>
+		<ref local="timeCalculateCronTriggerForLubricationPlan" />
+		</list>
+		</property>
+		</bean>
+		
+		<bean id="timeCheckPointReport" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+		<ref local="checkPointReportManager" />
+		</property>
+		<property name="targetMethod">
+		<value>createReportByScheduler</value>
+		</property>
+		</bean>
+		
+		<bean id="timeCalculateCronTriggerForCheckPointReport" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+		<ref local="timeCheckPointReport" />
+		</property>
+		<property name="cronExpression">
+		<value>0 35 01 * * ?</value>
+		</property>
+		</bean>
+		
+		<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" abstract="false" singleton="true" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="triggers">
+		<list>
+		<ref local="timeCalculateCronTriggerForCheckPointReport" />
+		</list>
+		</property>
+		</bean>
+		
+		<bean id="timeMaintenancePlan" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+		<ref local="maintenanceManager" />
+		</property>
+		<property name="targetMethod">
+		<value>createMaintenancePlanByScheduler</value>
+		</property>
+		</bean>
+		
+		<bean id="timeCalculateCronTriggerForMaintenancePlan" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+		<ref local="timeMaintenancePlan" />
+		</property>
+		<property name="cronExpression">
+		<value>0 15 02 * * ?</value>
+		</property>
+		</bean>
+		
+		<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" abstract="false" singleton="true" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="triggers">
+		<list>
+		<ref local="timeCalculateCronTriggerForMaintenancePlan" />
+		</list>
+		</property>
+		</bean>
+		
+		<bean id="timeMainDeviceProductCheck" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+		<ref local="mainProductDeviceCheckManager" />
+		</property>
+		<property name="targetMethod">
+		<value>createMainDeviceProductByScheduler</value>
+		</property>
+		</bean>
+		
+		<bean id="timeCalculateCronTriggerForMainDeviceProductCheckn" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+		<ref local="timeMainDeviceProductCheck" />
+		</property>
+		<property name="cronExpression">
+		<value>0 30 02 * * ?</value>
+		</property>
+		</bean>
+		
+		<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" abstract="false" singleton="true" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="triggers">
+		<list>
+		<ref local="timeCalculateCronTriggerForMainDeviceProductCheckn" />
+		</list>
+		</property>
+		</bean>
+		
+		<bean id="timeDeviceUseStatus" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+		<ref local="deviceUseStatusManager" />
+		</property>
+		<property name="targetMethod">
+		<value>createDeviceUseStatusByScheduler</value>
+		</property>
+		</bean>
+		
+		<bean id="timeCalculateCronTriggerForDeviceUseStatus" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+		<ref local="timeDeviceUseStatus" />
+		</property>
+		<property name="cronExpression">
+		<value>0 56 02 * * ?</value>
+		</property>
+		</bean>
+		
+		<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" abstract="false" singleton="true" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="triggers">
+		<list>
+		<ref local="timeCalculateCronTriggerForDeviceUseStatus" />
+		</list>
+		</property>
+		</bean>
+	-->
+	<!--申购汇总单-->
+	<bean id="subscribeCollectBillManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.business.pojo.DefaultSubscribeCollectBillManager">
+				<constructor-arg index="0">
+					<ref bean="subscribeCollectBillDao" />
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="subscribeCollectBillSequenceManager" />
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="subscribeDetailViewDao" />
+				</constructor-arg>
+				<constructor-arg index="3">
+					<ref bean="subscribeDao" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+
+	<!--采购计划报表zzb-->
+	<bean id="subscribeCountByDeptReportManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.business.report.pojo.DefaultSubscribeCountByDeptReportManager">
+				<!--  
+					<constructor-arg index="0">
+					<ref bean="subscribeCountByDeptReportDao"/>
+					</constructor-arg>
+				-->
+			</bean>
+		</property>
+	</bean>
+	<!--一级出库单报表 zzb-->
+	<bean id="spareOutBillMonthViewManager"
+		parent="abstractTransactionProxy">
+		<property name="target">
+			<bean
+				class="com.yongjun.tdms.service.prophase.business.tooling.reportmanager.pojo.DefaultSpareOutBillMonthViewManager">
+				<constructor-arg index="0">
+					<ref bean="spareOutBillMonthViewDao" />
+				</constructor-arg>
+
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<bean id="subscribeDetailMonthViewManager" parent="abstractTransactionProxy">
+	    <property name="target">
+	        <bean class="com.yongjun.tdms.service.prophase.business.tooling.reportmanager.pojo.DefaultSubscribeDetailMonthViewManager">
+	            <constructor-arg index="0">
+	                <ref bean="subscribeDetailMonthViewDao"/>
+	            </constructor-arg>
+	          			    
+	         </bean>
+	    </property>
+	</bean>   
+	<bean id="purchaseCountBySupplierReportManager" parent="abstractTransactionProxy">
+	    <property name="target">
+	        <bean class="com.yongjun.tdms.service.prophase.business.report.pojo.DefaultPurchaseCountBySupplierReportManager">
+	            <constructor-arg index="0">
+	                <ref bean="purchaseCountBySupplierReportDao"/>
+	            </constructor-arg>
+	          			    
+	         </bean>
+	    </property>
+	</bean>
+	<!-- 鲍杨涛的添加的serverce -->
+	
+</beans>
+
+
+

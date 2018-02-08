@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: spare.hbm.xml 11295 2008-03-12 12:27:38Z wzou $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.asset.spare.Spare" table="t_spare" lazy="true">
+        <id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_spare_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <discriminator column="DISCRIMINATOR" type="string"/>
+        <version name="version" column="VERSION" type="long"/>
+        <!-- 备件编号 -->
+        <property name="spareNo" type="string">
+            <column name="SPARE_NO" not-null="false"  sql-type="NVARCHAR(50)" />
+        </property>
+        <!-- 名称（中文） -->
+        <property name="name" type="string">
+            <column name="NAME" not-null="true" sql-type="NVARCHAR(50)" />
+        </property>
+        <!-- 名称（英文） -->
+         <property name="enName" type="string">
+            <column name="EN_NAME" not-null="false" sql-type="NVARCHAR(150)" />
+        </property>
+        <!-- 图号 -->
+        <property name="graphNo" type="string">
+            <column name="GRAPH_NO" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <!--订货号-->
+        <property name="orderNo" type="string">
+            <column name="ORDER_NO" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <!-- 型号 -->
+        <property name="modelSpecs" type="string">
+            <column name="MODEL_SPECS" not-null="true" sql-type="NVARCHAR(150)" />
+        </property>
+        <!-- 规格 -->
+        <property name="specification" type="string">
+            <column name="SPECIFICATION" not-null="false" sql-type="NVARCHAR(150)" />
+        </property>
+        <!-- 计量单位 -->
+        <many-to-one name="unit" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+            <column name="UNIT" not-null="false" />
+        </many-to-one>
+         <!-- 单价 -->
+        <property name="unitPrice" type="double">
+            <column name="UNIT_PRICE" not-null="false"/>
+        </property>
+        <!-- 采购周期 -->
+         <property name="purchaseCycle" type="int">
+            <column name="PURCHASE_CYCLE" not-null="false"/>
+        </property>
+        <!-- 安全库存 -->
+         <property name="safeStock" type="long">
+            <column name="SAFE_STOCK" not-null="false" />
+        </property>
+        <!-- 总库存 -->
+        <property name="stocks" type="long">
+            <column name="STOCKS" not-null="false" />
+        </property>
+        
+        <property name="disableStocks" type="long">
+            <column name="disableStocks" not-null="false" />
+        </property>
+        
+        <!-- 期初库存 -->
+        <property name="previousStocks" type="long">
+            <column name="PREVIONSSTOCKS" not-null="false" />
+        </property>
+        <!-- 供应商 -->
+        <many-to-one name="supplier" class="com.yongjun.tdms.model.prophase.supplier.Supplier">
+            <column name="SUPPLIER_ID" not-null="false" />
+        </many-to-one>
+        <!-- 厂家 -->
+        <many-to-one name="factory" class="com.yongjun.tdms.model.prophase.supplier.Supplier">
+            <column name="FACTORY_ID" not-null="false" />
+        </many-to-one>
+        <!-- 厂家所冗余的字段 -->
+        <property name="factoryStr" type="string">
+            <column name="FACTORY_STR" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <!--备件分类  -->
+        <many-to-one name="category" class="com.yongjun.tdms.model.base.codevalue.SpareType">
+            <column name="CATEGORY" not-null="false" />
+        </many-to-one>
+        <!-- 备件明细类型 -->
+        <many-to-one name="spareDetailType" class="com.yongjun.tdms.model.base.codevalue.SpareDetailType">
+            <column name="SPARE_DETAIL_TYPE" not-null="false" />
+        </many-to-one>
+        <!-- 资产类型 工装的或设备的-->
+        <property name="toolingDevFlag" type="com.yongjun.tdms.dao.base.codevalue.hibernate.SysModelEnum">
+            <column name="TOOLING_DEV_FLAG" not-null="true" length="50"/>
+        </property>
+        <!-- 产地类型，默认为国内 -->
+        <property name="producingAreaType" type="com.yongjun.tdms.dao.asset.spare.hibernate.ProducingAreaTypeEnum">
+        	<column name="PRODUCING_AREA_TYPE" not-null="false" length="25"/>
+        </property>
+        <!-- 备件属性，默认为普通备件 -->
+        <property name="propertyType" type="com.yongjun.tdms.dao.asset.spare.hibernate.SparePropertyTypeEnum">
+        	<column name="PROPERTY_TYPE" not-null="false" length="50"/>
+        </property>
+        <!-- 申购数量  -->
+        <property name="requestNum" type="int">
+        	<column name="REQUEST_NUM" not-null="false" />
+        </property>
+        <!-- 在途采购数量 -->
+        <property name="purchaseNumInRoad" type="int">
+        	<column name="PURCHASE_NUM_IN_ROAD" not-null="false" />
+        </property>
+        <!-- 过去3个月使用量 -->
+        <property name="usedNumInPast3M" type="int">
+        	<column name="USED_NUM_IN_PAST_3_M" not-null="false" />
+        </property>
+        <!-- 未来3个月计划使用量 -->
+        <property name="planUseNumInFeature3M" type="int">
+        	<column name="PLAN_USE_NUM_IN_FEATURE_3_M" not-null="false" />
+        </property>
+        <!-- 是否非标件 -->
+        <property name="tenderPartFlag" type="boolean">
+        	<column name="tender_part_flag" not-null="false" />
+        </property>
+        <!-- 是否易损件 -->
+        <property name="wearingPartFlag" type="boolean">
+        	<column name="wearing_part_flag" not-null="false" />
+        </property>
+        <!-- 是否大修件 -->
+        <property name="heavyRepairPartFlag" type="boolean">
+        	<column name="heavy_pepair_part_flag" not-null="false" />
+        </property>
+        <!-- 备注 -->
+        <property name="comment" type="string">
+            <column name="comment" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+        <set name="spares" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="spare_id" />
+			<one-to-many class="com.yongjun.tdms.model.asset.device.DeviceSpare" />
+		</set>
+        <set name="spareDoc" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="spare_id" />
+			<one-to-many class="com.yongjun.tdms.model.base.document.ApplicationDoc" />
+		</set>
+        <set name="spareLoc" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="spareId" />
+			<one-to-many class="com.yongjun.tdms.model.asset.spare.SpareLocation" />
+		</set>
+
+        
+
+
+        <!--  
+        <property name="originalHabitat" type="string">
+        	<column name="original_habitat" not-null="false" sql-type="NVARCHAR(150)"/>
+        </property>
+        <property name="requestBillNo" type="string">
+        	<column name="request_bill_no" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="factory" type="string">
+        	<column name="factory" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        -->
+        <!-- 
+        <property name="arrivalEstimate" type="date">
+        	<column name="arrival_eta" not-null="false" />
+        </property>
+        -->
+        
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+        
+        <!--  
+        <property name="usingQty" type="int">
+            <column name="using_qty" not-null="false"/>
+        </property>
+        <many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+            <column name="dept_id" not-null="false" />
+        </many-to-one>
+        <property name="deptName" type="string">
+            <column name="dept_name" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="putPostion" type="string">
+            <column name="put_position" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <property name="custos" type="string">
+            <column name="custos" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <many-to-one name="spareCustos" class="com.yongjun.pluto.model.security.User">
+			<column name="spareCustos_id" not-null="false" />
+		</many-to-one>
+		<many-to-one name="device" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+            <column name="device_id" not-null="false" />
+         </many-to-one>
+        <many-to-one name="category" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+            <column name="category" not-null="false" />
+        </many-to-one>
+        -->
+        <property name="oldSpare" type="java.lang.String">
+            <column name="OLD_SPARE" />
+        </property>
+    </class>
+    <query name="GetMaxSpareNoBySpareCode">
+		<![CDATA[SELECT MAX(spare.spareNo) FROM Spare spare WHERE spare.spareNo LIKE :spareCode AND spare.disabled=false]]>
+	</query>
+	<query name="GetSpareNumBySpareNo">
+		<![CDATA[SELECT COUNT(*) FROM Spare spare WHERE spare.spareNo = :spareNo AND spare.disabled=false]]>
+	</query>
+	
+	<query name="getSpareBySpareNo">
+		<![CDATA[FROM Spare spare WHERE spare.spareNo = :spareNo AND spare.disabled=false]]>
+	</query>
+	<query name="getSpareBySpareNoNew">
+		<![CDATA[FROM Spare spare WHERE spare.oldSpare is null and spare.spareNo = :spareNo AND spare.disabled=false]]>
+	</query>
+	
+	<query name="getSpareCollentionByModelNo">
+		<![CDATA[FROM Spare spare WHERE spare.modelSpecs = :modelSpare AND spare.disabled=false]]>
+	</query>
+		<query name="getSpareCollentionByspecification">
+		<![CDATA[FROM Spare spare WHERE spare.specification = :specification AND spare.disabled=false]]>
+	</query>
+	<query name="getSpareCollentionByModel">
+		<![CDATA[FROM Spare spare WHERE spare.modelSpecs = :modelSpare]]>
+	</query>
+	<query name="getSpareCollentionBySpe">
+		<![CDATA[FROM Spare spare WHERE spare.specification = :specification]]>
+	</query>
+	<query name="getSpareNumByModelAndName">
+		<![CDATA[select count(spare.id) FROM Spare spare WHERE spare.modelSpecs = :modelSpare and spare.name = :name and spare.disabled=false]]>
+	</query>
+	<query name="loadByPamrameter">
+		<![CDATA[FROM Spare spare WHERE spare.name = :name and spare.modelSpecs =:modelSpecs and spare.orderNo =:orderNo and spare.factoryStr=:factoryName]]>
+	</query>
+	<query name="loadByNameAndModel">
+		<![CDATA[FROM Spare spare WHERE spare.oldSpare ='0' and spare.name = :name and spare.modelSpecs =:modelSpecs ]]>
+	</query>
+</hibernate-mapping>

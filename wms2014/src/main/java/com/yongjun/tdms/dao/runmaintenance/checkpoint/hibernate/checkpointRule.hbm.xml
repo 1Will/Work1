@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: checkpointRule.hbm.xml 11286 2008-03-12 06:20:51Z wzou $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.runmaintenance.checkpoint.CheckPointRule" table="t_check_point_rule" lazy="true">
+        <id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_check_point_rule_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <discriminator column="DISCRIMINATOR" type="string"/>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="position" type="string">
+            <column name="position" not-null="true" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="content" type="string">
+            <column name="content" not-null="true" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="ruleDsp" type="string">
+            <column name="rule_dsp" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+         <property name="methodDsp" type="string">
+            <column name="method_dsp" not-null="false" sql-type="NVARCHAR(150)"/>
+        </property>
+        
+        <property name="requestDsp" type="string">
+            <column name="request_dsp" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="cycle" type="string">
+            <column name="cycle" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="lastCheckPointTime" type="date">
+            <column name="lastCheckPointTime" not-null="false" />
+        </property>
+        
+        <many-to-one name="device" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+            <column name="device_id" not-null="true" />
+        </many-to-one>
+		
+        <property name="createdTime" column="created_time" type="timestamp"/>
+        <property name="creator"  column="creator"   type="string" length="50"/>
+        <property name="lastModifiedTime" column="last_modified_time" type="timestamp"/>
+        <property name="lastOperator"  column="last_modifier"   type="string" length="50"/>
+    </class>
+<!-- 
+    <query name="GetRuleTypeId">
+    	<![CDATA[SELECT rule.ruleType.id FROM CheckPointRule rule WHERE rule.device.id = :deviceId ]]>
+    </query>
+
+    <query name="GetCheckPointRuleByIdAndTypeId">
+    	<![CDATA[FROM CheckPointRule rule WHERE rule.id =:ruleId AND rule.device.id = :deviceId AND rule.ruleType.id = :ruleTypeId]]>
+    </query>
+    -->
+</hibernate-mapping>

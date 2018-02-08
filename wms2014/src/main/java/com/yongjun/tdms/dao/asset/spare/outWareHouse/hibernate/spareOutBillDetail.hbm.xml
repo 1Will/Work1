@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: spareInOutHistory.hbm.xml 8643 2007-11-25 18:10:43Z mwei $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.asset.spare.outWareHouse.SpareOutBillDetail" table="t_spareOut_bill_detail" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_spareOut_bill_detail_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator> 
+        </id>
+        <discriminator column="DISCRIMINATOR" type="string"/>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="code" type="string">
+            <column name="CODE" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+       <!--  <property name="callFlag" type="boolean">
+            <column name="CALL_FLAG"/>
+        </property>-->
+        <property name="name" type="string">
+            <column name="NAME" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <property name="locationCode" type="string">
+            <column name="LOCATION_CODE" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <many-to-one name="warehouse" class="com.yongjun.pluto.model.security.Warehouse">
+            <column name="WAREHOUSE_ID" not-null="false" />
+        </many-to-one>
+        <many-to-one name="regional" class="com.yongjun.tdms.model.asset.spare.warehouseInfo.regional.Regional">
+            <column name="REGIONAL_ID" not-null="false" />
+        </many-to-one>
+        <many-to-one name="location" class="com.yongjun.tdms.model.asset.spare.Location">
+            <column name="LOCATION_ID" not-null="false" />
+        </many-to-one>
+        <property name="unitPrice" type="double">
+            <column name="UNIT_PRICE" not-null="false"/>
+        </property>
+        
+        <property name="totalPrice" type="double">
+            <column name="TOTAL_PRICE" not-null="false"/>
+        </property>
+        
+        <property name="number" type="long">
+            <column name="NUMBER" not-null="true" />
+        </property>
+        
+        <property name="inNumber" type="long">
+            <column name="IN_NUMBER" not-null="true" />
+        </property>  
+         
+        <property name="stocksBeforeInOrOut" type="long">
+            <column name="STOCKS_BEFORE_IN_OR_OUT" not-null="true" />
+        </property>
+         <property name="status" type="com.yongjun.tdms.dao.asset.spare.outWareHouse.hibernate.SpareOutBillDetailStatusEnum">
+            <column name="STATUS" not-null="false" />
+        </property>
+        <property name="stocksAfterInOrOut" type="long">
+            <column name="STOCKS_AFTER_IN_OR_OUT" not-null="true" />
+        </property>       
+        
+        <many-to-one name="spare" class="com.yongjun.tdms.model.asset.spare.Spare">
+            <column name="SPARE_ID" not-null="true" />
+        </many-to-one>
+         <many-to-one name="dtl" class="com.yongjun.tdms.model.runmaintenance.spareBorrow.SpareBorrowDetail">
+            <column name="SPARE_BORROW_DTL_ID" not-null="false" />
+        </many-to-one>
+        <many-to-one name="spareOutBill" class="com.yongjun.tdms.model.asset.spare.outWareHouse.SpareOutBill">
+            <column name="OUT_BILL_ID" not-null="true" />
+        </many-to-one>
+       <many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+            <column name="deptId" not-null="false"/>
+       </many-to-one>
+       <!-- 标识 是否被 二级入库单选择 zzb --> 
+        <property name="haveInbill" type="boolean">
+            <column name="HAVE_IN_BILL" not-null="false" />
+        </property>  
+        <!-- 出库人 zzb --> 
+         <many-to-one name="outPeople" class="com.yongjun.pluto.model.security.User">
+			<column name="OUT_PEOPLE_ID" not-null="false" />
+		</many-to-one>
+		<!-- 领料人 zzb --> 
+         <property name="borrowerPeople" type="string">
+			<column name="BORROWER_PEOPLE" not-null="false" />
+		</property>
+		<!-- 出库日期 zzb --> 
+		 <property name="outDate" type="timestamp">
+            <column name="OUT_DATE" not-null="false"/>
+        </property>
+        <!-- 以旧换新 zzb --> 
+		 <property name="newOrOld" type="boolean">
+            <column name="NEW_OR_OLD" not-null="false"/>
+        </property>
+        <!-- 备注 zzb --> 
+		 <property name="comment" type="string">
+            <column name="COMMENT" not-null="false"/>
+        </property>
+         <!-- 所属设备zzb --> 
+		 <property name="shebei" type="string">
+            <column name="SHEBEI" not-null="false"/>
+        </property>
+        <!-- 设备编号 -->
+        <property name="shebeiNo" type="string">
+            <column name="shebeiNo" not-null="false"/>
+        </property>
+        <!-- 设备用途 -->
+        <property name="useTypes" type="string">
+            <column name="useTypes" not-null="false"/>
+        </property>
+         <!-- 所属班组zzb --> 
+		 <property name="banzu" type="string">
+            <column name="BANZU" not-null="false"/>
+        </property>
+        <!--关联的备件库台账-->
+         <many-to-one name="spareLocation" class="com.yongjun.tdms.model.asset.spare.SpareLocation">
+            <column name="SPARE_LOCATION_ID" not-null="false"/>
+       </many-to-one>
+        
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+        
+    </class>
+</hibernate-mapping>

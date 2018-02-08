@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id:$-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.maintenance.MaintenanceRule" table="t_maintenance_rule" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_maintenance_rule_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="part" type="string">
+            <column name="part" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="method" type="string">
+            <column name="method" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="appeal" type="string">
+            <column name="appeal" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="cycle" type="integer">
+            <column name="cycle" not-null="false" />
+        </property>
+        
+        <property name="lastMaintenanceDate" type="date">
+            <column name="last_maintenance_date" not-null="false" />
+        </property>
+        
+        <property name="dutyPeople" type="string">
+            <column name="duty_people" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <many-to-one name="maintenanceType" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="maintenance_type" not-null="false" />
+		</many-to-one>
+        
+		<many-to-one name="device" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+			<column name="device_id" not-null="true" />
+		</many-to-one>
+	</class>	
+</hibernate-mapping>

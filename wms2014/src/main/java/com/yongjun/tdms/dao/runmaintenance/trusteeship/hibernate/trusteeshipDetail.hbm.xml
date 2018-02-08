@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: attachTool.hbm.xml 7451 2007-09-19 01:08:48Z qsun $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.runmaintenance.trusteeship.TrusteeshipDetail" table="t_trusteeship_detail">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_trusteeship_detail_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        
+        <version name="version" column="VERSION" type="long"/>
+     
+        <many-to-one name="asset" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+            <column name="ASSET_ID" not-null="true"/>
+        </many-to-one>
+        
+        <many-to-one name="trusteeship" class="com.yongjun.tdms.model.runmaintenance.trusteeship.Trusteeship">
+            <column name="TRUSTEESHIP_ID" not-null="true"/>
+        </many-to-one>
+        
+        
+    </class>
+</hibernate-mapping>

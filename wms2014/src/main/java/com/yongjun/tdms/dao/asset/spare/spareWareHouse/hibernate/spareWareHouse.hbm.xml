@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: spareInOutBill.hbm.xml 10135 2008-01-06 05:31:37Z mwei $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.asset.spare.spareWareHouse.SpareWareHouse" table="t_spare_wareHouse" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_spare_wareHouse_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="maxStocks" type="long">
+			<column name="maxStocks" />
+		</property>
+		<property name="minStocks" type="long">
+			<column name="minStocks" />
+		</property>
+		<property name="stocks" type="long">
+			<column name="stocks" />
+		</property>
+		<property name="disableStocks" type="long">
+			<column name="disableStocks" />
+		</property>
+		<many-to-one name="wareHouse" class="com.yongjun.pluto.model.security.Warehouse">
+			<column name="warehouseId"/>
+		</many-to-one>
+		<many-to-one name="spare" class="com.yongjun.tdms.model.asset.spare.Spare">
+			<column name="spareId"/>
+		</many-to-one>
+			
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+        <property name="oldSpare" column="OLD_SPARE" type="string" length="5"/>
+        <property name="spareState" column="SPARE_STATE" type="string" length="5"/>
+    </class>
+    <query name="GetSpareWareHouseBySpareIdAndWareHouseId">
+		<![CDATA[
+			from SpareWareHouse spareWareHouse where spareWareHouse.wareHouse.id = :wareHouseId and spareWareHouse.spare.id =:spareId                                                                   
+		]]>
+	</query>
+</hibernate-mapping>

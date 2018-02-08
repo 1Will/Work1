@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+
+<!-- $Id: EditCheckPointProcAction-validation.xml 7961 2007-10-23 07:03:11Z qsun $ -->
+<validators>
+	<!-- <field name="supplier.name">
+		<field-validator type="requiredstring">
+			<message key="supplier.name.requiredstring" />
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">0</param>
+			<param name="maxLength">50</param>
+			<message key="supplier.name.maxLength" />
+		</field-validator>
+	</field>
+	<field name="supplier.enName">
+		<field-validator type="stringlength">
+			<param name="minLength">0</param>
+			<param name="maxLength">50</param>
+			<message key="supplier.enName.maxLength" />
+		</field-validator>
+	</field>
+	<field name="supplier.zone">
+		<field-validator type="stringlength">
+			<param name="minLength">0</param>
+			<param name="maxLength">50</param>
+			<message key="supplier.zone.maxLength" />
+		</field-validator>
+	</field>
+	 <field name="supplier.registeredFunds">
+		<field-validator type="double">
+			<param name="min">0.000</param>
+			<param name="max">1000000000.00</param>
+			<message key="supplier.registeredFunds.string" />
+		</field-validator>
+	</field>
+	
+	<field name="supplier.legalPerson">
+		<field-validator type="stringlength">
+			<param name="minLength">0</param>
+			<param name="maxLength">30</param>
+			<message key="supplier.legalPerson.maxLength" />
+		</field-validator>
+	</field>
+	<field name="supplier.comment">
+		<field-validator type="stringlength">
+			<param name="minLength">0</param>
+			<param name="maxLength">250</param>
+			<message key="supplier.comment.maxLength" />
+		</field-validator>
+	</field>-->
+</validators>

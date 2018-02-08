@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+<!-- $Id: purchaseBill.hbm.xml 11328 2008-03-15 09:39:30Z mwei $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.prophase.business.PurchaseBill" table="t_purchase_bill" lazy="true">
+		<id name="id" column="ID" type="long">
+			<generator class="native">
+				<param name="sequence">t_purchase_bill_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION" type="long" />
+
+		<property name="billNo" type="string">
+			<column name="BILL_NO" not-null="true" sql-type="NVARCHAR(50)" />
+		</property>
+
+		<property name="name" type="string">
+			<column name="NAME" not-null="true" sql-type="NVARCHAR(50)" />
+		</property>
+        <property name="typeStatus" type="com.yongjun.tdms.dao.prophase.business.hibernate.PurchaseTypeStatusEnum">
+            <column name="Type" not-null="false" length="50"/>
+        </property>
+		<property name="contractMainClause" type="string">
+			<column name="contract_Main_Clause" not-null="false" sql-type="NVARCHAR(250)" />
+		</property>
+
+		<property name="paymentWay" type="string">
+			<column name="payment_Way" not-null="false" sql-type="NVARCHAR(250)" />
+		</property>
+
+		<many-to-one name="feeSource" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="FEE_SOURCE" not-null="false" />
+		</many-to-one>
+
+		<many-to-one name="subscribeDetail" class="com.yongjun.tdms.model.prophase.business.SubscribeDetail">
+			<column name="Sbscribe_Detail_id" not-null="false" />
+		</many-to-one>
+
+		<property name="budgetNo" type="string">
+			<column name="BUDGET_NO" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+
+		<property name="disabled" type="boolean">
+			<column name="disabled" not-null="true" />
+		</property>
+        
+        <property name="toolingDevFlag" type="com.yongjun.tdms.dao.base.codevalue.hibernate.SysModelEnum">
+            <column name="TOOLING_DEV_FLAG" not-null="true" length="50"/>
+        </property>
+        
+        <property name="status" type="com.yongjun.tdms.dao.prophase.business.hibernate.PurchaseBillStatusEnum">
+            <column name="STATUS_VALUE" not-null="true"/>
+        </property>
+        <property name="submit" type="boolean">
+            <column name="submit" not-null="false"/>
+        </property>
+		<many-to-one name="buyer" class="com.yongjun.pluto.model.security.User">
+			<column name="buyer_ID" not-null="true" />
+		</many-to-one>
+
+		<property name="purchaseDate" type="date">
+			<column name="PURCHASE_DATE" not-null="false" />
+		</property>
+
+		<property name="totalPrice" type="double">
+			<column name="TOTAL_PRICE" not-null="false" />
+		</property>
+
+		<property name="totalAmounts" type="integer">
+			<column name="TOTAL_AMOUNTS" not-null="false" />
+		</property>
+		
+		<property name="supplierName" type="string">
+			<column name="supplier_Name" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		
+		<property name="telphone" type="string">
+			<column name="telphone_No" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		
+		<property name="unitPrice" type="integer">
+			<column name="unit_Price" not-null="false" />
+		</property>
+		
+		<property name="alreadyPayOut" type="double">
+			<column name="ALREADY_PAY_OUT" not-null="false" />
+		</property>
+
+		<property name="contractMoney" type="double">
+			<column name="CONTRACT_MONEY" not-null="false" />
+		</property>
+		
+        <property name="comment" type="string">
+			<column name="COMMENT" not-null="false" sql-type="NVARCHAR(250)"/>
+		</property>
+		
+		<many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="DEPARTMENT_ID" not-null="false" />
+		</many-to-one>
+
+		<many-to-one name="supplier" class="com.yongjun.tdms.model.prophase.supplier.Supplier">
+			<column name="SUPPLIER_ID" not-null="true" />
+		</many-to-one>
+
+        <many-to-one name="budgetDetail" class="com.yongjun.tdms.model.year.budget.BudgetDetail">
+			<column name="budget_detail_id" not-null="false" />
+		</many-to-one>
+		
+		<set name="changeDoc" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="purchase_Bill_id" />
+			<one-to-many class="com.yongjun.tdms.model.base.document.ApplicationDoc" />
+		</set>
+		
+		<set name="acceptBill" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="PURCHASEBILL_ID" />
+			<one-to-many class="com.yongjun.tdms.model.prophase.business.AcceptBill" />
+		</set>
+		
+		<set name="purchaseBillDetails" inverse="true" cascade="all-delete-orphan"  lazy="true">
+			<key column="PURCHASE_BILL_ID" />
+			<one-to-many class="com.yongjun.tdms.model.prophase.business.PurchaseBillDetail" />
+		</set>
+		
+		<set name="middleCheck" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="PURCHASE_BILL_ID" />
+			<one-to-many class="com.yongjun.tdms.model.prophase.business.MiddleCheck" />
+		</set>
+		
+		<set name="payDetails" inverse="true" cascade="delete" lazy="true">
+			<key column="PURCHASE_BILL_ID" />
+			<one-to-many class="com.yongjun.tdms.model.prophase.business.PayDetail" />
+		</set>
+        
+        <!-- 税前总价 -->
+	     <property name="taxTotalPrice" type="double">
+            <column name="TAX_TOTAL_PRICE" not-null="false" />
+        </property>
+        
+         <!-- 明细数量 -->
+	     <property name="sumDetail" type="int">
+            <column name="SUM_DETAIL" not-null="false" />
+        </property>
+        
+          <!-- 入库项 -->
+	     <property name="insNum" type="int">
+            <column name="INS_NUM" not-null="false" />
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp" />
+		<property name="creator" column="CREATOR" type="string" length="50" />
+		<property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp" />
+		<property name="lastOperator" column="LAST_OPERATOR" type="string" length="50" />
+		
+		
+		
+		<property name="consigneeAdd" type="string">
+			<column name="CONSIGNEE_ADD" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		<property name="consigneeName" type="string">
+			<column name="CONSIGNEE_NAME" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		<property name="consigneeTel" type="string">
+			<column name="CONSIGNEE_TEL" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+		<property name="consigneeFax" type="string">
+			<column name="CONSIGNEE_FAX" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+
+	</class>
+	<!--  <query name="LoadPurchaseBillByBillNo">
+		<![CDATA[FROM PurchaseBill purchaseBill WHERE purchaseBill.billNo = :billNo]]>
+		</query>-->
+	<query name="GetMaxBillNoByBillCode">
+		<![CDATA[SELECT MAX(purchaseBill.billNo) FROM PurchaseBill purchaseBill WHERE purchaseBill.billNo LIKE :billCode AND purchaseBill.disabled=false]]>
+	</query>
+</hibernate-mapping>

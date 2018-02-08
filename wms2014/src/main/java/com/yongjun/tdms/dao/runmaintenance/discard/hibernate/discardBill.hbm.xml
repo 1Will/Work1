@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.discard.DiscardBill" table="t_discard_bill" lazy="true">
+	
+		<id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_discard_bill_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="billNo" type="string">
+            <column name="BIIL_NO" not-null="false"  sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="discardBillName" type="string">
+            <column name="DISCARD_BILLNAME" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        <many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="DEPT_ID" not-null="false" />
+		</many-to-one>
+        <many-to-one name="discardCategory" class="com.yongjun.tdms.model.base.codevalue.CodeValue">
+			<column name="DISCARD_CATE_ID" not-null="false" />
+		</many-to-one>
+		<many-to-one name="reportUser" class="com.yongjun.pluto.model.security.User">
+			<column name="REPORT_USER_ID" not-null="false" />
+		</many-to-one>
+		 <property name="disabled" type="boolean">
+            <column name="disabled" not-null="true"/>
+        </property>
+		<property name="discardAgree" type="boolean">
+            <column name="DISCARD_AGREE" not-null="false"/>
+        </property>
+		<property name="discardDate" type="date">
+            <column name="DISCARD_DATE" not-null="false"/>
+        </property>
+		<property name="reportDate" type="date">
+            <column name="REPORT_DATE" not-null="false"/>
+        </property>
+        <property name="discardReason" type="string">
+            <column name="DISCARD_REASON" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        <set name="discardBillDtl" inverse="true" cascade="all-delete-orphan" lazy="true">
+			<key column="DISCARD_BILL_ID" />
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.discard.DiscardBillDtl" />
+		</set>
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR"   type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator"  column="LAST_OPERATOR"   type="string" length="50"/>
+	</class>
+	<!-- <query name="GetToolingDiscardByToolingId">
+    	<![CDATA[FROM Discard discard WHERE discard.tooling.id =:toolingId ]]>
+    </query>
+    
+    <query name="GetDeviceDiscardByToolingId">
+    	<![CDATA[FROM Discard discard WHERE discard.device.id =:deviceId ]]>
+    </query>-->
+</hibernate-mapping>

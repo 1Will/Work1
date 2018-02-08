@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+ <!-- $Id: EditLubricationRuleAction-validation.xml 11035 2008-02-20 08:17:27Z zbzhang $-->       
+<validators>
+
+  	<field name="lubricationRule.position">
+  	    <field-validator type="requiredstring">
+            <message key="lubricationRule.position.requiredstring"/>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">150</param>
+            <message key="lubricationRule.position.maxLength"/>
+        </field-validator>
+	</field>
+	<!-- 
+	<field name="lubricationRule.content">
+        <field-validator type="stringlength">
+            <param name="maxLength">250</param>
+            <message key="lubricationRule.content.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="lubricationRule.ruleDsp">
+        <field-validator type="stringlength">
+            <param name="maxLength">250</param>
+            <message key="lubricationRule.ruleDsp.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="lubricationRule.methodDsp">
+        <field-validator type="stringlength">
+            <param name="maxLength">250</param>
+            <message key="lubricationRule.methodDsp.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="lubricationRule.cycle">
+        <field-validator type="int">
+            <param name="min">0</param>
+        	<param name="max">1000000000</param>
+            <message key="lubricationRule.cycle.int"/>
+        </field-validator>
+	</field>
+	<field name="lubricationRule.lubricatingOilQty">
+        <field-validator type="stringlength">
+            <param name="maxLength">50</param>
+            <message key="lubricationRule.lubricatingOilQty.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="lubricationRule.dutyPeople">
+        <field-validator type="stringlength">
+            <param name="maxLength">50</param>
+            <message key="lubricationRule.dutyPeople.maxLength"/>
+        </field-validator>
+	</field>		
+	-->
+</validators>

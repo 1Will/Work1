@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.prophase.business.report.PurchaseCountBySupplierReport" table="t_purCount_bySupplier_report" lazy="true">
+		<id name="id" column="ID">
+			<generator class="native">
+				<param name="sequence">t_purCount_bySupplier_report_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<property name="supplierName" column="SUPPLIER_NAME" not-null="false" type="string" length="50"/>
+		<property name="supplierId" column="SUPPLIER_ID" not-null="false" type="long"/>
+	
+		<property name="categoryName" column="CATEGORY_NAME" not-null="false" type="string" length="20"/>
+		
+		<property name="purNum" column="PURNUM" not-null="false" type="int"/>
+        <property name="sumPrice" column="SUMPRICE" not-null="false" type="double"/><!--
+        
+		<property name="dpurNum" column="dpurNum" not-null="false" type="int"/>
+        <property name="dsumPrice" column="dsumPrice" not-null="false" type="double"/>
+        
+		<property name="bpurNum" column="bpurNum" not-null="false" type="int"/>
+        <property name="bsumPrice" column="bsumPrice" not-null="false" type="double"/>
+        
+        
+		--><property name="month" column="month" not-null="false" type="string" length="12"/>
+
+	</class>
+	 
+</hibernate-mapping>

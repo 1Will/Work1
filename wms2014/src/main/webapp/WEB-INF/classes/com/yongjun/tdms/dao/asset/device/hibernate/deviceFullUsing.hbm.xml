@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: deviceCard.hbm.xml 11436 2008-03-18 14:16:50Z wzou $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.report.DeviceFullUsing" table="t_device_full_using" lazy="true">
+		<id name="id" column="id" type="long">
+			<generator class="native">
+				<param name="sequence">t_device_full_using_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<discriminator column="DISCRIMINATOR" type="string" />
+		<version name="version" column="VERSION" type="long" />
+		
+		<property name="description" type="string">
+			<column name="description" not-null="true" sql-type="NVARCHAR(150)" />
+		</property>
+		
+		<property name="unitIndex" type="string">
+			<column name="unit_index" not-null="false" sql-type="NVARCHAR(10)"/>
+		</property>
+		
+		<property name="unitChildItem" type="string" >
+            <column name="unit_child_item"  sql-type="NVARCHAR(10)"/>
+        </property>
+        
+        <property name="unitMontherItem" type="string">
+            <column name="unit_monther_item" />
+        </property>
+        
+        <property name="factIndex" type="double">
+			<column name="fact_index" not-null="false"/>
+		</property>
+		
+		<property name="itemNo" type="integer">
+            <column name="item_no" />
+        </property>
+		
+		<property name="factChildItem" type="integer">
+            <column name="fact_child_item" />
+        </property>
+        
+        <property name="factMontherItem" type="integer">
+            <column name="fact_monther_item" />
+        </property>
+        
+        <property name="yearIndex" type="double">
+			<column name="year_index" not-null="false"/>
+		</property>
+		
+		<property name="yearChildItem" type="integer">
+            <column name="year_child_item" />
+        </property>
+        
+        <property name="yearMontherItem" type="integer">
+            <column name="year_monther_item" />
+        </property>
+        
+        <property name="month" type="string">
+			<column name="month" not-null="true" sql-type="NVARCHAR(10)" />
+		</property>
+        
+        <property name="date" type="date">
+			<column name="date" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

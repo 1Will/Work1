@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.prophase.business.tooling.reportmanager.MidView" table="t_mid_view" lazy="true">
+		<id name="id" column="ID">
+			<generator class="native">
+				<param name="sequence">t_mid_view_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<property name="dept" column="dept" not-null="false" type="string" length="20"/>
+		
+		<property name="detailId" column="detail_id" not-null="false" type="long"/>
+		
+		<property name="createDate" column="createDate" not-null="false" type="string" length="20"/>
+		
+		<property name="categoryName" column="category_Name" not-null="false" type="string" length="20"/>
+		
+		<property name="price" column="price" not-null="false" type="double"/>
+		
+		<property name="amount" column="amount" not-null="false" type="int"/>
+		
+		<property name="status" column="status" not-null="false" type="string" length="50"/>
+		
+        <!--  
+		<property name="acceptDate" column="acceptDate" not-null="false" type="timestamp"/>
+        -->
+	</class>
+	 
+</hibernate-mapping>

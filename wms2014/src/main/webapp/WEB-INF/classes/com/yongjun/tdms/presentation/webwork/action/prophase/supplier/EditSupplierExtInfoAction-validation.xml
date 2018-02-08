@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd">
+
+<!-- $Id: EditCheckPointProcAction-validation.xml 7961 2007-10-23 07:03:11Z qsun $ -->
+<validators>
+	<field name="supplierExtInfo.contact0">
+        <field-validator type="stringlength">
+            <param name="minLength">0</param>
+            <param name="maxLength">50</param>
+            <message key="supplierExtInfo.contact0.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="supplierExtInfo.tel">
+        <field-validator type="stringlength">
+            <param name="minLength">0</param>
+            <param name="maxLength">50</param>
+            <message key="supplierExtInfo.tel.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="supplierExtInfo.fax">
+        <field-validator type="stringlength">
+            <param name="minLength">0</param>
+            <param name="maxLength">50</param>
+            <message key="supplierExtInfo.fax.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="supplierExtInfo.site">
+        <field-validator type="stringlength">
+            <param name="minLength">0</param>
+            <param name="maxLength">50</param>
+            <message key="supplierExtInfo.site.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="supplierExtInfo.email">
+        <field-validator type="stringlength">
+            <param name="minLength">0</param>
+            <param name="maxLength">50</param>
+            <message key="supplierExtInfo.email.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="supplierExtInfo.commercialInstrument">
+        <field-validator type="stringlength">
+            <param name="minLength">0</param>
+            <param name="maxLength">250</param>
+            <message key="supplierExtInfo.commercialInstrument.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="supplierExtInfo.businessVariety">
+        <field-validator type="stringlength">
+            <param name="minLength">0</param>
+            <param name="maxLength">250</param>
+            <message key="supplierExtInfo.businessVariety.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="supplierExtInfo.saleSupport">
+        <field-validator type="stringlength">
+            <param name="minLength">0</param>
+            <param name="maxLength">250</param>
+            <message key="supplierExtInfo.saleSupport.maxLength"/>
+        </field-validator>
+	</field>
+	<field name="supplierExtInfo.supportQos">
+        <field-validator type="stringlength">
+            <param name="minLength">0</param>
+            <param name="maxLength">250</param>
+            <message key="supplierExtInfo.supportQos.maxLength"/>
+        </field-validator>
+	</field>
+	
+</validators>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.prophase.business.report.SubscribeCountByDeptReport" table="t_subCount_byDept_report" lazy="true">
+		<id name="id" column="ID">
+			<generator class="native">
+				<param name="sequence">t_subCount_byDept_report_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<property name="dept" column="dept" not-null="false" type="string" length="30"/>
+		<property name="deptId" column="dept_id" not-null="false" type="long"/>
+	
+	<!-- <property name="createDate" column="createDate" not-null="false" type="string"/> -->	
+						
+		<property name="categoryName" column="category_Name" not-null="false" type="string" length="20"/>
+		
+		<property name="planNum" column="planNum" not-null="false" type="int"/>
+		<property name="purNum" column="purNum" not-null="false" type="int"/>
+		<property name="conNum" column="conNum" not-null="false" type="int"/>
+	    <property name="calNum" column="calNum" not-null="false" type="int"/>
+        <property name="sumPrice" column="sumPrice" not-null="false" type="double"/><!--
+        
+        <property name="dplanNum" column="dplanNum" not-null="false" type="int"/>
+		<property name="dpurNum" column="dpurNum" not-null="false" type="int"/>
+		<property name="dconNum" column="dconNum" not-null="false" type="int"/>
+	    <property name="dcalNum" column="dcalNum" not-null="false" type="int"/>
+        <property name="dsumPrice" column="dsumPrice" not-null="false" type="double"/>
+        
+        <property name="bplanNum" column="bplanNum" not-null="false" type="int"/>
+		<property name="bpurNum" column="bpurNum" not-null="false" type="int"/>
+		<property name="bconNum" column="bconNum" not-null="false" type="int"/>
+	    <property name="bcalNum" column="bcalNum" not-null="false" type="int"/>
+        <property name="bsumPrice" column="bsumPrice" not-null="false" type="double"/>
+        
+        
+		--><property name="comment" column="comment" not-null="false" type="string"/>
+		<property name="month" column="month" not-null="false" type="string" length="12"/>
+        <!--  
+		<property name="acceptDate" column="acceptDate" not-null="false" type="timestamp"/>
+        -->
+	</class>
+	 
+</hibernate-mapping>

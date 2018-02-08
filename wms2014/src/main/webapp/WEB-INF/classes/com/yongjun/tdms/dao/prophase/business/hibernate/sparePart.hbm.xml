@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: payDetail.hbm.xml 10908 2008-02-14 01:48:14Z qsun $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.prophase.business.SparePart" table="t_spart_part" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_spart_part_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="spareName" type="string">
+        	<column name="SPARE_NAME" not-null="false" length="50" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="spareModel" type="string">
+            <column name="SPARE_MODEL" not-null="false" length="50" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+         <property name="spareSpecification" type="string">
+        	<column name="SPARE_SP" not-null="false" length="50" sql-type="NVARCHAR(50)"/>
+        </property>
+          
+        <property name="amount" type="integer">
+        	<column name="AMOUNT" not-null="false"/>
+        </property>
+        
+        <property name="installPosition" type="string">
+            <column name="INSTALL_POSTION" not-null="false" length="50" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="damage" type="boolean">
+            <column name="DAMAGE" not-null="false"/>
+        </property>
+        
+        <property name="memo" type="string">
+            <column name="MEMO" not-null="false" length="250" sql-type="NVARCHAR(50)"/>
+        </property>
+        <many-to-one name="accept" class="com.yongjun.tdms.model.prophase.business.AcceptBill">
+            <column name="ACCEPT_BILL_ID" not-null="true" />
+        </many-to-one>
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator" column="CREATOR" type="string" length="50"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="50"/>
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" 
+	"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+
+<!-- $Id: eam2008-securityContext.xml 10929 2008-02-14 09:15:21Z qsun $ -->
+
+<beans>
+    <bean id="loginSuccessListener" class="com.yongjun.tdms.util.listener.LoginSuccessListener">
+        <property name="eventNewManager">
+            <ref bean="eventNewManager"/>
+        </property>
+        <property name="userManager">
+           <ref bean="userManager"/>
+        </property>
+    </bean>
+    <!-- 
+    <bean id="logoutSuccessListener" class="com.yongjun.tdms.util.listener.LogoutSuccessListener">
+        <property name="eventNewManager">
+            <ref bean="eventNewManager"/>
+        </property>
+        <property name="userManager">
+           <ref bean="userManager"/>
+        </property>
+    </bean>
+    -->
+	 <bean id="filterInvocationInterceptor" parent="abstractFilterInvocationInterceptor">
+	        <property name="objectDefinitionSource">
+	            <value>
+	                PATTERN_TYPE_APACHE_ANT
+	                /login.html*=ROLE_ANONYMOUS,ROLE_USER
+	                /logout.html*=ROLE_ANONYMOUS,ROLE_USER
+	                /popup/helpSelector.html*=ROLE_ANONYMOUS
+	                /popup/technogySupport.html*=ROLE_ANONYMOUS
+	                /popup/helpFristSelector.html*=ROLE_ANONYMOUS
+	                /frameset.html*=ROLE_USER
+	                /security/userProfile.html*=ROLE_USER
+                	/security/saveUserProfile.html*=ROLE_USER
+                	/security/changePassword.html*=ROLE_USER
+                	/resetPassword.html*=ROLE_ANONYMOUS
+	                /security/*=ROLE_ADMIN
+	                /base/codevalue/listToolingTypes.html*=ROLE_ADMIN
+	                /base/codevalue/listSpareTypes.html*=ROLE_ADMIN
+	                <!-- 
+	                /base/document/listDocumentsTOOLINGWRITE.html?readOnly=true*=ROLE_FACTORY_TOOLING
+	                -->
+	                <!-- 制度文档写权限 -->
+	                /base/document/listDocumentsTOOLINGWRITE.html*=ROLE_SYSTEM_DOCUMENT_WRITE
+	                <!-- 制度文档读权限 -->
+	                /base/document/listDocumentsTOOLINGREAD.html*=ROLE_SYSTEM_DOCUMENT_READ
+	                 <!-- 年度计划写权限 -->
+	                /year/tooling/yearPlan/listYearPlansWRITE.html*=ROLE_TOOLING_YAER_PLAN_WRITE
+	                <!-- 年度计划写、汇总权限 -->
+	                /year/tooling/yearPlan/listYearPlansWriteAndCollect.html*=ROLE_TOOLING_YAER_PLAN_COLLECTWRITE
+	                 <!-- 年度计划读权限 -->
+	                /year/tooling/yearPlan/listYearPlansREAD.html*=ROLE_TOOLING_YAER_PLAN_READ
+	                <!-- 工装年度预算写权限 -->
+	                /year/budget/listYearBudgetsTOOLINGWRITE.html*=ROLE_TOOLING_YEAR_BUDGET_WRITE
+	                <!-- 工装年度预算读权限 -->
+	                /year/budget/listYearBudgetsTOOLINGREAD.html*=ROLE_TOOLING_YEAR_BUDGET_READ
+	                <!-- 季度计划写权限 -->
+	                /year/tooling/quarterPlan/listQuarterPlansWRITE.html*=ROLE_TOOLING_QUARTER_PLAN_WRITE
+	                <!-- 季度计划写、汇总权限-->
+	                /year/tooling/quarterPlan/listQuarterPlansWriteAndCollect.html*=ROLE_TOOLING_QUARTER_PLAN_COLLECTWRITE
+	                <!-- 季度计划读权限 -->
+	                /year/tooling/quarterPlan/listQuarterPlansREAD.html*=ROLE_TOOLING_QUARTER_PLAN_READ
+	                <!-- 工装供应商写权限 -->
+	                /prophase/supplier/listSuppliersTOOLINGWRITE.html*=ROLE_TOOLING_SUPPLIER_WRITE
+	                <!--  工装供应商读权限 -->
+	                /prophase/supplier/listSuppliersTOOLINGREAD.html*=ROLE_TOOLING_SUPPLIER_READ
+	                <!-- 工装供应商评定写权限 -->
+	                /prophase/supplier/listSupplierEvaluateTOOLINGWRITE.html*=ROLE_TOOLING_SUPPLIER_EVALUATE_WRITE
+	                <!-- 工装供应商评定读权限 -->
+	                /prophase/supplier/listSupplierEvaluateTOOLINGREAD.html*=ROLE_TOOLING_SUPPLIER_EVALUATE_READ
+	                <!-- 
+	                /preview/pro/supplier/evaluate/listSupplierEvaluateGatherTOOLING.html*=ROLE_TOOLING,ROLE_FACTORY_TOOLING
+	                -->
+	                <!-- 工装采购单写权限 -->
+	                /tooling/prophase/business/listPurchaseBillTOOLING.html*=ROLE_TOOLING_PURCHASE_BILL_WRITE
+	                <!--工装采购单读权限 -->
+	                /tooling/prophase/business/listPurchaseBillRead.html*=ROLE_TOOLING_PURCHASE_BILL_READ
+	                <!-- 工装采购合同写权限 -->
+	                /toooling/purchaseContract/listPurchaseContractTOOLINGWRITE.html*=ROLE_TOOLING_PURCHASE_CONTRACT_WRITE
+	                <!--工装采购合同读权限 -->
+	                 /toooling/purchaseContract/listPurchaseContractRead.html*=ROLE_TOOLING_PURCHASE_CONTRACT_READ
+	                <!-- 工装验收单写权限 -->
+	                /tooling/acceptBillSelector/listAcceptBillsTOOLING.html*=ROLE_TOOLING_ACCEPT_BILL_WRITE
+	                <!--验收单读权限-->
+	                /tooling/acceptBillSelector/listAcceptBillsRead.html*=ROLE_TOOLING_ACCEPT_BILL_READ
+	                <!-- 工装台帐写权限 -->
+	                /asset/tooling/listToolingAccountsWRITE.html*=ROLE_TOOLING_ACCOUNT_COLLECTWRITE
+	                <!-- 工装台帐读权限 -->
+	                /asset/tooling/listToolingAccountsREAD.html*=ROLE_TOOLING_ACCOUNT_READ
+	                <!-- 工装台帐附属信息维护权限 -->
+	                /asset/tooling/listToolingAccountsREADAndAdditinalInfoWrite.html*=ROLE_TOOLING_ACCOUNT_WRITE
+	               
+	                <!-- 
+	                 /asset/device/editToolingFinanceInfo.html*=ROLE_TOOLING,ROLE_FACTORY_TOOLING
+	                /asset/device/listToolingDevSpares.html*=ROLE_TOOLING,ROLE_DEVICE,ROLE_FACTORY_TOOLING,ROLE_FACTORY_DEVICE
+	                -->
+	               <!-- 工装备件写权限 -->
+	                /asset/spare/listSparesTOOLINGWRITE.html*=ROLE_TOOLING_SPARE_WRITE
+	                 <!-- 工装备件读权限 -->
+	                /asset/spare/listSparesTOOLINGREAD.html*=ROLE_TOOLING_SPARE_READ
+	                <!-- 工装日常检查写权限 -->
+	                /runmaintenance/usualcheck/listChecksTOOLINGWRITE.html*=ROLE_TOOLING_USUALCHECK_WRITE
+	                <!--工装日常检查读权限 -->
+	                /runmaintenance/usualcheck/listChecksTOOLINGRead.html*=ROLE_TOOLING_USUALCHECK_READ
+	                <!--工装备件领用单写权限 -->
+	                /runmaintenance/spareBorrow/listToolingSpareBorrowBillsWRITE.html*=ROLE_TOOLING_SPAREBORROW_BILL_WRITE
+	                <!--工装备件领用单读权限 -->
+	                 /runmaintenance/spareBorrow/listToolingSpareBorrowBillsREAD.html*=ROLE_TOOLING_SPAREBORROW_BILL_READ
+	                <!-- 工装领用单写权限 -->
+	                /runmaintenance/tooling/record/listToolingBorrowBillsWRITE.html*=ROLE_TOOLING_BORROW_BILL_WRITE
+	                <!--工装领用单读权限-->
+	                /runmaintenance/tooling/record/listToolingBorrowBillsRead.html*=ROLE_TOOLING_BORROW_BILL_READ
+	                <!-- 工装变更单写权限 -->
+	                /runmaintenance/tooling/record/listToolingChangeBillsWRITE.html*=ROLE_TOOLING_CHANGE_BILL_WRITE
+	                <!--工装变更单读权限 -->
+	                 /runmaintenance/tooling/record/listToolingChangeBillsRead.html*=ROLE_TOOLING_CHANGE_BILL_READ
+	                <!-- 工装故障单写权限 -->
+	                /runmaintenance/fault/listToolingFaultBillsWRITE.html*=ROLE_TOOLING_FAULT_BILL_WRITE
+	                <!--工装故障单读权限 -->
+	                 /runmaintenance/fault/listToolingFaultBillsRead.html*=ROLE_TOOLING_FAULT_BILL_READ
+	                <!-- 工装转移单写权限 -->
+                    /runmaintenance/migrate/listMigrateToolingWRITE.html*=ROLE_TOOLING_MIGRATE_BILL_WRITE
+                    <!--工装转移单读权限-->
+                     /runmaintenance/migrate/listMigrateToolingRead.html*=ROLE_TOOLING_MIGRATE_BILL_READ
+                    <!-- 工装托管单写权限 -->
+	                /runmaintenance/trusteeship/listTrusteeshipTOOLINGWRITE.html*=ROLE_TOOLING_TRUSTEESHIP_BILL_WRITE
+	                <!--工装托管读权限 -->
+	                 /runmaintenance/trusteeship/listTrusteeshipTOOLINGRead.html*=ROLE_TOOLING_TRUSTEESHIP_BILL_READ
+	                <!-- 工装清查单写权限 -->
+	                /runmaintenance/inventory/listInventorysTOOLINGWRITE.html*=ROLE_TOOLING_INVENTORY_BILL_WRITE
+	                <!--工装清查读权限 -->
+	                /runmaintenance/inventory/listInventorysTOOLINGRead.html*=ROLE_TOOLING_INVENTORY_BILL_READ
+	                <!-- 工装闲置单写权限 -->
+	                /runmaintenance/unused/listUsusedTOOLINGWRITE.html*=ROLE_TOOLING_USUSED_BILL_WRITE
+	                <!--工装闲置单读权限 -->
+	                 /runmaintenance/unused/listUsusedTOOLINGRead.html*=ROLE_TOOLING_USUSED_BILL_READ
+	                <!-- 工装封存单写权限 -->
+	                /runmaintenance/alteration/listToolingSealedsTOOLINGWRITE.html*=ROLE_TOOLING_SEALED_BILL_WRITE
+	                <!--工装封存单读权限  -->
+	                /runmaintenance/alteration/listToolingSealedsTOOLINGRead.html*=ROLE_TOOLING_SEALED_BILL_READ
+	                <!-- 工装报废单写权限 -->
+	                /runmaintenance/discard/listToolingDiscardsWRITE.html*=ROLE_TOOLING_DISCARD_BILL_WRITE
+	                <!--工装报废单读权限 -->
+	                /runmaintenance/discard/listToolingDiscardsRead.html*=ROLE_TOOLING_DISCARD_BILL_READ
+	                <!-- 工装清洗计划写，汇总权限 -->
+	                /runmaintenance/wash/listWashsPLANWriteAndCollect.html*=ROLE_TOOLING_WASH_PLAN_COLLECTWRITE
+	                <!-- 工装清洗计划写权限 -->
+	                /runmaintenance/wash/listWashsPLANWRITE.html*=ROLE_TOOLING_WASH_PLAN_WRITE
+	                <!--工装清洗计划读权限-->
+	                 /runmaintenance/wash/listWashsPLANREAD.html*=ROLE_TOOLING_WASH_PLAN_READ
+	                <!-- 工装清洗实施写，汇总权限 -->
+	                /runmaintenance/wash/listWashsPROCWriteAndCollect.html*=ROLE_TOOLING_WASH_PROC_COLLECTWRITE
+	                <!-- /runmaintenance/wash/listWashsPROCWriteAndCollect.html*=ROLE_TOOLING_WASH_PROC_COLLECTWRITE-->
+	                <!-- 工装清洗实施写权限 -->
+	                /runmaintenance/wash/listWashsPROCWRITE.html*=ROLE_TOOLING_WASH_PLAN_WRITE
+	                <!--工装清洗实施读权限 -->
+	                /runmaintenance/wash/listWashsPROCREAD.html*=ROLE_TOOLING_WASH_PROC_READ
+	                <!-- 工装标定计划写，汇总权限 -->                                            
+	                /runmaintenance/calibration/listCalibrationPlanWriteAndCollect.html*=ROLE_TOOLING_CALIBRATION_PLAN_COLLECTWRITE
+	                <!-- 工装标定计划写权限 -->
+	                /runmaintenance/calibration/listCalibrationPlanWRITE.html*=ROLE_TOOLING_CALIBRATION_PLAN_WRITE
+	                <!--工装标定计划读权限 -->
+	                /runmaintenance/calibration/listCalibrationPlanREAD.html*=ROLE_TOOLING_CALIBRATION_PLAN_READ
+	                <!-- 工装标定实施写，汇总权限 -->
+	                /runmaintenance/calibration/listCalibrationProcWriteAndCollect.html*=ROLE_TOOLING_CALIBRATION_PROC_COLLECTWRITE
+	                <!-- 工装标定实施写权限 -->
+	                /runmaintenance/calibration/listCalibrationProcWRITE.html*=ROLE_TOOLING_CALIBRATION_PROC_WRITE
+	                <!--工装标定实施读权限-->
+	                 /runmaintenance/calibration/listCalibrationProcREAD.html*=ROLE_TOOLING_CALIBRATION_PROC_READ
+	                <!-- 工装预防性维修计划写，汇总权限 -->
+	                /runmaintenance/repair/plan/listPreRepairPlansPlanTOOLINGWriteAndCollect.html*=ROLE_TOOLING_PREREPAIR_PLAN_COLLECTWRITE
+	                <!-- 工装预防性维修计划写权限 -->
+	                /runmaintenance/repair/plan/listPreRepairPlansPlanTOOLINGWRITE.html*=ROLE_TOOLING_PREREPAIR_PLAN_WRITE
+	               <!--工装预维计划读权限-->
+	                /runmaintenance/repair/plan/listPreRepairPlansPlanTOOLINGRAED.html*=ROLE_TOOLING_PREREPAIR_PLAN_READ
+	                <!-- 工装预防性维修实施写，汇总权限 -->
+	                /runmaintenance/repair/plan/listPreRepairPlansProcTOOLINGWriteAndCollect.html*=ROLE_TOOLING_PREREPAIR_PROC_COLLECTWRITE
+	                 <!-- 工装预防性维修实施写权限 -->
+	                /runmaintenance/repair/plan/listPreRepairPlansProcTOOLINGWRITE.html*=ROLE_TOOLING_PREREPAIR_PROC_WRITE
+	                <!--工装预防性维修实施读权限 -->
+	                 /runmaintenance/repair/plan/listPreRepairPlansProcTOOLINGREAD.html*=ROLE_TOOLING_PREREPAIR_PROC_READ
+	                 <!-- 大项修实施汇总及维护-->
+	                /year/repair/listYearRepairProcsDEVICEWriteAndCollect.html*=ROLE_DEVICE_YEAR_REPAIR_PROC_COLLECTWRITE
+	                 <!--大项修实施维护-->
+	                /year/repair/listYearRepairProcsDEVICEWRITE.html*=ROLE_DEVICE_YEAR_REPAIR_PROC_WRITE
+	                <!-- 设备采购计划写、汇总权限 -->
+	                /year/device/purchasePlan/listPurchasePlansWriteAndCollect.html*=ROLE_DEVICE_PURCHASE_PLAN_COLLECTWRITE
+	                <!-- 设备采购计划写权限 -->
+	                /year/device/purchasePlan/listPurchasePlansWRITE.html*=ROLE_DEVICE_PURCHASE_PLAN_WRITE
+	                <!--设备采购计划读权限 -->
+	                /year/device/purchasePlan/listPurchasePlansREAD.html*=ROLE_DEVICE_PURCHASE_PLAN_READ
+	                <!-- 设备大项修计划写、汇总权限 -->
+	                /year/repair/listYearRepairPlansDEVICEWriteAndCollect.html*=ROLE_DEVICE_YEAR_REPAIR_PALN_COLLECTWRITE
+	                <!-- 设备大项修计划写权限 -->
+	                /year/repair/listYearRepairPlansDEVICEWRITE.html*=ROLE_DEVICE_YEAR_REPAIR_PALN_WRITE
+	                <!--设备大项修计划读权限-->
+	                /year/repair/listYearRepairPlansDEVICEREAD.html*=ROLE_DEVICE_YEAR_REPAIR_PALN_READ
+	                 <!-- 设备运维计划写权限 -->
+	                /year/device/runmaintainPlan/listRunmaintainPlansWRITE.html*=ROLE_DEVICE_RUNMAINTAIN_PLAN_WRITE
+	                <!--设备运维计划读权限 -->
+	                /year/device/runmaintainPlan/listRunmaintainPlansREAD.html*=ROLE_DEVICE_RUNMAINTAIN_PLAN_READ
+	                <!-- 设备年度预算写权限 -->
+	                /year/budget/listYearBudgetsDEVICEWRITE.html*=ROLE_DEVICE_YEAR_BUDGET_WRITE
+	                 <!-- 设备年度预算读权限 -->
+	                /year/budget/listYearBudgetsDEVICEREAD.html*=ROLE_DEVICE_YEAR_BUDGET_READ
+	                <!-- 设备验收单写权限 -->
+	                /accept/listAcceptBillsDEVICEWRITE.html*=ROLE_DEVICE_ACCEPT_BILL_WRITE
+	                <!-- 设备验收单读权限 -->
+	                /accept/listAcceptBillsDEVICERead.html*=ROLE_DEVICE_ACCEPT_BILL_READ
+	                 <!-- 设备台帐写权限 -->
+	                /asset/device/listDevicesWRITE.html*=ROLE_DEVICE_ACCOUNT_WRITE
+	                 <!-- 设备台帐读权限 -->
+	                /asset/device/listDevicesREAD.html*=ROLE_DEVICE_ACCOUNT_READ
+	                 <!-- 设备备件写权限 -->
+	                /asset/spare/listSparesDEVICEWRITE.html*=ROLE_DEVICE_SPARE_WRITE
+	                <!-- 设备备件读权限 -->
+	                /asset/spare/listSparesDEVICEREAD.html*=ROLE_DEVICE_SPARE_READ
+	                <!-- 设备日常检查写权限-->
+	                /runmaintenance/usualcheck/listChecksDEVICEWRITE.html*=ROLE_DEVICE_USUALCHECK_WRITE
+	                <!--设备日常检查读权限 -->
+	                /runmaintenance/usualcheck/listChecksDEVICERead.html*=ROLE_DEVICE_USUALCHECK_READ
+	                <!--设备备件领用单写权限 -->
+	                /runmaintenance/spareBorrow/listSpareBorrowBillsWRITE.html*=ROLE_DEVICE_SPAREBORROW_BILL_WRITE
+	                <!--设备备件领用单读权限-->
+	                /runmaintenance/spareBorrow/listSpareBorrowBillsREAD.html*=ROLE_DEVICE_SPAREBORROW_BILL_READ
+	                <!-- 设备故障记录写权限-->
+	                /runmaintenance/fault/listDeviceFaultBillsWRITE.html*=ROLE_DEVICE_FAULT_BILL_WRITE
+	                <!--设备故障记录读权限 -->
+	                 /runmaintenance/fault/listDeviceFaultBillsRead.html*=ROLE_DEVICE_FAULT_BILL_READ
+	                 <!-- 设备清查单写权限-->
+	                /runmaintenance/inventory/listInventorysDEVICEWRITE.html*=ROLE_DEVICE_INVENTORY_BILL_WRITE
+	                <!--设备清查读权限 -->
+	                 /runmaintenance/inventory/listInventorysDEVICERead.html*=ROLE_DEVICE_INVENTORY_BILL_READ
+	                <!-- 设备鉴定单写权限-->
+	                /runmaintenance/intactness/listIntactnessesWRITE.html*=ROLE_DEVICE_INTACTNESS_BILL_WRITE
+	                <!--设备鉴定读权限 -->
+	                /runmaintenance/intactness/listIntactnessesRead.html*=ROLE_DEVICE_INTACTNESS_BILL_READ
+	                <!-- 设备闲置单写权限-->
+	                /runmaintenance/unused/listunusedDeviceWRITE.html*=ROLE_DEVICE_UNUSED_BILL_WRITE
+	                <!--设备闲置单读权限 -->
+	                /runmaintenance/unused/listunusedDeviceRead.html*=ROLE_DEVICE_UNUSED_BILL_READ
+	                <!-- 设备封存单写权限-->
+	                /runmaintenance/alteration/listToolingSealedsDEVICEWRITE.html*=ROLE_DEVICE_SEALED_BILL_WRITE
+	                <!-- 设备封存单读权限-->
+	                 /runmaintenance/alteration/listToolingSealedsDEVICERead.html*=ROLE_DEVICE_SEALED_BILL_READ
+	                <!-- 设备转移单写权限 -->
+	                /runmaintenance/migrate/listMigrateDeviceWRITE.html*=ROLE_DEVICE_MIGRATE_BILL_WRITE
+	                <!--设备转移单读权限 -->
+	                 /runmaintenance/migrate/listMigrateDeviceRead.html*=ROLE_DEVICE_MIGRATE_BILL_READ
+	                <!-- 设备托管单写权限 -->
+	                /runmaintenance/trusteeship/listTrusteeshipDEVICEWRITE.html*=ROLE_DEVICE_TRUSTEESHIP_BILL_WRITE
+	                <!--设备托管单读权限 -->
+	                /runmaintenance/trusteeship/listTrusteeshipDEVICERead.html*=ROLE_DEVICE_TRUSTEESHIP_BILL_READ
+	                <!-- 设备报废单写权限 -->
+	                /runmaintenance/discard/listDiscardBillDeviceWRITE.html*=ROLE_DEVICE_DISCARD_BILL_WRITE
+	                <!--设备报废单读权限 -->
+	                 /runmaintenance/discard/listDiscardBillDeviceRead.html*=ROLE_DEVICE_DISCARD_BILL_READ
+	                <!-- 设备点检报告写、汇总权限 -->
+	                /runmaintenance/toolingDev/checkpoint/listCheckPointReportWriteAndCollect.html*=ROLE_DEVICE_CHECKPOINT_REPORT_COLLECTWRITE
+	                <!-- 设备点检报告写权限 -->
+	                /runmaintenance/toolingDev/checkpoint/listCheckPointReportWRITE.html*=ROLE_DEVICE_CHECKPOINT_REPORT_WRITE
+	                 <!-- 设备点检报告读权限 -->
+	                /runmaintenance/toolingDev/checkpoint/listCheckPointReportREAD.html*=ROLE_DEVICE_CHECKPOINT_REPORT_READ
+	                 <!-- 设备润滑计划写、汇总权限 -->
+	                /runmaintenance/lubrication/listLubricationsPLANWriteAndCollect.html*=ROLE_DEVICE_LUBRICATION_PLAN_COLLECTWRITE
+	                 <!-- 设备润滑计划写权限 -->
+	                /runmaintenance/lubrication/listLubricationsPLANWRITE.html*=ROLE_DEVICE_LUBRICATION_PLAN_WRITE
+	                <!--设备润滑计划读权限 -->
+	                /runmaintenance/lubrication/listLubricationsPLANREAD.html*=ROLE_DEVICE_LUBRICATION_PLAN_READ
+	                 <!-- 设备润滑实施写、汇总权限 -->
+	                /runmaintenance/lubrication/listLubricationsPROCWriteAndCollect.html*=ROLE_DEVICE_LUBRICATION_PROC_COLLECTWRITE
+	                <!-- 设备润滑实施写权限 -->
+	                /runmaintenance/lubrication/listLubricationsPROCWRITE.html*=ROLE_DEVICE_LUBRICATION_PROC_WRITE
+	                 <!-- 设备润滑实施读权限 -->
+	                /runmaintenance/lubrication/listLubricationsPROCRAED.html*=ROLE_DEVICE_LUBRICATION_PROC_READ
+	                 <!-- 设备保养计划写、汇总权限 -->
+	                /runmaintenance/maintenance/listMaintenancePlanWriteAndCollect.html*=ROLE_DEVICE_MAINTENANCE_PLAN_COLLECTWRITE
+	                <!-- 设备保养计划写权限 -->
+	                /runmaintenance/maintenance/listMaintenancePlanWRITE.html*=ROLE_DEVICE_MAINTENANCE_PLAN_WRITE
+	                <!--设备保养计划读权限-->
+	                /runmaintenance/maintenance/listMaintenancePlanREAD.html*=ROLE_DEVICE_MAINTENANCE_PLAN_READ
+	                <!-- 设备保养实施写、汇总权限 -->
+	                /runmaintenance/maintenance/listMaintenanceProcWriteAndCollect.html*=ROLE_DEVICE_MAINTENANCE_PROC_COLLECTWRITE
+	                <!-- 设备保养实施写权限 -->
+	                /runmaintenance/maintenance/listMaintenanceProcWRITE.html*=ROLE_DEVICE_MAINTENANCE_PROC_WRITE
+	                <!--设备保养实施读权限 -->
+	                /runmaintenance/maintenance/listMaintenanceProcREAD.html*=ROLE_DEVICE_MAINTENANCE_PROC_READ
+	                <!-- 大项修实施写、汇总权限 -->
+	                /year/repair/listYearRepairProcsDEVICEWriteAndCollect.html*=ROLE_DEVICE_YEAR_REPAIR_PALN_COLLECTWRITE
+	                <!-- 大项修实施写权限 -->
+	                /year/repair/listYearRepairProcsDEVICEWRITE.html*=ROLE_DEVICE_YEAR_REPAIR_PALN_WRITE
+	                <!-- 设备大项修读权限-->
+	                /year/repair/listYearRepairProcsDEVICEREAD.html*=ROLE_DEVICE_YEAR_REPAIR_PALN_READ
+	                
+	                 <!-- 设备预防性维修计划写、汇总权限 -->
+	                /runmaintenance/repair/plan/listPreRepairPlansPLANDEVICEWriteAndCollect.html*=ROLE_DEVICE_PREREPAIR_PLAN_COLLECTWRITE
+	                <!-- 设备预防性维修计划写权限 -->
+	                /runmaintenance/repair/plan/listPreRepairPlansPLANDEVICEWRITE.html*=ROLE_DEVICE_PREREPAIR_PLAN_WRITE
+	                <!--设备预防性维修读权限 -->
+	                /runmaintenance/repair/plan/listPreRepairPlansPLANDEVICEREAD.html*=ROLE_DEVICE_PREREPAIR_PLAN_READ
+	                 <!-- 设备预防性维修实施写、汇总权限 -->
+	                /runmaintenance/repair/plan/listPreRepairPlansPROCDEVICEWriteAndCollect.html*=ROLE_DEVICE_PREREPAIR_PROC_COLLECTWRITE
+	                <!--设备预防性维修实施写权限 -->
+	                /runmaintenance/repair/plan/listPreRepairPlansPROCDEVICEWRITE.html*=ROLE_DEVICE_PREREPAIR_PROC_WRITE
+	                 <!--设备预防性维修实施读权限 -->
+	                /runmaintenance/repair/plan/listPreRepairPlansPROCDEVICEREAD.html*=ROLE_DEVICE_PREREPAIR_PROC_READ
+
+	                /report/listDeviceFullUsing.html*=ROLE_DEVICE_ANALYZE_REPORT_READ
+	                /report/listDeviceUseStatus.html*=ROLE_DEVICE_ANALYZE_REPORT_READ
+	                /report/listMainProductDeviceCheck.html*=ROLE_DEVICE_ANALYZE_REPORT_READ
+	                
+	                
+	                <!-- 仓库管理 -->
+	                /warehouseInfo/listWarehouse.html*=ROLE_WAREHOUSE_MANAGE
+	                <!-- 库区管理 -->
+	                /regionalInfo/listRegional.html*=ROLE_REGIONAL_MANAGE
+	                <!-- 库位管理 -->
+	                /newLocation/listLocation.html*=ROLE_LOCATION_MANAGE
+	                
+
+	                 <!-- 供应商读权限 -->
+	                /prophase/supplier/listSuppliersDEVICEREAD.html*=ROLE_DEVICE_SUPPLIER_READ
+	                <!-- 供应商写权限 -->
+	                /prophase/supplier/listSuppliersDEVICEWRITE.html*=ROLE_DEVICE_SUPPLIER_WRITE
+	                <!-- 供应商评定写权限 -->
+	                /prophase/supplier/listSupplierEvaluateDEVICEWRITE.html*=ROLE_DEVICE_SUPPLIER_EVALUATE_WRITE
+	                <!-- 供应商评定读权限 -->
+	                /prophase/supplier/listSupplierEvaluateDEVICEREAD.html*=ROLE_DEVICE_SUPPLIER_EVALUATE_READ
+	                
+	                <!-- 厂家管理 -->
+	                /prophase/factory/listFactory.html*=ROLE_FACTORY_MANAGE
+	                
+	                <!-- 申购单读权限 -->
+	                /prophase/business/listSubscribesDEVICERead.html*=ROLE_DEVICE_SUBSCRIBE_BILL_READ
+	                <!-- 申购单写权限 -->
+	                /prophase/business/listSubscribesDEVICEWRITE.html*=ROLE_DEVICE_SUBSCRIBE_BILL_WRITE
+	                <!-- 申购单汇总权限 -->
+	                /prophase/business/listSubscribesDEVICEWriteAndCollect.html*=ROLE_DEVICE_SUBSCRIBE_BILL_COLLECTWRITE
+	                
+	                <!-- 申购汇总单查询权限 -->
+	                /devicesubscribeSummary/listSubscribeCollectBillDEVICEREAD.html*=ROLE_DEVICE_COLLECTSUBSCRIBE_BILL_READ
+	                
+	                <!-- 采购单读权限-->
+	                /prophase/listPurchaseBillsDEVICERead.html*=ROLE_DEVICE_PURCHASE_BILL_READ
+	                <!-- 采购单写权限 -->
+	                /prophase/listPurchaseBillsDEVICEWRITE.html*=ROLE_DEVICE_PURCHASE_BILL_WRITE
+	                
+	                <!--备件信息总台帐读权限 -->
+	                /asset/spare/listSparesTOOLINDEVICEREAD.html*=ROLE_TOOLING_DEVICE_SPARE_READ
+	                <!--备件信息总台帐写权限 -->
+	                /asset/spare/listSparesTOOLINDEVICEWRITE.html*=ROLE_TOOLING_DEVICE_SPARE_WRITE
+	                <!-- 备件库总台帐写权限 -->
+	                /spare/spareWareHouse/listSpareWareHouse.html*=ROLE_SPARE_WAREHOUSE_ACCOUNT_WRITE
+	                
+	                <!--旧件信息总台帐读权限 -->
+	                /asset/spare/listOldSparesTOOLINDEVICEREAD.html*=ROLE_TOOLING_DEVICE_OLD_SPARE_READ
+	                <!--旧件信息总台帐写权限 -->
+	                /asset/spare/listOldSparesTOOLINDEVICEWRITE.html*=ROLE_TOOLING_DEVICE_OLD_SPARE_WRITE
+	                
+	                <!-- 备件库总台帐写权限 -->
+	                /spare/spareWareHouse/listOldSpareWareHouse.html*=ROLE_OLD_SPARE_WAREHOUSE_ACCOUNT_WRITE
+	                
+	                <!-- 备件库明细台帐读权限 -->
+	                /asset/spare/listSpareDetailSearcherCommonREAD.html*=ROLE_SPARE_DETAIL_ACCOUNT
+	                
+	                <!--备件入库读权限 -->
+	                /spare/listSpareInBillREAD.html*=ROLE_TOOLING_DEVICE_SPARE_IN_WAREHOUSE_READ
+	                <!--备件入库写权限-->
+	                /spare/listSpareInBillWRITE.html*=ROLE_TOOLING_DEVICE_SPARE_IN_WAREHOUSE_WRITE
+	                
+	                <!--旧件备件入库读权限 -->
+	                /spare/listOldSpareInBillREAD.html*=ROLE_TOOLING_DEVICE_OLD_SPARE_IN_WAREHOUSE_READ
+	                <!--旧件备件入库写权限-->
+	                /spare/listOldSpareInBillWRITE.html*=ROLE_TOOLING_DEVICE_OLD_SPARE_IN_WAREHOUSE_WRITE
+	                
+	                <!--备件出库读权限 -->
+	                /spare/listSpareOutBillREAD.html*=ROLE_TOOLING_DEVICE_SPARE_OUT_WAREHOUSE_READ
+	                <!--备件出库写权限-->
+	                /spare/listSpareOutBillWRITE.html*=ROLE_TOOLING_DEVICE_SPARE_OUT_WAREHOUSE_WRITE
+	                
+	                <!--旧件备件出库读权限 -->
+	                /spare/listOldSpareOutBillREAD.html*=ROLE_TOOLING_DEVICE_OLD_SPARE_OUT_WAREHOUSE_READ
+	                <!--旧件备件出库写权限-->
+	                /spare/listOldSpareOutBillWRITE.html*=ROLE_TOOLING_DEVICE_OLD_SPARE_OUT_WAREHOUSE_WRITE
+	                
+	                <!--旧件备件报废读权限 -->
+	                /spare/listOldSpareScrapBillREAD.html*=ROLE_TOOLING_DEVICE_OLD_SPARE_SCRAP_WAREHOUSE_READ
+	                <!--旧件备件报废写权限-->
+	                /spare/listOldSpareScrapBillWRITE.html*=ROLE_TOOLING_DEVICE_OLD_SPARE_SCRAP_WAREHOUSE_WRITE
+	                
+	                <!--旧件备件维修权限 -->
+	                /spare/listOldSpareMaintainBillREAD.html*=ROLE_TOOLING_DEVICE_OLD_SPARE_MAINTAIN_WAREHOUSE_READ
+	                <!--旧件备件维修写权限-->
+	                /spare/listOldSpareMaintainBillWRITE.html*=ROLE_TOOLING_DEVICE_OLD_SPARE_MAINTAIN_WAREHOUSE_WRITE
+	                
+	                
+	                <!--盘点读权限-->
+	                /spare/listSpareInventoryREAD.html*=ROLE_TOOLING_DEVICE_SPARE_INVENTORY_READ
+	                <!--盘点写权限 -->
+	                /spare/listSpareInventoryWRITE.html*=ROLE_TOOLING_DEVICE_SPARE_INVENTORY_WRITE
+	                
+	                <!--旧件盘点读权限-->
+	                /spare/listOldSpareInventoryREAD.html*=ROLE_TOOLING_DEVICE_OLD_SPARE_INVENTORY_READ
+	                <!--旧件盘点写权限 -->
+	                /spare/listOldSpareInventoryWRITE.html*=ROLE_TOOLING_DEVICE_OLD_SPARE_INVENTORY_WRITE
+	                
+	                
+	               <!--移位读权限 -->
+	               /spare/movePostionBillREAD.html*=ROLE_MOVE_LOCATION_READ
+	               <!--移位写权限 -->
+	               /spare/movePostionBillWRITE.html*=ROLE_MOVE_LOCATION_WRITE
+	               
+	               <!--日报表 -->
+	               /inAndOutAndStoreReport/listSpareInAndOutAndStoreReportFristREAD.html*=ROLE_DAY_REPORT_READ
+	               <!--月报表 -->
+	               /inAndOutAndStoreReport/listSpareInAndOutAndStoreMonthReportREAD.html*=ROLE_MONTH_REPORT_READ
+	               <!--清仓盘点报表查询权限-->
+	               /inAndOutAndStoreReport/listInventoryAndCleanHouseREAD.html*=ROLE_INVENTORY_AND_CLEANHOUSE_READ 
+	               
+	               	 <!--我的提醒权限 -->
+	                /workspace/warnning/myWarnning/listWorkWarnnings.html*=ROLE_MY_WARNNING
+	                <!--发通知权限 -->
+	                /notice/listNotice.html*=ROLE_SEND_NOTICE
+	                <!--收通知权限 -->
+	                 /notice/listReceviceNotices.html*=ROLE_RECEVICE_NOTICE
+	               
+	                <!-- 系统管理员 -->
+	                /base/country/listCountries.html*=ROLE_ADMIN
+	                /base/codevalue/listCodeValues.html*=ROLE_ADMIN
+	                /base/product/listProducts.html*=ROLE_ADMIN
+	                /base/financeType/listFinanceTypes.html*=ROLE_ADMIN
+	                /base/lubricationOil/listLubricationOils.html*=ROLE_ADMIN
+	                /base/filiale/listFiliales.html*=ROLE_ADMIN
+	                /base/department/listDepartments.html*=ROLE_ADMIN
+	                /base/productionLine/listProductionLines.html*=ROLE_ADMIN
+	                /base/org/listWorkGroups.html*=ROLE_ADMIN
+	                /base/manual/listManuals.html*=ROLE_ADMIN
+	                /base/userLog/listUserLog.html*=ROLE_ADMIN
+	                /base/warnningRule/listWarnningRules.html*=ROLE_ADMIN
+	                
+	                /preview/empty/NEWS_SHARE.html*=ROLE_ADMIN
+	                /dataimport/**/*=ROLE_ADMIN
+	                /workspace/**/*=ROLE_USER
+	                /**/*.html*=ROLE_USER
+	            
+	            </value>
+	        </property>
+	    </bean>
+</beans>

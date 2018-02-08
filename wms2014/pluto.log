@@ -1,0 +1,383 @@
+2018-02-07 17:35:56,914  INFO $c:464 - Hibernate 3.0.5
+2018-02-07 17:35:56,917  INFO $c:482 - loaded properties from resource hibernate.properties: {hibernate.jdbc.fetch_size=50, hibernate.cglib.use_reflection_optimizer=true, hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider, hibernate.max_fetch_depth=0, hibernate.cache.use_query_cache=true, hibernate.dialect=org.hibernate.dialect.SQLServerDialect, hibernate.query.factory_class=org.hibernate.hql.classic.ClassicQueryTranslatorFactory, hibernate.autoReconnect=true, hibernate.jdbc.batch_size=25, hibernate.query.substitutions=true=1, false=0, hibernate.use_outer_join=false, hibernate.hbm2ddl.auto=false, hibernate.show_sql=true}
+2018-02-07 17:35:56,917  INFO $c:510 - using CGLIB reflection optimizer
+2018-02-07 17:35:56,918  INFO $c:540 - using JDK 1.4 java.sql.Timestamp handling
+2018-02-07 17:35:57,015  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.log.EventLog -> EventLog
+2018-02-07 17:35:57,053  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.information.Msg -> t_msg
+2018-02-07 17:35:57,068  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.spareBorrow.SpareBorrow -> t_spare_borrow_bill
+2018-02-07 17:35:57,084  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.tooling.quarterPlan.QuarterPlanDetail -> t_tooling_quarter_plan_detail
+2018-02-07 17:35:57,099  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.unused.UnUsed -> t_unused
+2018-02-07 17:35:57,111  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.tooling.yearPlan.YearPlanDetail -> t_tooling_year_plan_detail
+2018-02-07 17:35:57,123  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.device.DeviceType -> t_device_type
+2018-02-07 17:35:57,135  INFO $c:260 - Mapping class: com.yongjun.pluto.model.notice.ReceviceNotice -> t_recevice_notice
+2018-02-07 17:35:57,148  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.tooling.ToolingMakeDetail -> t_tooling_make_detail
+2018-02-07 17:35:57,160  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.device.AccessoryDevice -> t_accessory_device
+2018-02-07 17:35:57,175  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlanDetail -> t_prerepair_plan_detail
+2018-02-07 17:35:57,189  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.AcceptBill -> t_accept_bill
+2018-02-07 17:35:57,199  INFO $c:260 - Mapping class: com.yongjun.pluto.model.TableInfo -> t_table_info
+2018-02-07 17:35:57,200  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.TableInfo.excludedColumns -> t_table_column
+2018-02-07 17:35:57,209  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.tooling.YearPlanDetailView -> t_year_plan_detail_view
+2018-02-07 17:35:57,219  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.device.AttachTool -> t_attach_tool
+2018-02-07 17:35:57,230  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.Subscribe -> t_subscribe
+2018-02-07 17:35:57,240  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.fault.FaultBill -> t_fault_bill
+2018-02-07 17:35:57,249  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.device.accountReport.DeviceOriginalNetStatistics -> t_device_originalNetStatistics
+2018-02-07 17:35:57,257  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.fault.FaultAnalysisByDeviceType -> t_faultAnalysis_byDeviceType
+2018-02-07 17:35:57,269  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.wash.WashPlanView -> t_wash_plan_view
+2018-02-07 17:35:57,277  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.SubscribeDetailView -> t_purchase_bill_detail_view
+2018-02-07 17:35:57,302  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.occupation.Occupation -> t_occupation
+2018-02-07 17:35:57,311  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.tooling.SparePurchaseDetail -> t_spare_purchase_detail
+2018-02-07 17:35:57,318  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.tooling.record.ToolingChangeDoc -> t_change_doc
+2018-02-07 17:35:57,327  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.budget.BudgetDetail -> t_budget_detail
+2018-02-07 17:35:57,337  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.inWareHouse.SpareInBillDetail -> t_spareIn_bill_detail
+2018-02-07 17:35:57,346  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.tooling.QuarterPlanDetailView -> t_quarter_plan_detail_view
+2018-02-07 17:35:57,353  INFO $c:260 - Mapping class: com.yongjun.pluto.sequence.model.sequence.Sequence -> SEQUENCE
+2018-02-07 17:35:57,359  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.lubrication.LubricationPlanView -> t_lubrication_plan_view
+2018-02-07 17:35:57,366  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.Inventory.SpareInventory -> t_spare_inventory
+2018-02-07 17:35:57,373  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.device.DeviceSpare -> t_device_spare
+2018-02-07 17:35:57,380  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.move.MovePositionBillDetail -> t_move_position_dtl
+2018-02-07 17:35:57,387  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.repair.RepairSpare -> t_repair_spare
+2018-02-07 17:35:57,393  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.org.WorkGroup -> t_workgroup
+2018-02-07 17:35:57,400  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.AcceptBillDetailView -> t_accept_bill_detail_view
+2018-02-07 17:35:57,410  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.report.SubscribeCountByDeptReport -> t_subCount_byDept_report
+2018-02-07 17:35:57,416  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.usualcheck.Check -> t_check
+2018-02-07 17:35:57,421  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.InspectStandard -> t_inspect_Standard
+2018-02-07 17:35:57,427  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.lubrication.LubricationPlanDetail -> t_lubrication_plan_detail
+2018-02-07 17:35:57,444  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.PurchaseBillDetail -> t_purchasebill_detail
+2018-02-07 17:35:57,451  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.tooling.reportmanager.MidView -> t_mid_view
+2018-02-07 17:35:57,455  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.checkpoint.CheckPointRuleDetail -> t_check_point_rule_detail
+2018-02-07 17:35:57,460  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.lubrication.LubricationPlan -> t_lubrication_plan
+2018-02-07 17:35:57,464  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.lubricationOil.LubricationOil -> t_lubrication_oil
+2018-02-07 17:35:57,468  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.tooling.record.DemarcatePlanDetail -> t_demarcate_plan_detail
+2018-02-07 17:35:57,473  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.outWareHouse.SpareOutBillDetail -> t_spareOut_bill_detail
+2018-02-07 17:35:57,478  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.fault.FaultAnalysisByFaultCatorgy -> t_faultAnalysis_byFaultCatorgy
+2018-02-07 17:35:57,483  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.SpareLocation -> t_spare_location
+2018-02-07 17:35:57,487  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.intactness.IntactnessDetail -> t_intactness_detail
+2018-02-07 17:35:57,499  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.supplier.SupplierLevelHistory -> t_supplier_level_history
+2018-02-07 17:35:57,504  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.device.OperateCert -> t_operate_cert
+2018-02-07 17:35:57,510  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.ToolingPurchaseBillDetailView -> t_toolingpurchase_contract_view
+2018-02-07 17:35:57,514  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.device.DeviceDoc -> t_device_doc
+2018-02-07 17:35:57,518  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.fault.FaultAnalysisByDepartment -> t_faultAnalysis_byDepartment
+2018-02-07 17:35:57,524  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.calibration.CalibrationDetail -> t_calibration_detail
+2018-02-07 17:35:57,529  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.repair.RepairPlanAndProcDetail -> t_repair_plan_and_proc_detail
+2018-02-07 17:35:57,534  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.supplier.SupplierBusinessHistory -> t_supplier_business_history
+2018-02-07 17:35:57,539  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.Spare -> t_spare
+2018-02-07 17:35:57,545  INFO $c:260 - Mapping class: com.yongjun.pluto.model.base.warnning.WarnningRule -> t_warnning_rule
+2018-02-07 17:35:57,545  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.base.warnning.WarnningRule.users -> t_user_warnning_rule
+2018-02-07 17:35:57,549  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.checkpoint.CheckPointReportDetail -> t_check_point_report_detail
+2018-02-07 17:35:57,554  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlanView -> t_prerepair_plan_view
+2018-02-07 17:35:57,559  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.feedback.Feedback -> t_feedback
+2018-02-07 17:35:57,563  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.repair.RepairTool -> t_repair_tool
+2018-02-07 17:35:57,567  INFO $c:260 - Mapping class: com.yongjun.tdms.model.report.DeviceFullUsing -> t_device_full_using
+2018-02-07 17:35:57,571  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.document.ApplicationDoc -> t_Application_doc
+2018-02-07 17:35:57,575  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.budget.Budget -> t_budget
+2018-02-07 17:35:57,579  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.supplier.SupplierProduct -> t_supplier_product
+2018-02-07 17:35:57,583  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.codevalue.CodeValue -> t_code_value
+2018-02-07 17:35:57,586  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.codevalue.SpareDetailType -> t_spare_detail_type
+2018-02-07 17:35:57,589  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.calibration.CalibrationDetailView -> t_calibration_plan_view
+2018-02-07 17:35:57,593  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.checkpoint.CheckPointRule -> t_check_point_rule
+2018-02-07 17:35:57,597  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.SpareDetailView -> t_spare_location_view
+2018-02-07 17:35:57,600  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.fault.FaultRepair -> t_fault_repair
+2018-02-07 17:35:57,604  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.repair.RepairPlanAndProc -> t_year_repair_plan_and_proc
+2018-02-07 17:35:57,608  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.discard.DiscardBillDtl -> t_discard_bill_Dtl
+2018-02-07 17:35:57,611  INFO $c:260 - Mapping class: com.yongjun.pluto.log.model.log.BusinessLog -> t_business_log
+2018-02-07 17:35:57,614  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.inWareHouse.SpareInBill -> t_spareIn_bill
+2018-02-07 17:35:57,618  INFO $c:260 - Mapping class: com.yongjun.pluto.model.security.UserAuthorization -> t_user_authorization
+2018-02-07 17:35:57,621  INFO $c:260 - Mapping class: com.yongjun.pluto.model.security.Filiale -> t_filiale
+2018-02-07 17:35:57,624  INFO $c:260 - Mapping class: com.yongjun.pluto.model.security.Organization -> t_organizations
+2018-02-07 17:35:57,627  INFO $c:260 - Mapping class: com.yongjun.pluto.model.security.RoleAuthorization -> t_role_authorization
+2018-02-07 17:35:57,631  INFO $c:260 - Mapping class: com.yongjun.pluto.model.security.User -> t_users
+2018-02-07 17:35:57,631  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.security.User.roles -> t_user_role
+2018-02-07 17:35:57,632  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.security.User.groups -> t_group_user
+2018-02-07 17:35:57,632  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.security.User.departments -> t_user_department
+2018-02-07 17:35:57,632  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.security.User.warehouses -> t_user_warehouse
+2018-02-07 17:35:57,633  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.security.User.warnningRules -> t_user_warnning_rule
+2018-02-07 17:35:57,633  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.security.User.sendNotice -> t_notice_user
+2018-02-07 17:35:57,636  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.device.runmaintainPlan.RunmaintainPlanDetail -> t_runmaintain_paln_detail
+2018-02-07 17:35:57,639  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.device.purchasePlan.PurchasePlanDetail -> t_purchase_plan_detail
+2018-02-07 17:35:57,642  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.inventory.InventoryBillDetail -> t_inventory_bill_detail
+2018-02-07 17:35:57,646  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.intactness.Intactness -> t_intactness
+2018-02-07 17:35:57,649  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.Location -> t_location
+2018-02-07 17:35:57,653  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.alteration.Alteration -> t_alteration
+2018-02-07 17:35:57,657  INFO $c:260 - Mapping class: com.yongjun.pluto.model.security.Warehouse -> t_warehouse
+2018-02-07 17:35:57,658  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.security.Warehouse.users -> t_user_warehouse
+2018-02-07 17:35:57,661  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.warehouseInfo.regional.Regional -> t_regional
+2018-02-07 17:35:57,674  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.device.runmaintainPlan.PricisionCheck -> t_pricision_check
+2018-02-07 17:35:57,679  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.PurchaseBill -> t_purchase_bill
+2018-02-07 17:35:57,683  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.codevalue.ToolingTypeDetail -> t_tooling_type_detail
+2018-02-07 17:35:57,686  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.device.DeviceArgs -> t_device_args
+2018-02-07 17:35:57,689  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.repair.BrockenRate -> t_Device_Monthly_Rate
+2018-02-07 17:35:57,693  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.trusteeship.TrusteeshipDetail -> t_trusteeship_detail
+2018-02-07 17:35:57,696  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.device.runmaintainPlan.DeviceChange -> t_device_change
+2018-02-07 17:35:57,699  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.checkpoint.CheckPointReportView -> t_check_point_report_view
+2018-02-07 17:35:57,702  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.spareWareHouse.SpareWareHouse -> t_spare_wareHouse
+2018-02-07 17:35:57,705  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.tooling.TechAlterDetail -> t_tech_alter_detail
+2018-02-07 17:35:57,708  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.trusteeship.Trusteeship -> t_trusteeship
+2018-02-07 17:35:57,711  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.inventoryAndCleanHouse.SpareInventoryAndCleanHouseReportView -> t_spareClear2_Inventory
+2018-02-07 17:35:57,714  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.discard.DiscardBill -> t_discard_bill
+2018-02-07 17:35:57,717  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.SpareInOutBill -> t_spare_inout_bill
+2018-02-07 17:35:57,721  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.SubscribeCollectBill -> t_subscribe_collect_bill
+2018-02-07 17:35:57,724  INFO $c:260 - Mapping class: com.yongjun.pluto.model.security.Department -> t_department
+2018-02-07 17:35:57,724  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.security.Department.users -> t_user_department
+2018-02-07 17:35:57,727  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.repair.RepairPlanAndProcView -> t_year_repair_plan_and_proc_view
+2018-02-07 17:35:57,731  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.supplier.SupplierCertification -> t_supplier_certification
+2018-02-07 17:35:57,733  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.log.SysLog -> t_sys_log
+2018-02-07 17:35:57,736  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.report.PurchaseCountBySupplierReport -> t_purCount_bySupplier_report
+2018-02-07 17:35:57,739  INFO $c:260 - Mapping class: com.yongjun.pluto.model.notice.SendNotice -> t_send_notice
+2018-02-07 17:35:57,740  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.notice.SendNotice.users -> t_notice_user
+2018-02-07 17:35:57,743  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.supplier.SupplierEvaluateDetail -> t_supplierEvalue_detail
+2018-02-07 17:35:57,746  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.maintenance.MaintenanceDeviceDetail -> t_maintenance_device_detail
+2018-02-07 17:35:57,749  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.SparePart -> t_spart_part
+2018-02-07 17:35:57,752  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.tooling.record.ToolingChangeBill -> t_tooling_change_bill
+2018-02-07 17:35:57,755  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.repair.RepairFee -> t_repair_fee
+2018-02-07 17:35:57,758  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.lubrication.LubricationRule -> t_lubrication_rule
+2018-02-07 17:35:57,761  INFO $c:260 - Mapping class: com.yongjun.tdms.model.workspace.warnning.WorkWarnning -> t_work_warnning
+2018-02-07 17:35:57,764  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.MiddleCheck -> t_middle_check
+2018-02-07 17:35:57,767  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.repair.RepairItem -> t_repair_item
+2018-02-07 17:35:57,770  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.maintenance.MaintenanceRule -> t_maintenance_rule
+2018-02-07 17:35:57,773  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.device.purchasePlan.PurchasePlan -> t_purchase_plan
+2018-02-07 17:35:57,778  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.tooling.reportmanager.SpareOutBillMonthView -> t_spareOut_bill_month_view
+2018-02-07 17:35:57,781  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.event.EventNew -> EventNew
+2018-02-07 17:35:57,785  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.calibration.Calibration -> t_calibration
+2018-02-07 17:35:57,789  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlan -> t_prerepair_plan
+2018-02-07 17:35:57,794  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.SubscribeDetail -> t_subscribe_detail
+2018-02-07 17:35:57,798  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.codevalue.SpareType -> t_spare_type
+2018-02-07 17:35:57,802  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.AcceptBillDetail -> t_acceptBill_Detail
+2018-02-07 17:35:57,806  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.tooling.quarterPlan.QuarterPlan -> t_tooling_quarter_plan
+2018-02-07 17:35:57,809  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.tooling.RepairMaintenanceDetail -> t_repair_maintenance_detail
+2018-02-07 17:35:57,813  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.tooling.yearPlan.YearPlan -> t_tooling_year_plan
+2018-02-07 17:35:57,816  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.product.Product -> t_product
+2018-02-07 17:35:57,819  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.document.Document -> t_document
+2018-02-07 17:35:57,822  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.event.EventType -> EventType
+2018-02-07 17:35:57,825  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.supplier.SupplierEvaluate -> t_supplierEvalue
+2018-02-07 17:35:57,829  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.maintenance.MaintenanceDetail -> t_maintenance_detail
+2018-02-07 17:35:57,832  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.tooling.record.DemarcatePlan -> t_demarcate_plan
+2018-02-07 17:35:57,836  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.business.PayDetail -> t_pay_detail
+2018-02-07 17:35:57,839  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.device.runmaintainPlan.RunmaintainPlan -> t_runmaintain_plan
+2018-02-07 17:35:57,842  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.repair.RepairManHour -> t_repair_manhour
+2018-02-07 17:35:57,845  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.spareInAndOut.SpareInAndOutAndStoreReportView -> t_spareInAndOut_view
+2018-02-07 17:35:57,848  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.outWareHouse.SpareOutBill -> t_spareOut_bill
+2018-02-07 17:35:57,852  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.move.MovePositionBill -> t_movePosition
+2018-02-07 17:35:57,855  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.maintenance.MaintenanceDetailView -> t_maintenance_plan_view
+2018-02-07 17:35:57,858  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.device.accountReport.DeviceLifeMaturityStatistics -> t_device_lifeMaturityStatistics
+2018-02-07 17:35:57,861  INFO $c:260 - Mapping class: com.yongjun.tdms.model.notice.Notice -> t_notice
+2018-02-07 17:35:57,864  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.device.runmaintainPlan.PivotalSpare -> t_pivotal_spare
+2018-02-07 17:35:57,867  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.device.DeviceDeprecitionDetail -> t_deviceDeprecitionDetail
+2018-02-07 17:35:57,870  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.codevalue.ToolingType -> t_tooling_type
+2018-02-07 17:35:57,873  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.fault.FaultAnalysisByDevice -> t_faultAnalysis_byDevice
+2018-02-07 17:35:57,876  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.wash.Wash -> t_wash
+2018-02-07 17:35:57,879  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.device.runmaintainPlan.DailyRepair -> t_daily_repair
+2018-02-07 17:35:57,882  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.discard.Discard -> t_discard
+2018-02-07 17:35:57,886  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.country.Country -> t_country
+2018-02-07 17:35:57,889  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.device.DeviceFinanceInfo -> t_device_finance_info
+2018-02-07 17:35:57,892  INFO $c:260 - Mapping class: com.yongjun.pluto.model.security.Role -> t_roles
+2018-02-07 17:35:57,893  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.security.Role.users -> t_user_role
+2018-02-07 17:35:57,893  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.security.Role.groups -> t_group_role
+2018-02-07 17:35:57,896  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.purchase.ReceiptBill -> t_receipt_bill
+2018-02-07 17:35:57,899  INFO $c:260 - Mapping class: com.yongjun.tdms.dao.area.Area -> t_area
+2018-02-07 17:35:57,902  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.outWareHouse.SpareOutBillDetailView -> t_spare_outWareHouse_detail_view
+2018-02-07 17:35:57,905  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.inventory.InventoryBill -> t_inventory_bill
+2018-02-07 17:35:57,909  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.inWareHouse.SpareInBillDetailView -> t_spareinbill_detail_view
+2018-02-07 17:35:57,912  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.spareBorrow.SpareBorrowDetail -> t_spare_borrow_detail_bill
+2018-02-07 17:35:57,916  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.spareInAndOut.SpareInAndOutAndStoreReport -> t_spareInAndOut
+2018-02-07 17:35:57,919  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.accident.AccidentBill -> t_accident_bill
+2018-02-07 17:35:57,922  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.workType.WorkType -> t_work_type
+2018-02-07 17:35:57,925  INFO $c:260 - Mapping class: com.yongjun.tdms.model.year.device.purchasePlan.PurchasePlanView -> t_purchase_plan_view
+2018-02-07 17:35:57,928  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.device.accountReport.DeviceWasterStatistics -> t_device_wasterStatistics
+2018-02-07 17:35:57,931  INFO $c:260 - Mapping class: com.yongjun.tdms.model.base.financeType.FinanceType -> t_finance_type
+2018-02-07 17:35:57,933  INFO $c:260 - Mapping class: com.yongjun.pluto.model.security.ProductionLine -> t_production_line
+2018-02-07 17:35:57,935  INFO $c:260 - Mapping class: com.yongjun.tdms.model.demo.Demo -> t_demo
+2018-02-07 17:35:57,938  INFO $c:260 - Mapping class: com.yongjun.tdms.model.report.MainProductDeviceCheck -> t_main_pro_check
+2018-02-07 17:35:57,941  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.device.ToolingAccount -> t_tooling_account
+2018-02-07 17:35:57,944  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.maintenance.Maintenance -> t_maintenance
+2018-02-07 17:35:57,947  INFO $c:260 - Mapping class: com.yongjun.tdms.model.report.DeviceUseStatus -> t_device_use_status
+2018-02-07 17:35:57,950  INFO $c:260 - Mapping class: com.yongjun.pluto.model.security.Group -> t_groups
+2018-02-07 17:35:57,950  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.security.Group.roles -> t_group_role
+2018-02-07 17:35:57,950  INFO $c:1218 - Mapping collection: com.yongjun.pluto.model.security.Group.users -> t_group_user
+2018-02-07 17:35:57,952  INFO $c:260 - Mapping class: com.yongjun.pluto.model.security.Permission -> t_permissions
+2018-02-07 17:35:57,955  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.supplier.SupplierEvaluateView -> t_supplierEvalue_view
+2018-02-07 17:35:57,958  INFO $c:260 - Mapping class: com.yongjun.tdms.model.prophase.supplier.Supplier -> t_supplier
+2018-02-07 17:35:57,961  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.wash.WashDetail -> t_wash_detail
+2018-02-07 17:35:57,963  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.migrate.MigrateDetail -> t_migrate_detail
+2018-02-07 17:35:57,966  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.repair.PreRepairRule -> t_prerepair_rule
+2018-02-07 17:35:57,968  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.spareInAndOut.SpareInAndOutStoreMonthReportView -> t_spareInAndOut_month2
+2018-02-07 17:35:57,971  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.checkpoint.CheckPointReport -> t_check_point_report
+2018-02-07 17:35:57,974  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.migrate.Migrate -> t_migrate
+2018-02-07 17:35:57,977  INFO $c:260 - Mapping class: com.yongjun.tdms.model.runmaintenance.tooling.record.ToolingBorrowBill -> t_tooling_borrow_bill
+2018-02-07 17:35:57,980  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.Inventory.SpareInventoryDetail -> t_spare_inventory_detail
+2018-02-07 17:35:57,984  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.spare.SpareInOutHistory -> t_spare_inout_history
+2018-02-07 17:35:57,989  INFO $c:260 - Mapping class: com.yongjun.tdms.model.asset.device.DeviceCard -> t_device_card
+2018-02-07 17:35:57,991  INFO $c:875 - processing extends queue
+2018-02-07 17:35:57,992  INFO $c:879 - processing collection mappings
+2018-02-07 17:35:57,992  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.spareBorrow.SpareBorrow.detail -> t_spare_borrow_detail_bill
+2018-02-07 17:35:57,992  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.tooling.ToolingMakeDetail.quarterToolingMakeDetail -> t_tooling_make_detail
+2018-02-07 17:35:57,993  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlanDetail.spares -> t_repair_spare
+2018-02-07 17:35:57,993  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlanDetail.repairItems -> t_repair_item
+2018-02-07 17:35:57,993  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlanDetail.repairFees -> t_repair_fee
+2018-02-07 17:35:57,993  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlanDetail.manHours -> t_repair_manhour
+2018-02-07 17:35:57,994  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlanDetail.repairTools -> t_repair_tool
+2018-02-07 17:35:57,994  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlanDetail.repairDoc -> t_Application_doc
+2018-02-07 17:35:57,994  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.business.AcceptBill.changeDoc -> t_Application_doc
+2018-02-07 17:35:57,994  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.business.AcceptBill.acceptBillDtl -> t_acceptBill_Detail
+2018-02-07 17:35:57,995  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.business.AcceptBill.spare -> t_spart_part
+2018-02-07 17:35:57,995  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.business.Subscribe.toolingMakeDetails -> t_tooling_make_detail
+2018-02-07 17:35:57,995  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.business.Subscribe.sparePurchaseDetails -> t_spare_purchase_detail
+2018-02-07 17:35:57,995  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.business.Subscribe.repairMaintenanceDetails -> t_repair_maintenance_detail
+2018-02-07 17:35:57,996  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.business.Subscribe.techAlterDetails -> t_tech_alter_detail
+2018-02-07 17:35:57,996  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.business.Subscribe.subscribeDetails -> t_subscribe_detail
+2018-02-07 17:35:57,996  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.fault.FaultBill.faultRepair -> t_fault_repair
+2018-02-07 17:35:57,996  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.tooling.SparePurchaseDetail.quarterSparePurchaseDetail -> t_spare_purchase_detail
+2018-02-07 17:35:57,997  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.spare.Inventory.SpareInventory.inventoryDetails -> t_spare_inventory_detail
+2018-02-07 17:35:57,997  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.usualcheck.Check.changeDoc -> t_Application_doc
+2018-02-07 17:35:57,997  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.lubrication.LubricationPlan.planDetails -> t_lubrication_plan_detail
+2018-02-07 17:35:57,997  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.lubrication.LubricationPlan.procDetails -> t_lubrication_plan_detail
+2018-02-07 17:35:57,997  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.lubrication.LubricationPlan.lubricationProc -> t_lubrication_plan
+2018-02-07 17:35:57,998  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.calibration.CalibrationDetail.calibrationDoc -> t_Application_doc
+2018-02-07 17:35:57,998  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.repair.RepairPlanAndProcDetail.spares -> t_repair_spare
+2018-02-07 17:35:57,998  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.repair.RepairPlanAndProcDetail.repairItems -> t_repair_item
+2018-02-07 17:35:57,998  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.repair.RepairPlanAndProcDetail.repairFees -> t_repair_fee
+2018-02-07 17:35:57,999  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.repair.RepairPlanAndProcDetail.manHours -> t_repair_manhour
+2018-02-07 17:35:58,008  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.repair.RepairPlanAndProcDetail.repairTools -> t_repair_tool
+2018-02-07 17:35:58,009  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.repair.RepairPlanAndProcDetail.repairDoc -> t_Application_doc
+2018-02-07 17:35:58,009  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.spare.Spare.spares -> t_device_spare
+2018-02-07 17:35:58,009  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.spare.Spare.spareDoc -> t_Application_doc
+2018-02-07 17:35:58,009  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.spare.Spare.spareLoc -> t_spare_location
+2018-02-07 17:35:58,010  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.budget.Budget.budgetDetail -> t_budget_detail
+2018-02-07 17:35:58,010  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.base.codevalue.CodeValue.values -> t_code_value
+2018-02-07 17:35:58,010  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.fault.FaultRepair.spares -> t_repair_spare
+2018-02-07 17:35:58,010  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.fault.FaultRepair.repairItems -> t_repair_item
+2018-02-07 17:35:58,010  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.fault.FaultRepair.repairFees -> t_repair_fee
+2018-02-07 17:35:58,011  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.fault.FaultRepair.manHours -> t_repair_manhour
+2018-02-07 17:35:58,011  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.fault.FaultRepair.repairTools -> t_repair_tool
+2018-02-07 17:35:58,011  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.fault.FaultRepair.repairDoc -> t_Application_doc
+2018-02-07 17:35:58,011  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.repair.RepairPlanAndProc.planDetails -> t_repair_plan_and_proc_detail
+2018-02-07 17:35:58,011  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.repair.RepairPlanAndProc.procDetails -> t_repair_plan_and_proc_detail
+2018-02-07 17:35:58,011  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.repair.RepairPlanAndProc.repairProc -> t_year_repair_plan_and_proc
+2018-02-07 17:35:58,012  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.spare.inWareHouse.SpareInBill.detail -> t_spareIn_bill_detail
+2018-02-07 17:35:58,012  INFO $c:2041 - Mapping collection: com.yongjun.pluto.model.security.Filiale.departments -> t_department
+2018-02-07 17:35:58,012  INFO $c:2041 - Mapping collection: com.yongjun.pluto.model.security.User.authorizations -> t_user_authorization
+2018-02-07 17:35:58,012  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.device.runmaintainPlan.RunmaintainPlanDetail.dailyRepairs -> t_daily_repair
+2018-02-07 17:35:58,013  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.device.runmaintainPlan.RunmaintainPlanDetail.pricisionChecks -> t_pricision_check
+2018-02-07 17:35:58,013  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.device.runmaintainPlan.RunmaintainPlanDetail.deviceChanges -> t_device_change
+2018-02-07 17:35:58,013  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.device.runmaintainPlan.RunmaintainPlanDetail.pivotalSpares -> t_pivotal_spare
+2018-02-07 17:35:58,013  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.intactness.Intactness.intactnessDetails -> t_intactness_detail
+2018-02-07 17:35:58,013  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.spare.Location.spareLoc -> t_spare_location
+2018-02-07 17:35:58,014  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.business.PurchaseBill.changeDoc -> t_Application_doc
+2018-02-07 17:35:58,014  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.business.PurchaseBill.acceptBill -> t_accept_bill
+2018-02-07 17:35:58,014  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.business.PurchaseBill.purchaseBillDetails -> t_purchasebill_detail
+2018-02-07 17:35:58,014  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.business.PurchaseBill.middleCheck -> t_middle_check
+2018-02-07 17:35:58,014  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.business.PurchaseBill.payDetails -> t_pay_detail
+2018-02-07 17:35:58,015  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.tooling.TechAlterDetail.quarterTechAlterDetail -> t_tech_alter_detail
+2018-02-07 17:35:58,015  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.trusteeship.Trusteeship.trusteeshipDetail -> t_trusteeship_detail
+2018-02-07 17:35:58,015  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.discard.DiscardBill.discardBillDtl -> t_discard_bill_Dtl
+2018-02-07 17:35:58,015  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.spare.SpareInOutBill.spareInOutHistory -> t_spare_inout_history
+2018-02-07 17:35:58,015  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.business.SubscribeCollectBill.subscribeDetails -> t_subscribe_detail
+2018-02-07 17:35:58,015  INFO $c:2041 - Mapping collection: com.yongjun.pluto.model.security.Department.productionLines -> t_production_line
+2018-02-07 17:35:58,016  INFO $c:2041 - Mapping collection: com.yongjun.pluto.model.notice.SendNotice.receviceNotices -> t_recevice_notice
+2018-02-07 17:35:58,016  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.tooling.record.ToolingChangeBill.changeDoc -> t_Application_doc
+2018-02-07 17:35:58,016  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.device.purchasePlan.PurchasePlan.purchasePlanDetail -> t_purchase_plan_detail
+2018-02-07 17:35:58,016  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.calibration.Calibration.calibrationPlanDetails -> t_calibration_detail
+2018-02-07 17:35:58,016  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.calibration.Calibration.calibrationProcDetails -> t_calibration_detail
+2018-02-07 17:35:58,017  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.calibration.Calibration.calibrationProc -> t_calibration
+2018-02-07 17:35:58,017  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlan.planDetails -> t_prerepair_plan_detail
+2018-02-07 17:35:58,017  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlan.procDetails -> t_prerepair_plan_detail
+2018-02-07 17:35:58,018  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlan.preRepairProc -> t_prerepair_plan
+2018-02-07 17:35:58,018  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.base.codevalue.SpareType.spareDetailType -> t_spare_detail_type
+2018-02-07 17:35:58,018  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.tooling.quarterPlan.QuarterPlan.toolingMakeDetails -> t_tooling_make_detail
+2018-02-07 17:35:58,018  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.tooling.quarterPlan.QuarterPlan.sparePurchaseDetails -> t_spare_purchase_detail
+2018-02-07 17:35:58,018  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.tooling.quarterPlan.QuarterPlan.repairMaintenanceDetails -> t_repair_maintenance_detail
+2018-02-07 17:35:58,018  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.tooling.quarterPlan.QuarterPlan.techAlterDetails -> t_tech_alter_detail
+2018-02-07 17:35:58,019  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.tooling.quarterPlan.QuarterPlan.quarterPlanDetails -> t_tooling_quarter_plan_detail
+2018-02-07 17:35:58,019  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.tooling.RepairMaintenanceDetail.quarterRepairMaintenanceDetail -> t_repair_maintenance_detail
+2018-02-07 17:35:58,019  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.tooling.yearPlan.YearPlan.toolingMakeDetails -> t_tooling_make_detail
+2018-02-07 17:35:58,019  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.tooling.yearPlan.YearPlan.sparePurchaseDetails -> t_spare_purchase_detail
+2018-02-07 17:35:58,019  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.tooling.yearPlan.YearPlan.repairMaintenanceDetails -> t_repair_maintenance_detail
+2018-02-07 17:35:58,020  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.tooling.yearPlan.YearPlan.techAlterDetails -> t_tech_alter_detail
+2018-02-07 17:35:58,020  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.tooling.yearPlan.YearPlan.yearPlanDetails -> t_tooling_year_plan_detail
+2018-02-07 17:35:58,020  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.supplier.SupplierEvaluate.supplierEvaluateDetail -> t_supplierEvalue_detail
+2018-02-07 17:35:58,020  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.maintenance.MaintenanceDetail.maintenanceDeviceDetails -> t_maintenance_device_detail
+2018-02-07 17:35:58,020  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.tooling.record.DemarcatePlan.demarcateDetails -> t_demarcate_plan_detail
+2018-02-07 17:35:58,021  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.year.device.runmaintainPlan.RunmaintainPlan.runmaintainPlanDetails -> t_runmaintain_paln_detail
+2018-02-07 17:35:58,021  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.spare.outWareHouse.SpareOutBill.detail -> t_spareOut_bill_detail
+2018-02-07 17:35:58,021  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.spare.move.MovePositionBill.movePositionBillDtls -> t_move_position_dtl
+2018-02-07 17:35:58,021  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.base.codevalue.ToolingType.toolingTypeDetail -> t_tooling_type_detail
+2018-02-07 17:35:58,021  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.wash.Wash.planDetails -> t_wash_detail
+2018-02-07 17:35:58,021  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.wash.Wash.procDetails -> t_wash_detail
+2018-02-07 17:35:58,022  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.wash.Wash.washProc -> t_wash
+2018-02-07 17:35:58,022  INFO $c:2041 - Mapping collection: com.yongjun.pluto.model.security.Role.authorizations -> t_role_authorization
+2018-02-07 17:35:58,022  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.inventory.InventoryBill.inventoryBillDetail -> t_inventory_bill_detail
+2018-02-07 17:35:58,022  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.maintenance.Maintenance.maintenancePlanDetials -> t_maintenance_detail
+2018-02-07 17:35:58,022  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.maintenance.Maintenance.maintenanceProcDetials -> t_maintenance_detail
+2018-02-07 17:35:58,023  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.maintenance.Maintenance.maintenanceProc -> t_maintenance
+2018-02-07 17:35:58,023  INFO $c:2041 - Mapping collection: com.yongjun.pluto.model.security.Permission.roleAuthorizations -> t_role_authorization
+2018-02-07 17:35:58,023  INFO $c:2041 - Mapping collection: com.yongjun.pluto.model.security.Permission.userAuthorizations -> t_user_authorization
+2018-02-07 17:35:58,023  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.supplier.Supplier.product -> t_supplier_product
+2018-02-07 17:35:58,023  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.supplier.Supplier.certification -> t_supplier_certification
+2018-02-07 17:35:58,024  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.supplier.Supplier.supplierBusinessHistory -> t_supplier_business_history
+2018-02-07 17:35:58,024  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.prophase.supplier.Supplier.supplierLevelHistory -> t_supplier_level_history
+2018-02-07 17:35:58,024  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.checkpoint.CheckPointReport.reportDetails -> t_check_point_report_detail
+2018-02-07 17:35:58,024  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.runmaintenance.migrate.Migrate.migrateDetail -> t_migrate_detail
+2018-02-07 17:35:58,024  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.device.DeviceCard.deviceDoc -> t_Application_doc
+2018-02-07 17:35:58,025  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.device.DeviceCard.attachTool -> t_attach_tool
+2018-02-07 17:35:58,025  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.device.DeviceCard.financeInfo -> t_device_finance_info
+2018-02-07 17:35:58,025  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.device.DeviceCard.accessoryDevices -> t_accessory_device
+2018-02-07 17:35:58,025  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.device.DeviceCard.spares -> t_device_spare
+2018-02-07 17:35:58,025  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.device.DeviceCard.args -> t_device_args
+2018-02-07 17:35:58,026  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.device.DeviceCard.toolingBorrowBill -> t_tooling_borrow_bill
+2018-02-07 17:35:58,026  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.device.DeviceCard.toolingFaultBill -> t_fault_bill
+2018-02-07 17:35:58,026  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.device.DeviceCard.lubricationRules -> t_lubrication_rule
+2018-02-07 17:35:58,026  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.device.DeviceCard.checkPointRules -> t_check_point_rule
+2018-02-07 17:35:58,026  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.device.DeviceCard.preRepairRules -> t_prerepair_rule
+2018-02-07 17:35:58,027  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.device.DeviceCard.maintenanceRules -> t_maintenance_rule
+2018-02-07 17:35:58,027  INFO $c:2041 - Mapping collection: com.yongjun.tdms.model.asset.device.DeviceCard.operateCerts -> t_operate_cert
+2018-02-07 17:35:58,027  INFO $c:888 - processing association property references
+2018-02-07 17:35:58,027  INFO $c:917 - processing foreign key constraints
+2018-02-07 17:35:58,270  INFO $c:53 - Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+2018-02-07 17:35:58,270  INFO $c:77 - RDBMS: Microsoft SQL Server, version: 10.00.1600
+2018-02-07 17:35:58,270  INFO $c:78 - JDBC driver: Microsoft SQL Server JDBC Driver 2.0, version: 2.0.1803.100
+2018-02-07 17:35:58,276  INFO $c:92 - Using dialect: org.hibernate.dialect.SQLServerDialect
+2018-02-07 17:35:58,278  INFO $c:31 - Using default transaction strategy (direct JDBC transactions)
+2018-02-07 17:35:58,279  INFO $c:33 - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2018-02-07 17:35:58,279  INFO $c:125 - Automatic flush during beforeCompletion(): disabled
+2018-02-07 17:35:58,279  INFO $c:129 - Automatic session close at end of transaction: disabled
+2018-02-07 17:35:58,279  INFO $c:136 - JDBC batch size: 25
+2018-02-07 17:35:58,279  INFO $c:139 - JDBC batch updates for versioned data: disabled
+2018-02-07 17:35:58,280  INFO $c:144 - Scrollable result sets: enabled
+2018-02-07 17:35:58,280  INFO $c:152 - JDBC3 getGeneratedKeys(): enabled
+2018-02-07 17:35:58,280  INFO $c:156 - JDBC result set fetch size: 50
+2018-02-07 17:35:58,280  INFO $c:160 - Connection release mode: on_close
+2018-02-07 17:35:58,280  INFO $c:184 - Maximum outer join fetch depth: 0
+2018-02-07 17:35:58,281  INFO $c:187 - Default batch fetch size: 1
+2018-02-07 17:35:58,281  INFO $c:191 - Generate SQL with comments: disabled
+2018-02-07 17:35:58,281  INFO $c:195 - Order SQL updates by primary key: disabled
+2018-02-07 17:35:58,281  INFO $c:334 - Query translator: org.hibernate.hql.classic.ClassicQueryTranslatorFactory
+2018-02-07 17:35:58,282  INFO $c:203 - Query language substitutions: {false=0, true=1}
+2018-02-07 17:35:58,282  INFO $c:209 - Second-level cache: enabled
+2018-02-07 17:35:58,282  INFO $c:213 - Query cache: enabled
+2018-02-07 17:35:58,283  INFO $c:321 - Cache provider: org.hibernate.cache.EhCacheProvider
+2018-02-07 17:35:58,284  INFO $c:228 - Optimize cache for minimal puts: disabled
+2018-02-07 17:35:58,284  INFO $c:237 - Structured second-level cache entries: disabled
+2018-02-07 17:35:58,284  INFO $c:308 - Query cache factory: org.hibernate.cache.StandardQueryCacheFactory
+2018-02-07 17:35:58,286  INFO $c:257 - Echoing all SQL to stdout
+2018-02-07 17:35:58,287  INFO $c:261 - Statistics: disabled
+2018-02-07 17:35:58,287  INFO $c:265 - Deleted entity synthetic identifier rollback: disabled
+2018-02-07 17:35:58,287  INFO $c:279 - Default entity-mode: pojo
+2018-02-07 17:35:58,299  INFO $c:152 - building session factory
+2018-02-07 17:36:00,895  INFO $c:82 - Not binding factory to JNDI, no JNDI name configured
+2018-02-07 17:36:00,896  INFO $c:43 - starting update timestamps cache at region: org.hibernate.cache.UpdateTimestampsCache
+2018-02-07 17:36:00,897  WARN $c:97 - Could not find configuration [org.hibernate.cache.UpdateTimestampsCache]; using defaults.
+2018-02-07 17:36:00,898  INFO $c:50 - starting query cache at region: org.hibernate.cache.StandardQueryCache
+2018-02-07 17:36:00,899  WARN $c:97 - Could not find configuration [org.hibernate.cache.StandardQueryCache]; using defaults.
+2018-02-07 17:36:00,900  INFO $c:379 - Checking 116 named queries
+2018-02-07 17:36:01,969  WARN $c:271 - Creating a new instance of CacheManager using the diskStorePath "C:\Users\ADMINI~1\AppData\Local\Temp\" which is already used by an existing CacheManager.
+The source of the configuration was classpath.
+The diskStore path for this CacheManager will be set to C:\Users\ADMINI~1\AppData\Local\Temp\\ehcache_auto_created_1517996161969.
+To avoid this warning consider using the CacheManager factory methods to create a singleton CacheManager or specifying a separate ehcache configuration (ehcache.xml) for each CacheManager instance.
+2018-02-07 17:36:02,183  INFO $c:776 - closing
+2018-02-07 17:38:19,628  INFO $c:464 - Hibernate 3.0.5
+2018-02-07 17:38:19,631  INFO $c:482 - loaded properties from resource hibernate.properties: {hibernate.jdbc.fetch_size=50, hibernate.cglib.use_reflection_optimizer=true, hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider, hibernate.max_fetch_depth=0, hibernate.cache.use_query_cache=true, hibernate.dialect=org.hibernate.dialect.SQLServerDialect, hibernate.query.factory_class=org.hibernate.hql.classic.ClassicQueryTranslatorFactory, hibernate.autoReconnect=true, hibernate.jdbc.batch_size=25, hibernate.query.substitutions=true=1, false=0, hibernate.use_outer_join=false, hibernate.hbm2ddl.auto=false, hibernate.show_sql=true}
+2018-02-07 17:38:19,632  INFO $c:510 - using CGLIB reflection optimizer
+2018-02-07 17:38:19,632  INFO $c:540 - using JDK 1.4 java.sql.Timestamp handling
+2018-02-07 17:44:24,567  INFO $c:464 - Hibernate 3.0.5
+2018-02-07 17:44:24,570  INFO $c:482 - loaded properties from resource hibernate.properties: {hibernate.jdbc.fetch_size=50, hibernate.cglib.use_reflection_optimizer=true, hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider, hibernate.max_fetch_depth=0, hibernate.cache.use_query_cache=true, hibernate.dialect=org.hibernate.dialect.SQLServerDialect, hibernate.query.factory_class=org.hibernate.hql.classic.ClassicQueryTranslatorFactory, hibernate.autoReconnect=true, hibernate.jdbc.batch_size=25, hibernate.query.substitutions=true=1, false=0, hibernate.use_outer_join=false, hibernate.hbm2ddl.auto=false, hibernate.show_sql=true}
+2018-02-07 17:44:24,570  INFO $c:510 - using CGLIB reflection optimizer
+2018-02-07 17:44:24,571  INFO $c:540 - using JDK 1.4 java.sql.Timestamp handling

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+<dwr>
+	<allow>
+    	<convert match="com.yongjun.pluto.model.security.Department" converter="bean" />
+    	<convert match="com.yongjun.tdms.model.asset.spare.warehouseInfo.regional.Regional" converter="bean" />
+    	<convert match="com.yongjun.tdms.model.asset.spare.inWareHouse.SpareInBill" converter="bean" />
+    	
+    	<create javascript="FilialeSelectDeptJs" creator="spring">
+    		<param name="beanName" value="departmentManager"></param>
+    		<include method="filialeSelectDept" />
+    	</create>
+    	<create javascript="WareCascadeRegionalJs" creator="spring">
+    		<param name="beanName" value="regionalManager"></param>
+    		<include method="loadRegionalByWareId" />
+    	</create>
+    	<!--  
+    	<create javascript="RegionalCascadeLocationJs" creator="spring">
+    		<param name="beanName" value="locationManager"></param>
+    		<include method="loadLocationByRegionalId" />
+    	</create>
+    	-->
+    	<create javascript="SpareInBillJs" creator="spring">
+    		<param name="beanName" value="spareInBillManager"></param>
+    		<include method="saveAcceptanceList" />
+    	</create>
+    	<create javascript="SpareDetailSelectJs" creator="spring">
+   			<param name="beanName" value="spareTypeDetailManager"></param>
+   			<include method="loadSpareDetailBySpareTypeId" />
+   		</create>
+   		<!-- 创建台账 -->
+    	<create javascript="CreateGraphNoJs" creator="spring">
+   			<param name="beanName" value="spareManager"></param>
+   			<include method="createGraphNo" />
+   		</create>
+   		
+   		<!-- 查找仓库	 -->
+    	<create javascript="findWareHouseJs" creator="spring">
+   			<param name="beanName" value="newwarehouseManager"></param>
+   			<include method="loadWareHouseByStorageGradeId" />
+   			<include method="loadWareHouseByUser" />
+   		</create>
+   		<convert match="com.yongjun.pluto.model.security.Warehouse" converter="bean">  
+			<param name="include" value="id,name"/>  
+		</convert>
+   		<!-- 查找备件库台账的库存 -->
+    	<create javascript="findSpareLocationStockJs" creator="spring">
+   			<param name="beanName" value="spareLocationManager"></param>
+   			<include method="getSpareLocationStock" />
+   		</create>
+   		
+   		
+   		<!-- 同步更新采购单明细的属性值 -->
+    	<create javascript="updateParameterFromPageJs" creator="spring">
+   			<param name="beanName" value="purchaseBillDetailManager"></param>
+   			<include method="updateParameterFromPage" />
+   		</create>
+   		
+   		<!-- 根据库位查找库区 -->
+    	<create javascript="findLocationByRegionalJs" creator="spring">
+   			<param name="beanName" value="locationManager"></param>
+   			<include method="findLocationByRegional" />
+   		</create>
+   		
+   		<!-- 根据用户名查找用户 -->
+   		<create javascript="getUserByNameJs" creator="spring">
+   			<param name="beanName" value="userManager"></param>
+   			<include method="getUserByLoginName" />
+   		</create>
+   		<convert match="com.yongjun.pluto.model.security.User" converter="bean">  
+			<param name="include" value="id,name,loginName"/>  
+		</convert>
+   		
+   		<!-- 根据厂家（设备厂家、供应商）名称查找厂家（设备厂家、供应商） -->
+   		<create javascript="loadSuppliersByNameJs" creator="spring">
+   			<param name="beanName" value="supplierManager"></param>
+   			<include method="loadSuppliersByName" />
+   			<include method="loadSupplierByName" />
+   		</create>
+   		<convert match="com.yongjun.tdms.model.prophase.supplier.Supplier" converter="bean">  
+			<param name="include" value="id,name,supplierNo"/>  
+		</convert>
+   		
+   		<create javascript="loadSpareByPamrameterJs" creator="spring">
+   			<param name="beanName" value="spareManager"></param>
+   			<include method="loadByKeyArry" />
+   			<include method="loadBySpareNo" />
+   		</create>
+   		<convert match="com.yongjun.tdms.model.asset.spare.Spare" converter="bean">  
+			<param name="include" value="id,name,modelSpecs,orderNo"/>  
+		</convert>
+   		
+    	<convert converter="exception" match="java.lang.Exception"/>
+    	<convert converter="bean" match="java.lang.StackTraceElement"/>
+	</allow>
+</dwr>
+

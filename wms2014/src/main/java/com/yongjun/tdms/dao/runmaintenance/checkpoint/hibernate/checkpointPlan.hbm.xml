@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: checkpointPlan.hbm.xml 8126 2007-10-31 00:53:51Z qsun $ -->
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.runmaintenance.checkpoint.CheckPointPlan" table="t_check_point_plan" lazy="true">
+        <id name="id" column="id" type="long">
+            <generator class="native">
+                <param name="sequence">t_check_point_plan_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <discriminator column="DISCRIMINATOR" type="string"/>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="planNo" type="string">
+            <column name="plan_no" not-null="true" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="name" type="string">
+            <column name="name" not-null="true" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <property name="status" type="string">
+            <column name="status" not-null="false" />
+        </property>
+        
+        <property name="scheduleTime" type="date">
+            <column name="schedule_time" not-null="true" />
+        </property>
+        
+         <property name="content" type="string">
+            <column name="content" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="request" type="string">
+            <column name="request" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="fee" type="double">
+            <column name="fee" not-null="false" />
+        </property>
+        
+        <property name="ruleType" type="string">
+            <column name="ruleType" not-null="false" />
+        </property>
+        
+        <property name="comment" type="string">
+            <column name="comment" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="docStatus" type="int">
+            <column name="doc_status" not-null="false" />
+        </property>
+        
+        <property name="submitComment" type="string">
+            <column name="submit_comment" not-null="false" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <property name="approvers" type="string">
+            <column name="approvers" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        
+        <many-to-one name="device" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+            <column name="device_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="rule" class="com.yongjun.tdms.model.runmaintenance.checkpoint.CheckPointRule">
+            <column name="rule_id" not-null="false" />
+        </many-to-one>
+        
+        <many-to-one name="job" class="com.yongjun.tdms.workflow.model.job.Job">
+            <column name="job_id" not-null="false" />
+        </many-to-one>
+        
+        <many-to-one name="checker" class="com.yongjun.pluto.model.security.User">
+            <column name="checker_id" not-null="false" />
+        </many-to-one>
+        
+        <many-to-one name="manager" class="com.yongjun.pluto.model.security.User">
+            <column name="manager_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization">
+        	<column name="org_id" not-null="true" />
+        </many-to-one>
+        
+        <set name="planDetails" inverse="true"
+			cascade="all-delete-orphan" lazy="true" order-by="created_time">
+			<key column="plan_id"/>
+			<one-to-many class="com.yongjun.tdms.model.runmaintenance.checkpoint.CheckPointPlanDetail"/>
+		</set>
+		
+		<property name="createdTime" column="created_time" type="timestamp"/>
+        <property name="creator"  column="creator"   type="string" length="50"/>
+        <property name="lastModifiedTime" column="last_modified_time" type="timestamp"/>
+        <property name="lastOperator"  column="last_modifier"   type="string" length="50"/>
+    </class>
+    <query name="LoadAllUnrelatedCheckPointPlan">
+    	<![CDATA[FROM CheckPointPlan checkPointPlan 
+             WHERE  checkPointPlan.id NOT IN (SELECT checkPointProc.plan.id FROM CheckPointProc checkPointProc)
+        	]]>
+    </query>
+    <query name="LoadPlanByCheckPointRuleId">
+    	<![CDATA[FROM CheckPointPlan checkPointPlan 
+             WHERE  checkPointPlan.rule.id = :ruleId ORDER BY checkPointPlan.scheduleTime DESC
+        	]]>
+    </query>
+    <query name="LoadPlanFeeByCheckPointPlanId">
+    	<![CDATA[FROM CheckPointPlan checkPointPlan 
+	             WHERE  checkPointPlan.id = :planId
+	        	]]>
+    </query>
+</hibernate-mapping>

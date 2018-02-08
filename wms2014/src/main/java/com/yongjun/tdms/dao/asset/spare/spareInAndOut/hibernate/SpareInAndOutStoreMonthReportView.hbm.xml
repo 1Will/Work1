@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2007 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+
+<!-- $Id: spareInOutBill.hbm.xml 10135 2008-01-06 05:31:37Z mwei $ -->
+
+<hibernate-mapping>
+	<!-- 原始的视图模式
+    <class name="com.yongjun.tdms.model.asset.spare.spareInAndOut.SpareInAndOutStoreMonthReportView" table="t_spareInAndOut_month2_view" lazy="true">
+  	-->
+    <class name="com.yongjun.tdms.model.asset.spare.spareInAndOut.SpareInAndOutStoreMonthReportView" table="t_spareInAndOut_month2" lazy="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_spareInAndOut_month2_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+		<property name="spareNo" column="spareNo" type="string" length="50"/>
+		<property name="spareName" column="spareName" type="string" length="50"/>
+		<property name="modelSpecs" column="modelSpecs" type="string" length="150"/>
+		
+		<!-- 仓库id、仓库名 -->
+		<property name="warehouse" type="java.lang.Long">
+            <column name="WAREHOUSE_ID" not-null="false"/>
+        </property>
+		<property name="warehouseName" type="string">
+            <column name="WAREHOUSE_NAME" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <!-- 库区id,库区名 -->
+        <property name="regional" type="java.lang.Long">
+            <column name="REGIONAL_ID" not-null="false"/>
+        </property>
+        <property name="regionalName" type="string">
+            <column name="REGIONAL_NAME" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+        <!-- 库位号 -->
+		 <property name="locationCode" type="string">
+            <column name="LOCATION_CODE" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>
+		
+		<property name="unit" column="unit" type="string" length="50"/>
+		<property name="unitPrice" column="unitPrice" type="double"/>
+		<property name="beforeStocks" column="beforeStocks" type="long"/>
+		<property name="inStocks" column="inStocks" type="long"/>
+		<property name="outStocks" column="outStocks" type="long"/>
+		<property name="afterStocks" column="afterStocks" type="long"/>
+		<property name="createTime" column="createTime" type="timestamp"/>
+		<property name="month" column="month" type="string" length="50"/>
+		<property name="totalPrice" column="totalPrice" type="double"/>
+		<property name="toolingDevFlag" column="toolingDevFlag" type="string"/>
+		<!-- 保管人-->
+        <property name="custos" type="string">
+            <column name="custos" not-null="false" sql-type="NVARCHAR(50)" />
+        </property>	
+        <!-- 保管人[冗余字段]-->
+  		<many-to-one name="spareCustos" class="com.yongjun.pluto.model.security.User">
+			<column name="spareCustos_id" not-null="false" />
+		</many-to-one> 
+    </class>
+</hibernate-mapping>

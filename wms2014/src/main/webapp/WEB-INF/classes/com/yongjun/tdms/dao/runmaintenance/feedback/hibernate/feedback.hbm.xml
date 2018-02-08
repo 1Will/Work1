@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: feedback.hbm.xml 10818 2008-01-31 02:25:29Z qsun $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.feedback.Feedback" table="t_feedback" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_feedback_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="feedbackNo" type="string">
+            <column name="feedback_no" not-null="true" unique-key="UK_ACCIDENT_BILL" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <property name="feedbackName" type="string">
+            <column name="feedback_name" not-null="true" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <many-to-one name="device" class="com.yongjun.tdms.model.asset.device.DeviceCard">
+			<column name="device_id" not-null="false" />
+		</many-to-one>
+        
+        <property name="feedbaceDatetime" type="timestamp">
+            <column name="feedbace_datetime" not-null="true" />
+        </property>
+        
+        <property name="content" type="string">
+            <column name="content" not-null="true" sql-type="NVARCHAR(250)" />
+        </property>
+        
+        <many-to-one name="manager" class="com.yongjun.pluto.model.security.User">
+			<column name="manager_id" not-null="true" />
+		</many-to-one>
+		
+		<many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="dept_id" not-null="false" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

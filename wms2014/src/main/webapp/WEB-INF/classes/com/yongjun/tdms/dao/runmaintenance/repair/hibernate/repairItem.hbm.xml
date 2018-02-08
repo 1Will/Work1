@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+	Copyright (c) 2001-2005 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: repairItem.hbm.xml 11222 2008-03-09 05:56:15Z zbzhang $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.runmaintenance.repair.RepairItem" table="t_repair_item" lazy="true">
+		<id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_repair_item_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        
+        <property name="position" type="string">
+            <column name="position" not-null="false"  sql-type="NVARCHAR(150)"/>
+        </property>
+        
+        <property name="content" type="string">
+            <column name="content" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="execPeopleString" type="string">
+            <column name="execPeopleString" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="procExecPeopleString" type="string">
+            <column name="procExecPeopleString" not-null="false" sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="aimRequire" type="string">
+            <column name="aimRequire" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="comment" type="string">
+            <column name="comment" not-null="false" sql-type="NVARCHAR(250)"/>
+        </property>
+        
+        <property name="planCompleteDate" type="date">
+            <column name="plan_Complete_Date" not-null="false" />
+        </property>
+        
+        <property name="procCompleteDate" type="date">
+            <column name="proc_Complete_Date" not-null="false" />
+        </property>
+        
+        <many-to-one name="execPeople" class="com.yongjun.pluto.model.security.User">
+			<column name="exec_people" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="procExecPeople" class="com.yongjun.pluto.model.security.User">
+			<column name="proc_exec_people" not-null="false" />
+		</many-to-one>
+        
+		<many-to-one name="preRepairDetail" class="com.yongjun.tdms.model.runmaintenance.repair.PreRepairPlanDetail">
+			<column name="prerepair_detail_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="repairPlanAndProcDetail" class="com.yongjun.tdms.model.year.repair.RepairPlanAndProcDetail">
+			<column name="repair_detail_id" not-null="false" />
+		</many-to-one>
+
+		<many-to-one name="faultRepair" class="com.yongjun.tdms.model.runmaintenance.fault.FaultRepair">
+			<column name="fault_repair_id" not-null="false" />
+		</many-to-one>	
+		
+	    <many-to-one name="preRepairRule" class="com.yongjun.tdms.model.runmaintenance.repair.PreRepairRule">
+			<column name="preRepair_rule_id" not-null="false" />
+		</many-to-one>			
+	</class>
+</hibernate-mapping>
