@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.COM.VOC.Voc" table="t_voc">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_voc_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        <!-- 编码 -->
+        <property name="code" type="string">
+            <column name="CODE" not-null="true"  sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <!-- 联系日期 -->
+        <property name="connectDate" column="CONNECT_DATE" type="timestamp"/>
+        
+        <!-- 标题 -->
+        <property name="title" type="string">
+            <column name="TITLE" not-null="true"  sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <!-- 客户 -->
+        <many-to-one name="customerInfo" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo">
+			<column name="CUSTOMERINFO_ID" not-null="true"/>
+		</many-to-one>
+		
+		<!-- 提供者 -->
+        <property name="supplier" type="string">
+            <column name="SUPPLIER" not-null="false"  sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <!-- 重要性 -->
+        <many-to-one name="importance" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="IMPORTANCE" not-null="true"/>
+		</many-to-one>
+		
+		<!-- 类型 -->
+        <many-to-one name="type" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="TYPE" not-null="true"/>
+		</many-to-one>
+		
+		<!-- 业务员 -->
+        <many-to-one name="salesman" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+			<column name="SALEMAN_ID" not-null="false" />
+		</many-to-one>
+		
+		<!-- 负责人 -->
+        <many-to-one name="principal" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+			<column name="PRINCIPAL_ID" not-null="true" />
+		</many-to-one>
+		
+		<!-- 几率 -->
+		<property name="odds" column="ODDS" type="double"/>
+		 
+		 <!-- 需求内容 -->
+        <property name="content" type="string">
+            <column name="CONTENT" not-null="true"  sql-type="NVARCHAR(500)"/>
+        </property>
+        
+        <!-- 客户预算 -->
+		<property name="budqet" column="BUDQET" type="double"/>
+		
+		 <!-- 客户决策人 -->
+        <property name="decisionMaker" type="string">
+            <column name="DECISION_MAKER"  sql-type="NVARCHAR(50)"/>
+        </property>
+        
+        <!-- 客户联系人 -->
+        <many-to-one name="linkman" class="com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives">
+			<column name="LINKMAN" not-null="true" />
+		</many-to-one>
+		
+		 <!-- 电话-->
+        <property name="phone" type="string">
+            <column name="PHONE" not-null="true"  sql-type="NVARCHAR(50)"/>
+        </property>
+        
+         <!-- 邮件 -->
+        <property name="email" type="string">
+            <column name="EMAIL" sql-type="NVARCHAR(50)"/>
+        </property>
+        
+         <!-- 下次联系日期 -->
+        <property name="nextTime" column="NEXT_TIME" type="timestamp"/>
+        
+        <!-- 状态 -->
+        <many-to-one name="status" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="STATUS" not-null="true"/>
+		</many-to-one>
+		
+		<!-- 解决方案 -->
+        <property name="resolvent" type="string">
+            <column name="RESOLVENT" not-null="true"  sql-type="NVARCHAR(500)"/>
+        </property>
+        
+        <!-- 解决方案 -->
+        <property name="feedback" type="string">
+            <column name="FEEDBACK" not-null="true"  sql-type="NVARCHAR(500)"/>
+        </property>
+        
+        <!-- 客户来源 -->
+        <many-to-one name="resource" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="RESOURCE" not-null="false"/>
+		</many-to-one>
+        
+		
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+    </class>
+
+</hibernate-mapping>

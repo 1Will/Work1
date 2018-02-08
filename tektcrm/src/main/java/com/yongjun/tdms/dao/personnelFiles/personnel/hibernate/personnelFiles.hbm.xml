@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2010 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: personnelFiles.hbm.xml 2010-02-03 wliu $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.personnelFiles.PersonnelFiles" table="t_personnelFiles">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_personnelFiles_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		
+		<property name="code" type="string">
+            <column name="CODE" not-null="true" sql-type="NVARCHAR(20)" unique-key="UK_PersonnelFiles"/>
+        </property>
+        
+        <property name="name" type="string">
+			<column name="NAME" not-null="true" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <property name="fileNo" type="string">
+			<column name="FILENO" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <property name="sex" type="boolean">
+			<column name="SEX" not-null="true" />
+		</property>
+        
+        <property name="idNumber" type="string">
+			<column name="IDNUMBER" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <property name="birthday" type="timestamp">
+			<column name="BIRTHDAY" not-null="true" />
+		</property>
+        
+        <property name="homeTel" type="string">
+			<column name="HOMETEL" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <property name="mobile" type="string">
+			<column name="MOBILE" not-null="true" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <property name="telphone" type="string">
+			<column name="TELPHONE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <property name="email" type="string">
+			<column name="EMAIL" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+        
+        <property name="entryDate" type="timestamp">
+			<column name="ENTRYDATE" not-null="true" />
+		</property>
+        
+        <property name="regularizedDate" type="timestamp">
+			<column name="REGULARIZEDDATE" not-null="false" />
+		</property>
+        
+        <property name="separationDate" type="timestamp">
+			<column name="SEPARATIONDATE" not-null="false" />
+		</property>
+        <!-- 
+        <property name="contractDate" type="timestamp">
+			<column name="CONTRACTDATE" not-null="false" />
+		</property>
+         
+        <property name="maturityDate" type="timestamp">
+			<column name="MATURITYDATE" not-null="false" />
+		</property>
+      
+        <property name="seniority" type="string">
+			<column name="SENIORITY" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+          -->
+        <property name="address" type="string">
+			<column name="ADDRESS" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+        <!-- 
+        <property name="isSysUser" type="boolean">
+        	<column name="SYSNAME" not-null="false"/>
+        </property>
+         -->
+        <!-- 
+        <property name="userName" type="string">
+        	<column name="USER_NAME" not-null="false" sql-type="NVARCHAR(20)" />
+        </property>
+         -->
+       
+        <many-to-one name="inst" class="com.yongjun.pluto.model.base.institution.Institution">
+			<column name="INST_ID" not-null="true"/>
+		</many-to-one>
+		
+		<many-to-one name="dept" class="com.yongjun.pluto.model.security.Department">
+			<column name="DEPT_ID" not-null="true"/>
+		</many-to-one>
+        
+        <many-to-one name="duty" class="com.yongjun.tdms.model.base.duty.Duty">
+			<column name="DUTY_ID" not-null="true"/>
+		</many-to-one>
+        
+        <many-to-one name="marriage" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="MARRIAGE_ID" not-null="false"/>
+		</many-to-one>
+        
+        <many-to-one name="birthplace" class="com.yongjun.tdms.model.base.area.Area">
+			<column name="BIRTHPLACE_ID" not-null="true"/>
+		</many-to-one>
+        
+        <many-to-one name="national" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="NATIONAL_ID" not-null="false"/>
+		</many-to-one>
+        
+        <many-to-one name="politice" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="POLITICE_ID" not-null="true"/>
+		</many-to-one>
+        
+        <many-to-one name="education" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="EDUCATION_ID" not-null="false"/>
+		</many-to-one>
+        <many-to-one name="businessType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="businessType" not-null="false"/>
+		</many-to-one>
+        <many-to-one name="workway" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="WORKWAY_ID" not-null="false"/>
+		</many-to-one>
+        
+        <many-to-one name="status" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="STATUS_ID" not-null="true"/>
+		</many-to-one>
+        
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+        <many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization">
+			<column name="ORG_ID"/>
+		</many-to-one>
+		<many-to-one name="superiorLeader" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+			<column name="SUPERIORLEADER_ID" not-null="false"/>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

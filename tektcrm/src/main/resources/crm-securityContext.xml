@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" 
+	"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+    <bean id="filterInvocationInterceptor" parent="abstractFilterInvocationInterceptor">
+	        <property name="objectDefinitionSource">
+	            <value>
+	                 PATTERN_TYPE_APACHE_ANT
+	                /login.html*=ROLE_ANONYMOUS,ROLE_USER
+	                /logout.html*=ROLE_ANONYMOUS,ROLE_USER
+	                /popup/helpSelector.html*=ROLE_ANONYMOUS
+	                /popup/technogySupport.html*=ROLE_ANONYMOUS
+	                /popup/helpFristSelector.html*=ROLE_ANONYMOUS
+	                /frameset.html*=ROLE_USER
+	                /security/groupList.html*=ROLE_USER
+	                /security/sercherGroup.html*=ROLE_USER
+	                /security/sercherUser.html*=ROLE_USER
+	                /security/listUserFrame.html*=ROLE_USER
+	                /security/listRecevicerFrame.html*=ROLE_USER
+	                /security/groupFrameList.html*=ROLE_USER
+	                /security/listGroupsFrame.html*=ROLE_USER
+	                /security/userProfile.html*=ROLE_USER
+                	/security/saveUserProfile.html*=ROLE_USER
+                	/security/changePassword.html*=ROLE_USER
+                	/security/userBytelphoneSelector.html*=ROLE_USER
+                	/security/deptFrameList.html*=ROLE_USER
+                	/security/listDeptUserFrame.html*=ROLE_USER
+                	/security/listDeptFrame.html*=ROLE_USER
+                	/security/groupSelector.html*=ROLE_USER
+                	/security/handSelector.html*=ROLE_USER
+                	/resetPassword.html*=ROLE_ANONYMOUS
+                	<!-- 单位管理 -->
+                	/baseInfoManager/listInstitutionREAD.html*=ROLE_INSTITUTION_READ
+                	/baseInfoManager/listInstitutionWRITE.html*=ROLE_INSTITUTION_WRITE
+                	/base/department/listDepartmentsREAD.html*=ROLE_DEPARTMENT_READ
+                	/base/department/listDepartmentsWRITE.html*=ROLE_DEPARTMENT_WRITE
+                	<!-- 码表 -->
+                	/codevalue/listCodeValueREAD.html*=ROLE_CODEVALUE_READ
+                	/codevalue/listCodeValueWRITE.html*=ROLE_CODEVALUE_WRITE
+                	<!-- 区域管理 -->
+                	/areaManager/cascadeFrameREAD.html*=ROLE_AREA_READ
+                	/areaManager/cascadeFrameWRITE.html*=ROLE_AREA_WRITE
+                	<!-- 产品 -->
+                	/productTypeManager/listProductTypeREAD.html*=ROLE_PRODUCT_TYPE_READ
+                	/productTypeManager/listProductTypeWRITE.html*=ROLE_PRODUCT_TYPE_WRITE
+                	/productsManager/listProductsREAD.html*=ROLE_PRODUCT_READ
+                	/productsManager/listProductsWRITE.html*=ROLE_PRODUCT_WRITE
+                	<!-- 供应商 -->
+                	/supplierManager/listSupplierREAD.html*=ROLE_SUPPLIER_READ
+                	/supplierManager/listSupplierWRITE.html*=ROLE_SUPPLIER_WRITE
+                	<!-- 组织机构 -->
+                	/orgstructure/orgStructureFrameREAD.html*=ROLE_ORG_READ
+                	/orgstructure/orgStructureFrameWRITE.html*=ROLE_ORG_WRITE
+                	<!-- 职务管理 -->
+					/jobs/listREAD.html*=ROLE_JOB_READ
+					/jobs/listWRITE.html*=ROLE_JOB_WRITE
+					<!-- 职位管理 -->
+					/duty/dutyManagerREAD.html*=ROLE_DUTY_READ
+					/duty/dutyManagerWRITE.html*=ROLE_DUTY_WRITE
+					<!-- 工作安排 -->
+					/workReport/listWeeklyREAD.html*=ROLE_WEEKLY_READ
+					/workReport/listWeeklyWRITE.html*=ROLE_WEEKLY_WRITE
+					/workReport/listDailyWRITE.html*=ROLE_DAILY_WRITE
+					/workReport/listDailyREAD.html*=ROLE_DAILY_READ
+					<!-- 组织管理 -->
+					/organizationOperate/listOrgREAD.html*=ROLE_ORGADMIN_READ
+					/organizationOperate/listOrgWRITE.html*=ROLE_ORGADMIN_WRITE
+					<!-- 资格证书 -->
+					/personnelFile/listQualificationREAD.html*=ROLE_QUALIFICATION_READ
+					/personnelFile/listQualificationWRITE.html*=ROLE_QUALIFICATION_WRITE
+					<!-- 人事档案 -->
+					/personnelFile/listPersonREAD.html*=ROLE_PERSONNEL_READ
+					/personnelFile/listPersonWRITE.html*=ROLE_PERSONNEL_WRITE
+					<!-- 员工合同 -->
+					/personnelFile/listContAdminREAD.html*=ROLE_CONTADMIN_READ
+	                /personnelFile/listContAdminWRITE.html*=ROLE_CONTADMIN_WRITE
+	                
+					<!-- 发通知 -->
+					/notice/listNotice_READ.html*=ROLE_NOTICE_READ
+					/notice/listNotice_WRITE.html*=ROLE_NOTICE_WRITE      	
+		                	
+					<!-- 提醒管理 -->
+					/remind/listRemind_READ.html*=ROLE_REMIND_READ
+					/remind/listRemind_WRITE.html*=ROLE_REMIND_WRITE
+					
+					<!-- 咨询登记 -->
+					/advisoryManager/listAdvisoryREAD.html*=ROLE_ADVISORY_READ
+					/advisoryManager/listAdvisoryWRITE.html*=ROLE_ADVISORY_WRITE
+					<!-- 客户档案 -->
+					/customerRelationship/listCustomerInfoREAD.html*=ROLE_CUSTOMER_READ
+					/customerRelationship/listCustomerInfoWRITE.html*=ROLE_CUSTOMER_WRITE
+					<!-- 联系人档案 -->
+					/customerRelationship/listContactArchivesREAD.html*=ROLE_CONTACTARCHIVES_READ
+					/customerRelationship/listContactArchivesWRITE.html*=ROLE_CONTACTARCHIVES_WRITE
+					<!-- 回访登记 -->
+					/backvisit/listBackVisitREAD.html*=ROLE_BACKVISIT_READ
+					/backvisit/listBackVisitWRITE.html*=ROLE_BACKVISIT_WRITE
+					<!-- 项目管理 -->
+					/projectInfo/listProjectInfoREAD.html*=ROLE_PROJECTINFO_READ
+					/projectInfo/listProjectInfoWRITE.html*=ROLE_PROJECTINFO_WRITE
+					
+					<!-- 合同管理 -->
+					/contractManagement/listContractManagementActionREAD.html*=ROLE_CONTRACTMANAGEMENT_READ
+					/contractManagement/listContractManagementActionWRITE.html*=ROLE_CONTRACTMANAGEMENT_WRITE
+					<!-- 收款计划 -->
+					/contractManagement/listReceivedPaymentsREAD.html*=ROLE_RECEIVEDPAYMENTS_READ
+					/contractManagement/listReceivedPaymentsWRITE.html*=ROLE_RECEIVEDPAYMENTS_WRITE
+					<!-- 收款计划 -->
+					/contractManagement/listReturnPlanREAD.html*=ROLE_RETURNPLAN_READ
+					/contractManagement/listReturnPlanWRITE.html*=ROLE_RETURNPLAN_WRITE
+					<!-- 开票记录 -->
+					/contractManagement/listBillingRecordREAD.html*=ROLE_BILLINGRECORD_READ
+					/contractManagement/listBillingRecordWRITE.html*=ROLE_BILLINGRECORD_WRITE	
+					
+					<!-- 公出单 -->
+					/onTheRoadBill/listOnTheRoadBillREAD.html*=ROLE_ONTHEROAD_READ
+					/onTheRoadBill/listOnTheRoadBillWRITE.html*=ROLE_ONTHEROAD_WRITE
+					<!-- 加班单 -->
+					/overTimeBill/listOverTimeBillREAD.html*=ROLE_OVERTIME_READ
+					/overTimeBill/listOverTimeBillWRITE.html*=ROLE_OVERTIME_WRITE
+					<!-- 调休/请假单 -->
+					/leaveBill/listLeaveBillREAD.html*=ROLE_LEAVEBILL_READ
+					/leaveBill/listLeaveBillWRITE.html*=ROLE_LEAVEBILL_WRITE	                	
+		             <!-- 用车申请-->
+		             /apply/listApplyCarREAD.html*=ROLE_APPLYCAR_READ
+		             /apply/apply/listApplyCarWRITE.html*=ROLE_APPLYCAR_WRITE
+		             <!-- 招待申请-->
+		             /apply/listApplyGoodsREAD.html*=ROLE_APPLYGOODS_READ
+		             /apply/listApplyGoodsWRITE.html*=ROLE_APPLYGOODS_WRITE
+					<!-- 付款单 -->
+					/paymentorder/listPaymentorderActionREAD.html*=ROLE_PAYMENTORDER_READ
+					/paymentorder/listPaymentorderActionWRITE.html*=ROLE_PAYMENTORDER_WRITE
+		                	
+					<!-- 费用申请 -->
+					/expenseApply/listExpenseApplyActionREAD.html*=ROLE_EXPENSEAPPLY_READ
+					/expenseApply/listExpenseApplyActionWRITE.html*=ROLE_EXPENSEAPPLY_WRITE
+					
+					<!-- 收款单 -->
+					/financialManagement/listFinancialManagementREAD.html*=ROLE_FINANCIALMANAGE_READ
+					/financialManagement/listFinancialManagementWRITE.html*=ROLE_FINANCIALMANAGE_WRITE
+					<!-- 报销单 -->
+					/expenseForm/listExpenseFormActionREAD.html*=ROLE_EXPENSEFORM_READ
+					/expenseForm/listExpenseFormActionWRITE.html*=ROLE_EXPENSEFORM_WRITE
+					
+					<!-- 费用使用 -->
+					/expenseUse/listExpenseUseActionREAD.html*=ROLE_EXPENSEUSE_READ
+					/expenseUse/listExpenseUseActionWRITE.html*=ROLE_EXPENSEUSE_WRITE
+					
+					<!-- 流程管理 -->  
+					/flow/listFlow_READ.html*=ROLE_FLOW_READ
+					/flow/listFlow_WRITE.html*=ROLE_FLOW_WRITE
+					<!-- 工作流管理 -->
+					/workflow/listWorkflow_READ.html*=ROLE_WORKFLOW_READ
+					/workflow/listWorkflow_WRITE.html*=ROLE_WORKFLOW_WRITE      	
+					
+					<!-- 日程管理 -->
+					/workReport/listNewTaskREAD.html*=ROLE_NEWTASK_READ
+					/workReport/listNewTaskWRITE.html*=ROLE_NEWTASK_WRITE
+					
+		             <!-- 我的提醒 -->   
+		             /workspace/warnning/myWarnning/listWorkWarnningsREAD.html*=ROLE_WORKWARNNING_READ
+		             /workspace/warnning/myWarnning/listWorkWarnningsWRITE.html*=ROLE_WORKWARNNING_WRITE	
+		             <!-- 我的任务 -->
+		              /projectInfo/listMyPlanREAD.html*=ROLE_MYPLAN_READ
+		             /projectInfo/listMyPlanWRITE.html*=ROLE_MYPLAN_WRITE
+		             <!--我的数据 -->
+		             /workspace/data/listMyDataREAD.html*=ROLE_MYDATA_READ
+		             /workspace/data/listMyDataWRITE.html*=ROLE_MYDATA_WRITE 
+		             <!-- 我的团队 -->
+		              /workspace/data/listDataREAD.html*=ROLE_DATA_READ
+		             /workspace/data/listDataWRITE.html*=ROLE_DATA_WRITE
+
+					<!-- 会议室 -->
+					/workReport/listBoardroomREAD.html*=ROLE_BOARDROOM_READ
+					/workReport/listBoardroomWRITE.html*=ROLE_BOARDROOM_WRITE
+					
+					<!-- 会议室预定 -->
+					/workReport/listBookBoardroomREAD.html*=ROLE_BOOKBOARDROOM_READ
+					/workReport/listBookBoardroomWRITE.html*=ROLE_BOOKBOARDROOM_WRITE
+
+		             <!-- 工作计划模板 -->
+		             /projectInfo/listProPlanTempletREAD.html*=ROLE_PROPLANTEMPLET_READ
+		             /projectInfo/listProPlanTempletWRITE.html*=ROLE_PROPLANTEMPLET_WRITE 
+		             <!--收件箱 -->
+		              /notice/listReceviceNoticesREAD.html*=ROLE_RECEVICENOTICES_READ
+		             /notice/listReceviceNoticesWRITE.html*=ROLE_RECEVICENOTICES_WRITE 
+		             
+		               <!--收件箱 -->
+		              /notice/listReceviceNoticesREAD.html*=ROLE_RECEVICENOTICES_READ
+		             /notice/listReceviceNoticesWRITE.html*=ROLE_RECEVICENOTICES_WRITE
+		             <!-- 早会 --> 
+		             /workReport/listMeetingMonthREAD.html*=ROLE_MEETINGMONTH_READ
+		             /workReport/listMeetingMonthWRITE.html*=ROLE_MEETINGMONTH_WRITE
+		             <!-- 发货单 -->   	
+		             /delivery/listDeliveryTempletREAD.html*=ROLE_DELIVERY_READ
+		             /delivery/listDeliveryTempletWRITE.html*=ROLE_DELIVERY_WRITE 
+		           	
+		           	 <!-- 设计通知单管理 -->   	
+		             /productionOperation/listDesignNoticeREAD.html*=ROLE_DESIGNNOTICE_READ
+		             /productionOperation/listDesignNoticeWRITE.html*=ROLE_DESIGNNOTICE_WRITE 
+		           	
+		             <!-- 生产经营管理 -->   	
+		             /productionOperation/listProductionOperationREAD.html*=ROLE_PRODUCTIONOPERATION_READ
+		             /productionOperation/listProductionOperationWRITE.html*=ROLE_PRODUCTIONOPERATION_WRITE 
+		             <!-- 产品计划管理 -->   	
+		             /productionOperation/listProductionOperationDetailMainREAD.html*=ROLE_PRODUCTIONOPERATIONDETAIL_READ
+		             /productionOperation/listProductionOperationDetailMainWRITE.html*=ROLE_PRODUCTIONOPERATIONDETAIL_WRITE 
+		             
+		              <!-- 异常管理 -->   	
+		             /productionOperation/listProductionOperationExceptionMainREAD.html*=ROLE_PRODUCTIONOPERATIONEXCEPTION_READ
+		             /productionOperation/listProductionOperationExceptionMainWRITE.html*=ROLE_PRODUCTIONOPERATIONEXCEPTION_WRITE 
+		             
+		               <!-- 售后管理 -->   	
+		             /repairRecord/listRepairRecordREAD.html*=ROLE_REPAIRRECORD_READ
+		             /repairRecord/listRepairRecordWRITE.html*=ROLE_REPAIRRECORD_WRITE 
+		                	
+	                /security/*=ROLE_ADMIN
+	                /communication/groups/listGroups.html*=ROLE_ADMIN
+	                /preview/empty/NEWS_SHARE.html*=ROLE_ADMIN
+	                /dataimport/**/*=ROLE_ADMIN
+	                /workspace/**/*=ROLE_USER
+	                /**/*.html*=ROLE_USER
+	            </value>
+	        </property>
+	    </bean>
+</beans>

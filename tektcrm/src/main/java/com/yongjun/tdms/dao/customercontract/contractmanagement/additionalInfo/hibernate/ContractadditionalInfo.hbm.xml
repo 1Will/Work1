@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.customercontract.contractmanagement.additionalInfo.ContractAdditionalInfo" table="t_contractAdditional">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_contractAdditional_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        
+        <property name="bank" type="string">
+			<column name="BANK" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="bankAccount" type="string">
+			<column name="BANK_ACCOUNT" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="address" type="string">
+			<column name="ADDRESS" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="comment" type="string">
+			<column name="REMARKES" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+		<many-to-one name="financialPer"  class="com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives">
+			<column name="FINANCIALPER_ID" not-null="false" ></column>
+		</many-to-one>
+		<many-to-one name="contractManagement" class="com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement">
+			<column name="CONTRACTMANAGEMENT_ID" not-null="true"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

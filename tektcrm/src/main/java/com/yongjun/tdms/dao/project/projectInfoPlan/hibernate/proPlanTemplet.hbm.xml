@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2009 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: contactArchives.hbm.xml 2009-12-7 16:50:35Z wliu $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.project.projectInfoPlan.ProPlanTemplet" table="t_proPlanTemplet">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_proPlanTemplet_sequence</param>
+				<param name="parameters">START WITH 1</param>
+			</generator>
+		</id>
+		<property name="code" type="string">
+			<column name="CODE" not-null="true" sql-type="NVARCHAR(100)" />
+		</property>
+		<property name="name" type="string">
+			<column name="name" not-null="false" sql-type="NVARCHAR(100)" />
+		</property>
+		<property name="proplanName" type="string">
+			<column name="PROPLANNAME" not-null="false" sql-type="NVARCHAR(100)" />
+		</property>
+		<property name="outline" type="string">
+			<column name="outline" not-null="false" sql-type="NVARCHAR(1000)" />
+		</property>
+        <!-- 优先级 -->
+        <property name="priority"  column="PRIORITY"   type="int" length="2"/>
+	</class>
+</hibernate-mapping>

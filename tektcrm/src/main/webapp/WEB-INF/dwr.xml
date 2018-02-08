@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+<dwr>
+	<allow>
+	    <convert match="com.yongjun.tdms.model.base.produttype.ProductType" converter="bean" />
+		<convert match="com.yongjun.pluto.model.security.Department" converter="bean" />
+		<convert match="com.yongjun.tdms.model.base.area.Area" converter="bean" />
+		<convert match="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo" converter="bean"></convert>
+		<convert match="com.yongjun.pluto.model.codevalue.CodeValue" converter="bean" />
+		<convert match="com.yongjun.tdms.model.CustomerRelationship.contactArchives.ContactArchives" converter="bean" />
+		<convert match="com.yongjun.tdms.model.base.duty.Duty" converter="bean" />
+		<convert match="com.yongjun.tdms.model.advisory.Advisory" converter="bean"/>  
+		<convert match="com.yongjun.tdms.model.backvisit.BackVisit" converter="bean"/>  
+		<convert match="com.yongjun.tdms.model.project.ProjectInfo" converter="bean"/>
+		<convert match="com.yongjun.tdms.model.statistic.DailyStatistic" converter="bean"/>
+		<convert match="com.yongjun.tdms.model.workspace.data.Data" converter="bean"/> 
+	   	<create javascript="InstitutionSelectDeptJs" creator="spring">
+	   		<param name="beanName" value="departmentManager"></param>
+	   		<include method="InstitutionSelectDept" />
+	   	</create>
+	   	<create javascript="ContractManagementAndBatchJs" creator="spring">
+	   		<param name="beanName" value="returnPlanManager"></param>
+	   		<include method="contractManagementAndBatch" />
+	   	</create>
+	   	<create javascript="AreaSelectJs" creator="spring">
+   			<param name="beanName" value="areaManager"></param>
+   			<include method="loadAreaKeyProperty" />
+   		</create>
+		<!--zsz 2010.03.23 begin-->
+   		<create javascript="CustomerList" creator="spring">
+   		    <param name="beanName" value="customerInfoManager"></param>
+   		    <include method="getCustomerList"/>
+   		    <include method="getOneCustomerByName"/>
+   		</create>
+   		
+		<!--zsz 2010.03.23 end-->
+		<create javascript="DeptCascadeDutyJs" creator="spring">
+	   		<param name="beanName" value="dutyManager"></param>
+	   		<include method="loadDutiesByDept" />
+	   	</create>
+	   	
+	   	<!--gliang 2010.03.23-->
+		<create javascript="ContractAndBatchJs" creator="spring">
+	   		<param name="beanName" value="returnPlanManager"></param>
+	   		<include method="contractAndBatch" />
+	   	</create>
+	   	<!-- 2017.08.03-->
+		<create javascript="BatchForBillJs" creator="spring">
+	   		<param name="beanName" value="returnPlanManager"></param>
+	   		<include method="batchForBill" />
+	   	</create>
+	   	
+	   		<!--gliang 2010.03.28-->
+		<create javascript="CheckSumJs" creator="spring">
+	   		<param name="beanName" value="returnPlanManager"></param>
+	   		<include method="checkSum" />
+	   	</create>
+	   	
+   		<!-- 人事档案开户 登录名称是否重复 hmguan 2011-05-09-->
+   		<create javascript="loginNameRepeatJs" creator="spring">
+   			<param name="beanName" value="personnelFilesManager"></param>
+   			<include method="loginNameByCode" />
+   		</create>
+   		<!-- 通过日期姓名查询 回访记录、客户档案、联系人档案 、项目-->
+   		<create javascript="AllByDateAndName" creator="spring">
+   			<param name="beanName" value="dailyManager"></param>
+   			<include method="loadDailyNeed" />
+   		</create>
+   		<!-- 通过日期查询该日报 -->
+   		<create javascript="DailyByDate" creator="spring">
+   			<param name="beanName" value="dailyManager"></param>
+   			<include method="loadDailyByDate" />
+   		</create>
+   		
+   		<!-- 查询上周计划 -->
+   		<create javascript="GetLastPlan" creator="spring">
+   			<param name="beanName" value="editWeekPlanAction"></param>
+   			<include method="getLastPlanMethod" />
+   		</create>
+   		<!-- 获取收款计划,收款单 -->
+   		<create javascript="ReturnPlan" creator="spring">
+   			<param name="beanName" value="returnPlanManager"></param>
+   			<include method="getReturnPlan" />
+   		</create>
+   		<!-- 获取收款计划，开票记录 -->
+   		<create javascript="ReturnPlanBill" creator="spring">
+   			<param name="beanName" value="returnPlanManager"></param>
+   			<include method="getReturnPlanBill" />
+   		</create>
+   		
+   		<!-- 获取周计划是否存在 -->
+   		<create javascript="HasWeekly" creator="spring">
+   			<param name="beanName" value="editWeeklyAction"></param>
+   			<include method="hasWeekly" />
+   		</create>
+   		
+   		<!-- 获取银行信息 -->
+   		<create javascript="Bank" creator="spring">
+   			<param name="beanName" value="contractAdditionInfoManager"></param>
+   			<include method="getBankInfo" />
+   		</create>
+   		
+   		<!-- 设置消息已读 -->
+   		<create javascript="Read" creator="spring">
+   			<param name="beanName" value="listWorkWarnningDetailAction"></param>
+   			<include method="setRead" />
+   		</create>
+   		<!-- 获取晨会记录 -->
+   		<create javascript="MeetingMonth" creator="spring">
+   		    <param name="beanName" value="meetingMonthManager"></param>
+   		    <include method="loadByDate"/>
+   		</create>
+   		<!-- 设置军品 、民品下拉选-->
+   		<create javascript="AllClassification" creator="spring">
+   		    <param name="beanName" value="customerInfoManager"></param>
+   		    <include method="getAllClassification"/>
+   		</create>
+   		<create javascript="AllClassifications" creator="spring">
+   		    <param name="beanName" value="dataStatisticsManager"></param>
+   		    <include method="getAllClassifications"/>
+   		</create>
+   		
+   		<create javascript="AllType" creator="spring">
+   		    <param name="beanName" value="productTypeManager"></param>
+   		    <include method="loadByBtype"/>
+   		</create>
+   		<!--更新排序 __项目总计划-->
+   		<create javascript="AdjustSerialNum" creator="spring">
+   		    <param name="beanName" value="projectInfoPlanManager"></param>
+   		    <include method="saveOrderNum"/>
+   		</create>
+   		<!-- 出库数量-->
+   		<create javascript="DeliveryCount" creator="spring">
+   		    <param name="beanName" value="productListManager"></param>
+   		    <include method="deliveryCountIsOrNot"/>
+   		</create>
+   		<!-- 客户信息数据-->
+   		<create javascript="projectInfo" creator="spring">
+   		    <param name="beanName" value="projectInfoManager"></param>
+   		    <include method="loadProjectInfoByCustomerId"/>
+   		</create>
+   		<!-- 新增发货单明细根据产品明细 -->
+   		<create javascript="invoicesListNew" creator="spring">
+   		    <param name="beanName" value="invoicesListManager"></param>
+   		    <include method="saveInvoicesList"/>
+   		</create>
+   		<!-- 复制项目组成员和项目联系人 -->
+   		<create javascript="CopyProjectPerAndPlan" creator="spring">
+   		    <param name="beanName" value="projectInfoManager"></param>
+   		    <include method="saveProjectPerAndPlan"/>
+   		     <include method="saveProductionOperationDetailPlan"/>
+   		</create>
+   		<!-- 数据展示图 -->
+   		<create javascript="DailyStatistic" creator="spring">
+   		    <param name="beanName" value="dataStatisticsManager"></param>
+   		    <include method="loadAllDailyStatisticByContion"/>
+   		</create>
+   		<create javascript="DataStatistic" creator="spring">
+   		    <param name="beanName" value="dataStatisticsManager"></param>
+   		    <include method="loadAllDataStatisticByContion"/>
+   		</create>
+   		<!-- 公司的数据展示图-->
+   		<create javascript="myData" creator="spring">
+   		    <param name="beanName" value="dataStatisticsManager"></param>
+   		    <include method="loadAllMyDataByContion"/>
+   		</create>
+   		<!-- 公司的数据属性展示图-->
+   		<create javascript="myDataBusiness" creator="spring">
+   		    <param name="beanName" value="dataStatisticsManager"></param>
+   		    <include method="loadAllMyDataByBusinessType"/>
+   		</create>
+   		<!-- //新建抄送人 -->
+   		<create javascript="newCopySendPerson" creator="spring">
+   		    <param name="beanName" value="copySendPersonManager"></param>
+   		    <include method="saveCopySendPerson"/>
+   		</create>
+   		<!--更新排序__请假单审批人  -->
+   		<create javascript="AdjustSerialNum_runpoint" creator="spring">
+   		    <param name="beanName" value="runPointManager"></param>
+   		    <include method="saveOrderNum"/>
+   		</create>
+   		
+   		<!-- 查找预订会议室 -->
+   		<create javascript="BookBoardroom" creator="spring">
+   		    <param name="beanName" value="bookBoardroomManager"></param>
+   		    <include method="hasConflict"/>
+   		</create>
+   		
+   		<!-- 取消预订会议室 -->
+   		<create javascript="CancelBook" creator="spring">
+   		    <param name="beanName" value="editBookBoardroomAction"></param>
+   		    <include method="cancelBook"/>
+   		</create>
+   </allow>
+</dwr>
+

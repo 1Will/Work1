@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2010 YongJun Digital Information Technology Co.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of YongJun
+	Digital Information Technology Co.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+ 	DERIVATIVES.
+-->
+<!-- $Id: personnelFiles.hbm.xml 2010-02-03 wliu $-->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.personnelFiles.Becomes" table="t_becomes">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_becomes_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		<!--  工号 -->
+		<property name="code" type="string">
+            <column name="CODE" not-null="true" sql-type="NVARCHAR(20)" />
+        </property>
+        <!--  姓名 -->
+        <property name="name" type="string">
+            <column name="NAME" not-null="true" sql-type="NVARCHAR(20)" />
+        </property>
+        <!--  档案编码 -->
+		<property name="personnelCode" type="string">
+			<column name="PERSONNEL_CODE" not-null="true" sql-type="NVARCHAR(20)" />
+		</property>
+		<!--  单位 -->
+		<many-to-one name="inst" class="com.yongjun.pluto.model.base.institution.Institution">
+			<column name="INST_ID" not-null="true"/>
+		</many-to-one>
+		<!--  部门 -->
+		<many-to-one name="dept" class="com.yongjun.pluto.model.security.Department">
+			<column name="DEPT_ID" not-null="false"/>
+		</many-to-one>
+		<!--  职位 -->
+		<many-to-one name="duty" class="com.yongjun.tdms.model.base.duty.Duty">
+			<column name="DUTY_ID" not-null="true"/>
+		</many-to-one>
+		<!--  合同编号 -->
+		<property name="contractCode" type="string">
+			<column name="CONTRACT_CODE" not-null="true" sql-type="NVARCHAR(20)" />
+		</property>
+		<!--  转正日期 -->
+		<property name="becomesDate" type="timestamp">
+			<column name="BECOMES_DATE" not-null="true" />
+		</property>
+		<!--  手机 -->
+		<property name="mobilephone" type="string">
+			<column name="MOBILE_PHONE" not-null="true" sql-type="NVARCHAR(20)" />
+		</property>
+		<!--  电话 -->
+		<property name="telephone" type="string">
+			<column name="TELEPHONE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+        <!--  状态 -->
+		 <many-to-one name="status" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="STATUS" not-null="true"/>
+		</many-to-one>
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+        <many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization">
+			<column name="ORG_ID"/>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

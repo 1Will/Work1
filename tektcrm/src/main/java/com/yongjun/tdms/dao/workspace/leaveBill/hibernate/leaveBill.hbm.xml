@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.workspace.leaveBill.LeaveBill" table="t_leavebill">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_leavebill_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        <!-- 编码 -->
+        <property name="code" type="string">
+            <column name="TITLE" not-null="true"  sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 创建日期 -->
+        <property name="createDate" column="CREATE_DATE" type="timestamp"/>
+        <!-- 申请人 -->
+        <many-to-one name="applyPerson" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles" lazy="false">
+			<column name="APPLY_PERSON_ID" not-null="true" />
+		</many-to-one>
+		<!-- 部门 -->
+        <many-to-one name="dept" class="com.yongjun.pluto.model.security.Department" lazy="false">
+			<column name="DEPT_ID" not-null="true" />
+		</many-to-one>
+		<!-- 开始时间 -->
+		<property name="startTime" column="START_TIME" type="timestamp"/>
+		<!-- 结束时间 -->
+		<property name="endTime" column="END_TIME" type="timestamp"/>
+		<!-- 工时 -->
+		 <property name="manHour" column="MAN_HOUR" type="double"/>
+		<!-- 状态 -->
+        <many-to-one name="status" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+			<column name="STATUS" not-null="true"/>
+		</many-to-one>
+		
+		<!-- 类型-->
+        <many-to-one name="type" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+			<column name="TYPE" not-null="true"/>
+		</many-to-one>
+		<!-- 所属流程-->
+        <many-to-one name="flow" class="com.yongjun.tdms.model.workflow.Flow" lazy="false">
+			<column name="flow" not-null="true"/>
+		</many-to-one>
+		<!-- 事由 -->
+	    <property name="betreffzeile" type="string">
+            <column name="BETREFFZEILE" not-null="true"  sql-type="NVARCHAR(500)"/>
+        </property>
+        <!-- 失败原因 -->
+	    <property name="failReason" type="string">
+            <column name="FAIL_REASON" not-null="false"  sql-type="NVARCHAR(500)"/>
+        </property>
+        <!-- 提交判断 -->
+        <property name="isSaved" type="string">
+            <column name="isSaved" not-null="false" sql-type="NVARCHAR(1)"/>
+        </property>
+        
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+        <property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+        <many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization" lazy="false">
+			<column name="ORG_ID"/>
+		</many-to-one>
+    </class>
+
+</hibernate-mapping>

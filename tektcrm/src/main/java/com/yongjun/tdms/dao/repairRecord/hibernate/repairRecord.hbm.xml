@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2001-2009 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: contactArchives.hbm.xml 2009-12-7 16:50:35Z wliu $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.repairRecord.RepairRecord" table="t_repairRecord">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_repairRecord_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<!-- 
+		private PersonnelFiles personnelFiles;
+	private String num;         //	序号
+	private Date receiveDate;	//	接收日期
+	private String workNum;	//	工作单号
+	private CodeValue branch;	//	兵种:海军/空军/火箭军/二炮/陆军/武警/无
+	private String contactPerson;	//	联系人
+	private String address;	//	用户地址
+	private String airtypeNum;	//	空调型号
+	private double airCount = 0d;	//	台数
+		
+		 -->
+		<version name="version" column="VERSION" type="long"/>
+		<!-- 人事报告人-->
+		<many-to-one name="personnelFiles" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles" lazy="false">
+			<column name="personnelFiles" not-null="false" />
+		</many-to-one>
+		<!-- 序号-->
+		<property name="num" type="string">
+            <column name="num" not-null="true" sql-type="NVARCHAR(100)"/>
+        </property>
+        <!-- 接收日期 -->
+		<property name="receiveDate" type="timestamp">
+			<column name="receiveDate"/>
+		</property>
+		
+		<!-- 工作单号-->
+		<property name="workNum" type="string">
+            <column name="workNum" not-null="true" sql-type="NVARCHAR(100)"/>
+        </property>
+		<!-- 兵种-->
+		<many-to-one name="branch" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+			<column name="branch" not-null="false" />
+		</many-to-one>
+		<!-- 空调类型-->
+		<many-to-one name="airType" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+			<column name="airType" not-null="false" />
+		</many-to-one>
+			<!-- 联系人-->
+		<property name="contactPerson" type="string">
+            <column name="contactPerson" not-null="true" sql-type="NVARCHAR(100)"/>
+        </property>
+        	<!-- 用户地址-->
+		<property name="address" type="string">
+            <column name="address" not-null="true" sql-type="NVARCHAR(100)"/>
+        </property>
+        	<!-- 空调型号-->
+		<property name="airtypeNum" type="string">
+            <column name="airtypeNum" not-null="true" sql-type="NVARCHAR(100)"/>
+        </property>
+        	<!-- 台数-->
+		<property name="airCount" type="int">
+            <column name="airCount" not-null="true" />
+        </property>
+		<!-- 
+		private String faultDesc;	//	故障情况
+	private CodeValue repirType;	//	维修类型:安装（调试）/维修（检修）/保障/其他
+	private Date finishDate;	//	"完结日期"
+	private String repairResult;	//	故障处理结果
+	private CodeValue faultType;	//	故障分类:压缩机损坏/风机损坏/水泵损坏/系统漏氟/电控板损坏/电器损坏/系统堵/电路故障/线路故障/漏水/噪音/其他
+	private double partFee = 0d;	//	备件费用
+	private Date leaveDate;	//	出发时间
+		 -->
+		 
+		 	<!-- 故障情况-->
+		<property name="faultDesc" type="string">
+            <column name="faultDesc" not-null="true" sql-type="NVARCHAR(200)"/>
+        </property>
+        <!-- 维修类型-->
+		<many-to-one name="repirType" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+			<column name="repirType" not-null="false" />
+		</many-to-one>
+		 <!--完结日期  -->
+		 <property name="finishDate" column="finishDate" type="timestamp"/>
+		 	<!-- 故障处理结果-->
+		<property name="repairResult" type="string">
+            <column name="repairResult" not-null="true" sql-type="NVARCHAR(200)"/>
+        </property>
+        
+         <!-- 故障分类-->
+		<property name="faultType" type="string">
+            <column name="faultType" not-null="false" sql-type="NVARCHAR(200)"/>
+        </property>
+		   <!-- 故障分类描述-->
+		   <property name="faultTypeDesc" type="string">
+            <column name="faultTypeDesc" not-null="false" sql-type="NVARCHAR(200)"/>
+        </property>
+			<!--备件费用-->
+		<property name="partFee" type="double">
+            <column name="partFee" not-null="true" />
+        </property>
+		 
+		  <!--出发时间  -->
+		 <property name="leaveDate" column="leaveDate" type="timestamp"/>
+		 	<!-- 故障处理结果-->
+		 	<!-- private Date arriveDate;//  到达时间
+	private String leavePlace;//出发地点
+	private String arrivePlace;//到达地点
+	private Date startDate;	//	开工日期
+	private Date endDate;	//	完工日期
+	private String mark;	//	备注 -->
+	  <!-- 到达时间  -->
+		 <property name="arriveDate" column="arriveDate" type="timestamp"/>
+	
+	 	<!-- 出发地点-->
+		<property name="leavePlace" type="string">
+            <column name="leavePlace" not-null="true" sql-type="NVARCHAR(100)"/>
+        </property>
+         	<!--到达地点-->
+		<property name="arrivePlace" type="string">
+            <column name="arrivePlace" not-null="true" sql-type="NVARCHAR(100)"/>
+        </property>
+		 
+		   <!--开工日期  -->
+		 <property name="startDate" column="startDate" type="timestamp"/>
+		 
+		 <!-- 完工日期  -->
+		 <property name="endDate" column="endDate" type="timestamp"/>
+	 	<!--到达地点-->
+		<property name="mark" type="string">
+            <column name="mark" not-null="true" sql-type="NVARCHAR(500)"/>
+        </property>
+		 <property name="isSaved" type="string">
+            <column name="isSaved" not-null="false" sql-type="NVARCHAR(100)"/>
+        </property>
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		
+		<property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

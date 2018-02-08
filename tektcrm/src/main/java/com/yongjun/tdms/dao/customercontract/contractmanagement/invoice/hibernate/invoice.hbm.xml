@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.customercontract.contractmanagement.invoice.Invoices" table="t_invoice">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_contractPlan_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<property name="deliveryNum" type="string">
+			<column name="deliveryNum"/>
+		</property>
+		<property name="deliveryDate" type="date">
+			<column name="deliveryDate"/>
+		</property>
+		<many-to-one name="deliveryPerson" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+			<column name="deliveryPerson" not-null="false"/>
+		</many-to-one>
+		<!-- <property name="invoiceNum" type="string">
+			<column name="invoiceNum"/>
+		</property> -->
+		<many-to-one name="contractManagement" class="com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement">
+			<column name="contractManagement" not-null="false"/>
+		</many-to-one>
+		<many-to-one name="productList" class="com.yongjun.tdms.model.customercontract.contractmanagement.productlist.ProductList">
+			<column name="productList" not-null="false"/>
+		</many-to-one>
+		<property name="deliveryCount" type="int">
+			<column name="DELIVERYCOUNT"/>
+		</property>
+		<many-to-one name="customerInfo" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo">
+			<column name="customerInfo" not-null="false"/>
+		</many-to-one>
+		<property name="contacter" type="string">
+			<column name="contacter"/>
+		</property>
+		<property name="telephone" type="string">
+			<column name="telephone"/>
+		</property>
+		<many-to-one name="deliveryWay" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="deliveryWay" not-null="false"/>
+		</many-to-one>
+		<property name="delivreyAddress" type="string" length="500">
+			<column name="delivreyAddress"/>
+		</property>
+		<many-to-one name="deliveryStatus" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="deliveryStatus" not-null="false"/>
+		</many-to-one>
+		<property name="deliveryPrice" type="double">
+			<column name="deliveryPrice"/>
+		</property>
+		<property name="receiptDate" type="date">
+			<column name="receiptDate"/>
+		</property>
+        <many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="department" not-null="false"/>
+		</many-to-one>
+		<property name="contactWay" type="string">
+			<column name="contactWay"/>
+		</property>
+		<property name="mark" type="string" length="2000">
+			<column name="mark"/>
+		</property>
+		<property name="isSaved" type="string" length="1">
+			<column name="isSaved"/>
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.notice.ReceviceNotice" table="t_recevice_notice">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_recevice_notice_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        <property name="title" type="string">
+            <column name="TITLE" not-null="true"  sql-type="NVARCHAR(50)"/>
+        </property>
+        <property name="content" type="string">
+            <column name="CONTENT" not-null="false" sql-type="NVARCHAR(500)"/>
+        </property>
+        <property name="readStatus" type="com.yongjun.tdms.dao.notice.hibernate.ReadStatusEnum">
+            <column name="READ_STATUS" not-null="false" length="50"/>
+        </property>
+        <property name="fileName" type="string">
+			<column name="FILE_NAME" not-null="false" sql-type="NVARCHAR(150)" />
+		</property>
+		<property name="position" type="string">
+			<column name="POSITION" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="name" type="string">
+			<column name="NAME" not-null="false" sql-type="NVARCHAR(150)" />
+		</property>
+		<property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+        <property name="receviceDate" type="date">
+			<column name="RECEVICE_DATE" not-null="false"/>
+		</property>
+	    <property name="validityDate" type="date">
+			<column name="VALIDITY_DATE" not-null="false"/>
+		</property>
+		<many-to-one name="noticeUser" class="com.yongjun.pluto.model.security.User" lazy="false">
+			<column name="NOTICE_USER_ID" not-null="true" />
+		</many-to-one>
+		<many-to-one name="receviceUser" class="com.yongjun.pluto.model.security.User" lazy="false">
+			<column name="RECEVICE_USER_ID" not-null="true" />
+		</many-to-one>
+	    <many-to-one name="sendNotice" class="com.yongjun.tdms.model.notice.SendNotice" lazy="false">
+			<column name="SEND_NOTICE_ID" not-null="false" />
+		</many-to-one>
+		<many-to-one name="noticeType" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+			<column name="NOTICE_TYPE" not-null="true"/>
+		</many-to-one>
+    </class>
+    <query name="GetNumberOfUnReadNoticByUserID">
+        <![CDATA[SELECT COUNT(receviceNotice.id) FROM ReceviceNotice AS receviceNotice WHERE receviceNotice.readStatus='UNREAD' 
+                 AND receviceNotice.receviceUser.id = :userId AND receviceNotice.disabled = false AND receviceNotice.noticeType.id = :c
+        ]]>
+    </query>
+    <query name="GetAllUnReadNoticByUserID">
+        <![CDATA[FROM ReceviceNotice AS receviceNotice WHERE 
+                 receviceNotice.receviceUser.id = :userId AND receviceNotice.validityDate >= :validityDate
+                 AND receviceNotice.disabled = false 
+                 order by receviceNotice.id desc
+        ]]>
+    </query>
+    <query name="GetAllNoticByUserID">
+        <![CDATA[FROM ReceviceNotice AS receviceNotice WHERE 
+                 receviceNotice.receviceUser.id = :userId 
+                 AND receviceNotice.disabled = false 
+                 order by receviceNotice.id desc
+        ]]>
+    </query>
+    
+    <query name="GetAllUnReadNoticByUserIDTwo">
+        <![CDATA[FROM ReceviceNotice AS receviceNotice WHERE receviceNotice.readStatus='UNREAD' 
+                 AND receviceNotice.receviceUser.id = :userId AND receviceNotice.disabled = false
+        ]]>
+    </query>
+</hibernate-mapping>

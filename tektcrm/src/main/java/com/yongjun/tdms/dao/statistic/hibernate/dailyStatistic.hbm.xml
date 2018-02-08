@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.statistic.DailyStatistic" table="t_dailyStatistic">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_dailyStatistic_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        <!-- 年月日 -->
+        <property name="dailyDate" type="timestamp">
+            <column name="dailyDate"   />
+        </property>
+      
+        <!-- 日报次数-->
+        <property name="dailyNum" type="long">
+            <column name="dailyNum" />
+        </property>
+        
+        <!-- 日报回复次数-->
+        <property name="dailyReplyNum" type="long">
+            <column name="dailyReplyNum" />
+        </property>
+        
+             <!-- 新增客户数量-->
+        <property name="customerNum" type="long">
+            <column name="customerNum" />
+        </property>
+          <!-- 新增客户完整度-->
+        <property name="customerIntegrity" type="double">
+            <column name="customerIntegrity" />
+        </property>
+           <!-- 新增联系人数量-->
+        <property name="contactArchivesNum" type="long">
+            <column name="contactArchivesNum" />
+        </property>
+          <!-- 新增联系人完整度-->
+        <property name="contactArchivesIntegrity" type="double">
+            <column name="contactArchivesIntegrity" />
+        </property>
+        
+         <!-- 回访次数-->
+        <property name="backVisitNum" type="long">
+            <column name="backVisitNum" />
+        </property>
+        
+        <!-- 回访回复次数-->
+        <property name="backVisitReplyNum" type="long">
+            <column name="backVisitReplyNum" />
+        </property>
+        
+        <!-- 项目数-->
+        <property name="projectNum" type="long">
+            <column name="projectNum" />
+        </property>
+          <!-- 项目计划数-->
+        <property name="projectPlanNum" type="long">
+            <column name="projectPlanNum" />
+        </property>
+          <!-- 项目计划改变数-->
+        <property name="projectPlanChangeNum" type="long">
+            <column name="projectPlanChangeNum" />
+        </property>
+          <!-- 项目计划完成数-->
+        <property name="projectPlanFinishNum" type="long">
+            <column name="projectPlanFinishNum" />
+        </property>
+        
+          <!-- 合同数-->
+        <property name="contractManagementNum" type="long">
+            <column name="contractManagementNum" />
+        </property>
+           <!-- 合同金额-->
+        <property name="contractManagementMoney" type="double">
+            <column name="contractManagementMoney" />
+        </property>
+          <!--合同计划数-->
+        <property name="contractManagementPlanNum" type="long">
+            <column name="contractManagementPlanNum" />
+        </property>
+          <!-- 合同计划改变数-->
+        <property name="contractManagementPlanChangeNum" type="long">
+            <column name="contractManagementPlanChangeNum" />
+        </property>
+          <!-- 合同计划完成数-->
+        <property name="contractManagementPlanFinishNum" type="long">
+            <column name="contractManagementPlanFinishNum" />
+        </property>
+        
+         <!-- 收款数量-->
+        <property name="financialManagementNum" type="long">
+            <column name="financialManagementNum" />
+        </property>
+          <!-- 收款金额-->
+        <property name="financialManagementMoney" type="double">
+            <column name="financialManagementMoney" />
+        </property>
+         <!-- 开票数量-->
+        <property name="billingRecordNum" type="long">
+            <column name="billingRecordNum" />
+        </property>
+          <!-- 开票金额-->
+        <property name="billingRecordMoney" type="double">
+            <column name="billingRecordMoney" />
+        </property>
+          <!-- 出差数-->
+        <property name="businessTravelNum" type="long">
+            <column name="businessTravelNum" />
+        </property>
+          <!-- 请假数-->
+        <property name="leaveNum" type="long">
+            <column name="leaveNum" />
+        </property>
+          <!-- 加班数-->
+        <property name="overtimeNum" type="long">
+            <column name="overtimeNum" />
+        </property>
+        
+        <!-- 发生人 -->
+        <many-to-one name="personnelFiles" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles" lazy="false">
+			<column name="personnelFiles_id"  />
+		</many-to-one>
+    </class>
+
+</hibernate-mapping>

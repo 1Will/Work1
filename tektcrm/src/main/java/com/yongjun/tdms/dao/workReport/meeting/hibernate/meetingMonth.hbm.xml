@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.workReport.meeting.MeetingMonth" table="t_meetingMonth">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_meetingMonth_sequence</param>
+				<param name="parameters">START WITH 1</param>
+			</generator>
+		</id>
+		
+        <property name="theme" type="string">
+			<column name="THEME" not-null="true" sql-type="NVARCHAR(50)" />
+		</property>
+		<property name="weekmeeting" type="string">
+			<column name="WEEKMEETING" sql-type="NVARCHAR(20)" />
+		</property>
+       <property name="date" type="string">
+			<column name="DATE" not-null="true" sql-type="NVARCHAR(10)" />
+		</property>
+		
+		<many-to-one name="publisher" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+			<column name="PUBLISHER" not-null="true"/>
+		</many-to-one>
+		
+	</class>
+</hibernate-mapping>

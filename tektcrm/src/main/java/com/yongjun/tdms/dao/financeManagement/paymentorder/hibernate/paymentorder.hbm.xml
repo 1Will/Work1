@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 4001-4009 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: additionalInfo.hbm.xml 4009-12-7 14:06:35Z wliu $ -->
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.financeManagement.paymentorder.Paymentorder" table="t_paymentorder">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_paymentorder_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION" type="long"/>
+		<property name="code" type="string">
+            <column name="CODE" not-null="false"  sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 供应商 -->
+        <many-to-one name="supplier" class="com.yongjun.tdms.model.supplier.Supplier">
+			<column name="SUPPLIER" not-null="false"/>
+		</many-to-one>
+		<!-- 新供应商 -->
+		<many-to-one name="customerInfo" class="com.yongjun.tdms.model.CustomerRelationship.customerProfiles.CustomerInfo" lazy="false">
+        	<column name="customerInfo_id" not-null="false"></column>
+        </many-to-one>
+        <many-to-one name="produceType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="PRODUCETYPE" not-null="false"/>
+		</many-to-one>
+         <property name="totalMoney" type="double">
+			<column name="TOTALMONEY" />
+		</property>
+        	<many-to-one name="paymentPersion" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+			<column name="PAYMENTPERSION" not-null="false" />
+		</many-to-one>
+        <many-to-one name="department" class="com.yongjun.pluto.model.security.Department">
+			<column name="DEPARMENT" not-null="false"/>
+		</many-to-one>
+		<!-- 合同 -->
+		 <many-to-one name="contractManagement" class="com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement">
+			<column name="contractManagement_id" not-null="false"/>
+		</many-to-one>
+	<!-- 项目 -->
+		 <many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo">
+			<column name="projectInfo" not-null="false"/>
+		</many-to-one>
+		<property name="position" type="string">
+			<column name="position" not-null="false" sql-type="NVARCHAR(200)"/>
+		</property>
+		<property name="fileName" type="string">
+			<column name="fileName" not-null="false" sql-type="NVARCHAR(200)"/>
+		</property>
+		<property name="remark" type="string">
+			<column name="REMARK" not-null="false" sql-type="NVARCHAR(100)"/>
+		</property>
+		<!-- 币种-->
+		<many-to-one name="moneyType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="MONEYTYPE" not-null="false"/>
+		</many-to-one>
+		
+		<!-- 银行账户 -->
+		<property name="bankNum" type="string">
+            <column name="BANKNUM" not-null="false"  sql-type="NVARCHAR(50)"/>
+        </property>
+        
+		<!-- 银行名称 -->
+		<property name="bankName" type="string">
+			<column name="BANKNAME" not-null="false" sql-type="NVARCHAR(50)"/>
+		</property>
+        
+		<!-- 银行名称 -->
+		<many-to-one name="payType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+            <column name="PAYTYPE" not-null="false" />
+        </many-to-one>
+		
+		<!-- 是否提交 -->
+		<property name="isSaved" type="string">
+			<column name="isSaved" sql-type="NVARCHAR(1)"/>
+		</property>
+		
+		<property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

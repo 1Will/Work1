@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.personnelFiles.qualification.Qualification" table="t_perQualification">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_perQualification_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		
+        <property name="name" type="string">
+			<column name="NAME" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>
+        
+        <many-to-one name="personnelFiles" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+			<column name="personnelFiles_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="institution" class="com.yongjun.pluto.model.base.institution.Institution">
+			<column name="institution_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="dept" class="com.yongjun.pluto.model.security.Department">
+			<column name="dept_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="type" class="com.yongjun.pluto.model.codevalue.CodeValue">
+			<column name="type" not-null="false" />
+		</many-to-one>
+        
+        <property name="starTime" type="timestamp">
+			<column name="STARTIME" not-null="false" />
+		</property>
+		
+        <property name="endTime" type="timestamp">
+			<column name="ENDTIME" not-null="false" />
+		</property>
+		
+        <property name="explain" type="string">
+			<column name="EXPLAIN" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+        
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

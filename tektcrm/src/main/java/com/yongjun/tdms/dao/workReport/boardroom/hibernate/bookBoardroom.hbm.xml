@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.workReport.boardroom.BookBoardroom" table="t_bookBoardroom" lazy="false">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_bookBoardroom_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+
+		<many-to-one name="applicant" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+			<column name="applicant" not-null="true"/>
+		</many-to-one>
+		
+		<property name="startDate" type="timestamp">
+			<column name="startDate" />
+		</property>
+		
+		<property name="endDate" type="timestamp">
+			<column name="endDate" />
+		</property>
+
+		<many-to-one name="state" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+			<column name="state" />
+		</many-to-one>
+
+		<many-to-one name="boardroom" class="com.yongjun.tdms.model.workReport.boardroom.Boardroom">
+			<column name="boardroom" />
+		</many-to-one>
+		
+		<property name="explain" type="string">
+			<column name="explain" sql-type="NVARCHAR(500)" />
+		</property>
+		
+		<property name="isSaved" type="string">
+			<column name="isSaved" not-null="false" sql-type="NVARCHAR(1)" />
+		</property>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+		<property name="creator"  column="CREATOR" type="string" length="40"/>
+		<property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+		<property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.workReport.apply.ApplyCar" table="t_applyCar">
+        <id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_applyCar_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION" type="long"/>
+		<!-- 编码 -->
+        <property name="code" type="string">
+            <column name="code" sql-type="NVARCHAR(50)"/>
+        </property>
+		<property name="dept" type="string" >
+            <column name="dept" not-null="true"/>
+        </property>
+		<many-to-one name="applyPerson" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles" lazy="false">
+            <column name="applyPerson" not-null="true"/>
+        </many-to-one>
+		<many-to-one name="type" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+            <column name="type" not-null="true"/>
+        </many-to-one>
+		<property name="numOfPeople" type="int">
+            <column name="NumOfPeople" not-null="false"/>
+        </property>
+		<property name="waitPlace" type="string">
+            <column name="waitPlace" not-null="false"/>
+        </property>
+		<property name="destination" type="string">
+            <column name="destination" not-null="false"/>
+        </property>
+		<property name="reason" type="string">
+            <column name="reason" not-null="true"/>
+        </property>
+		<property name="contacter" type="string">
+            <column name="contacter" not-null="false"/>
+        </property>
+		<property name="phone" type="string">
+            <column name="phone" not-null="false"/>
+        </property>
+		<property name="time_start" type="java.util.Date">
+            <column name="time_start" not-null="true"/>
+        </property>
+		<property name="time_end" type="java.util.Date">
+            <column name="time_end" not-null="true"/>
+        </property>
+		<many-to-one name="flow" class="com.yongjun.tdms.model.workflow.Flow" lazy="false">
+            <column name="flow" not-null="true"/>
+        </many-to-one>
+		<many-to-one name="status" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+            <column name="status" not-null="true"/>
+        </many-to-one>
+		<property name="isSaved" type="string">
+            <column name="isSaved" not-null="true"/>
+        </property>
+        <many-to-one name="carType" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+            <column name="carType" not-null="false"/>
+        </many-to-one>
+         <property name="carCount" type="int">
+            <column name="carCount" not-null="false"/>
+        </property>
+        
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+
+</hibernate-mapping>

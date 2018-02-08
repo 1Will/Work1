@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.yongjun.tdms.model.workReport.apply.ApplyGoods" table="t_applyGoods">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_applyGoods_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+        <property name="code" type="string">
+            <column name="code"  sql-type="NVARCHAR(50)" />
+        </property>
+		<property name="dept" type="string">
+            <column name="dept" not-null="true"/>
+        </property>
+		<many-to-one name="applyPerson" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles" lazy="false">
+            <column name="applyPerson" not-null="true"/>
+        </many-to-one>
+		<many-to-one name="purpose" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+            <column name="purpose" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="goodsName" class="com.yongjun.pluto.model.codevalue.CodeValue" >
+            <column name="goodsName" not-null="false"/>
+        </many-to-one>
+        <property name="goodsCount" type="int">
+            <column name="goodsCount" not-null="false"/>
+        </property>
+        <many-to-one name="unit" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+            <column name="unit" not-null="false"/>
+        </many-to-one>
+        <property name="bussinessUnit" type="string">
+            <column name="bussinessUnit" not-null="false"/>
+        </property>
+        <many-to-one name="flow" class="com.yongjun.tdms.model.workflow.Flow" lazy="false">
+            <column name="flow" not-null="true"/>
+        </many-to-one>
+		<many-to-one name="status" class="com.yongjun.pluto.model.codevalue.CodeValue" lazy="false">
+            <column name="status" not-null="true"/>
+        </many-to-one>
+		<property name="isSaved" type="string">
+            <column name="isSaved" not-null="true"/>
+        </property>
+        <property name="remark" type="string">
+            <column name="remark"  />
+        </property>
+        <property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.workReport.weekPlan.WeekPlan" table="t_weekPlan">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_weekPlan_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<many-to-one name="weekly" class="com.yongjun.tdms.model.workReport.weekly.Weekly" lazy="false">
+			<column name="WEEKLY_ID" not-null="false"/>
+		</many-to-one>
+		
+		<many-to-one name="projectInfo" class="com.yongjun.tdms.model.project.ProjectInfo" lazy="false">
+			<column name="PROJECTINFO_ID" not-null="true"/>
+		</many-to-one>
+		
+		<property name="lastPlan" type="string" lazy="false">
+			<column name="LASTPLAN" sql-type="NVARCHAR(500)" />
+		</property>
+		
+		<property name="thisPlan" type="string" lazy="false">
+			<column name="THISPLAN" sql-type="NVARCHAR(500)" />
+		</property>
+		
+		<property name="nextPlan" type="string" lazy="false">
+			<column name="NEXTPLAN" sql-type="NVARCHAR(500)" />
+		</property>
+		
+		<property name="isSaved" type="string">
+			<column name="ISSAVED" not-null="false" sql-type="NVARCHAR(1)" />
+		</property>
+		
+		<many-to-one name="week" class="com.yongjun.tdms.model.workReport.week.Week" lazy="false">
+			<column name="WEEK_ID" not-null="false"/>
+		</many-to-one>
+		
+		<many-to-one name="user" class="com.yongjun.pluto.model.security.User" lazy="false">
+			<column name="USER_ID" not-null="false"/>
+		</many-to-one>
+		
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

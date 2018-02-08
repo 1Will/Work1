@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2006-2008 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: $ -->
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.productionOperation.productionOperationException.ProductionOperationException" table="t_productionOperationException">
+		<id name="id" column="ID" type="long">
+			<generator class="native">
+				<param name="sequence">t_productionOperationException_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		<!-- private String code;//异常编码
+	private String name;//异常名称
+	private ProductionOperationDetail productionOperationDetail;//产品计划
+	private ProjectInfoPlan projectInfoPlan;//所属计划任务
+	private PersonnelFiles findPersion;//异常提出人
+	private Date findDate;//异常 提出时间
+	private String describe;//异常描述
+	private PersonnelFiles solvePersion;//异常解决人
+	private Date solveDate;//异常 解决时间
+	private String reason;//异常原因
+	private String solution;//解决方案 -->
+		 <!--异常编码-->
+         <property name="code" type="string">
+			<column name="code" />
+				</property>
+				 <!--异常名称-->
+         <property name="name" type="string">
+			<column name="name" />
+				</property>
+		
+		  <!--所属C产品计划-->
+        <many-to-one name="productionOperationDetail" class="com.yongjun.tdms.model.productionOperation.productionOperationDetail.ProductionOperationDetail">
+        	<column name="productionOperationDetail"></column>
+        </many-to-one>
+		  <!--所属计划任务-->
+        <many-to-one name="projectInfoPlan" class="com.yongjun.tdms.model.project.projectInfoPlan.ProjectInfoPlan">
+        	<column name="projectInfoPlan"></column>
+        </many-to-one>
+          <!--异常提出人-->
+        <many-to-one name="findPersion" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+        	<column name="findPersion"></column>
+        </many-to-one>
+		
+		<!--提出时间-->
+		<property name="findDate" type="timestamp">
+			<column name="findDate" />
+		</property>
+		<!-- describ异常描述 -->
+		  <property name="describe" type="string">
+			<column name="describe" length="2000" />
+				</property>
+		
+		
+		 <!--异常解决人-->
+        <many-to-one name="solvePersion" class="com.yongjun.tdms.model.personnelFiles.PersonnelFiles">
+        	<column name="solvePersion"></column>
+        </many-to-one>
+		
+		<!--解决时间-->
+		<property name="solveDate" type="timestamp">
+			<column name="solveDate" />
+		</property>
+		
+		<!-- 异常原因 -->
+		  <property name="reason" type="string">
+			<column name="reason" length="2000" />
+				</property>
+		
+		
+		<!--解决方案-->
+		  <property name="solution" type="string">
+			<column name="solution" length="2000" />
+				</property>
+				
+		<property name="isSaved" type="string">
+			<column name="isSaved" sql-type="NVARCHAR(1)"/>
+		</property>
+		
+				
+		 <!--异常状态-->
+        <many-to-one name="statu" class="com.yongjun.pluto.model.codevalue.CodeValue">
+        	<column name="statu"></column>
+        </many-to-one>
+	</class>
+</hibernate-mapping>

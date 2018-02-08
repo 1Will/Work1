@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.customercontract.contractmanagement.invoice.invoiceList.InvoicesList" table="t_invoiceList">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_contractPlan_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<property name="code" type="string">
+			<column name="code" not-null="true"/>
+		</property>
+		<property name="currentSum" type="long">
+			<column name="currentSum"/>
+		</property>
+		<property name="restSum" type="long">
+			<column name="restSum"/>
+		</property>
+		<property name="finishedSum" type="long">
+			<column name="finishedSum"/>
+		</property>
+		<property name="mark" type="string" length="2000">
+			<column name="mark"/>
+		</property>
+		<property name="deliveryPrice" type="double">
+			<column name="deliveryPrice"/>
+		</property>
+		<property name="isSaved" type="string">
+			<column name="isSaved"/>
+		</property>
+		<many-to-one name="productList" class="com.yongjun.tdms.model.customercontract.contractmanagement.productlist.ProductList">
+			<column name="productList" not-null="false"/>
+		</many-to-one>
+		<many-to-one name="invoices" class="com.yongjun.tdms.model.customercontract.contractmanagement.invoice.Invoices">
+			<column name="invoices" not-null="false"/>
+		</many-to-one>
+		<many-to-one name="products" class="com.yongjun.tdms.model.base.products.Products">
+			<column name="products" not-null="false"/>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

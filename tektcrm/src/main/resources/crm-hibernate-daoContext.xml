@@ -1,0 +1,1867 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" 
+	"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+	
+<beans>						
+	 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		
+		<property name="driverClassName">
+			 <value>com.microsoft.sqlserver.jdbc.SQLServerDriver</value>  
+		</property>
+		 <property name="url">
+			<value>jdbc:sqlserver://192.168.1.110:1433;databasename=tekt;SelectMethod=Cursor</value>
+		</property>
+		<property name="password">
+			<value>root</value>
+		</property>  
+		<!--  <property name="url">
+			<value>jdbc:sqlserver://192.168.1.120:1433;databasename=tektcrm;SelectMethod=Cursor</value>
+		</property>
+		<property name="password">
+			<value>000000</value>
+		</property>  -->
+		<property name="username">
+			<value>sa</value>
+		</property>
+		<property name="maxActive">
+			<value>200</value>
+		</property>
+		<property name="removeAbandonedTimeout">
+			<value>180</value>
+		</property>
+	
+	</bean>
+	
+
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject">
+			<ref local="dataSource" />
+		</property>
+		<property name="targetMethod">
+			<value>addConnectionProperty</value>
+		</property>
+		<property name="arguments">
+			<list>
+				<value>defaultNChar</value>
+				<value>true</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="departmentHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/pluto/dao/security/hibernate/department.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="departmentDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.org.DepartmentDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.org.hibernate.HibernateDepartment" />
+		</property>
+	</bean>
+	<bean id="applicationDocHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/base/document/hibernate/applicationDoc.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="applicationDocDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.document.ApplicationDocDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.document.hibernate.HibernateApplicationDoc" />
+		</property>
+	</bean>
+	<bean id="eventNewDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.event.EventNewDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.event.hibernate.HibernateEventNew" />
+		</property>
+	</bean>
+	<bean id="eventNewHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/base/event/hibernate/eventNew.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="eventTypeDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.event.EventTypeDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.event.hibernate.HibernateEventType" />
+		</property>
+	</bean>
+	<bean id="eventTypeHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/base/event/hibernate/eventType.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+    <bean id="eventLogHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/base/log/hibernate/eventLog.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="eventLogDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.log.EventLogDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.log.hibernate.HibernateEventLog" />
+		</property>
+	</bean>
+	<bean id="sysLogHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/base/log/hibernate/sysLog.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="sysLogDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.log.SysLogDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.log.hibernate.HibernateSysLog" />
+		</property>
+	</bean>
+	<bean id="workWarnningHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workspace/warnning/hibernate/workWarnning.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="workWarnningDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workspace.warnning.WorkWarnningDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workspace.warnning.hibernate.HibernateWorkWarnning" />
+		</property>
+	</bean>
+	
+	<!-- 供应商管理DAO  -->	
+	<bean id="supplierHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/supplier/hibernate/supplier.hbm.xml</value>
+		</constructor-arg>	
+	</bean>
+	<bean id="supplierDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.supplier.SupplierDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.supplier.hibernate.HiberanteSupplier"></bean>
+		</property>		
+	</bean>
+	<!-- 供应商资质关联DAO -->
+	<bean id="supplierAptitudesHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/supplier/supplierAptitudes/hibernate/supplierAptitudes.hbm.xml</value>
+		</constructor-arg>	
+	</bean>
+	<bean id="supplierAptitudesDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.supplier.supplierAptitudes.SupplierAptitudesDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.supplier.supplierAptitudes.hibernate.HibernateSupplierAptitudes"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 李杨：事业单位DAO -->
+	<bean id="institutionDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.institution.InstitutionDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.institution.hibernate.HibernateInstitution" />
+		</property>		
+	</bean>
+	<bean id="areaDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.area.AreaDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.area.hibernate.HibernateArea"></bean>
+		</property>		
+	</bean>
+	<bean id="areaHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/base/area/hibernate/area.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="productTypeDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.producttype.ProductTypeDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.producttype.hibernate.HibernateProductType"></bean>
+		</property>		
+	</bean>
+	<bean id="productTypeHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/base/producttype/hibernate/producttype.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="productsDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.products.ProductsDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.products.hibernate.HibernateProducts"></bean>
+		</property>		
+	</bean>
+	<bean id="productsHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/base/products/hibernate/products.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<!-- 客户关系管理 -->
+	<!-- 附加信息 -->
+	<bean id="cusAdditionalInfoDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.CustomerRelationship.additionalInfo.CusAdditionalInfoDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.CustomerRelationship.additionalInfo.hibernate.HibernateCusAdditionalInfo"></bean>
+		</property>		
+	</bean>
+	<bean id="cusAdditionalInfoHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/CustomerRelationship/additionalInfo/hibernate/cusadditionalInfo.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<!-- 联系人信息 -->
+	<bean id="contactArchivesDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.CustomerRelationship.contactArchives.ContactArchivesDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.CustomerRelationship.contactArchives.hibernate.HibernateContactArchives"></bean>
+		</property>		
+	</bean>
+	<bean id="contactArchivesHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/CustomerRelationship/contactArchives/hibernate/contactArchives.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<!-- 客户档案信息 -->
+	<bean id="customerInfoDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.CustomerRelationship.customerProfiles.CustomerInfoDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.CustomerRelationship.customerProfiles.hibernate.HibernateCustomerInfo"></bean>
+		</property>		
+	</bean>
+	<bean id="customerInfoHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/CustomerRelationship/customerProfiles/hibernate/customerInfo.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<!-- 客户关系管理结束 -->
+	<bean id="advisoryHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/advisory/hibernate/advisory.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="advisoryDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.advisory.AdvisoryDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.advisory.hibernate.HibernateAdvisory"></bean>
+		</property>		
+	</bean>
+	<!-- 回访登记 -->
+	<bean id="backVisitHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/backvisit/hibernate/backvisit.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<!-- 回访回复 -->
+	<bean id="ReplyBackVisitHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/backvisit/hibernate/ReplyBackVisit.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="backVisitDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.backvisit.BackVisitDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.backvisit.hibernate.HibernateBackVisit"></bean>
+		</property>		
+	</bean>	
+	<!-- 等级变更 -->
+	<bean id="stepInfoHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/CustomerRelationship/stepInfo/hibernate/stepInfo.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="stepInfoDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.CustomerRelationship.stepInfo.StepInfoDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.CustomerRelationship.stepInfo.hibernate.HibernateStepInfo"></bean>
+		</property>		
+	</bean>	
+	<!-- 客户联系报表 -->
+	<bean id="custContactReportHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/report/custcontact/hibernate/custContactReport.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="custContactReportDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.report.custcontact.CustContactReportDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.report.custcontact.hibernate.HibernateCustContactReport"></bean>
+		</property>		
+	</bean>	
+	
+	<!-- 周计划 -->
+	<bean id="weekPlanHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/weekPlan/hibernate/weekPlan.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="weekPlanDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.weekPlan.WeekPlanDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.weekPlan.hibernate.HibernateWeekPlan"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 周报信息 -->
+	<bean id="weeklyHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/weekly/hibernate/weekly.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="weeklyDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.weekly.WeeklyDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.weekly.hibernate.HibernateWeekly"></bean>
+		</property>		
+	</bean>
+	<!-- 日报信息 -->
+	<bean id="dailyHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/daily/hibernate/daily.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="dailyDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.daily.DailyDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.daily.hibernate.HibernateDaily"></bean>
+		</property>		
+	</bean>
+	<!-- 日报回复信息 -->
+	<bean id="dailyReplyHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/daily/hibernate/reply.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="replyDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.daily.ReplyDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.daily.hibernate.HibernateReply"></bean>
+		</property>		
+	</bean>
+	<!-- 下周计划信息 -->
+	<bean id="nextWeekPlanHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/nextWeekPlan/hibernate/nextWeekPlan.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="nextWeekPlanDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.nextWeekPlan.NextWeekPlanDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.nextWeekPlan.hibernate.HibernateNextWeekPlan"></bean>
+		</property>		
+	</bean>
+	<!-- 工作报告结束 -->
+	
+	<!-- 人事管理 -->
+	<!-- 人事档案DAO -->
+	<bean id="personnelFilesHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/personnelFiles/personnel/hibernate/personnelFiles.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="personnelFilesDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.personnelFiles.personnel.PersonnelFilesDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.personnelFiles.personnel.hibernate.HibernatePersonnelFiles"></bean>
+		</property>		
+	</bean>
+	<!-- 附加信息DAO -->
+	<bean id="additionalInfoHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/personnelFiles/addinfo/hibernate/additionalInfo.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="additionalDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.personnelFiles.addinfo.AdditionalInfoDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.personnelFiles.addinfo.hibernate.HibernateAdditionalInfo"></bean>
+		</property>		
+	</bean>
+	<!-- 学历信息DAO -->
+	<bean id="educationHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/personnelFiles/edu/hibernate/education.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="educationDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.personnelFiles.edu.EducationDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.personnelFiles.edu.hibernate.HibernateEducation"></bean>
+		</property>		
+	</bean>
+	<!-- 工作简历信息DAO -->
+	<bean id="workExperienceHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/personnelFiles/work/hibernate/workExperience.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="workExperienceaDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.personnelFiles.work.WorkExperienceDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.personnelFiles.work.hibernate.HibernateWorkExperience"></bean>
+		</property>		
+	</bean>
+	<!-- 社会关系信息DAO -->
+	<bean id="socialRelationsHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/personnelFiles/relation/hibernate/socialRelations.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="socialRelationsDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.personnelFiles.relation.SocialRelationsDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.personnelFiles.relation.hibernate.HibernateSocialRelations"></bean>
+		</property>		
+	</bean>
+	
+	<!-- gliang:职位管理DAO -->
+	<bean id="dutyHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/base/duty/hibernate/duty.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="dutyDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.duty.DutyDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.duty.hibernate.HibernateDuty"></bean>
+		</property>		
+	</bean>
+	
+	<!-- wliu:职务管理DAO -->
+	<bean id="jobsHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/base/jobs/hibernate/jobs.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="jobsDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.jobs.JobsDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.jobs.hibernate.HibernateJobs"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 收发通知 -->
+	<bean id="noticeHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/notice/hibernate/notice.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="noticeDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.notice.NoticeDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.notice.hibernate.HibernateNotice" />
+		</property>
+	</bean>
+	
+	<bean id="sendNoticeHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/notice/hibernate/sendNotice.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="sendNoticeDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.notice.SendNoticeDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.notice.hibernate.HibernateSendNotice" />
+		</property>
+	</bean>
+	<bean id="receviceNoticeHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/notice/hibernate/receviceNotice.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="receviceNoticeDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.notice.ReceviceNoticeDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.notice.hibernate.HibernateReceviceNotice" />
+		</property>
+	</bean>
+	
+ 	<!-- 提醒管理 -->
+	<bean id="remindHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workspace/remind/hibernate/remind.hbm.xml</value>
+		</constructor-arg>                                                          
+	</bean>
+	<bean id="remindDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workspace.remind.RemindDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workspace.remind.hibernate.HibernateRemindDao"></bean>
+		</property>		
+	</bean>
+	<!-- 提醒明细数据接口 -->
+	<bean id="workWarnningDetaiHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workspace/warnning/hibernate/workWarnningDetail.hbm.xml</value>
+		</constructor-arg>                                                          
+	</bean>
+	<bean id="workWarnningDetailDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workspace.warnning.WorkWarnningDetailDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workspace.warnning.hibernate.HibernateWorkWarnningDetail"></bean>
+		</property>		
+	</bean>
+	<!-- 公出单 gliang2011-2-19 -->
+	<bean id="onTheRoadBillHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workspace/ontheroadBill/hibernate/onTheRoadBill.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="onTheRoadBillDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workspace.ontheroadBill.OnTheRoadBillDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workspace.ontheroadBill.hibernate.HibernateOnTheRoadBillDao" />
+		</property>
+	</bean>
+	
+	<!-- 公司目标管理 -->
+	<bean id="companyTargetHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/marketmanager/targetmanager/companytarget/hibernate/companyTarget.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="companyTargetDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.marketmanager.targetmanager.companytarget.CompanyTargetDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.marketmanager.targetmanager.companytarget.hibernate.HibernateCompanyTarget" />
+		</property>
+	</bean>
+	
+	<!-- 加班单 gliang2011-2-21 -->
+	<bean id="overTimeBillHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workspace/overTimeBill/hibernate/overTimeBill.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="overTimeBillDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workspace.overTimeBill.OverTimeBillDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workspace.overTimeBill.hibernate.HibernateOverTimeBillDao" />
+		</property>
+	</bean>
+	<!-- 请假/调休单 gliang2011-2-21 -->
+	<bean id="leaveBillHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workspace/leaveBill/hibernate/leaveBill.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="leaveBillDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workspace.leaveBill.LeaveBillDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workspace.leaveBill.hibernate.HibernateLeaveBillDao" />
+		</property>
+	</bean>
+	<!-- 我的数据 -->
+	<bean id="dataHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workspace/data/hibernate/data.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="dataDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workspace.data.DataDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workspace.data.hibernate.HibernateDataDao" />
+		</property>
+	</bean>
+	<!-- 每日统计 -->
+	<bean id="dailyStatisticHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/statistic/hibernate/dailyStatistic.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="dailyStatisticDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.statistic.DailyStatisticDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.statistic.hibernate.HibernateDailyStatisticDao" />
+		</property>
+	</bean>
+	
+	<!-- 市场活动 hmguan 2011-2-22 -->
+	<bean id="activityHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/marketmanager/activity/hibernate/activity.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="activityDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.marketmanager.activity.ActivityDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.marketmanager.activity.hibernate.HibernateActivityDao" />
+		</property>
+	</bean>
+	
+	<!-- 市场调查 hmguan 2011-2-23 -->
+	<bean id="surveyHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/marketmanager/activity/survey/hibernate/survey.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="surveyDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.marketmanager.activity.survey.SurveyDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.marketmanager.activity.survey.hibernate.HibernateSurveyDao" />
+		</property>
+	</bean>
+	
+	<!-- 市场计划 hmguan 2011-2-24 -->
+	<bean id="planHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/marketmanager/activity/plan/hibernate/plan.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="planDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.marketmanager.activity.plan.PlanDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.marketmanager.activity.plan.hibernate.HibernatePlanDao" />
+		</property>
+	</bean>
+	
+	<!-- 市场情报 hmguan 2011-2-24 -->
+	<bean id="intelligenceHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/marketmanager/intelligence/hibernate/intelligence.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="intelligenceDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.marketmanager.intelligence.IntelligenceDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.marketmanager.intelligence.hibernate.HibernateIntelligenceDao" />
+		</property>
+	</bean>
+	
+	<!-- 市场情报 hmguan 2011-2-24 -->
+	<bean id="competitorHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/marketmanager/competitor/hibernate/competitor.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="competitorDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.marketmanager.competitor.CompetitorDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.marketmanager.competitor.hibernate.HibernateCompetitorDao" />
+		</property>
+	</bean>
+	
+	<!-- 客户订单管理start gliang2011-2-22 -->
+	
+	<!-- 客户需求 gliang2011-2-22 -->
+	<bean id="vocHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/COM/VOC/hibernate/voc.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="vocDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.COM.VOC.VocDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.COM.VOC.hibernate.HibernateVocDao" />
+		</property>
+	</bean>
+	
+	
+	<!-- 部门目标管理 -->
+	<bean id="departmentTargetHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/marketmanager/targetmanager/departmenttarget/hibernate/departmentTarget.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="departmentTargetDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.marketmanager.targetmanager.departmenttarget.DepartmentTargetDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.marketmanager.targetmanager.departmenttarget.hibernate.HibernateDepartmentTarget" />
+		</property>
+	</bean>
+	
+	<!-- 客户订单 gliang2011-2-23 -->
+	<bean id="coHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/COM/co/hibernate/co.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="coDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.COM.co.CoDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.COM.co.hibernate.HibernateCoDao" />
+		</property>
+	</bean>
+	
+	<!-- 客户订单 gliang2011-2-23 -->
+	<bean id="contractCustomerHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/COM/contractCustomer/hibernate/contractCustomer.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="contractCustomerDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.COM.contractCustomer.ContractCustomerDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.COM.contractCustomer.hibernate.HibernateContractCustomerDao" />
+		</property>
+	</bean>
+	
+	<!-- 汇款管理 gliang2011-2-23 -->
+	<bean id="remitHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/COM/remit/hibernate/remit.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="remitDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.COM.remit.RemitDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.COM.remit.hibernate.HibernateRemitDao" />
+		</property>
+	</bean>
+	<!-- 退货管理 gliang2011-2-24 -->
+	<bean id="rejectionHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/COM/rejection/hibernate/rejection.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="rejectionDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.COM.rejection.RejectionDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.COM.rejection.hibernate.HibernateRejectionDao"/>
+		</property>
+	</bean>
+	<!-- 客户订单管理end gliang-->
+	
+	<!-- 个人部门目标管理 -->
+	<bean id="individualTargetHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/marketmanager/targetmanager/individualtarget/hibernate/individualTarget.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="individualTargetDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.marketmanager.targetmanager.individualtarget.IndividualTargetDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.marketmanager.targetmanager.individualtarget.hibernate.HibernateIndividualTarget" />
+		</property>
+	</bean>
+
+	
+	<!-- 工作流管理 开始 hjia 2011-02-24 -->
+	<!-- 流程管理 开始 -->
+	<bean id="flowHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>/com/yongjun/tdms/dao/workflow/flow/hibernate/flow.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="flowDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workflow.flow.FlowDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workflow.flow.hibernate.HibernateFlowDao" />
+		</property>
+	</bean>
+	<!-- 流程管理 结束 -->
+	
+	<!-- 节点管理 开始 -->
+	<bean id="pointHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>/com/yongjun/tdms/dao/workflow/point/hibernate/point.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="pointDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workflow.point.PointDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workflow.point.hibernate.HibernatePointDao" />
+		</property>
+	</bean>
+	<!-- 节点管理 结束 -->
+	
+	<!-- 工作流管理 开始 -->
+	<bean id="workflowHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>/com/yongjun/tdms/dao/workflow/workflow/hibernate/workflow.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="workflowDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workflow.workflow.WorkflowDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workflow.workflow.hibernate.HibernateWorkflowDao" />
+		</property>
+	</bean>
+	<!-- 工作流管理 结束 -->
+	
+	<!-- 工作流实例管理 开始 -->
+	<bean id="workflowCaseHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>/com/yongjun/tdms/dao/workflow/workflowcase/hibernate/workflowCase.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="workflowCaseDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workflow.workflowcase.WorkflowCaseDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workflow.workflowcase.hibernate.HibernateWorkflowCaseDao" />
+		</property>
+	</bean>
+	<!-- 工作流管理 结束 -->
+	<!-- 工作流管理 结束-->
+
+	
+	<!-- 客户服务 -->
+	<bean id="customerServiceHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/customerservicemanagement/customerservice/hibernate/customerService.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="customerServiceDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.customerservicemanagement.customerservice.CustomerServiceDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.customerservicemanagement.customerservice.hibernate.HibernateCustomerService" />
+		</property>
+	</bean>
+	
+	<!-- 客户投诉 -->
+	<bean id="customerComplaintHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/customerservicemanagement/customercomplaint/hibernate/customerComplaint.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="customerComplaintDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.customerservicemanagement.customercomplaint.CustomerComplaintDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.customerservicemanagement.customercomplaint.hibernate.HibernateCustomerComplaint" />
+		</property>
+	</bean>
+	
+	<!-- qa库 -->
+	<bean id="qaStorageHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/customerservicemanagement/qastorage/hibernate/qaStorage.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="qaStorageDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.customerservicemanagement.qastorage.QaStorageDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.customerservicemanagement.qastorage.hibernate.HibernateQaStorage" />
+		</property>
+	</bean>
+	
+	<!-- 任务 hjia -->
+	<bean id="taskHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/task/hibernate/task.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="taskDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.task.TaskDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.task.hibernate.HibernateTaskDao" />
+		</property>
+	</bean>
+	<!-- 收款记录 -->
+	<bean id="receivedPaymentsHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/customercontract/receivedpayments/hibernate/receivedPayments.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="receivedPaymentsDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">                                
+			<value>com.yongjun.tdms.dao.customercontract.receivedpayments.ReceivedPaymentsDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.customercontract.receivedpayments.hibernate.HibernateReceivedPaymentsDao"/>
+		</property>
+	</bean>
+	<!-- 收款计划 -->
+	<bean id="returnPlanHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/customercontract/plan/hibernate/returnPlan.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="returnPlanDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">                                
+			<value>com.yongjun.tdms.dao.customercontract.plan.ReturnPlanDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.customercontract.plan.hibernate.HibernateReturnPlanDao"/>
+		</property>
+	</bean>
+	
+		<!-- 开票记录 -->
+	<bean id="billingRecordHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/customercontract/billingrecord/hibernate/billingRecord.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="billingRecordDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">                                
+			<value>com.yongjun.tdms.dao.customercontract.billingrecord.BillingRecordDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.customercontract.billingrecord.hibernate.HibernateBillingRecordDao"/>
+		</property>
+	</bean>
+	
+<!-- 合同管理 -->
+	<bean id="contractManagementHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/customercontract/contractmanagement/hibernate/contractManagement.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="contractManagementDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.customercontract.contractmanagement.ContractManagementDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.customercontract.contractmanagement.hibernate.HibernateContractManagement" />
+		</property>
+	</bean>
+	
+	<!-- 产品明细 -->
+	<bean id="productListHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/customercontract/contractmanagement/productlist/hibernate/productList.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="productListDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.customercontract.contractmanagement.productlist.ProductListDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.customercontract.contractmanagement.productlist.hibernate.HibernateProductList" />
+		</property>
+	</bean>
+	<!-- 财务管理 -->
+	<bean id="financialManagementHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/financialmanagement/hibernate/financialManagement.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="financialManagementDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.financialmanagement.FinancialManagementDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.financialmanagement.hibernate.HibernateFinancialManagementDao" />
+		</property>
+	</bean>
+	<!-- 工作流 历史任务 -->
+	<bean id="historyTaskHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/historytask/hibernate/historytask.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="historyTaskDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.historytask.HistoryTaskDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.historytask.hibernate.HibernateHistoryTaskDao" />
+		</property>
+	</bean>
+	
+	<!-- 费用申请 -->
+	<bean id="expenseApplyHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/expensemanagement/expenseapply/hibernate/expenseApply.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="expenseApplyDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.expensemanagement.expenseapply.ExpenseApplyDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.expensemanagement.expenseapply.hibernate.HibernaeExpenseApply" />
+		</property>
+	</bean>
+	
+	<!-- 费用使用 -->
+	<bean id="expenseUseHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/expensemanagement/expenseuse/hibernate/expenseUse.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="expenseUseDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.expensemanagement.expenseuse.ExpenseUseDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.expensemanagement.expenseuse.hibernate.HibernateExpenseUse" />
+		</property>
+	</bean>
+	
+	<!-- 付款单 -->
+	<bean id="paymentorderHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/financeManagement/paymentorder/hibernate/paymentorder.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="paymentorderDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.financeManagement.paymentorder.PaymentorderDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.financeManagement.paymentorder.hibernate.HibernatePaymentorder" />
+		</property>
+	</bean>
+	
+	<!-- 报销单 -->
+	<bean id="expenseFormHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/expensemanagement/expenseForm/hibernate/expenseForm.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="expenseFormDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.expensemanagement.expenseForm.ExpenseFormDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.expensemanagement.expenseForm.hibernate.HibernateExpenseForm" />
+		</property>
+	</bean>
+	
+	<!-- 付款明细 -->
+	<bean id="paymentDetailsHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/financeManagement/paymentdetails/hibernate/paymentDetails.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="paymentDetailsDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.financeManagement.paymentdetails.PaymentDetailsDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.financeManagement.paymentdetails.hibernate.HibernatePaymentDetails" />
+		</property>
+	</bean>
+	
+	<!-- 工作周期 -->
+	<bean id="workingCycleHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workspace/workingcycle/hibernate/workingCycle.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="workingCycleDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workspace.workingcycle.WorkingCycleDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workspace.workingcycle.hibernate.HibernateWorkingCycleDao" />
+		</property>
+	</bean>
+	
+	<!-- 人事档案合同管理 -->
+	<bean id="contractAdministratorHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/personnelFiles/contractadministrator/hibernate/contractAdministrator.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="contractAdministratorDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.personnelFiles.contractadministrator.ContractAdministratorDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.personnelFiles.contractadministrator.hibernate.HibernateContractAdministratorDao" />
+		</property>
+	</bean>
+	<!-- 转正管理-->
+	<bean id="personnelCastingHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/personnelFiles/personnelcasting/hibernate/personnelCasting.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="personnelCastingDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.personnelFiles.personnelcasting.PersonnelCastingDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.personnelFiles.personnelcasting.hibernate.HibernatePersonnelCasting" />
+		</property>
+	</bean>
+	
+	
+	<!-- 薪酬标准-->
+	<bean id="salaryStandardHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/personnelFiles/salarymanager/salarystandard/hibernate/salaryStandard.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="salaryStandardDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.personnelFiles.salarymanager.salarystandard.SalaryStandardDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.personnelFiles.salarymanager.salarystandard.hibernate.HibernateSalaryStandard" />
+		</property>
+	</bean>
+	
+	<!-- 薪酬项目管理-->
+	<bean id="salaryItemsHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/personnelFiles/salarymanager/salaryitems/hibernate/salaryItems.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="salaryItemsDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.personnelFiles.salarymanager.salaryitems.SalaryItemsDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.personnelFiles.salarymanager.salaryitems.hibernate.HibernateSalaryItemsDao" />
+		</property>
+	</bean>
+	
+	<!--人员薪酬设置-->
+	<bean id="salarySetHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/personnelFiles/salarymanager/salaryset/hibernate/salarySet.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="salarySetDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.personnelFiles.salarymanager.salaryset.SalarySetDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.personnelFiles.salarymanager.salaryset.hibernate.HibernateSalarySetDao" />
+		</property>
+	</bean>
+	
+	<!-- 资格证书 -->
+	<bean id="qualificationHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/personnelFiles/qualification/hibernate/qualification.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="qualificationDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.personnelFiles.qualification.QualificationDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.personnelFiles.qualification.hibernate.HibernateQualification"></bean>
+		</property>		
+	</bean>
+	
+	<!--薪酬标准明细-->
+	<bean id="salaryDetailHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/personnelFiles/salarymanager/salarydetail/hibernate/salaryDetail.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="salaryDetailDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.personnelFiles.salarymanager.salarydetail.SalaryDetailDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.personnelFiles.salarymanager.salarydetail.hibernate.HibernateSalaryDetail" />
+		</property>
+	</bean>
+	
+		<!--离职管理-->
+	<bean id="leavePersonHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/personnelFiles/leavepersonnelfiles/hibernate/leavePerson.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="leavePersonDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.personnelFiles.leavepersonnelfiles.LeavePersonDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.personnelFiles.leavepersonnelfiles.hibernate.HibernateLeavePersonDao" />
+		</property>
+	</bean>
+	
+	
+		<!--报修管理-->
+	<bean id="repairsHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/customerservicemanagement/repairs/hibernate/repairs.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="repairsDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.customerservicemanagement.repairs.RepairsDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.customerservicemanagement.repairs.hibernate.HibernateRepairs" />
+		</property>
+	</bean>
+	
+	<!-- 项目管理 -->
+	<bean id="projectInfoHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/project/hibernate/projectInfo.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="projectInfoDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.project.ProjectInfoDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.project.hibernate.HibernateProjectInfo"></bean>
+		</property>		
+	</bean>	
+	
+	<!-- 项目组成员管理 -->
+	<bean id="projectInfoPersonnelsHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/project/projectInfoPersonnels/hibernate/projectInfoPersonnels.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="projectInfoPersonnelDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.project.projectInfoPersonnels.ProjectInfoPersonnelDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.project.projectInfoPersonnels.hibernate.HibernateProjectInfoPersonnels"></bean>
+		</property>		
+	</bean>	
+	
+	
+	<!-- 项目联系人管理 -->
+	<bean id="projectInfoCustomerHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/project/projectInfoCustomer/hibernate/projectInfoCustomer.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="projectInfoCustomerDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.project.projectInfoCustomer.ProjectInfoCustomerDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.project.projectInfoCustomer.hibernate.HibernateProjectInfoCustomer"></bean>
+		</property>		
+	</bean>	
+	
+	<!-- 项目联系人管理 -->
+	<bean id="projectInfoContractHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/project/projectInfoContract/hibernate/projectInfoContract.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="projectInfoContractDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.project.projectInfoContract.ProjectInfoContractDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.project.projectInfoContract.hibernate.HibernateProjectInfoContract"></bean>
+		</property>		
+	</bean>	
+	
+	<!-- 项目相关产品 -->
+	<bean id="projectInfoProductHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/project/projectInfoProduct/hibernate/projectInfoProduct.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="projectInfoProductDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.project.projectInfoProduct.ProjectInfoProductDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.project.projectInfoProduct.hibernate.HibernateProjectInfoProduct"></bean>
+		</property>		
+	</bean>	
+	
+	<!-- 项目任务计划管理 -->
+	<bean id="projectInfoPlanHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/project/projectInfoPlan/hibernate/projectInfoPlan.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="projectInfoPlanDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.project.projectInfoPlan.ProjectInfoPlanDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.project.projectInfoPlan.hibernate.HibernateProjectInfoPlan"></bean>
+		</property>		
+	</bean>	
+	
+	<!-- 联系人工作简历信息DAO -->
+	<bean id="contactsJobResumeHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/CustomerRelationship/contactArchives/hibernate/contactsJobResume.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="contactsJobResumeDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.CustomerRelationship.contactArchives.ContactsJobResumeDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.CustomerRelationship.contactArchives.hibernate.HibernateContactsJobResume"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 联系人工作简历信息DAO -->
+	<bean id="contactToHistoryHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/CustomerRelationship/contactArchives/hibernate/contactToHistory.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="contactToHistoryDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.CustomerRelationship.contactArchives.ContactToHistoryDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.CustomerRelationship.contactArchives.hibernate.HibernateContactToHistory"></bean>
+		</property>		
+	</bean>
+	<!-- 合同附加DAO -->
+	<bean id="contactAdditionalHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/customercontract/contractmanagement/additionalInfo/hibernate/ContractadditionalInfo.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="contactAdditionalInfoDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.customercontract.contractmanagement.additionalInfo.ContractAdditionalInfoDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.customercontract.contractmanagement.additionalInfo.hibernate.HibernateContractAdditionalInfo"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 产品开发者DAO -->
+	<bean id="productsPersonHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/base/products/productsPerson/hibernate/projectInfoPersonnels.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="productsPersonDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.products.productsPerson.ProductsPersonDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.products.productsPerson.hibernate.HibernateProductsPerson"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 合同计划DAO -->
+	<bean id="contractPlanHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/customercontract/contractmanagement/plan/hibernate/contractPlanManagement.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="contractPlanDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.customercontract.contractmanagement.plan.ContractPlanDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.customercontract.contractmanagement.plan.hibernate.HibernateContractPlanManagement"></bean>
+		</property>	
+	</bean>
+			
+	<!-- 项目合作伙伴DAO -->
+	<bean id="projectPartnerHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/project/projectPartner/hibernate/projectInfoPartner.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="projectPartnerDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.project.projectPartner.ProjectPartnerDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.project.projectPartner.hibernate.HibernateProjectPartner"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 项目合作伙伴项目组成员DAO -->
+	<bean id="projectContactArchivesHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/project/projectContactArchives/hibernate/projectContactArchives.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="projectContactArchivesDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.project.projectContactArchives.ProjectContactArchivesDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.project.projectContactArchives.hibernate.HibernateProjectContactArchives"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 合同状态DAO -->
+	<bean id="contractStateHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/customercontract/contractmanagement/state/hibernate/ContractState.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="contractStateDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.customercontract.contractmanagement.state.ContractStateDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.customercontract.contractmanagement.state.hibernate.HibernateContractState"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 周 -->
+	<bean id="weekHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/week/hibernate/week.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="weekDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.week.WeekDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.week.hibernate.HibernateWeek"></bean>
+		</property>		
+	</bean>
+	
+	<bean id="groupAddDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.group.GroupAddDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.group.hibernate.HibernateGroupAdd"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 参与者 -->
+	<bean id="participantHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/CustomerRelationship/participant/hibernate/participant.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="participantDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.CustomerRelationship.participant.ParticipantDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.CustomerRelationship.participant.hibernate.HibernateParticipant"></bean>
+		</property>		
+	</bean>
+	<!-- 早会 -->
+	<bean id="meetingDayHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/meeting/hibernate/meetingDay.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="meetingDayDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.meeting.MeetingDayDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.meeting.hibernate.HibernateMeetingDay"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 周计划回复 -->
+	<bean id="replyWeeklyHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/weekly/hibernate/replyWeekly.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="replyWeeklyDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.weekly.ReplyWeeklyDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.weekly.hibernate.HibernateReplyWeekly"></bean>
+		</property>		
+	</bean>
+	
+	<bean id="meetingMonthHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/meeting/hibernate/meetingMonth.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="meetingMonthDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.meeting.MeetingMonthDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.meeting.hibernate.HibernateMeetingMonth"></bean>
+		</property>		
+	</bean>
+
+	<!-- 项目状态 -->
+	<bean id="projectStateHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/project/state/hibernate/projectState.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="projectStateDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.project.state.ProjectStateDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.project.state.hibernate.HibernateProjectState"></bean>
+		</property>		
+	</bean>
+	<!-- 发货单 -->
+	<bean id="invoiceMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/customercontract/contractmanagement/invoice/hibernate/invoice.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="invoiceDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.customercontract.contractmanagement.invoice.InvoiceDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.customercontract.contractmanagement.invoice.hibernate.HibernateInvoices"></bean>
+		</property>		
+	</bean>
+	<!-- 工作计划模板-->
+	<bean id="hibernateProPlanTemplet" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/project/projectInfoPlan/hibernate/proPlanTemplet.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="proPlanTempletDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.project.projectInfoPlan.ProPlanTempletDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.project.projectInfoPlan.hibernate.HibernateProPlanTemplet"></bean>
+		</property>		
+	</bean>
+	<!-- 发货单明细 -->
+	<bean id="invoiceListMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/customercontract/contractmanagement/invoice/invoicesList/hibernate/InvoicesList.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="invoicesListDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.customercontract.contractmanagement.invoice.invoicesList.InvoicesListDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.customercontract.contractmanagement.invoice.invoicesList.hibernate.HibernateInvoicesList"></bean>
+		</property>		
+	</bean>
+	<!-- 维修记录-->
+	<bean id="repairRecordMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/repairRecord/hibernate/repairRecord.hbm.xml</value>
+		</constructor-arg>
+	</bean> 
+	<bean id="repairRecordDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.repairRecord.RepairRecordDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.repairRecord.hibernate.HibernateRepairRecord"></bean>
+		</property>		
+	</bean>
+	<!-- activity flow start -->
+	<!-- 审批节点管理 开始 -->
+	<bean id="runPointHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>/com/yongjun/tdms/dao/activitiFlow/hibernate/runPoint.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="runPointDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.activitiFlow.RunPointDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.activitiFlow.hibernate.HibernateRunPointDao" />
+		</property>
+	</bean>
+	<!-- 审批节点管理 结束 -->
+	
+	
+	<!-- 执行任务 开始 -->
+	<bean id="runTaskHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>/com/yongjun/tdms/dao/activitiFlow/hibernate/runTask.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="runTaskDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.activitiFlow.RunTaskDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.activitiFlow.hibernate.HibernateRunTaskDao" />
+		</property>
+	</bean>
+	<!-- 执行 结束 -->
+	
+	
+	<!-- 历史任务 开始 -->
+	<bean id="historyTaskinstHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>/com/yongjun/tdms/dao/activitiFlow/hibernate/historyTaskinst.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="historyTaskinstDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.activitiFlow.HistoryTaskinstDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.activitiFlow.hibernate.HibernateHistoryTaskinstDao" />
+		</property>
+	</bean>
+	<!-- 历史任务 结束 -->
+	
+	<!-- 抄送人 开始 -->
+	<bean id="copySendPersonHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>/com/yongjun/tdms/dao/activitiFlow/hibernate/copySendPerson.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="copySendPersonDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.activitiFlow.CopySendPersonDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.activitiFlow.hibernate.HibernateCopySendPersonDao" />
+		</property>
+	</bean>
+	<!--抄送人结束 -->
+	<!-- activity flow end -->
+	
+	<!-- 经营计划 -->
+	<bean id="productionOperationMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/productionOperation/hibernate/productionOperation.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="productionOperationDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.productionOperation.ProductionOperationDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.productionOperation.hibernate.HibernateProductionOperation"></bean>
+		</property>		
+	</bean>
+	
+<!-- 经营计划 m明细-->
+	<bean id="productionOperationDetailMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/productionOperation/productionOperationDetail/hibernate/productionOperationDetail.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="productionOperationDetailDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.productionOperation.productionOperationDetail.ProductionOperationDetailDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.productionOperation.productionOperationDetail.hibernate.HibernateProductionOperationDetail"></bean>
+		</property>		
+	</bean>
+	
+		
+<!-- 经营计划 m明细-->
+	<bean id="productionOperationExceptionMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/productionOperation/productionOperationException/hibernate/productionOperationException.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="productionOperationExceptionDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.productionOperation.productionOperationException.ProductionOperationExceptionDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.productionOperation.productionOperationException.hibernate.HibernateProductionOperationException"></bean>
+		</property>		
+	</bean>
+<!-- 用车申请-->
+	<bean id="applyCarHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/apply/hibernate/applyCar.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="applyCarDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.apply.ApplyCarDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.apply.hibernate.HibernateApplyCarDao"></bean>
+		</property>		
+	</bean>
+<!--招待申请  -->	
+	<bean id="applyGoodsHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/apply/hibernate/applyGoods.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="applyGoodsDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.apply.ApplyGoodsDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.apply.hibernate.HibernateApplyGoodsDao"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 会议室 -->
+	<bean id="boardroomHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/boardroom/hibernate/boardroom.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="boardroomDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.boardroom.BoardroomDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.boardroom.hibernate.HibernateBoardroom"></bean>
+		</property>		
+	</bean>
+	
+	<!-- 会议室预定 -->
+	<bean id="bookBoardroomHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/boardroom/hibernate/bookBoardroom.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="bookBoardroomDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.boardroom.BookBoardroomDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.boardroom.hibernate.HibernateBookBoardroom"></bean>
+		</property>		
+	</bean>
+	
+<<<<<<< .mine
+	<!-- 钉钉 -->
+	<bean id="newTaskHibernateMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/workReport/newTask/hibernate/newTask.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="newTaskDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.workReport.newTask.NewTaskDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.workReport.newTask.hibernate.HibernateNewTask"></bean>
+		</property>		
+	</bean>
+	
+=======
+	<!-- 部门领导  附加信息-->
+	<bean id="additionalInformationMappingResource" class="com.yongjun.pluto.dao.hibernate.HibernateMappingResource">
+		<constructor-arg>
+			<value>com/yongjun/tdms/dao/base/additionalInformation/hibernate/additionalInformation.hbm.xml</value>
+		</constructor-arg>
+	</bean>
+	<bean id="additionalInformationDao" parent="abstractTrackingProxy">
+		<property name="proxyInterfaces">
+			<value>com.yongjun.tdms.dao.base.additionalInformation.AdditionalInformationDao</value>
+		</property>
+		<property name="target">
+			<bean parent="baseHibernateDao" class="com.yongjun.tdms.dao.base.additionalInformation.hibernate.HibernateAdditionalInformation"></bean>
+		</property>		
+	</bean>
+	
+>>>>>>> .r8844
+</beans>

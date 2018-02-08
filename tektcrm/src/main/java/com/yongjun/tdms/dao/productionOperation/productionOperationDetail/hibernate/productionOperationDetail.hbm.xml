@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+	Copyright (c) 2006-2008 YongJun Technology Pte.,Ltd. All
+	Rights Reserved.
+	
+	This software is the confidential and proprietary information of 
+	YongJun Technology Pte.,Ltd. ("Confidential Information"). You
+	shall not disclose such Confidential Information and shall use it only in
+	accordance with the terms of the license agreement you entered into with
+	YongJun.
+	
+	YONGJUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+	SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+	NON-INFRINGEMENT. YONGJUN SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY
+	LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+	DERIVATIVES.
+-->
+
+<!-- $Id: $ -->
+<hibernate-mapping>
+	<class name="com.yongjun.tdms.model.productionOperation.productionOperationDetail.ProductionOperationDetail" table="t_ProductionOperationDetail">
+		<id name="id" column="ID" type="long">
+			<generator class="native">
+				<param name="sequence">t_productionOperationDetail_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<!-- 
+		
+		private Products product;//产品
+	private CodeValue unit;//单位
+	private int deliverNum;//交付数量
+	private CodeValue testType;//检验方式
+	private CodeValue proStatu;//产品状态
+	private ContractManagement contractManagement;//合同
+	private Date deliverDate;//交付节点
+	private Date technologyDate;//技术资料节点
+	private Date purchaseDate;//采购节点
+	private Date makeDate;//制造节点
+	private Date testDate;//厂检节点
+		
+		 -->
+		 
+		 
+		<version name="version" column="VERSION" type="long"/>
+		
+		  <!--所属计划-->
+        <many-to-one name="productionOperation" class="com.yongjun.tdms.model.productionOperation.ProductionOperation">
+        	<column name="productionOperation"></column>
+        </many-to-one>
+		
+		 <!--产品-->
+        <many-to-one name="product" class="com.yongjun.tdms.model.base.products.Products">
+        	<column name="product"></column>
+        </many-to-one>
+         <!--单位-->
+        <many-to-one name="unit" class="com.yongjun.pluto.model.codevalue.CodeValue">
+        	<column name="unit"></column>
+        </many-to-one>
+		
+		<!--交付数量-->
+        <property name="deliverNum" type="int">
+			<column name="deliverNum" />
+		</property>
+		
+		  <!--检验方式-->
+        <many-to-one name="testType" class="com.yongjun.pluto.model.codevalue.CodeValue">
+        	<column name="testType"></column>
+        </many-to-one>
+        
+		  <!--执行情况  正常or异常or 完结-->
+        <many-to-one name="proStatu" class="com.yongjun.pluto.model.codevalue.CodeValue">
+        	<column name="proStatu"></column>
+        </many-to-one>
+         <!--产品状态-->
+         <property name="proStatuString" type="string">
+			<column name="proStatuString" />
+				</property>
+         <!--合同-->
+        <many-to-one name="contractManagement" class="com.yongjun.tdms.model.customercontract.contractmanagement.ContractManagement">
+        	<column name="contractManagement"></column>
+        </many-to-one>
+		
+		 <!--合同的产品  -->
+        <many-to-one name="productList" class="com.yongjun.tdms.model.customercontract.contractmanagement.productlist.ProductList">
+        	<column name="productList"></column>
+        </many-to-one>
+		<!--交付节点-->
+		<property name="deliverDate" type="timestamp">
+			<column name="deliverDate" />
+		</property>
+		
+		<!--技术资料节点-->
+		<property name="technologyDate" type="timestamp">
+			<column name="technologyDate" />
+		</property>
+		
+		
+		<!--采购节点-->
+		<property name="purchaseDate" type="timestamp">
+			<column name="purchaseDate" />
+		</property>
+		
+		
+		
+		<!--制造节点-->
+		<property name="makeDate" type="timestamp">
+			<column name="makeDate" />
+		</property>
+		
+		
+		<!--厂检节点-->
+		<property name="testDate" type="timestamp">
+			<column name="testDate" />
+		</property>
+		
+		<!--军检节点-->
+		<property name="jtestDate" type="timestamp">
+			<column name="jtestDate" />
+		</property>
+		
+	</class>
+</hibernate-mapping>
