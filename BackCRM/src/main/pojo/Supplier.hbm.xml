@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- $Id: supplier.hbm.xml 10705 2017-08-04  mfzhnag $-->
+<hibernate-mapping>
+	<class name="main.pojo.Supplier" table="t_supplier" lazy="true">
+		<id name="id" column="ID" type="long">
+			<generator class="native">
+				<param name="sequence">t_supplier_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<discriminator column="DISCRIMINATOR" type="string" />
+		<version name="version" column="VERSION" type="long" />
+		<!-- 编号 -->
+		<property name="supplierNo" type="string">
+			<column name="SUPPLIER_NO" not-null="true" unique="true" sql-type="NVARCHAR(20)" unique-key="uk_t_supplier_no" />
+		</property>
+		<!-- 供应商名称（中文） -->
+		<property name="name" type="string">
+			<column name="NAME" not-null="true" sql-type="NVARCHAR(50)" />
+		</property>
+        <!-- 供应商名称（英文） -->
+		<property name="enName" type="string">
+			<column name="EN_NAME" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+        <!-- 供应商类别 -->
+        <many-to-one name="supplierType" class="main.pojo.CodeValue">
+			<column name="SP_TYPE_ID" not-null="false" />
+		</many-to-one>	
+		<!-- 行业 -->
+        <many-to-one name="tradeType" class="main.pojo.CodeValue">
+			<column name="TRADE_TYPE_ID" not-null="false" />
+		</many-to-one>	
+        <!-- 公司性质 -->
+        <many-to-one name="companyType" class="main.pojo.CodeValue">
+			<column name="COMPANY_TYPE_ID" not-null="false" />
+		</many-to-one>		
+        <!-- 法人代表 -->
+		<property name="legalPerson" type="string">
+			<column name="LEGAL_PERSON" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>	
+       <!-- 国家 -->
+        <many-to-one name="country" class="main.pojo.Area">
+			<column name="COUNTRY_ID" not-null="false" />
+		</many-to-one>	
+        <!--  -->
+        <many-to-one name="province" class="main.pojo.Area">
+			<column name="PROVINCE_ID" not-null="false" />
+		</many-to-one>	
+    
+        <many-to-one name="city" class="main.pojo.Area">
+			<column name="CITY_ID" not-null="false" />
+		</many-to-one>	
+       <!-- 注册资金（万元） 0 -->
+		<property name="registeredFunds" type="double">
+			<column name="REGISTERED_FUNDS" not-null="false" />
+		</property>
+        <!-- 员工人数 0 -->
+		<property name="employeeNum" type="int">
+			<column name="EMPLOYEE_NUM" not-null="false" />
+		</property>	
+       <!-- 经营范围： bd -->
+		<property name="managingScope" type="string">
+			<column name="MANAGING_SCOPE" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>		
+		<!-- 供应商附加信息 -->
+		<!-- 主要联系人： -->
+		<property name="maorContact" type="string">
+			<column name="MAOR_CONTACT" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>			
+        <!-- 办公电话 -->
+		<property name="phone" type="string">
+			<column name="PHONE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>			
+       <!-- 手机 -->
+		<property name="mobile" type="string">
+			<column name="MOBILE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>			
+
+		<property name="fex" type="string">
+			<column name="FEX" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>	
+
+		<property name="email" type="string">
+			<column name="Email" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>			
+
+		<property name="qq" type="string">
+			<column name="QQ" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>		
+
+		<property name="homeSite" type="string">
+			<column name="HOME_SITE" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>	
+		<!-- 创立时间 -->
+        <property name="createDate" type="timestamp">
+            <column name="CREATE_DATE"/>
+        </property>		
+
+		<property name="postCode" type="string">
+			<column name="POST_CODE" not-null="false" sql-type="NVARCHAR(20)" />
+		</property>	
+        <!--地址  -->
+		<property name="address" type="string">
+			<column name="ADDRESS" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>	
+        <!-- 营业执照 -->
+		<property name="businessLicense" type="string">
+			<column name="BUSINESS_LICENSE" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>	
+        <!-- 税号 -->
+		<property name="taxNo" type="string">
+			<column name="TAX_NO" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>	
+		<!-- 营业额 -->
+		<property name="turnover" type="string">
+			<column name="TURNOVER" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>	
+		<!-- 开户行 -->
+		<property name="bank" type="string">
+			<column name="BANK" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>			
+	    <!-- 开户行名称 -->
+		<property name="bankName" type="string">
+			<column name="BANK_NAME" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>	
+        <!-- 开户行账号 -->
+		<property name="bankAccount" type="string">
+			<column name="BANK_ACCOUNT" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>	
+        <!-- 售后服务 -->
+		<property name="afterSaleService" type="string">
+			<column name="AFTER_SALE_SERVICE" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>	
+		<!-- 服务质量 -->
+		<property name="qos" type="string">
+			<column name="QOS" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>			
+		
+<!-- 		<many-to-one name="organization" class="com.yongjun.pluto.model.security.Organization">
+			<column name="ORG_ID" not-null="false" />
+		</many-to-one>		 -->
+		
+		<property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp" />
+		<property name="creator" column="CREATOR" type="string" length="50" />
+		<property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp" />
+		<property name="lastOperator" column="LAST_OPERATOR" type="string" length="50" />
+			
+	</class>
+</hibernate-mapping>		
+		

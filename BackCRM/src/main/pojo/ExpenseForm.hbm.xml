@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+	<class name="main.pojo.ExpenseForm" table="t_expenseForm">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_expenseForm_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<version name="version" column="VERSION" type="long"/>
+		<property name="code" column="CODE" type="string" length="15"/>
+		
+        <many-to-one name="projectInfo" class="main.pojo.ProjectInfo">
+			<column name="PROJECTINFO_ID" not-null="false"/>
+		</many-to-one>
+		
+        <many-to-one name="applyPeople" class="main.pojo.PersonnelFiles">
+			<column name="APPLY_PEOPLE" not-null="true"/>
+		</many-to-one>
+		
+        <many-to-one name="contractManagement" class="main.pojo.ContractManagement">
+			<column name="CONTRACTMANAGEMENT_ID" not-null="false"/>
+		</many-to-one>
+		
+		<property name="money" type="double">
+            <column name="MONEY" not-null="true"/>
+        </property>
+		
+		<property name="applyDate" column="APPLY_DATE" type="timestamp"/>
+		
+		<property name="formNum" column="FORM_NUM" type="int"/>
+		<!-- 附件个数 -->
+		<property name="attachmentNum" column="ATTACHMENT_NUM" type="int"/>
+		
+		<property name="remark" type="string">
+			<column name="REMARK" not-null="false" sql-type="NVARCHAR(100)"/>
+		</property>
+		
+		<!-- 提交判断 -->
+        <property name="isSaved" type="string">
+            <column name="isSaved" not-null="false" sql-type="NVARCHAR(1)"/>
+        </property>
+		
+		<property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

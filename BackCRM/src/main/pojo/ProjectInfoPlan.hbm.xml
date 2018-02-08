@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="main.pojo.ProjectInfoPlan" table="t_projectInfoPlan">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_projectInfoPlan_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<property name="name" type="string">
+			<column name="name" not-null="false" sql-type="NVARCHAR(100)" />
+		</property>
+		<property name="outline" type="string">
+			<column name="outline" not-null="false" sql-type="NVARCHAR(1000)" />
+		</property>
+		<!-- 项目 -->
+		<many-to-one name="projectInfo" class="main.pojo.ProjectInfo" lazy="false">
+			<column name="projectInfo_id" not-null="false" />
+		</many-to-one>
+		<!-- 合同 -->
+		<many-to-one name="ContractManagement" class="main.pojo.ContractManagement" lazy="false">
+			<column name="contractManagement_id" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="productionOperationDetail" class="main.pojo.ProductionOperationDetail" lazy="false">
+			<column name="productionOperationDetail" not-null="false" />
+		</many-to-one>
+		<!-- 计划状态 -->
+		<many-to-one name="planState" class="main.pojo.CodeValue" lazy="false">
+			<column name="planState" not-null="false" />
+		</many-to-one>
+		
+		<many-to-one name="personnelFiles" class="main.pojo.PersonnelFiles" lazy="false">
+			<column name="personnelFiles_id" not-null="false" />
+		</many-to-one>
+		<property name="assist" type="string">
+			<column name="assist" not-null="false" sql-type="NVARCHAR(200)" />
+		</property>
+		<property name="startDate" type="timestamp">
+			<column name="start_Date"/>
+		</property>
+		<property name="endDate" type="timestamp">
+			<column name="end_Date"/>
+		</property>
+		<property name="createTime" type="timestamp">
+			<column name="CREATED_TIME"/>
+		</property>
+        <!-- 百分比 -->
+        <property name="percentt"  column="PERCENTT"   type="int" length="4"/>
+        <!-- 优先级 -->
+        <property name="priority"  column="PRIORITY"   type="int" length="2"/>
+	</class>
+</hibernate-mapping>

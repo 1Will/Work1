@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="main.pojo.Data" table="t_data">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">t_leavebill_sequence</param>
+                <param name="parameters">START WITH 1000</param>
+            </generator>
+        </id>
+        <version name="version" column="VERSION" type="long"/>
+        <!-- 年 -->
+        <property name="year" type="string">
+            <column name="year"   sql-type="NVARCHAR(50)"/>
+        </property>
+        <!-- 月 -->
+        <property name="month" type="string">
+            <column name="month"   sql-type="NVARCHAR(50)"/>
+        </property>
+          <!-- 合同数量-->
+        <property name="contractManagementNum" type="long">
+            <column name="contractManagementNum" />
+        </property>
+          <!-- 合同金额-->
+        <property name="contractManagementMoney" type="double">
+            <column name="contractManagementMoney" />
+        </property>
+         <!-- 收款数量-->
+        <property name="financialManagementNum" type="long">
+            <column name="financialManagementNum" />
+        </property>
+          <!-- 收款金额-->
+        <property name="financialManagementMoney" type="double">
+            <column name="financialManagementMoney" />
+        </property>
+         <!-- 开票数量-->
+        <property name="billingRecordNum" type="long">
+            <column name="billingRecordNum" />
+        </property>
+          <!-- 开票金额-->
+        <property name="billingRecordMoney" type="double">
+            <column name="billingRecordMoney" />
+        </property>
+        
+        <!-- 日报应写次数-->
+        <property name="shouldDaily" type="long">
+            <column name="ShouldDaily" />
+        </property>
+        <!-- 日报实写次数-->
+        <property name="actualDaily" type="long">
+            <column name="ActualDaily" />
+        </property>
+        
+        <!-- 周报应写次数-->
+        <property name="shouldWeekly" type="long">
+            <column name="ShouldWeekly" />
+        </property>
+        
+        <!-- 周报实写次数-->
+        <property name="actualWeekly" type="long">
+            <column name="ActualWeekly" />
+        </property>
+        
+        
+        <!-- 月报次数0未写1已写-->
+        <property name="Monthly" type="long">
+            <column name="Monthly" />
+        </property>
+        
+        <!-- 项目数-->
+        <property name="projectNum" type="long">
+            <column name="projectNum" />
+        </property>
+        
+        <!-- 回访次数-->
+        <property name="backvisitNum" type="long">
+            <column name="backvisitNum" />
+        </property>
+        <!-- 发生人 -->
+        <many-to-one name="personnelFiles" class="main.pojo.PersonnelFiles" lazy="false">
+			<column name="personnelFiles_id"  />
+		</many-to-one>
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="main.pojo.PaymentOrder" table="t_paymentorder">
+		<id name="id" column="Id" type="long">
+			<generator class="native">
+				<param name="sequence">t_paymentorder_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION" type="long"/>
+		<property name="code" type="string">
+            <column name="CODE" not-null="false"  sql-type="NVARCHAR(50)"/>
+        </property>
+		
+        <!-- 供应商 -->
+<!-- 		<property name="supplier" type="long">
+            <column name="SUPPLIER" not-null="false"  sql-type="NUMERIC(19,0)"/>
+        </property>   -->
+        <!-- 供应商     先展示 名称  后面这个作为一个一个模块  供应商信息展示 -->
+  
+       <many-to-one name="supplier" class="main.pojo.Supplier">
+			<column name="SUPPLIER" not-null="false"/>
+		</many-to-one>
+	
+		<!-- 产生类型  -->
+        <many-to-one name="produceType" class="main.pojo.CodeValue">
+			<column name="PRODUCETYPE" not-null="false"/>
+		</many-to-one>
+		   <!-- 总金额 元 -->
+         <property name="totalMoney" type="double">
+			<column name="TOTALMONEY" />
+		</property>
+		  <!-- 付款人 -->
+        <many-to-one name="paymentPersion" class="main.pojo.PersonnelFiles">
+			<column name="PAYMENTPERSION" not-null="false" />
+		</many-to-one>
+        <many-to-one name="department" class="main.pojo.Department">
+			<column name="DEPARMENT" not-null="false"/>
+		</many-to-one>
+		<!-- 合同 -->
+		 <many-to-one name="contractManagement" class="main.pojo.ContractManagement">
+			<column name="contractManagement_id" not-null="false"/>
+		</many-to-one>
+	     <!-- 项目 -->
+		 <many-to-one name="projectInfo" class="main.pojo.ProjectInfo">
+			<column name="projectInfo" not-null="false"/>
+		</many-to-one>
+		<!-- 附件位置 -->
+		<property name="position" type="string">
+			<column name="position" not-null="false" sql-type="NVARCHAR(200)"/>
+		</property>
+		<property name="fileName" type="string">
+			<column name="fileName" not-null="false" sql-type="NVARCHAR(200)"/>
+		</property>
+		<property name="remark" type="string">
+			<column name="REMARK" not-null="false" sql-type="NVARCHAR(100)"/>
+		</property>
+		<!-- 是否提交 -->
+		<property name="isSaved" type="string">
+			<column name="isSaved" sql-type="NVARCHAR(1)"/>
+		</property>
+		
+		<property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+		<property name="createdTime" column="CREATED_TIME" type="timestamp"/>
+        <property name="creator"  column="CREATOR" type="string" length="40"/>
+        <property name="lastModifiedTime" column="LAST_MODIFIED_TIME" type="timestamp"/>
+        <property name="lastOperator" column="LAST_OPERATOR" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- $Id: $ -->
+<hibernate-mapping>
+	<class name="main.pojo.ProductionOperation" table="t_ProductionOperation">
+		<id name="id" column="ID" type="long">
+			<generator class="native">
+				<param name="sequence">t_productionOperation_sequence</param>
+				<param name="parameters">START WITH 1000</param>
+			</generator>
+		</id>
+		
+		<!-- 
+		
+		private String code;//计划编码
+	private String name;//名称
+	private PersonnelFiles makeUpPerson;//编制人
+	private Date makeUpDate;//b编制日期
+	private PersonnelFiles auditingPerson;//审核人
+	private Date auditingDate;//审核日期
+	private String mark;//备注
+	private String isSaved;// 存在并且等于0，方可提交
+		
+		 -->
+		<version name="version" column="VERSION" type="long"/>
+		<!--计划编码-->
+        <property name="code" type="string">
+			<column name="code" not-null="true" sql-type="NVARCHAR(50)"/>
+		</property>
+		<!--计划名称-->
+        <property name="name" type="string">
+			<column name="NAME" not-null="true" sql-type="NVARCHAR(50)"/>
+		</property>
+		 <!--编制人-->
+        <many-to-one name="makeUpPerson" class="main.pojo.PersonnelFiles">
+        	<column name="makeUpPerson"></column>
+        </many-to-one>
+		
+		<!--编制时间-->
+		<property name="makeUpDate" type="timestamp">
+			<column name="makeUpDate" />
+		</property>
+		
+		 <!--审核人-->
+        <many-to-one name="auditingPerson" class="main.pojo.PersonnelFiles">
+        	<column name="auditingPerson"></column>
+        </many-to-one>
+		<!--审核时间-->
+		<property name="auditingDate" type="timestamp">
+			<column name="auditingDate" />
+		</property>
+		<!--备注-->
+        <property name="mark" type="string">
+			<column name="mark"  sql-type="NVARCHAR(500)"/>
+		</property>
+		<!--存在并且等于0，方可提交-->
+        <property name="isSaved" type="string">
+			<column name="isSaved"  sql-type="NVARCHAR(2)"/>
+		</property>
+		<property name="disabled" type="boolean">
+            <column name="DISABLED" not-null="true"/>
+        </property>
+	</class>
+</hibernate-mapping>

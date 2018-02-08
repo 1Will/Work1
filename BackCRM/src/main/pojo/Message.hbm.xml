@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="main.pojo.Message" table="t_message">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="eventType" class="main.pojo.EventType" lazy="false">
+			<column name="EVENTTYPE_ID" />
+		</many-to-one>
+
+		<property name="openid" type="string">
+			<column name="OPENID" not-null="false" sql-type="NVARCHAR(100)" />
+		</property>
+
+		<property name="url" type="string">
+			<column name="URL" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+
+		<property name="title" type="string">
+			<column name="TITLE" not-null="false" sql-type="NVARCHAR(50)" />
+		</property>
+
+		<property name="keywords" type="string">
+			<column name="KEYWORDS" not-null="false" sql-type="NVARCHAR(500)" />
+		</property>
+
+		<property name="time" type="timestamp">
+			<column name="TIME" not-null="true" />
+		</property>
+
+	</class>
+</hibernate-mapping>
