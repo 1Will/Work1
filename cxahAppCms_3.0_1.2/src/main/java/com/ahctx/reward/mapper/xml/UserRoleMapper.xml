@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ahctx.reward.mapper.UserRoleMapper">
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+		id, uid, rid
+	</sql>
+    <select id="selectUserJoRole" resultType="UserJoinRole">
+		SELECT U.*,UR.RID from USER U JOIN USER_ROLE UR ON U.ID = UR.UID
+		WHERE U.ID = #{id}
+	</select>
+</mapper>

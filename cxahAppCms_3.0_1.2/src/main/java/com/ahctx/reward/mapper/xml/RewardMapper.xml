@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ahctx.reward.mapper.RewardMapper">
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+		id, nameOfDriver, driverNumber, phoneNumber, plateNumber
+	</sql>
+
+	<select id="selectRegisterUser" resultType="RegisterUser">
+		SELECT * from REGISTERUSER RU
+		<where>
+			1=1
+			<if test="regUser.driverNumber!= null and regUser.driverNumber!= '' ">
+				AND RU.driverNumber = #{regUser.driverNumber}
+			</if>
+			<if test="regUser.phoneNumber!= null and regUser.phoneNumber!= '' ">
+				AND RU.phoneNumber = #{regUser.phoneNumber}
+			</if>
+			<if test="regUser.plateNumber!= null and regUser.plateNumber!= '' ">
+				AND RU.plateNumber = #{regUser.plateNumber}
+			</if>
+			<if test="regUser.frameNumber!= null and regUser.frameNumber!= '' ">
+				AND RU.frameNumber = #{regUser.frameNumber}
+			</if>
+			<if test="regUser.domain!= null and regUser.domain != '' ">
+				AND RU.domain = #{regUser.domain}
+			</if>
+			<if test="startDate!= null and startDate!= '' ">
+				AND RU.crTime > #{startDate}
+			</if>
+			<if test="endDate!= null and endDate!= '' ">
+				AND RU.crTime <![CDATA[ <]]>
+				#{endDate}
+			</if>
+			<if test="dataComplete!= null and dataComplete == 'on' ">
+				AND RU.plateNumber !='' AND RU.vehicleType !='' "
+					+ " AND RU.vehicleTime !='' AND RU.frameNumber !=''
+			</if>
+		</where>
+		ORDER BY RU.crTime DESC 
+		limit #{current}, #{limit}
+	</select>
+
+	<select id="getRegUserCount" resultType="int">
+		SELECT COUNT(1) from REGISTERUSER RU
+		<where>
+			1=1
+			<if test="regUser.driverNumber!= null and regUser.driverNumber!= '' ">
+				AND RU.driverNumber = #{regUser.driverNumber}
+			</if>
+			<if test="regUser.phoneNumber!= null and regUser.phoneNumber!= '' ">
+				AND RU.phoneNumber = #{regUser.phoneNumber}
+			</if>
+			<if test="regUser.plateNumber!= null and regUser.plateNumber!= '' ">
+				AND RU.plateNumber = #{regUser.plateNumber}
+			</if>
+			<if test="regUser.frameNumber!= null and regUser.frameNumber!= '' ">
+				AND RU.frameNumber = #{regUser.frameNumber}
+			</if>
+			<if test="regUser.domain!= null and regUser.domain != '' ">
+				AND RU.domain = #{regUser.domain}
+			</if>
+			<if test="startDate!= null and startDate!= '' ">
+				AND RU.crTime > #{startDate}
+			</if>
+			<if test="endDate!= null and endDate!= '' ">
+				AND RU.crTime <![CDATA[ <]]>
+				#{endDate}
+			</if>
+			<if test="dataComplete!= null and dataComplete == 'on' ">
+				AND RU.plateNumber !='' AND RU.vehicleType !='' "
+					+ " AND RU.vehicleTime !='' AND RU.frameNumber !=''
+			</if>
+		</where>
+	</select>
+
+    <select id="selectAllRegisterUser" resultType="RegisterUser">
+		SELECT * from REGISTERUSER RU
+		<where>
+			1=1
+			<if test="regUser.driverNumber!= null and regUser.driverNumber!= '' ">
+				AND RU.driverNumber = #{regUser.driverNumber}
+			</if>
+			<if test="regUser.phoneNumber!= null and regUser.phoneNumber!= '' ">
+				AND RU.phoneNumber = #{regUser.phoneNumber}
+			</if>
+			<if test="regUser.plateNumber!= null and regUser.plateNumber!= '' ">
+				AND RU.plateNumber = #{regUser.plateNumber}
+			</if>
+			<if test="regUser.frameNumber!= null and regUser.frameNumber!= '' ">
+				AND RU.frameNumber = #{regUser.frameNumber}
+			</if>
+			<if test="regUser.domain!= null and regUser.domain != '' ">
+				AND RU.domain = #{regUser.domain}
+			</if>
+			<if test="startDate!= null and startDate!= '' ">
+				AND RU.crTime > #{startDate}
+			</if>
+			<if test="endDate!= null and endDate!= '' ">
+				AND RU.crTime <![CDATA[ <]]>
+				#{endDate}
+			</if>
+			<if test="dataComplete!= null and dataComplete == 'on' ">
+				AND RU.plateNumber !='' AND RU.vehicleType !='' "
+					+ " AND RU.vehicleTime !='' AND RU.frameNumber !=''
+			</if>
+		</where>
+		ORDER BY RU.crTime DESC 
+	</select>
+	
+</mapper>

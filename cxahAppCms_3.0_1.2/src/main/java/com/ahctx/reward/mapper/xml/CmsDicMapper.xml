@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ahctx.reward.mapper.CmsDicMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 id, name, description, code, sort
+	</sql>
+
+    <select id="getCmsDicByPid" resultType="CmsDic">
+        SELECT * FROM CMS_DIC DIC WHERE DIC.PID = #{pId}
+        ORDER BY DIC.SORT DESC
+    </select>
+
+</mapper>
